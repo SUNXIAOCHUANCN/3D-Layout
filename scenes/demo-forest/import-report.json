@@ -1,0 +1,36 @@
+{
+  "format": "3d-layout-import-report",
+  "schemaVersion": 1,
+  "sceneId": "demo-forest",
+  "instanceCount": 12,
+  "models": [
+    {
+      "key": "pine-tree",
+      "dir": "demo-forest-pine-tree",
+      "sourceSha256": "6c3c545f8d20d5f8958aa2724a830ab93712e1856465f0a2ac877ed74a3e6ff8",
+      "canonicalSha256": "fd9abce59d882059d7ecbebc119fb907974b3fd9093ae4956a97ef87b2641074",
+      "dimensions": {
+        "w": 2.166577100753784,
+        "h": 3.65,
+        "d": 2.1336618661880493
+      },
+      "warnings": []
+    },
+    {
+      "key": "bush",
+      "dir": "demo-forest-bush",
+      "sourceSha256": "581024799dfb7e61c3e9fc771665c4e997155a0fdb8477cf8dc64931eb1c157d",
+      "canonicalSha256": "7aacc0e0f9330304d686c95597eb63449f623448d40bc621b487d8385250a478",
+      "dimensions": {
+        "w": 1.2,
+        "h": 0.85,
+        "d": 1.2000000000000002
+      },
+      "warnings": []
+    }
+  ],
+  "issues": [],
+  "converter": "threejs-interchange",
+  "converterVersion": "0.1.0",
+  "createdAt": "2026-10-18T10:24:19.949Z"
+}

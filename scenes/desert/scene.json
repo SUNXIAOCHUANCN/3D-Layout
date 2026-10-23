@@ -1,0 +1,5296 @@
+{
+  "meta": {
+    "id": "desert",
+    "name": "Desert",
+    "version": 1,
+    "unit": "m",
+    "up": "+Y"
+  },
+  "environment": {
+    "background": "#1c2128",
+    "sunIntensity": 1,
+    "ground": {
+      "size": [
+        2332,
+        2332
+      ],
+      "receiveShadow": true
+    }
+  },
+  "assets": [
+    {
+      "id": "scene-1",
+      "ref": "models/scene",
+      "name": "[SCENE]",
+      "transform": {
+        "position": [
+          53.99052951,
+          -11.84318623,
+          42.39680719
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "dunes-1",
+      "ref": "models/dunes",
+      "name": "DUNES",
+      "transform": {
+        "position": [
+          -14.55792877,
+          -4.4451247,
+          39.8156711
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "dead-camp-1",
+      "ref": "models/dead-camp",
+      "name": "DEAD CAMP",
+      "transform": {
+        "position": [
+          1.82733561,
+          -8.51343246,
+          72.39985749
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "woodenhouse1-1",
+      "ref": "models/woodenhouse1",
+      "name": "WoodenHouse1 (1)",
+      "transform": {
+        "position": [
+          71.7,
+          -3.6e-7,
+          -14.00000024
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          -1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "woodenhouse1-2",
+      "ref": "models/woodenhouse1",
+      "name": "WoodenHouse1 (3)",
+      "transform": {
+        "position": [
+          49.51442989,
+          -3.6e-7,
+          11.79699021
+        ],
+        "rotation": [
+          -180,
+          28.00807861,
+          -180
+        ],
+        "scale": [
+          1.00000001,
+          1,
+          1.00000001
+        ]
+      }
+    },
+    {
+      "id": "woodenhouse1-3",
+      "ref": "models/woodenhouse1",
+      "name": "WoodenHouse1 (5)",
+      "transform": {
+        "position": [
+          89.0844345,
+          -3.6e-7,
+          -13.74301024
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "woodenhouse1-4",
+      "ref": "models/woodenhouse1",
+      "name": "WoodenHouse1",
+      "transform": {
+        "position": [
+          55.1,
+          -3.6e-7,
+          -15.79999944
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "woodenhouse3-1",
+      "ref": "models/woodenhouse3",
+      "name": "WoodenHouse3",
+      "transform": {
+        "position": [
+          71.71750915,
+          -0.0221746,
+          15.91804419
+        ],
+        "rotation": [
+          -180,
+          86.92125928,
+          -180
+        ],
+        "scale": [
+          1.00000013,
+          1,
+          1.00000013
+        ]
+      }
+    },
+    {
+      "id": "woodenhouse3-2",
+      "ref": "models/woodenhouse3",
+      "name": "WoodenHouse3 (1)",
+      "transform": {
+        "position": [
+          41.12792168,
+          -0.0221746,
+          -5.82232806
+        ],
+        "rotation": [
+          0,
+          46.89902093,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "woodenhouse2-1",
+      "ref": "models/woodenhouse2",
+      "name": "WoodenHouse2",
+      "transform": {
+        "position": [
+          62.58058551,
+          -3.6e-7,
+          15.40973304
+        ],
+        "rotation": [
+          -180,
+          -2.29207068,
+          -180
+        ],
+        "scale": [
+          1.00000006,
+          1,
+          1.00000006
+        ]
+      }
+    },
+    {
+      "id": "piertile-3-1",
+      "ref": "models/piertile-3",
+      "name": "PierTile",
+      "transform": {
+        "position": [
+          38.90219562,
+          -0.99858573,
+          -0.97579171
+        ],
+        "rotation": [
+          0,
+          48.26141057,
+          0
+        ],
+        "scale": [
+          0.51407105,
+          0.51407105,
+          0.51407105
+        ]
+      }
+    },
+    {
+      "id": "piertile-3-2",
+      "ref": "models/piertile-3",
+      "name": "PierTile (1)",
+      "transform": {
+        "position": [
+          37.16881591,
+          -1.65358642,
+          0.96627084
+        ],
+        "rotation": [
+          -180,
+          41.85014121,
+          -180
+        ],
+        "scale": [
+          0.63794474,
+          0.51407105,
+          0.67181161
+        ]
+      }
+    },
+    {
+      "id": "piertile-3-3",
+      "ref": "models/piertile-3",
+      "name": "PierTile (2)",
+      "transform": {
+        "position": [
+          69.3800008,
+          -1.093586,
+          -12.4200003
+        ],
+        "rotation": [
+          0,
+          89.8884766,
+          0
+        ],
+        "scale": [
+          0.63794461,
+          0.51407105,
+          0.67181147
+        ]
+      }
+    },
+    {
+      "id": "piertile-3-4",
+      "ref": "models/piertile-3",
+      "name": "PierTile (3)",
+      "transform": {
+        "position": [
+          66.2700008,
+          -1.093586,
+          -12.4200003
+        ],
+        "rotation": [
+          0,
+          89.8884766,
+          0
+        ],
+        "scale": [
+          0.63794461,
+          0.51407105,
+          0.67181147
+        ]
+      }
+    },
+    {
+      "id": "piertile-3-5",
+      "ref": "models/piertile-3",
+      "name": "PierTile (4)",
+      "transform": {
+        "position": [
+          63.1100008,
+          -1.093586,
+          -12.4200003
+        ],
+        "rotation": [
+          0,
+          89.8884766,
+          0
+        ],
+        "scale": [
+          0.63794461,
+          0.51407105,
+          0.67181147
+        ]
+      }
+    },
+    {
+      "id": "piertile-3-6",
+      "ref": "models/piertile-3",
+      "name": "PierTile (5)",
+      "transform": {
+        "position": [
+          79.1200008,
+          -1.093586,
+          -9.9200003
+        ],
+        "rotation": [
+          0,
+          89.8884766,
+          0
+        ],
+        "scale": [
+          0.63794461,
+          0.51407105,
+          0.67181147
+        ]
+      }
+    },
+    {
+      "id": "piertile-3-7",
+      "ref": "models/piertile-3",
+      "name": "PierTile (6)",
+      "transform": {
+        "position": [
+          82.2300008,
+          -1.093586,
+          -9.9200003
+        ],
+        "rotation": [
+          0,
+          89.8884766,
+          0
+        ],
+        "scale": [
+          0.63794461,
+          0.51407105,
+          0.67181147
+        ]
+      }
+    },
+    {
+      "id": "woodenwall1-1",
+      "ref": "models/woodenwall1",
+      "name": "WoodenWall1",
+      "transform": {
+        "position": [
+          32.78349068,
+          1.2e-7,
+          0.68384913
+        ],
+        "rotation": [
+          0,
+          -86.07581394,
+          0
+        ],
+        "scale": [
+          1.00000015,
+          1,
+          1.00000015
+        ]
+      }
+    },
+    {
+      "id": "woodenwall1-2",
+      "ref": "models/woodenwall1",
+      "name": "WoodenWall1 (1)",
+      "transform": {
+        "position": [
+          6.30844792,
+          -0.02378929,
+          11.17378646
+        ],
+        "rotation": [
+          0,
+          87.91674325,
+          0
+        ],
+        "scale": [
+          1.00000004,
+          1,
+          1.00000004
+        ]
+      }
+    },
+    {
+      "id": "woodenwall1-3",
+      "ref": "models/woodenwall1",
+      "name": "WoodenWall1 (2)",
+      "transform": {
+        "position": [
+          6.45109106,
+          -0.02378929,
+          1.71109442
+        ],
+        "rotation": [
+          0,
+          -75.17011433,
+          0
+        ],
+        "scale": [
+          1.00000005,
+          1,
+          1.00000005
+        ]
+      }
+    },
+    {
+      "id": "woodenwall1-4",
+      "ref": "models/woodenwall1",
+      "name": "WoodenWall1 (3)",
+      "transform": {
+        "position": [
+          6.80245998,
+          -0.02378929,
+          4.18888356
+        ],
+        "rotation": [
+          180,
+          -86.3390417,
+          180
+        ],
+        "scale": [
+          1.00000004,
+          1,
+          1.00000004
+        ]
+      }
+    },
+    {
+      "id": "woodenwall1-5",
+      "ref": "models/woodenwall1",
+      "name": "WoodenWall1",
+      "transform": {
+        "position": [
+          6.30844792,
+          -0.02378929,
+          13.69378726
+        ],
+        "rotation": [
+          0,
+          87.91674325,
+          0
+        ],
+        "scale": [
+          1.00000004,
+          1,
+          1.00000004
+        ]
+      }
+    },
+    {
+      "id": "woodenwall1-6",
+      "ref": "models/woodenwall1",
+      "name": "WoodenWall1 (1)",
+      "transform": {
+        "position": [
+          -50.01334069,
+          -0.02378929,
+          10.99625619
+        ],
+        "rotation": [
+          0,
+          -69.78138945,
+          0
+        ],
+        "scale": [
+          1.00000009,
+          1,
+          1.00000009
+        ]
+      }
+    },
+    {
+      "id": "woodenwall1-7",
+      "ref": "models/woodenwall1",
+      "name": "WoodenWall1 (1)",
+      "transform": {
+        "position": [
+          -46.51847618,
+          -0.02378929,
+          23.52648575
+        ],
+        "rotation": [
+          0,
+          -80.1226288,
+          0
+        ],
+        "scale": [
+          1.00000001,
+          1,
+          1.00000001
+        ]
+      }
+    },
+    {
+      "id": "woodenwall1-8",
+      "ref": "models/woodenwall1",
+      "name": "WoodenWall1 (4)",
+      "transform": {
+        "position": [
+          -45.48997458,
+          -0.02378929,
+          25.84555974
+        ],
+        "rotation": [
+          0,
+          -57.46278557,
+          0
+        ],
+        "scale": [
+          1.00000002,
+          1,
+          1.00000002
+        ]
+      }
+    },
+    {
+      "id": "woodenwall1-9",
+      "ref": "models/woodenwall1",
+      "name": "WoodenWall1 (5)",
+      "transform": {
+        "position": [
+          -50.87962871,
+          -0.02378929,
+          8.64602088
+        ],
+        "rotation": [
+          0,
+          -69.78139008,
+          0
+        ],
+        "scale": [
+          1.00000046,
+          1,
+          1.00000046
+        ]
+      }
+    },
+    {
+      "id": "woodenwall1-10",
+      "ref": "models/woodenwall1",
+      "name": "WoodenWall1 (6)",
+      "transform": {
+        "position": [
+          -51.75963081,
+          -0.02378929,
+          6.24602114
+        ],
+        "rotation": [
+          0,
+          -69.78139008,
+          0
+        ],
+        "scale": [
+          1.00000046,
+          1,
+          1.00000046
+        ]
+      }
+    },
+    {
+      "id": "treetrunk1-1",
+      "ref": "models/treetrunk1",
+      "name": "TreeTrunk1",
+      "transform": {
+        "position": [
+          61.53863889,
+          -6e-8,
+          -3.86122601
+        ],
+        "rotation": [
+          180,
+          -87.50592031,
+          180
+        ],
+        "scale": [
+          1.00000008,
+          1,
+          1.00000008
+        ]
+      }
+    },
+    {
+      "id": "treetrunk1-2",
+      "ref": "models/treetrunk1",
+      "name": "TreeTrunk1 (2)",
+      "transform": {
+        "position": [
+          -16.3530389,
+          10.18043231,
+          -11.5446412
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "treetrunk1-3",
+      "ref": "models/treetrunk1",
+      "name": "TreeTrunk1 (3)",
+      "transform": {
+        "position": [
+          2.80436252,
+          9.13717766,
+          -14.06173223
+        ],
+        "rotation": [
+          0.00000432,
+          -52.38626928,
+          23.08270817
+        ],
+        "scale": [
+          0.99999998,
+          1.00000001,
+          0.99999999
+        ]
+      }
+    },
+    {
+      "id": "cookingfireplace-1",
+      "ref": "models/cookingfireplace",
+      "name": "CookingFireplace",
+      "transform": {
+        "position": [
+          61.63232915,
+          3.2e-7,
+          -6.98752996
+        ],
+        "rotation": [
+          0,
+          -78.74133857,
+          0
+        ],
+        "scale": [
+          1.00000002,
+          1,
+          1.00000002
+        ]
+      }
+    },
+    {
+      "id": "bench1-1",
+      "ref": "models/bench1",
+      "name": "Bench1",
+      "transform": {
+        "position": [
+          58.29968434,
+          7e-8,
+          -9.23403356
+        ],
+        "rotation": [
+          -180,
+          4.04246644,
+          -180
+        ],
+        "scale": [
+          1.00000003,
+          1,
+          1.00000003
+        ]
+      }
+    },
+    {
+      "id": "bench1-2",
+      "ref": "models/bench1",
+      "name": "Bench1 (4)",
+      "transform": {
+        "position": [
+          75.66773618,
+          1.08300693,
+          -10.30267492
+        ],
+        "rotation": [
+          -180,
+          0.4948668,
+          -180
+        ],
+        "scale": [
+          1.00000034,
+          1,
+          1.00000034
+        ]
+      }
+    },
+    {
+      "id": "bench1-3",
+      "ref": "models/bench1",
+      "name": "Bench1 (5)",
+      "transform": {
+        "position": [
+          73.09970102,
+          7e-8,
+          10.80596002
+        ],
+        "rotation": [
+          0,
+          -21.5003138,
+          0
+        ],
+        "scale": [
+          1.00000004,
+          1,
+          1.00000004
+        ]
+      }
+    },
+    {
+      "id": "bench1-4",
+      "ref": "models/bench1",
+      "name": "Bench1 (3)",
+      "transform": {
+        "position": [
+          -25.40330925,
+          -0.05299275,
+          46.16776731
+        ],
+        "rotation": [
+          0,
+          -69.08700022,
+          0
+        ],
+        "scale": [
+          1.0000001,
+          1,
+          1.0000001
+        ]
+      }
+    },
+    {
+      "id": "bench1-5",
+      "ref": "models/bench1",
+      "name": "Bench1 (2)",
+      "transform": {
+        "position": [
+          -16.90628417,
+          -0.05299275,
+          25.41631806
+        ],
+        "rotation": [
+          0,
+          88.55816914,
+          0
+        ],
+        "scale": [
+          1.00000005,
+          1,
+          1.00000005
+        ]
+      }
+    },
+    {
+      "id": "bench1-6",
+      "ref": "models/bench1",
+      "name": "Bench1 (1)",
+      "transform": {
+        "position": [
+          -25.39286098,
+          -0.05299275,
+          11.31076512
+        ],
+        "rotation": [
+          -180,
+          5.04223902,
+          -180
+        ],
+        "scale": [
+          1.00000002,
+          1,
+          1.00000002
+        ]
+      }
+    },
+    {
+      "id": "barrel-1",
+      "ref": "models/barrel",
+      "name": "Barrel",
+      "transform": {
+        "position": [
+          46.90275761,
+          0,
+          -5.55299455
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "barrel-2",
+      "ref": "models/barrel",
+      "name": "Barrel (8)",
+      "transform": {
+        "position": [
+          66.5725642,
+          2.6446343,
+          -13.56212317
+        ],
+        "rotation": [
+          91.43888201,
+          1.59576728,
+          1.49545922
+        ],
+        "scale": [
+          1.20792219,
+          1.20792331,
+          1.20792277
+        ]
+      }
+    },
+    {
+      "id": "barrel-3",
+      "ref": "models/barrel",
+      "name": "Barrel (9)",
+      "transform": {
+        "position": [
+          67.1725642,
+          1.70463472,
+          -13.65212317
+        ],
+        "rotation": [
+          91.43888201,
+          1.59576728,
+          1.49545922
+        ],
+        "scale": [
+          1.20792219,
+          1.20792331,
+          1.20792277
+        ]
+      }
+    },
+    {
+      "id": "barrel-4",
+      "ref": "models/barrel",
+      "name": "Barrel (10)",
+      "transform": {
+        "position": [
+          65.9425642,
+          1.66463476,
+          -13.28212317
+        ],
+        "rotation": [
+          91.43888201,
+          1.59576728,
+          1.49545922
+        ],
+        "scale": [
+          1.20792219,
+          1.20792331,
+          1.20792277
+        ]
+      }
+    },
+    {
+      "id": "barrel-5",
+      "ref": "models/barrel",
+      "name": "Barrel (12)",
+      "transform": {
+        "position": [
+          66.95275761,
+          0,
+          10.57700545
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "barrel-6",
+      "ref": "models/barrel",
+      "name": "Barrel (13)",
+      "transform": {
+        "position": [
+          67.82475761,
+          0,
+          11.37900545
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "barrel-7",
+      "ref": "models/barrel",
+      "name": "Barrel (1)",
+      "transform": {
+        "position": [
+          55.14275761,
+          1.07999992,
+          -11.93299455
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "barrel-8",
+      "ref": "models/barrel",
+      "name": "Barrel (11)",
+      "transform": {
+        "position": [
+          69.99275761,
+          1.07999992,
+          -11.93299455
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "barrel-9",
+      "ref": "models/barrel",
+      "name": "Barrel (5)",
+      "transform": {
+        "position": [
+          -30.78209919,
+          0,
+          16.00459265
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "barrel-10",
+      "ref": "models/barrel",
+      "name": "Barrel (2)",
+      "transform": {
+        "position": [
+          -11.40253299,
+          0.6035439,
+          11.34526182
+        ],
+        "rotation": [
+          91.4388767,
+          1.59576557,
+          47.94973585
+        ],
+        "scale": [
+          1.20792225,
+          1.20792276,
+          1.20792276
+        ]
+      }
+    },
+    {
+      "id": "barrel-11",
+      "ref": "models/barrel",
+      "name": "Barrel (3)",
+      "transform": {
+        "position": [
+          -10.27753299,
+          0.621544,
+          11.99226182
+        ],
+        "rotation": [
+          91.4388767,
+          1.59576557,
+          47.94973585
+        ],
+        "scale": [
+          1.20792225,
+          1.20792276,
+          1.20792276
+        ]
+      }
+    },
+    {
+      "id": "barrel-12",
+      "ref": "models/barrel",
+      "name": "Barrel (4)",
+      "transform": {
+        "position": [
+          -10.74753419,
+          1.5815439,
+          11.64226122
+        ],
+        "rotation": [
+          91.4388767,
+          1.59576557,
+          47.94973585
+        ],
+        "scale": [
+          1.20792225,
+          1.20792276,
+          1.20792276
+        ]
+      }
+    },
+    {
+      "id": "barrel-13",
+      "ref": "models/barrel",
+      "name": "Barrel (7)",
+      "transform": {
+        "position": [
+          -24.07550469,
+          0,
+          53.08742545
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "barrel-14",
+      "ref": "models/barrel",
+      "name": "Barrel (6)",
+      "transform": {
+        "position": [
+          -9.28288539,
+          0,
+          38.65141845
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "pierpole-3-1",
+      "ref": "models/pierpole-3",
+      "name": "PierPole",
+      "transform": {
+        "position": [
+          37.10006746,
+          -1.00958622,
+          -2.71330348
+        ],
+        "rotation": [
+          0,
+          48.2614087,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "pierstart-3-1",
+      "ref": "models/pierstart-3",
+      "name": "PierStart",
+      "transform": {
+        "position": [
+          41.81013472,
+          -1.01358593,
+          1.61942037
+        ],
+        "rotation": [
+          0,
+          48.2614087,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "pierstart-3-2",
+      "ref": "models/pierstart-3",
+      "name": "PierStart (1)",
+      "transform": {
+        "position": [
+          69.21,
+          -1.16358554,
+          -8.09000024
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1.27748024,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "pierstart-3-3",
+      "ref": "models/pierstart-3",
+      "name": "PierStart (1)",
+      "transform": {
+        "position": [
+          4.31000122,
+          6.69641407,
+          -8.29000119
+        ],
+        "rotation": [
+          0,
+          37.9172644,
+          0
+        ],
+        "scale": [
+          0.99999999,
+          1,
+          0.99999999
+        ]
+      }
+    },
+    {
+      "id": "pierstart-3-4",
+      "ref": "models/pierstart-3",
+      "name": "PierStart (2)",
+      "transform": {
+        "position": [
+          -15.40999998,
+          9.50160936,
+          -16.91183543
+        ],
+        "rotation": [
+          3.1090244,
+          -4.76507249,
+          9e-8
+        ],
+        "scale": [
+          1.12478706,
+          1.1247874,
+          1.12478743
+        ]
+      }
+    },
+    {
+      "id": "pierstart-3-5",
+      "ref": "models/pierstart-3",
+      "name": "PierStart (3)",
+      "transform": {
+        "position": [
+          12.12138017,
+          8.38373712,
+          -3.32330712
+        ],
+        "rotation": [
+          0,
+          -54.55649813,
+          0
+        ],
+        "scale": [
+          0.85940413,
+          1.214336,
+          0.85940423
+        ]
+      }
+    },
+    {
+      "id": "pierstart-3-6",
+      "ref": "models/pierstart-3",
+      "name": "PierStart (4)",
+      "transform": {
+        "position": [
+          8.12138014,
+          7.10098507,
+          -3.2733076
+        ],
+        "rotation": [
+          -180,
+          -34.83147192,
+          -180
+        ],
+        "scale": [
+          1.00000012,
+          1,
+          1.00000012
+        ]
+      }
+    },
+    {
+      "id": "woodentable-1",
+      "ref": "models/woodentable",
+      "name": "WoodenTable",
+      "transform": {
+        "position": [
+          73.65551,
+          3e-8,
+          9.53882179
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "woodentable-2",
+      "ref": "models/woodentable",
+      "name": "WoodenTable (1)",
+      "transform": {
+        "position": [
+          -17.81399982,
+          4e-8,
+          12.56000116
+        ],
+        "rotation": [
+          0,
+          -36.97754189,
+          0
+        ],
+        "scale": [
+          1.41837194,
+          1.41837192,
+          1.41837194
+        ]
+      }
+    },
+    {
+      "id": "woodentable-3",
+      "ref": "models/woodentable",
+      "name": "WoodenTable (2)",
+      "transform": {
+        "position": [
+          -30.33,
+          3e-8,
+          11.43999837
+        ],
+        "rotation": [
+          0,
+          -0.81500792,
+          0
+        ],
+        "scale": [
+          1.10687928,
+          1.10687876,
+          1.10687928
+        ]
+      }
+    },
+    {
+      "id": "woodentable-4",
+      "ref": "models/woodentable",
+      "name": "WoodenTable (3)",
+      "transform": {
+        "position": [
+          -23.74399978,
+          -0.25299999,
+          50.29899992
+        ],
+        "rotation": [
+          0,
+          -68.86260401,
+          0
+        ],
+        "scale": [
+          1.1068792,
+          1.10687876,
+          1.1068792
+        ]
+      }
+    },
+    {
+      "id": "woodentable-5",
+      "ref": "models/woodentable",
+      "name": "WoodenTable (5)",
+      "transform": {
+        "position": [
+          -10.88000088,
+          -0.25299999,
+          34.32999992
+        ],
+        "rotation": [
+          0,
+          -68.86260401,
+          0
+        ],
+        "scale": [
+          1.1068792,
+          1.10687876,
+          1.1068792
+        ]
+      }
+    },
+    {
+      "id": "woodentable-6",
+      "ref": "models/woodentable",
+      "name": "WoodenTable (6)",
+      "transform": {
+        "position": [
+          -15.71500005,
+          -0.25299999,
+          36.30499983
+        ],
+        "rotation": [
+          0,
+          15.61942563,
+          0
+        ],
+        "scale": [
+          1.10687888,
+          1.10687876,
+          0.85395917
+        ]
+      }
+    },
+    {
+      "id": "woodentable-7",
+      "ref": "models/woodentable",
+      "name": "WoodenTable (7)",
+      "transform": {
+        "position": [
+          -15.41300007,
+          -0.00699993,
+          37.38499976
+        ],
+        "rotation": [
+          0,
+          15.61942694,
+          0
+        ],
+        "scale": [
+          1.18965896,
+          1.215651,
+          1.18965896
+        ]
+      }
+    },
+    {
+      "id": "woodentable-8",
+      "ref": "models/woodentable",
+      "name": "WoodenTable (9)",
+      "transform": {
+        "position": [
+          -15.14400104,
+          -0.25299999,
+          38.34899985
+        ],
+        "rotation": [
+          0,
+          15.61942611,
+          0
+        ],
+        "scale": [
+          1.10687888,
+          1.10687876,
+          0.73050653
+        ]
+      }
+    },
+    {
+      "id": "woodentable-9",
+      "ref": "models/woodentable",
+      "name": "WoodenTable (8)",
+      "transform": {
+        "position": [
+          -18.55099988,
+          -0.38999983,
+          13.53799984
+        ],
+        "rotation": [
+          0,
+          -36.97754103,
+          0
+        ],
+        "scale": [
+          1.41837194,
+          1.17314744,
+          0.97019901
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-high-1",
+      "ref": "models/rockgrey2-high",
+      "name": "RockGrey2_high (8)",
+      "transform": {
+        "position": [
+          59.64461349,
+          -1.8662789,
+          -11.20171126
+        ],
+        "rotation": [
+          -139.24277744,
+          81.70480727,
+          111.0314243
+        ],
+        "scale": [
+          1.09935031,
+          1.09935013,
+          1.09935041
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-high-2",
+      "ref": "models/rockgrey2-high",
+      "name": "RockGrey2_high (6)",
+      "transform": {
+        "position": [
+          96.6016911,
+          0.52501509,
+          2.88520125
+        ],
+        "rotation": [
+          113.23006156,
+          -23.69964023,
+          -35.64424375
+        ],
+        "scale": [
+          0.90587007,
+          0.90587021,
+          0.9058701
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-high-3",
+      "ref": "models/rockgrey2-high",
+      "name": "RockGrey2_high (7)",
+      "transform": {
+        "position": [
+          96.76435535,
+          -2.19025665,
+          8.765842
+        ],
+        "rotation": [
+          -32.59558696,
+          27.76554985,
+          27.56930538
+        ],
+        "scale": [
+          1.57419047,
+          1.57418992,
+          1.57418991
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-high-4",
+      "ref": "models/rockgrey2-high",
+      "name": "RockGrey2_high (9)",
+      "transform": {
+        "position": [
+          117.83507229,
+          -1.29033415,
+          -15.87528944
+        ],
+        "rotation": [
+          2.48412578,
+          36.08126088,
+          -8.30243494
+        ],
+        "scale": [
+          1.57419017,
+          1.5741899,
+          1.57418988
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-high-5",
+      "ref": "models/rockgrey2-high",
+      "name": "RockGrey2_high (10)",
+      "transform": {
+        "position": [
+          107.86471643,
+          2.47334544,
+          21.22977651
+        ],
+        "rotation": [
+          113.2300596,
+          -23.69964098,
+          -35.64424482
+        ],
+        "scale": [
+          1.70999218,
+          1.70999155,
+          1.70999139
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-high-6",
+      "ref": "models/rockgrey2-high",
+      "name": "RockGrey2_high",
+      "transform": {
+        "position": [
+          24.01752786,
+          -1.11466563,
+          21.39842348
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-high-7",
+      "ref": "models/rockgrey2-high",
+      "name": "RockGrey2_high (1)",
+      "transform": {
+        "position": [
+          -23.65360046,
+          -0.62341602,
+          16.01277343
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.5113042,
+          0.5113043,
+          0.5113043
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-high-8",
+      "ref": "models/rockgrey2-high",
+      "name": "RockGrey2_high (2)",
+      "transform": {
+        "position": [
+          -22.38187969,
+          0.60154847,
+          14.87854057
+        ],
+        "rotation": [
+          148.51017012,
+          29.05524596,
+          20.66662979
+        ],
+        "scale": [
+          0.51129997,
+          0.5113004,
+          0.51130043
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-high-9",
+      "ref": "models/rockgrey2-high",
+      "name": "RockGrey2_high (3)",
+      "transform": {
+        "position": [
+          -14.64540027,
+          -1.13713169,
+          24.28307672
+        ],
+        "rotation": [
+          -35.16128046,
+          -34.1325522,
+          -10.5847156
+        ],
+        "scale": [
+          0.95150292,
+          0.95150302,
+          0.95150308
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-3-1",
+      "ref": "models/rockgrey2-3",
+      "name": "RockGrey2 (4)",
+      "transform": {
+        "position": [
+          57.88919769,
+          -2.31057038,
+          7.87707142
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-3-2",
+      "ref": "models/rockgrey2-3",
+      "name": "RockGrey2 (5)",
+      "transform": {
+        "position": [
+          81.76005189,
+          -1.69452918,
+          14.81168572
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-3-3",
+      "ref": "models/rockgrey2-3",
+      "name": "RockGrey2",
+      "transform": {
+        "position": [
+          -5.98321611,
+          -1.40747298,
+          50.24879472
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-3-4",
+      "ref": "models/rockgrey2-3",
+      "name": "RockGrey2 (3)",
+      "transform": {
+        "position": [
+          -43.54132811,
+          -1.69452918,
+          5.48499142
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-3-5",
+      "ref": "models/rockgrey2-3",
+      "name": "RockGrey2 (4)",
+      "transform": {
+        "position": [
+          -49.37132811,
+          -1.69452918,
+          22.64499142
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-3-6",
+      "ref": "models/rockgrey2-3",
+      "name": "RockGrey2 (1)",
+      "transform": {
+        "position": [
+          5.37761644,
+          -2.03995812,
+          48.65605707
+        ],
+        "rotation": [
+          0,
+          68.10492759,
+          0
+        ],
+        "scale": [
+          1.00000004,
+          1,
+          1.00000004
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-3-7",
+      "ref": "models/rockgrey2-3",
+      "name": "RockGrey2",
+      "transform": {
+        "position": [
+          5.24170989,
+          -1.69452918,
+          21.91698272
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "cactusmini-1",
+      "ref": "models/cactusmini",
+      "name": "CactusMini",
+      "transform": {
+        "position": [
+          94.53012523,
+          0,
+          3.2703635
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "cactusmini-2",
+      "ref": "models/cactusmini",
+      "name": "CactusMini (1)",
+      "transform": {
+        "position": [
+          -5.09985497,
+          -0.08800006,
+          56.00039185
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1.14587867,
+          2.3067286,
+          1.07800794
+        ]
+      }
+    },
+    {
+      "id": "agavelow-3-1",
+      "ref": "models/agavelow-3",
+      "name": "AgaveLow (2)",
+      "transform": {
+        "position": [
+          93.50334935,
+          2.2e-7,
+          4.77018363
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "agavelow-3-2",
+      "ref": "models/agavelow-3",
+      "name": "AgaveLow (3)",
+      "transform": {
+        "position": [
+          75.52938935,
+          2.2e-7,
+          11.28168663
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "agavelow-3-3",
+      "ref": "models/agavelow-3",
+      "name": "AgaveLow (4)",
+      "transform": {
+        "position": [
+          57.13938935,
+          2.2e-7,
+          14.25168663
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "agavelow-3-4",
+      "ref": "models/agavelow-3",
+      "name": "AgaveLow (5)",
+      "transform": {
+        "position": [
+          57.13939322,
+          2.2e-7,
+          11.42169063
+        ],
+        "rotation": [
+          0,
+          -49.65345662,
+          0
+        ],
+        "scale": [
+          0.99999999,
+          1,
+          0.99999999
+        ]
+      }
+    },
+    {
+      "id": "agavelow-3-5",
+      "ref": "models/agavelow-3",
+      "name": "AgaveLow",
+      "transform": {
+        "position": [
+          -30.19061065,
+          0.15373586,
+          40.94168663
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "joshuatree1-1",
+      "ref": "models/joshuatree1",
+      "name": "JoshuaTree1",
+      "transform": {
+        "position": [
+          82.73000004,
+          0,
+          12.15000011
+        ],
+        "rotation": [
+          -180,
+          72.2135569,
+          -180
+        ],
+        "scale": [
+          0.99999996,
+          1,
+          0.99999996
+        ]
+      }
+    },
+    {
+      "id": "treedead2-1",
+      "ref": "models/treedead2",
+      "name": "TreeDead2 (6)",
+      "transform": {
+        "position": [
+          105.24502975,
+          -0.04550794,
+          -8.75904106
+        ],
+        "rotation": [
+          180,
+          -62.27650589,
+          180
+        ],
+        "scale": [
+          1.23472066,
+          1.23472,
+          1.23472066
+        ]
+      }
+    },
+    {
+      "id": "treedead2-2",
+      "ref": "models/treedead2",
+      "name": "TreeDead2 (7)",
+      "transform": {
+        "position": [
+          114.08532817,
+          1.41290666,
+          -9.78818218
+        ],
+        "rotation": [
+          -1.38974764,
+          -50.79384021,
+          14.84239086
+        ],
+        "scale": [
+          1.23472017,
+          1.23472028,
+          1.23472028
+        ]
+      }
+    },
+    {
+      "id": "treedead2-3",
+      "ref": "models/treedead2",
+      "name": "TreeDead2 (2)",
+      "transform": {
+        "position": [
+          -21.32543301,
+          12.59965765,
+          -11.14278794
+        ],
+        "rotation": [
+          169.02135058,
+          -73.43709211,
+          170.49641783
+        ],
+        "scale": [
+          1.23471914,
+          1.23471809,
+          1.23471911
+        ]
+      }
+    },
+    {
+      "id": "treedead2-4",
+      "ref": "models/treedead2",
+      "name": "TreeDead2 (3)",
+      "transform": {
+        "position": [
+          9.1060026,
+          11.15742869,
+          -6.53270827
+        ],
+        "rotation": [
+          -0.40022171,
+          -3.27635784,
+          -0.1889065
+        ],
+        "scale": [
+          1.18507324,
+          1.18507331,
+          1.18507278
+        ]
+      }
+    },
+    {
+      "id": "joshuatree3-1",
+      "ref": "models/joshuatree3",
+      "name": "JoshuaTree3 (2)",
+      "transform": {
+        "position": [
+          49.50347111,
+          0,
+          -7.45350677
+        ],
+        "rotation": [
+          180,
+          -61.50191124,
+          180
+        ],
+        "scale": [
+          1.00000003,
+          1,
+          1.00000003
+        ]
+      }
+    },
+    {
+      "id": "joshuatree2-1",
+      "ref": "models/joshuatree2",
+      "name": "JoshuaTree2 (5)",
+      "transform": {
+        "position": [
+          80.36694401,
+          0,
+          -12.1033785
+        ],
+        "rotation": [
+          -180,
+          -38.91254564,
+          -180
+        ],
+        "scale": [
+          1.00000014,
+          1,
+          1.00000014
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-1",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1",
+      "transform": {
+        "position": [
+          33.63099968,
+          6.13699998,
+          -2.55799965
+        ],
+        "rotation": [
+          88.08904559,
+          0.00000299,
+          -47.37426894
+        ],
+        "scale": [
+          1.00000004,
+          0.9178228,
+          1.00000004
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-2",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (1)",
+      "transform": {
+        "position": [
+          35.29999968,
+          6.07999898,
+          -4.36999965
+        ],
+        "rotation": [
+          88.08904559,
+          0.00000299,
+          -47.37426894
+        ],
+        "scale": [
+          1.00000004,
+          0.9178228,
+          1.00000004
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-3",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1",
+      "transform": {
+        "position": [
+          12.35811207,
+          0,
+          15.11380348
+        ],
+        "rotation": [
+          0,
+          -64.20850728,
+          0
+        ],
+        "scale": [
+          0.99999996,
+          1,
+          0.99999996
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-4",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (1)",
+      "transform": {
+        "position": [
+          -32.77189041,
+          -0.09194374,
+          43.78380203
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.8557601,
+          0.8557603,
+          0.8557603
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-5",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (2)",
+      "transform": {
+        "position": [
+          -32.30188783,
+          -0.09194374,
+          43.78380175
+        ],
+        "rotation": [
+          0,
+          -40.52484813,
+          0
+        ],
+        "scale": [
+          0.85575997,
+          0.85576,
+          0.85575997
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-6",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (3)",
+      "transform": {
+        "position": [
+          -31.74188643,
+          -0.09194374,
+          43.78380224
+        ],
+        "rotation": [
+          0,
+          32.27349757,
+          0
+        ],
+        "scale": [
+          0.85576023,
+          0.85576,
+          0.85576023
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-7",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (4)",
+      "transform": {
+        "position": [
+          -31.29188692,
+          -0.09194374,
+          43.78380214
+        ],
+        "rotation": [
+          -180,
+          23.63086554,
+          -180
+        ],
+        "scale": [
+          0.85576038,
+          0.85576,
+          0.85576038
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-8",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (5)",
+      "transform": {
+        "position": [
+          -26.66188582,
+          -0.09194374,
+          41.99380504
+        ],
+        "rotation": [
+          -180,
+          23.63086416,
+          -180
+        ],
+        "scale": [
+          0.8557605,
+          0.85576,
+          0.8557605
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-9",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (6)",
+      "transform": {
+        "position": [
+          -28.01188622,
+          -0.09194374,
+          42.93380374
+        ],
+        "rotation": [
+          -180,
+          23.63086416,
+          -180
+        ],
+        "scale": [
+          0.8557605,
+          0.85576,
+          0.8557605
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-10",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (7)",
+      "transform": {
+        "position": [
+          13.14811298,
+          0,
+          14.59380565
+        ],
+        "rotation": [
+          0,
+          43.71450242,
+          0
+        ],
+        "scale": [
+          1.00000002,
+          1,
+          1.00000002
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-11",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (8)",
+      "transform": {
+        "position": [
+          14.07811312,
+          0,
+          13.93380553
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-12",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (9)",
+      "transform": {
+        "position": [
+          -12.73888803,
+          0,
+          16.64680438
+        ],
+        "rotation": [
+          0,
+          -64.20850728,
+          0
+        ],
+        "scale": [
+          0.99999996,
+          1,
+          0.99999996
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-13",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (11)",
+      "transform": {
+        "position": [
+          -14.05188802,
+          0,
+          60.56380516
+        ],
+        "rotation": [
+          0,
+          43.71450112,
+          0
+        ],
+        "scale": [
+          1.60661965,
+          1.60661948,
+          1.60661965
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-14",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (12)",
+      "transform": {
+        "position": [
+          -19.89188632,
+          0,
+          61.69380056
+        ],
+        "rotation": [
+          0,
+          43.71449844,
+          0
+        ],
+        "scale": [
+          1.60662008,
+          1.60662,
+          1.60662008
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-15",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (10)",
+      "transform": {
+        "position": [
+          2.48811317,
+          1.46405637,
+          22.26380498
+        ],
+        "rotation": [
+          0,
+          -64.20850728,
+          0
+        ],
+        "scale": [
+          0.99999996,
+          1,
+          0.99999996
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-16",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (13)",
+      "transform": {
+        "position": [
+          2.35811205,
+          0.63705612,
+          -6.18619567
+        ],
+        "rotation": [
+          69.99303839,
+          16.64727309,
+          49.69004926
+        ],
+        "scale": [
+          1.00000001,
+          1.00000002,
+          1.00000007
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-17",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (14)",
+      "transform": {
+        "position": [
+          1.83811156,
+          0.9870562,
+          -6.7461971
+        ],
+        "rotation": [
+          86.82210718,
+          1.70952092,
+          46.96357639
+        ],
+        "scale": [
+          1.00000004,
+          1.00000002,
+          1.00000007
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-18",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (15)",
+      "transform": {
+        "position": [
+          1.40811125,
+          1.45705622,
+          -7.22619664
+        ],
+        "rotation": [
+          86.82210718,
+          1.70952092,
+          46.96357639
+        ],
+        "scale": [
+          1.00000004,
+          1.00000002,
+          1.00000007
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-19",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (16)",
+      "transform": {
+        "position": [
+          0.86811418,
+          1.97705632,
+          -7.82619535
+        ],
+        "rotation": [
+          86.82210718,
+          1.70952092,
+          46.96357639
+        ],
+        "scale": [
+          1.00000004,
+          1.00000002,
+          1.00000007
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-20",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (17)",
+      "transform": {
+        "position": [
+          0.41811338,
+          2.49705619,
+          -8.31619635
+        ],
+        "rotation": [
+          86.82210718,
+          1.70952092,
+          46.96357639
+        ],
+        "scale": [
+          1.00000004,
+          1.00000002,
+          1.00000007
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-21",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (18)",
+      "transform": {
+        "position": [
+          -2.91188866,
+          0,
+          -9.96619397
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1.13383317,
+          1.133833,
+          1.133833
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-22",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (19)",
+      "transform": {
+        "position": [
+          -7.32188854,
+          0,
+          -9.14619397
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1.13383,
+          1.13383,
+          1.13383
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-23",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (20)",
+      "transform": {
+        "position": [
+          -5.18188912,
+          0,
+          -9.46619397
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1.13383,
+          1.13383,
+          1.13383
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-24",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (21)",
+      "transform": {
+        "position": [
+          -5.13388824,
+          2.86705646,
+          -9.60819598
+        ],
+        "rotation": [
+          -0.20333403,
+          12.2804657,
+          -89.04411305
+        ],
+        "scale": [
+          0.69865426,
+          0.83833059,
+          0.69865379
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-25",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (22)",
+      "transform": {
+        "position": [
+          -5.13388825,
+          2.86705646,
+          -9.60819602
+        ],
+        "rotation": [
+          179.89425048,
+          -6.45904465,
+          89.06002929
+        ],
+        "scale": [
+          0.69865068,
+          0.83833069,
+          0.69865065
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-26",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (18)",
+      "transform": {
+        "position": [
+          -31.94490038,
+          -0.09194374,
+          17.00284376
+        ],
+        "rotation": [
+          0,
+          -23.24730443,
+          0
+        ],
+        "scale": [
+          0.85575997,
+          0.85576,
+          0.85575997
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-27",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (19)",
+      "transform": {
+        "position": [
+          -30.5850617,
+          -0.09194374,
+          17.58700208
+        ],
+        "rotation": [
+          -180,
+          46.87816843,
+          -180
+        ],
+        "scale": [
+          0.85576078,
+          0.85576,
+          0.85576078
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-28",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (20)",
+      "transform": {
+        "position": [
+          -31.5130602,
+          -0.09194374,
+          17.18835225
+        ],
+        "rotation": [
+          0,
+          -63.77214874,
+          0
+        ],
+        "scale": [
+          0.85576019,
+          0.85576,
+          0.85576019
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-29",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (21)",
+      "transform": {
+        "position": [
+          -27.2358697,
+          -0.09194374,
+          18.10063198
+        ],
+        "rotation": [
+          -180,
+          46.87816843,
+          -180
+        ],
+        "scale": [
+          0.85576078,
+          0.85576,
+          0.85576078
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-30",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (22)",
+      "transform": {
+        "position": [
+          -30.998526,
+          -0.09194374,
+          17.40938579
+        ],
+        "rotation": [
+          0,
+          9.02619392,
+          0
+        ],
+        "scale": [
+          0.85576029,
+          0.85576,
+          0.85576029
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-31",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (23)",
+      "transform": {
+        "position": [
+          -25.624458,
+          -0.09194374,
+          17.76979858
+        ],
+        "rotation": [
+          -180,
+          46.87816843,
+          -180
+        ],
+        "scale": [
+          0.85576078,
+          0.85576,
+          0.85576078
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-32",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (24)",
+      "transform": {
+        "position": [
+          7.2313801,
+          6.92457094,
+          -2.4833067
+        ],
+        "rotation": [
+          91.51892512,
+          3.27322133,
+          -39.69808613
+        ],
+        "scale": [
+          1.00000014,
+          1.00000012,
+          1.00000059
+        ]
+      }
+    },
+    {
+      "id": "woodenpole1-33",
+      "ref": "models/woodenpole1",
+      "name": "WoodenPole1 (25)",
+      "transform": {
+        "position": [
+          11.01137888,
+          7.13457096,
+          -2.31330535
+        ],
+        "rotation": [
+          91.51891653,
+          3.27321779,
+          47.53068493
+        ],
+        "scale": [
+          1.00000009,
+          1.00000044,
+          1.00000045
+        ]
+      }
+    },
+    {
+      "id": "oldwoodplank1-1",
+      "ref": "models/oldwoodplank1",
+      "name": "OldWoodPlank1",
+      "transform": {
+        "position": [
+          35.52000009,
+          6.36285694,
+          -2.40999992
+        ],
+        "rotation": [
+          0,
+          47.65684643,
+          0
+        ],
+        "scale": [
+          1.00000001,
+          1,
+          1.00000001
+        ]
+      }
+    },
+    {
+      "id": "oldwoodplank1-2",
+      "ref": "models/oldwoodplank1",
+      "name": "OldWoodPlank1 (1)",
+      "transform": {
+        "position": [
+          35.94000009,
+          6.36285694,
+          -2.02999992
+        ],
+        "rotation": [
+          0,
+          47.65684643,
+          0
+        ],
+        "scale": [
+          1.00000001,
+          1,
+          1.00000001
+        ]
+      }
+    },
+    {
+      "id": "oldwoodplank1-3",
+      "ref": "models/oldwoodplank1",
+      "name": "OldWoodPlank1 (1)",
+      "transform": {
+        "position": [
+          -12.0982981,
+          9.90412945,
+          -10.63665842
+        ],
+        "rotation": [
+          10.61541889,
+          -6.03933107,
+          -29.3079015
+        ],
+        "scale": [
+          1.06781447,
+          1.06781412,
+          1.06781398
+        ]
+      }
+    },
+    {
+      "id": "oldwoodplank1-4",
+      "ref": "models/oldwoodplank1",
+      "name": "OldWoodPlank1",
+      "transform": {
+        "position": [
+          -11.69201408,
+          10.10053916,
+          -11.43199904
+        ],
+        "rotation": [
+          0,
+          0,
+          -20.08019338
+        ],
+        "scale": [
+          1.33740171,
+          1.33740171,
+          1.33740175
+        ]
+      }
+    },
+    {
+      "id": "ladder-1",
+      "ref": "models/ladder",
+      "name": "Ladder",
+      "transform": {
+        "position": [
+          37.334,
+          1.1079998,
+          -1.75099993
+        ],
+        "rotation": [
+          -16.52903752,
+          51.26657086,
+          13.90185667
+        ],
+        "scale": [
+          1.51350238,
+          1.51350243,
+          1.51350266
+        ]
+      }
+    },
+    {
+      "id": "ladder-2",
+      "ref": "models/ladder",
+      "name": "Ladder (2)",
+      "transform": {
+        "position": [
+          35.0830536,
+          6.531455,
+          -1.75005937
+        ],
+        "rotation": [
+          -17.27434354,
+          47.68178917,
+          13.35301678
+        ],
+        "scale": [
+          1.35134123,
+          1.35134177,
+          1.35134149
+        ]
+      }
+    },
+    {
+      "id": "ladder-3",
+      "ref": "models/ladder",
+      "name": "Ladder (1)",
+      "transform": {
+        "position": [
+          89.2937241,
+          0.2829733,
+          -8.245
+        ],
+        "rotation": [
+          -2.14538149,
+          0,
+          0
+        ],
+        "scale": [
+          1.160645,
+          1.16064472,
+          1.16064472
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-1",
+      "ref": "models/palmtree1",
+      "name": "Palmtree1 (10)",
+      "transform": {
+        "position": [
+          63.79236416,
+          -0.13495652,
+          -14.37401631
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-2",
+      "ref": "models/palmtree1",
+      "name": "Palmtree1",
+      "transform": {
+        "position": [
+          -15.38763614,
+          -0.134957,
+          13.30598309
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-3",
+      "ref": "models/palmtree1",
+      "name": "Palmtree1 (1)",
+      "transform": {
+        "position": [
+          -19.82763674,
+          -0.134957,
+          32.12598279
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-4",
+      "ref": "models/palmtree1",
+      "name": "Palmtree1 (2)",
+      "transform": {
+        "position": [
+          -9.08807019,
+          -0.11950525,
+          43.87299768
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.90462685,
+          0.9046266,
+          0.9046266
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-5",
+      "ref": "models/palmtree1",
+      "name": "Palmtree1 (3)",
+      "transform": {
+        "position": [
+          -15.07204393,
+          -0.0820788,
+          46.89121465
+        ],
+        "rotation": [
+          0,
+          -53.63100425,
+          0
+        ],
+        "scale": [
+          0.6736179,
+          0.67361796,
+          0.6736179
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-6",
+      "ref": "models/palmtree1",
+      "name": "Palmtree1 (4)",
+      "transform": {
+        "position": [
+          -29.79210321,
+          -0.08207913,
+          42.50881813
+        ],
+        "rotation": [
+          180,
+          -66.11567712,
+          180
+        ],
+        "scale": [
+          0.67361971,
+          0.67362,
+          0.67361971
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-7",
+      "ref": "models/palmtree1",
+      "name": "Palmtree1 (5)",
+      "transform": {
+        "position": [
+          -31.14806901,
+          -0.1195058,
+          38.73299624
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.90463,
+          0.90463,
+          0.90463
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-8",
+      "ref": "models/palmtree1",
+      "name": "Palmtree1 (6)",
+      "transform": {
+        "position": [
+          -52.66807251,
+          -0.1195058,
+          8.42299854
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.90463,
+          0.90463,
+          0.90463
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-9",
+      "ref": "models/palmtree1",
+      "name": "Palmtree1 (7)",
+      "transform": {
+        "position": [
+          -51.31210371,
+          -0.08207913,
+          12.19882063
+        ],
+        "rotation": [
+          180,
+          -66.11567712,
+          180
+        ],
+        "scale": [
+          0.67361971,
+          0.67362,
+          0.67361971
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-10",
+      "ref": "models/palmtree1",
+      "name": "Palmtree1 (8)",
+      "transform": {
+        "position": [
+          -30.07806931,
+          -0.1195058,
+          54.77299714
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.90463,
+          0.90463,
+          0.90463
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-11",
+      "ref": "models/palmtree1",
+      "name": "Palmtree1 (9)",
+      "transform": {
+        "position": [
+          -37.37210651,
+          -0.08207913,
+          2.45881883
+        ],
+        "rotation": [
+          180,
+          -66.11567712,
+          180
+        ],
+        "scale": [
+          0.67361971,
+          0.67362,
+          0.67361971
+        ]
+      }
+    },
+    {
+      "id": "woodenwalldamaged1-1",
+      "ref": "models/woodenwalldamaged1",
+      "name": "WoodenWallDamaged1",
+      "transform": {
+        "position": [
+          -12.66824041,
+          0.02862847,
+          60.62347748
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "woodenwalldamaged1-2",
+      "ref": "models/woodenwalldamaged1",
+      "name": "WoodenWallDamaged1 (1)",
+      "transform": {
+        "position": [
+          -10.46641037,
+          0.02862823,
+          60.28369009
+        ],
+        "rotation": [
+          -180,
+          -21.65313538,
+          -180
+        ],
+        "scale": [
+          1.00000012,
+          1,
+          1.00000012
+        ]
+      }
+    },
+    {
+      "id": "woodenwalldamaged1-3",
+      "ref": "models/woodenwalldamaged1",
+      "name": "WoodenWallDamaged1 (2)",
+      "transform": {
+        "position": [
+          -8.39437712,
+          0.02862823,
+          59.36589641
+        ],
+        "rotation": [
+          -180,
+          -27.32160251,
+          -180
+        ],
+        "scale": [
+          1.00000018,
+          1,
+          1.00000018
+        ]
+      }
+    },
+    {
+      "id": "woodenwalldamaged1-4",
+      "ref": "models/woodenwalldamaged1",
+      "name": "WoodenWallDamaged1 (3)",
+      "transform": {
+        "position": [
+          -21.30936928,
+          0.02862823,
+          62.19356584
+        ],
+        "rotation": [
+          -180,
+          -11.34605284,
+          -180
+        ],
+        "scale": [
+          0.99999995,
+          1,
+          0.99999995
+        ]
+      }
+    },
+    {
+      "id": "woodenwalldamaged1-5",
+      "ref": "models/woodenwalldamaged1",
+      "name": "WoodenWallDamaged1 (4)",
+      "transform": {
+        "position": [
+          -23.84285489,
+          0.02862823,
+          62.24919707
+        ],
+        "rotation": [
+          -180,
+          12.89208245,
+          -180
+        ],
+        "scale": [
+          1.00000007,
+          1,
+          1.00000007
+        ]
+      }
+    },
+    {
+      "id": "treedead1-1",
+      "ref": "models/treedead1",
+      "name": "TreeDead1 (4)",
+      "transform": {
+        "position": [
+          4.8052448,
+          8.12564767,
+          -4.70980746
+        ],
+        "rotation": [
+          -8.03660373,
+          -16.05721127,
+          3.71707259
+        ],
+        "scale": [
+          0.79125169,
+          0.79125182,
+          0.79125185
+        ]
+      }
+    },
+    {
+      "id": "treetrunk2-1",
+      "ref": "models/treetrunk2",
+      "name": "TreeTrunk2 (1)",
+      "transform": {
+        "position": [
+          6.1343643,
+          10.96042899,
+          -9.11616489
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "hangingbridge-1",
+      "ref": "models/hangingbridge",
+      "name": "HangingBridge",
+      "transform": {
+        "position": [
+          -5.04000168,
+          6.12417689,
+          -11.07999819
+        ],
+        "rotation": [
+          0,
+          -87.83872668,
+          0
+        ],
+        "scale": [
+          1.22037201,
+          1.22037077,
+          1.40973621
+        ]
+      }
+    },
+    {
+      "id": "hangingbridge-2",
+      "ref": "models/hangingbridge",
+      "name": "HangingBridge (1)",
+      "transform": {
+        "position": [
+          -13.3469024,
+          10.07037328,
+          -29.56511577
+        ],
+        "rotation": [
+          4.22386568,
+          -10.8214779,
+          -3.10918957
+        ],
+        "scale": [
+          1.2203714,
+          1.22037079,
+          1.40973532
+        ]
+      }
+    },
+    {
+      "id": "hangingbridge-3",
+      "ref": "models/hangingbridge",
+      "name": "HangingBridge (2)",
+      "transform": {
+        "position": [
+          24.91137932,
+          7.81520421,
+          -5.22330506
+        ],
+        "rotation": [
+          180,
+          -83.54388738,
+          180
+        ],
+        "scale": [
+          1.28212137,
+          1.28212059,
+          1.48107368
+        ]
+      }
+    },
+    {
+      "id": "hangingbridge-4",
+      "ref": "models/hangingbridge",
+      "name": "HangingBridge (3)",
+      "transform": {
+        "position": [
+          38.4613794,
+          7.93520481,
+          -10.86330756
+        ],
+        "rotation": [
+          0,
+          -36.04950199,
+          0
+        ],
+        "scale": [
+          1.28212042,
+          1.28212,
+          1.48107035
+        ]
+      }
+    },
+    {
+      "id": "hangingbridge-5",
+      "ref": "models/hangingbridge",
+      "name": "HangingBridge (4)",
+      "transform": {
+        "position": [
+          90.13137912,
+          19.84399963,
+          93.76669045
+        ],
+        "rotation": [
+          0,
+          -45.0130757,
+          0
+        ],
+        "scale": [
+          1.70115053,
+          1.70115113,
+          1.96512401
+        ]
+      }
+    },
+    {
+      "id": "hangingbridge-6",
+      "ref": "models/hangingbridge",
+      "name": "HangingBridge (5)",
+      "transform": {
+        "position": [
+          116.89909249,
+          14.20695641,
+          59.83114224
+        ],
+        "rotation": [
+          5.15561748,
+          -49.73702944,
+          3.93861764
+        ],
+        "scale": [
+          1.70115046,
+          1.7011499,
+          1.96512032
+        ]
+      }
+    },
+    {
+      "id": "torchbig-1",
+      "ref": "models/torchbig",
+      "name": "TorchBig",
+      "transform": {
+        "position": [
+          -1.81220677,
+          0.00121355,
+          -20.1813927
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "doublerockshape-1",
+      "ref": "models/doublerockshape",
+      "name": "DoubleRockShape",
+      "transform": {
+        "position": [
+          -37.53862363,
+          -3.69648123,
+          34.71669247
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "doublerockshape-high-1",
+      "ref": "models/doublerockshape-high",
+      "name": "DoubleRockShape_High",
+      "transform": {
+        "position": [
+          -6.89060198,
+          -3.43027925,
+          30.5842757
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "signpost2-3-1",
+      "ref": "models/signpost2-3",
+      "name": "Signpost2",
+      "transform": {
+        "position": [
+          -29.95761371,
+          0.02705622,
+          28.3319041
+        ],
+        "rotation": [
+          0,
+          -46.55415862,
+          0
+        ],
+        "scale": [
+          0.99999998,
+          1,
+          0.99999998
+        ]
+      }
+    },
+    {
+      "id": "signpost1-3-1",
+      "ref": "models/signpost1-3",
+      "name": "Signpost1",
+      "transform": {
+        "position": [
+          -8.27268273,
+          0.02705622,
+          13.47277644
+        ],
+        "rotation": [
+          -180,
+          -57.26239319,
+          -180
+        ],
+        "scale": [
+          1.00000011,
+          1,
+          1.00000011
+        ]
+      }
+    },
+    {
+      "id": "sharprock2-1",
+      "ref": "models/sharprock2",
+      "name": "SharpRock2",
+      "transform": {
+        "position": [
+          1.54571291,
+          0.08257545,
+          22.45437564
+        ],
+        "rotation": [
+          95.76058085,
+          -10.44494588,
+          118.06361344
+        ],
+        "scale": [
+          1.00000005,
+          1.00000006,
+          1.00000006
+        ]
+      }
+    },
+    {
+      "id": "sharprock2-2",
+      "ref": "models/sharprock2",
+      "name": "SharpRock2 (1)",
+      "transform": {
+        "position": [
+          -29.30746758,
+          0.13794995,
+          29.26760631
+        ],
+        "rotation": [
+          78.21475046,
+          -9.30583994,
+          -2.17449485
+        ],
+        "scale": [
+          0.99999998,
+          1.00000007,
+          1.00000006
+        ]
+      }
+    },
+    {
+      "id": "sharprock2-3",
+      "ref": "models/sharprock2",
+      "name": "SharpRock2 (2)",
+      "transform": {
+        "position": [
+          -32.65747098,
+          0.13794995,
+          43.82760581
+        ],
+        "rotation": [
+          78.21475046,
+          -9.30583994,
+          -2.17449485
+        ],
+        "scale": [
+          0.99999998,
+          1.00000007,
+          1.00000006
+        ]
+      }
+    },
+    {
+      "id": "sharprock1-1",
+      "ref": "models/sharprock1",
+      "name": "SharpRock1",
+      "transform": {
+        "position": [
+          -4.30441559,
+          -0.07475344,
+          6.12325378
+        ],
+        "rotation": [
+          91.7384365,
+          -17.10866286,
+          95.8901821
+        ],
+        "scale": [
+          1.00000001,
+          1.00000007,
+          1.00000007
+        ]
+      }
+    },
+    {
+      "id": "sharprock1-2",
+      "ref": "models/sharprock1",
+      "name": "SharpRock1 (1)",
+      "transform": {
+        "position": [
+          -30.61441309,
+          -0.07475344,
+          27.46325396
+        ],
+        "rotation": [
+          91.7384365,
+          -17.10866286,
+          95.8901821
+        ],
+        "scale": [
+          1.00000001,
+          1.00000007,
+          1.00000007
+        ]
+      }
+    },
+    {
+      "id": "sharprock1-3",
+      "ref": "models/sharprock1",
+      "name": "SharpRock1 (2)",
+      "transform": {
+        "position": [
+          -17.85441479,
+          -0.07475344,
+          37.09324946
+        ],
+        "rotation": [
+          91.7384365,
+          -17.10866286,
+          95.8901821
+        ],
+        "scale": [
+          1.00000001,
+          1.00000007,
+          1.00000007
+        ]
+      }
+    },
+    {
+      "id": "sharprock1-4",
+      "ref": "models/sharprock1",
+      "name": "SharpRock1 (3)",
+      "transform": {
+        "position": [
+          -36.29441759,
+          -0.07475344,
+          0.01325317
+        ],
+        "rotation": [
+          91.7384365,
+          -17.10866286,
+          95.8901821
+        ],
+        "scale": [
+          1.00000001,
+          1.00000007,
+          1.00000007
+        ]
+      }
+    },
+    {
+      "id": "sharprock1-5",
+      "ref": "models/sharprock1",
+      "name": "SharpRock1 (4)",
+      "transform": {
+        "position": [
+          -29.49106224,
+          -0.0747536,
+          2.07868556
+        ],
+        "rotation": [
+          74.18478047,
+          -6.83455249,
+          22.78815731
+        ],
+        "scale": [
+          1.00000004,
+          1.00000008,
+          1.00000015
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-low-3-1",
+      "ref": "models/palmtree1-low-3",
+      "name": "Palmtree1_low",
+      "transform": {
+        "position": [
+          -11.53763774,
+          -0.134957,
+          2.11598444
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-low-3-2",
+      "ref": "models/palmtree1-low-3",
+      "name": "Palmtree1_low (1)",
+      "transform": {
+        "position": [
+          -37.57763944,
+          -0.134957,
+          24.63598299
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-low-3-3",
+      "ref": "models/palmtree1-low-3",
+      "name": "Palmtree1_low (2)",
+      "transform": {
+        "position": [
+          -3.30763817,
+          -0.134957,
+          28.70598269
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-low-3-4",
+      "ref": "models/palmtree1-low-3",
+      "name": "Palmtree1_low (3)",
+      "transform": {
+        "position": [
+          4.67416477,
+          -0.10607259,
+          1.10256392
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.8217157,
+          0.8217157,
+          0.8217157
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-low-3-5",
+      "ref": "models/palmtree1-low-3",
+      "name": "Palmtree1_low (4)",
+      "transform": {
+        "position": [
+          2.43416783,
+          -0.10607328,
+          19.74256264
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.82172,
+          0.82172,
+          0.82172
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-low-3-6",
+      "ref": "models/palmtree1-low-3",
+      "name": "Palmtree1_low (5)",
+      "transform": {
+        "position": [
+          -7.99763644,
+          -0.134957,
+          -17.24401621
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "palmtree1-low-3-7",
+      "ref": "models/palmtree1-low-3",
+      "name": "Palmtree1_low (6)",
+      "transform": {
+        "position": [
+          -5.48034515,
+          -0.09509993,
+          -27.08694694
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.75398874,
+          0.75398874,
+          0.75398874
+        ]
+      }
+    },
+    {
+      "id": "rockgrey1-3-1",
+      "ref": "models/rockgrey1-3",
+      "name": "RockGrey1",
+      "transform": {
+        "position": [
+          16.2399979,
+          -1.98995829,
+          13.33
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "fence1-1",
+      "ref": "models/fence1",
+      "name": "Fence1",
+      "transform": {
+        "position": [
+          -8.55306182,
+          0.00469766,
+          -9.11902611
+        ],
+        "rotation": [
+          -180,
+          14.03932863,
+          -180
+        ],
+        "scale": [
+          1.37029249,
+          1.37029111,
+          1.37029249
+        ]
+      }
+    },
+    {
+      "id": "fence1-2",
+      "ref": "models/fence1",
+      "name": "Fence1 (1)",
+      "transform": {
+        "position": [
+          -29.62108174,
+          0.00342822,
+          35.69986986
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "fence1-3",
+      "ref": "models/fence1",
+      "name": "Fence1 (2)",
+      "transform": {
+        "position": [
+          -28.02208074,
+          0.00342822,
+          35.69986986
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "fence1-4",
+      "ref": "models/fence1",
+      "name": "Fence1 (3)",
+      "transform": {
+        "position": [
+          -26.97616211,
+          0.00342822,
+          36.43252896
+        ],
+        "rotation": [
+          0,
+          -71.76265285,
+          0
+        ],
+        "scale": [
+          0.99999998,
+          1,
+          0.99999998
+        ]
+      }
+    },
+    {
+      "id": "fence1-5",
+      "ref": "models/fence1",
+      "name": "Fence1 (4)",
+      "transform": {
+        "position": [
+          -26.55972489,
+          0.00257386,
+          37.9482802
+        ],
+        "rotation": [
+          7.64785302,
+          -83.29615693,
+          7.30487341
+        ],
+        "scale": [
+          1.00000002,
+          0.99999998,
+          1.00000008
+        ]
+      }
+    },
+    {
+      "id": "fence1-6",
+      "ref": "models/fence1",
+      "name": "Fence1 (5)",
+      "transform": {
+        "position": [
+          -26.56952805,
+          0.00257386,
+          39.49509199
+        ],
+        "rotation": [
+          159.74256615,
+          -87.42824858,
+          159.47001072
+        ],
+        "scale": [
+          1.00000004,
+          0.99999998,
+          1.00000005
+        ]
+      }
+    },
+    {
+      "id": "fence1-7",
+      "ref": "models/fence1",
+      "name": "Fence1 (6)",
+      "transform": {
+        "position": [
+          -26.62952745,
+          0.00257386,
+          41.09309149
+        ],
+        "rotation": [
+          159.74256615,
+          -87.42824858,
+          159.47001072
+        ],
+        "scale": [
+          1.00000004,
+          0.99999998,
+          1.00000005
+        ]
+      }
+    },
+    {
+      "id": "fence1-8",
+      "ref": "models/fence1",
+      "name": "Fence1 (7)",
+      "transform": {
+        "position": [
+          -30.47117648,
+          0.00257386,
+          43.42236183
+        ],
+        "rotation": [
+          179.04889689,
+          -20.61815381,
+          179.37375094
+        ],
+        "scale": [
+          1.0000001,
+          0.99999998,
+          1.0000001
+        ]
+      }
+    },
+    {
+      "id": "fence1-9",
+      "ref": "models/fence1",
+      "name": "Fence1 (8)",
+      "transform": {
+        "position": [
+          -28.9071747,
+          0.00257386,
+          42.9979283
+        ],
+        "rotation": [
+          179.10022285,
+          -8.37653815,
+          179.57760955
+        ],
+        "scale": [
+          1.00000007,
+          0.99999998,
+          1.00000017
+        ]
+      }
+    },
+    {
+      "id": "fence1-10",
+      "ref": "models/fence1",
+      "name": "Fence1 (9)",
+      "transform": {
+        "position": [
+          -9.63488134,
+          0.00342822,
+          13.90671928
+        ],
+        "rotation": [
+          -180,
+          -40.57345956,
+          -180
+        ],
+        "scale": [
+          1.00000025,
+          1,
+          1.00000025
+        ]
+      }
+    },
+    {
+      "id": "fence1-11",
+      "ref": "models/fence1",
+      "name": "Fence1 (10)",
+      "transform": {
+        "position": [
+          -10.82788254,
+          0.00342822,
+          14.93671798
+        ],
+        "rotation": [
+          -180,
+          -40.57345956,
+          -180
+        ],
+        "scale": [
+          1.00000025,
+          1,
+          1.00000025
+        ]
+      }
+    },
+    {
+      "id": "fence1-12",
+      "ref": "models/fence1",
+      "name": "Fence1 (11)",
+      "transform": {
+        "position": [
+          -12.07088264,
+          0.00342822,
+          15.97971728
+        ],
+        "rotation": [
+          -180,
+          -40.57345956,
+          -180
+        ],
+        "scale": [
+          1.00000025,
+          1,
+          1.00000025
+        ]
+      }
+    },
+    {
+      "id": "fence1-13",
+      "ref": "models/fence1",
+      "name": "Fence1 (12)",
+      "transform": {
+        "position": [
+          -1.80704747,
+          0.00469766,
+          -10.50019103
+        ],
+        "rotation": [
+          -180,
+          -21.60554182,
+          -180
+        ],
+        "scale": [
+          1.37029202,
+          1.37028992,
+          1.37029202
+        ]
+      }
+    },
+    {
+      "id": "fence1-14",
+      "ref": "models/fence1",
+      "name": "Fence1 (12)",
+      "transform": {
+        "position": [
+          -23.93381971,
+          0.00257386,
+          14.0930535
+        ],
+        "rotation": [
+          176.88737891,
+          -73.37426365,
+          176.72596205
+        ],
+        "scale": [
+          1.0000001,
+          0.99999998,
+          1.00000006
+        ]
+      }
+    },
+    {
+      "id": "fence1-15",
+      "ref": "models/fence1",
+      "name": "Fence1 (13)",
+      "transform": {
+        "position": [
+          -23.71817992,
+          0.00342822,
+          12.53599917
+        ],
+        "rotation": [
+          180,
+          -84.99004011,
+          180
+        ],
+        "scale": [
+          0.99999997,
+          1,
+          0.99999997
+        ]
+      }
+    },
+    {
+      "id": "fence1-16",
+      "ref": "models/fence1",
+      "name": "Fence1 (15)",
+      "transform": {
+        "position": [
+          -28.08377861,
+          0.00257386,
+          17.80618043
+        ],
+        "rotation": [
+          179.07898421,
+          14.86790694,
+          179.94504165
+        ],
+        "scale": [
+          1.0000002,
+          0.99999998,
+          1.00000032
+        ]
+      }
+    },
+    {
+      "id": "fence1-17",
+      "ref": "models/fence1",
+      "name": "Fence1 (16)",
+      "transform": {
+        "position": [
+          -25.23921508,
+          0.00257386,
+          16.95498595
+        ],
+        "rotation": [
+          177.94503544,
+          -64.3254316,
+          177.85647175
+        ],
+        "scale": [
+          1.00000006,
+          0.99999998,
+          1
+        ]
+      }
+    },
+    {
+      "id": "fence1-18",
+      "ref": "models/fence1",
+      "name": "Fence1 (17)",
+      "transform": {
+        "position": [
+          -24.55335548,
+          0.00257386,
+          15.51040975
+        ],
+        "rotation": [
+          177.94503544,
+          -64.3254316,
+          177.85647175
+        ],
+        "scale": [
+          1.00000006,
+          0.99999998,
+          1
+        ]
+      }
+    },
+    {
+      "id": "fence1-19",
+      "ref": "models/fence1",
+      "name": "Fence1 (18)",
+      "transform": {
+        "position": [
+          -29.6883239,
+          0.00257386,
+          17.5788412
+        ],
+        "rotation": [
+          179.10888588,
+          2.62623012,
+          179.74953205
+        ],
+        "scale": [
+          1.00000005,
+          0.99999998,
+          1.00000012
+        ]
+      }
+    },
+    {
+      "id": "fence1-20",
+      "ref": "models/fence1",
+      "name": "Fence1 (19)",
+      "transform": {
+        "position": [
+          -24.22855076,
+          0.00342822,
+          11.09395516
+        ],
+        "rotation": [
+          0,
+          -50.68238339,
+          0
+        ],
+        "scale": [
+          1.00000004,
+          1,
+          1.00000004
+        ]
+      }
+    },
+    {
+      "id": "campfire-4-1",
+      "ref": "models/campfire-4",
+      "name": "Campfire",
+      "transform": {
+        "position": [
+          -33.5286179,
+          -0.09632604,
+          4.83669478
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "campfire-4-2",
+      "ref": "models/campfire-4",
+      "name": "Campfire",
+      "transform": {
+        "position": [
+          -12.4886208,
+          -0.11632602,
+          36.72669226
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "tent1-1",
+      "ref": "models/tent1",
+      "name": "Tent1 (2)",
+      "transform": {
+        "position": [
+          -33.58320427,
+          -0.16815217,
+          -2.7047997
+        ],
+        "rotation": [
+          0,
+          16.25145792,
+          0
+        ],
+        "scale": [
+          0.99999996,
+          1,
+          0.99999996
+        ]
+      }
+    },
+    {
+      "id": "tent1-2",
+      "ref": "models/tent1",
+      "name": "Tent1 (3)",
+      "transform": {
+        "position": [
+          -38.57853027,
+          -0.16815217,
+          5.26447552
+        ],
+        "rotation": [
+          -180,
+          74.52892249,
+          -180
+        ],
+        "scale": [
+          0.99999997,
+          1,
+          0.99999997
+        ]
+      }
+    },
+    {
+      "id": "tent1-3",
+      "ref": "models/tent1",
+      "name": "Tent1 (1)",
+      "transform": {
+        "position": [
+          -7.53746516,
+          -0.16815217,
+          41.78921935
+        ],
+        "rotation": [
+          0,
+          85.56186255,
+          0
+        ],
+        "scale": [
+          1.00000014,
+          1,
+          1.00000014
+        ]
+      }
+    },
+    {
+      "id": "tent1-4",
+      "ref": "models/tent1",
+      "name": "Tent1 (2)",
+      "transform": {
+        "position": [
+          -17.60320427,
+          -0.16815217,
+          30.65519954
+        ],
+        "rotation": [
+          0,
+          16.25145792,
+          0
+        ],
+        "scale": [
+          0.99999996,
+          1,
+          0.99999996
+        ]
+      }
+    },
+    {
+      "id": "oldwall2-1",
+      "ref": "models/oldwall2",
+      "name": "OldWall2 (1)",
+      "transform": {
+        "position": [
+          2.11966879,
+          -0.00901125,
+          25.36174722
+        ],
+        "rotation": [
+          -180,
+          0.0659503,
+          -180
+        ],
+        "scale": [
+          0.99999996,
+          1,
+          0.99999996
+        ]
+      }
+    },
+    {
+      "id": "oldwall2-2",
+      "ref": "models/oldwall2",
+      "name": "OldWall2 (2)",
+      "transform": {
+        "position": [
+          -29.58989787,
+          -0.00901125,
+          57.86924753
+        ],
+        "rotation": [
+          -180,
+          -46.95435769,
+          -180
+        ],
+        "scale": [
+          1.0000003,
+          1,
+          1.0000003
+        ]
+      }
+    },
+    {
+      "id": "oldwall2-3",
+      "ref": "models/oldwall2",
+      "name": "OldWall2 (3)",
+      "transform": {
+        "position": [
+          -19.44070963,
+          -0.00901125,
+          2.01803489
+        ],
+        "rotation": [
+          -180,
+          -44.91383464,
+          -180
+        ],
+        "scale": [
+          1.0000001,
+          1,
+          1.08521356
+        ]
+      }
+    },
+    {
+      "id": "oldwall2-4",
+      "ref": "models/oldwall2",
+      "name": "OldWall2",
+      "transform": {
+        "position": [
+          -2.9003316,
+          -0.00901125,
+          48.99174722
+        ],
+        "rotation": [
+          -180,
+          0.0659503,
+          -180
+        ],
+        "scale": [
+          0.99999996,
+          1,
+          0.99999996
+        ]
+      }
+    },
+    {
+      "id": "oldwall2-5",
+      "ref": "models/oldwall2",
+      "name": "OldWall2 (4)",
+      "transform": {
+        "position": [
+          -37.03222749,
+          -0.00901125,
+          16.42487672
+        ],
+        "rotation": [
+          -180,
+          -0.00513363,
+          -180
+        ],
+        "scale": [
+          1,
+          1,
+          1.08521044
+        ]
+      }
+    },
+    {
+      "id": "oldwall2-6",
+      "ref": "models/oldwall2",
+      "name": "OldWall2 (5)",
+      "transform": {
+        "position": [
+          -37.97097952,
+          -0.23195503,
+          11.6040735
+        ],
+        "rotation": [
+          180,
+          -89.5442235,
+          180
+        ],
+        "scale": [
+          1.00000004,
+          1,
+          1.08520997
+        ]
+      }
+    },
+    {
+      "id": "oldwall1-1",
+      "ref": "models/oldwall1",
+      "name": "OldWall1 (1)",
+      "transform": {
+        "position": [
+          -0.3600006,
+          -0.07820727,
+          30.19
+        ],
+        "rotation": [
+          0,
+          -51.87340315,
+          0
+        ],
+        "scale": [
+          0.99999999,
+          1,
+          0.99999999
+        ]
+      }
+    },
+    {
+      "id": "oldwall1-2",
+      "ref": "models/oldwall1",
+      "name": "OldWall1 (2)",
+      "transform": {
+        "position": [
+          -5.380001,
+          -0.07820727,
+          53.82
+        ],
+        "rotation": [
+          0,
+          -51.87340315,
+          0
+        ],
+        "scale": [
+          0.99999999,
+          1,
+          0.99999999
+        ]
+      }
+    },
+    {
+      "id": "oldwall1-3",
+      "ref": "models/oldwall1",
+      "name": "OldWall1",
+      "transform": {
+        "position": [
+          -5.380001,
+          -0.07820727,
+          53.82
+        ],
+        "rotation": [
+          0,
+          -51.87340315,
+          0
+        ],
+        "scale": [
+          0.99999999,
+          1,
+          0.99999999
+        ]
+      }
+    },
+    {
+      "id": "oldwall1-4",
+      "ref": "models/oldwall1",
+      "name": "OldWall1 (3)",
+      "transform": {
+        "position": [
+          -35.571888,
+          -0.361151,
+          27.0738049
+        ],
+        "rotation": [
+          -180,
+          1.32563091,
+          -180
+        ],
+        "scale": [
+          1.00000014,
+          1,
+          1.00000014
+        ]
+      }
+    },
+    {
+      "id": "oldwall3-1",
+      "ref": "models/oldwall3",
+      "name": "OldWall3 (1)",
+      "transform": {
+        "position": [
+          4.22999954,
+          -0.04337991,
+          20.02
+        ],
+        "rotation": [
+          0,
+          -42.69514747,
+          0
+        ],
+        "scale": [
+          0.99999996,
+          1,
+          0.99999996
+        ]
+      }
+    },
+    {
+      "id": "oldwall3-2",
+      "ref": "models/oldwall3",
+      "name": "OldWall3 (2)",
+      "transform": {
+        "position": [
+          -10.83,
+          -0.04337991,
+          10.7999992
+        ],
+        "rotation": [
+          -180,
+          -41.93957015,
+          -180
+        ],
+        "scale": [
+          0.99999994,
+          1,
+          0.99999994
+        ]
+      }
+    },
+    {
+      "id": "oldwall3-3",
+      "ref": "models/oldwall3",
+      "name": "OldWall3 (3)",
+      "transform": {
+        "position": [
+          -34.23,
+          -0.04337991,
+          47.03
+        ],
+        "rotation": [
+          -180,
+          -41.93957015,
+          -180
+        ],
+        "scale": [
+          0.99999994,
+          1,
+          0.99999994
+        ]
+      }
+    },
+    {
+      "id": "oldwall3-4",
+      "ref": "models/oldwall3",
+      "name": "OldWall3 (4)",
+      "transform": {
+        "position": [
+          -31.93,
+          -0.04337991,
+          52.73
+        ],
+        "rotation": [
+          0,
+          0.6160802,
+          0
+        ],
+        "scale": [
+          1.00000001,
+          1,
+          1.00000001
+        ]
+      }
+    },
+    {
+      "id": "oldwall3-5",
+      "ref": "models/oldwall3",
+      "name": "OldWall3",
+      "transform": {
+        "position": [
+          -2.84999847,
+          -0.04337991,
+          42.85
+        ],
+        "rotation": [
+          0,
+          0.6160802,
+          0
+        ],
+        "scale": [
+          1.00000001,
+          1,
+          1.00000001
+        ]
+      }
+    },
+    {
+      "id": "woodenwall-towershort-1",
+      "ref": "models/woodenwall-towershort",
+      "name": "WoodenWall_TowerShort (1)",
+      "transform": {
+        "position": [
+          -26.07000004,
+          -0.07085431,
+          60.83999996
+        ],
+        "rotation": [
+          -180,
+          -45.02451921,
+          -180
+        ],
+        "scale": [
+          1.00000026,
+          1,
+          1.00000026
+        ]
+      }
+    },
+    {
+      "id": "woodenwall-towershort-2",
+      "ref": "models/woodenwall-towershort",
+      "name": "WoodenWall_TowerShort",
+      "transform": {
+        "position": [
+          -8.74000003,
+          -0.07085431,
+          56.73000005
+        ],
+        "rotation": [
+          0,
+          -33.23542167,
+          0
+        ],
+        "scale": [
+          1.00000003,
+          1,
+          1.00000003
+        ]
+      }
+    },
+    {
+      "id": "woodenwall-towershort-3",
+      "ref": "models/woodenwall-towershort",
+      "name": "WoodenWall_TowerShort (1)",
+      "transform": {
+        "position": [
+          -49.23728562,
+          -0.07085431,
+          13.62610435
+        ],
+        "rotation": [
+          -180,
+          -23.4916025,
+          -180
+        ],
+        "scale": [
+          1.00000005,
+          1,
+          1.00000005
+        ]
+      }
+    },
+    {
+      "id": "woodenwall-towershort-4",
+      "ref": "models/woodenwall-towershort",
+      "name": "WoodenWall_TowerShort (1)",
+      "transform": {
+        "position": [
+          -47.29523471,
+          -0.07085431,
+          21.03378994
+        ],
+        "rotation": [
+          -180,
+          -13.15035375,
+          -180
+        ],
+        "scale": [
+          1.0000002,
+          1,
+          1.0000002
+        ]
+      }
+    },
+    {
+      "id": "sphere-1",
+      "ref": "models/sphere",
+      "name": "Sphere",
+      "transform": {
+        "position": [
+          -3.41999817,
+          -0.21999907,
+          -34.1339979
+        ],
+        "rotation": [
+          -90.00000683,
+          0,
+          0
+        ],
+        "scale": [
+          16.0319977,
+          16.0320148,
+          0.749767
+        ]
+      }
+    },
+    {
+      "id": "house1-3-1",
+      "ref": "models/house1-3",
+      "name": "House1",
+      "transform": {
+        "position": [
+          -27.41188595,
+          -1.2e-7,
+          7.64380432
+        ],
+        "rotation": [
+          0,
+          87.92846111,
+          0
+        ],
+        "scale": [
+          0.99999996,
+          1,
+          0.99999996
+        ]
+      }
+    },
+    {
+      "id": "house1-3-2",
+      "ref": "models/house1-3",
+      "name": "House1 (1)",
+      "transform": {
+        "position": [
+          -34.55000023,
+          -1.2e-7,
+          13.81999975
+        ],
+        "rotation": [
+          -180,
+          2.86299664,
+          -180
+        ],
+        "scale": [
+          1.00000008,
+          1,
+          1.00000008
+        ]
+      }
+    },
+    {
+      "id": "house1-3-3",
+      "ref": "models/house1-3",
+      "name": "House1 (3)",
+      "transform": {
+        "position": [
+          -33.05000023,
+          -1.2e-7,
+          32.74999975
+        ],
+        "rotation": [
+          -180,
+          2.86299664,
+          -180
+        ],
+        "scale": [
+          1.00000008,
+          1,
+          1.00000008
+        ]
+      }
+    },
+    {
+      "id": "woodenwall-towerlong-1",
+      "ref": "models/woodenwall-towerlong",
+      "name": "WoodenWall_TowerLong",
+      "transform": {
+        "position": [
+          8.84,
+          -0.05941033,
+          16.24000012
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "house2-1",
+      "ref": "models/house2",
+      "name": "House2 (1)",
+      "transform": {
+        "position": [
+          -27.6829232,
+          -1.2e-7,
+          49.39404732
+        ],
+        "rotation": [
+          0,
+          20.7821944,
+          0
+        ],
+        "scale": [
+          -0.99999991,
+          1,
+          0.99999991
+        ]
+      }
+    },
+    {
+      "id": "house2-2",
+      "ref": "models/house2",
+      "name": "House2",
+      "transform": {
+        "position": [
+          -16.84684589,
+          -1.2e-7,
+          8.47447998
+        ],
+        "rotation": [
+          0,
+          44.59534007,
+          0
+        ],
+        "scale": [
+          1.00000001,
+          1,
+          1.00000001
+        ]
+      }
+    },
+    {
+      "id": "well-1",
+      "ref": "models/well",
+      "name": "Well",
+      "transform": {
+        "position": [
+          -24.20849382,
+          -3.03102712,
+          23.5767554
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1.2654978,
+          1.2654978,
+          1.2654978
+        ]
+      }
+    },
+    {
+      "id": "agavehigh-1",
+      "ref": "models/agavehigh",
+      "name": "AgaveHigh",
+      "transform": {
+        "position": [
+          -31.13061065,
+          0.10593367,
+          37.89168663
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "joshua-camp-1",
+      "ref": "models/joshua-camp",
+      "name": "JOSHUA CAMP",
+      "transform": {
+        "position": [
+          44.92747163,
+          -3.89782367,
+          66.31704483
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "bg-mauntains-1",
+      "ref": "models/bg-mauntains",
+      "name": "BG MAUNTAINS",
+      "transform": {
+        "position": [
+          -91.33016967,
+          -51.28747368,
+          220.53840533
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "id": "cactus-1",
+      "ref": "models/cactus",
+      "name": "CACTUS",
+      "transform": {
+        "position": [
+          -20.39875408,
+          0,
+          59.51280802
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  ],
+  "cameras": [
+    {
+      "id": "camera",
+      "position": [
+        -15.3670044,
+        4.001934,
+        71.5431747
+      ],
+      "target": [
+        -16.33662,
+        4.415421,
+        61.5988846
+      ],
+      "fov": 60
+    }
+  ]
+}

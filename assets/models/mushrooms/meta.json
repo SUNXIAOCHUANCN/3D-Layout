@@ -1,0 +1,20 @@
+{
+  "id": "mushrooms",
+  "name": "Mushrooms",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 0.8023,
+    "d": 0.9519,
+    "h": 0.4429
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

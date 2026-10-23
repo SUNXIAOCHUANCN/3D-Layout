@@ -1,0 +1,149 @@
+# 3D-Layout
+
+Web 端 3D 布局软件（毕业设计）。**当前阶段：一期 · 场景渲染器**——数据驱动的 ThreeJS 场景渲染，编辑器与 Agent 在其上叠加。
+
+## 技术栈
+
+Vite 8 · React 19 · TypeScript · three.js（WebGL2）· @react-three/fiber · @react-three/drei · zustand · pnpm
+
+> 环境要求：Node ≥ 20.19（或 ≥ 22.12），pnpm ≥ 9
+
+## 目录结构
+
+根目录只有三个文件夹 + 本 README：
+
+```
+3D-Layout/
+├─ assets/                  # 素材库（数据，不参与构建）
+│  ├─ models/               #   模型库：每模型一个文件夹（meta.json + glb）
+│  ├─ hdri/  decoders/  textures/
+├─ scenes/                  # 场景库（数据，不参与构建）
+│  └─ scene-01/
+│     ├─ scene.json         #   中立场景描述 —— 唯一事实源，所有语言共用
+│     └─ threejs/view.json  #   ThreeJS 渲染绑定（相机/网格/环境覆盖），可选
+└─ src/                     # 源码文件夹（vite 工程根，所有代码与工程文件都在这）
+   ├─ package.json  vite.config.ts  tsconfig.json  index.html  .npmrc  .gitignore
+   ├─ core/                  # 框架无关核心层
+   │  ├─ types.ts            #   scene.json / view.json / meta.json 数据契约
+   │  ├─ store.ts            #   zustand：SceneDocument 内存映像（唯一事实源）
+   │  ├─ commands.ts         #   命令层（编辑器与 Agent 的统一修改入口）
+   │  ├─ engine.ts           #   引擎 API：pick / captureScreenshot / attachGizmo(二期)
+   │  ├─ events.ts           #   类型化事件总线
+   │  └─ loader.ts           #   数据加载
+   ├─ components/            # 渲染同步层（唯一允许操作 three 对象的地方）
+   ├─ modules/               # 可拆卸模块：editor（人工编辑）/ history（历史侧栏）/ agent（AI 编辑）
+   ├─ ui/                    # DOM 侧 UI（顶栏、加载浮层）
+   ├─ App.tsx / main.tsx / style.css
+   ├─ scripts/               # dev.bat / build.bat / preview.bat / gen-manifest.mjs
+   └─ node_modules/ dist/    # 生成物（git 忽略）
+```
+
+数据（assets/scenes）与源码（src）彻底分离：数据目录不进 vite 工程，构建不打包它们；vite 通过自定义中间件从上一级目录伺服 `/assets/*` 与 `/scenes/*`。
+
+## 启动
+
+- 双击 `src\scripts\dev.bat`（首次自动安装依赖、生成 manifest，然后打开浏览器）
+- 或手动：
+  ```bat
+  cd src
+  pnpm install && pnpm gen-manifest && pnpm dev
+  ```
+- 构建：`src\scripts\build.bat`（产物 `src\dist\`；部署时把 `src\dist + assets + scenes` 放到同一台静态服务器）
+- URL 参数 `?scene=scene-02` 直接打开指定场景
+
+## 视口操作
+
+| 操作 | 手势 |
+|---|---|
+| 选中资产 | 左键点击资产（**纯 mesh 精确拾取，Blender 式**，无包围盒代理；点模型可见轮廓才命中）；点击空白处取消选中 |
+| 旋转视角 | 右键拖拽 |
+| 平移相机 | 中键拖拽 |
+| 缩放 | 滚轮 |
+
+## 编辑器模块（modules/editor，可拆卸）
+
+**左侧插件侧边栏**是插件的装配中心（常驻显示）：每个插件一行开关，启用时其面板 UI 展开在下方（人工编辑 = 变换工具 + 操作按钮 + 数值面板）。插件全部关闭后侧边栏仍在，随时可以重新开启。
+
+开关优先级：URL `?editor=0/1` > 场景 `threejs/view.json` 的 `editor.enabled` > 默认开启。**关闭后点击资产无任何反应，等同纯渲染器**——因为渲染层只上报 `asset:clicked` 事件，选中行为由模块订阅产生。
+
+选中高亮 = **橙色倒角壳描边**（沿模型轮廓，Blender 风）。glb 加载时做一次性规范化（`normalizeGltf`）：蒙皮网格烘焙成普通 Mesh（three 的射线拾取不计算蒙皮形变）+ 重算几何包围球/包围盒缓存（部分 glb 的缓存包围球与顶点数据单位不一致，会导致"看得见点不中"）。代价是模型按静态展示处理（播放动画需另走原始 glb 实例）。
+
+| 快捷键 | 功能 |
+|---|---|
+| W / E / R / T | 移动 / 旋转 / 缩放 / 复合 gizmo |
+| X | 局部/全局坐标系切换 |
+| 按住 Ctrl | 临时反转吸附（移动 0.5m / 旋转 15° / 缩放 0.1） |
+| F | 聚焦选中资产 |
+| Delete / Backspace | 删除选中资产 |
+| Ctrl+D | 复制选中资产 |
+| Ctrl+Z / Ctrl+Shift+Z(或 Ctrl+Y) | 撤销 / 重做 |
+
+数值面板支持直接输入位置/旋转(°)/缩放（回车或失焦提交）；gizmo 拖拽时数值实时反向同步。「保存」把当前场景写回 `scenes/<id>/scene.json`（version+1；dev/preview 经 Vite 接口落盘，生产环境自动降级为下载文件）。
+
+## 历史记录侧栏（modules/history，右侧，可收起）
+
+消费 `edit.historyUnits()/redoUnits()` 的统一历史谱系（每条 = 一个事务：一次拖拽/一次数值输入/Agent 一项任务；带 人工/Agent 标签、步数、时间，最新在下、高亮当前步）：
+
+- 点击某条 → 确认框 → **撤回到该步完成时的状态**（撤销其后所有步骤）
+- 灰色"已撤销"条目 → 点击 → 确认框 → 重做到该步
+- 左右两侧边栏均可收起成细条（标题行 « / »），点细条展开；**边缘拖拽可调宽**（宽度记忆在 localStorage）
+
+## 编辑引擎（core/edit.ts）
+
+场景变更的唯一入口：编辑接口 + 历史记录 + 撤销回滚一体化（命令期刊记 before/after + source + 事务；不用全量快照）。事务把 gizmo 一次拖拽、Agent 一项任务合并为一条可撤销记录；`source: 'human' | 'agent'` 让人和 AI 的操作进同一本账，供历史面板展示与整体回滚（三期）。selection/相机等观察状态不进历史。
+
+## 核心概念
+
+### 场景 = 数据（scene.json 是唯一事实源）
+
+`scenes/<id>/scene.json` 中立地描述场景（资产列表 + transform + 相机 + 环境）。渲染器是通用引擎，读任何 scene.json 都能渲染。同一场景以后可并列增加其他语言的表示目录（如 `python/`），它们读的是同一份 scene.json。`threejs/view.json` 只放渲染器专属配置，可选。
+
+约定：单位米；+Y 向上；欧拉角角度制；模型原点在底面中心；场景资产用 `ref: "models/<id>"` 引用模型库，**不复制模型文件**。
+
+### 解耦三规则
+
+1. 只有 `src/components/`（渲染同步层）允许直接操作 three 对象，其余代码只读写 store 里的 SceneDocument；
+2. 对场景的修改一律走 store action / `commandBus`；
+3. 修改 → 数据变化 → 渲染幂等同步（数据驱动渲染）。
+
+### 命令层（Agent 的预留接口）
+
+`src/core/commands.ts`：`set_transform / add_asset / remove_asset / select / load_scene`。一期由 UI 触发；二期编辑器、三期 Agent 只是新的触发方，undo/重做、审计日志、WebSocket 远端命令都在这一层叠加。Agent 工具集即本层子集。
+
+### 引擎 API 与事件
+
+`src/core/engine.ts`：`pick(clientX, clientY)`（屏幕坐标拾取资产 id）、`captureScreenshot()`（导出视口 PNG，后期 VLM 布局校验用）、`attachGizmo`（二期）。事件总线 `src/core/events.ts`：`scene:changed / asset:selected / asset:loaded / command:dispatched`。
+
+## 日常操作
+
+- **加模型**：`assets/models/<new-id>/` 放 `meta.json`（+glb），在 `src/` 下跑 `pnpm gen-manifest`。没有真实模型时可先用 primitive 占位。
+- **加场景**：新建 `scenes/<new-id>/scene.json`（可复制现有场景改），跑 `pnpm gen-manifest`。
+- **换 HDRI**：文件放 `assets/hdri/`，场景 `environment.hdri` 引用；不配则用程序化环境（离线可用）。
+
+## Agent 模块（modules/agent，提案式场景编辑）
+
+**权限模型**（回答「编辑器给 Agent 开放什么」）：权限 = 工具白名单（`modules/agent/tools.ts` 注册表，注册即授权、未注册即拒绝）+ 调用时机约束 + 人工裁决。面板里直接展示开放/不开放清单。
+
+| 工具 | 权限 | 说明 |
+|---|---|---|
+| `scene.get_state` | 只读·免确认 | 场景中立快照：资产/变换/世界 AABB/模型目录；来源是内存文档（含未保存编辑），不是磁盘文件 |
+| `viewport.screenshot` | 只读·免确认 | **无 UI 截图**：与视口同相机同构图，自动隐藏选中描边与 gizmo（`userData.editorHelper` 标记），非离线渲染；任务中可调（能看到提案中的状态） |
+| `asset.set_transform` | 写·仅任务内 | 提案式生效 |
+| `asset.add` | 写·仅任务内 | ref 必须在模型库 manifest 中；id 由前端铸造并回传 |
+| `asset.remove` | 写·仅任务内 | 拒绝时自动恢复 |
+
+明确不开放：直接操作 three 对象、保存/落盘、切场景/相机/改选中、任务事务外的写操作、白名单外的任何工具。
+
+**聊天式编辑 + API 设置**：面板是对话框（流式输出、工具调用过程行、可停止/清空）；⚙ 设置 打开 API 设置窗口——**接入方式三选一**（OpenAI Chat `/chat/completions`、OpenAI Response `/responses`、Anthropic `/v1/messages`），**预设 9 家厂商**（OpenAI / Anthropic / Gemini / Grok / DeepSeek / Qwen / GLM / Kimi / Xiaomi MiMo，另加自定义），含 Base URL、API Key（仅存本浏览器 localStorage）、模型名（建议值可自由输入）与**测试连接**。浏览器直连厂商 API（Anthropic 自动附带浏览器直连声明头），无后端即可用真实模型驱动编辑。
+
+**权限模式与提案式事务**：面板可切换两种权限模式——**变更前确认**（默认）：一个任务 = 一个 `edit.begin(label, 'agent')` 事务，写操作即时生效到视口供人查看，`task_end` 后面板出现「接受（入账）/ 拒绝（回滚）」，预览期人工编辑自动暂停；**自动编辑**：任务完成直接入账，不经人工裁决。两种模式下任务入账后都会**自动保存** `scene.json`（dev/preview 走保存接口，静态托管降级为下载）。接受后进统一历史（带 Agent 标签），可像人工操作一样撤销/回退；拒绝则全部回滚且不留重做痕迹，裁决结果会作为系统消息回告模型，模型可调整后重新提案。关插件 = 未裁决提案自动回滚。
+
+**传输层可换**（消息协议：`modules/agent/protocol.ts`；LLM 循环见 `llmChatTransport.ts`）：
+- 缺省 = **浏览器直连 LLM**：本地 Harness——用户指令 → LLM function calling（工具 schema 由权限注册表生成）→ 工具调用走统一协议 → 提案裁决回流续跑；
+- `?agent=loopback` = **演示回环**：本进程扮演 Harness，跑「读场景 → 无UI截图 → 提案改场景」固定脚本，无 Key 可演示权限流程；
+- `?agent=1` = WebSocket `ws://localhost:5174`，`?agent=ws://host:port` 指定地址——三期远端 Node Harness 实现同一 JSON 协议即可接管，前端零改动。
+
+## 路线图
+
+- **二期 · 编辑器**：TransformControls gizmo、属性面板、多选、撤销/重做（命令事务化）
+- **三期 · Agent**：前端全链路已就绪（modules/agent：权限白名单 + 提案式事务 + 无UI截图 + 浏览器直连聊天编辑[OpenAI Chat/Response/Anthropic 三协议、9 厂商预设] + loopback/WS 双传输）；待办：`validate_layout` 布局校验、VLM 截图校验闭环、远端 Node Harness（可选，WS 协议已留）

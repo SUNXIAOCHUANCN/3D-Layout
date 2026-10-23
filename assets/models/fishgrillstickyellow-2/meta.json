@@ -1,0 +1,20 @@
+{
+  "id": "fishgrillstickyellow-2",
+  "name": "FishGrillStickYellow",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 0.8105,
+    "d": 0.1412,
+    "h": 1.6843
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

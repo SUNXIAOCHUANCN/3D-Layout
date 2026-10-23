@@ -1,0 +1,20 @@
+{
+  "id": "snowypierstart",
+  "name": "SnowyPierStart",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 2.5086,
+    "d": 5.7128,
+    "h": 2.4664
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

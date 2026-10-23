@@ -1,0 +1,20 @@
+{
+  "id": "snowytownhouse1",
+  "name": "SnowyTownHouse1",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 8.33,
+    "d": 12.7584,
+    "h": 12.272
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

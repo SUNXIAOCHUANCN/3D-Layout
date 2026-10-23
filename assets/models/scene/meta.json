@@ -1,0 +1,20 @@
+{
+  "id": "scene",
+  "name": "[SCENE]",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 1110.7377,
+    "d": 1110.7388,
+    "h": 11.8432
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

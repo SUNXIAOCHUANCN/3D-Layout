@@ -1,0 +1,20 @@
+{
+  "id": "ladder",
+  "name": "Ladder",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 0.7505,
+    "d": 0.1768,
+    "h": 3.8919
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

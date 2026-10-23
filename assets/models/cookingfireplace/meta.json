@@ -1,0 +1,20 @@
+{
+  "id": "cookingfireplace",
+  "name": "CookingFireplace",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 2.128,
+    "d": 3.6399,
+    "h": 2.0353
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

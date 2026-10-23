@@ -1,0 +1,20 @@
+{
+  "id": "palmdead1-2",
+  "name": "PalmDead1",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 1.1872,
+    "d": 0.92,
+    "h": 5.0077
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

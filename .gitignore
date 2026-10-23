@@ -1,0 +1,39 @@
+# ---- dependencies ----
+node_modules/
+.pnpm-store/
+
+# ---- build output ----
+dist/
+build/
+*.tsbuildinfo
+.vite/
+.vite-temp/
+.vitest-cache/
+
+# ---- plugin runtime data (contains access token) ----
+.data/
+
+# ---- test artifacts / browser profiles ----
+**/tests/browser/artifacts/
+**/artifacts/
+**/.t14-profile/
+**/.ui-probe-profile/
+*.log
+logs/
+
+# ---- large archives (over GitHub 100MB limit, duplicate of assets/models) ----
+assets/models.rar
+*.rar
+*.zip
+*.7z
+
+# ---- windows ----
+*.lnk
+Thumbs.db
+desktop.ini
+
+# ---- editor / os ----
+.DS_Store
+.idea/
+.vscode/
+*.local

@@ -1,0 +1,20 @@
+{
+  "id": "treedead2",
+  "name": "TreeDead2",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 4.0202,
+    "d": 4.1048,
+    "h": 5.6623
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

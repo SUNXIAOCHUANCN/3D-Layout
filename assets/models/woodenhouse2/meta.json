@@ -1,0 +1,20 @@
+{
+  "id": "woodenhouse2",
+  "name": "WoodenHouse2",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 7.6606,
+    "d": 11.572,
+    "h": 7.4539
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "water-forest",
+  "name": "WATER_FOREST",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 356.7605,
+    "d": 243.4479,
+    "h": 13.3257
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

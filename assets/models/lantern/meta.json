@@ -1,0 +1,25 @@
+{
+  "id": "lantern",
+  "name": "手提灯",
+  "category": "lighting",
+  "tags": [
+    "lantern",
+    "灯"
+  ],
+  "dimensions": {
+    "w": 0.3,
+    "d": 0.09,
+    "h": 0.5
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "color": "#b08d57",
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  },
+  "license": "CC-BY-4.0"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "conifer1-low",
+  "name": "Conifer1_Low",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 8.4032,
+    "d": 9.9167,
+    "h": 14.2636
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

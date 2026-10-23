@@ -1,0 +1,20 @@
+{
+  "id": "palm3-straight",
+  "name": "Palm3_straight",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 10.5097,
+    "d": 13.4941,
+    "h": 13.65
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

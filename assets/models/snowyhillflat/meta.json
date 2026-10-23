@@ -1,0 +1,20 @@
+{
+  "id": "snowyhillflat",
+  "name": "SnowyHillFlat",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 161.1737,
+    "d": 177.2923,
+    "h": 12.6148
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

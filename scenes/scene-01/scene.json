@@ -1,0 +1,55 @@
+{
+  "meta": { "id": "scene-01", "name": "示例·桌椅组合", "version": 1, "unit": "m", "up": "+Y" },
+  "environment": {
+    "background": "#1c2128",
+    "sunIntensity": 1.6,
+    "ground": { "size": [16, 16], "receiveShadow": true }
+  },
+  "assets": [
+    {
+      "id": "table-01",
+      "ref": "models/placeholder-box",
+      "name": "餐桌",
+      "tint": "#a07850",
+      "transform": { "position": [0, 0, 0], "rotation": [0, 0, 0], "scale": [1.8, 0.72, 0.95] }
+    },
+    {
+      "id": "chair-01",
+      "ref": "models/placeholder-box",
+      "name": "椅子·左",
+      "tint": "#4f7d5b",
+      "transform": { "position": [-1.3, 0, 0], "rotation": [0, 90, 0], "scale": [0.45, 0.88, 0.5] }
+    },
+    {
+      "id": "chair-02",
+      "ref": "models/placeholder-box",
+      "name": "椅子·右",
+      "tint": "#4f7d5b",
+      "transform": { "position": [1.3, 0, 0], "rotation": [0, -90, 0], "scale": [0.45, 0.88, 0.5] }
+    },
+    {
+      "id": "cabinet-01",
+      "ref": "models/placeholder-box",
+      "name": "边柜",
+      "tint": "#77685a",
+      "transform": { "position": [-2.8, 0, -1.6], "rotation": [0, 15, 0], "scale": [1.2, 1.9, 0.45] }
+    },
+    {
+      "id": "plant-01",
+      "ref": "models/placeholder-cylinder",
+      "name": "绿植盆",
+      "tint": "#5d8a4f",
+      "transform": { "position": [2.3, 0, -1.5], "rotation": [0, 0, 0], "scale": [0.42, 1.25, 0.42] }
+    },
+    {
+      "id": "lamp-01",
+      "ref": "models/placeholder-sphere",
+      "name": "灯球",
+      "tint": "#d8b45a",
+      "transform": { "position": [2.3, 1.45, -1.5], "rotation": [0, 0, 0], "scale": [0.35, 0.35, 0.35] }
+    }
+  ],
+  "cameras": [
+    { "id": "main", "position": [5.5, 4.2, 6.8], "target": [0, 0.8, 0], "fov": 50 }
+  ]
+}

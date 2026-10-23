@@ -1,0 +1,26 @@
+{
+  "id": "armchair-01",
+  "name": "复古扶手椅",
+  "category": "seating",
+  "tags": [
+    "chair",
+    "vintage",
+    "复古"
+  ],
+  "dimensions": {
+    "w": 0.848,
+    "d": 0.766,
+    "h": 1.065
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "color": "#a5736b",
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  },
+  "license": "CC0"
+}

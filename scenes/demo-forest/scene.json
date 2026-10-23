@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "id": "demo-forest",
+    "name": "Demo Forest（导入验收示例）",
+    "version": 2,
+    "unit": "m",
+    "up": "+Y"
+  },
+  "environment": {
+    "background": "#87a9c9",
+    "sunIntensity": 1.2,
+    "ground": {
+      "size": [
+        40,
+        40
+      ],
+      "receiveShadow": true
+    }
+  },
+  "assets": [],
+  "cameras": [
+    {
+      "id": "main-camera",
+      "position": [
+        14,
+        9,
+        -14
+      ],
+      "target": [
+        0,
+        1.5,
+        9.184850993605148e-17
+      ],
+      "fov": 50
+    }
+  ]
+}

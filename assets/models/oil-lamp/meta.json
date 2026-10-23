@@ -1,0 +1,26 @@
+{
+  "id": "oil-lamp",
+  "name": "复古油灯",
+  "category": "lighting",
+  "tags": [
+    "lamp",
+    "vintage",
+    "玻璃"
+  ],
+  "dimensions": {
+    "w": 0.22,
+    "d": 0.22,
+    "h": 0.802
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "color": "#c2a25a",
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  },
+  "license": "CC0"
+}

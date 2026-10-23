@@ -1,0 +1,20 @@
+{
+  "id": "snowytownhousetower",
+  "name": "SnowyTownHouseTower",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 8.33,
+    "d": 8.208,
+    "h": 19.7371
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

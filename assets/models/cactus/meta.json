@@ -1,0 +1,20 @@
+{
+  "id": "cactus",
+  "name": "CACTUS",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 87.3477,
+    "d": 81.1612,
+    "h": 4.0675
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

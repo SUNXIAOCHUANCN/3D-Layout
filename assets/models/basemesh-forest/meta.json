@@ -1,0 +1,20 @@
+{
+  "id": "basemesh-forest",
+  "name": "BASEMESH_FOREST",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 436.1575,
+    "d": 346.695,
+    "h": 85.3407
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "house1",
+  "name": "House1",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 11.8403,
+    "d": 10.4855,
+    "h": 8.0371
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

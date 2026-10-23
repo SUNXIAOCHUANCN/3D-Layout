@@ -1,0 +1,54 @@
+{
+  "format": "3d-layout-import-integrity",
+  "schemaVersion": 1,
+  "converter": "threejs-interchange",
+  "converterVersion": "0.1.0",
+  "normalizationVersion": "layout-static-v1",
+  "source": {
+    "file": "models/pine-tree.glb",
+    "sha256": "6c3c545f8d20d5f8958aa2724a830ab93712e1856465f0a2ac877ed74a3e6ff8",
+    "bytes": 8376,
+    "coordinates": {
+      "metersPerUnit": 0.01,
+      "up": "+Z",
+      "handedness": "right"
+    }
+  },
+  "canonical": {
+    "file": "model.glb",
+    "sha256": "fd9abce59d882059d7ecbebc119fb907974b3fd9093ae4956a97ef87b2641074",
+    "bytes": 8708
+  },
+  "definitionHash": "4f0bb02612c21ed7ec5915e172d3ec15afe55950a224e0d04da757b76cea6e55",
+  "localBounds": {
+    "min": [
+      -1.083288550376892,
+      0,
+      -1.0668309330940247
+    ],
+    "max": [
+      1.083288550376892,
+      3.65,
+      1.0668309330940247
+    ]
+  },
+  "sourceToCanonical": [
+    0.01,
+    0,
+    0,
+    0,
+    0,
+    6.123233995736766e-19,
+    -0.01,
+    0,
+    0,
+    0.01,
+    6.123233995736766e-19,
+    0,
+    0,
+    2.3841857977511828e-8,
+    -0.03316909074783314,
+    1
+  ],
+  "createdAt": "2026-10-18T10:24:19.942Z"
+}

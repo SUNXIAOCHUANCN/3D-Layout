@@ -1,0 +1,20 @@
+{
+  "id": "coconut-plant",
+  "name": "Coconut_Plant",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 1.7361,
+    "d": 1.9056,
+    "h": 1.7838
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

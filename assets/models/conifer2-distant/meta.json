@@ -1,0 +1,20 @@
+{
+  "id": "conifer2-distant",
+  "name": "Conifer2_Distant",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 5.1236,
+    "d": 5.4133,
+    "h": 10.4308
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

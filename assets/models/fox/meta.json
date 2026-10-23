@@ -1,0 +1,26 @@
+{
+  "id": "fox",
+  "name": "狐狸·动画",
+  "category": "decor",
+  "tags": [
+    "animal",
+    "animated",
+    "动画"
+  ],
+  "dimensions": {
+    "w": 0.284,
+    "d": 0.981,
+    "h": 0.55
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "color": "#c07a4a",
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  },
+  "license": "CC-BY-4.0"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "torchbig-burning",
+  "name": "TorchBig_Burning",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 0.1612,
+    "d": 0.1541,
+    "h": 1.703
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

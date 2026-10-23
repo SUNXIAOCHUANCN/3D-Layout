@@ -1,0 +1,20 @@
+{
+  "id": "driedfishleaf-2",
+  "name": "DriedFishLeaf",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 4.1629,
+    "d": 0.8553,
+    "h": 0.1272
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

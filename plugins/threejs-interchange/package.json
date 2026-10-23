@@ -1,0 +1,27 @@
+{
+  "name": "threejs-interchange",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "3D-Layout 导入导出插件：外部 Three.js 场景 → 原生场景 + 全局模型库（自包含，零宿主改动）",
+  "scripts": {
+    "build": "vite build",
+    "start": "tsx server/main.ts",
+    "dev": "vite build && tsx server/main.ts",
+    "check": "tsc --noEmit",
+    "test": "tsc --noEmit && node --import tsx --test tests/unit.math.test.ts tests/unit.validation.test.ts tests/unit.glbinspect.test.ts tests/e2e.server.test.ts",
+    "cli:install": "tsx cli/install.ts",
+    "cli:demo-forest": "tsx cli/demo-forest.ts"
+  },
+  "dependencies": {
+    "fflate": "^0.8.2",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/three": "^0.186.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^6.3.5"
+  }
+}

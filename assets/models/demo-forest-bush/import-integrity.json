@@ -1,0 +1,54 @@
+{
+  "format": "3d-layout-import-integrity",
+  "schemaVersion": 1,
+  "converter": "threejs-interchange",
+  "converterVersion": "0.1.0",
+  "normalizationVersion": "layout-static-v1",
+  "source": {
+    "file": "models/bush.glb",
+    "sha256": "581024799dfb7e61c3e9fc771665c4e997155a0fdb8477cf8dc64931eb1c157d",
+    "bytes": 8860,
+    "coordinates": {
+      "metersPerUnit": 0.01,
+      "up": "+Z",
+      "handedness": "right"
+    }
+  },
+  "canonical": {
+    "file": "model.glb",
+    "sha256": "7aacc0e0f9330304d686c95597eb63449f623448d40bc621b487d8385250a478",
+    "bytes": 9124
+  },
+  "definitionHash": "fa165e040826fd0f1ee0eee1daff7fa91314f6ea62beb933c78c6d3d19d9c7c7",
+  "localBounds": {
+    "min": [
+      -0.6,
+      0,
+      -0.6000000000000001
+    ],
+    "max": [
+      0.6,
+      0.85,
+      0.6000000000000001
+    ]
+  },
+  "sourceToCanonical": [
+    0.01,
+    0,
+    0,
+    0,
+    0,
+    6.123233995736766e-19,
+    -0.01,
+    0,
+    0,
+    0.01,
+    6.123233995736766e-19,
+    0,
+    0,
+    0.0050000000000000365,
+    5.551115123125783e-17,
+    1
+  ],
+  "createdAt": "2026-10-18T10:24:19.948Z"
+}

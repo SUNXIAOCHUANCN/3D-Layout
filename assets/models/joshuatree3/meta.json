@@ -1,0 +1,20 @@
+{
+  "id": "joshuatree3",
+  "name": "JoshuaTree3",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 4.757,
+    "d": 4.7388,
+    "h": 6.1278
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

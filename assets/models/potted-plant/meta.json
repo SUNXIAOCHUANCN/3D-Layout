@@ -1,0 +1,26 @@
+{
+  "id": "potted-plant",
+  "name": "观叶盆栽",
+  "category": "plant",
+  "tags": [
+    "plant",
+    "绿植",
+    "室内"
+  ],
+  "dimensions": {
+    "w": 0.587,
+    "d": 0.634,
+    "h": 1.35
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "color": "#6f9e6f",
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  },
+  "license": "CC0"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "piertile-3",
+  "name": "PierTile",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 4.8213,
+    "d": 5.3636,
+    "h": 4.6902
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "toy-car",
+  "name": "玩具车",
+  "category": "decor",
+  "tags": [
+    "toy",
+    "car",
+    "车"
+  ],
+  "dimensions": {
+    "w": 0.226,
+    "d": 0.343,
+    "h": 0.12
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "color": "#b05f5f",
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  },
+  "license": "CC-BY-4.0"
+}

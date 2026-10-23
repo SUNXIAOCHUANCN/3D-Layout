@@ -1,0 +1,20 @@
+{
+  "id": "tree3-birchyoung",
+  "name": "Tree3_BirchYoung",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 7.4982,
+    "d": 6.1766,
+    "h": 10.0431
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

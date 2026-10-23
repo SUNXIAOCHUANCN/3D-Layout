@@ -1,0 +1,20 @@
+{
+  "id": "bigcliff",
+  "name": "BigCliff",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 113.1481,
+    "d": 82.3842,
+    "h": 27.8946
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

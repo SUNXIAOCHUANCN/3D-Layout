@@ -1,0 +1,11 @@
+{
+  "id": "placeholder-box",
+  "name": "占位·方块",
+  "category": "placeholder",
+  "tags": ["placeholder"],
+  "dimensions": { "w": 1, "d": 1, "h": 1 },
+  "source": { "type": "primitive", "shape": "box" },
+  "color": "#7ea6e0",
+  "normalized": { "unitScale": 1, "origin": "base-center", "up": "+Y" },
+  "license": "CC0"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "rocks",
+  "name": "Rocks",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 320.0371,
+    "d": 278.3473,
+    "h": 25.1214
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

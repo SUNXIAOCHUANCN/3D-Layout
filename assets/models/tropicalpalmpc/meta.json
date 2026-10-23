@@ -1,0 +1,20 @@
+{
+  "id": "tropicalpalmpc",
+  "name": "TropicalPalmPC",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 14.1161,
+    "d": 11.7793,
+    "h": 11.7554
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

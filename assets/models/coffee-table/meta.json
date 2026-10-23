@@ -1,0 +1,26 @@
+{
+  "id": "coffee-table",
+  "name": "咖啡桌",
+  "category": "table",
+  "tags": [
+    "table",
+    "客厅",
+    "木质"
+  ],
+  "dimensions": {
+    "w": 1.54,
+    "d": 0.973,
+    "h": 0.525
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "color": "#8a6f52",
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  },
+  "license": "CC0"
+}

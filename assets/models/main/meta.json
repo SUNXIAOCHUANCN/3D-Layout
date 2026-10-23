@@ -1,0 +1,20 @@
+{
+  "id": "main",
+  "name": "[MAIN]",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 10000,
+    "d": 10000,
+    "h": 0
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

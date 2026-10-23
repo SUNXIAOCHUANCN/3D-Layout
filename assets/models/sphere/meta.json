@@ -1,0 +1,20 @@
+{
+  "id": "sphere",
+  "name": "Sphere",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 1,
+    "d": 1,
+    "h": 1
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

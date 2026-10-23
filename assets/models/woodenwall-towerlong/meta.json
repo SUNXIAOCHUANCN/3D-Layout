@@ -1,0 +1,20 @@
+{
+  "id": "woodenwall-towerlong",
+  "name": "WoodenWall_TowerLong",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 5.2985,
+    "d": 2.9706,
+    "h": 2.9215
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "wooden-chair",
+  "name": "哥特高背椅",
+  "category": "seating",
+  "tags": [
+    "chair",
+    "gothic",
+    "木质"
+  ],
+  "dimensions": {
+    "w": 0.688,
+    "d": 0.658,
+    "h": 2.274
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "color": "#6e5a48",
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  },
+  "license": "CC0"
+}

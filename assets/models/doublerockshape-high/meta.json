@@ -1,0 +1,20 @@
+{
+  "id": "doublerockshape-high",
+  "name": "DoubleRockShape_High",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 16.4194,
+    "d": 19.271,
+    "h": 12.3259
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

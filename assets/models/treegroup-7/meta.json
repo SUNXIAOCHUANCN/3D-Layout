@@ -1,0 +1,20 @@
+{
+  "id": "treegroup-7",
+  "name": "TreeGroup",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 18.5817,
+    "d": 30.7933,
+    "h": 17.9177
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

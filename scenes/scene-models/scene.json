@@ -1,0 +1,383 @@
+{
+  "meta": {
+    "id": "scene-models",
+    "name": "模型库预览",
+    "version": 5,
+    "unit": "m",
+    "up": "+Y"
+  },
+  "environment": {
+    "background": "#1c2128",
+    "sunIntensity": 1.6,
+    "ground": {
+      "size": [
+        16,
+        16
+      ],
+      "receiveShadow": true
+    }
+  },
+  "assets": [
+    {
+      "id": "sofa-01",
+      "ref": "models/sofa-01",
+      "name": "沙发",
+      "transform": {
+        "position": [
+          -2.2,
+          0,
+          -2.2
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "armchair-01",
+      "ref": "models/armchair-01",
+      "name": "扶手椅",
+      "transform": {
+        "position": [
+          -3.8,
+          0,
+          -0.6
+        ],
+        "rotation": [
+          0,
+          90,
+          0
+        ]
+      }
+    },
+    {
+      "id": "wooden-chair",
+      "ref": "models/wooden-chair",
+      "name": "高背椅",
+      "transform": {
+        "position": [
+          -3.2,
+          0,
+          2.6
+        ],
+        "rotation": [
+          0,
+          180,
+          0
+        ]
+      }
+    },
+    {
+      "id": "coffee-table",
+      "ref": "models/coffee-table",
+      "name": "咖啡桌",
+      "transform": {
+        "position": [
+          -2.2,
+          0,
+          -0.9
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "round-table",
+      "ref": "models/round-table",
+      "name": "圆桌",
+      "transform": {
+        "position": [
+          -3.2,
+          0,
+          1.4
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "nightstand",
+      "ref": "models/nightstand",
+      "name": "床头柜",
+      "transform": {
+        "position": [
+          0.9,
+          0,
+          -2.6
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ]
+      }
+    },
+    {
+      "id": "ottoman",
+      "ref": "models/ottoman",
+      "name": "脚凳",
+      "transform": {
+        "position": [
+          -2.2,
+          0,
+          0.15
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "potted-plant",
+      "ref": "models/potted-plant",
+      "name": "盆栽",
+      "transform": {
+        "position": [
+          3.9,
+          0,
+          -1.4
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "fox",
+      "ref": "models/fox",
+      "name": "狐狸",
+      "transform": {
+        "position": [
+          -2.6,
+          0.525,
+          -0.75
+        ],
+        "rotation": [
+          0,
+          90,
+          0
+        ]
+      }
+    },
+    {
+      "id": "lantern",
+      "ref": "models/lantern",
+      "name": "手提灯",
+      "transform": {
+        "position": [
+          1.9,
+          0,
+          -0.9
+        ],
+        "rotation": [
+          0,
+          -20,
+          0
+        ]
+      }
+    },
+    {
+      "id": "oil-lamp",
+      "ref": "models/oil-lamp",
+      "name": "油灯",
+      "transform": {
+        "position": [
+          -3,
+          1.005,
+          1.35
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "helmet",
+      "ref": "models/helmet-damaged",
+      "name": "头盔",
+      "transform": {
+        "position": [
+          -3.3,
+          1.005,
+          1.4
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ]
+      }
+    },
+    {
+      "id": "desk-lamp",
+      "ref": "models/desk-lamp",
+      "name": "台灯",
+      "transform": {
+        "position": [
+          0.9,
+          0.7,
+          -2.6
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "id": "duck",
+      "ref": "models/duck",
+      "name": "鸭子",
+      "transform": {
+        "position": [
+          2.6,
+          0,
+          -2.4
+        ],
+        "rotation": [
+          0,
+          200,
+          0
+        ]
+      }
+    },
+    {
+      "id": "water-bottle",
+      "ref": "models/water-bottle",
+      "name": "水瓶",
+      "transform": {
+        "position": [
+          -1.6,
+          0.525,
+          -1.25
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "avocado",
+      "ref": "models/avocado",
+      "name": "牛油果",
+      "transform": {
+        "position": [
+          -2.75,
+          0.525,
+          -1.2
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ]
+      }
+    },
+    {
+      "id": "armchair-01-agent",
+      "ref": "models/armchair-01",
+      "name": "扶手椅 2",
+      "transform": {
+        "position": [
+          -0.6,
+          0,
+          -0.6
+        ],
+        "rotation": [
+          0,
+          -90,
+          0
+        ]
+      }
+    },
+    {
+      "id": "wooden-chair-agent",
+      "ref": "models/wooden-chair",
+      "name": "高背椅 2",
+      "transform": {
+        "position": [
+          -1.9,
+          0,
+          2.6
+        ],
+        "rotation": [
+          0,
+          180,
+          0
+        ]
+      }
+    },
+    {
+      "id": "potted-succulent-agent",
+      "ref": "models/potted-succulent",
+      "name": "多肉盆栽",
+      "transform": {
+        "position": [
+          -3.2,
+          1.005,
+          1.4
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "toy-car-agent",
+      "ref": "models/toy-car",
+      "name": "玩具车",
+      "transform": {
+        "position": [
+          -1.75,
+          0.525,
+          -0.7
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ]
+      }
+    }
+  ],
+  "cameras": [
+    {
+      "id": "main",
+      "position": [
+        5.8,
+        4.4,
+        7.2
+      ],
+      "target": [
+        0,
+        0.8,
+        0.6
+      ],
+      "fov": 50
+    }
+  ]
+}

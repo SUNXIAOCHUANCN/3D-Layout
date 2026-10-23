@@ -1,0 +1,20 @@
+{
+  "id": "palm1far",
+  "name": "Palm1Far",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 14.6656,
+    "d": 14.6421,
+    "h": 12.0597
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

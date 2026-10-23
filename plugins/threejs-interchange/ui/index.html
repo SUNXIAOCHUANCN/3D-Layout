@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D-Layout 导入导出插件</title>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>3D-Layout 导入导出插件 <span id="service-status" class="muted">连接中…</span></h1>
+      <nav>
+        <button id="tab-import" class="tab active">导入</button>
+        <button id="tab-export" class="tab">导出</button>
+        <button id="tab-jobs" class="tab">任务</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ============ 导入 ============ -->
+      <section id="page-import">
+        <div class="card">
+          <h2>1. 选择输入文件</h2>
+          <p class="muted">选择 <code>layout-import.json</code> 和全部模型 GLB（可多选）；也可直接选一个打包好的 zip。</p>
+          <input id="file-input" type="file" multiple accept=".json,.glb,.zip,.hdr" />
+          <label class="row">
+            冲突策略：
+            <select id="conflict-policy">
+              <option value="reject" selected>reject（冲突拒绝）</option>
+              <option value="suffix-hash">suffix-hash（追加摘要后缀并改写引用）</option>
+            </select>
+          </label>
+          <button id="btn-convert" class="primary">2. 解析并转换（浏览器内完成）</button>
+        </div>
+
+        <div id="convert-result" class="card hidden">
+          <h2>3. 转换结果预览</h2>
+          <div id="convert-summary"></div>
+          <div id="convert-issues"></div>
+          <button id="btn-prepare" class="primary">4. 上传并暂存（服务端独立复核）</button>
+        </div>
+
+        <div id="job-view" class="card hidden">
+          <h2>5. 任务状态</h2>
+          <div id="job-info"></div>
+          <div id="job-actions"></div>
+        </div>
+      </section>
+
+      <!-- ============ 导出 ============ -->
+      <section id="page-export" class="hidden">
+        <div class="card">
+          <h2>场景导出（原生交换包 .layout.zip）</h2>
+          <p class="muted">只导出磁盘上已保存的场景；刚编辑过请先在宿主里保存。</p>
+          <div id="scene-list" class="list"></div>
+          <button id="btn-export-scene" class="primary" disabled>导出场景包</button>
+        </div>
+        <div class="card">
+          <h2>单模型导出（.model.zip）</h2>
+          <div id="model-list" class="list"></div>
+          <button id="btn-export-model" class="primary" disabled>导出模型包</button>
+        </div>
+      </section>
+
+      <!-- ============ 任务 ============ -->
+      <section id="page-jobs" class="hidden">
+        <div class="card">
+          <h2>历史任务</h2>
+          <div id="jobs-list" class="list"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <label class="row">宿主地址：
+        <input id="host-base" type="text" value="http://localhost:5173" />
+      </label>
+      <span class="muted">插件服务不修改宿主任何源码；已提交场景通过 ?scene=&lt;id&gt; 新标签页打开。</span>
+    </footer>
+  </div>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>

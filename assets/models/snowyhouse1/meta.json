@@ -1,0 +1,20 @@
+{
+  "id": "snowyhouse1",
+  "name": "SnowyHouse1",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 12.9218,
+    "d": 12.5778,
+    "h": 8.1485
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

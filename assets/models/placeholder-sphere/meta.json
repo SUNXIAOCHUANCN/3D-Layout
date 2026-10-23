@@ -1,0 +1,11 @@
+{
+  "id": "placeholder-sphere",
+  "name": "占位·球体",
+  "category": "placeholder",
+  "tags": ["placeholder"],
+  "dimensions": { "w": 1, "d": 1, "h": 1 },
+  "source": { "type": "primitive", "shape": "sphere" },
+  "color": "#d8a657",
+  "normalized": { "unitScale": 1, "origin": "base-center", "up": "+Y" },
+  "license": "CC0"
+}

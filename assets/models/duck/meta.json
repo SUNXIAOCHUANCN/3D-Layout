@@ -1,0 +1,25 @@
+{
+  "id": "duck",
+  "name": "橡皮鸭",
+  "category": "decor",
+  "tags": [
+    "toy",
+    "黄色"
+  ],
+  "dimensions": {
+    "w": 0.101,
+    "d": 0.105,
+    "h": 0.1
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "color": "#d9b23f",
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  },
+  "license": "CC-BY-4.0"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "oldwall2",
+  "name": "OldWall2",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 1.2889,
+    "d": 6.659,
+    "h": 2.3208
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "treetrunk2",
+  "name": "TreeTrunk2",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 1.6439,
+    "d": 1.6131,
+    "h": 0.9705
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

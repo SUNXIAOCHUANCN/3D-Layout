@@ -1,0 +1,20 @@
+{
+  "id": "snowytree-2",
+  "name": "SnowyTree",
+  "category": "imported",
+  "tags": [],
+  "dimensions": {
+    "w": 4.8172,
+    "d": 4.8168,
+    "h": 9.0687
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

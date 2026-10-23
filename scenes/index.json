@@ -1,0 +1,42 @@
+[
+  {
+    "id": "alpinewoodlanddemo",
+    "name": "AlpineWoodlandDemo"
+  },
+  {
+    "id": "demo-forest",
+    "name": "Demo Forest（导入验收示例）"
+  },
+  {
+    "id": "desert",
+    "name": "Desert"
+  },
+  {
+    "id": "forest",
+    "name": "Forest"
+  },
+  {
+    "id": "scene-01",
+    "name": "示例·桌椅组合"
+  },
+  {
+    "id": "scene-02",
+    "name": "示例·仓储排布"
+  },
+  {
+    "id": "scene-models",
+    "name": "模型库预览"
+  },
+  {
+    "id": "tri-biome",
+    "name": "三地貌·雪山森林沙漠"
+  },
+  {
+    "id": "tropicalislands-demo",
+    "name": "TropicalIslands_Demo"
+  },
+  {
+    "id": "tundra",
+    "name": "Tundra"
+  }
+]

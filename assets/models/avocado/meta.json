@@ -1,0 +1,25 @@
+{
+  "id": "avocado",
+  "name": "牛油果",
+  "category": "decor",
+  "tags": [
+    "food",
+    "水果"
+  ],
+  "dimensions": {
+    "w": 0.108,
+    "d": 0.07,
+    "h": 0.16
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "color": "#7d9b5a",
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  },
+  "license": "CC-BY-4.0"
+}
