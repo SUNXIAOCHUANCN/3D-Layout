@@ -94,7 +94,7 @@ export function buildRegionGraph(deps: RegionGraphDeps, tasks: UnitTask[], basel
   // W08.1 修复：计划只覆盖部分区域时，dispatch 仍会为每个区域建子图；
   // 空任务区若走 prepare → taskAt(0) 会内部报错。这里显式返回"无任务"终态。
   if (tasks.length === 0) {
-    const empty = looseGraph<RegionStateType>(RegionState)
+    const empty = looseGraph<RegionStateType>(RegionState, { runId, regionId: region.id, emit: context.emit })
     empty.addNode('noTasks', () => ({
       regionResults: {
         [region.id]: { regionId: region.id, status: 'pass' as const, tasks: [] },
@@ -125,7 +125,8 @@ export function buildRegionGraph(deps: RegionGraphDeps, tasks: UnitTask[], basel
     return task
   }
 
-  const graph = looseGraph<RegionStateType>(RegionState)
+  // W10：regionId 带上后，节点事件名会变成 `A/prepare` / `A/execute`，图页可折叠到 region-A 节点
+  const graph = looseGraph<RegionStateType>(RegionState, { runId, regionId: region.id, emit: context.emit })
 
   graph.addNode('prepare', async (state: RegionStateType) => {
     const task = taskAt(state)

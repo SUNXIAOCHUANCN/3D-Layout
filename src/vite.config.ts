@@ -188,4 +188,14 @@ function serveDataDirs(): Plugin {
 export default defineConfig({
   plugins: [react(), serveDataDirs()],
   server: { port: 5173 },
+  build: {
+    rollupOptions: {
+      // 两个独立入口：主应用 index.html；CoAgent 图可视化页 graph.html（W10）
+      // 分开打包 → 图页的 @xyflow/react + dagre 不进主应用 bundle。
+      input: {
+        main: fileURLToPath(new URL('index.html', import.meta.url)),
+        graph: fileURLToPath(new URL('graph.html', import.meta.url)),
+      },
+    },
+  },
 })

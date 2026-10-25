@@ -44,6 +44,7 @@ import { createToolRegistry } from '../tools/registry'
 import { buildRegionGraph, regionPassed, type RegionStateType } from './regionGraph'
 import { looseGraph, mergeKeyedNoLWW } from './state'
 import { logError, logStage, logWarn } from '../runtime/runLog'
+import { publishGraphTopology } from '../graphFeed'
 import { END, START } from '@langchain/langgraph'
 
 const MainState = Annotation.Root({
@@ -96,7 +97,9 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
       /** 当前节点名：异常时带进 rolled_back 的 details，便于定位"死在哪一步" */
       let stage = 'collectContext'
 
-      const graph = looseGraph<MainStateType>(MainState)
+      // W10：传 trace 选项后，门面会自动为每个节点发 node.started / node.finished
+      // （节点函数体一行不改）；不传则完全保持原行为。
+      const graph = looseGraph<MainStateType>(MainState, { runId: input.runId, emit: context.emit })
 
       graph.addNode('collectContext', () => {
         stage = 'collectContext'
@@ -436,8 +439,12 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
       graph.addEdge(START, 'collectContext')
       graph.addEdge('collectContext', 'planner')
       graph.addEdge('planner', 'validatePlan')
-      graph.addConditionalEdges('validatePlan', (s: MainStateType) =>
-        s.plan?.kind === 'tasks' && !s.failureCode ? 'captureBaselines' : END,
+      graph.addConditionalEdges(
+        'validatePlan',
+        (s: MainStateType) => (s.plan?.kind === 'tasks' && !s.failureCode ? 'captureBaselines' : END),
+        // 第三参 pathMap：不给的话 getGraphAsync() 会把**所有节点**都当条件候选画成虚线
+        // （router 是函数，静态分析不可能知道返回值）；给了就只连这两条。
+        ['captureBaselines', END],
       )
       graph.addEdge('captureBaselines', 'dispatch')
       for (const region of partition.regions) {
@@ -449,6 +456,9 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
 
       try {
         const compiled = graph.compile()
+        // W10：编译后立刻把拓扑广播出去（getGraphAsync 不执行任何节点）；
+        // 失败只在控制台告警，绝不影响本轮运行。
+        void publishGraphTopology('main', compiled)
         const final = (await compiled.invoke({ runId: input.runId, request: input.request, partition }, runConfig)) as MainStateType
         const plan = final.plan
 

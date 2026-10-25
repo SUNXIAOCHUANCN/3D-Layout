@@ -118,19 +118,22 @@ type FeedMsg =
 
 **不动**：14 个 `addNode` 的节点函数体、`run()` 的 `invoke` 与返回分支、`uiProjection` / `uiStore` / `CoAgentProgress`、`App.tsx`、`index.html`。
 
-### 4.2 新增文件
+### 4.2 新增文件（实际落地版本）
 
 ```
-src/graph.html                                    ← MPA 入口（12 行）
+src/graph.html                                    ← MPA 入口（深色底 + Controls 深色覆盖）
 src/modules/coagent/graph/
-  main.tsx                 React 19 挂载点
-  GraphPage.tsx            画布 + 详情抽屉 + 时间轴
+  main.tsx                 React 19 挂载点（不加载主应用）
+  GraphPage.tsx            画布 + 详情抽屉 + 时间轴 + 跟随/适应窗口
   useGraphFeed.ts          BroadcastChannel 订阅 + hello/snapshot + localStorage 兜底
-  useNodeStatus.ts         事件 → Map<node, 状态>
-  toFlow.ts                TopoGraph → dagre 布局 → React Flow nodes/edges
-  theme.ts                 深色配色（沿用 #14181f / #2d333b）
-src/modules/coagent/graphFeed.ts                     ← 主应用侧发布端（+90 行）
+  derive.ts                事件 → 节点状态/阶段/时间轴文案（纯函数，可单测）
+  toFlow.ts                TopologyGraph → dagre 布局 → React Flow nodes/edges
+src/modules/coagent/graphFeed.ts                     ← 主应用侧发布端
+src/modules/coagent/tests/unit/graphTrace.test.ts    ← 追踪 + 拓扑导出（6 例）
+src/modules/coagent/tests/unit/graphDerive.test.ts   ← 投影逻辑（6 例）
 ```
+
+> 设计稿里的 `useNodeStatus.ts` / `theme.ts` 合并进了 `derive.ts` 与 `GraphPage.tsx`（颜色表就 4 行，不值得单开文件）。
 
 ### 4.3 关键实现（骨架）
 
@@ -317,3 +320,38 @@ validatePlan -.-> collectContext / planner / dispatch / region-A / region-B /
 ```
 
 两者都只被 `graph.html` 这个入口 import，主应用 bundle 不受影响（Vite MPA 分别打包）。
+
+---
+
+## 10. 实现状态（2026-10-26）
+
+**P0 / P1 / P2 已落地**（P3 region 下钻、P4 时间旅行未做）。
+
+### 怎么用
+
+```bash
+cd src
+pnpm dev                 # 主应用 http://localhost:5173/
+# 另开一个窗口/显示器：
+#   http://localhost:5173/graph.html
+```
+
+主应用里点开始跑一轮 CoAgent，图页会自动出现拓扑并逐节点点亮；一轮结束后仍保留（`localStorage` 快照），关掉页面再开也能看上一轮。
+
+### 实测结果
+
+| 项 | 结果 |
+|---|---|
+| `tsc -b` | 通过（strict + noUnusedLocals） |
+| `pnpm test:coagent` | **277 例全通过**（含原有 27 个文件，说明门面改造对既有行为零影响） |
+| 新增用例 | `graphTrace` 6 例（追踪/前缀/异常/无 emit/拓扑导出/发布不抛错）、`graphDerive` 6 例（并行/折叠/终态/文案） |
+| `pnpm build` | 通过，产物 `dist/index.html` + `dist/graph.html` |
+| 产物体积 | 图页 `graph-*.js` 231 kB（gzip 77 kB）+ `graphFeed-*.js` 218 kB（gzip 70 kB，与主应用共享）；主应用 `main-*.js` 2.27 MB 未变 |
+| 无头浏览器验证 | CDP 注入一份"假运行"（12 节点 / 14 边 / 3 个并行区）→ 渲染 12 节点 14 边、`region-A · execute`、`region-B · judge` 正确、控制台 0 error（截图：`artifacts/graph-page-demo.png`） |
+
+### 与设计稿的差异
+
+1. `looseGraph` 门面除了包 `addNode`，还加了 `addConditionalEdges` 的第三参 `pathMap`（否则条件边会连到所有节点，见 §7.2）。
+2. `withNodeTrace` 只包**函数**节点；非函数（原生子图 `addNode(name, compiledGraph)`）原样透传，避免破坏 `verificationGraph` 的用法。
+3. 跟随模式默认**关**：默认给整图全景，需要盯当前节点时再点右上角开关（开启时 `padding: 0.6, maxZoom: 1`，避免并行时把上下文裁掉）。
+4. 图页顶栏的"运行中/已完成/已回滚"来自 `run.*` 事件；失败时按 `run.rolled_back.payload.stage` 把对应节点标红（复用已有字段，零额外埋点）。

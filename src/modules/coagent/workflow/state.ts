@@ -11,7 +11,28 @@
  */
 
 import { Annotation, StateGraph } from '@langchain/langgraph'
-import type { RegionId, RegionResult } from '../contracts'
+import type { RegionId, RegionResult, WorkflowEventInput } from '../contracts'
+
+/**
+ * 图拓扑快照（getGraphAsync 的可序列化精简版，图可视化页消费）。
+ * 节点 data 里是 Runnable 对象，无法经 BroadcastChannel/localStorage 结构化克隆，
+ * 所以这里只留 id/name 与边的 source/target/conditional。
+ */
+export interface TopologyGraph {
+  nodes: Array<{ id: string; name: string }>
+  edges: Array<{ source: string; target: string; conditional?: boolean }>
+}
+
+/**
+ * 节点级追踪选项（W10 图可视化）。
+ * 不传时 addNode 原样透传——单测 / 假 workflow / W02 验证图的行为与之前完全一致。
+ */
+export interface TraceOptions {
+  runId?: string
+  /** 区域子图传 regionId：节点名带 `A/execute` 前缀，事件也带 regionId */
+  regionId?: string
+  emit?: (event: WorkflowEventInput) => void
+}
 
 /**
  * 动态节点名父图的轻量门面（W02 定案）。
@@ -22,17 +43,85 @@ import type { RegionId, RegionResult } from '../contracts'
  */
 export interface LooseCompiled<S> {
   invoke(state: Partial<S>, config?: { signal?: AbortSignal }): Promise<S>
+  /** 图结构导出（不执行任何节点）；W10 图可视化页的拓扑来源。原始结构见 RawTopologyGraph */
+  getGraphAsync(config?: { xray?: boolean | number }): Promise<RawTopologyGraph>
+}
+
+/** getGraphAsync() 的原始返回：nodes 是 Record，节点的 data 是 Runnable 对象（不可序列化） */
+export interface RawTopologyGraph {
+  nodes: Record<string, { id?: string; name?: string }>
+  edges: Array<{ source?: string; target?: string; conditional?: boolean }>
 }
 
 export interface LooseGraphApi<S> {
   addNode(name: string, action: unknown): LooseGraphApi<S>
   addEdge(from: string, to: string): LooseGraphApi<S>
-  addConditionalEdges(source: string, router: (state: S) => string): LooseGraphApi<S>
+  addConditionalEdges(
+    source: string,
+    router: (state: S) => string,
+    pathMap?: string[] | Record<string, string>,
+  ): LooseGraphApi<S>
   compile(): LooseCompiled<S>
 }
 
-export function looseGraph<S>(schema: unknown): LooseGraphApi<S> {
-  return new StateGraph(schema as never) as unknown as LooseGraphApi<S>
+/** 把节点函数包一层「开始/结束」上报；非函数（原生子图节点）原样返回，不破坏注册语义 */
+function withNodeTrace(name: string, action: unknown, trace?: TraceOptions): unknown {
+  const emit = trace?.emit
+  if (!emit || typeof action !== 'function') return action
+  const label = trace?.regionId ? `${trace.regionId}/${name}` : name
+  const scope = trace?.regionId ? { regionId: trace.regionId } : {}
+  const runId = trace?.runId ?? ''
+  return async (...args: unknown[]) => {
+    const startedAt = Date.now()
+    emit({ type: 'node.started', runId, ...scope, payload: { node: label } })
+    try {
+      const out = await (action as (...a: unknown[]) => unknown)(...args)
+      emit({
+        type: 'node.finished',
+        runId,
+        ...scope,
+        payload: { node: label, status: 'ok', ms: Date.now() - startedAt },
+      })
+      return out
+    } catch (e) {
+      // 失败语义不变：节点异常仍原样抛出，由 failureCode/failureStage → runController 决定回滚
+      emit({
+        type: 'node.finished',
+        runId,
+        ...scope,
+        payload: {
+          node: label,
+          status: 'error',
+          ms: Date.now() - startedAt,
+          message: e instanceof Error ? e.message : String(e),
+        },
+      })
+      throw e
+    }
+  }
+}
+
+export function looseGraph<S>(schema: unknown, trace?: TraceOptions): LooseGraphApi<S> {
+  const builder = new StateGraph(schema as never) as unknown as LooseGraphApi<S>
+  const api: LooseGraphApi<S> = {
+    addNode(name, action) {
+      builder.addNode(name, withNodeTrace(name, action, trace))
+      return api
+    },
+    addEdge(from, to) {
+      builder.addEdge(from, to)
+      return api
+    },
+    addConditionalEdges(source, router, pathMap) {
+      if (pathMap) builder.addConditionalEdges(source, router, pathMap)
+      else builder.addConditionalEdges(source, router)
+      return api
+    },
+    compile() {
+      return builder.compile()
+    },
+  }
+  return api
 }
 
 /**

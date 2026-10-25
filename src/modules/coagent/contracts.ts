@@ -681,6 +681,14 @@ export const EVENT_TYPES = [
   'runtime.reset',
   /** W06 扩展：鸟瞰分区生成完成（分区版本/相机/提案摘要） */
   'partition.ready',
+  /**
+   * W10 扩展：图节点边界（图可视化页消费）。
+   * payload.node 为节点名：主图 'planner'，区域子图 'A/execute'；
+   * finished 另带 status('ok'|'error') / ms / message。
+   * 这两个事件由 workflow/state.ts 的 looseGraph 门面自动发出，节点函数无需感知。
+   */
+  'node.started',
+  'node.finished',
 ] as const
 
 export type CoAgentEventType = (typeof EVENT_TYPES)[number]

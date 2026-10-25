@@ -36,6 +36,7 @@ import { birdseyeCamera, blobToDataUrl, buildPartition, requestPartition, type P
 import { createModelAdapter, currentLlmSettings, isModelConfigured, modelConfigSummary } from '../adapters/modelAdapter'
 import { createEvidenceStore, type EvidenceStore, type EvidenceStoreStats } from './evidenceStore'
 import { createRecorder, type Recorder } from './recorder'
+import { beginGraphFeed, disposeGraphFeed } from '../graphFeed'
 import { createRunController, isActivePhase, type RunController } from './runController'
 import { beginRunLog, finishRunLog, logError, logStage, activeRunLog } from './runLog'
 import { createScheduler, type Scheduler } from './scheduler'
@@ -139,6 +140,12 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
   const config: CoAgentConfig = { ...DEFAULT_COAGENT_CONFIG, ...deps.config }
   const scheduler = createScheduler(config.modelConcurrency)
   const recorder = createRecorder()
+  /**
+   * W10：把事件流实时转给图可视化页（独立标签页，BroadcastChannel + localStorage 快照）。
+   * 只读投影：feed 不参与业务，通道/配额任何异常都在 feed 内部吞掉。
+   */
+  const graphFeed = beginGraphFeed()
+  recorder.subscribe(() => graphFeed.onEvents(recorder.events()))
   const baseModelPort = deps.modelPort ?? createModelAdapter()
   /**
    * 全局模型并发上限（§3.2）：走 scheduler 的 semaphore，而不是每个区各建一个"全局"限制。
@@ -441,6 +448,7 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
       disposed = true
       onPhaseListeners.clear()
       onPartitionListeners.clear()
+      disposeGraphFeed() // W10：关掉图可视化通道
       evidence.reset() // 撤销所有 objectURL，避免浏览器一直占着像素
       editor.dispose?.()
     },
