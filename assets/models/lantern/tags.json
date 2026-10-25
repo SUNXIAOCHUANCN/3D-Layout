@@ -1,0 +1,396 @@
+{
+  "schema_version": "1.2",
+  "name": "路灯",
+  "object_label": {
+    "raw": "路灯",
+    "raw_source": "llm",
+    "canonical": "路灯",
+    "canonical_source": "llm_raw",
+    "display": "路灯",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.95,
+    "evidence": [
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了立柱、横臂和悬挂的灯笼，结构完整。"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "从背面视角确认了横臂的双向延伸或单臂结构，以及底座的形态。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "路灯",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质结构",
+        "金属连接件",
+        "复古风格"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "路灯；类别：道具/灯具；属性：木质立柱、灰色底座、悬挂式灯头、金属支架",
+    "terms": [
+      "路灯",
+      "道具",
+      "灯具",
+      "木质立柱",
+      "灰色底座",
+      "悬挂式灯头",
+      "金属支架",
+      "木质结构",
+      "金属连接件",
+      "复古风格"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "灯具"
+    ],
+    "leaf": "灯具",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "路灯",
+      "name": "路灯",
+      "category_path": [
+        "道具",
+        "灯具"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "木质立柱",
+    "灰色底座",
+    "悬挂式灯头",
+    "金属支架"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "中",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "中",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9804,
+      "evidence": {
+        "topology_quality": 0.997,
+        "geometry_integrity": 0.9998,
+        "normal_quality": 0.8839,
+        "uv_quality": 0.9989,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "中",
+      "score": 0.5242,
+      "evidence": {
+        "triangle_count": 5394,
+        "vertex_count": 16182,
+        "resolution": 5394,
+        "split_vertices": true,
+        "triangle_density": 0.13069935,
+        "resolution_score": 0.5741,
+        "density_score": 0.4076,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.8252,
+      "status": "scored",
+      "evidence": [
+        "三角面 5394 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.301，阈值 0.200",
+        "量化法线方向数 282",
+        "轴对齐法线比例 0.210"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "中",
+      "machine_label": "中",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 中，分数 0.5242"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 5394 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.301，阈值 0.200",
+        "量化法线方向数 282",
+        "轴对齐法线比例 0.210"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "使用了模拟木材和石材的纹理贴图",
+        "光照产生简单的明暗对比，非纯平着色",
+        "颜色分布符合现实物体的材质特征（木色、铁锈灰、玻璃蓝）"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.8252,
+          "evidence": [
+            "三角面 5394 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.301，阈值 0.200",
+            "量化法线方向数 282",
+            "轴对齐法线比例 0.210"
+          ]
+        }
+      ],
+      "confidence": 0.8252,
+      "evidence": [
+        "三角面 5394 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.301，阈值 0.200",
+        "量化法线方向数 282",
+        "轴对齐法线比例 0.210"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.95,
+      "evidence": [
+        "使用了模拟木材和石材的纹理贴图",
+        "光照产生简单的明暗对比，非纯平着色",
+        "颜色分布符合现实物体的材质特征（木色、铁锈灰、玻璃蓝）"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.95,
+      "evidence": [
+        "使用了模拟木材和石材的纹理贴图",
+        "光照产生简单的明暗对比，非纯平着色",
+        "颜色分布符合现实物体的材质特征（木色、铁锈灰、玻璃蓝）"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.95,
+      "modeling_quality": 0.9804,
+      "modeling_precision": 0.5242,
+      "modeling_style": 0.8252
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "木质立柱",
+        "confidence": 0.98,
+        "evidence": "主柱体呈现明显的浅棕色木纹材质，且为垂直长方体结构。",
+        "source": "llm"
+      },
+      {
+        "tag": "灰色底座",
+        "confidence": 0.96,
+        "evidence": "底部有一个比立柱更宽的深灰色块状基座，表面有斑驳纹理。",
+        "source": "llm"
+      },
+      {
+        "tag": "悬挂式灯头",
+        "confidence": 0.97,
+        "evidence": "横臂末端通过链条或挂钩悬挂着一个蓝绿色的灯笼状物体。",
+        "source": "llm"
+      },
+      {
+        "tag": "金属支架",
+        "confidence": 0.92,
+        "evidence": "立柱与横臂连接处可见灰色的金属质感固定件。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "路灯",
+      "taxonomy_path": [
+        "道具",
+        "灯具"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9804,
+        "evidence": {
+          "topology_quality": 0.997,
+          "geometry_integrity": 0.9998,
+          "normal_quality": 0.8839,
+          "uv_quality": 0.9989,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "中",
+        "score": 0.5242,
+        "evidence": {
+          "triangle_count": 5394,
+          "vertex_count": 16182,
+          "resolution": 5394,
+          "split_vertices": true,
+          "triangle_density": 0.13069935,
+          "resolution_score": 0.5741,
+          "density_score": 0.4076,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.8252,
+        "status": "scored",
+        "confidence": 0.8252,
+        "evidence": [
+          "三角面 5394 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.301，阈值 0.200",
+          "量化法线方向数 282",
+          "轴对齐法线比例 0.210"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.8252,
+            "evidence": [
+              "三角面 5394 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.301，阈值 0.200",
+              "量化法线方向数 282",
+              "轴对齐法线比例 0.210"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "具有典型的灯杆结构：垂直立柱支撑水平悬臂",
+      "悬臂末端悬挂发光装置（灯笼），这是路灯的功能性特征",
+      "底部有加宽的基座用于稳定支撑"
+    ],
+    "candidates": [
+      {
+        "name": "路灯",
+        "confidence": 0.95
+      },
+      {
+        "name": "装饰性灯柱",
+        "confidence": 0.85
+      },
+      {
+        "name": "庭院灯",
+        "confidence": 0.8
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

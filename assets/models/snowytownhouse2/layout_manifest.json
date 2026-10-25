@@ -1,0 +1,192 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515621222536700",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515621222536700.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -204.530737,
+        0.0,
+        -246.979925
+      ],
+      "max": [
+        204.530737,
+        600.0,
+        246.979925
+      ]
+    },
+    "dimensions_cm": [
+      409.061473,
+      600.0,
+      493.95985
+    ],
+    "center_cm": [
+      0,
+      300.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 600 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      833.000756,
+      1221.822357,
+      1005.885314
+    ],
+    "semantic_scale_factor": 0.49106975,
+    "total_scale_factor": 49.10697505,
+    "target_dimension_cm": 600.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -204.530737,
+          0.0,
+          -246.979925
+        ],
+        "max": [
+          204.530737,
+          600.0,
+          246.979925
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "建筑",
+      "建筑物"
+    ],
+    "leaf": "建筑物",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "conflicted",
+      "primary": "房屋",
+      "name": "木屋",
+      "category_path": [
+        "建筑",
+        "建筑物"
+      ],
+      "primary_paths": [
+        [
+          "建筑",
+          "房屋"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": false
+        }
+      ],
+      "conflicts": [
+        "primary_category"
+      ],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体与类别或名称指向不相容的词表节点，需人工复核",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "木屋",
+    "raw_source": "llm",
+    "canonical": "木屋",
+    "canonical_source": "llm_raw",
+    "display": "木屋",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角清晰展示了双层窗户排列、门廊入口及屋顶积雪，确认为房屋结构"
+      },
+      {
+        "view": "方位 135° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视角可见屋檐下的木质梁架结构和侧墙窗户，支持房屋判断"
+      },
+      {
+        "view": "方位 225° / 俯仰 15°",
+        "role": "supports",
+        "detail": "背面视角展示了完整的屋顶坡度、烟囱位置及后墙结构"
+      },
+      {
+        "view": "方位 45° / 俯仰 15°",
+        "role": "supports",
+        "detail": "另一侧面视角确认了建筑的立体体积感和基座结构"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "房屋",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质结构",
+        "积雪屋顶"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "木屋；类别：建筑/建筑物；属性：棕色、白色、灰色、积雪造型、双层结构",
+    "terms": [
+      "木屋",
+      "建筑",
+      "建筑物",
+      "棕色",
+      "白色",
+      "灰色",
+      "积雪造型",
+      "双层结构",
+      "房屋",
+      "木质结构",
+      "积雪屋顶"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

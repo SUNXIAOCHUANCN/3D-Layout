@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515759069289500",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515759069289500.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -12.882796,
+        0.0,
+        -4.547191
+      ],
+      "max": [
+        12.882796,
+        180.0,
+        4.547191
+      ]
+    },
+    "dimensions_cm": [
+      25.765591,
+      180.0,
+      9.094381
+    ],
+    "center_cm": [
+      0,
+      90.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 180 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      39.341956,
+      274.845314,
+      13.886378
+    ],
+    "semantic_scale_factor": 0.65491384,
+    "total_scale_factor": 65.491384,
+    "target_dimension_cm": 180.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -12.882796,
+          0.0,
+          -4.547191
+        ],
+        "max": [
+          12.882796,
+          180.0,
+          4.547191
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "火炬",
+      "name": "火炬",
+      "category_path": [
+        "道具"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "火炬",
+    "raw_source": "llm",
+    "canonical": "火炬",
+    "canonical_source": "llm_raw",
+    "display": "火炬",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见顶部的红蓝相间火焰结构和下方的棕色长杆，确认了火炬的整体构造"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角展示了火焰的厚度和不规则轮廓，以及连接处的米黄色装饰环"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了火焰背面的几何结构，进一步证实了非对称的火焰造型"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正侧视图显示物体垂直竖立，底部有简单的圆形底座支撑"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "火炬",
+      "parent_path": [
+        "道具"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "火炬",
+      "subtype": null,
+      "appearance_motifs": [
+        "火焰造型"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "火炬；类别：道具；属性：红色、蓝色、米黄色、棕色、手持武器/照明工具",
+    "terms": [
+      "火炬",
+      "道具",
+      "红色",
+      "蓝色",
+      "米黄色",
+      "棕色",
+      "手持武器/照明工具",
+      "火焰造型"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

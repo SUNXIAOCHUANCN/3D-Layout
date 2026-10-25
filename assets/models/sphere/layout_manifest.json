@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515813627831700",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515813627831700.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -11.0,
+        0.0,
+        -11.0
+      ],
+      "max": [
+        11.0,
+        22.0,
+        11.0
+      ]
+    },
+    "dimensions_cm": [
+      22.0,
+      22.0,
+      22.0
+    ],
+    "center_cm": [
+      0,
+      11.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 22 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      100.0,
+      100.0,
+      100.0
+    ],
+    "semantic_scale_factor": 0.22,
+    "total_scale_factor": 22.0,
+    "target_dimension_cm": 22.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -11.0,
+          0.0,
+          -11.0
+        ],
+        "max": [
+          11.0,
+          22.0,
+          11.0
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "其他"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "球体",
+      "name": "球体",
+      "category_path": [
+        "其他"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "球体",
+    "raw_source": "llm",
+    "canonical": "球体",
+    "canonical_source": "llm_raw",
+    "display": "球体",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 25°",
+        "role": "supports",
+        "detail": "可见完整的球体轮廓，表面有绿、米、白三色分区，底部有红蓝小色块"
+      },
+      {
+        "view": "方位 90° / 俯仰 25°",
+        "role": "supports",
+        "detail": "确认球体形状，颜色分布随旋转变化，符合球面贴图或顶点色特征"
+      },
+      {
+        "view": "方位 180° / 俯仰 25°",
+        "role": "supports",
+        "detail": "背面视角同样为球体，颜色布局与正面互补，无异常突起或凹陷"
+      },
+      {
+        "view": "方位 270° / 俯仰 25°",
+        "role": "supports",
+        "detail": "左侧视角再次验证球体形态，底部红蓝细节清晰可见"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "球体",
+      "parent_path": [
+        "其他"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "球体",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "球体；类别：其他；属性：绿色、米色、白色、红色、蓝色",
+    "terms": [
+      "球体",
+      "其他",
+      "绿色",
+      "米色",
+      "白色",
+      "红色",
+      "蓝色"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

@@ -1,0 +1,380 @@
+{
+  "schema_version": "1.2",
+  "name": "高背扶手椅",
+  "object_label": {
+    "raw": "高背扶手椅",
+    "raw_source": "llm",
+    "canonical": "高背扶手椅",
+    "canonical_source": "llm_raw",
+    "display": "高背扶手椅",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.97,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角清晰展示了椅背的对称性、尖拱顶部轮廓以及镂空的装饰图案，确认了其为高背椅。"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角显示了椅背的结构厚度和后部支撑柱，进一步证实了其立体构造。"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧前方视角完整展示了扶手、座面深度以及椅腿之间的交叉支撑结构（X型或斜撑）。"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "另一侧视角再次确认了扶手的存在和椅背的侧面轮廓，无冲突信息。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "椅子",
+      "subtype": null,
+      "appearance_motifs": [
+        "哥特式风格",
+        "镂空雕花",
+        "尖拱造型"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "高背扶手椅；类别：家具/椅子；属性：棕色、哥特式风格、高背设计、扶手结构",
+    "terms": [
+      "高背扶手椅",
+      "家具",
+      "椅子",
+      "棕色",
+      "哥特式风格",
+      "高背设计",
+      "扶手结构",
+      "镂空雕花",
+      "尖拱造型"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "家具",
+      "椅子"
+    ],
+    "leaf": "椅子",
+    "status": "matched",
+    "confidence": 0.98,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "椅子",
+      "name": "高背扶手椅",
+      "category_path": [
+        "家具",
+        "椅子"
+      ],
+      "primary_paths": [
+        [
+          "家具",
+          "椅子"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色",
+    "哥特式风格",
+    "高背设计",
+    "扶手结构"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "高",
+  "modeling_style": null,
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "高",
+    "modeling_style": null,
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9815,
+      "evidence": {
+        "topology_quality": 0.9965,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.8905,
+        "uv_quality": 0.9999,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "高",
+      "score": 0.759,
+      "evidence": {
+        "triangle_count": 19992,
+        "vertex_count": 59976,
+        "resolution": 19992,
+        "split_vertices": true,
+        "triangle_density": 1.87705779,
+        "resolution_score": 0.6617,
+        "density_score": 0.9862,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": null,
+      "score": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "高",
+      "machine_label": "高",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 高，分数 0.759"
+      ]
+    },
+    "modeling_style": {
+      "label": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "材质表面表现出木材的质感，颜色分布自然",
+        "光照产生柔和的阴影，体现了物体的体积感",
+        "没有明显的卡通描边或夸张的色彩平涂"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": null,
+      "status": "insufficient_evidence",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Realistic",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.97,
+      "evidence": [
+        "材质表面表现出木材的质感，颜色分布自然",
+        "光照产生柔和的阴影，体现了物体的体积感",
+        "没有明显的卡通描边或夸张的色彩平涂"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.97,
+      "evidence": [
+        "材质表面表现出木材的质感，颜色分布自然",
+        "光照产生柔和的阴影，体现了物体的体积感",
+        "没有明显的卡通描边或夸张的色彩平涂"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.98,
+      "rendering_style": 0.97,
+      "modeling_quality": 0.9815,
+      "modeling_precision": 0.759,
+      "modeling_style": null
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色",
+        "confidence": 0.95,
+        "evidence": "模型整体呈现深棕色调，符合木质家具的常见颜色。",
+        "source": "llm"
+      },
+      {
+        "tag": "哥特式风格",
+        "confidence": 0.92,
+        "evidence": "椅背顶部呈尖拱形（Pointed Arch），且包含大量垂直线条和复杂的镂空几何图案，这是典型的哥特复兴风格特征。",
+        "source": "llm"
+      },
+      {
+        "tag": "高背设计",
+        "confidence": 0.99,
+        "evidence": "椅背高度显著高于普通座椅，延伸至头部以上位置，具有明显的装饰性和仪式感。",
+        "source": "llm"
+      },
+      {
+        "tag": "扶手结构",
+        "confidence": 0.96,
+        "evidence": "两侧可见向外延伸的扶手部件，连接椅腿与靠背框架。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "高背扶手椅",
+      "taxonomy_path": [
+        "家具",
+        "椅子"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9815,
+        "evidence": {
+          "topology_quality": 0.9965,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.8905,
+          "uv_quality": 0.9999,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "高",
+        "score": 0.759,
+        "evidence": {
+          "triangle_count": 19992,
+          "vertex_count": 59976,
+          "resolution": 19992,
+          "split_vertices": true,
+          "triangle_density": 1.87705779,
+          "resolution_score": 0.6617,
+          "density_score": 0.9862,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": null,
+        "score": null,
+        "status": "insufficient_evidence",
+        "confidence": 0.0,
+        "evidence": [
+          "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+        ],
+        "candidates": [],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "物体具有四条垂直支撑腿、水平座面以及高耸的背部结构，符合椅子的基本形态定义。",
+      "椅背采用复杂的镂空网格设计，顶部为尖顶结构，侧面有扶手连接，细节丰富。"
+    ],
+    "candidates": [
+      {
+        "name": "王座",
+        "confidence": 0.45
+      },
+      {
+        "name": "餐椅",
+        "confidence": 0.3
+      },
+      {
+        "name": "长凳",
+        "confidence": 0.1
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

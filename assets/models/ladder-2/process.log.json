@@ -1,0 +1,16 @@
+{
+  "run_id": "AF-1792513188034365600",
+  "completed_at": "2026-10-20T16:19:52.022636+00:00",
+  "status": "completed",
+  "warnings": [],
+  "artifacts": [
+    "model",
+    "thumbnail/rgb.png",
+    "thumbnail/mask.png",
+    "tags.json",
+    "machine_features.json",
+    "validation.json",
+    "source.json",
+    "layout_manifest.json"
+  ]
+}

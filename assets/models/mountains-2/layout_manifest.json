@@ -1,0 +1,186 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792513525099781600",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792513525099781600.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -100.0,
+        0.0,
+        -88.830021
+      ],
+      "max": [
+        100.0,
+        23.536589,
+        88.830021
+      ]
+    },
+    "dimensions_cm": [
+      200.0,
+      23.536589,
+      177.660042
+    ],
+    "center_cm": [
+      0,
+      11.768294,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 200 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      249701.68457,
+      29385.629411,
+      221810.058593
+    ],
+    "semantic_scale_factor": 0.00080096,
+    "total_scale_factor": 0.08009557,
+    "target_dimension_cm": 200.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -100.0,
+          0.0,
+          -88.830021
+        ],
+        "max": [
+          100.0,
+          23.536589,
+          88.830021
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "自然物"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "岩石组合",
+      "name": "岩石环",
+      "category_path": [
+        "自然物"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "岩石环",
+    "raw_source": "llm",
+    "canonical": "岩石环",
+    "canonical_source": "llm_raw",
+    "display": "岩石环",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.94,
+    "evidence": [
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见约12块岩石呈弧形排列，中间空隙清晰，无连接结构"
+      },
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "从另一侧确认环形完整性，岩石大小略有变化但整体对称"
+      },
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视角度下环形布局更明显，中心区域完全开放"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角验证岩石高度一致且底部平齐，适合地面放置"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "岩石环",
+      "parent_path": [
+        "自然物"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "岩石组合",
+      "subtype": null,
+      "appearance_motifs": [
+        "环形布局",
+        "自然岩石"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "岩石"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "岩石环；类别：自然物；属性：灰色、环形排列、自然形态",
+    "terms": [
+      "岩石环",
+      "自然物",
+      "灰色",
+      "环形排列",
+      "自然形态",
+      "岩石组合",
+      "环形布局",
+      "自然岩石",
+      "岩石"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

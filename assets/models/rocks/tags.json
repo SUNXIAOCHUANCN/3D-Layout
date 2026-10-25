@@ -1,0 +1,388 @@
+{
+  "schema_version": "1.2",
+  "name": "草地",
+  "object_label": {
+    "raw": "草地",
+    "raw_source": "llm",
+    "canonical": "草地",
+    "canonical_source": "llm_raw",
+    "display": "草地",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 15°",
+        "role": "supports",
+        "detail": "可见多个分散的绿色块状物体，高度远低于宽度和深度，符合草本植物的俯视特征。"
+      },
+      {
+        "view": "方位 135° / 俯仰 25°",
+        "role": "supports",
+        "detail": "侧面视角确认了物体的扁平结构和棱角化的边缘，排除了球体或圆柱体等规则几何体。"
+      },
+      {
+        "view": "方位 270° / 俯仰 15°",
+        "role": "supports",
+        "detail": "进一步证实了物体分布的随机性和一致性，没有发现非植物类的结构部件（如支架、屏幕等）。"
+      },
+      {
+        "view": "方位 315° / 俯仰 25°",
+        "role": "supports",
+        "detail": "物体颜色统一为绿色，形状各异但体量相似，符合程序化生成的草地资产特征。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "草地",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "assembly",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "草地；类别：植物/草本；属性：绿色、低多边形风格、地面覆盖物",
+    "terms": [
+      "草地",
+      "植物",
+      "草本",
+      "绿色",
+      "低多边形风格",
+      "地面覆盖物"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "草本"
+    ],
+    "leaf": "草本",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "草地",
+      "name": "草地",
+      "category_path": [
+        "植物",
+        "草本"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "绿色",
+    "低多边形风格",
+    "地面覆盖物"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "高",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "高",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9788,
+      "evidence": {
+        "topology_quality": 1.0,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.8673,
+        "uv_quality": 1.0,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "高",
+      "score": 0.6757,
+      "evidence": {
+        "triangle_count": 3078,
+        "vertex_count": 9234,
+        "resolution": 3078,
+        "split_vertices": true,
+        "triangle_density": 2.13889076,
+        "resolution_score": 0.5367,
+        "density_score": 1.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.8646,
+      "status": "scored",
+      "evidence": [
+        "三角面 3078 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.422，阈值 0.200",
+        "量化法线方向数 263",
+        "轴对齐法线比例 0.192"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "高",
+      "machine_label": "高",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 高，分数 0.6757"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 3078 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.422，阈值 0.200",
+        "量化法线方向数 263",
+        "轴对齐法线比例 0.192"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "材质为纯色基色叠加简单明暗，无复杂纹理细节。",
+        "光照产生简单的阴影效果，符合预览器渲染特征。"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.8646,
+          "evidence": [
+            "三角面 3078 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.422，阈值 0.200",
+            "量化法线方向数 263",
+            "轴对齐法线比例 0.192"
+          ]
+        }
+      ],
+      "confidence": 0.8646,
+      "evidence": [
+        "三角面 3078 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.422，阈值 0.200",
+        "量化法线方向数 263",
+        "轴对齐法线比例 0.192"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.92,
+      "evidence": [
+        "材质为纯色基色叠加简单明暗，无复杂纹理细节。",
+        "光照产生简单的阴影效果，符合预览器渲染特征。"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.92,
+      "evidence": [
+        "材质为纯色基色叠加简单明暗，无复杂纹理细节。",
+        "光照产生简单的阴影效果，符合预览器渲染特征。"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.92,
+      "modeling_quality": 0.9788,
+      "modeling_precision": 0.6757,
+      "modeling_style": 0.8646
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "绿色",
+        "confidence": 1.0,
+        "evidence": "所有缩略图中可见物体均呈现统一的浅绿色/灰绿色外观。",
+        "source": "llm"
+      },
+      {
+        "tag": "低多边形风格",
+        "confidence": 0.9,
+        "evidence": "几何统计显示分面边比例高，且视觉轮廓呈现明显的棱角化特征。",
+        "source": "llm"
+      },
+      {
+        "tag": "地面覆盖物",
+        "confidence": 0.95,
+        "evidence": "物体呈扁平状散布于平面，高度极低，符合植被或地被物的形态特征。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "草地",
+      "taxonomy_path": [
+        "植物",
+        "草本"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9788,
+        "evidence": {
+          "topology_quality": 1.0,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.8673,
+          "uv_quality": 1.0,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "高",
+        "score": 0.6757,
+        "evidence": {
+          "triangle_count": 3078,
+          "vertex_count": 9234,
+          "resolution": 3078,
+          "split_vertices": true,
+          "triangle_density": 2.13889076,
+          "resolution_score": 0.5367,
+          "density_score": 1.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.8646,
+        "status": "scored",
+        "confidence": 0.8646,
+        "evidence": [
+          "三角面 3078 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.422，阈值 0.200",
+          "量化法线方向数 263",
+          "轴对齐法线比例 0.192"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.8646,
+            "evidence": [
+              "三角面 3078 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.422，阈值 0.200",
+              "量化法线方向数 263",
+              "轴对齐法线比例 0.192"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "物体由多个独立的、低矮的块状单元组成，散布在平面上。",
+      "每个单元具有不规则的顶部轮廓和较薄的垂直厚度，符合草丛或灌木丛的简化造型。",
+      "整体布局呈现大面积铺陈的特征，而非单一独立物体。"
+    ],
+    "candidates": [
+      {
+        "name": "植物/草本",
+        "confidence": 0.95
+      },
+      {
+        "name": "自然物/岩石",
+        "confidence": 0.3
+      },
+      {
+        "name": "道具/地垫",
+        "confidence": 0.1
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792510891757365300",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792510891757365300.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -2500.0,
+        0.0,
+        -808.434879
+      ],
+      "max": [
+        2500.0,
+        989.266245,
+        808.434879
+      ]
+    },
+    "dimensions_cm": [
+      5000.0,
+      989.266245,
+      1616.869757
+    ],
+    "center_cm": [
+      0,
+      494.633123,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 5000 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      20539.525604,
+      4063.811874,
+      6641.947555
+    ],
+    "semantic_scale_factor": 0.24343308,
+    "total_scale_factor": 24.3433081,
+    "target_dimension_cm": 5000.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -2500.0,
+          0.0,
+          -808.434879
+        ],
+        "max": [
+          2500.0,
+          989.266245,
+          808.434879
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [],
+    "leaf": null,
+    "status": "unmatched",
+    "confidence": 0.31,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "场景",
+      "name": "山地场景",
+      "category_path": [],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "山地场景",
+    "raw_source": "llm",
+    "canonical": "山地场景",
+    "canonical_source": "llm_raw",
+    "display": "山地场景",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰展示了左侧的山体群以及周围分布的树木和岩石，确认为场景组合"
+      },
+      {
+        "view": "方位 270° / 俯仰 15°",
+        "role": "supports",
+        "detail": "从另一角度确认了物体的空间分散性，非单一单体资产"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "山地场景",
+      "parent_path": [],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "场景",
+      "subtype": null,
+      "appearance_motifs": [
+        "山脉",
+        "枯树",
+        "岩石"
+      ],
+      "asset_kind": "scene",
+      "members": [
+        "山",
+        "树",
+        "岩石"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "山地场景；属性：灰色山体、棕色枯树、岩石点缀",
+    "terms": [
+      "山地场景",
+      "灰色山体",
+      "棕色枯树",
+      "岩石点缀",
+      "场景",
+      "山脉",
+      "枯树",
+      "岩石",
+      "山",
+      "树"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

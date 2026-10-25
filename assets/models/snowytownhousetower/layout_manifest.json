@@ -1,0 +1,194 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515676702385000",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515676702385000.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -94.960613,
+        0.0,
+        -93.570164
+      ],
+      "max": [
+        94.960613,
+        450.0,
+        93.570164
+      ]
+    },
+    "dimensions_cm": [
+      189.921226,
+      450.0,
+      187.140327
+    ],
+    "center_cm": [
+      0,
+      225.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 450 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      833.000756,
+      1973.714828,
+      820.803642
+    ],
+    "semantic_scale_factor": 0.22799646,
+    "total_scale_factor": 22.79964631,
+    "target_dimension_cm": 450.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -94.960613,
+          0.0,
+          -93.570164
+        ],
+        "max": [
+          94.960613,
+          450.0,
+          93.570164
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "建筑",
+      "建筑物"
+    ],
+    "leaf": "建筑物",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "建筑",
+      "name": "高脚木屋",
+      "category_path": [
+        "建筑",
+        "建筑物"
+      ],
+      "primary_paths": [
+        [
+          "建筑"
+        ],
+        [
+          "建筑",
+          "建筑物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体对应多个词表节点，需要消歧",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "高脚木屋",
+    "raw_source": "llm",
+    "canonical": "高脚木屋",
+    "canonical_source": "llm_raw",
+    "display": "高脚木屋",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见正面入口、楼梯、双层窗户及顶部烟囱，确认为居住类建筑"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面展示高脚支撑结构和三角桁架，确认建筑类型"
+      },
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角再次确认屋顶积雪和烟囱结构的一致性"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "另一侧视角显示对称的窗户布局和支撑腿"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "建筑",
+      "subtype": null,
+      "appearance_motifs": [
+        "高脚结构",
+        "积雪屋顶",
+        "烟囱"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "高脚木屋；类别：建筑/建筑物；属性：白色、棕色、米色、冬季风格、高脚屋",
+    "terms": [
+      "高脚木屋",
+      "建筑",
+      "建筑物",
+      "白色",
+      "棕色",
+      "米色",
+      "冬季风格",
+      "高脚屋",
+      "高脚结构",
+      "积雪屋顶",
+      "烟囱"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

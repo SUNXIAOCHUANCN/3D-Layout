@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792510650661239700",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792510650661239700.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -750.0,
+        0.0,
+        -450.643255
+      ],
+      "max": [
+        750.0,
+        711.55509,
+        450.643255
+      ]
+    },
+    "dimensions_cm": [
+      1500.0,
+      711.55509,
+      901.286511
+    ],
+    "center_cm": [
+      0,
+      355.777545,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 1500 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      13711.09314,
+      6504.13208,
+      8238.415528
+    ],
+    "semantic_scale_factor": 0.10940047,
+    "total_scale_factor": 10.94004675,
+    "target_dimension_cm": 1500.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -750.0,
+          0.0,
+          -450.643255
+        ],
+        "max": [
+          750.0,
+          711.55509,
+          450.643255
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "建筑",
+      "建筑物"
+    ],
+    "leaf": "建筑物",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "建筑",
+      "name": "城堡",
+      "category_path": [
+        "建筑",
+        "建筑物"
+      ],
+      "primary_paths": [
+        [
+          "建筑"
+        ],
+        [
+          "建筑",
+          "建筑物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体对应多个词表节点，需要消歧",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "城堡",
+    "raw_source": "llm",
+    "canonical": "城堡",
+    "canonical_source": "llm_raw",
+    "display": "城堡",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 45° / 俯仰 25°",
+        "role": "supports",
+        "detail": "清晰展示了城堡的整体布局，包括左侧塔楼、右侧塔楼及中间的主堡结构，确认了建筑物的身份。"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了城堡背面的围墙结构和地形起伏，进一步证实这是包含地形的建筑组合。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "建筑",
+      "subtype": null,
+      "appearance_motifs": [
+        "中世纪风格",
+        "塔楼",
+        "城墙"
+      ],
+      "asset_kind": "assembly",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "城堡；类别：建筑/建筑物；属性：灰色、棕色屋顶、防御工事",
+    "terms": [
+      "城堡",
+      "建筑",
+      "建筑物",
+      "灰色",
+      "棕色屋顶",
+      "防御工事",
+      "中世纪风格",
+      "塔楼",
+      "城墙"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515867160068700",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515867160068700.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -250.0,
+        0.0,
+        -234.82533
+      ],
+      "max": [
+        250.0,
+        29.62536,
+        234.82533
+      ]
+    },
+    "dimensions_cm": [
+      500.0,
+      29.62536,
+      469.65066
+    ],
+    "center_cm": [
+      0,
+      14.81268,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 500 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      581.781482,
+      34.470972,
+      546.468114
+    ],
+    "semantic_scale_factor": 0.85942921,
+    "total_scale_factor": 85.94292109,
+    "target_dimension_cm": 500.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -250.0,
+          0.0,
+          -234.82533
+        ],
+        "max": [
+          250.0,
+          29.62536,
+          234.82533
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "草本"
+    ],
+    "leaf": "草本",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "草地",
+      "name": "草地",
+      "category_path": [
+        "植物",
+        "草本"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "草地",
+    "raw_source": "llm",
+    "canonical": "草地",
+    "canonical_source": "llm_raw",
+    "display": "草地",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.95,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "显示扁平的绿色表面和不规则的侧边轮廓，支持草地判断"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认了物体的低矮厚度和大面积平面特征"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了另一侧的不规则边缘，排除了标准矩形板的可能性"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "整体轮廓完整，颜色分布均匀，确认为单一平面资产"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "草地",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "草地；类别：植物/草本；属性：绿色、平面状、不规则边缘",
+    "terms": [
+      "草地",
+      "植物",
+      "草本",
+      "绿色",
+      "平面状",
+      "不规则边缘"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

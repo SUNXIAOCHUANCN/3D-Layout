@@ -177,7 +177,7 @@ export function AssetInstance(props: { asset: SceneAsset }) {
 
   const { position, rotation, scale } = asset.transform
   const scl: [number, number, number] = scale ?? [1, 1, 1]
-  const isGlb = meta?.source.type === 'glb'
+  const glbSource = meta?.source.type === 'glb' ? meta.source : null
 
   return (
     <group
@@ -199,14 +199,16 @@ export function AssetInstance(props: { asset: SceneAsset }) {
         onPointerOut={() => (document.body.style.cursor = 'auto')}
       >
         {meta ? (
-          isGlb ? (
-            <GlbModel
-              url={`/assets/${asset.ref}/${(meta.source as { file: string }).file}`}
-              draco={(meta.source as { draco?: boolean }).draco === true}
-              assetId={asset.id}
-              refId={asset.ref}
-              selected={selected}
-            />
+          glbSource ? (
+            <group scale={glbSource.unitScale ?? 1}>
+              <GlbModel
+                url={glbSource.url ?? `/assets/${asset.ref}/${glbSource.file}`}
+                draco={glbSource.draco === true}
+                assetId={asset.id}
+                refId={asset.ref}
+                selected={selected}
+              />
+            </group>
           ) : (
             <>
               <PrimitiveModel meta={meta} tint={asset.tint} />

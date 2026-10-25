@@ -14,6 +14,7 @@ import { edit, type TxHandle } from '../../../core/edit'
 import { bus } from '../../../core/events'
 import { saveScene } from '../../../core/io'
 import { useSceneStore } from '../../../core/store'
+import { describeModel } from '../../../core/modelCatalog'
 import type { SceneAsset, SceneDocument } from '../../../core/types'
 import type {
   AssetDTO,
@@ -187,12 +188,7 @@ export function createEditorAdapter(): EditorAdapter {
       const manifest = useSceneStore.getState().manifest
       const catalog: ModelCatalogEntry[] | null =
         scope.includeCatalog && manifest
-          ? Object.entries(manifest.models).map(([ref, m]) => ({
-              ref,
-              name: m.name,
-              dimensions: { w: m.dimensions.w, h: m.dimensions.h, d: m.dimensions.d },
-              category: m.category ?? null,
-            }))
+          ? Object.entries(manifest.models).map(([ref, m]) => describeModel(ref, m))
           : null
       const assets: AssetDTO[] = filtered.map(v => {
         const target = toTarget(v)
@@ -203,14 +199,7 @@ export function createEditorAdapter(): EditorAdapter {
           name: target.name,
           transform: { ...target.transform },
           visible: target.visible,
-          catalog: meta
-            ? {
-                ref: v.ref,
-                name: meta.name,
-                dimensions: { w: meta.dimensions.w, h: meta.dimensions.h, d: meta.dimensions.d },
-                category: meta.category ?? null,
-              }
-            : null,
+          catalog: meta ? describeModel(v.ref, meta) : null,
           fingerprint: target.fingerprint,
         }
       })

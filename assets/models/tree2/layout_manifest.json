@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792516031339166100",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792516031339166100.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -87.282861,
+        0.0,
+        -93.069284
+      ],
+      "max": [
+        87.282861,
+        300.0,
+        93.069284
+      ]
+    },
+    "dimensions_cm": [
+      174.565722,
+      300.0,
+      186.138567
+    ],
+    "center_cm": [
+      0,
+      150.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 300 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      469.7649,
+      807.314682,
+      500.907994
+    ],
+    "semantic_scale_factor": 0.37160231,
+    "total_scale_factor": 37.16023091,
+    "target_dimension_cm": 300.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -87.282861,
+          0.0,
+          -93.069284
+        ],
+        "max": [
+          87.282861,
+          300.0,
+          93.069284
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "树",
+      "普通树"
+    ],
+    "leaf": "普通树",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "树",
+      "name": "普通树",
+      "category_path": [
+        "植物",
+        "树",
+        "普通树"
+      ],
+      "primary_paths": [
+        [
+          "植物",
+          "树"
+        ]
+      ],
+      "name_paths": [
+        [
+          "植物",
+          "树",
+          "普通树"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "普通树",
+    "raw_source": "llm",
+    "canonical": "普通树",
+    "canonical_source": "llm_raw",
+    "display": "普通树",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了树干直立支撑树冠的结构，树冠体积远大于树干"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认了树冠的团块形态和树干的垂直延伸"
+      },
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角显示树冠整体性良好，无明显断裂，符合单体树木特征"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "多角度验证了物体为单一植物实体，非组合场景"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "树",
+      "subtype": null,
+      "appearance_motifs": [
+        "低多边形风格"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "普通树；类别：植物/树/普通树；属性：绿色、棕色、低多边形",
+    "terms": [
+      "普通树",
+      "植物",
+      "树",
+      "绿色",
+      "棕色",
+      "低多边形",
+      "低多边形风格"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

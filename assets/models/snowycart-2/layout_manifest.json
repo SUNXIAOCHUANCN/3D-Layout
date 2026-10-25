@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515140587334900",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515140587334900.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -43.899652,
+        0.0,
+        -90.0
+      ],
+      "max": [
+        43.899652,
+        84.546907,
+        90.0
+      ]
+    },
+    "dimensions_cm": [
+      87.799304,
+      84.546907,
+      180.0
+    ],
+    "center_cm": [
+      0,
+      42.273454,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 180 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      240.100098,
+      231.20594,
+      492.236448
+    ],
+    "semantic_scale_factor": 0.36567792,
+    "total_scale_factor": 36.56779191,
+    "target_dimension_cm": 180.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -43.899652,
+          0.0,
+          -90.0
+        ],
+        "max": [
+          43.899652,
+          84.546907,
+          90.0
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "容器"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "手推车",
+      "name": "木制手推车",
+      "category_path": [
+        "道具",
+        "容器"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "木制手推车",
+    "raw_source": "llm",
+    "canonical": "木制手推车",
+    "canonical_source": "llm_raw",
+    "display": "木制手推车",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了车轮、车斗侧面及前伸的拉杆，符合手推车特征"
+      },
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了另一侧的车轮和积雪覆盖的车顶，确认了立体结构"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "木制手推车",
+      "parent_path": [
+        "道具",
+        "容器"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "手推车",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质结构",
+        "双轮设计",
+        "长拉杆"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "木制手推车；类别：道具/容器；属性：棕色、白色积雪、冬季风格",
+    "terms": [
+      "木制手推车",
+      "道具",
+      "容器",
+      "棕色",
+      "白色积雪",
+      "冬季风格",
+      "手推车",
+      "木质结构",
+      "双轮设计",
+      "长拉杆"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

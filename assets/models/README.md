@@ -1,20 +1,22 @@
-# 模型库
+# 批量模型打标产物
 
-每个模型一个文件夹：`models/<model-id>/`
+本目录包含 262 个模型的标准化与打标结果，全部处理成功。`tags.csv` 是汇总表；每个 `AF-*` 子目录对应一个模型。
 
-| 文件 | 说明 |
-|---|---|
-| `meta.json` | 必需，模型档案（见下） |
-| `model.glb` | `source.type = "glb"` 时必需 |
-| `thumb.png` | 可选缩略图（二期资产库 UI 用） |
+## 单模型产物
 
-增删模型后运行 `pnpm gen-manifest`（`scripts\dev.bat` 会自动先跑）刷新 `manifest.json`。
+- `model/`：标准化后的 GLB 模型。
+- `thumbnail/`：模型预览图和遮罩图。
+- `tags.json`：物体名称、语义类别、外观标签与风格等打标结果。
+- `machine_features.json`：几何与模型特征。
+- `validation.json`：处理和校验状态。
+- `source.json`：原始文件信息、哈希值及标准化参数。
+- `layout_manifest.json`：产物索引、坐标系、尺寸与布局信息。
+- `process.log.json`：处理状态、时间和警告记录。
 
-## 归一化约定（入库前处理）
+## 路径说明
 
-- 1 单位 = 1 米；+Y 向上；原点在**底面中心**。
-- 建议用 Blender 批量处理后导出 glb；需要压缩时用 DRACO，解码器放 `assets/decoders/`，并在 meta 里 `"source": { "type": "glb", "file": "model.glb", "draco": true }`。
+`source.json` 中的 `source_path` 是相对于输入根目录 `samples/models/models` 的路径，例如 `treedead1-2/model.glb`。若需按此路径查找原始模型，请同时交付该输入目录并保留内部目录结构。标准化模型已包含在各自的 `model/` 子目录中。
 
-## 占位模型（primitive）
+## 使用说明
 
-`source.type = "primitive"` 时不需要 glb 文件：渲染器按 `meta.dimensions` 生成 box/cylinder/sphere 占位几何，便于在没有真实模型时先搭建、调试场景（scene.json 里用 `tint` 可临时改色，最终尺寸 = dimensions × transform.scale）。
+请先查看 `tags.csv` 浏览和筛选模型标签。每个 `AF-*` 目录内包含对应的标准化模型及详细标签，可按需使用。若要查找原始模型，请按上方路径说明一并获取输入模型目录。

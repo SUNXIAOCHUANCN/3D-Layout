@@ -1,0 +1,184 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792511013913230900",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792511013913230900.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -100.0,
+        0.0,
+        -7.746595
+      ],
+      "max": [
+        100.0,
+        95.90916,
+        7.746595
+      ]
+    },
+    "dimensions_cm": [
+      200.0,
+      95.90916,
+      15.49319
+    ],
+    "center_cm": [
+      0,
+      47.95458,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 200 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      535.225534,
+      256.665158,
+      41.461754
+    ],
+    "semantic_scale_factor": 0.37367425,
+    "total_scale_factor": 37.367425,
+    "target_dimension_cm": 200.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -100.0,
+          0.0,
+          -7.746595
+        ],
+        "max": [
+          100.0,
+          95.90916,
+          7.746595
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [],
+    "leaf": null,
+    "status": "unmatched",
+    "confidence": 0.65,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "晾衣架",
+      "name": "晾衣架",
+      "category_path": [],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "晾衣架",
+    "raw_source": "llm",
+    "canonical": "晾衣架",
+    "canonical_source": "llm_raw",
+    "display": "晾衣架",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.88,
+    "evidence": [
+      {
+        "view": "方位 315° / 俯仰 25°",
+        "role": "supports",
+        "detail": "清晰展示左侧立柱、倾斜绳索及悬挂的彩色衣物轮廓"
+      },
+      {
+        "view": "方位 135° / 俯仰 25°",
+        "role": "supports",
+        "detail": "从另一角度确认了右侧立柱和衣物的分布"
+      },
+      {
+        "view": "方位 225° / 俯仰 15°",
+        "role": "supports",
+        "detail": "展示了完整的跨度结构和衣物的侧面形态"
+      },
+      {
+        "view": "方位 45° / 俯仰 15°",
+        "role": "supports",
+        "detail": "进一步验证了立柱与绳索的连接关系"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "晾衣架",
+      "parent_path": [],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "晾衣架",
+      "subtype": null,
+      "appearance_motifs": [
+        "绳索",
+        "立柱",
+        "悬挂衣物"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "晾衣绳",
+        "立柱",
+        "衣物"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "晾衣架；属性：棕色立柱、米色绳索、多色衣物、户外晾晒用途",
+    "terms": [
+      "晾衣架",
+      "棕色立柱",
+      "米色绳索",
+      "多色衣物",
+      "户外晾晒用途",
+      "绳索",
+      "立柱",
+      "悬挂衣物",
+      "晾衣绳",
+      "衣物"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

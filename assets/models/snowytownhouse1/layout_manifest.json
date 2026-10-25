@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515617044376400",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515617044376400.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -203.635007,
+        0.0,
+        -311.890971
+      ],
+      "max": [
+        203.635007,
+        600.0,
+        311.890971
+      ]
+    },
+    "dimensions_cm": [
+      407.270014,
+      600.0,
+      623.781943
+    ],
+    "center_cm": [
+      0,
+      300.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 600 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      833.000756,
+      1227.196789,
+      1275.838662
+    ],
+    "semantic_scale_factor": 0.48891914,
+    "total_scale_factor": 48.89191411,
+    "target_dimension_cm": 600.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -203.635007,
+          0.0,
+          -311.890971
+        ],
+        "max": [
+          203.635007,
+          600.0,
+          311.890971
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "建筑",
+      "房屋"
+    ],
+    "leaf": "房屋",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "房屋",
+      "name": "木屋",
+      "category_path": [
+        "建筑",
+        "房屋"
+      ],
+      "primary_paths": [
+        [
+          "建筑",
+          "房屋"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "木屋",
+    "raw_source": "llm",
+    "canonical": "木屋",
+    "canonical_source": "llm_raw",
+    "display": "木屋",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.95,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 25°",
+        "role": "supports",
+        "detail": "正面视角清晰展示了双层窗户排列、中央入口门以及底部的基座结构"
+      },
+      {
+        "view": "方位 315° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视角确认了屋顶的坡度、烟囱位置以及侧面的支撑柱结构"
+      },
+      {
+        "view": "方位 135° / 俯仰 15°",
+        "role": "supports",
+        "detail": "背面视角显示了后墙的窗户布局和屋顶延伸出的屋檐积雪"
+      },
+      {
+        "view": "方位 45° / 俯仰 15°",
+        "role": "supports",
+        "detail": "另一侧面视角进一步证实了建筑的立体结构和半木构造细节"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "房屋",
+      "subtype": null,
+      "appearance_motifs": [
+        "半木结构",
+        "积雪屋顶"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "木屋；类别：建筑/房屋；属性：棕色、米色、白色、半木结构、双层建筑",
+    "terms": [
+      "木屋",
+      "建筑",
+      "房屋",
+      "棕色",
+      "米色",
+      "白色",
+      "半木结构",
+      "双层建筑",
+      "积雪屋顶"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

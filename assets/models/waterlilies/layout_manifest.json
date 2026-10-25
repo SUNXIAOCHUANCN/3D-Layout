@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792516500319766100",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792516500319766100.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -14.967395,
+        0.0,
+        -15.0
+      ],
+      "max": [
+        14.967395,
+        2.09748,
+        15.0
+      ]
+    },
+    "dimensions_cm": [
+      29.934791,
+      2.09748,
+      30.0
+    ],
+    "center_cm": [
+      0,
+      1.04874,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 30 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      431.442928,
+      30.230471,
+      432.382774
+    ],
+    "semantic_scale_factor": 0.06938297,
+    "total_scale_factor": 6.93829676,
+    "target_dimension_cm": 30.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -14.967395,
+          0.0,
+          -15.0
+        ],
+        "max": [
+          14.967395,
+          2.09748,
+          15.0
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "睡莲",
+      "name": "睡莲",
+      "category_path": [
+        "植物"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "睡莲",
+    "raw_source": "llm",
+    "canonical": "睡莲",
+    "canonical_source": "llm_raw",
+    "display": "睡莲",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了荷叶的圆形轮廓及缺口，以及荷花的层叠花瓣结构"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "多视角确认了物体由分散的叶片和花朵组成，符合睡莲丛的特征"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "睡莲",
+      "parent_path": [
+        "植物"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "睡莲",
+      "subtype": null,
+      "appearance_motifs": [
+        "水生植物"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "荷叶",
+        "荷花"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "睡莲；类别：植物；属性：绿色、白色、水生植物",
+    "terms": [
+      "睡莲",
+      "植物",
+      "绿色",
+      "白色",
+      "水生植物",
+      "荷叶",
+      "荷花"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

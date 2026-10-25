@@ -1,0 +1,396 @@
+{
+  "schema_version": "1.2",
+  "name": "独木舟",
+  "object_label": {
+    "raw": "独木舟",
+    "raw_source": "llm",
+    "canonical": "独木舟",
+    "canonical_source": "llm_raw",
+    "display": "独木舟",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.85,
+    "evidence": [
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了船体的细长形状、内部的横梁结构以及船头的尖锐造型，确认为船只类物体。"
+      },
+      {
+        "view": "方位 270° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视图显示了船舷的高度和弧度，以及底部的平底特征，符合独木舟或平底船的构造。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "独木舟",
+      "parent_path": [
+        "车辆"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "船",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质结构",
+        "长条形"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "独木舟；类别：车辆；属性：棕色、米色边缘、内部横梁、低多边形风格",
+    "terms": [
+      "独木舟",
+      "车辆",
+      "棕色",
+      "米色边缘",
+      "内部横梁",
+      "低多边形风格",
+      "船",
+      "木质结构",
+      "长条形"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "车辆"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "船",
+      "name": "独木舟",
+      "category_path": [
+        "车辆"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色",
+    "米色边缘",
+    "内部横梁",
+    "低多边形风格"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9689,
+      "evidence": {
+        "topology_quality": 0.9895,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.8627,
+        "uv_quality": 0.9474,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.3137,
+      "evidence": {
+        "triangle_count": 818,
+        "vertex_count": 2454,
+        "resolution": 818,
+        "split_vertices": true,
+        "triangle_density": 0.01137975,
+        "resolution_score": 0.4481,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.8648,
+      "status": "scored",
+      "evidence": [
+        "三角面 818 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.310，阈值 0.200",
+        "量化法线方向数 154",
+        "轴对齐法线比例 0.362"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.3137"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 818 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.310，阈值 0.200",
+        "量化法线方向数 154",
+        "轴对齐法线比例 0.362"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "使用纯色块着色，无复杂纹理贴图",
+        "光照简单，阴影硬朗，符合非写实渲染特征"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.8648,
+          "evidence": [
+            "三角面 818 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.310，阈值 0.200",
+            "量化法线方向数 154",
+            "轴对齐法线比例 0.362"
+          ]
+        }
+      ],
+      "confidence": 0.8648,
+      "evidence": [
+        "三角面 818 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.310，阈值 0.200",
+        "量化法线方向数 154",
+        "轴对齐法线比例 0.362"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.85,
+      "evidence": [
+        "使用纯色块着色，无复杂纹理贴图",
+        "光照简单，阴影硬朗，符合非写实渲染特征"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.85,
+      "evidence": [
+        "使用纯色块着色，无复杂纹理贴图",
+        "光照简单，阴影硬朗，符合非写实渲染特征"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.85,
+      "rendering_style": 0.85,
+      "modeling_quality": 0.9689,
+      "modeling_precision": 0.3137,
+      "modeling_style": 0.8648
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色",
+        "confidence": 0.95,
+        "evidence": "模型主体呈现明显的棕褐色/红棕色，符合木材或泥土的视觉特征。",
+        "source": "llm"
+      },
+      {
+        "tag": "米色边缘",
+        "confidence": 0.9,
+        "evidence": "船舷顶部有一圈较浅的米黄色/沙色边框，与深色船体形成对比。",
+        "source": "llm"
+      },
+      {
+        "tag": "内部横梁",
+        "confidence": 0.92,
+        "evidence": "俯视视角清晰可见船舱内部有两根横向的深色矩形结构，作为座位或支撑梁。",
+        "source": "llm"
+      },
+      {
+        "tag": "低多边形风格",
+        "confidence": 0.88,
+        "evidence": "几何体由明显的大面片构成，边缘棱角分明，缺乏平滑曲面细节。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "独木舟",
+      "taxonomy_path": [
+        "车辆"
+      ],
+      "status": "parent_only",
+      "missing_leaf": true
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9689,
+        "evidence": {
+          "topology_quality": 0.9895,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.8627,
+          "uv_quality": 0.9474,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.3137,
+        "evidence": {
+          "triangle_count": 818,
+          "vertex_count": 2454,
+          "resolution": 818,
+          "split_vertices": true,
+          "triangle_density": 0.01137975,
+          "resolution_score": 0.4481,
+          "density_score": 0.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.8648,
+        "status": "scored",
+        "confidence": 0.8648,
+        "evidence": [
+          "三角面 818 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.310，阈值 0.200",
+          "量化法线方向数 154",
+          "轴对齐法线比例 0.362"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.8648,
+            "evidence": [
+              "三角面 818 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.310，阈值 0.200",
+              "量化法线方向数 154",
+              "轴对齐法线比例 0.362"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "细长的两头尖中间宽的轮廓，符合船只的水动力外形",
+      "内部可见横梁结构，表明其为可载人或载物的容器型物体",
+      "整体比例扁平且狭长，区别于汽车或建筑"
+    ],
+    "candidates": [
+      {
+        "name": "皮划艇",
+        "confidence": 0.6
+      },
+      {
+        "name": "小船",
+        "confidence": 0.75
+      },
+      {
+        "name": "独木舟",
+        "confidence": 0.85
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

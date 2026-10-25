@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792511089228834500",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792511089228834500.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -10.742516,
+        0.0,
+        -7.482015
+      ],
+      "max": [
+        10.742516,
+        20.0,
+        7.482015
+      ]
+    },
+    "dimensions_cm": [
+      21.485031,
+      20.0,
+      14.96403
+    ],
+    "center_cm": [
+      0,
+      10.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 20 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      3.57201,
+      3.325115,
+      2.487856
+    ],
+    "semantic_scale_factor": 6.01482956,
+    "total_scale_factor": 601.48295623,
+    "target_dimension_cm": 20.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -10.742516,
+          0.0,
+          -7.482015
+        ],
+        "max": [
+          10.742516,
+          20.0,
+          7.482015
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [],
+    "leaf": null,
+    "status": "unmatched",
+    "confidence": 0.65,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "玩具",
+      "name": "小黄鸭",
+      "category_path": [],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "小黄鸭",
+    "raw_source": "llm",
+    "canonical": "小黄鸭",
+    "canonical_source": "llm_raw",
+    "display": "小黄鸭",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见左侧面，包含黑色眼珠白瞳、橙色喙部及黄色身体"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见右侧面，确认了双眼位置和喙部的立体形状"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角展示了圆润的身体背部曲线和尾部轮廓"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角完整展示了面部特征和身体宽度"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "小黄鸭",
+      "parent_path": [],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "玩具",
+      "subtype": null,
+      "appearance_motifs": [
+        "鸭子"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "小黄鸭；属性：黄色、鸭子造型、卡通风格",
+    "terms": [
+      "小黄鸭",
+      "黄色",
+      "鸭子造型",
+      "卡通风格",
+      "玩具",
+      "鸭子"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

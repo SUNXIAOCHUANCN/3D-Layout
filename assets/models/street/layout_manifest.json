@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515816027853600",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515816027853600.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -701.627731,
+        0.0,
+        -446.68541
+      ],
+      "max": [
+        701.627731,
+        244.939518,
+        446.68541
+      ]
+    },
+    "dimensions_cm": [
+      1403.255462,
+      244.939518,
+      893.37082
+    ],
+    "center_cm": [
+      0,
+      122.469759,
+      0
+    ]
+  },
+  "scale": {
+    "status": "known",
+    "source": "source",
+    "policy": "未匹配典型尺度，保持源尺寸",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      1403.255462,
+      244.939518,
+      893.37082
+    ],
+    "semantic_scale_factor": 1.0,
+    "total_scale_factor": 100.0,
+    "target_dimension_cm": null
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -701.627731,
+          0.0,
+          -446.68541
+        ],
+        "max": [
+          701.627731,
+          244.939518,
+          446.68541
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "建筑",
+      "构件"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "墙体",
+      "name": "砖墙",
+      "category_path": [
+        "建筑",
+        "构件"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "砖墙",
+    "raw_source": "llm",
+    "canonical": "砖墙",
+    "canonical_source": "llm_raw",
+    "display": "砖墙",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见横向排列的砖块结构和灰缝，确认为墙面材质。"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了墙体的长边侧面，确认其厚度较薄且为单一平面结构。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "砖墙",
+      "parent_path": [
+        "建筑",
+        "构件"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "墙体",
+      "subtype": null,
+      "appearance_motifs": [
+        "砖块纹理",
+        "灰色"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "砖墙；类别：建筑/构件；属性：灰色、砖砌结构、建筑构件",
+    "terms": [
+      "砖墙",
+      "建筑",
+      "构件",
+      "灰色",
+      "砖砌结构",
+      "建筑构件",
+      "墙体",
+      "砖块纹理"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

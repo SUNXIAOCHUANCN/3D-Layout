@@ -1,0 +1,401 @@
+{
+  "schema_version": "1.2",
+  "name": "木桥",
+  "object_label": {
+    "raw": "木桥",
+    "raw_source": "llm",
+    "canonical": "木桥",
+    "canonical_source": "llm_raw",
+    "display": "木桥",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.9,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视角清晰展示了横向排列的木板结构和两侧的立柱，符合桥梁侧视图特征"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视角度确认了物体为长条形通道结构，板条平行排列，两端有立柱，确认为桥面而非实心板"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "木桥",
+      "parent_path": [
+        "建筑",
+        "构件"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "桥梁",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质结构",
+        "桁架"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "木桥；类别：建筑/构件；属性：棕色、米色、木质外观、长条形",
+    "terms": [
+      "木桥",
+      "建筑",
+      "构件",
+      "棕色",
+      "米色",
+      "木质外观",
+      "长条形",
+      "桥梁",
+      "木质结构",
+      "桁架"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "建筑",
+      "构件"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "桥梁",
+      "name": "木桥",
+      "category_path": [
+        "建筑",
+        "构件"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色",
+    "米色",
+    "木质外观",
+    "长条形"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9018,
+      "evidence": {
+        "topology_quality": 0.9403,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.6724,
+        "uv_quality": 0.7528,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.3659,
+      "evidence": {
+        "triangle_count": 2031,
+        "vertex_count": 6093,
+        "resolution": 2031,
+        "split_vertices": true,
+        "triangle_density": 0.02319017,
+        "resolution_score": 0.5089,
+        "density_score": 0.0321,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.8861,
+      "status": "scored",
+      "evidence": [
+        "三角面 2031 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.498，阈值 0.200",
+        "量化法线方向数 151",
+        "轴对齐法线比例 0.511"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.3659"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 2031 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.498，阈值 0.200",
+        "量化法线方向数 151",
+        "轴对齐法线比例 0.511"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "使用纯色块着色，无复杂纹理细节",
+        "光照简单，阴影边缘清晰硬朗，缺乏环境光遮蔽的柔和过渡",
+        "整体视觉风格偏向低多边形游戏资产预览效果"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.8861,
+          "evidence": [
+            "三角面 2031 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.498，阈值 0.200",
+            "量化法线方向数 151",
+            "轴对齐法线比例 0.511"
+          ]
+        }
+      ],
+      "confidence": 0.8861,
+      "evidence": [
+        "三角面 2031 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.498，阈值 0.200",
+        "量化法线方向数 151",
+        "轴对齐法线比例 0.511"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.9,
+      "evidence": [
+        "使用纯色块着色，无复杂纹理细节",
+        "光照简单，阴影边缘清晰硬朗，缺乏环境光遮蔽的柔和过渡",
+        "整体视觉风格偏向低多边形游戏资产预览效果"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.9,
+      "evidence": [
+        "使用纯色块着色，无复杂纹理细节",
+        "光照简单，阴影边缘清晰硬朗，缺乏环境光遮蔽的柔和过渡",
+        "整体视觉风格偏向低多边形游戏资产预览效果"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.85,
+      "rendering_style": 0.9,
+      "modeling_quality": 0.9018,
+      "modeling_precision": 0.3659,
+      "modeling_style": 0.8861
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色",
+        "confidence": 0.95,
+        "evidence": "模型主体呈现明显的棕褐色材质基色",
+        "source": "llm"
+      },
+      {
+        "tag": "米色",
+        "confidence": 0.9,
+        "evidence": "支撑柱和连接件呈现浅米色或灰白色",
+        "source": "llm"
+      },
+      {
+        "tag": "木质外观",
+        "confidence": 0.92,
+        "evidence": "颜色搭配（深褐与浅黄）及板条结构符合传统木桥特征",
+        "source": "llm"
+      },
+      {
+        "tag": "长条形",
+        "confidence": 0.98,
+        "evidence": "几何统计显示宽度远大于高度和深度，呈细长形态",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "木桥",
+      "taxonomy_path": [
+        "建筑",
+        "构件"
+      ],
+      "status": "parent_only",
+      "missing_leaf": true
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9018,
+        "evidence": {
+          "topology_quality": 0.9403,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.6724,
+          "uv_quality": 0.7528,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.3659,
+        "evidence": {
+          "triangle_count": 2031,
+          "vertex_count": 6093,
+          "resolution": 2031,
+          "split_vertices": true,
+          "triangle_density": 0.02319017,
+          "resolution_score": 0.5089,
+          "density_score": 0.0321,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.8861,
+        "status": "scored",
+        "confidence": 0.8861,
+        "evidence": [
+          "三角面 2031 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.498，阈值 0.200",
+          "量化法线方向数 151",
+          "轴对齐法线比例 0.511"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.8861,
+            "evidence": [
+              "三角面 2031 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.498，阈值 0.200",
+              "量化法线方向数 151",
+              "轴对齐法线比例 0.511"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "由平行的横向板条构成路面，具有明显的间隙",
+      "两侧设有纵向的护栏或侧梁结构",
+      "四角有垂直的立柱支撑，且立柱顶部有装饰性结构",
+      "整体呈现扁平的长方体轮廓，但内部结构镂空"
+    ],
+    "candidates": [
+      {
+        "name": "建筑/构件/门",
+        "confidence": 0.1
+      },
+      {
+        "name": "道具/地垫",
+        "confidence": 0.05
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

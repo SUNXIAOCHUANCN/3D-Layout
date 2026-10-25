@@ -11,6 +11,7 @@
 import type { CameraSnapshot, ObjectId, Observation, ObservationPhase, TransformDTO, WorkflowContext } from '../contracts'
 import { CoAgentError } from '../contracts'
 import { validateCameraSnapshot } from '../schemas'
+import { modelWorldBounds } from '../../../shared/modelBounds'
 
 /** 区域默认俯视正交相机：覆盖 polygon 包围盒并留 10% 余量 */
 export function regionCamera(region: { id: string; polygonXZ: Array<[number, number]> }, aspect = 4 / 3): CameraSnapshot {
@@ -59,11 +60,17 @@ export function focusCamera(context: WorkflowContext, objectIds: ObjectId[], dis
   let minZ = Infinity
   let maxZ = -Infinity
   for (const a of snap.assets) {
+    if (a.catalog) {
+      const box = modelWorldBounds(a.catalog, a.transform)
+      minX = Math.min(minX, box.min[0]); maxX = Math.max(maxX, box.max[0])
+      minY = Math.min(minY, box.min[1]); maxY = Math.max(maxY, box.max[1])
+      minZ = Math.min(minZ, box.min[2]); maxZ = Math.max(maxZ, box.max[2])
+      continue
+    }
     const [x, y, z] = a.transform.position
-    const dims = a.catalog?.dimensions
-    const halfX = dims ? (dims.w * Math.abs(a.transform.scale[0])) / 2 : 1
-    const halfY = dims ? (dims.h * Math.abs(a.transform.scale[1])) / 2 : 1
-    const halfZ = dims ? (dims.d * Math.abs(a.transform.scale[2])) / 2 : 1
+    const halfX = 1
+    const halfY = 1
+    const halfZ = 1
     minX = Math.min(minX, x - halfX)
     maxX = Math.max(maxX, x + halfX)
     minY = Math.min(minY, y)

@@ -1,0 +1,381 @@
+{
+  "schema_version": "1.2",
+  "name": "路标",
+  "object_label": {
+    "raw": "路标",
+    "raw_source": "llm",
+    "canonical": "路标",
+    "canonical_source": "llm_raw",
+    "display": "路标",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见立柱支撑着上方的横向箭头板，箭头尖端指向左右两侧。"
+      },
+      {
+        "view": "方位 0° / 俯仰 25°",
+        "role": "supports",
+        "detail": "正面视角确认了双向箭头的对称结构和立柱的连接关系。"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角展示了箭头的厚度和透视缩短后的形态，确认为实体板状而非平面。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "路标",
+      "parent_path": [
+        "其他"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "路标",
+      "subtype": null,
+      "appearance_motifs": [
+        "双箭头"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "路标；类别：其他；属性：棕色、指示牌造型",
+    "terms": [
+      "路标",
+      "其他",
+      "棕色",
+      "指示牌造型",
+      "双箭头"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "其他"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "路标",
+      "name": "路标",
+      "category_path": [
+        "其他"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色",
+    "指示牌造型"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9667,
+      "evidence": {
+        "topology_quality": 1.0,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.7988,
+        "uv_quality": 0.991,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.2718,
+      "evidence": {
+        "triangle_count": 334,
+        "vertex_count": 1002,
+        "resolution": 334,
+        "split_vertices": true,
+        "triangle_density": 0.01231817,
+        "resolution_score": 0.3883,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.8937,
+      "status": "scored",
+      "evidence": [
+        "三角面 334 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.459，阈值 0.200",
+        "量化法线方向数 110",
+        "轴对齐法线比例 0.437"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.2718"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 334 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.459，阈值 0.200",
+        "量化法线方向数 110",
+        "轴对齐法线比例 0.437"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "使用简单的明暗着色（Simple Shading）表现立体感",
+        "表面为纯色无纹理贴图",
+        "光照效果简单，无复杂环境反射"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.8937,
+          "evidence": [
+            "三角面 334 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.459，阈值 0.200",
+            "量化法线方向数 110",
+            "轴对齐法线比例 0.437"
+          ]
+        }
+      ],
+      "confidence": 0.8937,
+      "evidence": [
+        "三角面 334 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.459，阈值 0.200",
+        "量化法线方向数 110",
+        "轴对齐法线比例 0.437"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.92,
+      "evidence": [
+        "使用简单的明暗着色（Simple Shading）表现立体感",
+        "表面为纯色无纹理贴图",
+        "光照效果简单，无复杂环境反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.92,
+      "evidence": [
+        "使用简单的明暗着色（Simple Shading）表现立体感",
+        "表面为纯色无纹理贴图",
+        "光照效果简单，无复杂环境反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.85,
+      "rendering_style": 0.92,
+      "modeling_quality": 0.9667,
+      "modeling_precision": 0.2718,
+      "modeling_style": 0.8937
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色",
+        "confidence": 1.0,
+        "evidence": "模型整体呈现均匀的棕褐色材质基色。",
+        "source": "llm"
+      },
+      {
+        "tag": "指示牌造型",
+        "confidence": 0.95,
+        "evidence": "具有典型的立柱支撑和顶部水平双向箭头结构，符合交通或路径指示牌的视觉特征。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "路标",
+      "taxonomy_path": [
+        "其他"
+      ],
+      "status": "parent_only",
+      "missing_leaf": true
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9667,
+        "evidence": {
+          "topology_quality": 1.0,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.7988,
+          "uv_quality": 0.991,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.2718,
+        "evidence": {
+          "triangle_count": 334,
+          "vertex_count": 1002,
+          "resolution": 334,
+          "split_vertices": true,
+          "triangle_density": 0.01231817,
+          "resolution_score": 0.3883,
+          "density_score": 0.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.8937,
+        "status": "scored",
+        "confidence": 0.8937,
+        "evidence": [
+          "三角面 334 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.459，阈值 0.200",
+          "量化法线方向数 110",
+          "轴对齐法线比例 0.437"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.8937,
+            "evidence": [
+              "三角面 334 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.459，阈值 0.200",
+              "量化法线方向数 110",
+              "轴对齐法线比例 0.437"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "物体由垂直的柱状主体和顶部的水平板状结构组成",
+      "顶部结构两端呈尖锐的三角形箭头形状，指向相反方向",
+      "整体轮廓在多个视角下均保持对称的双向指示形态"
+    ],
+    "candidates": [
+      {
+        "name": "道具/容器/花盆",
+        "confidence": 0.1
+      },
+      {
+        "name": "建筑/构件/门",
+        "confidence": 0.05
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

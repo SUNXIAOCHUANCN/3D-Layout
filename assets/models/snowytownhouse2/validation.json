@@ -1,0 +1,21 @@
+{
+  "valid": true,
+  "errors": [],
+  "warnings": [
+    "身份与类别核验：主物体与类别或名称指向不相容的词表节点，需人工复核"
+  ],
+  "schema_version": "1.2",
+  "success": true,
+  "input_format": "glb",
+  "normalization_success": true,
+  "thumbnail_success": true,
+  "llm_success": true,
+  "llm_call": {
+    "attempts": 1,
+    "corrected": false,
+    "errors_before_success": []
+  },
+  "normalization_issues": [],
+  "recovery": "none",
+  "output_format": "glb"
+}

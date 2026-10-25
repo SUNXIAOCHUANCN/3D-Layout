@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792513220626870000",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792513220626870000.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -100.0,
+        0.0,
+        -100.0
+      ],
+      "max": [
+        100.0,
+        0.0,
+        100.0
+      ]
+    },
+    "dimensions_cm": [
+      200.0,
+      0.0,
+      200.0
+    ],
+    "center_cm": [
+      0,
+      0.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 200 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      1000000.0,
+      0.0,
+      1000000.0
+    ],
+    "semantic_scale_factor": 0.0002,
+    "total_scale_factor": 0.02,
+    "target_dimension_cm": 200.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -100.0,
+          0.0,
+          -100.0
+        ],
+        "max": [
+          100.0,
+          0.0,
+          100.0
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "草本"
+    ],
+    "leaf": "草本",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "草地",
+      "name": "草地",
+      "category_path": [
+        "植物",
+        "草本"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "草地",
+    "raw_source": "llm",
+    "canonical": "草地",
+    "canonical_source": "llm_raw",
+    "display": "草地",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见大面积平坦表面带有波浪状起伏，符合草地或水面特征"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面轮廓极薄，确认其为平面类资产，排除立体物体可能"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "草地",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "草地；类别：植物/草本；属性：紫色、波浪状纹理、地面覆盖物",
+    "terms": [
+      "草地",
+      "植物",
+      "草本",
+      "紫色",
+      "波浪状纹理",
+      "地面覆盖物"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

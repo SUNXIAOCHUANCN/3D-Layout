@@ -1,0 +1,52 @@
+{
+    "filename":  "model.glb",
+    "source_path":  "iceberg/model.glb",
+    "source_sha256":  "0aa7ca2c02c285dcf7284fc075d3955180a307de0e27eebc88dc6ac93abc5c1d",
+    "source_axis":  "y-up",
+    "source_unit":  "m",
+    "normalization":  {
+                          "sourceAxis":  "Z-UP",
+                          "targetAxis":  "Y-UP",
+                          "sourceUnit":  "m",
+                          "targetUnit":  "cm",
+                          "scaleFactor":  100.0,
+                          "origin":  "bottom-center",
+                          "center":  [
+                                         0,
+                                         52.139386,
+                                         0
+                                     ],
+                          "aabb":  {
+                                       "min":  [
+                                                   -59.373036,
+                                                   0.0,
+                                                   -60.0
+                                               ],
+                                       "max":  [
+                                                   59.373036,
+                                                   104.278772,
+                                                   60.0
+                                               ]
+                                   },
+                          "dimensions":  [
+                                             118.746071,
+                                             104.278772,
+                                             120.0
+                                         ],
+                          "warnings":  [
+                                           "{\"asset\": \"model.glb\", \"fast_path_failed\": true, \"exception_type\": \"FastPathError\", \"exception_message\": \"无法导入 trimesh（可能缺少依赖或 Python 版本不匹配）：ImportError\", \"fallback_to_blender\": true}",
+                                           "已使用本机 Blender 读取文件元数据。导入结果是 Blender 世界坐标 Z-Up、单位米，页面上的源坐标和单位不再重复换算。"
+                                       ],
+                          "preCanonicalDimensions":  [
+                                                         2011.216736,
+                                                         1766.182327,
+                                                         2032.454682
+                                                     ],
+                          "semanticScaleFactor":  0.05904191,
+                          "totalScaleFactor":  5.90419068,
+                          "scalePolicy":  "视觉模型估计现实最长边 120 cm",
+                          "scaleSource":  "llm",
+                          "targetDimension":  120.0
+                      },
+    "source_path_base":  "input_root"
+}

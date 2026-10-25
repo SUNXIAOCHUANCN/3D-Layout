@@ -1,0 +1,413 @@
+{
+  "schema_version": "1.2",
+  "name": "晾衣绳",
+  "object_label": {
+    "raw": "晾衣绳",
+    "raw_source": "llm",
+    "canonical": "晾衣绳",
+    "canonical_source": "llm_raw",
+    "display": "晾衣绳",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.88,
+    "evidence": [
+      {
+        "view": "方位 315° / 俯仰 25°",
+        "role": "supports",
+        "detail": "左侧立柱完整可见，横杆向右上方延伸，悬挂物排列清晰，支持晾衣绳功能判断"
+      },
+      {
+        "view": "方位 135° / 俯仰 25°",
+        "role": "supports",
+        "detail": "右侧立柱与横杆连接处明确，悬挂物从不同角度展示其立体形态，强化‘悬挂’行为识别"
+      },
+      {
+        "view": "方位 225° / 俯仰 15°",
+        "role": "supports",
+        "detail": "正面视角下横杆水平度更明显，悬挂物间距规律，进一步确认非随机装饰而是功能性布置"
+      },
+      {
+        "view": "方位 45° / 俯仰 15°",
+        "role": "supports",
+        "detail": "斜侧视角显示横杆轻微弯曲（可能为简化建模），但不影响整体结构认知，仍指向晾衣用途"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "晾衣绳",
+      "parent_path": [
+        "道具"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "晾衣绳",
+      "subtype": null,
+      "appearance_motifs": [
+        "绳索",
+        "衣物"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "立柱",
+        "横杆",
+        "衣物"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "晾衣绳；类别：道具；属性：棕色立柱、米色横杆、多色悬挂物、户外场景元素",
+    "terms": [
+      "晾衣绳",
+      "道具",
+      "棕色立柱",
+      "米色横杆",
+      "多色悬挂物",
+      "户外场景元素",
+      "绳索",
+      "衣物",
+      "立柱",
+      "横杆"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "道具"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "晾衣绳",
+      "name": "晾衣绳",
+      "category_path": [
+        "道具"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色立柱",
+    "米色横杆",
+    "多色悬挂物",
+    "户外场景元素"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "中",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "中",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9401,
+      "evidence": {
+        "topology_quality": 0.9968,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.6775,
+        "uv_quality": 0.9381,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "中",
+      "score": 0.4451,
+      "evidence": {
+        "triangle_count": 1034,
+        "vertex_count": 3102,
+        "resolution": 1034,
+        "split_vertices": true,
+        "triangle_density": 0.12715928,
+        "resolution_score": 0.4638,
+        "density_score": 0.4017,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.888,
+      "status": "scored",
+      "evidence": [
+        "三角面 1034 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.460，阈值 0.200",
+        "量化法线方向数 133",
+        "轴对齐法线比例 0.324"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "中",
+      "machine_label": "中",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 中，分数 0.4451"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 1034 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.460，阈值 0.200",
+        "量化法线方向数 133",
+        "轴对齐法线比例 0.324"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "纯色填充表面，无纹理细节",
+        "简单明暗着色，缺乏环境反射与复杂光影",
+        "边缘清晰但无抗锯齿柔化，呈现图形化风格"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.888,
+          "evidence": [
+            "三角面 1034 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.460，阈值 0.200",
+            "量化法线方向数 133",
+            "轴对齐法线比例 0.324"
+          ]
+        }
+      ],
+      "confidence": 0.888,
+      "evidence": [
+        "三角面 1034 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.460，阈值 0.200",
+        "量化法线方向数 133",
+        "轴对齐法线比例 0.324"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.88,
+      "evidence": [
+        "纯色填充表面，无纹理细节",
+        "简单明暗着色，缺乏环境反射与复杂光影",
+        "边缘清晰但无抗锯齿柔化，呈现图形化风格"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.88,
+      "evidence": [
+        "纯色填充表面，无纹理细节",
+        "简单明暗着色，缺乏环境反射与复杂光影",
+        "边缘清晰但无抗锯齿柔化，呈现图形化风格"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.85,
+      "rendering_style": 0.88,
+      "modeling_quality": 0.9401,
+      "modeling_precision": 0.4451,
+      "modeling_style": 0.888
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色立柱",
+        "confidence": 0.95,
+        "evidence": "两侧可见垂直的棕色柱状结构，支撑整体装置",
+        "source": "llm"
+      },
+      {
+        "tag": "米色横杆",
+        "confidence": 0.95,
+        "evidence": "连接两立柱顶部的细长米色杆件，呈倾斜状态",
+        "source": "llm"
+      },
+      {
+        "tag": "多色悬挂物",
+        "confidence": 0.9,
+        "evidence": "横杆上挂有多个不规则形状物体，颜色包括灰、棕、红褐等，形态类似晾晒的布料或衣物",
+        "source": "llm"
+      },
+      {
+        "tag": "户外场景元素",
+        "confidence": 0.8,
+        "evidence": "结构简单、无封闭空间，符合庭院或阳台常见晾衣设施特征",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "晾衣绳",
+      "taxonomy_path": [
+        "道具"
+      ],
+      "status": "parent_only",
+      "missing_leaf": true
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9401,
+        "evidence": {
+          "topology_quality": 0.9968,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.6775,
+          "uv_quality": 0.9381,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "中",
+        "score": 0.4451,
+        "evidence": {
+          "triangle_count": 1034,
+          "vertex_count": 3102,
+          "resolution": 1034,
+          "split_vertices": true,
+          "triangle_density": 0.12715928,
+          "resolution_score": 0.4638,
+          "density_score": 0.4017,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.888,
+        "status": "scored",
+        "confidence": 0.888,
+        "evidence": [
+          "三角面 1034 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.460，阈值 0.200",
+          "量化法线方向数 133",
+          "轴对齐法线比例 0.324"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.888,
+            "evidence": [
+              "三角面 1034 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.460，阈值 0.200",
+              "量化法线方向数 133",
+              "轴对齐法线比例 0.324"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "双立柱+单横杆构成稳定三角支撑结构，符合晾衣绳典型构造",
+      "悬挂物沿横杆均匀分布且具下垂感，模拟真实重力作用下的衣物形态"
+    ],
+    "candidates": [
+      {
+        "name": "晾衣架",
+        "confidence": 0.75
+      },
+      {
+        "name": "装饰性挂饰装置",
+        "confidence": 0.6
+      },
+      {
+        "name": "简易棚架",
+        "confidence": 0.4
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

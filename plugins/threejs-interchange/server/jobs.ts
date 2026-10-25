@@ -364,7 +364,12 @@ export function diskModelRefs(root: string): Set<string> {
   const dir = join(root, 'assets', 'models')
   if (!dirExists(dir)) return out
   for (const e of readdirSync(dir, { withFileTypes: true })) {
-    if (e.isDirectory() && existsSync(join(dir, e.name, 'meta.json'))) out.add(`models/${e.name}`)
+    if (e.isDirectory() && (existsSync(join(dir, e.name, 'meta.json')) || existsSync(join(dir, e.name, 'layout_manifest.json')))) out.add(`models/${e.name}`)
+  }
+  const builtins = join(root, 'assets', 'builtin-models.json')
+  if (existsSync(builtins)) {
+    const catalog = JSON.parse(readFileSync(builtins, 'utf8')) as { models: Record<string, unknown> }
+    for (const ref of Object.keys(catalog.models)) out.add(ref)
   }
   return out
 }

@@ -1,0 +1,201 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792516304802283500",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792516304802283500.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -259.855671,
+        0.0,
+        -326.691148
+      ],
+      "max": [
+        259.855671,
+        500.0,
+        326.691148
+      ]
+    },
+    "dimensions_cm": [
+      519.711341,
+      500.0,
+      653.382296
+    ],
+    "center_cm": [
+      0,
+      250.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 500 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      1262.427855,
+      1214.547148,
+      1587.127209
+    ],
+    "semantic_scale_factor": 0.41167607,
+    "total_scale_factor": 41.16760727,
+    "target_dimension_cm": 500.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -259.855671,
+          0.0,
+          -326.691148
+        ],
+        "max": [
+          259.855671,
+          500.0,
+          326.691148
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "树",
+      "松树"
+    ],
+    "leaf": "松树",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "树",
+      "name": "松树",
+      "category_path": [
+        "植物",
+        "树",
+        "松树"
+      ],
+      "primary_paths": [
+        [
+          "植物",
+          "树"
+        ]
+      ],
+      "name_paths": [
+        [
+          "植物",
+          "树",
+          "松树"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "松树",
+    "raw_source": "llm",
+    "canonical": "松树",
+    "canonical_source": "llm_raw",
+    "display": "松树",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.94,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰显示三棵树的正面形态，积雪覆盖树冠顶部，绿色针叶外露，棕色树干直立"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认树木的锥形轮廓和分层结构，积雪与绿叶交替分布明显"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角验证所有树木结构对称性，无异常部件或缺失部分"
+      },
+      {
+        "view": "方位 180° / 俯仰 15°",
+        "role": "supports",
+        "detail": "俯视角度展示四棵树的空间布局，树干位置稳定，树冠形状统一"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "树",
+      "subtype": null,
+      "appearance_motifs": [
+        "积雪覆盖",
+        "低多边形风格"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "松树"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "松树；类别：植物/树/松树；属性：积雪覆盖、绿色针叶、棕色树干、冬季景观",
+    "terms": [
+      "松树",
+      "植物",
+      "树",
+      "积雪覆盖",
+      "绿色针叶",
+      "棕色树干",
+      "冬季景观",
+      "低多边形风格"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

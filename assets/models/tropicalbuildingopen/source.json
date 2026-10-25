@@ -1,0 +1,52 @@
+{
+    "filename":  "model.glb",
+    "source_path":  "tropicalbuildingopen/model.glb",
+    "source_sha256":  "3d5b419f0c55b69a79f52473731b210fb742bcdc5269b2fe62041a2bfbbb99c0",
+    "source_axis":  "y-up",
+    "source_unit":  "m",
+    "normalization":  {
+                          "sourceAxis":  "Z-UP",
+                          "targetAxis":  "Y-UP",
+                          "sourceUnit":  "m",
+                          "targetUnit":  "cm",
+                          "scaleFactor":  100.0,
+                          "origin":  "bottom-center",
+                          "center":  [
+                                         0,
+                                         125.0,
+                                         0
+                                     ],
+                          "aabb":  {
+                                       "min":  [
+                                                   -147.108037,
+                                                   0.0,
+                                                   -141.90726
+                                               ],
+                                       "max":  [
+                                                   147.108037,
+                                                   250.0,
+                                                   141.90726
+                                               ]
+                                   },
+                          "dimensions":  [
+                                             294.216074,
+                                             250.0,
+                                             283.81452
+                                         ],
+                          "warnings":  [
+                                           "{\"asset\": \"model.glb\", \"fast_path_failed\": true, \"exception_type\": \"FastPathError\", \"exception_message\": \"无法导入 trimesh（可能缺少依赖或 Python 版本不匹配）：ImportError\", \"fallback_to_blender\": true}",
+                                           "已使用本机 Blender 读取文件元数据。导入结果是 Blender 世界坐标 Z-Up、单位米，页面上的源坐标和单位不再重复换算。"
+                                       ],
+                          "preCanonicalDimensions":  [
+                                                         671.234798,
+                                                         570.358706,
+                                                         647.50433
+                                                     ],
+                          "semanticScaleFactor":  0.43832065,
+                          "totalScaleFactor":  43.83206522,
+                          "scalePolicy":  "视觉模型估计现实高度 250 cm",
+                          "scaleSource":  "llm",
+                          "targetDimension":  250.0
+                      },
+    "source_path_base":  "input_root"
+}

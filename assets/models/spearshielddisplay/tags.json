@@ -1,0 +1,400 @@
+{
+  "schema_version": "1.2",
+  "name": "兔子",
+  "object_label": {
+    "raw": "兔子",
+    "raw_source": "llm",
+    "canonical": "兔子",
+    "canonical_source": "llm_raw",
+    "display": "兔子",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见背部、双腿分立站立以及头顶的双耳结构"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角确认了面部区域的简化处理（无明显五官细节）和胸前的红色与蓝色装饰分布"
+      },
+      {
+        "view": "方位 225° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视角展示了身体的厚度和耳朵的侧向延伸，确认了立体结构"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "动物",
+      "subtype": null,
+      "appearance_motifs": [
+        "长耳",
+        "拟人化站姿"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "兔子；类别：动物；属性：棕色身体、白色耳朵、红色装饰、蓝色装饰",
+    "terms": [
+      "兔子",
+      "动物",
+      "棕色身体",
+      "白色耳朵",
+      "红色装饰",
+      "蓝色装饰",
+      "长耳",
+      "拟人化站姿"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "动物"
+    ],
+    "leaf": "动物",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "动物",
+      "name": "兔子",
+      "category_path": [
+        "动物"
+      ],
+      "primary_paths": [
+        [
+          "动物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色身体",
+    "白色耳朵",
+    "红色装饰",
+    "蓝色装饰"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "中",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "中",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9047,
+      "evidence": {
+        "topology_quality": 0.9004,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.5987,
+        "uv_quality": 0.9648,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "中",
+      "score": 0.4655,
+      "evidence": {
+        "triangle_count": 455,
+        "vertex_count": 1365,
+        "resolution": 455,
+        "split_vertices": true,
+        "triangle_density": 0.31317109,
+        "resolution_score": 0.4089,
+        "density_score": 0.5974,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.9127,
+      "status": "scored",
+      "evidence": [
+        "三角面 455 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.579，阈值 0.200",
+        "量化法线方向数 127",
+        "轴对齐法线比例 0.259"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "中",
+      "machine_label": "中",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 中，分数 0.4655"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 455 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.579，阈值 0.200",
+        "量化法线方向数 127",
+        "轴对齐法线比例 0.259"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "模型表面由纯色块构成，无复杂纹理细节",
+        "光照为简单的明暗着色，缺乏真实环境反射",
+        "色彩鲜艳且饱和度高，非写实材质表现"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.9127,
+          "evidence": [
+            "三角面 455 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.579，阈值 0.200",
+            "量化法线方向数 127",
+            "轴对齐法线比例 0.259"
+          ]
+        }
+      ],
+      "confidence": 0.9127,
+      "evidence": [
+        "三角面 455 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.579，阈值 0.200",
+        "量化法线方向数 127",
+        "轴对齐法线比例 0.259"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.92,
+      "evidence": [
+        "模型表面由纯色块构成，无复杂纹理细节",
+        "光照为简单的明暗着色，缺乏真实环境反射",
+        "色彩鲜艳且饱和度高，非写实材质表现"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.92,
+      "evidence": [
+        "模型表面由纯色块构成，无复杂纹理细节",
+        "光照为简单的明暗着色，缺乏真实环境反射",
+        "色彩鲜艳且饱和度高，非写实材质表现"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.92,
+      "modeling_quality": 0.9047,
+      "modeling_precision": 0.4655,
+      "modeling_style": 0.9127
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色身体",
+        "confidence": 0.98,
+        "evidence": "躯干主体呈现明显的棕褐色/红棕色块面",
+        "source": "llm"
+      },
+      {
+        "tag": "白色耳朵",
+        "confidence": 0.95,
+        "evidence": "头顶两侧延伸出细长的白色尖状结构，符合兔耳特征",
+        "source": "llm"
+      },
+      {
+        "tag": "红色装饰",
+        "confidence": 0.9,
+        "evidence": "颈部及腹部区域有鲜艳的红色色块，疑似围巾或衣物",
+        "source": "llm"
+      },
+      {
+        "tag": "蓝色装饰",
+        "confidence": 0.9,
+        "evidence": "四肢末端（手部）呈现蓝色，疑似手套",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "兔子",
+      "taxonomy_path": [
+        "动物"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9047,
+        "evidence": {
+          "topology_quality": 0.9004,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.5987,
+          "uv_quality": 0.9648,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "中",
+        "score": 0.4655,
+        "evidence": {
+          "triangle_count": 455,
+          "vertex_count": 1365,
+          "resolution": 455,
+          "split_vertices": true,
+          "triangle_density": 0.31317109,
+          "resolution_score": 0.4089,
+          "density_score": 0.5974,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.9127,
+        "status": "scored",
+        "confidence": 0.9127,
+        "evidence": [
+          "三角面 455 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.579，阈值 0.200",
+          "量化法线方向数 127",
+          "轴对齐法线比例 0.259"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.9127,
+            "evidence": [
+              "三角面 455 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.579，阈值 0.200",
+              "量化法线方向数 127",
+              "轴对齐法线比例 0.259"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "具有标志性的细长直立双耳轮廓",
+      "身体比例夸张，头部较大，四肢细长，呈直立姿态",
+      "整体几何体块简化，边缘硬朗，符合低多边形风格"
+    ],
+    "candidates": [
+      {
+        "name": "角色/人物",
+        "confidence": 0.4
+      },
+      {
+        "name": "道具/玩具",
+        "confidence": 0.3
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

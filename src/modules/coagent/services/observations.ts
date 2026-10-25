@@ -13,6 +13,7 @@
 import type { CaptureRequest, ImageId, ObjectId, Observation, ObservationId, RenderPort, RunId } from '../contracts'
 import { CoAgentError } from '../contracts'
 import type { EvidenceStore, EvidenceStoreStats } from '../runtime/evidenceStore'
+import { logError, logStage } from '../runtime/runLog'
 
 export type ObservationService = {
   capture(request: CaptureRequest, signal: AbortSignal, partitionVersion: number): Promise<Observation>
@@ -28,18 +29,45 @@ export function createObservationService(deps: { getPort: () => RenderPort | nul
       if (signal.aborted) throw new CoAgentError('cancelled', '观测开始前已取消')
       const port = deps.getPort()
       if (!port) {
+        logError('capture', '渲染桥未就绪：CoAgentBridge 未挂载', `phase=${request.phase}，对象 ${request.objectIds.length} 个`)
         throw new CoAgentError('bridge_unavailable', '渲染桥未就绪（CoAgentBridge 未挂载）')
       }
-      await port.ready(request.objectIds, signal, request.expectedTransforms)
-      if (signal.aborted) throw new CoAgentError('cancelled', '观测在取图前被取消')
-      const frame = await port.capture(request, signal)
-      return deps.store.add(frame, {
-        runId: request.runId,
-        ...(request.taskId !== undefined ? { taskId: request.taskId } : {}),
-        ...(request.regionId !== undefined ? { regionId: request.regionId } : {}),
-        phase: request.phase,
-        partitionVersion,
-      })
+      const startedAt = Date.now()
+      const where = `${request.phase}${request.regionId ? `/${request.regionId}` : ''}${request.taskId ? `/${request.taskId}` : ''}`
+      try {
+        await port.ready(request.objectIds, signal, request.expectedTransforms)
+        const readyMs = Date.now() - startedAt
+        if (signal.aborted) throw new CoAgentError('cancelled', '观测在取图前被取消')
+        const frame = await port.capture(request, signal)
+        const observation = deps.store.add(frame, {
+          runId: request.runId,
+          ...(request.taskId !== undefined ? { taskId: request.taskId } : {}),
+          ...(request.regionId !== undefined ? { regionId: request.regionId } : {}),
+          phase: request.phase,
+          partitionVersion,
+        })
+        logStage(
+          'capture',
+          `截图完成 ${where}：${observation.id}（${frame.width}×${frame.height}）`,
+          [
+            `场景就绪等待 ${readyMs}ms；总耗时 ${Date.now() - startedAt}ms`,
+            `请求对象 ${request.objectIds.length} 个，可见 ${observation.labels.filter(l => l.visibility === 'visible').length} 个`,
+            `rgb=${observation.rgbImageId}${observation.markedImageId ? `，marked=${observation.markedImageId}` : ''}`,
+          ].join('\n'),
+        )
+        return observation
+      } catch (e) {
+        const err = CoAgentError.from(e)
+        if (err.code !== 'cancelled') {
+          logError(
+            'capture',
+            `截图失败 ${where}：${err.code} ${err.message}`,
+            `耗时 ${Date.now() - startedAt}ms；请求对象 ${request.objectIds.length} 个`,
+            err.details,
+          )
+        }
+        throw e
+      }
     },
 
     get: id => deps.store.observation(id),

@@ -1,0 +1,189 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792516809854156600",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792516809854156600.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -100.0,
+        0.0,
+        -56.065155
+      ],
+      "max": [
+        100.0,
+        110.275616,
+        56.065155
+      ]
+    },
+    "dimensions_cm": [
+      200.0,
+      110.275616,
+      112.130311
+    ],
+    "center_cm": [
+      0,
+      55.137808,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 200 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      529.851962,
+      292.148757,
+      297.062326
+    ],
+    "semantic_scale_factor": 0.37746392,
+    "total_scale_factor": 37.74639226,
+    "target_dimension_cm": 200.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -100.0,
+          0.0,
+          -56.065155
+        ],
+        "max": [
+          100.0,
+          110.275616,
+          56.065155
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "家具",
+      "床"
+    ],
+    "leaf": "床",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "床",
+      "name": "木床",
+      "category_path": [
+        "家具",
+        "床"
+      ],
+      "primary_paths": [
+        [
+          "家具",
+          "床"
+        ]
+      ],
+      "name_paths": [
+        [
+          "家具",
+          "床"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "木床",
+    "raw_source": "llm",
+    "canonical": "床",
+    "canonical_source": "taxonomy_normalization",
+    "display": "木床",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了床头板的垂直结构和床面的水平板条，确认了床的功能性结构。"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧视角度展示了床腿、侧面围栏以及床板条的深度延伸，排除了平面物体（如门或画框）的可能性。"
+      },
+      {
+        "view": "方位 270° / 俯仰 15°",
+        "role": "supports",
+        "detail": "展示了床尾板的结构与床头板相似，进一步确认为完整的床具资产。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "床",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质结构"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "木床；类别：家具/床；属性：棕色、木质外观、双人床尺寸",
+    "terms": [
+      "木床",
+      "床",
+      "家具",
+      "棕色",
+      "木质外观",
+      "双人床尺寸",
+      "木质结构"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

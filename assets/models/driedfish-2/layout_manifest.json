@@ -1,0 +1,189 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792511033804211600",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792511033804211600.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -100.0,
+        0.0,
+        -7.746595
+      ],
+      "max": [
+        100.0,
+        95.90916,
+        7.746595
+      ]
+    },
+    "dimensions_cm": [
+      200.0,
+      95.90916,
+      15.49319
+    ],
+    "center_cm": [
+      0,
+      47.95458,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 200 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      535.225534,
+      256.665158,
+      41.461754
+    ],
+    "semantic_scale_factor": 0.37367425,
+    "total_scale_factor": 37.367425,
+    "target_dimension_cm": 200.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -100.0,
+          0.0,
+          -7.746595
+        ],
+        "max": [
+          100.0,
+          95.90916,
+          7.746595
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "晾衣绳",
+      "name": "晾衣绳",
+      "category_path": [
+        "道具"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "晾衣绳",
+    "raw_source": "llm",
+    "canonical": "晾衣绳",
+    "canonical_source": "llm_raw",
+    "display": "晾衣绳",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.88,
+    "evidence": [
+      {
+        "view": "方位 315° / 俯仰 25°",
+        "role": "supports",
+        "detail": "左侧立柱完整可见，横杆向右上方延伸，悬挂物排列清晰，支持晾衣绳功能判断"
+      },
+      {
+        "view": "方位 135° / 俯仰 25°",
+        "role": "supports",
+        "detail": "右侧立柱与横杆连接处明确，悬挂物从不同角度展示其立体形态，强化‘悬挂’行为识别"
+      },
+      {
+        "view": "方位 225° / 俯仰 15°",
+        "role": "supports",
+        "detail": "正面视角下横杆水平度更明显，悬挂物间距规律，进一步确认非随机装饰而是功能性布置"
+      },
+      {
+        "view": "方位 45° / 俯仰 15°",
+        "role": "supports",
+        "detail": "斜侧视角显示横杆轻微弯曲（可能为简化建模），但不影响整体结构认知，仍指向晾衣用途"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "晾衣绳",
+      "parent_path": [
+        "道具"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "晾衣绳",
+      "subtype": null,
+      "appearance_motifs": [
+        "绳索",
+        "衣物"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "立柱",
+        "横杆",
+        "衣物"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "晾衣绳；类别：道具；属性：棕色立柱、米色横杆、多色悬挂物、户外场景元素",
+    "terms": [
+      "晾衣绳",
+      "道具",
+      "棕色立柱",
+      "米色横杆",
+      "多色悬挂物",
+      "户外场景元素",
+      "绳索",
+      "衣物",
+      "立柱",
+      "横杆"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

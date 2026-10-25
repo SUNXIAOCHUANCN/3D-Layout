@@ -1,0 +1,189 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792513757180407400",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792513757180407400.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -249.619755,
+        0.0,
+        -226.638626
+      ],
+      "max": [
+        249.619755,
+        400.0,
+        226.638626
+      ]
+    },
+    "dimensions_cm": [
+      499.239511,
+      400.0,
+      453.277251
+    ],
+    "center_cm": [
+      0,
+      200.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 400 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      1486.235666,
+      1190.799713,
+      1349.406052
+    ],
+    "semantic_scale_factor": 0.33590871,
+    "total_scale_factor": 33.59087138,
+    "target_dimension_cm": 400.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -249.619755,
+          0.0,
+          -226.638626
+        ],
+        "max": [
+          249.619755,
+          400.0,
+          226.638626
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "树",
+      "普通树"
+    ],
+    "leaf": "普通树",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "植物",
+      "name": "棕榈树",
+      "category_path": [
+        "植物",
+        "树",
+        "普通树"
+      ],
+      "primary_paths": [
+        [
+          "植物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "棕榈树",
+    "raw_source": "llm",
+    "canonical": "棕榈树",
+    "canonical_source": "llm_raw",
+    "display": "棕榈树",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了树干与叶片的连接关系及整体形态"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认了叶片的层叠结构和树干的弯曲度"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角进一步验证了叶片的分布规律"
+      },
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视角度展示了叶片围绕中心点辐射的布局"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "植物",
+      "subtype": null,
+      "appearance_motifs": [
+        "热带风格",
+        "低多边形风格"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "棕榈树；类别：植物/树/普通树；属性：绿色叶片、棕色树干、热带植物造型",
+    "terms": [
+      "棕榈树",
+      "植物",
+      "树",
+      "普通树",
+      "绿色叶片",
+      "棕色树干",
+      "热带植物造型",
+      "热带风格",
+      "低多边形风格"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

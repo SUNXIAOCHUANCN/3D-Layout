@@ -1,0 +1,170 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792513209076829100",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792513209076829100.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -75.451343,
+        0.0,
+        -22.557764
+      ],
+      "max": [
+        75.451343,
+        250.0,
+        22.557764
+      ]
+    },
+    "dimensions_cm": [
+      150.902685,
+      250.0,
+      45.115529
+    ],
+    "center_cm": [
+      0,
+      125.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 250 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      29.965788,
+      49.644226,
+      8.958902
+    ],
+    "semantic_scale_factor": 5.03583236,
+    "total_scale_factor": 503.58323645,
+    "target_dimension_cm": 250.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -75.451343,
+          0.0,
+          -22.557764
+        ],
+        "max": [
+          75.451343,
+          250.0,
+          22.557764
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "灯具"
+    ],
+    "leaf": "灯具",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "路灯",
+      "name": "路灯",
+      "category_path": [
+        "道具",
+        "灯具"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "路灯",
+    "raw_source": "llm",
+    "canonical": "路灯",
+    "canonical_source": "llm_raw",
+    "display": "路灯",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.95,
+    "evidence": [
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了立柱、横臂和悬挂的灯笼，结构完整。"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "从背面视角确认了横臂的双向延伸或单臂结构，以及底座的形态。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "路灯",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质结构",
+        "金属连接件",
+        "复古风格"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "路灯；类别：道具/灯具；属性：木质立柱、灰色底座、悬挂式灯头、金属支架",
+    "terms": [
+      "路灯",
+      "道具",
+      "灯具",
+      "木质立柱",
+      "灰色底座",
+      "悬挂式灯头",
+      "金属支架",
+      "木质结构",
+      "金属连接件",
+      "复古风格"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

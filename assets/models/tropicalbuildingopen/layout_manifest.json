@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792516412186284400",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792516412186284400.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -147.108037,
+        0.0,
+        -141.90726
+      ],
+      "max": [
+        147.108037,
+        250.0,
+        141.90726
+      ]
+    },
+    "dimensions_cm": [
+      294.216074,
+      250.0,
+      283.81452
+    ],
+    "center_cm": [
+      0,
+      125.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 250 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      671.234798,
+      570.358706,
+      647.50433
+    ],
+    "semantic_scale_factor": 0.43832065,
+    "total_scale_factor": 43.83206522,
+    "target_dimension_cm": 250.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -147.108037,
+          0.0,
+          -141.90726
+        ],
+        "max": [
+          147.108037,
+          250.0,
+          141.90726
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "建筑",
+      "建筑物"
+    ],
+    "leaf": "建筑物",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "建筑",
+      "name": "茅草屋",
+      "category_path": [
+        "建筑",
+        "建筑物"
+      ],
+      "primary_paths": [
+        [
+          "建筑"
+        ],
+        [
+          "建筑",
+          "建筑物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体对应多个词表节点，需要消歧",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "茅草屋",
+    "raw_source": "llm",
+    "canonical": "茅草屋",
+    "canonical_source": "llm_raw",
+    "display": "茅草屋",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.94,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰显示茅草屋顶的背面结构和两根后侧立柱，确认其为独立建筑结构而非植物或装饰物。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角展示完整的茅草屋顶形态和前后立柱布局，支持其作为小型遮蔽建筑的判断。"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角揭示屋顶坡度、内部横梁结构及单侧立柱细节，进一步验证其为功能性棚屋类建筑。"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "斜角视图完整呈现三维空间中的屋顶倾斜度与支撑体系，排除平面装饰或抽象雕塑的可能性。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "建筑",
+      "subtype": null,
+      "appearance_motifs": [
+        "茅草屋顶",
+        "木桩支撑"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "茅草屋；类别：建筑/建筑物；属性：米黄色、棕色、茅草造型、低多边形风格",
+    "terms": [
+      "茅草屋",
+      "建筑",
+      "建筑物",
+      "米黄色",
+      "棕色",
+      "茅草造型",
+      "低多边形风格",
+      "茅草屋顶",
+      "木桩支撑"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792516285949452200",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792516285949452200.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -310.922877,
+        0.0,
+        -390.892958
+      ],
+      "max": [
+        310.922877,
+        500.0,
+        390.892958
+      ]
+    },
+    "dimensions_cm": [
+      621.845755,
+      500.0,
+      781.785916
+    ],
+    "center_cm": [
+      0,
+      250.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 500 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      1262.427855,
+      1015.065107,
+      1587.127209
+    ],
+    "semantic_scale_factor": 0.49257924,
+    "total_scale_factor": 49.2579241,
+    "target_dimension_cm": 500.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -310.922877,
+          0.0,
+          -390.892958
+        ],
+        "max": [
+          310.922877,
+          500.0,
+          390.892958
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "树",
+      "松树"
+    ],
+    "leaf": "松树",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "树",
+      "name": "松树",
+      "category_path": [
+        "植物",
+        "树",
+        "松树"
+      ],
+      "primary_paths": [
+        [
+          "植物",
+          "树"
+        ]
+      ],
+      "name_paths": [
+        [
+          "植物",
+          "树",
+          "松树"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "松树",
+    "raw_source": "llm",
+    "canonical": "松树",
+    "canonical_source": "llm_raw",
+    "display": "松树",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰显示两棵树的侧面轮廓，具有典型的松树分层结构和积雪特征"
+      },
+      {
+        "view": "方位 0° / 俯仰 25°",
+        "role": "supports",
+        "detail": "正面视角展示三棵树的排列，确认了圆锥形树冠和树干的存在"
+      },
+      {
+        "view": "方位 180° / 俯仰 25°",
+        "role": "supports",
+        "detail": "背面视角进一步验证了树木的整体形态和积雪分布"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "斜侧视角展示了树木的立体结构和颜色分布"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "树",
+      "subtype": null,
+      "appearance_motifs": [
+        "雪松造型",
+        "圆锥形树冠"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "松树"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "松树；类别：植物/树/松树；属性：绿色、棕色、白色、覆雪、低多边形风格",
+    "terms": [
+      "松树",
+      "植物",
+      "树",
+      "绿色",
+      "棕色",
+      "白色",
+      "覆雪",
+      "低多边形风格",
+      "雪松造型",
+      "圆锥形树冠"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

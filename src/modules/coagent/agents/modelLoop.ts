@@ -21,6 +21,7 @@ import type {
 } from '../contracts'
 import { CoAgentError } from '../contracts'
 import type { ToolRegistry } from '../tools/registry'
+import { activeRunLog, logError, logStage } from '../runtime/runLog'
 
 export interface ToolLoopInput {
   role: AgentRole
@@ -54,21 +55,33 @@ export async function runToolLoop(input: ToolLoopInput): Promise<ToolLoopResult>
   const transcript: ModelMessage[] = [...input.messages]
   const toolResults: Array<{ call: ModelToolCall; result: ToolResult<unknown> }> = []
   let toolCallCount = 0
+  // 工具清单按角色过滤：judge 根本看不到写工具（这里也把清单记进日志，便于核对"角色权限没给错"）
+  const specs = input.registry.specs(input.role)
+  logStage(
+    'llm.loop',
+    `${input.purpose} 工具循环开始（role=${input.role}，最多 ${input.maxRounds} 轮，初始消息 ${transcript.length} 条）`,
+    `可用工具：${specs.length > 0 ? specs.map(s => s.name).join(', ') : '（无，纯文本回合）'}`,
+  )
 
   for (let round = 0; round < input.maxRounds; round++) {
     if (input.signal.aborted) throw new CoAgentError('cancelled', '模型循环被取消')
+    logStage('llm.round', `${input.purpose} 第 ${round + 1}/${input.maxRounds} 轮（transcript ${transcript.length} 条）`)
     const reply = await input.model.complete(
       {
         purpose: input.purpose,
         system: input.system,
         messages: transcript,
-        tools: input.registry.specs(input.role),
+        tools: specs,
         timeoutMs: input.config.modelTimeoutMs,
       },
       input.signal,
     )
 
     if (reply.toolCalls.length === 0) {
+      logStage(
+        'llm.loop',
+        `${input.purpose} 收尾：共 ${toolCallCount} 次工具调用，stop=${reply.stopReason}，最终文本 ${reply.text.length} 字符`,
+      )
       return { text: reply.text, transcript, toolCalls: toolCallCount, toolResults, stopReason: reply.stopReason }
     }
 
@@ -77,6 +90,7 @@ export async function runToolLoop(input: ToolLoopInput): Promise<ToolLoopResult>
     for (const call of reply.toolCalls) {
       if (input.signal.aborted) throw new CoAgentError('cancelled', '工具执行前被取消')
       toolCallCount++
+      const callStartedAt = Date.now()
       const result = await input.registry.call(call.name, call.args, {
         runId: input.site.runId,
         taskId: input.site.taskId,
@@ -84,6 +98,7 @@ export async function runToolLoop(input: ToolLoopInput): Promise<ToolLoopResult>
         role: input.role,
         toolCallId: call.id,
       })
+      activeRunLog()?.toolCall(call, result, Date.now() - callStartedAt)
       toolResults.push({ call, result })
       input.onToolResult?.(call, result)
       const images = input.imagesForToolResult ? await input.imagesForToolResult(call, result) : []
@@ -97,5 +112,6 @@ export async function runToolLoop(input: ToolLoopInput): Promise<ToolLoopResult>
     }
   }
 
+  logError('llm.loop', `${input.purpose} 超过 ${input.maxRounds} 轮仍未收尾（budget_exceeded）`, `已用工具调用 ${toolCallCount} 次`)
   throw new CoAgentError('budget_exceeded', `模型-工具往返超过 ${input.maxRounds} 轮仍未收尾`)
 }

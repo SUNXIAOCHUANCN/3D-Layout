@@ -1,0 +1,2673 @@
+{
+  "id": "20261024T093547322576Z",
+  "appliedAt": "2026-10-24T09:35:47.322576+00:00",
+  "backup": "G:\\GraduateDesign\\Softwares\\3D-Layout\\artifacts\\model-directory-renames\\20261024T093547322576Z",
+  "naming": "original source model name",
+  "mapping": [
+    {
+      "asset_id": "AF-1792510004149210700",
+      "old_directory": "AF-1792510004149210700",
+      "requested_name": "agavelow",
+      "source_path": "agavelow/model.glb",
+      "display_name": "仙人掌",
+      "new_directory": "agavelow",
+      "old_ref": "models/AF-1792510004149210700",
+      "new_ref": "models/agavelow"
+    },
+    {
+      "asset_id": "AF-1792510006578179800",
+      "old_directory": "AF-1792510006578179800",
+      "requested_name": "agavehigh",
+      "source_path": "agavehigh/model.glb",
+      "display_name": "龙舌兰",
+      "new_directory": "agavehigh",
+      "old_ref": "models/AF-1792510006578179800",
+      "new_ref": "models/agavehigh"
+    },
+    {
+      "asset_id": "AF-1792510031830762200",
+      "old_directory": "AF-1792510031830762200",
+      "requested_name": "agavelow-2",
+      "source_path": "agavelow-2/model.glb",
+      "display_name": "仙人掌",
+      "new_directory": "agavelow-2",
+      "old_ref": "models/AF-1792510031830762200",
+      "new_ref": "models/agavelow-2"
+    },
+    {
+      "asset_id": "AF-1792510035970156500",
+      "old_directory": "AF-1792510035970156500",
+      "requested_name": "agavelow-3",
+      "source_path": "agavelow-3/model.glb",
+      "display_name": "仙人掌",
+      "new_directory": "agavelow-3",
+      "old_ref": "models/AF-1792510035970156500",
+      "new_ref": "models/agavelow-3"
+    },
+    {
+      "asset_id": "AF-1792510078292716500",
+      "old_directory": "AF-1792510078292716500",
+      "requested_name": "avocado",
+      "source_path": "avocado/model.glb",
+      "display_name": "牛油果",
+      "new_directory": "avocado",
+      "old_ref": "models/AF-1792510078292716500",
+      "new_ref": "models/avocado"
+    },
+    {
+      "asset_id": "AF-1792510084029153700",
+      "old_directory": "AF-1792510084029153700",
+      "requested_name": "armchair-01",
+      "source_path": "armchair-01/model.glb",
+      "display_name": "欧式扶手椅",
+      "new_directory": "armchair-01",
+      "old_ref": "models/AF-1792510084029153700",
+      "new_ref": "models/armchair-01"
+    },
+    {
+      "asset_id": "AF-1792510138928738500",
+      "old_directory": "AF-1792510138928738500",
+      "requested_name": "basemesh-forest",
+      "source_path": "basemesh-forest/model.glb",
+      "display_name": "草地",
+      "new_directory": "basemesh-forest",
+      "old_ref": "models/AF-1792510138928738500",
+      "new_ref": "models/basemesh-forest"
+    },
+    {
+      "asset_id": "AF-1792510139039004100",
+      "old_directory": "AF-1792510139039004100",
+      "requested_name": "barrel",
+      "source_path": "barrel/model.glb",
+      "display_name": "木桶",
+      "new_directory": "barrel",
+      "old_ref": "models/AF-1792510139039004100",
+      "new_ref": "models/barrel"
+    },
+    {
+      "asset_id": "AF-1792510174135628100",
+      "old_directory": "AF-1792510174135628100",
+      "requested_name": "beachpart-u-2",
+      "source_path": "beachpart-u-2/model.glb",
+      "display_name": "地垫",
+      "new_directory": "beachpart-u-2",
+      "old_ref": "models/AF-1792510174135628100",
+      "new_ref": "models/beachpart-u-2"
+    },
+    {
+      "asset_id": "AF-1792510176552037500",
+      "old_directory": "AF-1792510176552037500",
+      "requested_name": "beachpart-u",
+      "source_path": "beachpart-u/model.glb",
+      "display_name": "地垫",
+      "new_directory": "beachpart-u",
+      "old_ref": "models/AF-1792510176552037500",
+      "new_ref": "models/beachpart-u"
+    },
+    {
+      "asset_id": "AF-1792510213759306200",
+      "old_directory": "AF-1792510213759306200",
+      "requested_name": "bench1",
+      "source_path": "bench1/model.glb",
+      "display_name": "长椅",
+      "new_directory": "bench1",
+      "old_ref": "models/AF-1792510213759306200",
+      "new_ref": "models/bench1"
+    },
+    {
+      "asset_id": "AF-1792510226369853200",
+      "old_directory": "AF-1792510226369853200",
+      "requested_name": "bg-mauntains",
+      "source_path": "bg-mauntains/model.glb",
+      "display_name": "岩石",
+      "new_directory": "bg-mauntains",
+      "old_ref": "models/AF-1792510226369853200",
+      "new_ref": "models/bg-mauntains"
+    },
+    {
+      "asset_id": "AF-1792510240014909700",
+      "old_directory": "AF-1792510240014909700",
+      "requested_name": "bigcliff",
+      "source_path": "bigcliff/model.glb",
+      "display_name": "岩石",
+      "new_directory": "bigcliff",
+      "old_ref": "models/AF-1792510240014909700",
+      "new_ref": "models/bigcliff"
+    },
+    {
+      "asset_id": "AF-1792510279412787900",
+      "old_directory": "AF-1792510279412787900",
+      "requested_name": "bigcliffwithplants",
+      "source_path": "bigcliffwithplants/model.glb",
+      "display_name": "岩石",
+      "new_directory": "bigcliffwithplants",
+      "old_ref": "models/AF-1792510279412787900",
+      "new_ref": "models/bigcliffwithplants"
+    },
+    {
+      "asset_id": "AF-1792510281527090200",
+      "old_directory": "AF-1792510281527090200",
+      "requested_name": "boat1",
+      "source_path": "boat1/model.glb",
+      "display_name": "独木舟",
+      "new_directory": "boat1",
+      "old_ref": "models/AF-1792510281527090200",
+      "new_ref": "models/boat1"
+    },
+    {
+      "asset_id": "AF-1792510312524799600",
+      "old_directory": "AF-1792510312524799600",
+      "requested_name": "boat1-2",
+      "source_path": "boat1-2/model.glb",
+      "display_name": "独木舟",
+      "new_directory": "boat1-2",
+      "old_ref": "models/AF-1792510312524799600",
+      "new_ref": "models/boat1-2"
+    },
+    {
+      "asset_id": "AF-1792510336915568500",
+      "old_directory": "AF-1792510336915568500",
+      "requested_name": "boombox",
+      "source_path": "boombox/model.glb",
+      "display_name": "便携式收音机",
+      "new_directory": "boombox",
+      "old_ref": "models/AF-1792510336915568500",
+      "new_ref": "models/boombox"
+    },
+    {
+      "asset_id": "AF-1792510343847035100",
+      "old_directory": "AF-1792510343847035100",
+      "requested_name": "bush",
+      "source_path": "bush/model.glb",
+      "display_name": "普通树",
+      "new_directory": "bush",
+      "old_ref": "models/AF-1792510343847035100",
+      "new_ref": "models/bush"
+    },
+    {
+      "asset_id": "AF-1792510366922824000",
+      "old_directory": "AF-1792510366922824000",
+      "requested_name": "bush-2",
+      "source_path": "bush-2/model.glb",
+      "display_name": "普通树",
+      "new_directory": "bush-2",
+      "old_ref": "models/AF-1792510366922824000",
+      "new_ref": "models/bush-2"
+    },
+    {
+      "asset_id": "AF-1792510378355551100",
+      "old_directory": "AF-1792510378355551100",
+      "requested_name": "bush-3",
+      "source_path": "bush-3/model.glb",
+      "display_name": "树",
+      "new_directory": "bush-3",
+      "old_ref": "models/AF-1792510378355551100",
+      "new_ref": "models/bush-3"
+    },
+    {
+      "asset_id": "AF-1792510396649488000",
+      "old_directory": "AF-1792510396649488000",
+      "requested_name": "bush2",
+      "source_path": "bush2/model.glb",
+      "display_name": "普通树",
+      "new_directory": "bush2",
+      "old_ref": "models/AF-1792510396649488000",
+      "new_ref": "models/bush2"
+    },
+    {
+      "asset_id": "AF-1792510410728064200",
+      "old_directory": "AF-1792510410728064200",
+      "requested_name": "bush2-2",
+      "source_path": "bush2-2/model.glb",
+      "display_name": "普通树",
+      "new_directory": "bush2-2",
+      "old_ref": "models/AF-1792510410728064200",
+      "new_ref": "models/bush2-2"
+    },
+    {
+      "asset_id": "AF-1792510425591998900",
+      "old_directory": "AF-1792510425591998900",
+      "requested_name": "bush2-3",
+      "source_path": "bush2-3/model.glb",
+      "display_name": "普通树",
+      "new_directory": "bush2-3",
+      "old_ref": "models/AF-1792510425591998900",
+      "new_ref": "models/bush2-3"
+    },
+    {
+      "asset_id": "AF-1792510438697445800",
+      "old_directory": "AF-1792510438697445800",
+      "requested_name": "cactus",
+      "source_path": "cactus/model.glb",
+      "display_name": "草地",
+      "new_directory": "cactus",
+      "old_ref": "models/AF-1792510438697445800",
+      "new_ref": "models/cactus"
+    },
+    {
+      "asset_id": "AF-1792510460218674200",
+      "old_directory": "AF-1792510460218674200",
+      "requested_name": "cactusmini",
+      "source_path": "cactusmini/model.glb",
+      "display_name": "海胆",
+      "new_directory": "cactusmini",
+      "old_ref": "models/AF-1792510460218674200",
+      "new_ref": "models/cactusmini"
+    },
+    {
+      "asset_id": "AF-1792510471046922200",
+      "old_directory": "AF-1792510471046922200",
+      "requested_name": "campfire",
+      "source_path": "campfire/model.glb",
+      "display_name": "篝火",
+      "new_directory": "campfire",
+      "old_ref": "models/AF-1792510471046922200",
+      "new_ref": "models/campfire"
+    },
+    {
+      "asset_id": "AF-1792510497309537500",
+      "old_directory": "AF-1792510497309537500",
+      "requested_name": "campfire-2",
+      "source_path": "campfire-2/model.glb",
+      "display_name": "篝火",
+      "new_directory": "campfire-2",
+      "old_ref": "models/AF-1792510497309537500",
+      "new_ref": "models/campfire-2"
+    },
+    {
+      "asset_id": "AF-1792510506516495300",
+      "old_directory": "AF-1792510506516495300",
+      "requested_name": "campfire-3",
+      "source_path": "campfire-3/model.glb",
+      "display_name": "篝火",
+      "new_directory": "campfire-3",
+      "old_ref": "models/AF-1792510506516495300",
+      "new_ref": "models/campfire-3"
+    },
+    {
+      "asset_id": "AF-1792510537076515100",
+      "old_directory": "AF-1792510537076515100",
+      "requested_name": "campfire-4",
+      "source_path": "campfire-4/model.glb",
+      "display_name": "篝火",
+      "new_directory": "campfire-4",
+      "old_ref": "models/AF-1792510537076515100",
+      "new_ref": "models/campfire-4"
+    },
+    {
+      "asset_id": "AF-1792510541785722500",
+      "old_directory": "AF-1792510541785722500",
+      "requested_name": "campfire-5",
+      "source_path": "campfire-5/model.glb",
+      "display_name": "篝火",
+      "new_directory": "campfire-5",
+      "old_ref": "models/AF-1792510541785722500",
+      "new_ref": "models/campfire-5"
+    },
+    {
+      "asset_id": "AF-1792510583084062300",
+      "old_directory": "AF-1792510583084062300",
+      "requested_name": "campfireburning",
+      "source_path": "campfireburning/model.glb",
+      "display_name": "篝火",
+      "new_directory": "campfireburning",
+      "old_ref": "models/AF-1792510583084062300",
+      "new_ref": "models/campfireburning"
+    },
+    {
+      "asset_id": "AF-1792510589553656200",
+      "old_directory": "AF-1792510589553656200",
+      "requested_name": "cart",
+      "source_path": "cart/model.glb",
+      "display_name": "手推车",
+      "new_directory": "cart",
+      "old_ref": "models/AF-1792510589553656200",
+      "new_ref": "models/cart"
+    },
+    {
+      "asset_id": "AF-1792510646367868800",
+      "old_directory": "AF-1792510646367868800",
+      "requested_name": "coconut",
+      "source_path": "coconut/model.glb",
+      "display_name": "岩石",
+      "new_directory": "coconut",
+      "old_ref": "models/AF-1792510646367868800",
+      "new_ref": "models/coconut"
+    },
+    {
+      "asset_id": "AF-1792510650661239700",
+      "old_directory": "AF-1792510650661239700",
+      "requested_name": "castlecliff",
+      "source_path": "castlecliff/model.glb",
+      "display_name": "城堡",
+      "new_directory": "castlecliff",
+      "old_ref": "models/AF-1792510650661239700",
+      "new_ref": "models/castlecliff"
+    },
+    {
+      "asset_id": "AF-1792510683861857200",
+      "old_directory": "AF-1792510683861857200",
+      "requested_name": "coconut-plant",
+      "source_path": "coconut-plant/model.glb",
+      "display_name": "蕨类盆栽",
+      "new_directory": "coconut-plant",
+      "old_ref": "models/AF-1792510683861857200",
+      "new_ref": "models/coconut-plant"
+    },
+    {
+      "asset_id": "AF-1792510686093711400",
+      "old_directory": "AF-1792510686093711400",
+      "requested_name": "coconut-2",
+      "source_path": "coconut-2/model.glb",
+      "display_name": "岩石",
+      "new_directory": "coconut-2",
+      "old_ref": "models/AF-1792510686093711400",
+      "new_ref": "models/coconut-2"
+    },
+    {
+      "asset_id": "AF-1792510718261490100",
+      "old_directory": "AF-1792510718261490100",
+      "requested_name": "coconut-plant-2",
+      "source_path": "coconut-plant-2/model.glb",
+      "display_name": "蕨类植物",
+      "new_directory": "coconut-plant-2",
+      "old_ref": "models/AF-1792510718261490100",
+      "new_ref": "models/coconut-plant-2"
+    },
+    {
+      "asset_id": "AF-1792510744988185200",
+      "old_directory": "AF-1792510744988185200",
+      "requested_name": "coffee-table",
+      "source_path": "coffee-table/model.glb",
+      "display_name": "梳妆台",
+      "new_directory": "coffee-table",
+      "old_ref": "models/AF-1792510744988185200",
+      "new_ref": "models/coffee-table"
+    },
+    {
+      "asset_id": "AF-1792510748249154400",
+      "old_directory": "AF-1792510748249154400",
+      "requested_name": "conifer-proxy",
+      "source_path": "conifer-proxy/model.glb",
+      "display_name": "松树",
+      "new_directory": "conifer-proxy",
+      "old_ref": "models/AF-1792510748249154400",
+      "new_ref": "models/conifer-proxy"
+    },
+    {
+      "asset_id": "AF-1792510768153073200",
+      "old_directory": "AF-1792510768153073200",
+      "requested_name": "conifer1-distant",
+      "source_path": "conifer1-distant/model.glb",
+      "display_name": "松树",
+      "new_directory": "conifer1-distant",
+      "old_ref": "models/AF-1792510768153073200",
+      "new_ref": "models/conifer1-distant"
+    },
+    {
+      "asset_id": "AF-1792510782394854400",
+      "old_directory": "AF-1792510782394854400",
+      "requested_name": "conifer1-low",
+      "source_path": "conifer1-low/model.glb",
+      "display_name": "松树",
+      "new_directory": "conifer1-low",
+      "old_ref": "models/AF-1792510782394854400",
+      "new_ref": "models/conifer1-low"
+    },
+    {
+      "asset_id": "AF-1792510797242714700",
+      "old_directory": "AF-1792510797242714700",
+      "requested_name": "conifer1-low-2",
+      "source_path": "conifer1-low-2/model.glb",
+      "display_name": "松树",
+      "new_directory": "conifer1-low-2",
+      "old_ref": "models/AF-1792510797242714700",
+      "new_ref": "models/conifer1-low-2"
+    },
+    {
+      "asset_id": "AF-1792510807711526700",
+      "old_directory": "AF-1792510807711526700",
+      "requested_name": "conifer2-distant",
+      "source_path": "conifer2-distant/model.glb",
+      "display_name": "松树",
+      "new_directory": "conifer2-distant",
+      "old_ref": "models/AF-1792510807711526700",
+      "new_ref": "models/conifer2-distant"
+    },
+    {
+      "asset_id": "AF-1792510827194862800",
+      "old_directory": "AF-1792510827194862800",
+      "requested_name": "conifer2-low",
+      "source_path": "conifer2-low/model.glb",
+      "display_name": "松树",
+      "new_directory": "conifer2-low",
+      "old_ref": "models/AF-1792510827194862800",
+      "new_ref": "models/conifer2-low"
+    },
+    {
+      "asset_id": "AF-1792510841525935400",
+      "old_directory": "AF-1792510841525935400",
+      "requested_name": "cookingfireplace",
+      "source_path": "cookingfireplace/model.glb",
+      "display_name": "篝火",
+      "new_directory": "cookingfireplace",
+      "old_ref": "models/AF-1792510841525935400",
+      "new_ref": "models/cookingfireplace"
+    },
+    {
+      "asset_id": "AF-1792510871218737300",
+      "old_directory": "AF-1792510871218737300",
+      "requested_name": "demo-forest-bush",
+      "source_path": "demo-forest-bush/model.glb",
+      "display_name": "岩石",
+      "new_directory": "demo-forest-bush",
+      "old_ref": "models/AF-1792510871218737300",
+      "new_ref": "models/demo-forest-bush"
+    },
+    {
+      "asset_id": "AF-1792510891757365300",
+      "old_directory": "AF-1792510891757365300",
+      "requested_name": "dead-camp",
+      "source_path": "dead-camp/model.glb",
+      "display_name": "山地场景",
+      "new_directory": "dead-camp",
+      "old_ref": "models/AF-1792510891757365300",
+      "new_ref": "models/dead-camp"
+    },
+    {
+      "asset_id": "AF-1792510894520861100",
+      "old_directory": "AF-1792510894520861100",
+      "requested_name": "demo-forest-pine-tree",
+      "source_path": "demo-forest-pine-tree/model.glb",
+      "display_name": "松树",
+      "new_directory": "demo-forest-pine-tree",
+      "old_ref": "models/AF-1792510894520861100",
+      "new_ref": "models/demo-forest-pine-tree"
+    },
+    {
+      "asset_id": "AF-1792510975619708100",
+      "old_directory": "AF-1792510975619708100",
+      "requested_name": "doublerockshape",
+      "source_path": "doublerockshape/model.glb",
+      "display_name": "岩石",
+      "new_directory": "doublerockshape",
+      "old_ref": "models/AF-1792510975619708100",
+      "new_ref": "models/doublerockshape"
+    },
+    {
+      "asset_id": "AF-1792510979344046800",
+      "old_directory": "AF-1792510979344046800",
+      "requested_name": "desk-lamp",
+      "source_path": "desk-lamp/model.glb",
+      "display_name": "台灯",
+      "new_directory": "desk-lamp",
+      "old_ref": "models/AF-1792510979344046800",
+      "new_ref": "models/desk-lamp"
+    },
+    {
+      "asset_id": "AF-1792511009876409700",
+      "old_directory": "AF-1792511009876409700",
+      "requested_name": "doublerockshape-high",
+      "source_path": "doublerockshape-high/model.glb",
+      "display_name": "岩石",
+      "new_directory": "doublerockshape-high",
+      "old_ref": "models/AF-1792511009876409700",
+      "new_ref": "models/doublerockshape-high"
+    },
+    {
+      "asset_id": "AF-1792511013913230900",
+      "old_directory": "AF-1792511013913230900",
+      "requested_name": "driedfish",
+      "source_path": "driedfish/model.glb",
+      "display_name": "晾衣架",
+      "new_directory": "driedfish",
+      "old_ref": "models/AF-1792511013913230900",
+      "new_ref": "models/driedfish"
+    },
+    {
+      "asset_id": "AF-1792511033804211600",
+      "old_directory": "AF-1792511033804211600",
+      "requested_name": "driedfish-2",
+      "source_path": "driedfish-2/model.glb",
+      "display_name": "晾衣绳",
+      "new_directory": "driedfish-2",
+      "old_ref": "models/AF-1792511033804211600",
+      "new_ref": "models/driedfish-2"
+    },
+    {
+      "asset_id": "AF-1792511042700487100",
+      "old_directory": "AF-1792511042700487100",
+      "requested_name": "driedfishleaf",
+      "source_path": "driedfishleaf/model.glb",
+      "display_name": "草地",
+      "new_directory": "driedfishleaf",
+      "old_ref": "models/AF-1792511042700487100",
+      "new_ref": "models/driedfishleaf"
+    },
+    {
+      "asset_id": "AF-1792511059639351200",
+      "old_directory": "AF-1792511059639351200",
+      "requested_name": "driedfishleaf-2",
+      "source_path": "driedfishleaf-2/model.glb",
+      "display_name": "草地",
+      "new_directory": "driedfishleaf-2",
+      "old_ref": "models/AF-1792511059639351200",
+      "new_ref": "models/driedfishleaf-2"
+    },
+    {
+      "asset_id": "AF-1792511089228834500",
+      "old_directory": "AF-1792511089228834500",
+      "requested_name": "duck",
+      "source_path": "duck/model.glb",
+      "display_name": "小黄鸭",
+      "new_directory": "duck",
+      "old_ref": "models/AF-1792511089228834500",
+      "new_ref": "models/duck"
+    },
+    {
+      "asset_id": "AF-1792511102778858000",
+      "old_directory": "AF-1792511102778858000",
+      "requested_name": "dunes",
+      "source_path": "dunes/model.glb",
+      "display_name": "草地",
+      "new_directory": "dunes",
+      "old_ref": "models/AF-1792511102778858000",
+      "new_ref": "models/dunes"
+    },
+    {
+      "asset_id": "AF-1792511124298949500",
+      "old_directory": "AF-1792511124298949500",
+      "requested_name": "fence1",
+      "source_path": "fence1/model.glb",
+      "display_name": "木栅栏",
+      "new_directory": "fence1",
+      "old_ref": "models/AF-1792511124298949500",
+      "new_ref": "models/fence1"
+    },
+    {
+      "asset_id": "AF-1792511130960716400",
+      "old_directory": "AF-1792511130960716400",
+      "requested_name": "fishgrillstickred",
+      "source_path": "fishgrillstickred/model.glb",
+      "display_name": "棒球棒",
+      "new_directory": "fishgrillstickred",
+      "old_ref": "models/AF-1792511130960716400",
+      "new_ref": "models/fishgrillstickred"
+    },
+    {
+      "asset_id": "AF-1792511141509733600",
+      "old_directory": "AF-1792511141509733600",
+      "requested_name": "fishgrillstickred-2",
+      "source_path": "fishgrillstickred-2/model.glb",
+      "display_name": "棒球棒",
+      "new_directory": "fishgrillstickred-2",
+      "old_ref": "models/AF-1792511141509733600",
+      "new_ref": "models/fishgrillstickred-2"
+    },
+    {
+      "asset_id": "AF-1792511149469139900",
+      "old_directory": "AF-1792511149469139900",
+      "requested_name": "fishgrillsticksilver",
+      "source_path": "fishgrillsticksilver/model.glb",
+      "display_name": "棒球棒",
+      "new_directory": "fishgrillsticksilver",
+      "old_ref": "models/AF-1792511149469139900",
+      "new_ref": "models/fishgrillsticksilver"
+    },
+    {
+      "asset_id": "AF-1792511162605171800",
+      "old_directory": "AF-1792511162605171800",
+      "requested_name": "fishgrillsticksilver-2",
+      "source_path": "fishgrillsticksilver-2/model.glb",
+      "display_name": "棒球棒",
+      "new_directory": "fishgrillsticksilver-2",
+      "old_ref": "models/AF-1792511162605171800",
+      "new_ref": "models/fishgrillsticksilver-2"
+    },
+    {
+      "asset_id": "AF-1792511176805496100",
+      "old_directory": "AF-1792511176805496100",
+      "requested_name": "fishgrillstickyellow",
+      "source_path": "fishgrillstickyellow/model.glb",
+      "display_name": "棒球棒",
+      "new_directory": "fishgrillstickyellow",
+      "old_ref": "models/AF-1792511176805496100",
+      "new_ref": "models/fishgrillstickyellow"
+    },
+    {
+      "asset_id": "AF-1792511183289034000",
+      "old_directory": "AF-1792511183289034000",
+      "requested_name": "fishgrillstickyellow-2",
+      "source_path": "fishgrillstickyellow-2/model.glb",
+      "display_name": "棒球棒",
+      "new_directory": "fishgrillstickyellow-2",
+      "old_ref": "models/AF-1792511183289034000",
+      "new_ref": "models/fishgrillstickyellow-2"
+    },
+    {
+      "asset_id": "AF-1792511207568983800",
+      "old_directory": "AF-1792511207568983800",
+      "requested_name": "fishingrod",
+      "source_path": "fishingrod/model.glb",
+      "display_name": "保龄球瓶",
+      "new_directory": "fishingrod",
+      "old_ref": "models/AF-1792511207568983800",
+      "new_ref": "models/fishingrod"
+    },
+    {
+      "asset_id": "AF-1792512558116852200",
+      "old_directory": "AF-1792512558116852200",
+      "requested_name": "fishingrod-2",
+      "source_path": "fishingrod-2/model.glb",
+      "display_name": "保龄球瓶",
+      "new_directory": "fishingrod-2",
+      "old_ref": "models/AF-1792512558116852200",
+      "new_ref": "models/fishingrod-2"
+    },
+    {
+      "asset_id": "AF-1792512565964696600",
+      "old_directory": "AF-1792512565964696600",
+      "requested_name": "flowerblue",
+      "source_path": "flowerblue/model.glb",
+      "display_name": "郁金香",
+      "new_directory": "flowerblue",
+      "old_ref": "models/AF-1792512565964696600",
+      "new_ref": "models/flowerblue"
+    },
+    {
+      "asset_id": "AF-1792512582025152900",
+      "old_directory": "AF-1792512582025152900",
+      "requested_name": "flowerblue-2",
+      "source_path": "flowerblue-2/model.glb",
+      "display_name": "郁金香",
+      "new_directory": "flowerblue-2",
+      "old_ref": "models/AF-1792512582025152900",
+      "new_ref": "models/flowerblue-2"
+    },
+    {
+      "asset_id": "AF-1792512591772890500",
+      "old_directory": "AF-1792512591772890500",
+      "requested_name": "flowerred",
+      "source_path": "flowerred/model.glb",
+      "display_name": "郁金香",
+      "new_directory": "flowerred",
+      "old_ref": "models/AF-1792512591772890500",
+      "new_ref": "models/flowerred"
+    },
+    {
+      "asset_id": "AF-1792512613433206900",
+      "old_directory": "AF-1792512613433206900",
+      "requested_name": "flowerred-2",
+      "source_path": "flowerred-2/model.glb",
+      "display_name": "郁金香",
+      "new_directory": "flowerred-2",
+      "old_ref": "models/AF-1792512613433206900",
+      "new_ref": "models/flowerred-2"
+    },
+    {
+      "asset_id": "AF-1792512619328290400",
+      "old_directory": "AF-1792512619328290400",
+      "requested_name": "flowerred-3",
+      "source_path": "flowerred-3/model.glb",
+      "display_name": "郁金香",
+      "new_directory": "flowerred-3",
+      "old_ref": "models/AF-1792512619328290400",
+      "new_ref": "models/flowerred-3"
+    },
+    {
+      "asset_id": "AF-1792512639873309500",
+      "old_directory": "AF-1792512639873309500",
+      "requested_name": "flowerwhite",
+      "source_path": "flowerwhite/model.glb",
+      "display_name": "郁金香",
+      "new_directory": "flowerwhite",
+      "old_ref": "models/AF-1792512639873309500",
+      "new_ref": "models/flowerwhite"
+    },
+    {
+      "asset_id": "AF-1792512647849884300",
+      "old_directory": "AF-1792512647849884300",
+      "requested_name": "flowerwhite-2",
+      "source_path": "flowerwhite-2/model.glb",
+      "display_name": "郁金香",
+      "new_directory": "flowerwhite-2",
+      "old_ref": "models/AF-1792512647849884300",
+      "new_ref": "models/flowerwhite-2"
+    },
+    {
+      "asset_id": "AF-1792512675194816300",
+      "old_directory": "AF-1792512675194816300",
+      "requested_name": "flowerwhite-3",
+      "source_path": "flowerwhite-3/model.glb",
+      "display_name": "郁金香",
+      "new_directory": "flowerwhite-3",
+      "old_ref": "models/AF-1792512675194816300",
+      "new_ref": "models/flowerwhite-3"
+    },
+    {
+      "asset_id": "AF-1792512721120238800",
+      "old_directory": "AF-1792512721120238800",
+      "requested_name": "hangingbridge",
+      "source_path": "hangingbridge/model.glb",
+      "display_name": "吊桥",
+      "new_directory": "hangingbridge",
+      "old_ref": "models/AF-1792512721120238800",
+      "new_ref": "models/hangingbridge"
+    },
+    {
+      "asset_id": "AF-1792512747901116700",
+      "old_directory": "AF-1792512747901116700",
+      "requested_name": "hangingbridge-2",
+      "source_path": "hangingbridge-2/model.glb",
+      "display_name": "木桥",
+      "new_directory": "hangingbridge-2",
+      "old_ref": "models/AF-1792512747901116700",
+      "new_ref": "models/hangingbridge-2"
+    },
+    {
+      "asset_id": "AF-1792512846584821200",
+      "old_directory": "AF-1792512846584821200",
+      "requested_name": "house1",
+      "source_path": "house1/model.glb",
+      "display_name": "茅草屋",
+      "new_directory": "house1",
+      "old_ref": "models/AF-1792512846584821200",
+      "new_ref": "models/house1"
+    },
+    {
+      "asset_id": "AF-1792512851963411300",
+      "old_directory": "AF-1792512851963411300",
+      "requested_name": "helmet-damaged",
+      "source_path": "helmet-damaged/model.glb",
+      "display_name": "科幻头盔",
+      "new_directory": "helmet-damaged",
+      "old_ref": "models/AF-1792512851963411300",
+      "new_ref": "models/helmet-damaged"
+    },
+    {
+      "asset_id": "AF-1792512923354448900",
+      "old_directory": "AF-1792512923354448900",
+      "requested_name": "house1-2",
+      "source_path": "house1-2/model.glb",
+      "display_name": "茅草屋",
+      "new_directory": "house1-2",
+      "old_ref": "models/AF-1792512923354448900",
+      "new_ref": "models/house1-2"
+    },
+    {
+      "asset_id": "AF-1792512932196573600",
+      "old_directory": "AF-1792512932196573600",
+      "requested_name": "house1-3",
+      "source_path": "house1-3/model.glb",
+      "display_name": "显示器",
+      "new_directory": "house1-3",
+      "old_ref": "models/AF-1792512932196573600",
+      "new_ref": "models/house1-3"
+    },
+    {
+      "asset_id": "AF-1792512994008233500",
+      "old_directory": "AF-1792512994008233500",
+      "requested_name": "house2",
+      "source_path": "house2/model.glb",
+      "display_name": "显示器",
+      "new_directory": "house2",
+      "old_ref": "models/AF-1792512994008233500",
+      "new_ref": "models/house2"
+    },
+    {
+      "asset_id": "AF-1792513003051034000",
+      "old_directory": "AF-1792513003051034000",
+      "requested_name": "iceberg",
+      "source_path": "iceberg/model.glb",
+      "display_name": "岩石",
+      "new_directory": "iceberg",
+      "old_ref": "models/AF-1792513003051034000",
+      "new_ref": "models/iceberg"
+    },
+    {
+      "asset_id": "AF-1792513046699073600",
+      "old_directory": "AF-1792513046699073600",
+      "requested_name": "icefloelow",
+      "source_path": "icefloelow/model.glb",
+      "display_name": "草地",
+      "new_directory": "icefloelow",
+      "old_ref": "models/AF-1792513046699073600",
+      "new_ref": "models/icefloelow"
+    },
+    {
+      "asset_id": "AF-1792513113098622700",
+      "old_directory": "AF-1792513113098622700",
+      "requested_name": "joshua-camp",
+      "source_path": "joshua-camp/model.glb",
+      "display_name": "露营场景",
+      "new_directory": "joshua-camp",
+      "old_ref": "models/AF-1792513113098622700",
+      "new_ref": "models/joshua-camp"
+    },
+    {
+      "asset_id": "AF-1792513133316955100",
+      "old_directory": "AF-1792513133316955100",
+      "requested_name": "joshuatree2",
+      "source_path": "joshuatree2/model.glb",
+      "display_name": "普通树",
+      "new_directory": "joshuatree2",
+      "old_ref": "models/AF-1792513133316955100",
+      "new_ref": "models/joshuatree2"
+    },
+    {
+      "asset_id": "AF-1792513165174725900",
+      "old_directory": "AF-1792513165174725900",
+      "requested_name": "ladder",
+      "source_path": "ladder/model.glb",
+      "display_name": "梯子",
+      "new_directory": "ladder",
+      "old_ref": "models/AF-1792513165174725900",
+      "new_ref": "models/ladder"
+    },
+    {
+      "asset_id": "AF-1792513166463503300",
+      "old_directory": "AF-1792513166463503300",
+      "requested_name": "joshuatree3",
+      "source_path": "joshuatree3/model.glb",
+      "display_name": "普通树",
+      "new_directory": "joshuatree3",
+      "old_ref": "models/AF-1792513166463503300",
+      "new_ref": "models/joshuatree3"
+    },
+    {
+      "asset_id": "AF-1792513188034365600",
+      "old_directory": "AF-1792513188034365600",
+      "requested_name": "ladder-2",
+      "source_path": "ladder-2/model.glb",
+      "display_name": "梯子",
+      "new_directory": "ladder-2",
+      "old_ref": "models/AF-1792513188034365600",
+      "new_ref": "models/ladder-2"
+    },
+    {
+      "asset_id": "AF-1792513209076829100",
+      "old_directory": "AF-1792513209076829100",
+      "requested_name": "lantern",
+      "source_path": "lantern/model.glb",
+      "display_name": "路灯",
+      "new_directory": "lantern",
+      "old_ref": "models/AF-1792513209076829100",
+      "new_ref": "models/lantern"
+    },
+    {
+      "asset_id": "AF-1792513220626870000",
+      "old_directory": "AF-1792513220626870000",
+      "requested_name": "main",
+      "source_path": "main/model.glb",
+      "display_name": "草地",
+      "new_directory": "main",
+      "old_ref": "models/AF-1792513220626870000",
+      "new_ref": "models/main"
+    },
+    {
+      "asset_id": "AF-1792513246781957600",
+      "old_directory": "AF-1792513246781957600",
+      "requested_name": "main-2",
+      "source_path": "main-2/model.glb",
+      "display_name": "草地",
+      "new_directory": "main-2",
+      "old_ref": "models/AF-1792513246781957600",
+      "new_ref": "models/main-2"
+    },
+    {
+      "asset_id": "AF-1792513251948728300",
+      "old_directory": "AF-1792513251948728300",
+      "requested_name": "main-3",
+      "source_path": "main-3/model.glb",
+      "display_name": "草地",
+      "new_directory": "main-3",
+      "old_ref": "models/AF-1792513251948728300",
+      "new_ref": "models/main-3"
+    },
+    {
+      "asset_id": "AF-1792513316285739000",
+      "old_directory": "AF-1792513316285739000",
+      "requested_name": "marketstand",
+      "source_path": "marketstand/model.glb",
+      "display_name": "矿车",
+      "new_directory": "marketstand",
+      "old_ref": "models/AF-1792513316285739000",
+      "new_ref": "models/marketstand"
+    },
+    {
+      "asset_id": "AF-1792513323007071900",
+      "old_directory": "AF-1792513323007071900",
+      "requested_name": "marketstandclosed",
+      "source_path": "marketstandclosed/model.glb",
+      "display_name": "双层床",
+      "new_directory": "marketstandclosed",
+      "old_ref": "models/AF-1792513323007071900",
+      "new_ref": "models/marketstandclosed"
+    },
+    {
+      "asset_id": "AF-1792513373102981400",
+      "old_directory": "AF-1792513373102981400",
+      "requested_name": "marketstandclosed-2",
+      "source_path": "marketstandclosed-2/model.glb",
+      "display_name": "双层床",
+      "new_directory": "marketstandclosed-2",
+      "old_ref": "models/AF-1792513373102981400",
+      "new_ref": "models/marketstandclosed-2"
+    },
+    {
+      "asset_id": "AF-1792513382976762200",
+      "old_directory": "AF-1792513382976762200",
+      "requested_name": "marketstandred",
+      "source_path": "marketstandred/model.glb",
+      "display_name": "花架",
+      "new_directory": "marketstandred",
+      "old_ref": "models/AF-1792513382976762200",
+      "new_ref": "models/marketstandred"
+    },
+    {
+      "asset_id": "AF-1792513427534509100",
+      "old_directory": "AF-1792513427534509100",
+      "requested_name": "marketstandsmall",
+      "source_path": "marketstandsmall/model.glb",
+      "display_name": "花架",
+      "new_directory": "marketstandsmall",
+      "old_ref": "models/AF-1792513427534509100",
+      "new_ref": "models/marketstandsmall"
+    },
+    {
+      "asset_id": "AF-1792513438734706500",
+      "old_directory": "AF-1792513438734706500",
+      "requested_name": "marketstandsmall-2",
+      "source_path": "marketstandsmall-2/model.glb",
+      "display_name": "双层床",
+      "new_directory": "marketstandsmall-2",
+      "old_ref": "models/AF-1792513438734706500",
+      "new_ref": "models/marketstandsmall-2"
+    },
+    {
+      "asset_id": "AF-1792513487189335600",
+      "old_directory": "AF-1792513487189335600",
+      "requested_name": "mountains",
+      "source_path": "mountains/model.glb",
+      "display_name": "岩石环",
+      "new_directory": "mountains",
+      "old_ref": "models/AF-1792513487189335600",
+      "new_ref": "models/mountains"
+    },
+    {
+      "asset_id": "AF-1792513525099781600",
+      "old_directory": "AF-1792513525099781600",
+      "requested_name": "mountains-2",
+      "source_path": "mountains-2/model.glb",
+      "display_name": "岩石环",
+      "new_directory": "mountains-2",
+      "old_ref": "models/AF-1792513525099781600",
+      "new_ref": "models/mountains-2"
+    },
+    {
+      "asset_id": "AF-1792513526928841500",
+      "old_directory": "AF-1792513526928841500",
+      "requested_name": "mushrooms",
+      "source_path": "mushrooms/model.glb",
+      "display_name": "蘑菇",
+      "new_directory": "mushrooms",
+      "old_ref": "models/AF-1792513526928841500",
+      "new_ref": "models/mushrooms"
+    },
+    {
+      "asset_id": "AF-1792513565301787600",
+      "old_directory": "AF-1792513565301787600",
+      "requested_name": "mushroomsyellow",
+      "source_path": "mushroomsyellow/model.glb",
+      "display_name": "蘑菇",
+      "new_directory": "mushroomsyellow",
+      "old_ref": "models/AF-1792513565301787600",
+      "new_ref": "models/mushroomsyellow"
+    },
+    {
+      "asset_id": "AF-1792513584492894200",
+      "old_directory": "AF-1792513584492894200",
+      "requested_name": "nightstand",
+      "source_path": "nightstand/model.glb",
+      "display_name": "床头柜",
+      "new_directory": "nightstand",
+      "old_ref": "models/AF-1792513584492894200",
+      "new_ref": "models/nightstand"
+    },
+    {
+      "asset_id": "AF-1792513610080022400",
+      "old_directory": "AF-1792513610080022400",
+      "requested_name": "oil-lamp",
+      "source_path": "oil-lamp/model.glb",
+      "display_name": "吊灯",
+      "new_directory": "oil-lamp",
+      "old_ref": "models/AF-1792513610080022400",
+      "new_ref": "models/oil-lamp"
+    },
+    {
+      "asset_id": "AF-1792513616289847300",
+      "old_directory": "AF-1792513616289847300",
+      "requested_name": "oldwall1",
+      "source_path": "oldwall1/model.glb",
+      "display_name": "地垫",
+      "new_directory": "oldwall1",
+      "old_ref": "models/AF-1792513616289847300",
+      "new_ref": "models/oldwall1"
+    },
+    {
+      "asset_id": "AF-1792513644532178700",
+      "old_directory": "AF-1792513644532178700",
+      "requested_name": "oldwall2",
+      "source_path": "oldwall2/model.glb",
+      "display_name": "草地",
+      "new_directory": "oldwall2",
+      "old_ref": "models/AF-1792513644532178700",
+      "new_ref": "models/oldwall2"
+    },
+    {
+      "asset_id": "AF-1792513656709965400",
+      "old_directory": "AF-1792513656709965400",
+      "requested_name": "oldwall3",
+      "source_path": "oldwall3/model.glb",
+      "display_name": "草地",
+      "new_directory": "oldwall3",
+      "old_ref": "models/AF-1792513656709965400",
+      "new_ref": "models/oldwall3"
+    },
+    {
+      "asset_id": "AF-1792513669221105200",
+      "old_directory": "AF-1792513669221105200",
+      "requested_name": "oldwoodplank1",
+      "source_path": "oldwoodplank1/model.glb",
+      "display_name": "矩形板",
+      "new_directory": "oldwoodplank1",
+      "old_ref": "models/AF-1792513669221105200",
+      "new_ref": "models/oldwoodplank1"
+    },
+    {
+      "asset_id": "AF-1792513693833751400",
+      "old_directory": "AF-1792513693833751400",
+      "requested_name": "paddle",
+      "source_path": "paddle/model.glb",
+      "display_name": "显示器",
+      "new_directory": "paddle",
+      "old_ref": "models/AF-1792513693833751400",
+      "new_ref": "models/paddle"
+    },
+    {
+      "asset_id": "AF-1792513702213059500",
+      "old_directory": "AF-1792513702213059500",
+      "requested_name": "ottoman",
+      "source_path": "ottoman/model.glb",
+      "display_name": "单人沙发",
+      "new_directory": "ottoman",
+      "old_ref": "models/AF-1792513702213059500",
+      "new_ref": "models/ottoman"
+    },
+    {
+      "asset_id": "AF-1792513718018418400",
+      "old_directory": "AF-1792513718018418400",
+      "requested_name": "paddle-2",
+      "source_path": "paddle-2/model.glb",
+      "display_name": "显示器",
+      "new_directory": "paddle-2",
+      "old_ref": "models/AF-1792513718018418400",
+      "new_ref": "models/paddle-2"
+    },
+    {
+      "asset_id": "AF-1792513731999586300",
+      "old_directory": "AF-1792513731999586300",
+      "requested_name": "palm1far",
+      "source_path": "palm1far/model.glb",
+      "display_name": "棕榈树",
+      "new_directory": "palm1far",
+      "old_ref": "models/AF-1792513731999586300",
+      "new_ref": "models/palm1far"
+    },
+    {
+      "asset_id": "AF-1792513753824681200",
+      "old_directory": "AF-1792513753824681200",
+      "requested_name": "palm1far-2",
+      "source_path": "palm1far-2/model.glb",
+      "display_name": "棕榈树",
+      "new_directory": "palm1far-2",
+      "old_ref": "models/AF-1792513753824681200",
+      "new_ref": "models/palm1far-2"
+    },
+    {
+      "asset_id": "AF-1792513757180407400",
+      "old_directory": "AF-1792513757180407400",
+      "requested_name": "palm3-leaning",
+      "source_path": "palm3-leaning/model.glb",
+      "display_name": "棕榈树",
+      "new_directory": "palm3-leaning",
+      "old_ref": "models/AF-1792513757180407400",
+      "new_ref": "models/palm3-leaning"
+    },
+    {
+      "asset_id": "AF-1792513779663634600",
+      "old_directory": "AF-1792513779663634600",
+      "requested_name": "palm3-leaning-2",
+      "source_path": "palm3-leaning-2/model.glb",
+      "display_name": "棕榈树",
+      "new_directory": "palm3-leaning-2",
+      "old_ref": "models/AF-1792513779663634600",
+      "new_ref": "models/palm3-leaning-2"
+    },
+    {
+      "asset_id": "AF-1792513788491466500",
+      "old_directory": "AF-1792513788491466500",
+      "requested_name": "palm3-small",
+      "source_path": "palm3-small/model.glb",
+      "display_name": "棕榈树",
+      "new_directory": "palm3-small",
+      "old_ref": "models/AF-1792513788491466500",
+      "new_ref": "models/palm3-small"
+    },
+    {
+      "asset_id": "AF-1792513800708182500",
+      "old_directory": "AF-1792513800708182500",
+      "requested_name": "palm3-small-2",
+      "source_path": "palm3-small-2/model.glb",
+      "display_name": "棕榈树",
+      "new_directory": "palm3-small-2",
+      "old_ref": "models/AF-1792513800708182500",
+      "new_ref": "models/palm3-small-2"
+    },
+    {
+      "asset_id": "AF-1792513815024744900",
+      "old_directory": "AF-1792513815024744900",
+      "requested_name": "palm3-straight",
+      "source_path": "palm3-straight/model.glb",
+      "display_name": "棕榈树",
+      "new_directory": "palm3-straight",
+      "old_ref": "models/AF-1792513815024744900",
+      "new_ref": "models/palm3-straight"
+    },
+    {
+      "asset_id": "AF-1792513829178349100",
+      "old_directory": "AF-1792513829178349100",
+      "requested_name": "palm3-straight-2",
+      "source_path": "palm3-straight-2/model.glb",
+      "display_name": "棕榈树",
+      "new_directory": "palm3-straight-2",
+      "old_ref": "models/AF-1792513829178349100",
+      "new_ref": "models/palm3-straight-2"
+    },
+    {
+      "asset_id": "AF-1792513834956885100",
+      "old_directory": "AF-1792513834956885100",
+      "requested_name": "palmdead1",
+      "source_path": "palmdead1/model.glb",
+      "display_name": "松树",
+      "new_directory": "palmdead1",
+      "old_ref": "models/AF-1792513834956885100",
+      "new_ref": "models/palmdead1"
+    },
+    {
+      "asset_id": "AF-1792513852772718400",
+      "old_directory": "AF-1792513852772718400",
+      "requested_name": "palmdead1-2",
+      "source_path": "palmdead1-2/model.glb",
+      "display_name": "松树",
+      "new_directory": "palmdead1-2",
+      "old_ref": "models/AF-1792513852772718400",
+      "new_ref": "models/palmdead1-2"
+    },
+    {
+      "asset_id": "AF-1792513860584353900",
+      "old_directory": "AF-1792513860584353900",
+      "requested_name": "palmdead2",
+      "source_path": "palmdead2/model.glb",
+      "display_name": "棕榈树",
+      "new_directory": "palmdead2",
+      "old_ref": "models/AF-1792513860584353900",
+      "new_ref": "models/palmdead2"
+    },
+    {
+      "asset_id": "AF-1792513882967993700",
+      "old_directory": "AF-1792513882967993700",
+      "requested_name": "palmdead2-2",
+      "source_path": "palmdead2-2/model.glb",
+      "display_name": "棕榈树",
+      "new_directory": "palmdead2-2",
+      "old_ref": "models/AF-1792513882967993700",
+      "new_ref": "models/palmdead2-2"
+    },
+    {
+      "asset_id": "AF-1792513895674242500",
+      "old_directory": "AF-1792513895674242500",
+      "requested_name": "palmleaf",
+      "source_path": "palmleaf/model.glb",
+      "display_name": "棕榈叶",
+      "new_directory": "palmleaf",
+      "old_ref": "models/AF-1792513895674242500",
+      "new_ref": "models/palmleaf"
+    },
+    {
+      "asset_id": "AF-1792513905879289600",
+      "old_directory": "AF-1792513905879289600",
+      "requested_name": "palmleaf-2",
+      "source_path": "palmleaf-2/model.glb",
+      "display_name": "棕榈叶",
+      "new_directory": "palmleaf-2",
+      "old_ref": "models/AF-1792513905879289600",
+      "new_ref": "models/palmleaf-2"
+    },
+    {
+      "asset_id": "AF-1792513930349624900",
+      "old_directory": "AF-1792513930349624900",
+      "requested_name": "palmleafdead",
+      "source_path": "palmleafdead/model.glb",
+      "display_name": "棕榈叶",
+      "new_directory": "palmleafdead",
+      "old_ref": "models/AF-1792513930349624900",
+      "new_ref": "models/palmleafdead"
+    },
+    {
+      "asset_id": "AF-1792513932860689000",
+      "old_directory": "AF-1792513932860689000",
+      "requested_name": "palmleafdead-2",
+      "source_path": "palmleafdead-2/model.glb",
+      "display_name": "棕榈叶",
+      "new_directory": "palmleafdead-2",
+      "old_ref": "models/AF-1792513932860689000",
+      "new_ref": "models/palmleafdead-2"
+    },
+    {
+      "asset_id": "AF-1792513971476168000",
+      "old_directory": "AF-1792513971476168000",
+      "requested_name": "palmtree1",
+      "source_path": "palmtree1/model.glb",
+      "display_name": "棕榈树",
+      "new_directory": "palmtree1",
+      "old_ref": "models/AF-1792513971476168000",
+      "new_ref": "models/palmtree1"
+    },
+    {
+      "asset_id": "AF-1792513971989756800",
+      "old_directory": "AF-1792513971989756800",
+      "requested_name": "palmtree1-low",
+      "source_path": "palmtree1-low/model.glb",
+      "display_name": "棕榈树",
+      "new_directory": "palmtree1-low",
+      "old_ref": "models/AF-1792513971989756800",
+      "new_ref": "models/palmtree1-low"
+    },
+    {
+      "asset_id": "AF-1792514009498172400",
+      "old_directory": "AF-1792514009498172400",
+      "requested_name": "palmtree1-low-3",
+      "source_path": "palmtree1-low-3/model.glb",
+      "display_name": "棕榈树",
+      "new_directory": "palmtree1-low-3",
+      "old_ref": "models/AF-1792514009498172400",
+      "new_ref": "models/palmtree1-low-3"
+    },
+    {
+      "asset_id": "AF-1792514010566085100",
+      "old_directory": "AF-1792514010566085100",
+      "requested_name": "palmtree1-low-2",
+      "source_path": "palmtree1-low-2/model.glb",
+      "display_name": "棕榈树",
+      "new_directory": "palmtree1-low-2",
+      "old_ref": "models/AF-1792514010566085100",
+      "new_ref": "models/palmtree1-low-2"
+    },
+    {
+      "asset_id": "AF-1792514040552893400",
+      "old_directory": "AF-1792514040552893400",
+      "requested_name": "pierpole",
+      "source_path": "pierpole/model.glb",
+      "display_name": "木椅",
+      "new_directory": "pierpole",
+      "old_ref": "models/AF-1792514040552893400",
+      "new_ref": "models/pierpole"
+    },
+    {
+      "asset_id": "AF-1792514041577538600",
+      "old_directory": "AF-1792514041577538600",
+      "requested_name": "pierpole-2",
+      "source_path": "pierpole-2/model.glb",
+      "display_name": "木椅",
+      "new_directory": "pierpole-2",
+      "old_ref": "models/AF-1792514041577538600",
+      "new_ref": "models/pierpole-2"
+    },
+    {
+      "asset_id": "AF-1792514070420268600",
+      "old_directory": "AF-1792514070420268600",
+      "requested_name": "pierpole-3",
+      "source_path": "pierpole-3/model.glb",
+      "display_name": "木椅",
+      "new_directory": "pierpole-3",
+      "old_ref": "models/AF-1792514070420268600",
+      "new_ref": "models/pierpole-3"
+    },
+    {
+      "asset_id": "AF-1792514081197087000",
+      "old_directory": "AF-1792514081197087000",
+      "requested_name": "pierstart",
+      "source_path": "pierstart/model.glb",
+      "display_name": "木桌",
+      "new_directory": "pierstart",
+      "old_ref": "models/AF-1792514081197087000",
+      "new_ref": "models/pierstart"
+    },
+    {
+      "asset_id": "AF-1792514111472265100",
+      "old_directory": "AF-1792514111472265100",
+      "requested_name": "pierstart-2",
+      "source_path": "pierstart-2/model.glb",
+      "display_name": "木桌",
+      "new_directory": "pierstart-2",
+      "old_ref": "models/AF-1792514111472265100",
+      "new_ref": "models/pierstart-2"
+    },
+    {
+      "asset_id": "AF-1792514121442094900",
+      "old_directory": "AF-1792514121442094900",
+      "requested_name": "pierstart-3",
+      "source_path": "pierstart-3/model.glb",
+      "display_name": "木桌",
+      "new_directory": "pierstart-3",
+      "old_ref": "models/AF-1792514121442094900",
+      "new_ref": "models/pierstart-3"
+    },
+    {
+      "asset_id": "AF-1792514153519562400",
+      "old_directory": "AF-1792514153519562400",
+      "requested_name": "piertile",
+      "source_path": "piertile/model.glb",
+      "display_name": "木桌",
+      "new_directory": "piertile",
+      "old_ref": "models/AF-1792514153519562400",
+      "new_ref": "models/piertile"
+    },
+    {
+      "asset_id": "AF-1792514161168100000",
+      "old_directory": "AF-1792514161168100000",
+      "requested_name": "piertile-2",
+      "source_path": "piertile-2/model.glb",
+      "display_name": "木桌",
+      "new_directory": "piertile-2",
+      "old_ref": "models/AF-1792514161168100000",
+      "new_ref": "models/piertile-2"
+    },
+    {
+      "asset_id": "AF-1792514191169263200",
+      "old_directory": "AF-1792514191169263200",
+      "requested_name": "piertile-3",
+      "source_path": "piertile-3/model.glb",
+      "display_name": "木桌",
+      "new_directory": "piertile-3",
+      "old_ref": "models/AF-1792514191169263200",
+      "new_ref": "models/piertile-3"
+    },
+    {
+      "asset_id": "AF-1792514288144581200",
+      "old_directory": "AF-1792514288144581200",
+      "requested_name": "potted-succulent",
+      "source_path": "potted-succulent/model.glb",
+      "display_name": "虎皮兰盆栽",
+      "new_directory": "potted-succulent",
+      "old_ref": "models/AF-1792514288144581200",
+      "new_ref": "models/potted-succulent"
+    },
+    {
+      "asset_id": "AF-1792514335829902400",
+      "old_directory": "AF-1792514335829902400",
+      "requested_name": "reed",
+      "source_path": "reed/model.glb",
+      "display_name": "草丛",
+      "new_directory": "reed",
+      "old_ref": "models/AF-1792514335829902400",
+      "new_ref": "models/reed"
+    },
+    {
+      "asset_id": "AF-1792514382568825100",
+      "old_directory": "AF-1792514382568825100",
+      "requested_name": "reed-2",
+      "source_path": "reed-2/model.glb",
+      "display_name": "草丛",
+      "new_directory": "reed-2",
+      "old_ref": "models/AF-1792514382568825100",
+      "new_ref": "models/reed-2"
+    },
+    {
+      "asset_id": "AF-1792514460265051900",
+      "old_directory": "AF-1792514460265051900",
+      "requested_name": "reedbig",
+      "source_path": "reedbig/model.glb",
+      "display_name": "草丛",
+      "new_directory": "reedbig",
+      "old_ref": "models/AF-1792514460265051900",
+      "new_ref": "models/reedbig"
+    },
+    {
+      "asset_id": "AF-1792514491616040700",
+      "old_directory": "AF-1792514491616040700",
+      "requested_name": "potted-plant",
+      "source_path": "potted-plant/model.glb",
+      "display_name": "灌木",
+      "new_directory": "potted-plant",
+      "old_ref": "models/AF-1792514491616040700",
+      "new_ref": "models/potted-plant"
+    },
+    {
+      "asset_id": "AF-1792514516014571200",
+      "old_directory": "AF-1792514516014571200",
+      "requested_name": "reedbig-2",
+      "source_path": "reedbig-2/model.glb",
+      "display_name": "草地",
+      "new_directory": "reedbig-2",
+      "old_ref": "models/AF-1792514516014571200",
+      "new_ref": "models/reedbig-2"
+    },
+    {
+      "asset_id": "AF-1792514528624740200",
+      "old_directory": "AF-1792514528624740200",
+      "requested_name": "rock",
+      "source_path": "rock/model.glb",
+      "display_name": "岩石",
+      "new_directory": "rock",
+      "old_ref": "models/AF-1792514528624740200",
+      "new_ref": "models/rock"
+    },
+    {
+      "asset_id": "AF-1792514556814992800",
+      "old_directory": "AF-1792514556814992800",
+      "requested_name": "rock-2",
+      "source_path": "rock-2/model.glb",
+      "display_name": "岩石",
+      "new_directory": "rock-2",
+      "old_ref": "models/AF-1792514556814992800",
+      "new_ref": "models/rock-2"
+    },
+    {
+      "asset_id": "AF-1792514571062539000",
+      "old_directory": "AF-1792514571062539000",
+      "requested_name": "rockgrey1",
+      "source_path": "rockgrey1/model.glb",
+      "display_name": "岩石",
+      "new_directory": "rockgrey1",
+      "old_ref": "models/AF-1792514571062539000",
+      "new_ref": "models/rockgrey1"
+    },
+    {
+      "asset_id": "AF-1792514583662448500",
+      "old_directory": "AF-1792514583662448500",
+      "requested_name": "rockgrey1-2",
+      "source_path": "rockgrey1-2/model.glb",
+      "display_name": "岩石",
+      "new_directory": "rockgrey1-2",
+      "old_ref": "models/AF-1792514583662448500",
+      "new_ref": "models/rockgrey1-2"
+    },
+    {
+      "asset_id": "AF-1792514599145415800",
+      "old_directory": "AF-1792514599145415800",
+      "requested_name": "rockgrey1-3",
+      "source_path": "rockgrey1-3/model.glb",
+      "display_name": "岩石",
+      "new_directory": "rockgrey1-3",
+      "old_ref": "models/AF-1792514599145415800",
+      "new_ref": "models/rockgrey1-3"
+    },
+    {
+      "asset_id": "AF-1792514625212595600",
+      "old_directory": "AF-1792514625212595600",
+      "requested_name": "rockgrey2",
+      "source_path": "rockgrey2/model.glb",
+      "display_name": "岩石",
+      "new_directory": "rockgrey2",
+      "old_ref": "models/AF-1792514625212595600",
+      "new_ref": "models/rockgrey2"
+    },
+    {
+      "asset_id": "AF-1792514629780246500",
+      "old_directory": "AF-1792514629780246500",
+      "requested_name": "rockgrey2-2",
+      "source_path": "rockgrey2-2/model.glb",
+      "display_name": "岩石",
+      "new_directory": "rockgrey2-2",
+      "old_ref": "models/AF-1792514629780246500",
+      "new_ref": "models/rockgrey2-2"
+    },
+    {
+      "asset_id": "AF-1792514657527482000",
+      "old_directory": "AF-1792514657527482000",
+      "requested_name": "rockgrey2-3",
+      "source_path": "rockgrey2-3/model.glb",
+      "display_name": "岩石",
+      "new_directory": "rockgrey2-3",
+      "old_ref": "models/AF-1792514657527482000",
+      "new_ref": "models/rockgrey2-3"
+    },
+    {
+      "asset_id": "AF-1792514670604249300",
+      "old_directory": "AF-1792514670604249300",
+      "requested_name": "rockgrey2-high",
+      "source_path": "rockgrey2-high/model.glb",
+      "display_name": "岩石",
+      "new_directory": "rockgrey2-high",
+      "old_ref": "models/AF-1792514670604249300",
+      "new_ref": "models/rockgrey2-high"
+    },
+    {
+      "asset_id": "AF-1792514679632016900",
+      "old_directory": "AF-1792514679632016900",
+      "requested_name": "rocks",
+      "source_path": "rocks/model.glb",
+      "display_name": "草地",
+      "new_directory": "rocks",
+      "old_ref": "models/AF-1792514679632016900",
+      "new_ref": "models/rocks"
+    },
+    {
+      "asset_id": "AF-1792514704573193800",
+      "old_directory": "AF-1792514704573193800",
+      "requested_name": "scene",
+      "source_path": "scene/model.glb",
+      "display_name": "地垫",
+      "new_directory": "scene",
+      "old_ref": "models/AF-1792514704573193800",
+      "new_ref": "models/scene"
+    },
+    {
+      "asset_id": "AF-1792514716912818900",
+      "old_directory": "AF-1792514716912818900",
+      "requested_name": "round-table",
+      "source_path": "round-table/model.glb",
+      "display_name": "圆桌",
+      "new_directory": "round-table",
+      "old_ref": "models/AF-1792514716912818900",
+      "new_ref": "models/round-table"
+    },
+    {
+      "asset_id": "AF-1792514738412774700",
+      "old_directory": "AF-1792514738412774700",
+      "requested_name": "sharprock1",
+      "source_path": "sharprock1/model.glb",
+      "display_name": "岩石",
+      "new_directory": "sharprock1",
+      "old_ref": "models/AF-1792514738412774700",
+      "new_ref": "models/sharprock1"
+    },
+    {
+      "asset_id": "AF-1792514751639950800",
+      "old_directory": "AF-1792514751639950800",
+      "requested_name": "sharprock2",
+      "source_path": "sharprock2/model.glb",
+      "display_name": "岩石",
+      "new_directory": "sharprock2",
+      "old_ref": "models/AF-1792514751639950800",
+      "new_ref": "models/sharprock2"
+    },
+    {
+      "asset_id": "AF-1792514783068436000",
+      "old_directory": "AF-1792514783068436000",
+      "requested_name": "shield",
+      "source_path": "shield/model.glb",
+      "display_name": "卡通风格椅子",
+      "new_directory": "shield",
+      "old_ref": "models/AF-1792514783068436000",
+      "new_ref": "models/shield"
+    },
+    {
+      "asset_id": "AF-1792514791006070500",
+      "old_directory": "AF-1792514791006070500",
+      "requested_name": "shield-2",
+      "source_path": "shield-2/model.glb",
+      "display_name": "卡通风格椅子",
+      "new_directory": "shield-2",
+      "old_ref": "models/AF-1792514791006070500",
+      "new_ref": "models/shield-2"
+    },
+    {
+      "asset_id": "AF-1792514818468780700",
+      "old_directory": "AF-1792514818468780700",
+      "requested_name": "signpost1",
+      "source_path": "signpost1/model.glb",
+      "display_name": "路标",
+      "new_directory": "signpost1",
+      "old_ref": "models/AF-1792514818468780700",
+      "new_ref": "models/signpost1"
+    },
+    {
+      "asset_id": "AF-1792514826547287400",
+      "old_directory": "AF-1792514826547287400",
+      "requested_name": "signpost1-2",
+      "source_path": "signpost1-2/model.glb",
+      "display_name": "路标",
+      "new_directory": "signpost1-2",
+      "old_ref": "models/AF-1792514826547287400",
+      "new_ref": "models/signpost1-2"
+    },
+    {
+      "asset_id": "AF-1792514852194786600",
+      "old_directory": "AF-1792514852194786600",
+      "requested_name": "signpost2",
+      "source_path": "signpost2/model.glb",
+      "display_name": "路标",
+      "new_directory": "signpost2",
+      "old_ref": "models/AF-1792514852194786600",
+      "new_ref": "models/signpost2"
+    },
+    {
+      "asset_id": "AF-1792514855176270100",
+      "old_directory": "AF-1792514855176270100",
+      "requested_name": "signpost1-3",
+      "source_path": "signpost1-3/model.glb",
+      "display_name": "路标",
+      "new_directory": "signpost1-3",
+      "old_ref": "models/AF-1792514855176270100",
+      "new_ref": "models/signpost1-3"
+    },
+    {
+      "asset_id": "AF-1792514884871080200",
+      "old_directory": "AF-1792514884871080200",
+      "requested_name": "signpost2-3",
+      "source_path": "signpost2-3/model.glb",
+      "display_name": "路标",
+      "new_directory": "signpost2-3",
+      "old_ref": "models/AF-1792514884871080200",
+      "new_ref": "models/signpost2-3"
+    },
+    {
+      "asset_id": "AF-1792514895535633000",
+      "old_directory": "AF-1792514895535633000",
+      "requested_name": "signpost2-2",
+      "source_path": "signpost2-2/model.glb",
+      "display_name": "路标",
+      "new_directory": "signpost2-2",
+      "old_ref": "models/AF-1792514895535633000",
+      "new_ref": "models/signpost2-2"
+    },
+    {
+      "asset_id": "AF-1792514958174185000",
+      "old_directory": "AF-1792514958174185000",
+      "requested_name": "snowybarrel1",
+      "source_path": "snowybarrel1/model.glb",
+      "display_name": "木桶",
+      "new_directory": "snowybarrel1",
+      "old_ref": "models/AF-1792514958174185000",
+      "new_ref": "models/snowybarrel1"
+    },
+    {
+      "asset_id": "AF-1792514978451124400",
+      "old_directory": "AF-1792514978451124400",
+      "requested_name": "snowybarrel1-2",
+      "source_path": "snowybarrel1-2/model.glb",
+      "display_name": "木桶",
+      "new_directory": "snowybarrel1-2",
+      "old_ref": "models/AF-1792514978451124400",
+      "new_ref": "models/snowybarrel1-2"
+    },
+    {
+      "asset_id": "AF-1792515071696666500",
+      "old_directory": "AF-1792515071696666500",
+      "requested_name": "snowybarrels3",
+      "source_path": "snowybarrels3/model.glb",
+      "display_name": "岩石",
+      "new_directory": "snowybarrels3",
+      "old_ref": "models/AF-1792515071696666500",
+      "new_ref": "models/snowybarrels3"
+    },
+    {
+      "asset_id": "AF-1792515087464120400",
+      "old_directory": "AF-1792515087464120400",
+      "requested_name": "snowybarrels3-2",
+      "source_path": "snowybarrels3-2/model.glb",
+      "display_name": "木柴堆",
+      "new_directory": "snowybarrels3-2",
+      "old_ref": "models/AF-1792515087464120400",
+      "new_ref": "models/snowybarrels3-2"
+    },
+    {
+      "asset_id": "AF-1792515132335503400",
+      "old_directory": "AF-1792515132335503400",
+      "requested_name": "snowycart",
+      "source_path": "snowycart/model.glb",
+      "display_name": "木制手推车",
+      "new_directory": "snowycart",
+      "old_ref": "models/AF-1792515132335503400",
+      "new_ref": "models/snowycart"
+    },
+    {
+      "asset_id": "AF-1792515140587334900",
+      "old_directory": "AF-1792515140587334900",
+      "requested_name": "snowycart-2",
+      "source_path": "snowycart-2/model.glb",
+      "display_name": "木制手推车",
+      "new_directory": "snowycart-2",
+      "old_ref": "models/AF-1792515140587334900",
+      "new_ref": "models/snowycart-2"
+    },
+    {
+      "asset_id": "AF-1792515165772303900",
+      "old_directory": "AF-1792515165772303900",
+      "requested_name": "snowycliff",
+      "source_path": "snowycliff/model.glb",
+      "display_name": "岩石",
+      "new_directory": "snowycliff",
+      "old_ref": "models/AF-1792515165772303900",
+      "new_ref": "models/snowycliff"
+    },
+    {
+      "asset_id": "AF-1792515169312877500",
+      "old_directory": "AF-1792515169312877500",
+      "requested_name": "snowycliff-2",
+      "source_path": "snowycliff-2/model.glb",
+      "display_name": "岩石",
+      "new_directory": "snowycliff-2",
+      "old_ref": "models/AF-1792515169312877500",
+      "new_ref": "models/snowycliff-2"
+    },
+    {
+      "asset_id": "AF-1792515193847575900",
+      "old_directory": "AF-1792515193847575900",
+      "requested_name": "snowydeadtree1",
+      "source_path": "snowydeadtree1/model.glb",
+      "display_name": "枯树",
+      "new_directory": "snowydeadtree1",
+      "old_ref": "models/AF-1792515193847575900",
+      "new_ref": "models/snowydeadtree1"
+    },
+    {
+      "asset_id": "AF-1792515201366171500",
+      "old_directory": "AF-1792515201366171500",
+      "requested_name": "snowydeadtree2",
+      "source_path": "snowydeadtree2/model.glb",
+      "display_name": "枯树",
+      "new_directory": "snowydeadtree2",
+      "old_ref": "models/AF-1792515201366171500",
+      "new_ref": "models/snowydeadtree2"
+    },
+    {
+      "asset_id": "AF-1792515223316907700",
+      "old_directory": "AF-1792515223316907700",
+      "requested_name": "snowydeadtree2-2",
+      "source_path": "snowydeadtree2-2/model.glb",
+      "display_name": "枯树",
+      "new_directory": "snowydeadtree2-2",
+      "old_ref": "models/AF-1792515223316907700",
+      "new_ref": "models/snowydeadtree2-2"
+    },
+    {
+      "asset_id": "AF-1792515234793174100",
+      "old_directory": "AF-1792515234793174100",
+      "requested_name": "snowyhillflat",
+      "source_path": "snowyhillflat/model.glb",
+      "display_name": "草地",
+      "new_directory": "snowyhillflat",
+      "old_ref": "models/AF-1792515234793174100",
+      "new_ref": "models/snowyhillflat"
+    },
+    {
+      "asset_id": "AF-1792515318470268300",
+      "old_directory": "AF-1792515318470268300",
+      "requested_name": "snowymarketstand",
+      "source_path": "snowymarketstand/model.glb",
+      "display_name": "水果摊",
+      "new_directory": "snowymarketstand",
+      "old_ref": "models/AF-1792515318470268300",
+      "new_ref": "models/snowymarketstand"
+    },
+    {
+      "asset_id": "AF-1792515343280802200",
+      "old_directory": "AF-1792515343280802200",
+      "requested_name": "snowyhouse1",
+      "source_path": "snowyhouse1/model.glb",
+      "display_name": "巴士床",
+      "new_directory": "snowyhouse1",
+      "old_ref": "models/AF-1792515343280802200",
+      "new_ref": "models/snowyhouse1"
+    },
+    {
+      "asset_id": "AF-1792515370481099100",
+      "old_directory": "AF-1792515370481099100",
+      "requested_name": "snowymarketstand-2",
+      "source_path": "snowymarketstand-2/model.glb",
+      "display_name": "双层床",
+      "new_directory": "snowymarketstand-2",
+      "old_ref": "models/AF-1792515370481099100",
+      "new_ref": "models/snowymarketstand-2"
+    },
+    {
+      "asset_id": "AF-1792515387595399700",
+      "old_directory": "AF-1792515387595399700",
+      "requested_name": "snowymarketstandsmall",
+      "source_path": "snowymarketstandsmall/model.glb",
+      "display_name": "双层床",
+      "new_directory": "snowymarketstandsmall",
+      "old_ref": "models/AF-1792515387595399700",
+      "new_ref": "models/snowymarketstandsmall"
+    },
+    {
+      "asset_id": "AF-1792515399588715100",
+      "old_directory": "AF-1792515399588715100",
+      "requested_name": "snowyoldstonewall",
+      "source_path": "snowyoldstonewall/model.glb",
+      "display_name": "岩石",
+      "new_directory": "snowyoldstonewall",
+      "old_ref": "models/AF-1792515399588715100",
+      "new_ref": "models/snowyoldstonewall"
+    },
+    {
+      "asset_id": "AF-1792515419899432500",
+      "old_directory": "AF-1792515419899432500",
+      "requested_name": "snowypier",
+      "source_path": "snowypier/model.glb",
+      "display_name": "木桌",
+      "new_directory": "snowypier",
+      "old_ref": "models/AF-1792515419899432500",
+      "new_ref": "models/snowypier"
+    },
+    {
+      "asset_id": "AF-1792515431442755700",
+      "old_directory": "AF-1792515431442755700",
+      "requested_name": "snowypier-2",
+      "source_path": "snowypier-2/model.glb",
+      "display_name": "木桌",
+      "new_directory": "snowypier-2",
+      "old_ref": "models/AF-1792515431442755700",
+      "new_ref": "models/snowypier-2"
+    },
+    {
+      "asset_id": "AF-1792515447109258800",
+      "old_directory": "AF-1792515447109258800",
+      "requested_name": "snowypierpole",
+      "source_path": "snowypierpole/model.glb",
+      "display_name": "木椅",
+      "new_directory": "snowypierpole",
+      "old_ref": "models/AF-1792515447109258800",
+      "new_ref": "models/snowypierpole"
+    },
+    {
+      "asset_id": "AF-1792515466941578000",
+      "old_directory": "AF-1792515466941578000",
+      "requested_name": "snowypierstart",
+      "source_path": "snowypierstart/model.glb",
+      "display_name": "木桌",
+      "new_directory": "snowypierstart",
+      "old_ref": "models/AF-1792515466941578000",
+      "new_ref": "models/snowypierstart"
+    },
+    {
+      "asset_id": "AF-1792515486010674300",
+      "old_directory": "AF-1792515486010674300",
+      "requested_name": "snowyrock1",
+      "source_path": "snowyrock1/model.glb",
+      "display_name": "岩石",
+      "new_directory": "snowyrock1",
+      "old_ref": "models/AF-1792515486010674300",
+      "new_ref": "models/snowyrock1"
+    },
+    {
+      "asset_id": "AF-1792515502171320600",
+      "old_directory": "AF-1792515502171320600",
+      "requested_name": "snowysignpost",
+      "source_path": "snowysignpost/model.glb",
+      "display_name": "路灯",
+      "new_directory": "snowysignpost",
+      "old_ref": "models/AF-1792515502171320600",
+      "new_ref": "models/snowysignpost"
+    },
+    {
+      "asset_id": "AF-1792515510037569200",
+      "old_directory": "AF-1792515510037569200",
+      "requested_name": "snowysignpost-2",
+      "source_path": "snowysignpost-2/model.glb",
+      "display_name": "路标",
+      "new_directory": "snowysignpost-2",
+      "old_ref": "models/AF-1792515510037569200",
+      "new_ref": "models/snowysignpost-2"
+    },
+    {
+      "asset_id": "AF-1792515527954288200",
+      "old_directory": "AF-1792515527954288200",
+      "requested_name": "snowytent",
+      "source_path": "snowytent/model.glb",
+      "display_name": "帐篷",
+      "new_directory": "snowytent",
+      "old_ref": "models/AF-1792515527954288200",
+      "new_ref": "models/snowytent"
+    },
+    {
+      "asset_id": "AF-1792515537580137100",
+      "old_directory": "AF-1792515537580137100",
+      "requested_name": "snowytent-2",
+      "source_path": "snowytent-2/model.glb",
+      "display_name": "帐篷",
+      "new_directory": "snowytent-2",
+      "old_ref": "models/AF-1792515537580137100",
+      "new_ref": "models/snowytent-2"
+    },
+    {
+      "asset_id": "AF-1792515617044376400",
+      "old_directory": "AF-1792515617044376400",
+      "requested_name": "snowytownhouse1",
+      "source_path": "snowytownhouse1/model.glb",
+      "display_name": "木屋",
+      "new_directory": "snowytownhouse1",
+      "old_ref": "models/AF-1792515617044376400",
+      "new_ref": "models/snowytownhouse1"
+    },
+    {
+      "asset_id": "AF-1792515621222536700",
+      "old_directory": "AF-1792515621222536700",
+      "requested_name": "snowytownhouse2",
+      "source_path": "snowytownhouse2/model.glb",
+      "display_name": "木屋",
+      "new_directory": "snowytownhouse2",
+      "old_ref": "models/AF-1792515621222536700",
+      "new_ref": "models/snowytownhouse2"
+    },
+    {
+      "asset_id": "AF-1792515665544352900",
+      "old_directory": "AF-1792515665544352900",
+      "requested_name": "snowytree",
+      "source_path": "snowytree/model.glb",
+      "display_name": "松树",
+      "new_directory": "snowytree",
+      "old_ref": "models/AF-1792515665544352900",
+      "new_ref": "models/snowytree"
+    },
+    {
+      "asset_id": "AF-1792515676702385000",
+      "old_directory": "AF-1792515676702385000",
+      "requested_name": "snowytownhousetower",
+      "source_path": "snowytownhousetower/model.glb",
+      "display_name": "高脚木屋",
+      "new_directory": "snowytownhousetower",
+      "old_ref": "models/AF-1792515676702385000",
+      "new_ref": "models/snowytownhousetower"
+    },
+    {
+      "asset_id": "AF-1792515696906225400",
+      "old_directory": "AF-1792515696906225400",
+      "requested_name": "snowytree-2",
+      "source_path": "snowytree-2/model.glb",
+      "display_name": "松树",
+      "new_directory": "snowytree-2",
+      "old_ref": "models/AF-1792515696906225400",
+      "new_ref": "models/snowytree-2"
+    },
+    {
+      "asset_id": "AF-1792515705743003100",
+      "old_directory": "AF-1792515705743003100",
+      "requested_name": "snowytreelog",
+      "source_path": "snowytreelog/model.glb",
+      "display_name": "棒球棒",
+      "new_directory": "snowytreelog",
+      "old_ref": "models/AF-1792515705743003100",
+      "new_ref": "models/snowytreelog"
+    },
+    {
+      "asset_id": "AF-1792515736011898100",
+      "old_directory": "AF-1792515736011898100",
+      "requested_name": "snowytreestump",
+      "source_path": "snowytreestump/model.glb",
+      "display_name": "岩石",
+      "new_directory": "snowytreestump",
+      "old_ref": "models/AF-1792515736011898100",
+      "new_ref": "models/snowytreestump"
+    },
+    {
+      "asset_id": "AF-1792515741615560300",
+      "old_directory": "AF-1792515741615560300",
+      "requested_name": "sofa-01",
+      "source_path": "sofa-01/model.glb",
+      "display_name": "沙发",
+      "new_directory": "sofa-01",
+      "old_ref": "models/AF-1792515741615560300",
+      "new_ref": "models/sofa-01"
+    },
+    {
+      "asset_id": "AF-1792515750404367500",
+      "old_directory": "AF-1792515750404367500",
+      "requested_name": "spear",
+      "source_path": "spear/model.glb",
+      "display_name": "火炬",
+      "new_directory": "spear",
+      "old_ref": "models/AF-1792515750404367500",
+      "new_ref": "models/spear"
+    },
+    {
+      "asset_id": "AF-1792515759069289500",
+      "old_directory": "AF-1792515759069289500",
+      "requested_name": "spear-2",
+      "source_path": "spear-2/model.glb",
+      "display_name": "火炬",
+      "new_directory": "spear-2",
+      "old_ref": "models/AF-1792515759069289500",
+      "new_ref": "models/spear-2"
+    },
+    {
+      "asset_id": "AF-1792515769526854700",
+      "old_directory": "AF-1792515769526854700",
+      "requested_name": "spearshielddisplay",
+      "source_path": "spearshielddisplay/model.glb",
+      "display_name": "兔子",
+      "new_directory": "spearshielddisplay",
+      "old_ref": "models/AF-1792515769526854700",
+      "new_ref": "models/spearshielddisplay"
+    },
+    {
+      "asset_id": "AF-1792515779940708300",
+      "old_directory": "AF-1792515779940708300",
+      "requested_name": "spearshielddisplay-2",
+      "source_path": "spearshielddisplay-2/model.glb",
+      "display_name": "兔子",
+      "new_directory": "spearshielddisplay-2",
+      "old_ref": "models/AF-1792515779940708300",
+      "new_ref": "models/spearshielddisplay-2"
+    },
+    {
+      "asset_id": "AF-1792515813627831700",
+      "old_directory": "AF-1792515813627831700",
+      "requested_name": "sphere",
+      "source_path": "sphere/model.glb",
+      "display_name": "球体",
+      "new_directory": "sphere",
+      "old_ref": "models/AF-1792515813627831700",
+      "new_ref": "models/sphere"
+    },
+    {
+      "asset_id": "AF-1792515816027853600",
+      "old_directory": "AF-1792515816027853600",
+      "requested_name": "street",
+      "source_path": "street/model.glb",
+      "display_name": "砖墙",
+      "new_directory": "street",
+      "old_ref": "models/AF-1792515816027853600",
+      "new_ref": "models/street"
+    },
+    {
+      "asset_id": "AF-1792515840864192900",
+      "old_directory": "AF-1792515840864192900",
+      "requested_name": "tent1",
+      "source_path": "tent1/model.glb",
+      "display_name": "帐篷",
+      "new_directory": "tent1",
+      "old_ref": "models/AF-1792515840864192900",
+      "new_ref": "models/tent1"
+    },
+    {
+      "asset_id": "AF-1792515842556043800",
+      "old_directory": "AF-1792515842556043800",
+      "requested_name": "terrainpatchbrown",
+      "source_path": "terrainpatchbrown/model.glb",
+      "display_name": "草地",
+      "new_directory": "terrainpatchbrown",
+      "old_ref": "models/AF-1792515842556043800",
+      "new_ref": "models/terrainpatchbrown"
+    },
+    {
+      "asset_id": "AF-1792515864720304500",
+      "old_directory": "AF-1792515864720304500",
+      "requested_name": "terrainpatchbrown-2",
+      "source_path": "terrainpatchbrown-2/model.glb",
+      "display_name": "草地",
+      "new_directory": "terrainpatchbrown-2",
+      "old_ref": "models/AF-1792515864720304500",
+      "new_ref": "models/terrainpatchbrown-2"
+    },
+    {
+      "asset_id": "AF-1792515867160068700",
+      "old_directory": "AF-1792515867160068700",
+      "requested_name": "terrainpatchgreen",
+      "source_path": "terrainpatchgreen/model.glb",
+      "display_name": "草地",
+      "new_directory": "terrainpatchgreen",
+      "old_ref": "models/AF-1792515867160068700",
+      "new_ref": "models/terrainpatchgreen"
+    },
+    {
+      "asset_id": "AF-1792515888188756300",
+      "old_directory": "AF-1792515888188756300",
+      "requested_name": "terrainpatchgreen-2",
+      "source_path": "terrainpatchgreen-2/model.glb",
+      "display_name": "草地",
+      "new_directory": "terrainpatchgreen-2",
+      "old_ref": "models/AF-1792515888188756300",
+      "new_ref": "models/terrainpatchgreen-2"
+    },
+    {
+      "asset_id": "AF-1792515889614330200",
+      "old_directory": "AF-1792515889614330200",
+      "requested_name": "terrainpatchgreen-3",
+      "source_path": "terrainpatchgreen-3/model.glb",
+      "display_name": "草地",
+      "new_directory": "terrainpatchgreen-3",
+      "old_ref": "models/AF-1792515889614330200",
+      "new_ref": "models/terrainpatchgreen-3"
+    },
+    {
+      "asset_id": "AF-1792515911018286300",
+      "old_directory": "AF-1792515911018286300",
+      "requested_name": "torchbig",
+      "source_path": "torchbig/model.glb",
+      "display_name": "保龄球瓶",
+      "new_directory": "torchbig",
+      "old_ref": "models/AF-1792515911018286300",
+      "new_ref": "models/torchbig"
+    },
+    {
+      "asset_id": "AF-1792515911380286700",
+      "old_directory": "AF-1792515911380286700",
+      "requested_name": "terrainpatchgreen-4",
+      "source_path": "terrainpatchgreen-4/model.glb",
+      "display_name": "草地",
+      "new_directory": "terrainpatchgreen-4",
+      "old_ref": "models/AF-1792515911380286700",
+      "new_ref": "models/terrainpatchgreen-4"
+    },
+    {
+      "asset_id": "AF-1792515945713437400",
+      "old_directory": "AF-1792515945713437400",
+      "requested_name": "torchbig-burning",
+      "source_path": "torchbig-burning/model.glb",
+      "display_name": "保龄球瓶",
+      "new_directory": "torchbig-burning",
+      "old_ref": "models/AF-1792515945713437400",
+      "new_ref": "models/torchbig-burning"
+    },
+    {
+      "asset_id": "AF-1792515991120754000",
+      "old_directory": "AF-1792515991120754000",
+      "requested_name": "tree1",
+      "source_path": "tree1/model.glb",
+      "display_name": "松树",
+      "new_directory": "tree1",
+      "old_ref": "models/AF-1792515991120754000",
+      "new_ref": "models/tree1"
+    },
+    {
+      "asset_id": "AF-1792516031339166100",
+      "old_directory": "AF-1792516031339166100",
+      "requested_name": "tree2",
+      "source_path": "tree2/model.glb",
+      "display_name": "普通树",
+      "new_directory": "tree2",
+      "old_ref": "models/AF-1792516031339166100",
+      "new_ref": "models/tree2"
+    },
+    {
+      "asset_id": "AF-1792516079502868100",
+      "old_directory": "AF-1792516079502868100",
+      "requested_name": "tree3-birchyoung",
+      "source_path": "tree3-birchyoung/model.glb",
+      "display_name": "白桦树",
+      "new_directory": "tree3-birchyoung",
+      "old_ref": "models/AF-1792516079502868100",
+      "new_ref": "models/tree3-birchyoung"
+    },
+    {
+      "asset_id": "AF-1792516096098282100",
+      "old_directory": "AF-1792516096098282100",
+      "requested_name": "toy-car",
+      "source_path": "toy-car/model.glb",
+      "display_name": "巴士床",
+      "new_directory": "toy-car",
+      "old_ref": "models/AF-1792516096098282100",
+      "new_ref": "models/toy-car"
+    },
+    {
+      "asset_id": "AF-1792516109221161300",
+      "old_directory": "AF-1792516109221161300",
+      "requested_name": "treedead1",
+      "source_path": "treedead1/model.glb",
+      "display_name": "树",
+      "new_directory": "treedead1",
+      "old_ref": "models/AF-1792516109221161300",
+      "new_ref": "models/treedead1"
+    },
+    {
+      "asset_id": "AF-1792516120378784700",
+      "old_directory": "AF-1792516120378784700",
+      "requested_name": "treedead1-2",
+      "source_path": "treedead1-2/model.glb",
+      "display_name": "树",
+      "new_directory": "treedead1-2",
+      "old_ref": "models/AF-1792516120378784700",
+      "new_ref": "models/treedead1-2"
+    },
+    {
+      "asset_id": "AF-1792516133618557100",
+      "old_directory": "AF-1792516133618557100",
+      "requested_name": "treedead2",
+      "source_path": "treedead2/model.glb",
+      "display_name": "普通树",
+      "new_directory": "treedead2",
+      "old_ref": "models/AF-1792516133618557100",
+      "new_ref": "models/treedead2"
+    },
+    {
+      "asset_id": "AF-1792516138570748700",
+      "old_directory": "AF-1792516138570748700",
+      "requested_name": "treedead2-2",
+      "source_path": "treedead2-2/model.glb",
+      "display_name": "树",
+      "new_directory": "treedead2-2",
+      "old_ref": "models/AF-1792516138570748700",
+      "new_ref": "models/treedead2-2"
+    },
+    {
+      "asset_id": "AF-1792516190263625300",
+      "old_directory": "AF-1792516190263625300",
+      "requested_name": "treegroup",
+      "source_path": "treegroup/model.glb",
+      "display_name": "松树",
+      "new_directory": "treegroup",
+      "old_ref": "models/AF-1792516190263625300",
+      "new_ref": "models/treegroup"
+    },
+    {
+      "asset_id": "AF-1792516200314356600",
+      "old_directory": "AF-1792516200314356600",
+      "requested_name": "treegroup-2",
+      "source_path": "treegroup-2/model.glb",
+      "display_name": "松树",
+      "new_directory": "treegroup-2",
+      "old_ref": "models/AF-1792516200314356600",
+      "new_ref": "models/treegroup-2"
+    },
+    {
+      "asset_id": "AF-1792516233964325700",
+      "old_directory": "AF-1792516233964325700",
+      "requested_name": "treegroup-3",
+      "source_path": "treegroup-3/model.glb",
+      "display_name": "松树",
+      "new_directory": "treegroup-3",
+      "old_ref": "models/AF-1792516233964325700",
+      "new_ref": "models/treegroup-3"
+    },
+    {
+      "asset_id": "AF-1792516253758191800",
+      "old_directory": "AF-1792516253758191800",
+      "requested_name": "treegroup-4",
+      "source_path": "treegroup-4/model.glb",
+      "display_name": "松树丛",
+      "new_directory": "treegroup-4",
+      "old_ref": "models/AF-1792516253758191800",
+      "new_ref": "models/treegroup-4"
+    },
+    {
+      "asset_id": "AF-1792516285949452200",
+      "old_directory": "AF-1792516285949452200",
+      "requested_name": "treegroup-5",
+      "source_path": "treegroup-5/model.glb",
+      "display_name": "松树",
+      "new_directory": "treegroup-5",
+      "old_ref": "models/AF-1792516285949452200",
+      "new_ref": "models/treegroup-5"
+    },
+    {
+      "asset_id": "AF-1792516304802283500",
+      "old_directory": "AF-1792516304802283500",
+      "requested_name": "treegroup-6",
+      "source_path": "treegroup-6/model.glb",
+      "display_name": "松树",
+      "new_directory": "treegroup-6",
+      "old_ref": "models/AF-1792516304802283500",
+      "new_ref": "models/treegroup-6"
+    },
+    {
+      "asset_id": "AF-1792516316780475400",
+      "old_directory": "AF-1792516316780475400",
+      "requested_name": "treegroup-7",
+      "source_path": "treegroup-7/model.glb",
+      "display_name": "松树",
+      "new_directory": "treegroup-7",
+      "old_ref": "models/AF-1792516316780475400",
+      "new_ref": "models/treegroup-7"
+    },
+    {
+      "asset_id": "AF-1792516337278282100",
+      "old_directory": "AF-1792516337278282100",
+      "requested_name": "treetrunk1",
+      "source_path": "treetrunk1/model.glb",
+      "display_name": "树桩",
+      "new_directory": "treetrunk1",
+      "old_ref": "models/AF-1792516337278282100",
+      "new_ref": "models/treetrunk1"
+    },
+    {
+      "asset_id": "AF-1792516344940965900",
+      "old_directory": "AF-1792516344940965900",
+      "requested_name": "treetrunk1-2",
+      "source_path": "treetrunk1-2/model.glb",
+      "display_name": "树桩",
+      "new_directory": "treetrunk1-2",
+      "old_ref": "models/AF-1792516344940965900",
+      "new_ref": "models/treetrunk1-2"
+    },
+    {
+      "asset_id": "AF-1792516368482019000",
+      "old_directory": "AF-1792516368482019000",
+      "requested_name": "treetrunk2",
+      "source_path": "treetrunk2/model.glb",
+      "display_name": "岩石",
+      "new_directory": "treetrunk2",
+      "old_ref": "models/AF-1792516368482019000",
+      "new_ref": "models/treetrunk2"
+    },
+    {
+      "asset_id": "AF-1792516374873280800",
+      "old_directory": "AF-1792516374873280800",
+      "requested_name": "treetrunk2-2",
+      "source_path": "treetrunk2-2/model.glb",
+      "display_name": "岩石",
+      "new_directory": "treetrunk2-2",
+      "old_ref": "models/AF-1792516374873280800",
+      "new_ref": "models/treetrunk2-2"
+    },
+    {
+      "asset_id": "AF-1792516412186284400",
+      "old_directory": "AF-1792516412186284400",
+      "requested_name": "tropicalbuildingopen",
+      "source_path": "tropicalbuildingopen/model.glb",
+      "display_name": "茅草屋",
+      "new_directory": "tropicalbuildingopen",
+      "old_ref": "models/AF-1792516412186284400",
+      "new_ref": "models/tropicalbuildingopen"
+    },
+    {
+      "asset_id": "AF-1792516420341494700",
+      "old_directory": "AF-1792516420341494700",
+      "requested_name": "tropicalbuildingopen-2",
+      "source_path": "tropicalbuildingopen-2/model.glb",
+      "display_name": "茅草屋",
+      "new_directory": "tropicalbuildingopen-2",
+      "old_ref": "models/AF-1792516420341494700",
+      "new_ref": "models/tropicalbuildingopen-2"
+    },
+    {
+      "asset_id": "AF-1792516440738755200",
+      "old_directory": "AF-1792516440738755200",
+      "requested_name": "tropicalpalmpc",
+      "source_path": "tropicalpalmpc/model.glb",
+      "display_name": "蕨类植物",
+      "new_directory": "tropicalpalmpc",
+      "old_ref": "models/AF-1792516440738755200",
+      "new_ref": "models/tropicalpalmpc"
+    },
+    {
+      "asset_id": "AF-1792516445162321100",
+      "old_directory": "AF-1792516445162321100",
+      "requested_name": "tropicalpalmpc-2",
+      "source_path": "tropicalpalmpc-2/model.glb",
+      "display_name": "蕨类植物",
+      "new_directory": "tropicalpalmpc-2",
+      "old_ref": "models/AF-1792516445162321100",
+      "new_ref": "models/tropicalpalmpc-2"
+    },
+    {
+      "asset_id": "AF-1792516476484509200",
+      "old_directory": "AF-1792516476484509200",
+      "requested_name": "water-bottle",
+      "source_path": "water-bottle/model.glb",
+      "display_name": "水壶",
+      "new_directory": "water-bottle",
+      "old_ref": "models/AF-1792516476484509200",
+      "new_ref": "models/water-bottle"
+    },
+    {
+      "asset_id": "AF-1792516477785588000",
+      "old_directory": "AF-1792516477785588000",
+      "requested_name": "water-forest",
+      "source_path": "water-forest/model.glb",
+      "display_name": "草地",
+      "new_directory": "water-forest",
+      "old_ref": "models/AF-1792516477785588000",
+      "new_ref": "models/water-forest"
+    },
+    {
+      "asset_id": "AF-1792516499512517700",
+      "old_directory": "AF-1792516499512517700",
+      "requested_name": "water-top-forest",
+      "source_path": "water-top-forest/model.glb",
+      "display_name": "草地",
+      "new_directory": "water-top-forest",
+      "old_ref": "models/AF-1792516499512517700",
+      "new_ref": "models/water-top-forest"
+    },
+    {
+      "asset_id": "AF-1792516500319766100",
+      "old_directory": "AF-1792516500319766100",
+      "requested_name": "waterlilies",
+      "source_path": "waterlilies/model.glb",
+      "display_name": "睡莲",
+      "new_directory": "waterlilies",
+      "old_ref": "models/AF-1792516500319766100",
+      "new_ref": "models/waterlilies"
+    },
+    {
+      "asset_id": "AF-1792516533013504700",
+      "old_directory": "AF-1792516533013504700",
+      "requested_name": "well-2",
+      "source_path": "well-2/model.glb",
+      "display_name": "椅子",
+      "new_directory": "well-2",
+      "old_ref": "models/AF-1792516533013504700",
+      "new_ref": "models/well-2"
+    },
+    {
+      "asset_id": "AF-1792516536454296100",
+      "old_directory": "AF-1792516536454296100",
+      "requested_name": "well",
+      "source_path": "well/model.glb",
+      "display_name": "椅子",
+      "new_directory": "well",
+      "old_ref": "models/AF-1792516536454296100",
+      "new_ref": "models/well"
+    },
+    {
+      "asset_id": "AF-1792516569825707200",
+      "old_directory": "AF-1792516569825707200",
+      "requested_name": "well-3",
+      "source_path": "well-3/model.glb",
+      "display_name": "椅子",
+      "new_directory": "well-3",
+      "old_ref": "models/AF-1792516569825707200",
+      "new_ref": "models/well-3"
+    },
+    {
+      "asset_id": "AF-1792516601787680000",
+      "old_directory": "AF-1792516601787680000",
+      "requested_name": "wooden-chair",
+      "source_path": "wooden-chair/model.glb",
+      "display_name": "高背扶手椅",
+      "new_directory": "wooden-chair",
+      "old_ref": "models/AF-1792516601787680000",
+      "new_ref": "models/wooden-chair"
+    },
+    {
+      "asset_id": "AF-1792516643435342800",
+      "old_directory": "AF-1792516643435342800",
+      "requested_name": "woodenhouse1",
+      "source_path": "woodenhouse1/model.glb",
+      "display_name": "木屋",
+      "new_directory": "woodenhouse1",
+      "old_ref": "models/AF-1792516643435342800",
+      "new_ref": "models/woodenhouse1"
+    },
+    {
+      "asset_id": "AF-1792516659993882100",
+      "old_directory": "AF-1792516659993882100",
+      "requested_name": "woodenhouse2",
+      "source_path": "woodenhouse2/model.glb",
+      "display_name": "木屋",
+      "new_directory": "woodenhouse2",
+      "old_ref": "models/AF-1792516659993882100",
+      "new_ref": "models/woodenhouse2"
+    },
+    {
+      "asset_id": "AF-1792516685046041900",
+      "old_directory": "AF-1792516685046041900",
+      "requested_name": "woodenpole1",
+      "source_path": "woodenpole1/model.glb",
+      "display_name": "保龄球瓶",
+      "new_directory": "woodenpole1",
+      "old_ref": "models/AF-1792516685046041900",
+      "new_ref": "models/woodenpole1"
+    },
+    {
+      "asset_id": "AF-1792516701621577000",
+      "old_directory": "AF-1792516701621577000",
+      "requested_name": "woodenhouse3",
+      "source_path": "woodenhouse3/model.glb",
+      "display_name": "木屋",
+      "new_directory": "woodenhouse3",
+      "old_ref": "models/AF-1792516701621577000",
+      "new_ref": "models/woodenhouse3"
+    },
+    {
+      "asset_id": "AF-1792516703906263000",
+      "old_directory": "AF-1792516703906263000",
+      "requested_name": "woodenpole1-2",
+      "source_path": "woodenpole1-2/model.glb",
+      "display_name": "保龄球瓶",
+      "new_directory": "woodenpole1-2",
+      "old_ref": "models/AF-1792516703906263000",
+      "new_ref": "models/woodenpole1-2"
+    },
+    {
+      "asset_id": "AF-1792516720946688000",
+      "old_directory": "AF-1792516720946688000",
+      "requested_name": "woodenpole1-3",
+      "source_path": "woodenpole1-3/model.glb",
+      "display_name": "保龄球瓶",
+      "new_directory": "woodenpole1-3",
+      "old_ref": "models/AF-1792516720946688000",
+      "new_ref": "models/woodenpole1-3"
+    },
+    {
+      "asset_id": "AF-1792516732902235700",
+      "old_directory": "AF-1792516732902235700",
+      "requested_name": "woodentable",
+      "source_path": "woodentable/model.glb",
+      "display_name": "桌子",
+      "new_directory": "woodentable",
+      "old_ref": "models/AF-1792516732902235700",
+      "new_ref": "models/woodentable"
+    },
+    {
+      "asset_id": "AF-1792516760498830900",
+      "old_directory": "AF-1792516760498830900",
+      "requested_name": "woodenwalkway",
+      "source_path": "woodenwalkway/model.glb",
+      "display_name": "木桌",
+      "new_directory": "woodenwalkway",
+      "old_ref": "models/AF-1792516760498830900",
+      "new_ref": "models/woodenwalkway"
+    },
+    {
+      "asset_id": "AF-1792516809854156600",
+      "old_directory": "AF-1792516809854156600",
+      "requested_name": "woodenwall-towerlong",
+      "source_path": "woodenwall-towerlong/model.glb",
+      "display_name": "木床",
+      "new_directory": "woodenwall-towerlong",
+      "old_ref": "models/AF-1792516809854156600",
+      "new_ref": "models/woodenwall-towerlong"
+    },
+    {
+      "asset_id": "AF-1792516815903928000",
+      "old_directory": "AF-1792516815903928000",
+      "requested_name": "woodenwall-towershort",
+      "source_path": "woodenwall-towershort/model.glb",
+      "display_name": "木箱",
+      "new_directory": "woodenwall-towershort",
+      "old_ref": "models/AF-1792516815903928000",
+      "new_ref": "models/woodenwall-towershort"
+    },
+    {
+      "asset_id": "AF-1792516858885018200",
+      "old_directory": "AF-1792516858885018200",
+      "requested_name": "woodenwall1",
+      "source_path": "woodenwall1/model.glb",
+      "display_name": "木箱",
+      "new_directory": "woodenwall1",
+      "old_ref": "models/AF-1792516858885018200",
+      "new_ref": "models/woodenwall1"
+    },
+    {
+      "asset_id": "AF-1792516860236848500",
+      "old_directory": "AF-1792516860236848500",
+      "requested_name": "woodenwalldamaged1",
+      "source_path": "woodenwalldamaged1/model.glb",
+      "display_name": "木栅栏",
+      "new_directory": "woodenwalldamaged1",
+      "old_ref": "models/AF-1792516860236848500",
+      "new_ref": "models/woodenwalldamaged1"
+    },
+    {
+      "asset_id": "AF-1792517416554221600",
+      "old_directory": "AF-1792517416554221600",
+      "requested_name": "fox",
+      "source_path": "fox/model.glb",
+      "display_name": "狐狸",
+      "new_directory": "fox",
+      "old_ref": "models/AF-1792517416554221600",
+      "new_ref": "models/fox"
+    },
+    {
+      "asset_id": "AF-1792517422147516400",
+      "old_directory": "AF-1792517422147516400",
+      "requested_name": "joshuatree1",
+      "source_path": "joshuatree1/model.glb",
+      "display_name": "普通树",
+      "new_directory": "joshuatree1",
+      "old_ref": "models/AF-1792517422147516400",
+      "new_ref": "models/joshuatree1"
+    }
+  ],
+  "validation": {
+    "models": 262,
+    "directories_to_rename": 262,
+    "scene_refs_to_update": 2982,
+    "scenes": 10,
+    "examples": [
+      {
+        "old_directory": "AF-1792510004149210700",
+        "new_directory": "agavelow"
+      },
+      {
+        "old_directory": "AF-1792510006578179800",
+        "new_directory": "agavehigh"
+      },
+      {
+        "old_directory": "AF-1792510031830762200",
+        "new_directory": "agavelow-2"
+      },
+      {
+        "old_directory": "AF-1792510035970156500",
+        "new_directory": "agavelow-3"
+      },
+      {
+        "old_directory": "AF-1792510078292716500",
+        "new_directory": "avocado"
+      },
+      {
+        "old_directory": "AF-1792510084029153700",
+        "new_directory": "armchair-01"
+      },
+      {
+        "old_directory": "AF-1792510138928738500",
+        "new_directory": "basemesh-forest"
+      },
+      {
+        "old_directory": "AF-1792510139039004100",
+        "new_directory": "barrel"
+      }
+    ],
+    "bundle_files_unchanged": true,
+    "files_verified": 3146,
+    "catalog_entries": 265,
+    "preserved_missing_instances": 77,
+    "backup": "G:\\GraduateDesign\\Softwares\\3D-Layout\\artifacts\\model-directory-renames\\20261024T093547322576Z"
+  }
+}

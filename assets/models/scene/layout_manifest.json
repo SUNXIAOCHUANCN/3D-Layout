@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792514704573193800",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792514704573193800.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -99.999901,
+        0.0,
+        -100.0
+      ],
+      "max": [
+        99.999901,
+        2.132488,
+        100.0
+      ]
+    },
+    "dimensions_cm": [
+      199.999802,
+      2.132488,
+      200.0
+    ],
+    "center_cm": [
+      0,
+      1.066244,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 200 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      111073.76709,
+      1184.318614,
+      111073.876954
+    ],
+    "semantic_scale_factor": 0.0018006,
+    "total_scale_factor": 0.18006034,
+    "target_dimension_cm": 200.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -99.999901,
+          0.0,
+          -100.0
+        ],
+        "max": [
+          99.999901,
+          2.132488,
+          100.0
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "地垫"
+    ],
+    "leaf": "地垫",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "地垫",
+      "name": "地垫",
+      "category_path": [
+        "道具",
+        "地垫"
+      ],
+      "primary_paths": [
+        [
+          "道具",
+          "地垫"
+        ]
+      ],
+      "name_paths": [
+        [
+          "道具",
+          "地垫"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "地垫",
+    "raw_source": "llm",
+    "canonical": "地垫",
+    "canonical_source": "llm_raw",
+    "display": "地垫",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.95,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见大面积棕色矩形平面，侧面极薄，符合地垫特征。"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视图确认物体厚度极低，无支撑结构。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "地垫",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "地垫；类别：道具/地垫；属性：棕色、矩形平面",
+    "terms": [
+      "地垫",
+      "道具",
+      "棕色",
+      "矩形平面"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

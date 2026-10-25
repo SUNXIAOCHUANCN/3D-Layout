@@ -1,0 +1,180 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515087464120400",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515087464120400.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -21.13602,
+        0.0,
+        -32.764435
+      ],
+      "max": [
+        21.13602,
+        60.0,
+        32.764435
+      ]
+    },
+    "dimensions_cm": [
+      42.272041,
+      60.0,
+      65.528869
+    ],
+    "center_cm": [
+      0,
+      30.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 60 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      142.095828,
+      201.687676,
+      220.272756
+    ],
+    "semantic_scale_factor": 0.29748967,
+    "total_scale_factor": 29.74896691,
+    "target_dimension_cm": 60.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -21.13602,
+          0.0,
+          -32.764435
+        ],
+        "max": [
+          21.13602,
+          60.0,
+          32.764435
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "自然物"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "木柴堆",
+      "name": "木柴堆",
+      "category_path": [
+        "自然物"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "木柴堆",
+    "raw_source": "llm",
+    "canonical": "木柴堆",
+    "canonical_source": "llm_raw",
+    "display": "木柴堆",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 45° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰可见堆叠的原木端面、树皮纹理暗示以及顶部的积雪形状。"
+      },
+      {
+        "view": "方位 225° / 俯仰 15°",
+        "role": "supports",
+        "detail": "展示了另一侧的堆叠结构和积雪分布，确认了物体的体积感。"
+      },
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视角度进一步证实了原木的圆形截面特征和积雪覆盖范围。"
+      },
+      {
+        "view": "方位 315° / 俯仰 25°",
+        "role": "supports",
+        "detail": "侧面视角展示了原木的长度方向和捆绑细节。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "木柴堆",
+      "parent_path": [
+        "自然物"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "木柴堆",
+      "subtype": null,
+      "appearance_motifs": [
+        "积雪覆盖"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "木柴堆；类别：自然物；属性：棕色、白色、冬季装饰",
+    "terms": [
+      "木柴堆",
+      "自然物",
+      "棕色",
+      "白色",
+      "冬季装饰",
+      "积雪覆盖"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

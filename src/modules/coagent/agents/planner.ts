@@ -19,6 +19,7 @@ import { validatePlanSemantics, type PlanLimits } from '../services/planValidati
 import { runToolLoop } from './modelLoop'
 import { SYSTEM_PLANNER } from './prompts'
 import type { ToolRegistry } from '../tools/registry'
+import { logError, logStage, logWarn } from '../runtime/runLog'
 
 export interface PlannerInput {
   runId: string
@@ -165,6 +166,11 @@ export async function makePlan(input: PlannerInput): Promise<Plan> {
 
   for (let attempt = 0; attempt <= input.config.schemaRepairAttempts; attempt++) {
     if (input.signal.aborted) throw new CoAgentError('cancelled', '规划被取消')
+    logStage(
+      'planner.attempt',
+      `第 ${attempt + 1}/${input.config.schemaRepairAttempts + 1} 次规划请求`,
+      messages.length > 1 ? `携带 ${messages.length - 1} 条上文（含上一次的修复要求）` : '首次请求',
+    )
     const loop = await runToolLoop({
       role: 'main',
       purpose: 'planner',
@@ -177,36 +183,53 @@ export async function makePlan(input: PlannerInput): Promise<Plan> {
       config: input.config,
       maxRounds: 4,
     })
+    logStage(
+      'planner.reply',
+      `第 ${attempt + 1} 次回包（${loop.text.length} 字符，工具调用 ${loop.toolCalls} 次，stop=${loop.stopReason}）`,
+      loop.text,
+    )
 
     let parsed: unknown = null
     try {
       parsed = normalizePlanJson(extractJson(loop.text))
     } catch (e) {
       issues = [`计划不是合法 JSON：${e instanceof Error ? e.message : String(e)}`]
+      logWarn('planner.parse', `第 ${attempt + 1} 次回包不是合法 JSON`, issues[0])
     }
 
     if (parsed !== null) {
       const shape = validatePlan(parsed)
       if (!shape.ok) {
         issues = shape.issues.map(i => `${i.path} ${i.message}`)
+        logWarn('planner.schema', `第 ${attempt + 1} 次计划 schema 不合格（${issues.length} 项）`, issues.map(i => `- ${i}`).join('\n'))
       } else {
         const plan = parsed as Plan
-        if (plan.kind !== 'tasks') return plan // clarify / unsupported：由上层映射
+        if (plan.kind !== 'tasks') {
+          logStage('planner.plan', `第 ${attempt + 1} 次计划为 ${plan.kind}（不需要执行）`, JSON.stringify(plan))
+          return plan // clarify / unsupported：由上层映射
+        }
         const semantic = validatePlanSemantics(plan, input.partition, input.assets, input.limits)
         const dag = checkTaskDag(plan.tasks)
         if (!dag.ok) semantic.push(...dag.issues.map(i => ({ path: i.path, message: i.message })))
-        if (semantic.length === 0) return plan
+        if (semantic.length === 0) {
+          logStage('planner.plan', `第 ${attempt + 1} 次计划通过全部校验（${plan.tasks.length} 个任务）`, JSON.stringify(plan))
+          return plan
+        }
         issues = semantic.map(i => `${i.path} ${i.message}`)
+        logWarn('planner.semantics', `第 ${attempt + 1} 次计划语义不合格（${issues.length} 项）`, issues.map(i => `- ${i}`).join('\n'))
       }
     }
 
-    messages = [...loop.transcript, { role: 'user', text: repairText(issues) }]
+    const repair = repairText(issues)
+    messages = [...loop.transcript, { role: 'user', text: repair }]
+    logStage('planner.repair', `发起第 ${attempt + 1} 次修复请求`, repair)
   }
 
   const emptyTasks = issues.some(i => i.includes('至少一个任务'))
   const hint = emptyTasks
     ? '（模型没有给出可执行任务：请把要求改成可量化的，例如"每个建筑随机偏移 0.5~1 米"）'
     : ''
+  logError('planner.fail', `计划连续 ${input.config.schemaRepairAttempts + 1} 次不合格`, issues.map(i => `- ${i}`).join('\n'), { issues })
   throw new CoAgentError('invalid_plan', `计划连续 ${input.config.schemaRepairAttempts + 1} 次不合格：${issues.join('; ')}${hint}`, {
     details: { issues },
   })

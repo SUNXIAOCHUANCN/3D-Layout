@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792513584492894200",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792513584492894200.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -24.333458,
+        0.0,
+        -18.180604
+      ],
+      "max": [
+        24.333458,
+        60.0,
+        18.180604
+      ]
+    },
+    "dimensions_cm": [
+      48.666915,
+      60.0,
+      36.361209
+    ],
+    "center_cm": [
+      0,
+      30.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 60 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      56.775227,
+      69.996498,
+      42.419288
+    ],
+    "semantic_scale_factor": 0.85718574,
+    "total_scale_factor": 85.71857409,
+    "target_dimension_cm": 60.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -24.333458,
+          0.0,
+          -18.180604
+        ],
+        "max": [
+          24.333458,
+          60.0,
+          18.180604
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "家具",
+      "柜子"
+    ],
+    "leaf": "柜子",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "柜子",
+      "name": "床头柜",
+      "category_path": [
+        "家具",
+        "柜子"
+      ],
+      "primary_paths": [
+        [
+          "家具",
+          "柜子"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "床头柜",
+    "raw_source": "llm",
+    "canonical": "床头柜",
+    "canonical_source": "llm_raw",
+    "display": "床头柜",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.94,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了背板结构和后侧桌腿的弯曲形态，确认其为封闭式箱体家具而非简单支架。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角完整呈现了前部面板、底部踢脚线装饰以及腿部细节，符合床头柜的典型构造。"
+      },
+      {
+        "view": "方位 225° / 俯仰 15°",
+        "role": "supports",
+        "detail": "透视角度证实了物体的三维体积感，显示了顶面厚度和内部隔层的深度。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "柜子",
+      "subtype": null,
+      "appearance_motifs": [
+        "欧式古典风格",
+        "雕花装饰"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "床头柜；类别：家具/柜子；属性：棕色、木质外观、欧式古典风格、储物用途",
+    "terms": [
+      "床头柜",
+      "家具",
+      "柜子",
+      "棕色",
+      "木质外观",
+      "欧式古典风格",
+      "储物用途",
+      "雕花装饰"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

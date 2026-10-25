@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792510583084062300",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792510583084062300.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -60.0,
+        0.0,
+        -57.577183
+      ],
+      "max": [
+        60.0,
+        45.860803,
+        57.577183
+      ]
+    },
+    "dimensions_cm": [
+      120.0,
+      45.860803,
+      115.154366
+    ],
+    "center_cm": [
+      0,
+      22.930401,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 120 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      192.986906,
+      73.754454,
+      185.19404
+    ],
+    "semantic_scale_factor": 0.62180384,
+    "total_scale_factor": 62.1803844,
+    "target_dimension_cm": 120.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -60.0,
+          0.0,
+          -57.577183
+        ],
+        "max": [
+          60.0,
+          45.860803,
+          57.577183
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "篝火",
+      "name": "篝火",
+      "category_path": [
+        "道具"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "篝火",
+    "raw_source": "llm",
+    "canonical": "篝火",
+    "canonical_source": "llm_raw",
+    "display": "篝火",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.95,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见外围的灰色石块和内部棕色的木柴堆叠结构"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认了石头的包围关系和木柴的支撑形态"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角展示了篝火的标准构造"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角进一步证实了结构的完整性"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "篝火",
+      "parent_path": [
+        "道具"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "篝火",
+      "subtype": null,
+      "appearance_motifs": [
+        "石头围圈",
+        "木柴堆叠"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "石头",
+        "木柴"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "篝火；类别：道具；属性：灰色石头、棕色木柴、露营场景",
+    "terms": [
+      "篝火",
+      "道具",
+      "灰色石头",
+      "棕色木柴",
+      "露营场景",
+      "石头围圈",
+      "木柴堆叠",
+      "石头",
+      "木柴"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

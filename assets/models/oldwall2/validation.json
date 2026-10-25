@@ -1,0 +1,21 @@
+{
+  "valid": true,
+  "errors": [],
+  "warnings": [
+    "身份与类别核验：主物体未命中明确节点或同义词，不能据此判断一致"
+  ],
+  "schema_version": "1.2",
+  "success": true,
+  "input_format": "glb",
+  "normalization_success": true,
+  "thumbnail_success": true,
+  "llm_success": true,
+  "llm_call": {
+    "attempts": 1,
+    "corrected": false,
+    "errors_before_success": []
+  },
+  "normalization_issues": [],
+  "recovery": "none",
+  "output_format": "glb"
+}

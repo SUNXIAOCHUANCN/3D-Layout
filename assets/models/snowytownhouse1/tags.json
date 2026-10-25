@@ -1,0 +1,417 @@
+{
+  "schema_version": "1.2",
+  "name": "木屋",
+  "object_label": {
+    "raw": "木屋",
+    "raw_source": "llm",
+    "canonical": "木屋",
+    "canonical_source": "llm_raw",
+    "display": "木屋",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.95,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 25°",
+        "role": "supports",
+        "detail": "正面视角清晰展示了双层窗户排列、中央入口门以及底部的基座结构"
+      },
+      {
+        "view": "方位 315° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视角确认了屋顶的坡度、烟囱位置以及侧面的支撑柱结构"
+      },
+      {
+        "view": "方位 135° / 俯仰 15°",
+        "role": "supports",
+        "detail": "背面视角显示了后墙的窗户布局和屋顶延伸出的屋檐积雪"
+      },
+      {
+        "view": "方位 45° / 俯仰 15°",
+        "role": "supports",
+        "detail": "另一侧面视角进一步证实了建筑的立体结构和半木构造细节"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "房屋",
+      "subtype": null,
+      "appearance_motifs": [
+        "半木结构",
+        "积雪屋顶"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "木屋；类别：建筑/房屋；属性：棕色、米色、白色、半木结构、双层建筑",
+    "terms": [
+      "木屋",
+      "建筑",
+      "房屋",
+      "棕色",
+      "米色",
+      "白色",
+      "半木结构",
+      "双层建筑",
+      "积雪屋顶"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "建筑",
+      "房屋"
+    ],
+    "leaf": "房屋",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "房屋",
+      "name": "木屋",
+      "category_path": [
+        "建筑",
+        "房屋"
+      ],
+      "primary_paths": [
+        [
+          "建筑",
+          "房屋"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色",
+    "米色",
+    "白色",
+    "半木结构",
+    "双层建筑"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "中",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "中",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9181,
+      "evidence": {
+        "topology_quality": 0.9422,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.7457,
+        "uv_quality": 0.7863,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "中",
+      "score": 0.4224,
+      "evidence": {
+        "triangle_count": 8359,
+        "vertex_count": 25077,
+        "resolution": 8359,
+        "split_vertices": true,
+        "triangle_density": 0.00286765,
+        "resolution_score": 0.6034,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.8254,
+      "status": "scored",
+      "evidence": [
+        "三角面 8359 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.450，阈值 0.200",
+        "量化法线方向数 265",
+        "轴对齐法线比例 0.481"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "中",
+      "machine_label": "中",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 中，分数 0.4224"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 8359 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.450，阈值 0.200",
+        "量化法线方向数 265",
+        "轴对齐法线比例 0.481"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "使用纯色材质，无复杂纹理细节",
+        "光照简单，阴影边缘清晰硬朗",
+        "物体表面缺乏真实环境反射"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.8254,
+          "evidence": [
+            "三角面 8359 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.450，阈值 0.200",
+            "量化法线方向数 265",
+            "轴对齐法线比例 0.481"
+          ]
+        }
+      ],
+      "confidence": 0.8254,
+      "evidence": [
+        "三角面 8359 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.450，阈值 0.200",
+        "量化法线方向数 265",
+        "轴对齐法线比例 0.481"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.95,
+      "evidence": [
+        "使用纯色材质，无复杂纹理细节",
+        "光照简单，阴影边缘清晰硬朗",
+        "物体表面缺乏真实环境反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.95,
+      "evidence": [
+        "使用纯色材质，无复杂纹理细节",
+        "光照简单，阴影边缘清晰硬朗",
+        "物体表面缺乏真实环境反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.95,
+      "modeling_quality": 0.9181,
+      "modeling_precision": 0.4224,
+      "modeling_style": 0.8254
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色",
+        "confidence": 0.98,
+        "evidence": "木质框架呈现明显的棕色调",
+        "source": "llm"
+      },
+      {
+        "tag": "米色",
+        "confidence": 0.95,
+        "evidence": "墙体填充部分为浅米色",
+        "source": "llm"
+      },
+      {
+        "tag": "白色",
+        "confidence": 0.92,
+        "evidence": "屋顶和窗台覆盖有白色的积雪块",
+        "source": "llm"
+      },
+      {
+        "tag": "半木结构",
+        "confidence": 0.96,
+        "evidence": "可见外露的深色木梁与浅色墙体的交错结构",
+        "source": "llm"
+      },
+      {
+        "tag": "双层建筑",
+        "confidence": 0.94,
+        "evidence": "垂直方向上有两层窗户分布，且高度较高",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "木屋",
+      "taxonomy_path": [
+        "建筑",
+        "房屋"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9181,
+        "evidence": {
+          "topology_quality": 0.9422,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.7457,
+          "uv_quality": 0.7863,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "中",
+        "score": 0.4224,
+        "evidence": {
+          "triangle_count": 8359,
+          "vertex_count": 25077,
+          "resolution": 8359,
+          "split_vertices": true,
+          "triangle_density": 0.00286765,
+          "resolution_score": 0.6034,
+          "density_score": 0.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.8254,
+        "status": "scored",
+        "confidence": 0.8254,
+        "evidence": [
+          "三角面 8359 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.450，阈值 0.200",
+          "量化法线方向数 265",
+          "轴对齐法线比例 0.481"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.8254,
+            "evidence": [
+              "三角面 8359 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.450，阈值 0.200",
+              "量化法线方向数 265",
+              "轴对齐法线比例 0.481"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "具有典型的坡屋顶结构和烟囱部件",
+      "立面包含多层窗户和入口门的特征结构",
+      "整体轮廓符合居住建筑的几何形态"
+    ],
+    "candidates": [
+      {
+        "name": "建筑/建筑物",
+        "confidence": 0.85
+      },
+      {
+        "name": "建筑/构件/门",
+        "confidence": 0.1
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

@@ -1,0 +1,396 @@
+{
+  "schema_version": "1.2",
+  "name": "枯树",
+  "object_label": {
+    "raw": "枯树",
+    "raw_source": "llm",
+    "canonical": "枯树",
+    "canonical_source": "llm_raw",
+    "display": "枯树",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.94,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了树干与树枝的连接关系，以及无叶的枯枝特征"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认了树干的直立性和树枝的分布范围"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "树",
+      "subtype": null,
+      "appearance_motifs": [
+        "枯枝造型",
+        "无叶"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "枯树；类别：植物/树/普通树；属性：棕色树干、灰白色树枝、枯树/落叶状态",
+    "terms": [
+      "枯树",
+      "植物",
+      "树",
+      "普通树",
+      "棕色树干",
+      "灰白色树枝",
+      "枯树/落叶状态",
+      "枯枝造型",
+      "无叶"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "树",
+      "普通树"
+    ],
+    "leaf": "普通树",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "树",
+      "name": "枯树",
+      "category_path": [
+        "植物",
+        "树",
+        "普通树"
+      ],
+      "primary_paths": [
+        [
+          "植物",
+          "树"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色树干",
+    "灰白色树枝",
+    "枯树/落叶状态"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9389,
+      "evidence": {
+        "topology_quality": 0.9858,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.6975,
+        "uv_quality": 0.9264,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.3281,
+      "evidence": {
+        "triangle_count": 1114,
+        "vertex_count": 3342,
+        "resolution": 1114,
+        "split_vertices": true,
+        "triangle_density": 0.00725785,
+        "resolution_score": 0.4688,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.8859,
+      "status": "scored",
+      "evidence": [
+        "三角面 1114 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.451，阈值 0.200",
+        "量化法线方向数 218",
+        "轴对齐法线比例 0.162"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.3281"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 1114 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.451，阈值 0.200",
+        "量化法线方向数 218",
+        "轴对齐法线比例 0.162"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "模型表面使用纯色材质（顶点色或基色），缺乏真实纹理细节",
+        "光照表现为简单的明暗面区分，没有复杂的环境反射或PBR质感",
+        "边缘清晰锐利，符合低多边形风格化渲染特征"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.8859,
+          "evidence": [
+            "三角面 1114 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.451，阈值 0.200",
+            "量化法线方向数 218",
+            "轴对齐法线比例 0.162"
+          ]
+        }
+      ],
+      "confidence": 0.8859,
+      "evidence": [
+        "三角面 1114 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.451，阈值 0.200",
+        "量化法线方向数 218",
+        "轴对齐法线比例 0.162"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.94,
+      "evidence": [
+        "模型表面使用纯色材质（顶点色或基色），缺乏真实纹理细节",
+        "光照表现为简单的明暗面区分，没有复杂的环境反射或PBR质感",
+        "边缘清晰锐利，符合低多边形风格化渲染特征"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.94,
+      "evidence": [
+        "模型表面使用纯色材质（顶点色或基色），缺乏真实纹理细节",
+        "光照表现为简单的明暗面区分，没有复杂的环境反射或PBR质感",
+        "边缘清晰锐利，符合低多边形风格化渲染特征"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.94,
+      "modeling_quality": 0.9389,
+      "modeling_precision": 0.3281,
+      "modeling_style": 0.8859
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色树干",
+        "confidence": 0.98,
+        "evidence": "所有视角可见主干呈现明显的棕褐色基色",
+        "source": "llm"
+      },
+      {
+        "tag": "灰白色树枝",
+        "confidence": 0.96,
+        "evidence": "分叉的树枝部分呈现浅灰或灰白色，与树干形成对比",
+        "source": "llm"
+      },
+      {
+        "tag": "枯树/落叶状态",
+        "confidence": 0.92,
+        "evidence": "树冠区域仅由裸露的几何体构成的枝条组成，无任何叶片结构",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "枯树",
+      "taxonomy_path": [
+        "植物",
+        "树",
+        "普通树"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9389,
+        "evidence": {
+          "topology_quality": 0.9858,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.6975,
+          "uv_quality": 0.9264,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.3281,
+        "evidence": {
+          "triangle_count": 1114,
+          "vertex_count": 3342,
+          "resolution": 1114,
+          "split_vertices": true,
+          "triangle_density": 0.00725785,
+          "resolution_score": 0.4688,
+          "density_score": 0.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.8859,
+        "status": "scored",
+        "confidence": 0.8859,
+        "evidence": [
+          "三角面 1114 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.451，阈值 0.200",
+          "量化法线方向数 218",
+          "轴对齐法线比例 0.162"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.8859,
+            "evidence": [
+              "三角面 1114 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.451，阈值 0.200",
+              "量化法线方向数 218",
+              "轴对齐法线比例 0.162"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "具有垂直向上的粗壮主干结构，底部较宽向上逐渐变细",
+      "顶部呈现不规则的分叉结构，模拟树枝向四周伸展的形态",
+      "整体轮廓符合树木的自然生长逻辑，而非人造建筑或家具"
+    ],
+    "candidates": [
+      {
+        "name": "植物/树/松树",
+        "confidence": 0.15
+      },
+      {
+        "name": "自然物/树桩",
+        "confidence": 0.05
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

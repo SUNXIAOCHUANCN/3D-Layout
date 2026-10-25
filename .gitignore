@@ -37,3 +37,7 @@ desktop.ini
 .idea/
 .vscode/
 *.local
+
+# ---- Python migration tools ----
+__pycache__/
+*.py[cod]

@@ -1,0 +1,173 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792514460265051900",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792514460265051900.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -19.004592,
+        0.0,
+        -11.929791
+      ],
+      "max": [
+        19.004592,
+        30.0,
+        11.929791
+      ]
+    },
+    "dimensions_cm": [
+      38.009185,
+      30.0,
+      23.859582
+    ],
+    "center_cm": [
+      0,
+      15.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 30 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      321.088362,
+      253.429556,
+      201.557446
+    ],
+    "semantic_scale_factor": 0.11837609,
+    "total_scale_factor": 11.83760903,
+    "target_dimension_cm": 30.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -19.004592,
+          0.0,
+          -11.929791
+        ],
+        "max": [
+          19.004592,
+          30.0,
+          11.929791
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "草本"
+    ],
+    "leaf": "草本",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "草本植物",
+      "name": "草丛",
+      "category_path": [
+        "植物",
+        "草本"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "草丛",
+    "raw_source": "llm",
+    "canonical": "草丛",
+    "canonical_source": "llm_raw",
+    "display": "草丛",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 45° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰可见密集的直立叶片结构，侧面轮廓符合草丛特征。"
+      },
+      {
+        "view": "方位 0° / 俯仰 25°",
+        "role": "supports",
+        "detail": "俯视角度确认了物体的扁平分布和叶片顶端的尖角形状。"
+      },
+      {
+        "view": "方位 225° / 俯仰 15°",
+        "role": "supports",
+        "detail": "展示了草丛背面的几何结构，确认为单一类型的重复单元组合。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "草本植物",
+      "subtype": null,
+      "appearance_motifs": [
+        "草叶",
+        "丛生"
+      ],
+      "asset_kind": "assembly",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "草丛；类别：植物/草本；属性：绿色、低多边形风格、地面覆盖物",
+    "terms": [
+      "草丛",
+      "植物",
+      "草本",
+      "绿色",
+      "低多边形风格",
+      "地面覆盖物",
+      "草本植物",
+      "草叶",
+      "丛生"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792513526928841500",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792513526928841500.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -36.227591,
+        0.0,
+        -42.983855
+      ],
+      "max": [
+        36.227591,
+        40.0,
+        42.983855
+      ]
+    },
+    "dimensions_cm": [
+      72.455182,
+      40.0,
+      85.96771
+    ],
+    "center_cm": [
+      0,
+      20.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 40 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      80.231798,
+      44.293201,
+      95.194626
+    ],
+    "semantic_scale_factor": 0.90307314,
+    "total_scale_factor": 90.30731376,
+    "target_dimension_cm": 40.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -36.227591,
+          0.0,
+          -42.983855
+        ],
+        "max": [
+          36.227591,
+          40.0,
+          42.983855
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "植物",
+      "name": "蘑菇",
+      "category_path": [
+        "植物"
+      ],
+      "primary_paths": [
+        [
+          "植物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "蘑菇",
+    "raw_source": "llm",
+    "canonical": "蘑菇",
+    "canonical_source": "llm_raw",
+    "display": "蘑菇",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见三个不同大小的蘑菇，菌盖呈红褐色带白斑，菌柄为米白色"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了蘑菇的侧面轮廓，确认了低多边形的建模风格"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "从后方视角再次确认了蘑菇的组合形态和颜色特征"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角展示了蘑菇的整体布局和相对位置"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "蘑菇",
+      "parent_path": [
+        "植物"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "植物",
+      "subtype": null,
+      "appearance_motifs": [
+        "卡通蘑菇"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "大蘑菇",
+        "中蘑菇",
+        "小蘑菇"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "蘑菇；类别：植物；属性：红褐色、白色斑点、低多边形风格、游戏资产",
+    "terms": [
+      "蘑菇",
+      "植物",
+      "红褐色",
+      "白色斑点",
+      "低多边形风格",
+      "游戏资产",
+      "卡通蘑菇",
+      "大蘑菇",
+      "中蘑菇",
+      "小蘑菇"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

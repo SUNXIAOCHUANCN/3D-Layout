@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792516858885018200",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792516858885018200.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -27.370859,
+        0.0,
+        -4.602746
+      ],
+      "max": [
+        27.370859,
+        60.0,
+        4.602746
+      ]
+    },
+    "dimensions_cm": [
+      54.741719,
+      60.0,
+      9.205491
+    ],
+    "center_cm": [
+      0,
+      30.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 60 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      262.036514,
+      287.206745,
+      44.064652
+    ],
+    "semantic_scale_factor": 0.20890874,
+    "total_scale_factor": 20.89087427,
+    "target_dimension_cm": 60.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -27.370859,
+          0.0,
+          -4.602746
+        ],
+        "max": [
+          27.370859,
+          60.0,
+          4.602746
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "容器"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "箱子",
+      "name": "木箱",
+      "category_path": [
+        "道具",
+        "容器"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "木箱",
+    "raw_source": "llm",
+    "canonical": "木箱",
+    "canonical_source": "llm_raw",
+    "display": "木箱",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 25°",
+        "role": "supports",
+        "detail": "正面视角清晰展示了垂直侧边和水平板条结构，确认了箱体形态。"
+      },
+      {
+        "view": "方位 45° / 俯仰 15°",
+        "role": "supports",
+        "detail": "透视角度进一步证实了物体的厚度和板条拼接的细节。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "木箱",
+      "parent_path": [
+        "道具",
+        "容器"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "箱子",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质纹理"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "木箱；类别：道具/容器；属性：棕色、板条结构、储物用途",
+    "terms": [
+      "木箱",
+      "道具",
+      "容器",
+      "棕色",
+      "板条结构",
+      "储物用途",
+      "箱子",
+      "木质纹理"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

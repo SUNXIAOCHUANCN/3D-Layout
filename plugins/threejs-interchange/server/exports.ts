@@ -4,7 +4,7 @@
  * 不携带接收工程的全量 manifest 或 scenes/index。
  */
 
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { zipSync, type Zippable } from 'fflate'
 import type { NativeSceneDocument, PackageManifest } from '../application/contracts.js'
@@ -15,6 +15,47 @@ import { resolveWithin } from './install.js'
 function fileEntry(abs: string): Uint8Array {
   if (!existsSync(abs)) throw new InterchangeError('MISSING_RESOURCE', `打包时文件缺失：${abs}`)
   return new Uint8Array(readFileSync(abs))
+}
+
+/** Keep workflow bundles intact, including nested model paths and centimeter metadata. */
+function putModel(root: string, ref: string, files: Record<string, Uint8Array>): string {
+  const match = /^models\/([A-Za-z0-9][A-Za-z0-9-]{0,63})$/.exec(ref)
+  if (!match) throw new InterchangeError('INVALID_DECLARATION', `非法模型 ref：${ref}`)
+  const dir = match[1]
+  const bundleEntry = `assets/models/${dir}/layout_manifest.json`
+  if (existsSync(resolveWithin(root, bundleEntry))) {
+    const visit = (relative: string): void => {
+      for (const entry of readdirSync(resolveWithin(root, relative), { withFileTypes: true })) {
+        const child = `${relative}/${entry.name}`
+        if (entry.isSymbolicLink()) throw new InterchangeError('PATH_UNSAFE', `资产包包含符号链接：${child}`)
+        if (entry.isDirectory()) visit(child)
+        else if (entry.isFile()) files[child] = fileEntry(resolveWithin(root, child))
+      }
+    }
+    visit(`assets/models/${dir}`)
+    return bundleEntry
+  }
+  const builtinPath = resolveWithin(root, 'assets/builtin-models.json')
+  if (existsSync(builtinPath)) {
+    const builtins = JSON.parse(readFileSync(builtinPath, 'utf8')) as { models: Record<string, unknown> }
+    if (builtins.models[ref]) {
+      const existing = files['assets/builtin-models.json']
+      const subset = existing ? JSON.parse(new TextDecoder().decode(existing)) as { models: Record<string, unknown> } : { models: {} }
+      subset.models[ref] = builtins.models[ref]
+      files['assets/builtin-models.json'] = new TextEncoder().encode(JSON.stringify(subset, null, 2) + '\n')
+      return 'assets/builtin-models.json'
+    }
+  }
+  const metaRel = `assets/models/${dir}/meta.json`
+  files[metaRel] = fileEntry(resolveWithin(root, metaRel))
+  const meta = JSON.parse(new TextDecoder().decode(files[metaRel])) as { source: { type: string; file?: string } }
+  if (meta.source.type === 'glb') {
+    const modelRel = `assets/models/${dir}/${meta.source.file ?? 'model.glb'}`
+    files[modelRel] = fileEntry(resolveWithin(root, modelRel))
+  }
+  const integrity = `assets/models/${dir}/import-integrity.json`
+  if (existsSync(resolveWithin(root, integrity))) files[integrity] = fileEntry(resolveWithin(root, integrity))
+  return metaRel
 }
 
 export function buildScenePackage(root: string, sceneId: string): Uint8Array {
@@ -40,13 +81,7 @@ export function buildScenePackage(root: string, sceneId: string): Uint8Array {
   // 模型依赖闭包（含隐藏资产——场景资产列表即全部实例）
   const refs = Array.from(new Set(doc.assets.map(a => a.ref)))
   for (const ref of refs) {
-    const m = /^models\/([a-z0-9][a-z0-9-]{0,63})$/.exec(ref)
-    if (!m) throw new InterchangeError('INVALID_DECLARATION', `场景 ${sceneId} 含非法 ref：${ref}`)
-    const dir = m[1]
-    put(`assets/models/${dir}/meta.json`)
-    put(`assets/models/${dir}/model.glb`)
-    const integrity = `assets/models/${dir}/import-integrity.json`
-    if (existsSync(resolveWithin(root, integrity))) put(integrity)
+    putModel(root, ref, files)
   }
 
   // 环境依赖
@@ -73,21 +108,10 @@ export function buildScenePackage(root: string, sceneId: string): Uint8Array {
 }
 
 export function buildModelPackage(root: string, ref: string): Uint8Array {
-  const m = /^models\/([a-z0-9][a-z0-9-]{0,63})$/.exec(ref)
+  const m = /^models\/([A-Za-z0-9][A-Za-z0-9-]{0,63})$/.exec(ref)
   if (!m) throw new InterchangeError('BAD_REQUEST', `非法模型 ref：${ref}`)
-  const dir = m[1]
-  const metaRel = `assets/models/${dir}/meta.json`
-  if (!existsSync(resolveWithin(root, metaRel))) {
-    throw new InterchangeError('MISSING_RESOURCE', `模型不存在：${ref}`)
-  }
-  const files: Record<string, Uint8Array> = {
-    [metaRel]: fileEntry(resolveWithin(root, metaRel)),
-    [`assets/models/${dir}/model.glb`]: fileEntry(resolveWithin(root, `assets/models/${dir}/model.glb`)),
-  }
-  const integrity = `assets/models/${dir}/import-integrity.json`
-  if (existsSync(resolveWithin(root, integrity))) {
-    files[integrity] = fileEntry(resolveWithin(root, integrity))
-  }
+  const files: Record<string, Uint8Array> = {}
+  const metaRel = putModel(root, ref, files)
   const manifest: PackageManifest = {
     format: '3d-layout-package',
     schemaVersion: 1,

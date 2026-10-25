@@ -43,6 +43,7 @@ import { captureWith, regionCamera } from '../tools/cameraTools'
 import { createToolRegistry } from '../tools/registry'
 import { buildRegionGraph, regionPassed, type RegionStateType } from './regionGraph'
 import { looseGraph, mergeKeyedNoLWW } from './state'
+import { logError, logStage, logWarn } from '../runtime/runLog'
 import { END, START } from '@langchain/langgraph'
 
 const MainState = Annotation.Root({
@@ -102,6 +103,14 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
         const snap = context.editorRead.snapshot({ includeCatalog: true })
         assets = snap.assets
         catalog = snap.catalog ?? []
+        logStage(
+          'node.collectContext',
+          `收集场景上下文：${partition.regions.length} 个区 / ${assets.length} 个对象 / ${catalog.length} 个模型`,
+          [
+            `sceneRevision=${snap.sceneRevision}，sceneId=${snap.sceneId ?? '（无）'}`,
+            `每区对象数：${partition.regions.map(r => `${r.id}:${r.objectIds.length}`).join('，')}`,
+          ].join('\n'),
+        )
         return {
           trace: [
             {
@@ -119,6 +128,16 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
         // W07：精简上下文 + 只读工具（按需观察视口/对象），不再把全场景塞给模型
         const viewport = context.render.diagnostics ? context.render.diagnostics().mainCamera : null
         const bundle = buildPlannerContext({ request: state.request, partition, assets, catalog, viewport })
+        logStage(
+          'node.planner',
+          '规划器开始（模型第 1 次参与：输出任务计划）',
+          [
+            `候选对象 ${bundle.candidateIds.length} 个（关键词命中 ${bundle.matchedIds.length} 个），截断=${JSON.stringify(bundle.truncated)}`,
+            `视口相机：${viewport ? '可用（已加入上下文）' : '不可用'}`,
+            '规划器上下文（这就是发给模型的用户消息全文）：',
+            bundle.text,
+          ].join('\n'),
+        )
         const plan = await makePlan({
           runId: input.runId,
           model,
@@ -130,6 +149,16 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
           assets,
         })
         if (plan.kind === 'tasks') planTasks = plan
+        logStage(
+          'node.planner',
+          `规划结论：${plan.kind}${plan.kind === 'tasks' ? `（${plan.tasks.length} 个任务）` : ''}`,
+          plan.kind === 'tasks'
+            ? plan.tasks.map(t => `- ${t.id} @${t.regionId}：${t.objective}（目标 ${t.targetObjectIds.length}，操作 ${t.allowedOperations.join('/')}）`).join('\n')
+            : plan.kind === 'clarify'
+              ? `问题：${plan.question}\n选项：${plan.options.join(' / ')}`
+              : `原因：${plan.reason}`,
+          plan,
+        )
         context.emit({
           type: 'plan.ready',
           runId: input.runId,
@@ -151,9 +180,17 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
       graph.addNode('validatePlan', (state: MainStateType) => {
         stage = 'validatePlan'
         // clarify / unsupported 不进入执行，由 run() 映射成对应的 RunOutcome
-        if (state.plan?.kind !== 'tasks') return { trace: [{ type: 'validatePlan', at: Date.now(), note: state.plan?.kind ?? 'null' }] }
+        if (state.plan?.kind !== 'tasks') {
+          logStage('node.validatePlan', `跳过语义校验（计划类型 ${state.plan?.kind ?? 'null'}）`)
+          return { trace: [{ type: 'validatePlan', at: Date.now(), note: state.plan?.kind ?? 'null' }] }
+        }
         const issues = validatePlanSemantics(state.plan, partition, assets)
         if (issues.length > 0) {
+          logWarn(
+            'node.validatePlan',
+            `计划语义校验不通过：${issues.length} 个问题`,
+            issues.map(i => `- ${i.path} ${i.message}`).join('\n'),
+          )
           return {
             failureCode: 'invalid_plan' as const,
             failureReason: issues.slice(0, 3).map(i => `${i.path} ${i.message}`).join('；'),
@@ -161,6 +198,7 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
             trace: [{ type: 'validatePlan', at: Date.now(), note: `${issues.length} 个问题` }],
           }
         }
+        logStage('node.validatePlan', `计划语义校验通过（${state.plan.tasks.length} 个任务）`)
         return { trace: [{ type: 'validatePlan', at: Date.now(), note: `${state.plan.tasks.length} 个任务` }] }
       })
 
@@ -178,6 +216,7 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
             regionId: region.id,
           })
           baselines[region.id] = [obs.id]
+          logStage('node.captureBaselines', `区 ${region.id} 基线已捕获：${obs.id}`, `${obs.width}×${obs.height}，标注对象 ${obs.labels.length} 个`)
           context.emit({
             type: 'baseline.ready',
             runId: input.runId,
@@ -202,6 +241,11 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
               state.baselines[region.id] ?? [],
             ),
           )
+          logStage(
+            'node.dispatch',
+            `区 ${region.id} 分派 ${tasks.length} 个任务${tasks.length === 0 ? '（空区直接通过）' : ''}`,
+            tasks.map(t => `- ${t.id}：${t.objective}`).join('\n'),
+          )
         }
         context.emit({ type: 'tool.started', runId: input.runId, payload: { dispatch: partition.regions.map(r => r.id) } })
         return { trace: [{ type: 'dispatch', at: Date.now(), note: partition.regions.map(r => r.id).join(',') }] }
@@ -213,7 +257,16 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
           stage = nodeName
           const sub = regionGraphs.get(region.id)
           if (!sub) throw new CoAgentError('internal_error', `区域子图未建立：${region.id}`)
+          logStage('node.region', `进入区域子图 ${region.id}`)
           const out = (await sub.invoke({ regionId: region.id, index: 0 }, runConfig)) as RegionStateType
+          const result = out.regionResults[region.id]
+          logStage(
+            'node.region',
+            `区域 ${region.id} 结束：${result?.status ?? '无结果'}`,
+            (result?.tasks ?? [])
+              .map(t => `- ${t.taskId}：${t.status}（判定 ${t.verdicts.length} 次，证据 ${t.evidenceIds.length} 条）`)
+              .join('\n'),
+          )
           return { regionResults: out.regionResults, trace: out.trace }
         })
       }
@@ -346,6 +399,15 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
 
         const passed = problems.length === 0
         const note = passed ? `${checks.length} 项检查通过` : problems.slice(0, 3).join('；')
+        logStage(
+          'node.finalCheck',
+          passed ? `终检通过（${checks.length} 项）` : `终检未通过（${problems.length} 个问题）`,
+          [
+            ...checks.map(c => `- ${c.passed ? '✓' : '✗'} ${c.name}${c.note ? `：${c.note}` : ''}`),
+            ...(problems.length > 0 ? ['', '问题：', ...problems.map(p => `- ${p}`)] : []),
+          ].join('\n'),
+          { checks, problems },
+        )
         return {
           finalCheckRuns: 1,
           finalCheckNote: note,
@@ -367,6 +429,7 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
         const tasks = regions.flatMap(r => r.tasks)
         const passedTasks = tasks.filter(t => t.status === 'pass').length
         const summary = `已完成：${regions.filter(r => r.status === 'pass').length}/${regions.length} 个区域，${passedTasks}/${tasks.length} 个任务通过（终检：${state.finalCheckNote ?? '未执行'}）`
+        logStage('node.summarizer', '生成总结', summary)
         return { summary, trace: [{ type: 'summarize', at: Date.now(), note: summary }] }
       })
 
@@ -435,8 +498,17 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
           },
         }
       } catch (e) {
-        if (context.signal.aborted) return { kind: 'cancelled' }
+        if (context.signal.aborted) {
+          logWarn('run.error', '运行被取消（AbortSignal 已中止）')
+          return { kind: 'cancelled' }
+        }
         const err = CoAgentError.from(e)
+        logError(
+          'run.error',
+          `工作流抛错（stage=${stage}）：${err.code} ${err.message}`,
+          (err.stack ?? '').split('\n').slice(0, 12).join('\n'),
+          { code: err.code, details: err.details, stage },
+        )
         // 带上失败节点与错误细节：事件日志里只看到错误码无法定位（用户实测踩过）
         // 注意：区域子图是**并行**跑的，共享的 `stage` 会被后完成的区覆盖；
         // 区域子图抛出的错误自带 regionId/taskId/stage，优先用它们定位。

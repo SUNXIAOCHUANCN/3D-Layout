@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792510281527090200",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792510281527090200.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -175.0,
+        0.0,
+        -44.612741
+      ],
+      "max": [
+        175.0,
+        62.572495,
+        44.612741
+      ]
+    },
+    "dimensions_cm": [
+      350.0,
+      62.572495,
+      89.225481
+    ],
+    "center_cm": [
+      0,
+      31.286248,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 350 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      919.585132,
+      164.402103,
+      234.429788
+    ],
+    "semantic_scale_factor": 0.38060641,
+    "total_scale_factor": 38.06064146,
+    "target_dimension_cm": 350.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -175.0,
+          0.0,
+          -44.612741
+        ],
+        "max": [
+          175.0,
+          62.572495,
+          44.612741
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "车辆"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "船",
+      "name": "独木舟",
+      "category_path": [
+        "车辆"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "独木舟",
+    "raw_source": "llm",
+    "canonical": "独木舟",
+    "canonical_source": "llm_raw",
+    "display": "独木舟",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 15°",
+        "role": "supports",
+        "detail": "展示了物体的横截面形状，呈U型或半圆型开口，边缘有明显的厚度，符合船舷结构。"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视角度清晰显示了细长的船身以及内部的横梁结构，排除了实心物体（如木头）的可能性。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "独木舟",
+      "parent_path": [
+        "车辆"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "船",
+      "subtype": null,
+      "appearance_motifs": [
+        "独木舟造型"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "独木舟；类别：车辆；属性：棕色、米色边缘、长条形、平底结构",
+    "terms": [
+      "独木舟",
+      "车辆",
+      "棕色",
+      "米色边缘",
+      "长条形",
+      "平底结构",
+      "船",
+      "独木舟造型"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

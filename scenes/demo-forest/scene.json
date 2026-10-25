@@ -4,7 +4,12 @@
     "name": "Demo Forest（导入验收示例）",
     "version": 2,
     "unit": "m",
-    "up": "+Y"
+    "up": "+Y",
+    "modelMigration": {
+      "id": "20261024T084810012256Z",
+      "reportSha256": "baa2e0f2320823e81a3cf0b2f77543c71a37949ed2dac05b93a42ab751003999",
+      "appliedAt": "2026-10-24T08:48:10.012256+00:00"
+    }
   },
   "environment": {
     "background": "#87a9c9",

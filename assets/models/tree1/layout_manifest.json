@@ -1,0 +1,199 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515991120754000",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515991120754000.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -143.379569,
+        0.0,
+        -129.339536
+      ],
+      "max": [
+        143.379569,
+        500.0,
+        129.339536
+      ]
+    },
+    "dimensions_cm": [
+      286.759137,
+      500.0,
+      258.679073
+    ],
+    "center_cm": [
+      0,
+      250.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 500 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      517.144776,
+      901.705837,
+      466.50486
+    ],
+    "semantic_scale_factor": 0.55450456,
+    "total_scale_factor": 55.45045618,
+    "target_dimension_cm": 500.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -143.379569,
+          0.0,
+          -129.339536
+        ],
+        "max": [
+          143.379569,
+          500.0,
+          129.339536
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "树",
+      "松树"
+    ],
+    "leaf": "松树",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "树",
+      "name": "松树",
+      "category_path": [
+        "植物",
+        "树",
+        "松树"
+      ],
+      "primary_paths": [
+        [
+          "植物",
+          "树"
+        ]
+      ],
+      "name_paths": [
+        [
+          "植物",
+          "树",
+          "松树"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "松树",
+    "raw_source": "llm",
+    "canonical": "松树",
+    "canonical_source": "llm_raw",
+    "display": "松树",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见绿色的层叠树冠和底部的棕色树干，确认是树木模型"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了树冠的侧面轮廓，呈不规则锥形，符合松树外观"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "多角度验证了树冠的立体结构和树干的连接关系"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "进一步确认了物体的对称性和整体形态"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "树",
+      "subtype": null,
+      "appearance_motifs": [
+        "针叶树造型",
+        "圆锥形树冠"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "松树；类别：植物/树/松树；属性：绿色、棕色、低多边形风格",
+    "terms": [
+      "松树",
+      "植物",
+      "树",
+      "绿色",
+      "棕色",
+      "低多边形风格",
+      "针叶树造型",
+      "圆锥形树冠"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

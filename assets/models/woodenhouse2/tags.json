@@ -1,0 +1,398 @@
+{
+  "schema_version": "1.2",
+  "name": "木屋",
+  "object_label": {
+    "raw": "木屋",
+    "raw_source": "llm",
+    "canonical": "木屋",
+    "canonical_source": "llm_raw",
+    "display": "木屋",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.94,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰可见正立面结构，包含中央矩形门窗洞口及两侧对称墙体，上方为三角形山墙"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧视角度展示了屋顶的厚度和屋檐延伸，以及墙体的水平板条细节"
+      },
+      {
+        "view": "方位 180° / 俯仰 15°",
+        "role": "supports",
+        "detail": "背面视角确认了完整的房屋封闭结构，未见内部空洞，符合单体建筑特征"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "房屋",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质结构",
+        "尖顶屋顶"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "木屋；类别：建筑/房屋；属性：棕色、木质纹理、尖顶造型",
+    "terms": [
+      "木屋",
+      "建筑",
+      "房屋",
+      "棕色",
+      "木质纹理",
+      "尖顶造型",
+      "木质结构",
+      "尖顶屋顶"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "建筑",
+      "房屋"
+    ],
+    "leaf": "房屋",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "房屋",
+      "name": "木屋",
+      "category_path": [
+        "建筑",
+        "房屋"
+      ],
+      "primary_paths": [
+        [
+          "建筑",
+          "房屋"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色",
+    "木质纹理",
+    "尖顶造型"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9108,
+      "evidence": {
+        "topology_quality": 0.9327,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.7185,
+        "uv_quality": 0.7834,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.3986,
+      "evidence": {
+        "triangle_count": 5027,
+        "vertex_count": 15081,
+        "resolution": 5027,
+        "split_vertices": true,
+        "triangle_density": 0.00406238,
+        "resolution_score": 0.5694,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.855,
+      "status": "scored",
+      "evidence": [
+        "三角面 5027 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.461，阈值 0.200",
+        "量化法线方向数 185",
+        "轴对齐法线比例 0.587"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.3986"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 5027 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.461，阈值 0.200",
+        "量化法线方向数 185",
+        "轴对齐法线比例 0.587"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "使用单一固有色（Base Color）进行着色，无复杂PBR贴图",
+        "光照产生简单的明暗面区分，符合基础渲染器预览特征"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.855,
+          "evidence": [
+            "三角面 5027 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.461，阈值 0.200",
+            "量化法线方向数 185",
+            "轴对齐法线比例 0.587"
+          ]
+        }
+      ],
+      "confidence": 0.855,
+      "evidence": [
+        "三角面 5027 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.461，阈值 0.200",
+        "量化法线方向数 185",
+        "轴对齐法线比例 0.587"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Realistic",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.94,
+      "evidence": [
+        "使用单一固有色（Base Color）进行着色，无复杂PBR贴图",
+        "光照产生简单的明暗面区分，符合基础渲染器预览特征"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.94,
+      "evidence": [
+        "使用单一固有色（Base Color）进行着色，无复杂PBR贴图",
+        "光照产生简单的明暗面区分，符合基础渲染器预览特征"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.94,
+      "modeling_quality": 0.9108,
+      "modeling_precision": 0.3986,
+      "modeling_style": 0.855
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色",
+        "confidence": 0.98,
+        "evidence": "模型整体呈现统一的棕褐色材质基色",
+        "source": "llm"
+      },
+      {
+        "tag": "木质纹理",
+        "confidence": 0.92,
+        "evidence": "墙面和屋顶由横向排列的板条构成，模拟原木或木板堆叠效果",
+        "source": "llm"
+      },
+      {
+        "tag": "尖顶造型",
+        "confidence": 0.96,
+        "evidence": "顶部具有明显的三角形山墙和倾斜屋顶结构",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "木屋",
+      "taxonomy_path": [
+        "建筑",
+        "房屋"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9108,
+        "evidence": {
+          "topology_quality": 0.9327,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.7185,
+          "uv_quality": 0.7834,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.3986,
+        "evidence": {
+          "triangle_count": 5027,
+          "vertex_count": 15081,
+          "resolution": 5027,
+          "split_vertices": true,
+          "triangle_density": 0.00406238,
+          "resolution_score": 0.5694,
+          "density_score": 0.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.855,
+        "status": "scored",
+        "confidence": 0.855,
+        "evidence": [
+          "三角面 5027 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.461，阈值 0.200",
+          "量化法线方向数 185",
+          "轴对齐法线比例 0.587"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.855,
+            "evidence": [
+              "三角面 5027 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.461，阈值 0.200",
+              "量化法线方向数 185",
+              "轴对齐法线比例 0.587"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "物体具有典型的建筑轮廓：垂直墙体与倾斜屋顶的组合",
+      "正面视图显示有矩形开口（门或窗），侧面视图显示屋檐悬挑结构",
+      "屋顶由多条平行几何体模拟瓦片或木板的层叠关系"
+    ],
+    "candidates": [
+      {
+        "name": "建筑/房屋",
+        "confidence": 0.95
+      },
+      {
+        "name": "建筑/建筑物",
+        "confidence": 0.85
+      },
+      {
+        "name": "道具/容器/花盆",
+        "confidence": 0.1
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

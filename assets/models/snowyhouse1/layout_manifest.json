@@ -1,0 +1,200 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515343280802200",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515343280802200.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -100.0,
+        0.0,
+        -97.337584
+      ],
+      "max": [
+        100.0,
+        126.119768,
+        97.337584
+      ]
+    },
+    "dimensions_cm": [
+      200.0,
+      126.119768,
+      194.675169
+    ],
+    "center_cm": [
+      0,
+      63.059884,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 200 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      1292.181016,
+      814.847851,
+      1257.777786
+    ],
+    "semantic_scale_factor": 0.15477708,
+    "total_scale_factor": 15.47770765,
+    "target_dimension_cm": 200.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -100.0,
+          0.0,
+          -97.337584
+        ],
+        "max": [
+          100.0,
+          126.119768,
+          97.337584
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "家具",
+      "床"
+    ],
+    "leaf": "床",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "床",
+      "name": "巴士床",
+      "category_path": [
+        "家具",
+        "床"
+      ],
+      "primary_paths": [
+        [
+          "家具",
+          "床"
+        ]
+      ],
+      "name_paths": [
+        [
+          "家具",
+          "床"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "巴士床",
+    "raw_source": "llm",
+    "canonical": "床",
+    "canonical_source": "taxonomy_normalization",
+    "display": "巴士床",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.94,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示车身侧面的窗户、车门以及底部的车轮，确认了巴士外观特征；同时展示了顶部的平坦区域。"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了车尾部结构和侧面延伸，进一步确认了车厢的整体形态。"
+      },
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了另一侧的车身细节，包括窗户和车轮，验证了对称性。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了车头部分的倾斜设计和侧面全貌，确认了驾驶舱区域的造型。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "床",
+      "subtype": null,
+      "appearance_motifs": [
+        "巴士造型",
+        "车厢结构",
+        "车窗",
+        "车轮"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "巴士床；类别：家具/床；属性：巴士造型、棕色、白色、儿童家具",
+    "terms": [
+      "巴士床",
+      "床",
+      "家具",
+      "巴士造型",
+      "棕色",
+      "白色",
+      "儿童家具",
+      "车厢结构",
+      "车窗",
+      "车轮"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

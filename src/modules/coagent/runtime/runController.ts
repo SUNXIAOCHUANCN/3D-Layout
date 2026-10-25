@@ -35,6 +35,7 @@ import type {
 import { CoAgentError } from '../contracts'
 import type { Scheduler } from './scheduler'
 import type { Recorder } from './recorder'
+import { beginRunLog, eventsTable, finishRunLog, logStage, logWarn } from './runLog'
 
 export interface RunControllerDeps {
   editorRead: EditorReadPort
@@ -64,6 +65,20 @@ export interface RunControllerDeps {
   getImageDataUrl: (imageId: ImageId) => Promise<string | null>
   /** 相位投影出口（uiStore 订阅；不反向驱动） */
   onPhase: (phase: CoAgentPhase, info: { runId: string | null; note?: string }) => void
+  /** 脱敏后的模型配置摘要（写进运行日志头部；不得含 key） */
+  modelLabel?: () => string
+}
+
+/** 运行终态的日志摘要（写进日志头部与结果明细） */
+function describeOutcome(outcome: RunOutcome | null): string {
+  if (!outcome) return '未产出 outcome（工作流异常中断）'
+  if (outcome.kind === 'completed') return `completed：${outcome.summary}`
+  if (outcome.kind === 'needs_clarification') return `needs_clarification：${outcome.question}`
+  if (outcome.kind === 'rolled_back') {
+    const stage = outcome.reason.details?.stage
+    return `rolled_back（${outcome.reason.code}${typeof stage === 'string' ? ` @${stage}` : ''}）：${outcome.reason.message}`
+  }
+  return 'cancelled'
 }
 
 const ACTIVE_PHASES: ReadonlySet<CoAgentPhase> = new Set<CoAgentPhase>([
@@ -137,7 +152,10 @@ export function createRunController(deps: RunControllerDeps): RunController {
   let lastRunId: string | null = null
 
   const setPhase = (p: CoAgentPhase, note?: string): void => {
+    const from = phase
     phase = p
+    // 相位也是诊断信息：日志里能看到"卡在哪个相位"，与时间线对齐
+    logStage('phase', `${from} → ${p}`, note)
     deps.onPhase(p, { runId: active?.runId ?? null, ...(note !== undefined ? { note } : {}) })
   }
 
@@ -183,6 +201,33 @@ export function createRunController(deps: RunControllerDeps): RunController {
           if (!readonlyIds.has(id)) writable.add(id)
         }
       }
+
+      // ---- 本轮日志（诊断）：一轮运行 = logs/CoAgent 下的一份 md ----
+      let modelLabel = ''
+      try {
+        modelLabel = deps.modelLabel?.() ?? ''
+      } catch {
+        modelLabel = ''
+      }
+      beginRunLog({
+        kind: 'run',
+        runId,
+        request,
+        partition: frozenPartition,
+        config: deps.config,
+        ...(modelLabel ? { model: modelLabel } : {}),
+      })
+      logStage(
+        'run.start',
+        `新运行 ${runId}`,
+        [
+          `场景版本（开始）：${snapshotStart}`,
+          `分区：v${frozenPartition.partitionVersion}，${frozenPartition.regions.length} 个区（${frozenPartition.regions
+            .map(r => `${r.id}:${r.objectIds.length}`)
+            .join('，')}）`,
+          `可写对象：${writable.size} 个；跨区只读：${readonlyIds.size} 个`,
+        ].join('\n'),
+      )
 
       const context: WorkflowContext = {
         signal: abort.signal,
@@ -250,83 +295,97 @@ export function createRunController(deps: RunControllerDeps): RunController {
       })
 
       const settle = (async (): Promise<ToolResult<RunOutcome>> => {
-        let outcome: RunOutcome
+        let outcome: RunOutcome | null = null
         try {
-          outcome = await deps.workflowFactory().run(input, context)
-        } catch (e) {
-          if (abort.signal.aborted) {
-            outcome = { kind: 'cancelled' }
-          } else {
-            outcome = { kind: 'rolled_back', reason: CoAgentError.from(e).toToolError() }
-          }
-        }
-
-        // ---- 终态处理：等场景队列清空 → 提交或回滚 → 保存 → 清理 ----
-        try {
-          if (outcome.kind === 'completed') {
-            setPhase('committing')
-            await deps.scheduler.sceneIdle()
-            deps.editorWrite.commitRun(token)
-            deps.recorder.append({ type: 'run.committed', runId, payload: {} })
-            setPhase('completed')
-            try {
-              await deps.editorWrite.save()
-            } catch (e) {
-              // 保存失败不改变已提交结果（§3.2 recorder 同款语义）；事件记录
-              deps.recorder.append({
-                type: 'save.failed',
-                runId,
-                payload: { message: e instanceof Error ? e.message.slice(0, 200) : String(e) },
-              })
+          try {
+            outcome = await deps.workflowFactory().run(input, context)
+          } catch (e) {
+            if (abort.signal.aborted) {
+              outcome = { kind: 'cancelled' }
+            } else {
+              outcome = { kind: 'rolled_back', reason: CoAgentError.from(e).toToolError() }
             }
-          } else if (outcome.kind === 'needs_clarification') {
-            // 澄清不保留活跃事务（§7.1）；本 run 未产生写入则直接结束
-            deps.editorWrite.endRun(token)
-            setPhase('awaiting_clarification')
-          } else {
-            // rolled_back / cancelled：回滚本轮修改
-            if (outcome.kind === 'cancelled') setPhase('cancelling')
-            await deps.scheduler.sceneIdle()
-            const ok = deps.editorWrite.rollbackRun(token)
-            if (!ok) {
-              locked = true
+          }
+          const decided: RunOutcome = outcome
+          logStage('outcome', `工作流结束：${describeOutcome(decided)}`, undefined, decided)
+
+          // ---- 终态处理：等场景队列清空 → 提交或回滚 → 保存 → 清理 ----
+          try {
+            if (decided.kind === 'completed') {
+              setPhase('committing')
+              await deps.scheduler.sceneIdle()
+              deps.editorWrite.commitRun(token)
+              deps.recorder.append({ type: 'run.committed', runId, payload: {} })
+              setPhase('completed')
+              try {
+                const saved = await deps.editorWrite.save()
+                logStage('commit', `已提交并保存（${saved.mode}，版本 v${saved.version}）`)
+              } catch (e) {
+                // 保存失败不改变已提交结果（§3.2 recorder 同款语义）；事件记录
+                logWarn('commit', '已提交，但保存失败（不改变本轮结果）', e instanceof Error ? e.message : String(e))
+                deps.recorder.append({
+                  type: 'save.failed',
+                  runId,
+                  payload: { message: e instanceof Error ? e.message.slice(0, 200) : String(e) },
+                })
+              }
+            } else if (decided.kind === 'needs_clarification') {
+              // 澄清不保留活跃事务（§7.1）；本 run 未产生写入则直接结束
+              deps.editorWrite.endRun(token)
+              setPhase('awaiting_clarification')
+              logStage('outcome', '需要澄清：本轮不保留事务', decided.question)
+            } else {
+              // rolled_back / cancelled：回滚本轮修改
+              if (decided.kind === 'cancelled') setPhase('cancelling')
+              await deps.scheduler.sceneIdle()
+              const ok = deps.editorWrite.rollbackRun(token)
+              if (!ok) {
+                locked = true
+                deps.recorder.append({
+                  type: 'run.failed',
+                  runId,
+                  payload: { reason: 'rollback_failed：回滚失败，进入 error_locked' },
+                })
+                deps.editorWrite.endRun(token)
+                setPhase('error_locked')
+                return { ok: true, data: decided }
+              }
               deps.recorder.append({
-                type: 'run.failed',
+                type: 'run.rolled_back',
                 runId,
-                payload: { reason: 'rollback_failed：回滚失败，进入 error_locked' },
+                payload:
+                  decided.kind === 'rolled_back'
+                    ? {
+                        reason: decided.reason.code,
+                        message: decided.reason.message,
+                        ...(decided.reason.details?.stage !== undefined ? { stage: decided.reason.details.stage } : {}),
+                      }
+                    : { reason: 'cancelled' },
               })
               deps.editorWrite.endRun(token)
-              setPhase('error_locked')
-              return { ok: true, data: outcome }
+              setPhase('rolled_back')
             }
+          } catch (e) {
+            locked = true
             deps.recorder.append({
-              type: 'run.rolled_back',
+              type: 'run.failed',
               runId,
-              payload:
-                outcome.kind === 'rolled_back'
-                  ? {
-                      reason: outcome.reason.code,
-                      message: outcome.reason.message,
-                      ...(outcome.reason.details?.stage !== undefined ? { stage: outcome.reason.details.stage } : {}),
-                    }
-                  : { reason: 'cancelled' },
+              payload: { reason: `terminal 阶段异常：${e instanceof Error ? e.message.slice(0, 200) : String(e)}` },
             })
             deps.editorWrite.endRun(token)
-            setPhase('rolled_back')
+            setPhase('error_locked')
+            return { ok: true, data: decided }
           }
-        } catch (e) {
-          locked = true
-          deps.recorder.append({
-            type: 'run.failed',
-            runId,
-            payload: { reason: `terminal 阶段异常：${e instanceof Error ? e.message.slice(0, 200) : String(e)}` },
-          })
-          deps.editorWrite.endRun(token)
-          setPhase('error_locked')
-          return { ok: true, data: outcome }
-        }
 
-        return { ok: true, data: outcome }
+          return { ok: true, data: decided }
+        } finally {
+          // 落盘：成功/回滚/取消/异常都留同一份可读记录（附 recorder 事件表，便于对账）
+          const runEvents = deps.recorder.events().filter(e => e.runId === runId)
+          await finishRunLog(describeOutcome(outcome), {
+            sections: [{ title: 'recorder 事件', body: eventsTable(runEvents) }],
+            data: { outcome, phase },
+          })
+        }
       })()
 
       active = { runId, abort, settle }
@@ -339,11 +398,13 @@ export function createRunController(deps: RunControllerDeps): RunController {
 
     async cancel(): Promise<void> {
       if (!active) return
+      logStage('cancel', `用户取消：${active.runId}`)
       active.abort.abort()
       await active.settle.catch(() => undefined)
     },
 
     async requestDisable(): Promise<void> {
+      logStage('disable', '模块被停用/卸载（若有活跃 run 先取消）')
       if (active) {
         active.abort.abort()
         await active.settle.catch(() => undefined)
@@ -367,6 +428,7 @@ export function createRunController(deps: RunControllerDeps): RunController {
       }
       const from = phase
       locked = false
+      logStage('reset', `人工解除锁定（${from} → idle）`)
       deps.recorder.append({ type: 'runtime.reset', runId: lastRunId ?? 'runtime', payload: { from } })
       setPhase('idle')
       return { ok: true, data: null }

@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792513905879289600",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792513905879289600.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -6.222628,
+        0.0,
+        -30.0
+      ],
+      "max": [
+        6.222628,
+        2.256669,
+        30.0
+      ]
+    },
+    "dimensions_cm": [
+      12.445256,
+      2.256669,
+      60.0
+    ],
+    "center_cm": [
+      0,
+      1.128335,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 60 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      106.904126,
+      19.38467,
+      515.396976
+    ],
+    "semantic_scale_factor": 0.11641512,
+    "total_scale_factor": 11.64151184,
+    "target_dimension_cm": 60.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -6.222628,
+          0.0,
+          -30.0
+        ],
+        "max": [
+          6.222628,
+          2.256669,
+          30.0
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "植物叶片",
+      "name": "棕榈叶",
+      "category_path": [
+        "植物"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "棕榈叶",
+    "raw_source": "llm",
+    "canonical": "棕榈叶",
+    "canonical_source": "llm_raw",
+    "display": "棕榈叶",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰可见叶片背面的中轴结构和裂片排列"
+      },
+      {
+        "view": "方位 0° / 俯仰 15°",
+        "role": "supports",
+        "detail": "展示了叶片的正面形态和颜色分布"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认了叶片的扁平厚度和立体结构"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "棕榈叶",
+      "parent_path": [
+        "植物"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "植物叶片",
+      "subtype": null,
+      "appearance_motifs": [
+        "羽状复叶"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "棕榈叶；类别：植物；属性：绿色、棕褐色、羽状结构",
+    "terms": [
+      "棕榈叶",
+      "植物",
+      "绿色",
+      "棕褐色",
+      "羽状结构",
+      "植物叶片",
+      "羽状复叶"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

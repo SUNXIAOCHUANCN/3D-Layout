@@ -1,0 +1,412 @@
+{
+  "schema_version": "1.2",
+  "name": "沙发",
+  "object_label": {
+    "raw": "沙发",
+    "raw_source": "llm",
+    "canonical": "沙发",
+    "canonical_source": "llm_raw",
+    "display": "沙发",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了沙发的侧面轮廓、扶手曲线以及坐垫厚度"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角确认了双人座的对称结构和靠背形状"
+      },
+      {
+        "view": "方位 270° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视角展示了扶手的高度和椅腿的细节"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "沙发",
+      "subtype": null,
+      "appearance_motifs": [
+        "法式古典风格",
+        "卷曲扶手",
+        "雕花腿"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "沙发；类别：家具/沙发；属性：米白色坐垫、深棕色框架、双人座、古典造型",
+    "terms": [
+      "沙发",
+      "家具",
+      "米白色坐垫",
+      "深棕色框架",
+      "双人座",
+      "古典造型",
+      "法式古典风格",
+      "卷曲扶手",
+      "雕花腿"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "家具",
+      "沙发"
+    ],
+    "leaf": "沙发",
+    "status": "matched",
+    "confidence": 0.98,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "沙发",
+      "name": "沙发",
+      "category_path": [
+        "家具",
+        "沙发"
+      ],
+      "primary_paths": [
+        [
+          "家具",
+          "沙发"
+        ]
+      ],
+      "name_paths": [
+        [
+          "家具",
+          "沙发"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "米白色坐垫",
+    "深棕色框架",
+    "双人座",
+    "古典造型"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "中",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "中",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9696,
+      "evidence": {
+        "topology_quality": 0.9625,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.8745,
+        "uv_quality": 0.998,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "中",
+      "score": 0.472,
+      "evidence": {
+        "triangle_count": 4101,
+        "vertex_count": 12303,
+        "resolution": 4101,
+        "split_vertices": true,
+        "triangle_density": 0.07145843,
+        "resolution_score": 0.5558,
+        "density_score": 0.2765,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.8339,
+      "status": "scored",
+      "evidence": [
+        "三角面 4101 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.289，阈值 0.200",
+        "量化法线方向数 256",
+        "轴对齐法线比例 0.349"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "中",
+      "machine_label": "中",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 中，分数 0.472"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 4101 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.289，阈值 0.200",
+        "量化法线方向数 256",
+        "轴对齐法线比例 0.349"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "材质具有基础明暗变化，模拟了光照下的体积感",
+        "颜色分布符合真实物体材质区分（深色木框与浅色织物）"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.8339,
+          "evidence": [
+            "三角面 4101 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.289，阈值 0.200",
+            "量化法线方向数 256",
+            "轴对齐法线比例 0.349"
+          ]
+        }
+      ],
+      "confidence": 0.8339,
+      "evidence": [
+        "三角面 4101 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.289，阈值 0.200",
+        "量化法线方向数 256",
+        "轴对齐法线比例 0.349"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Realistic",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.96,
+      "evidence": [
+        "材质具有基础明暗变化，模拟了光照下的体积感",
+        "颜色分布符合真实物体材质区分（深色木框与浅色织物）"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.96,
+      "evidence": [
+        "材质具有基础明暗变化，模拟了光照下的体积感",
+        "颜色分布符合真实物体材质区分（深色木框与浅色织物）"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.98,
+      "rendering_style": 0.96,
+      "modeling_quality": 0.9696,
+      "modeling_precision": 0.472,
+      "modeling_style": 0.8339
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "米白色坐垫",
+        "confidence": 0.95,
+        "evidence": "多视角可见大面积浅色软包区域，颜色为米白或浅灰",
+        "source": "llm"
+      },
+      {
+        "tag": "深棕色框架",
+        "confidence": 0.95,
+        "evidence": "扶手、靠背边缘及腿部呈现深棕色木质纹理或涂装",
+        "source": "llm"
+      },
+      {
+        "tag": "双人座",
+        "confidence": 0.9,
+        "evidence": "正面视图显示两个明显的座位分区和靠背结构",
+        "source": "llm"
+      },
+      {
+        "tag": "古典造型",
+        "confidence": 0.92,
+        "evidence": "S形卷曲扶手（Cabriole arms）和弯曲的椅腿设计",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "沙发",
+      "taxonomy_path": [
+        "家具",
+        "沙发"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9696,
+        "evidence": {
+          "topology_quality": 0.9625,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.8745,
+          "uv_quality": 0.998,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "中",
+        "score": 0.472,
+        "evidence": {
+          "triangle_count": 4101,
+          "vertex_count": 12303,
+          "resolution": 4101,
+          "split_vertices": true,
+          "triangle_density": 0.07145843,
+          "resolution_score": 0.5558,
+          "density_score": 0.2765,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.8339,
+        "status": "scored",
+        "confidence": 0.8339,
+        "evidence": [
+          "三角面 4101 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.289，阈值 0.200",
+          "量化法线方向数 256",
+          "轴对齐法线比例 0.349"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.8339,
+            "evidence": [
+              "三角面 4101 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.289，阈值 0.200",
+              "量化法线方向数 256",
+              "轴对齐法线比例 0.349"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "具有典型的沙发轮廓：宽大的坐面、高靠背和两侧扶手",
+      "底部有四个独立的支撑脚，且带有装饰性曲线",
+      "正面视图清晰展示了双座布局的结构特征"
+    ],
+    "candidates": [
+      {
+        "name": "长椅",
+        "confidence": 0.15
+      },
+      {
+        "name": "贵妃椅",
+        "confidence": 0.1
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

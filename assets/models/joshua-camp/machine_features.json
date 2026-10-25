@@ -1,0 +1,78 @@
+{
+  "geometry": {
+    "vertex_count": 57972,
+    "face_count": 19324,
+    "triangle_count": 19324,
+    "mesh_count": 1,
+    "surface_area": 273507.28592726,
+    "volume": 1228238.38994177,
+    "bounding_box_volume": 36608075.21097917
+  },
+  "bounding_box": {
+    "width": 453.32946832,
+    "height": 161.50759114,
+    "depth": 500.0
+  },
+  "topology": {
+    "watertight": false,
+    "non_manifold_edges": 111,
+    "boundary_edges": 8340,
+    "degenerate_faces": 0,
+    "self_intersection": null
+  },
+  "material": {
+    "material_count": 1,
+    "texture_count": 1,
+    "has_pbr": null,
+    "has_normal_map": null
+  },
+  "detail": {
+    "triangle_density": 0.0706526,
+    "curvature_complexity": 0.636611,
+    "faceted_edge_ratio": 0.636611,
+    "planar_edge_ratio": 0.363389,
+    "axis_aligned_normal_ratio": 0.177913,
+    "normal_direction_count": 309,
+    "silhouette_complexity": null
+  },
+  "predictions": {
+    "quality": {
+      "label": "极高",
+      "score": 0.8797,
+      "evidence": {
+        "topology_quality": 0.8721,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.4731,
+        "uv_quality": 0.988,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "precision": {
+      "label": "中",
+      "score": 0.5438,
+      "evidence": {
+        "triangle_count": 19324,
+        "vertex_count": 57972,
+        "resolution": 19324,
+        "split_vertices": true,
+        "triangle_density": 0.0706526,
+        "resolution_score": 0.6594,
+        "density_score": 0.274,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": null,
+      "score": null,
+      "status": "insufficient_evidence",
+      "confidence": 0.0,
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "candidates": [],
+      "rule_version": "geometry-style-1.2"
+    }
+  }
+}

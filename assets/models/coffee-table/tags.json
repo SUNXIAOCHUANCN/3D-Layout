@@ -1,0 +1,414 @@
+{
+  "schema_version": "1.2",
+  "name": "梳妆台",
+  "object_label": {
+    "raw": "梳妆台",
+    "raw_source": "llm",
+    "canonical": "梳妆台",
+    "canonical_source": "llm_raw",
+    "display": "梳妆台",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 25°",
+        "role": "supports",
+        "detail": "清晰展示了左侧视角的侧板厚度、腿部造型以及镜面的垂直关系，确认为立式家具。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视图完整展示了双抽屉结构和中央对称的装饰雕刻，确认功能为梳妆台或写字台。"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面或侧面视图进一步证实了抽屉的存在（可见把手孔位）和整体结构的封闭性。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "梳妆台",
+      "parent_path": [
+        "家具"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "梳妆台",
+      "subtype": null,
+      "appearance_motifs": [
+        "洛可可风格",
+        "雕花腿",
+        "做旧涂装"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "梳妆台；类别：家具；属性：青色、棕色、做旧风格、带镜子、带抽屉",
+    "terms": [
+      "梳妆台",
+      "家具",
+      "青色",
+      "棕色",
+      "做旧风格",
+      "带镜子",
+      "带抽屉",
+      "洛可可风格",
+      "雕花腿",
+      "做旧涂装"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "家具"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "梳妆台",
+      "name": "梳妆台",
+      "category_path": [
+        "家具"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "青色",
+    "棕色",
+    "做旧风格",
+    "带镜子",
+    "带抽屉"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "中",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "中",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9684,
+      "evidence": {
+        "topology_quality": 0.9753,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.8443,
+        "uv_quality": 0.9999,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "中",
+      "score": 0.6126,
+      "evidence": {
+        "triangle_count": 10404,
+        "vertex_count": 31212,
+        "resolution": 10404,
+        "split_vertices": true,
+        "triangle_density": 0.3166799,
+        "resolution_score": 0.618,
+        "density_score": 0.5998,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.7793,
+      "status": "scored",
+      "evidence": [
+        "三角面 10404 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.276，阈值 0.200",
+        "量化法线方向数 280",
+        "轴对齐法线比例 0.389"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "中",
+      "machine_label": "中",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 中，分数 0.6126"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 10404 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.276，阈值 0.200",
+        "量化法线方向数 280",
+        "轴对齐法线比例 0.389"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "材质具有木纹和油漆剥落的纹理细节",
+        "光照产生自然的明暗过渡和阴影",
+        "色彩饱和度适中，符合真实物体观察"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.7793,
+          "evidence": [
+            "三角面 10404 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.276，阈值 0.200",
+            "量化法线方向数 280",
+            "轴对齐法线比例 0.389"
+          ]
+        }
+      ],
+      "confidence": 0.7793,
+      "evidence": [
+        "三角面 10404 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.276，阈值 0.200",
+        "量化法线方向数 280",
+        "轴对齐法线比例 0.389"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Realistic",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.98,
+      "evidence": [
+        "材质具有木纹和油漆剥落的纹理细节",
+        "光照产生自然的明暗过渡和阴影",
+        "色彩饱和度适中，符合真实物体观察"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.98,
+      "evidence": [
+        "材质具有木纹和油漆剥落的纹理细节",
+        "光照产生自然的明暗过渡和阴影",
+        "色彩饱和度适中，符合真实物体观察"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.98,
+      "modeling_quality": 0.9684,
+      "modeling_precision": 0.6126,
+      "modeling_style": 0.7793
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "青色",
+        "confidence": 1.0,
+        "evidence": "抽屉面板和镜框内部区域呈现明显的青绿色/蓝绿色基色。",
+        "source": "llm"
+      },
+      {
+        "tag": "棕色",
+        "confidence": 1.0,
+        "evidence": "柜体框架、桌腿及装饰线条呈现木质棕色调。",
+        "source": "llm"
+      },
+      {
+        "tag": "做旧风格",
+        "confidence": 0.9,
+        "evidence": "表面颜色分布不均，边缘处有磨损或褪色效果，模拟陈旧感。",
+        "source": "llm"
+      },
+      {
+        "tag": "带镜子",
+        "confidence": 1.0,
+        "evidence": "顶部设有大面积矩形镜面结构。",
+        "source": "llm"
+      },
+      {
+        "tag": "带抽屉",
+        "confidence": 1.0,
+        "evidence": "中部可见带有把手孔位的水平抽屉面板。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "梳妆台",
+      "taxonomy_path": [
+        "家具"
+      ],
+      "status": "parent_only",
+      "missing_leaf": true
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9684,
+        "evidence": {
+          "topology_quality": 0.9753,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.8443,
+          "uv_quality": 0.9999,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "中",
+        "score": 0.6126,
+        "evidence": {
+          "triangle_count": 10404,
+          "vertex_count": 31212,
+          "resolution": 10404,
+          "split_vertices": true,
+          "triangle_density": 0.3166799,
+          "resolution_score": 0.618,
+          "density_score": 0.5998,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.7793,
+        "status": "scored",
+        "confidence": 0.7793,
+        "evidence": [
+          "三角面 10404 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.276，阈值 0.200",
+          "量化法线方向数 280",
+          "轴对齐法线比例 0.389"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.7793,
+            "evidence": [
+              "三角面 10404 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.276，阈值 0.200",
+              "量化法线方向数 280",
+              "轴对齐法线比例 0.389"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "物体具有典型的宽扁比例（宽高比约1.5:1），符合桌面类家具特征",
+      "底部有四条向外弯曲的兽爪形或卷草形桌腿支撑",
+      "主体分为上部镜框区和下部储物区，储物区有明显的抽屉分隔线",
+      "整体轮廓呈现古典欧式家具的曲线特征"
+    ],
+    "candidates": [
+      {
+        "name": "家具/柜子",
+        "confidence": 0.98
+      },
+      {
+        "name": "家具/桌子",
+        "confidence": 0.6
+      },
+      {
+        "name": "家具/床",
+        "confidence": 0.3
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

@@ -6,7 +6,7 @@ const fetchJson = async <T>(url: string): Promise<T> => {
   return res.json() as Promise<T>
 }
 
-export const loadManifest = () => fetchJson<ModelManifest>('/assets/models/manifest.json')
+export const loadManifest = () => fetchJson<ModelManifest>('/assets/model-catalog.json')
 
 export const loadSceneIndex = () => fetchJson<SceneIndexEntry[]>('/scenes/index.json')
 

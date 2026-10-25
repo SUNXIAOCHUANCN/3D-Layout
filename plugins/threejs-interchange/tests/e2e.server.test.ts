@@ -12,6 +12,7 @@ import { unzipSync } from 'fflate'
 import { startService, type Service } from '../server/http.js'
 import { recoverUnfinishedJobs } from '../server/install.js'
 import { buildCandidateBundle, makeSandbox, hasHostGenManifest } from './helpers.js'
+import { buildModelPackage, buildScenePackage } from '../server/exports.js'
 
 const TMP = join(tmpdir(), 'interchange-e2e-' + process.pid)
 mkdirSync(TMP, { recursive: true })
@@ -46,6 +47,34 @@ test('准备接口要求令牌', async () => {
   assert.equal(res.status, 400)
 })
 
+test('标准资产和内置 primitive 导出保持嵌套文件、单位和引用', () => {
+  const root = makeSandbox(join(TMP, 'standardized-export'))
+  const directory = join(root, 'assets/models/cup')
+  mkdirSync(join(directory, 'model'), { recursive: true })
+  mkdirSync(join(directory, 'thumbnail'), { recursive: true })
+  const model = new Uint8Array([1, 2, 3, 4])
+  writeFileSync(join(directory, 'model/AF-123.glb'), model)
+  writeFileSync(join(directory, 'layout_manifest.json'), JSON.stringify({ asset_id: 'AF-123', coordinate_system: { unit: 'cm' }, artifacts: { model: 'model/AF-123.glb' } }))
+  writeFileSync(join(directory, 'thumbnail/rgb.png'), new Uint8Array([5, 6]))
+  writeFileSync(join(directory, 'tags.json'), '{"name":"杯子"}')
+  writeFileSync(join(root, 'assets/builtin-models.json'), JSON.stringify({ models: {
+    'models/placeholder-box': { source: { type: 'primitive', shape: 'box' } },
+    'models/unreferenced': { source: { type: 'primitive', shape: 'sphere' } },
+  } }))
+  mkdirSync(join(root, 'scenes/standardized'), { recursive: true })
+  writeFileSync(join(root, 'scenes/standardized/scene.json'), JSON.stringify({ assets: [{ ref: 'models/cup' }, { ref: 'models/placeholder-box' }] }))
+  const entries = unzipSync(buildScenePackage(root, 'standardized'))
+  assert.deepEqual(entries['assets/models/cup/model/AF-123.glb'], model)
+  assert.ok(entries['assets/models/cup/thumbnail/rgb.png'])
+  const subset = JSON.parse(new TextDecoder().decode(entries['assets/builtin-models.json']))
+  assert.deepEqual(Object.keys(subset.models), ['models/placeholder-box'])
+  const single = unzipSync(buildModelPackage(root, 'models/cup'))
+  const manifest = JSON.parse(new TextDecoder().decode(single['package.json']))
+  assert.equal(manifest.entry, 'assets/models/cup/layout_manifest.json')
+  assert.equal(JSON.parse(new TextDecoder().decode(single[manifest.entry])).asset_id, 'AF-123')
+  assert.equal(JSON.parse(new TextDecoder().decode(single[manifest.entry])).coordinate_system.unit, 'cm')
+})
+
 test('prepare → staged → commit → 原生落盘 + 索引核验', async () => {
   const zip = buildCandidateBundle()
   const p = await api('/api/interchange/prepare', {
@@ -75,7 +104,7 @@ test('prepare → staged → commit → 原生落盘 + 索引核验', async () =
 
   const index = JSON.parse(readFileSync(join(root, 'scenes', 'index.json'), 'utf8'))
   assert.ok(index.some((e: { id: string }) => e.id === 'demo-forest'), '场景索引应包含新场景')
-  const manifest = JSON.parse(readFileSync(join(root, 'assets', 'models', 'manifest.json'), 'utf8'))
+  const manifest = JSON.parse(readFileSync(join(root, 'assets', 'model-catalog.json'), 'utf8'))
   assert.ok(manifest.models['models/demo-forest-pine'], '模型 manifest 应包含新模型')
 
   const g = await api(`/api/interchange/jobs/${job.id}`)
@@ -139,7 +168,7 @@ test('suffix-hash 策略：改写场景与模型 ID 后可入库', async () => {
 test('gen-manifest 失败 → 回滚，工程保持原状', async () => {
   const brokenRoot = makeSandbox(join(TMP, 'broken'), { withoutGenManifest: true })
   if (hasHostGenManifest(brokenRoot)) throw new Error('沙箱不应包含 gen-manifest')
-  const manifestBefore = readFileSync(join(brokenRoot, 'assets', 'models', 'manifest.json'))
+  const manifestBefore = readFileSync(join(brokenRoot, 'assets', 'model-catalog.json'))
   const indexBefore = readFileSync(join(brokenRoot, 'scenes', 'index.json'))
 
   // 用独立数据目录 + 直接复用 JobStore/commit 逻辑（不起第二个端口）
@@ -167,7 +196,7 @@ test('gen-manifest 失败 → 回滚，工程保持原状', async () => {
 
   assert.ok(!existsSync(join(brokenRoot, 'scenes', 'rollback-case')), '场景目录应被回滚')
   assert.ok(!existsSync(join(brokenRoot, 'assets', 'models', 'rollback-case-pine')), '模型目录应被回滚')
-  assert.deepEqual(readFileSync(join(brokenRoot, 'assets', 'models', 'manifest.json')), manifestBefore, 'manifest 应恢复原字节')
+  assert.deepEqual(readFileSync(join(brokenRoot, 'assets', 'model-catalog.json')), manifestBefore, 'manifest 应恢复原字节')
   assert.deepEqual(readFileSync(join(brokenRoot, 'scenes', 'index.json')), indexBefore, '场景索引应恢复原字节')
 })
 

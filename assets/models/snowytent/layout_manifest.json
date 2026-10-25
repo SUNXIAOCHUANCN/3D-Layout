@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515527954288200",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515527954288200.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -112.606804,
+        0.0,
+        -150.0
+      ],
+      "max": [
+        112.606804,
+        75.653575,
+        150.0
+      ]
+    },
+    "dimensions_cm": [
+      225.213608,
+      75.653575,
+      300.0
+    ],
+    "center_cm": [
+      0,
+      37.826788,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 300 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      588.86509,
+      197.811091,
+      784.40876
+    ],
+    "semantic_scale_factor": 0.38245366,
+    "total_scale_factor": 38.24536585,
+    "target_dimension_cm": 300.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -112.606804,
+          0.0,
+          -150.0
+        ],
+        "max": [
+          112.606804,
+          75.653575,
+          150.0
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "帐篷",
+      "name": "帐篷",
+      "category_path": [
+        "道具"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "帐篷",
+    "raw_source": "llm",
+    "canonical": "帐篷",
+    "canonical_source": "llm_raw",
+    "display": "帐篷",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见中央立柱、四角拉绳以及覆盖在支架上的布料轮廓"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了帐篷侧面的遮挡结构和底部边缘形态"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "帐篷",
+      "parent_path": [
+        "道具"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "帐篷",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "帐篷；类别：道具；属性：米色、白色、露营装备",
+    "terms": [
+      "帐篷",
+      "道具",
+      "米色",
+      "白色",
+      "露营装备"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

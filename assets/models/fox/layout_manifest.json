@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792517416554221600",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792517416554221600.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -7.319985,
+        0.0,
+        -41.945151
+      ],
+      "max": [
+        7.319985,
+        40.0,
+        41.945151
+      ]
+    },
+    "dimensions_cm": [
+      14.63997,
+      40.0,
+      83.890301
+    ],
+    "center_cm": [
+      0,
+      20.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 40 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      19.822288,
+      54.159367,
+      113.58614
+    ],
+    "semantic_scale_factor": 0.73856107,
+    "total_scale_factor": 73.85610692,
+    "target_dimension_cm": 40.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -7.319985,
+          0.0,
+          -41.945151
+        ],
+        "max": [
+          7.319985,
+          40.0,
+          41.945151
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "动物"
+    ],
+    "leaf": "动物",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "动物",
+      "name": "狐狸",
+      "category_path": [
+        "动物"
+      ],
+      "primary_paths": [
+        [
+          "动物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "狐狸",
+    "raw_source": "llm",
+    "canonical": "狐狸",
+    "canonical_source": "llm_raw",
+    "display": "狐狸",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 15°",
+        "role": "supports",
+        "detail": "正面视角清晰展示了尖耳、面部白色V型斑纹和四肢站立姿态。"
+      },
+      {
+        "view": "方位 315° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视角展示了修长的身体线条和标志性的蓬松大尾巴。"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视角度确认了背部脊线和四肢分布，整体比例协调。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "动物",
+      "subtype": null,
+      "appearance_motifs": [
+        "狐狸"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "狐狸；类别：动物；属性：橙色、白色腹部、尖耳",
+    "terms": [
+      "狐狸",
+      "动物",
+      "橙色",
+      "白色腹部",
+      "尖耳"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

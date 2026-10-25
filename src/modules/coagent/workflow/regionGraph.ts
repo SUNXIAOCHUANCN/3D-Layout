@@ -12,7 +12,7 @@
  * - 子图终态写共享通道 `regionResults`，父图用 mergeKeyedNoLWW 合并（禁止 LWW）。
  */
 
-import type { GeometryResult, Observation, TaskResult, UnitTask, Verdict, WorkflowContext, ModelPort, CoAgentConfig, Region } from '../contracts'
+import type { GeometryResult, Observation, TaskResult, UnitTask, Verdict, WorkflowContext, ModelPort, CoAgentConfig, Region, ModelCatalogEntry } from '../contracts'
 import { END, START } from '@langchain/langgraph'
 import { CoAgentError } from '../contracts'
 import { judgeTask, repairSuggestionsOf, taskPassed } from '../agents/judge'
@@ -21,6 +21,7 @@ import type { ToolRegistry } from '../tools/registry'
 import { captureWith, regionCamera } from '../tools/cameraTools'
 import { Annotation } from '@langchain/langgraph'
 import { looseGraph } from './state'
+import { logError, logStage, logWarn } from '../runtime/runLog'
 
 const RegionState = Annotation.Root({
   regionId: Annotation<string>({ reducer: (_l, r) => r, default: () => '' }),
@@ -71,7 +72,7 @@ export interface RegionGraphDeps {
 function pickCatalogCandidates(
   context: WorkflowContext,
   regionObjectIds: string[],
-): Array<{ ref: string; name: string; category: string | null; dimensions: { w: number; h: number; d: number } }> {
+): ModelCatalogEntry[] {
   const snap = context.editorRead.snapshot({ objectIds: regionObjectIds, includeCatalog: true })
   const all = snap.catalog ?? []
   if (all.length === 0) return []
@@ -84,7 +85,6 @@ function pickCatalogCandidates(
   return picked
     .map(ref => byRef.get(ref))
     .filter((c): c is NonNullable<typeof c> => !!c)
-    .map(c => ({ ref: c.ref, name: c.name, category: c.category ?? null, dimensions: c.dimensions }))
 }
 
 export function buildRegionGraph(deps: RegionGraphDeps, tasks: UnitTask[], baselines: string[]) {
@@ -139,6 +139,11 @@ export function buildRegionGraph(deps: RegionGraphDeps, tasks: UnitTask[], basel
       taskId: task.id,
       regionId: region.id,
     })
+    logStage(
+      'region.prepare',
+      `[${region.id}/${task.id}] 第 ${state.repairs + 1} 次执行，task_before 证据 ${currentBaseline.id}`,
+      `对象 ${[...new Set([...task.targetObjectIds, ...writable, ...state.writes.created])].slice(0, 12).join(', ')}`,
+    )
     context.emit({
       type: 'baseline.ready',
       runId,
@@ -176,6 +181,12 @@ export function buildRegionGraph(deps: RegionGraphDeps, tasks: UnitTask[], basel
       // 区域子图并行执行：主图那个共享的 `stage` 变量会被后完成的区覆盖，
       // 定位不到真正出错的那个区。错误自带 regionId，主图优先用它。
       const err = CoAgentError.from(e)
+      logError(
+        'region.execute',
+        `[${region.id}/${task.id}] 执行器失败：${err.code} ${err.message}`,
+        (err.stack ?? '').split('\n').slice(0, 10).join('\n'),
+        err.details,
+      )
       throw new CoAgentError(err.code, err.message, {
         retryable: err.retryable,
         details: { ...(err.details ?? {}), regionId: region.id, taskId: task.id, stage: 'execute' },
@@ -194,6 +205,11 @@ export function buildRegionGraph(deps: RegionGraphDeps, tasks: UnitTask[], basel
       }
     }
     // W08.4：修正轮不重置写集/执行证据；否则第一轮 add 的对象在 TaskResult 里会丢
+    logStage(
+      'region.execute',
+      `[${region.id}/${task.id}] 执行结束：${output.toolCalls} 次工具调用，stop=${output.stopReason}，新增 ${created.length} / 修改 ${modified.length}，证据 ${output.evidenceIds.length} 条`,
+      output.text,
+    )
     return {
       writes: {
         created: [...new Set([...state.writes.created, ...created])],
@@ -217,6 +233,7 @@ export function buildRegionGraph(deps: RegionGraphDeps, tasks: UnitTask[], basel
       taskId: task.id,
       regionId: region.id,
     })
+    logStage('region.judge', `[${region.id}/${task.id}] after 证据 ${currentAfter.id}`, `${currentAfter.width}×${currentAfter.height}，标注对象 ${currentAfter.labels.length} 个`)
 
     currentGeometry = undefined
     if (task.constraints.some(c => c.kind === 'no_collision')) {
@@ -230,6 +247,14 @@ export function buildRegionGraph(deps: RegionGraphDeps, tasks: UnitTask[], basel
           allowGroundContact: true,
         },
         context.signal,
+      )
+      logStage(
+        'region.judge',
+        `[${region.id}/${task.id}] 几何检测：${currentGeometry.status}（level=${currentGeometry.highestLevel}，${currentGeometry.pairs.length} 对）`,
+        currentGeometry.pairs
+          .filter(p => p.status !== 'clear')
+          .map(p => `- ${p.a} × ${p.b}：${p.status}${p.note ? `（${p.note}）` : ''}`)
+          .join('\n'),
       )
       context.emit({ type: 'tool.finished', runId, taskId: task.id, regionId: region.id, payload: { geometry: currentGeometry.status } })
     }
@@ -250,6 +275,18 @@ export function buildRegionGraph(deps: RegionGraphDeps, tasks: UnitTask[], basel
     })
 
     context.emit({ type: 'verdict.ready', runId, taskId: task.id, regionId: region.id, payload: { status: judged.verdict.status, credible: judged.credible } })
+    logStage(
+      'region.judge',
+      `[${region.id}/${task.id}] 判定：${judged.verdict.status}（可信=${judged.credible}）`,
+      [
+        ...judged.verdict.criteria.map(c => `- 判据 ${c.criterionId}：${c.status} — ${c.reason}`),
+        ...(judged.issues.length > 0 ? ['', '代码侧问题：', ...judged.issues.map(i => `- ${i}`)] : []),
+        ...(judged.verdict.repairSuggestions.length > 0
+          ? ['', '修正建议：', ...judged.verdict.repairSuggestions.map(s => `- ${s}`)]
+          : []),
+      ].join('\n'),
+      judged.verdict,
+    )
 
     const verdicts = [...(state.taskVerdicts[task.id] ?? []), judged.verdict]
     const passedNow = taskPassed(judged)
@@ -277,8 +314,7 @@ export function buildRegionGraph(deps: RegionGraphDeps, tasks: UnitTask[], basel
       taskVerdicts: { [task.id]: verdicts },
       route: passedNow ? 'advance' : canRepair ? 'execute' : 'fail',
       feedback: canRepair ? repairSuggestionsOf(judged) : [],
-      repairs: canRepair ? state.repairs + 1 : state.repairs,
-      ...(passedNow || !canRepair
+      repairs: canRepair ? state.repairs + 1 : state.repairs,      ...(passedNow || !canRepair
         ? { trace: [{ type: 'judge', at: Date.now(), note: `${task.id} ${passedNow ? 'pass' : 'fail'}` }] }
         : { trace: [{ type: 'judge', at: Date.now(), note: `${task.id} fail → 修正轮 ${state.repairs + 1}` }] }),
     }
@@ -290,6 +326,10 @@ export function buildRegionGraph(deps: RegionGraphDeps, tasks: UnitTask[], basel
     if (done) {
       context.emit({ type: 'task.finished', runId, regionId: region.id, payload: { tasks: results.length, status: 'pass' } })
     }
+    logStage(
+      'region.advance',
+      `[${region.id}] ${tasks[state.index]?.id ?? '?'} 通过，${done ? '本区全部任务完成' : `推进到第 ${next + 1}/${tasks.length} 个任务`}`,
+    )
     return {
       index: next,
       repairs: 0,
@@ -326,6 +366,13 @@ export function buildRegionGraph(deps: RegionGraphDeps, tasks: UnitTask[], basel
         ...(currentBaseline ? { baselineObservationId: currentBaseline.id } : {}),
       }
     context.emit({ type: 'task.finished', runId, taskId: task.id, regionId: region.id, payload: { status: 'fail' } })
+    logWarn(
+      'region.fail',
+      `[${region.id}/${task.id}] 修正 ${config.maxRepairsPerTask} 轮后仍未通过（本区终局失败）`,
+      (state.taskVerdicts[task.id] ?? [])
+        .map((v, i) => `- 第 ${i + 1} 次判定：${v.status}；建议 ${v.repairSuggestions.slice(0, 3).join('；')}`)
+        .join('\n'),
+    )
     return {
       failureReason: `区域 ${region.id} 任务 ${task.id} 修正 ${config.maxRepairsPerTask} 轮后仍未通过`,
       regionResults: {

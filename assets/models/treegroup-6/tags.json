@@ -1,0 +1,424 @@
+{
+  "schema_version": "1.2",
+  "name": "松树",
+  "object_label": {
+    "raw": "松树",
+    "raw_source": "llm",
+    "canonical": "松树",
+    "canonical_source": "llm_raw",
+    "display": "松树",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.94,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰显示三棵树的正面形态，积雪覆盖树冠顶部，绿色针叶外露，棕色树干直立"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认树木的锥形轮廓和分层结构，积雪与绿叶交替分布明显"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角验证所有树木结构对称性，无异常部件或缺失部分"
+      },
+      {
+        "view": "方位 180° / 俯仰 15°",
+        "role": "supports",
+        "detail": "俯视角度展示四棵树的空间布局，树干位置稳定，树冠形状统一"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "树",
+      "subtype": null,
+      "appearance_motifs": [
+        "积雪覆盖",
+        "低多边形风格"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "松树"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "松树；类别：植物/树/松树；属性：积雪覆盖、绿色针叶、棕色树干、冬季景观",
+    "terms": [
+      "松树",
+      "植物",
+      "树",
+      "积雪覆盖",
+      "绿色针叶",
+      "棕色树干",
+      "冬季景观",
+      "低多边形风格"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "树",
+      "松树"
+    ],
+    "leaf": "松树",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "树",
+      "name": "松树",
+      "category_path": [
+        "植物",
+        "树",
+        "松树"
+      ],
+      "primary_paths": [
+        [
+          "植物",
+          "树"
+        ]
+      ],
+      "name_paths": [
+        [
+          "植物",
+          "树",
+          "松树"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "积雪覆盖",
+    "绿色针叶",
+    "棕色树干",
+    "冬季景观"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9284,
+      "evidence": {
+        "topology_quality": 0.9895,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.6673,
+        "uv_quality": 0.8708,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.3972,
+      "evidence": {
+        "triangle_count": 4875,
+        "vertex_count": 14625,
+        "resolution": 4875,
+        "split_vertices": true,
+        "triangle_density": 0.00517083,
+        "resolution_score": 0.5674,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.8723,
+      "status": "scored",
+      "evidence": [
+        "三角面 4875 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.558，阈值 0.200",
+        "量化法线方向数 281",
+        "轴对齐法线比例 0.214"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.3972"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 4875 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.558，阈值 0.200",
+        "量化法线方向数 281",
+        "轴对齐法线比例 0.214"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "使用纯色填充的多边形面片，无复杂纹理贴图",
+        "光照呈现简单的明暗对比，阴影边缘清晰锐利",
+        "材质表面无高光反射或环境遮蔽细节"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.8723,
+          "evidence": [
+            "三角面 4875 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.558，阈值 0.200",
+            "量化法线方向数 281",
+            "轴对齐法线比例 0.214"
+          ]
+        }
+      ],
+      "confidence": 0.8723,
+      "evidence": [
+        "三角面 4875 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.558，阈值 0.200",
+        "量化法线方向数 281",
+        "轴对齐法线比例 0.214"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": "Lowpoly"
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.94,
+      "evidence": [
+        "由大量平面三角形构成的分面化外形",
+        "缺乏平滑曲面过渡，棱角分明",
+        "几何结构高度简化，符合低多边形建模特征"
+      ],
+      "source": "llm-direct",
+      "rejected": "Lowpoly"
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.94,
+      "evidence": [
+        "使用纯色填充的多边形面片，无复杂纹理贴图",
+        "光照呈现简单的明暗对比，阴影边缘清晰锐利",
+        "材质表面无高光反射或环境遮蔽细节"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.94,
+      "modeling_quality": 0.9284,
+      "modeling_precision": 0.3972,
+      "modeling_style": 0.8723
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "积雪覆盖",
+        "confidence": 0.98,
+        "evidence": "树冠顶部和枝干上覆盖着明显的白色块状几何体，模拟积雪效果。",
+        "source": "llm"
+      },
+      {
+        "tag": "绿色针叶",
+        "confidence": 0.95,
+        "evidence": "在白色积雪下方可见绿色的三角形面片，代表松树的针叶层。",
+        "source": "llm"
+      },
+      {
+        "tag": "棕色树干",
+        "confidence": 0.92,
+        "evidence": "每棵树底部都有棕色的柱状结构作为树干支撑。",
+        "source": "llm"
+      },
+      {
+        "tag": "冬季景观",
+        "confidence": 0.9,
+        "evidence": "整体配色（白、绿、棕）和积雪造型强烈暗示冬季环境用途。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "松树",
+      "taxonomy_path": [
+        "植物",
+        "树",
+        "松树"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9284,
+        "evidence": {
+          "topology_quality": 0.9895,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.6673,
+          "uv_quality": 0.8708,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.3972,
+        "evidence": {
+          "triangle_count": 4875,
+          "vertex_count": 14625,
+          "resolution": 4875,
+          "split_vertices": true,
+          "triangle_density": 0.00517083,
+          "resolution_score": 0.5674,
+          "density_score": 0.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.8723,
+        "status": "scored",
+        "confidence": 0.8723,
+        "evidence": [
+          "三角面 4875 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.558，阈值 0.200",
+          "量化法线方向数 281",
+          "轴对齐法线比例 0.214"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.8723,
+            "evidence": [
+              "三角面 4875 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.558，阈值 0.200",
+              "量化法线方向数 281",
+              "轴对齐法线比例 0.214"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "四棵独立树木呈簇状分布，具有典型的圆锥形树冠轮廓",
+      "每棵树均由棕色树干、绿色枝叶层和白色积雪层组成，结构一致",
+      "从多个视角观察均保持相同的分层结构和比例关系"
+    ],
+    "candidates": [
+      {
+        "name": "植物/树/普通树",
+        "confidence": 0.75
+      },
+      {
+        "name": "植物/灌木",
+        "confidence": 0.6
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

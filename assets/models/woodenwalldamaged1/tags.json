@@ -1,0 +1,402 @@
+{
+  "schema_version": "1.2",
+  "name": "木栅栏",
+  "object_label": {
+    "raw": "木栅栏",
+    "raw_source": "llm",
+    "canonical": "木栅栏",
+    "canonical_source": "llm_raw",
+    "display": "木栅栏",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 25°",
+        "role": "supports",
+        "detail": "清晰显示右侧立柱和多层横向木板，确认栅栏结构。"
+      },
+      {
+        "view": "方位 180° / 俯仰 25°",
+        "role": "supports",
+        "detail": "背面视角同样显示立柱和横板，结构一致。"
+      },
+      {
+        "view": "方位 135° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视角展示板条厚度和连接方式，确认为栅栏而非平板。"
+      },
+      {
+        "view": "方位 45° / 俯仰 15°",
+        "role": "supports",
+        "detail": "另一侧视角进一步确认结构完整性。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "木栅栏",
+      "parent_path": [
+        "建筑",
+        "构件"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "栅栏",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质结构",
+        "横向板条"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "木栅栏；类别：建筑/构件；属性：棕色、木质纹理、围栏用途",
+    "terms": [
+      "木栅栏",
+      "建筑",
+      "构件",
+      "棕色",
+      "木质纹理",
+      "围栏用途",
+      "栅栏",
+      "木质结构",
+      "横向板条"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "建筑",
+      "构件"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "栅栏",
+      "name": "木栅栏",
+      "category_path": [
+        "建筑",
+        "构件"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色",
+    "木质纹理",
+    "围栏用途"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9609,
+      "evidence": {
+        "topology_quality": 0.9917,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.8052,
+        "uv_quality": 0.9522,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.3216,
+      "evidence": {
+        "triangle_count": 691,
+        "vertex_count": 2073,
+        "resolution": 691,
+        "split_vertices": true,
+        "triangle_density": 0.02548285,
+        "resolution_score": 0.4368,
+        "density_score": 0.0526,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.8934,
+      "status": "scored",
+      "evidence": [
+        "三角面 691 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.475，阈值 0.200",
+        "量化法线方向数 137",
+        "轴对齐法线比例 0.470"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.3216"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 691 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.475，阈值 0.200",
+        "量化法线方向数 137",
+        "轴对齐法线比例 0.470"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "使用纯色或简单顶点色，无复杂PBR材质",
+        "光照为简单的明暗着色，无环境反射",
+        "边缘清晰，具有低多边形风格"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.8934,
+          "evidence": [
+            "三角面 691 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.475，阈值 0.200",
+            "量化法线方向数 137",
+            "轴对齐法线比例 0.470"
+          ]
+        }
+      ],
+      "confidence": 0.8934,
+      "evidence": [
+        "三角面 691 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.475，阈值 0.200",
+        "量化法线方向数 137",
+        "轴对齐法线比例 0.470"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.92,
+      "evidence": [
+        "使用纯色或简单顶点色，无复杂PBR材质",
+        "光照为简单的明暗着色，无环境反射",
+        "边缘清晰，具有低多边形风格"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.92,
+      "evidence": [
+        "使用纯色或简单顶点色，无复杂PBR材质",
+        "光照为简单的明暗着色，无环境反射",
+        "边缘清晰，具有低多边形风格"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.85,
+      "rendering_style": 0.92,
+      "modeling_quality": 0.9609,
+      "modeling_precision": 0.3216,
+      "modeling_style": 0.8934
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色",
+        "confidence": 0.95,
+        "evidence": "模型整体呈现均匀的棕褐色，符合木材基色特征。",
+        "source": "llm"
+      },
+      {
+        "tag": "木质纹理",
+        "confidence": 0.6,
+        "evidence": "颜色分布暗示了木材材质，但缺乏详细贴图细节。",
+        "source": "llm"
+      },
+      {
+        "tag": "围栏用途",
+        "confidence": 0.9,
+        "evidence": "由立柱和横板组成的典型栅栏结构，用于分隔空间。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "木栅栏",
+      "taxonomy_path": [
+        "建筑",
+        "构件"
+      ],
+      "status": "parent_only",
+      "missing_leaf": true
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9609,
+        "evidence": {
+          "topology_quality": 0.9917,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.8052,
+          "uv_quality": 0.9522,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.3216,
+        "evidence": {
+          "triangle_count": 691,
+          "vertex_count": 2073,
+          "resolution": 691,
+          "split_vertices": true,
+          "triangle_density": 0.02548285,
+          "resolution_score": 0.4368,
+          "density_score": 0.0526,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.8934,
+        "status": "scored",
+        "confidence": 0.8934,
+        "evidence": [
+          "三角面 691 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.475，阈值 0.200",
+          "量化法线方向数 137",
+          "轴对齐法线比例 0.470"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.8934,
+            "evidence": [
+              "三角面 691 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.475，阈值 0.200",
+              "量化法线方向数 137",
+              "轴对齐法线比例 0.470"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "可见垂直立柱与水平板条的交叉结构",
+      "板条之间存在明显的间隙，非实心墙体",
+      "整体轮廓呈扁平状，厚度较薄"
+    ],
+    "candidates": [
+      {
+        "name": "建筑/构件/门",
+        "confidence": 0.3
+      },
+      {
+        "name": "道具/容器/花盆",
+        "confidence": 0.1
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

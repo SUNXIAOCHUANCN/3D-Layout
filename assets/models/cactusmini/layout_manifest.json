@@ -1,0 +1,158 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792510460218674200",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792510460218674200.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -5.0,
+        0.0,
+        -4.419359
+      ],
+      "max": [
+        5.0,
+        7.972237,
+        4.419359
+      ]
+    },
+    "dimensions_cm": [
+      10.0,
+      7.972237,
+      8.838718
+    ],
+    "center_cm": [
+      0,
+      3.986118,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 10 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      121.6882,
+      97.012722,
+      107.556772
+    ],
+    "semantic_scale_factor": 0.08217724,
+    "total_scale_factor": 8.21772366,
+    "target_dimension_cm": 10.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -5.0,
+          0.0,
+          -4.419359
+        ],
+        "max": [
+          5.0,
+          7.972237,
+          4.419359
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "动物"
+    ],
+    "leaf": "动物",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "海胆",
+      "name": "海胆",
+      "category_path": [
+        "动物"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "海胆",
+    "raw_source": "llm",
+    "canonical": "海胆",
+    "canonical_source": "llm_raw",
+    "display": "海胆",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰可见绿色的球体躯干和白色的尖刺，形态确认为海胆。"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视角度确认了物体的整体轮廓为圆形且布满尖刺，无其他功能性部件（如轮子、屏幕）。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "海胆",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "海胆；类别：动物；属性：绿色、带刺球体",
+    "terms": [
+      "海胆",
+      "动物",
+      "绿色",
+      "带刺球体"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

@@ -200,11 +200,12 @@ async function main(): Promise<void> {
   if (!existsSync(join(targetRoot, 'scenes', 'index.json'))) {
     writeFileSync(join(targetRoot, 'scenes', 'index.json'), '[]\n')
   }
-  if (!existsSync(join(targetRoot, 'assets', 'models', 'manifest.json'))) {
-    writeFileSync(join(targetRoot, 'assets', 'models', 'manifest.json'), JSON.stringify({ generatedAt: '', models: {} }, null, 2) + '\n')
+  if (!existsSync(join(targetRoot, 'assets', 'model-catalog.json'))) {
+    writeFileSync(join(targetRoot, 'assets', 'model-catalog.json'), JSON.stringify({ generatedAt: '', models: {} }, null, 2) + '\n')
   }
   const hostScript = resolve(pluginDir, '..', '..', 'src', 'scripts', 'gen-manifest.mjs')
   copyFileSync(hostScript, join(targetRoot, 'src', 'scripts', 'gen-manifest.mjs'))
+  copyFileSync(resolve(pluginDir, '..', '..', 'src', 'scripts', 'model-catalog.mjs'), join(targetRoot, 'src', 'scripts', 'model-catalog.mjs'))
 
   console.log('[demo-forest] 3/5 打包候选集…')
   const files: Record<string, Uint8Array> = {}

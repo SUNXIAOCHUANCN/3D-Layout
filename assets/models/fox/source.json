@@ -1,0 +1,52 @@
+{
+    "filename":  "model.glb",
+    "source_path":  "fox/model.glb",
+    "source_sha256":  "55e35afaa41b1f41c01ca745967b4aad0dd2cdc3c87d7c0c76b2c1c535e1a3a9",
+    "source_axis":  "y-up",
+    "source_unit":  "m",
+    "normalization":  {
+                          "sourceAxis":  "Z-UP",
+                          "targetAxis":  "Y-UP",
+                          "sourceUnit":  "m",
+                          "targetUnit":  "cm",
+                          "scaleFactor":  100.0,
+                          "origin":  "bottom-center",
+                          "center":  [
+                                         0,
+                                         20.0,
+                                         0
+                                     ],
+                          "aabb":  {
+                                       "min":  [
+                                                   -7.319985,
+                                                   0.0,
+                                                   -41.945151
+                                               ],
+                                       "max":  [
+                                                   7.319985,
+                                                   40.0,
+                                                   41.945151
+                                               ]
+                                   },
+                          "dimensions":  [
+                                             14.63997,
+                                             40.0,
+                                             83.890301
+                                         ],
+                          "warnings":  [
+                                           "{\"asset\": \"model.glb\", \"fast_path_failed\": true, \"exception_type\": \"FastPathError\", \"exception_message\": \"解析网格失败: module \u0027trimesh\u0027 has no attribute \u0027load\u0027\", \"fallback_to_blender\": true}",
+                                           "已使用本机 Blender 读取文件元数据。导入结果是 Blender 世界坐标 Z-Up、单位米，页面上的源坐标和单位不再重复换算。"
+                                       ],
+                          "preCanonicalDimensions":  [
+                                                         19.822288,
+                                                         54.159367,
+                                                         113.58614
+                                                     ],
+                          "semanticScaleFactor":  0.73856107,
+                          "totalScaleFactor":  73.85610692,
+                          "scalePolicy":  "视觉模型估计现实高度 40 cm",
+                          "scaleSource":  "llm",
+                          "targetDimension":  40.0
+                      },
+    "source_path_base":  "input_root"
+}

@@ -118,7 +118,7 @@ export function buildPlannerContext(input: PlannerContextInput): PlannerContextB
 
   // 4) 模型库：有命中就给命中，否则给前 N
   const matchedCatalog = input.catalog.filter(c => {
-    const hay = `${c.ref} ${c.name} ${c.category ?? ''}`.toLowerCase()
+    const hay = `${c.ref} ${c.name} ${c.category ?? ''} ${c.description ?? ''} ${(c.tags ?? []).join(' ')} ${(c.retrievalTerms ?? []).join(' ')}`.toLowerCase()
     return keywords.some(k => hay.includes(k))
   })
   const catalogChosen = (matchedCatalog.length > 0 ? matchedCatalog : input.catalog).slice(0, limits.maxCatalog)
@@ -148,7 +148,7 @@ export function buildPlannerContext(input: PlannerContextInput): PlannerContextB
     input.viewport
       ? `- 用户视口相机：${JSON.stringify({ position: input.viewport.position, target: input.viewport.target, projection: input.viewport.projection })}`
       : '- 用户视口相机：不可用（按场景摘要规划）',
-    `- 模型库（可新增的资产，最多 ${limits.maxCatalog} 项）：${JSON.stringify(catalogChosen.map(c => ({ ref: c.ref, name: c.name, category: c.category, dimensions: c.dimensions })))}`,
+    `- 模型库（标准尺寸单位米，新增默认 scale=[1,1,1]，最多 ${limits.maxCatalog} 项）：${JSON.stringify(catalogChosen)}`,
     '',
     '指标白名单（criteria 只能用这些）：',
     JSON.stringify(metrics),

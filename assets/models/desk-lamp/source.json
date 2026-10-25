@@ -1,0 +1,51 @@
+{
+    "filename":  "model.glb",
+    "source_path":  "desk-lamp/model.glb",
+    "source_axis":  "y-up",
+    "source_unit":  "m",
+    "normalization":  {
+                          "sourceAxis":  "Z-UP",
+                          "targetAxis":  "Y-UP",
+                          "sourceUnit":  "m",
+                          "targetUnit":  "cm",
+                          "scaleFactor":  100.0,
+                          "origin":  "bottom-center",
+                          "center":  [
+                                         0,
+                                         30.0,
+                                         0
+                                     ],
+                          "aabb":  {
+                                       "min":  [
+                                                   -6.779977,
+                                                   0.0,
+                                                   -20.631814
+                                               ],
+                                       "max":  [
+                                                   6.779977,
+                                                   60.0,
+                                                   20.631814
+                                               ]
+                                   },
+                          "dimensions":  [
+                                             13.559954,
+                                             60.0,
+                                             41.263628
+                                         ],
+                          "warnings":  [
+                                           "{\"asset\": \"model.glb\", \"fast_path_failed\": true, \"exception_type\": \"FastPathError\", \"exception_message\": \"无法导入 trimesh（可能缺少依赖或 Python 版本不匹配）：ImportError\", \"fallback_to_blender\": true}",
+                                           "已使用本机 Blender 读取文件元数据。导入结果是 Blender 世界坐标 Z-Up、单位米，页面上的源坐标和单位不再重复换算。"
+                                       ],
+                          "preCanonicalDimensions":  [
+                                                         20.172932,
+                                                         89.261067,
+                                                         61.387258
+                                                     ],
+                          "semanticScaleFactor":  0.67218556,
+                          "totalScaleFactor":  67.21855566,
+                          "scalePolicy":  "视觉模型估计现实高度 60 cm",
+                          "scaleSource":  "llm",
+                          "targetDimension":  60.0
+                      },
+    "source_path_base":  "input_root"
+}

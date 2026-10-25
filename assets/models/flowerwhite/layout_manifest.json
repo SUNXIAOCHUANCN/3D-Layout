@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792512639873309500",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792512639873309500.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -14.245417,
+        0.0,
+        -9.629676
+      ],
+      "max": [
+        14.245417,
+        45.0,
+        9.629676
+      ]
+    },
+    "dimensions_cm": [
+      28.490835,
+      45.0,
+      19.259353
+    ],
+    "center_cm": [
+      0,
+      22.5,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 45 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      60.181046,
+      95.053273,
+      40.681434
+    ],
+    "semantic_scale_factor": 0.47341873,
+    "total_scale_factor": 47.34187323,
+    "target_dimension_cm": 45.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -14.245417,
+          0.0,
+          -9.629676
+        ],
+        "max": [
+          14.245417,
+          45.0,
+          9.629676
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "草本"
+    ],
+    "leaf": "草本",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "植物",
+      "name": "郁金香",
+      "category_path": [
+        "植物",
+        "草本"
+      ],
+      "primary_paths": [
+        [
+          "植物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "郁金香",
+    "raw_source": "llm",
+    "canonical": "郁金香",
+    "canonical_source": "llm_raw",
+    "display": "郁金香",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了白色花冠和下方的绿色叶片，确认了花卉身份。"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角确认了叶片的分布和花头的闭合状态。"
+      },
+      {
+        "view": "方位 90° / 俯仰 25°",
+        "role": "supports",
+        "detail": "侧面视角展示了植株的高度和叶片的长度比例。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "植物",
+      "subtype": null,
+      "appearance_motifs": [
+        "花卉"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "郁金香；类别：植物/草本；属性：白色花朵、绿色叶片、低多边形风格",
+    "terms": [
+      "郁金香",
+      "植物",
+      "草本",
+      "白色花朵",
+      "绿色叶片",
+      "低多边形风格",
+      "花卉"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

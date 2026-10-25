@@ -1,0 +1,23 @@
+{
+  "valid": true,
+  "errors": [],
+  "warnings": [
+    "身份与类别核验：主物体未命中明确节点或同义词，不能据此判断一致"
+  ],
+  "schema_version": "1.2",
+  "success": true,
+  "input_format": "glb",
+  "normalization_success": true,
+  "thumbnail_success": true,
+  "llm_success": true,
+  "llm_call": {
+    "attempts": 2,
+    "corrected": true,
+    "errors_before_success": [
+      "HTTP Error 429: Too Many Requests; {\"error\":{\"message\":\"Request rate increased too quickly. To ensure system stability, please adjust your client logic to scale requests more smoothly over time.\",\"type\":\"limit_burst_rate\",\"param\":null,\"code\":\"limit_burst_rate\"},\"id\":\"chatcmpl-829d7072-257a-9c5f-a74a-886087bd8355\",\"request_id\":\"829d7072-257a-9c5f-a74a-886087bd8355\"}"
+    ]
+  },
+  "normalization_issues": [],
+  "recovery": "corrected-retry",
+  "output_format": "glb"
+}

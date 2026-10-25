@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792514288144581200",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792514288144581200.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -7.846398,
+        0.0,
+        -8.634611
+      ],
+      "max": [
+        7.846398,
+        25.0,
+        8.634611
+      ]
+    },
+    "dimensions_cm": [
+      15.692795,
+      25.0,
+      17.269221
+    ],
+    "center_cm": [
+      0,
+      12.5,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 25 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      16.788633,
+      26.745766,
+      18.475142
+    ],
+    "semantic_scale_factor": 0.93472739,
+    "total_scale_factor": 93.47273883,
+    "target_dimension_cm": 25.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -7.846398,
+          0.0,
+          -8.634611
+        ],
+        "max": [
+          7.846398,
+          25.0,
+          8.634611
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "容器",
+      "花盆"
+    ],
+    "leaf": "花盆",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "盆栽",
+      "name": "虎皮兰盆栽",
+      "category_path": [
+        "道具",
+        "容器",
+        "花盆"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "虎皮兰盆栽",
+    "raw_source": "llm",
+    "canonical": "虎皮兰盆栽",
+    "canonical_source": "llm_raw",
+    "display": "虎皮兰盆栽",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了花盆的侧面轮廓、盆口的圆形边缘以及内部填充的石子和植物根部"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "确认了植物叶片的形态为细长且带有尖刺，符合虎皮兰或多肉植物特征"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了花盆背面的完整性和植物生长的对称性"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "进一步验证了花盆表面的水平纹理细节和整体比例"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "盆栽",
+      "subtype": null,
+      "appearance_motifs": [
+        "虎皮兰",
+        "多肉植物"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "花盆",
+        "虎皮兰",
+        "装饰石"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "虎皮兰盆栽；类别：道具/容器/花盆；属性：白色、绿色、条纹纹理、桌面摆件",
+    "terms": [
+      "虎皮兰盆栽",
+      "道具",
+      "容器",
+      "花盆",
+      "白色",
+      "绿色",
+      "条纹纹理",
+      "桌面摆件",
+      "盆栽",
+      "虎皮兰",
+      "多肉植物",
+      "装饰石"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

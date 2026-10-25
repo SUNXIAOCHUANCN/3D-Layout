@@ -1,0 +1,415 @@
+{
+  "schema_version": "1.2",
+  "name": "松树",
+  "object_label": {
+    "raw": "松树",
+    "raw_source": "llm",
+    "canonical": "松树",
+    "canonical_source": "llm_raw",
+    "display": "松树",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.95,
+    "evidence": [
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了松树的侧面轮廓、分层枝条和尖顶特征"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "确认了树冠的对称性和针叶分布形态"
+      },
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角进一步验证了圆锥形结构和树干比例"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "多角度一致显示为针叶树模型"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "树",
+      "subtype": null,
+      "appearance_motifs": [
+        "针叶树造型",
+        "圆锥形树冠"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "松树；类别：植物/树/松树；属性：绿色、棕色、针叶树",
+    "terms": [
+      "松树",
+      "植物",
+      "树",
+      "绿色",
+      "棕色",
+      "针叶树",
+      "针叶树造型",
+      "圆锥形树冠"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "树",
+      "松树"
+    ],
+    "leaf": "松树",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "树",
+      "name": "松树",
+      "category_path": [
+        "植物",
+        "树",
+        "松树"
+      ],
+      "primary_paths": [
+        [
+          "植物",
+          "树"
+        ]
+      ],
+      "name_paths": [
+        [
+          "植物",
+          "树",
+          "松树"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "绿色",
+    "棕色",
+    "针叶树"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9345,
+      "evidence": {
+        "topology_quality": 0.9971,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.6076,
+        "uv_quality": 0.9834,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.3491,
+      "evidence": {
+        "triangle_count": 1743,
+        "vertex_count": 5229,
+        "resolution": 1743,
+        "split_vertices": true,
+        "triangle_density": 0.00728665,
+        "resolution_score": 0.4987,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.9001,
+      "status": "scored",
+      "evidence": [
+        "三角面 1743 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.568，阈值 0.200",
+        "量化法线方向数 257",
+        "轴对齐法线比例 0.083"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.3491"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 1743 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.568，阈值 0.200",
+        "量化法线方向数 257",
+        "轴对齐法线比例 0.083"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "使用纯色材质，无复杂纹理细节",
+        "光照简单，阴影边缘清晰硬朗",
+        "整体呈现低多边形（Lowpoly）风格"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.9001,
+          "evidence": [
+            "三角面 1743 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.568，阈值 0.200",
+            "量化法线方向数 257",
+            "轴对齐法线比例 0.083"
+          ]
+        }
+      ],
+      "confidence": 0.9001,
+      "evidence": [
+        "三角面 1743 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.568，阈值 0.200",
+        "量化法线方向数 257",
+        "轴对齐法线比例 0.083"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.95,
+      "evidence": [
+        "使用纯色材质，无复杂纹理细节",
+        "光照简单，阴影边缘清晰硬朗",
+        "整体呈现低多边形（Lowpoly）风格"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.95,
+      "evidence": [
+        "使用纯色材质，无复杂纹理细节",
+        "光照简单，阴影边缘清晰硬朗",
+        "整体呈现低多边形（Lowpoly）风格"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.95,
+      "modeling_quality": 0.9345,
+      "modeling_precision": 0.3491,
+      "modeling_style": 0.9001
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "绿色",
+        "confidence": 1.0,
+        "evidence": "树叶部分呈现明显的绿色基色",
+        "source": "llm"
+      },
+      {
+        "tag": "棕色",
+        "confidence": 1.0,
+        "evidence": "树干部分呈现棕色基色",
+        "source": "llm"
+      },
+      {
+        "tag": "针叶树",
+        "confidence": 0.9,
+        "evidence": "具有典型的圆锥形轮廓和分层下垂的枝叶结构",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "松树",
+      "taxonomy_path": [
+        "植物",
+        "树",
+        "松树"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9345,
+        "evidence": {
+          "topology_quality": 0.9971,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.6076,
+          "uv_quality": 0.9834,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.3491,
+        "evidence": {
+          "triangle_count": 1743,
+          "vertex_count": 5229,
+          "resolution": 1743,
+          "split_vertices": true,
+          "triangle_density": 0.00728665,
+          "resolution_score": 0.4987,
+          "density_score": 0.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.9001,
+        "status": "scored",
+        "confidence": 0.9001,
+        "evidence": [
+          "三角面 1743 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.568，阈值 0.200",
+          "量化法线方向数 257",
+          "轴对齐法线比例 0.083"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.9001,
+            "evidence": [
+              "三角面 1743 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.568，阈值 0.200",
+              "量化法线方向数 257",
+              "轴对齐法线比例 0.083"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "物体具有垂直细长的主干和向上收窄的圆锥形轮廓",
+      "可见分层的片状或簇状绿色几何体模拟针叶树枝条",
+      "底部有明显的棕色树干结构"
+    ],
+    "candidates": [
+      {
+        "name": "植物/树/普通树",
+        "confidence": 0.6
+      },
+      {
+        "name": "植物/树/橡树",
+        "confidence": 0.3
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

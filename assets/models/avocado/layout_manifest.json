@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792510078292716500",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792510078292716500.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -3.383519,
+        0.0,
+        -2.195536
+      ],
+      "max": [
+        3.383519,
+        10.0,
+        2.195536
+      ]
+    },
+    "dimensions_cm": [
+      6.767037,
+      10.0,
+      4.391072
+    ],
+    "center_cm": [
+      0,
+      5.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 10 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      10.82726,
+      16.000001,
+      7.025716
+    ],
+    "semantic_scale_factor": 0.62499996,
+    "total_scale_factor": 62.49999609,
+    "target_dimension_cm": 10.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -3.383519,
+          0.0,
+          -2.195536
+        ],
+        "max": [
+          3.383519,
+          10.0,
+          2.195536
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "其他"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "水果",
+      "name": "牛油果",
+      "category_path": [
+        "其他"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "牛油果",
+    "raw_source": "llm",
+    "canonical": "牛油果",
+    "canonical_source": "llm_raw",
+    "display": "牛油果",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示切开的牛油果横截面，包含绿色外皮、黄色果肉和棕色果核。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示完整的绿色外皮，形状符合牛油果特征。"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认了果实的厚度和剖面结构。"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "另一侧视角确认了外皮的完整性和形状。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "牛油果",
+      "parent_path": [
+        "其他"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "水果",
+      "subtype": null,
+      "appearance_motifs": [
+        "切开的果实",
+        "绿色外皮",
+        "黄色果肉",
+        "棕色果核"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "牛油果；类别：其他；属性：绿色、黄色、棕色、切开造型",
+    "terms": [
+      "牛油果",
+      "其他",
+      "绿色",
+      "黄色",
+      "棕色",
+      "切开造型",
+      "水果",
+      "切开的果实",
+      "绿色外皮",
+      "黄色果肉",
+      "棕色果核"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

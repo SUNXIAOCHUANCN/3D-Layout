@@ -1,0 +1,406 @@
+{
+  "schema_version": "1.2",
+  "name": "火炬",
+  "object_label": {
+    "raw": "火炬",
+    "raw_source": "llm",
+    "canonical": "火炬",
+    "canonical_source": "llm_raw",
+    "display": "火炬",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见顶部的红蓝相间火焰结构和下方的棕色长杆，确认了火炬的整体构造"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角展示了火焰的厚度和不规则轮廓，以及连接处的米黄色装饰环"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了火焰背面的几何结构，进一步证实了非对称的火焰造型"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正侧视图显示物体垂直竖立，底部有简单的圆形底座支撑"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "火炬",
+      "parent_path": [
+        "道具"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "火炬",
+      "subtype": null,
+      "appearance_motifs": [
+        "火焰造型"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "火炬；类别：道具；属性：红色、蓝色、米黄色、棕色、手持武器/照明工具",
+    "terms": [
+      "火炬",
+      "道具",
+      "红色",
+      "蓝色",
+      "米黄色",
+      "棕色",
+      "手持武器/照明工具",
+      "火焰造型"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "道具"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "火炬",
+      "name": "火炬",
+      "category_path": [
+        "道具"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "红色",
+    "蓝色",
+    "米黄色",
+    "棕色",
+    "手持武器/照明工具"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.8875,
+      "evidence": {
+        "topology_quality": 0.8661,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.56,
+        "uv_quality": 0.95,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.298,
+      "evidence": {
+        "triangle_count": 160,
+        "vertex_count": 480,
+        "resolution": 160,
+        "split_vertices": true,
+        "triangle_density": 0.05076187,
+        "resolution_score": 0.3391,
+        "density_score": 0.2023,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.9187,
+      "status": "scored",
+      "evidence": [
+        "三角面 160 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.657，阈值 0.200",
+        "量化法线方向数 57",
+        "轴对齐法线比例 0.188"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.298"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 160 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.657，阈值 0.200",
+        "量化法线方向数 57",
+        "轴对齐法线比例 0.188"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "使用纯色块（红、蓝、棕）区分部件，无复杂纹理细节",
+        "光照简单，仅通过明暗面区分体积，缺乏真实环境反射"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.9187,
+          "evidence": [
+            "三角面 160 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.657，阈值 0.200",
+            "量化法线方向数 57",
+            "轴对齐法线比例 0.188"
+          ]
+        }
+      ],
+      "confidence": 0.9187,
+      "evidence": [
+        "三角面 160 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.657，阈值 0.200",
+        "量化法线方向数 57",
+        "轴对齐法线比例 0.188"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.92,
+      "evidence": [
+        "使用纯色块（红、蓝、棕）区分部件，无复杂纹理细节",
+        "光照简单，仅通过明暗面区分体积，缺乏真实环境反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.92,
+      "evidence": [
+        "使用纯色块（红、蓝、棕）区分部件，无复杂纹理细节",
+        "光照简单，仅通过明暗面区分体积，缺乏真实环境反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.92,
+      "modeling_quality": 0.8875,
+      "modeling_precision": 0.298,
+      "modeling_style": 0.9187
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "红色",
+        "confidence": 1.0,
+        "evidence": "火焰主体部分呈现明显的红色顶点色",
+        "source": "llm"
+      },
+      {
+        "tag": "蓝色",
+        "confidence": 1.0,
+        "evidence": "火焰边缘及内部包含蓝色区域",
+        "source": "llm"
+      },
+      {
+        "tag": "米黄色",
+        "confidence": 1.0,
+        "evidence": "顶部装饰环和底部基座为米黄色",
+        "source": "llm"
+      },
+      {
+        "tag": "棕色",
+        "confidence": 1.0,
+        "evidence": "长杆手柄部分为棕色",
+        "source": "llm"
+      },
+      {
+        "tag": "手持武器/照明工具",
+        "confidence": 0.9,
+        "evidence": "细长的杆状结构配合顶部的火焰，符合游戏内火炬或火把的功能特征",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "火炬",
+      "taxonomy_path": [
+        "道具"
+      ],
+      "status": "parent_only",
+      "missing_leaf": true
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.8875,
+        "evidence": {
+          "topology_quality": 0.8661,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.56,
+          "uv_quality": 0.95,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.298,
+        "evidence": {
+          "triangle_count": 160,
+          "vertex_count": 480,
+          "resolution": 160,
+          "split_vertices": true,
+          "triangle_density": 0.05076187,
+          "resolution_score": 0.3391,
+          "density_score": 0.2023,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.9187,
+        "status": "scored",
+        "confidence": 0.9187,
+        "evidence": [
+          "三角面 160 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.657，阈值 0.200",
+          "量化法线方向数 57",
+          "轴对齐法线比例 0.188"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.9187,
+            "evidence": [
+              "三角面 160 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.657，阈值 0.200",
+              "量化法线方向数 57",
+              "轴对齐法线比例 0.188"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "物体具有极端的细长比例（高宽比约7:1），由底部的扁平基座、中间的长杆和顶部的火焰组成",
+      "顶部结构呈现不规则的向上延伸形态，模拟火焰升腾的形状，且颜色分层明显"
+    ],
+    "candidates": [
+      {
+        "name": "道具/体育器材/保龄球瓶",
+        "confidence": 0.1
+      },
+      {
+        "name": "建筑/构件/门",
+        "confidence": 0.05
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

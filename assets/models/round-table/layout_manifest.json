@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792514716912818900",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792514716912818900.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -60.0,
+        0.0,
+        -59.999997
+      ],
+      "max": [
+        60.0,
+        86.184763,
+        59.999997
+      ]
+    },
+    "dimensions_cm": [
+      120.0,
+      86.184763,
+      119.999995
+    ],
+    "center_cm": [
+      0,
+      43.092382,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 120 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      139.934898,
+      100.502133,
+      139.934892
+    ],
+    "semantic_scale_factor": 0.85754163,
+    "total_scale_factor": 85.75416262,
+    "target_dimension_cm": 120.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -60.0,
+          0.0,
+          -59.999997
+        ],
+        "max": [
+          60.0,
+          86.184763,
+          59.999997
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "家具",
+      "桌子"
+    ],
+    "leaf": "桌子",
+    "status": "matched",
+    "confidence": 0.98,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "桌子",
+      "name": "圆桌",
+      "category_path": [
+        "家具",
+        "桌子"
+      ],
+      "primary_paths": [
+        [
+          "家具",
+          "桌子"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "圆桌",
+    "raw_source": "llm",
+    "canonical": "圆桌",
+    "canonical_source": "llm_raw",
+    "display": "圆桌",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了圆形的桌面边缘、木纹材质以及三条弯曲的桌腿结构。"
+      },
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认了桌面的厚度和桌腿的连接方式，无冲突信息。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角再次确认了圆桌的整体形态和比例。"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角一致，未见异常部件。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "桌子",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质纹理",
+        "三脚支撑"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "圆桌；类别：家具/桌子；属性：棕色、圆形桌面、三足底座",
+    "terms": [
+      "圆桌",
+      "家具",
+      "桌子",
+      "棕色",
+      "圆形桌面",
+      "三足底座",
+      "木质纹理",
+      "三脚支撑"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

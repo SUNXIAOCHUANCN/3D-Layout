@@ -1,0 +1,178 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792510336915568500",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792510336915568500.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -9.846083,
+        0.0,
+        -10.0
+      ],
+      "max": [
+        9.846083,
+        19.39538,
+        10.0
+      ]
+    },
+    "dimensions_cm": [
+      19.692166,
+      19.39538,
+      20.0
+    ],
+    "center_cm": [
+      0,
+      9.69769,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 20 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      25.382546,
+      24.999999,
+      25.779334
+    ],
+    "semantic_scale_factor": 0.77581523,
+    "total_scale_factor": 77.58152325,
+    "target_dimension_cm": 20.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -9.846083,
+          0.0,
+          -10.0
+        ],
+        "max": [
+          9.846083,
+          19.39538,
+          10.0
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "其他"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "便携式收音机",
+      "name": "便携式收音机",
+      "category_path": [
+        "其他"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "便携式收音机",
+    "raw_source": "llm",
+    "canonical": "便携式收音机",
+    "canonical_source": "llm_raw",
+    "display": "便携式收音机",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了侧面的伸缩天线、正面的扬声器网罩以及顶部的提手连接处，确认为便携式音响类设备。"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了设备的整体流线型外观和提手的弧度，符合手持设备的形态设计。"
+      },
+      {
+        "view": "方位 0° / 俯仰 15°",
+        "role": "supports",
+        "detail": "俯视视角确认了提手的跨顶结构和天线的伸出位置，排除了普通音箱的可能性。"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了另一侧的控制面板细节（按钮、旋钮），进一步证实了其作为电子设备的身份。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "便携式收音机",
+      "parent_path": [
+        "其他"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "便携式收音机",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "便携式收音机；类别：其他；属性：黑白配色、提手造型、天线部件、扬声器网罩",
+    "terms": [
+      "便携式收音机",
+      "其他",
+      "黑白配色",
+      "提手造型",
+      "天线部件",
+      "扬声器网罩"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

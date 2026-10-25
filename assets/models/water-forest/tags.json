@@ -1,0 +1,359 @@
+{
+  "schema_version": "1.2",
+  "name": "草地",
+  "object_label": {
+    "raw": "草地",
+    "raw_source": "llm",
+    "canonical": "草地",
+    "canonical_source": "llm_raw",
+    "display": "草地",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.85,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见大面积绿色平面，边缘呈波浪状弯曲，符合草地铺设形态。"
+      },
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认其极薄的厚度，进一步支持其为地表覆盖物而非立体物件。"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "轮廓显示出不规则的延伸部分，类似自然生长的草丛边界。"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "整体形态保持一致，无明显突起或凹陷结构，强化平面属性判断。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "草地",
+      "parent_path": [
+        "自然物"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "地面覆盖物",
+      "subtype": null,
+      "appearance_motifs": [
+        "不规则形状",
+        "平面"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "草地；类别：自然物；属性：绿色、不规则边缘、扁平结构",
+    "terms": [
+      "草地",
+      "自然物",
+      "绿色",
+      "不规则边缘",
+      "扁平结构",
+      "地面覆盖物",
+      "不规则形状",
+      "平面"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "自然物"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "地面覆盖物",
+      "name": "草地",
+      "category_path": [
+        "自然物"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "绿色",
+    "不规则边缘",
+    "扁平结构"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": null,
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": null,
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9273,
+      "evidence": {
+        "topology_quality": 0.7317,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.9982,
+        "uv_quality": 1.0,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.1725,
+      "evidence": {
+        "triangle_count": 40,
+        "vertex_count": 120,
+        "resolution": 40,
+        "split_vertices": true,
+        "triangle_density": 0.00490234,
+        "resolution_score": 0.2465,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": null,
+      "score": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.1725"
+      ]
+    },
+    "modeling_style": {
+      "label": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "颜色为纯色或简单渐变，无复杂纹理细节",
+        "光照效果简单，阴影柔和且缺乏真实环境反射"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": null,
+      "status": "insufficient_evidence",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.85,
+      "evidence": [
+        "颜色为纯色或简单渐变，无复杂纹理细节",
+        "光照效果简单，阴影柔和且缺乏真实环境反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.85,
+      "evidence": [
+        "颜色为纯色或简单渐变，无复杂纹理细节",
+        "光照效果简单，阴影柔和且缺乏真实环境反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.85,
+      "rendering_style": 0.85,
+      "modeling_quality": 0.9273,
+      "modeling_precision": 0.1725,
+      "modeling_style": null
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "绿色",
+        "confidence": 0.95,
+        "evidence": "模型表面呈现明显的绿色调，符合草地的视觉特征。",
+        "source": "llm"
+      },
+      {
+        "tag": "不规则边缘",
+        "confidence": 0.9,
+        "evidence": "从多个视角观察，物体轮廓呈现非几何规则的自然曲线和锯齿状边缘。",
+        "source": "llm"
+      },
+      {
+        "tag": "扁平结构",
+        "confidence": 0.98,
+        "evidence": "高度极小（相对宽深），整体呈片状分布，符合地表植被的形态。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "草地",
+      "taxonomy_path": [
+        "自然物"
+      ],
+      "status": "parent_only",
+      "missing_leaf": true
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9273,
+        "evidence": {
+          "topology_quality": 0.7317,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.9982,
+          "uv_quality": 1.0,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.1725,
+        "evidence": {
+          "triangle_count": 40,
+          "vertex_count": 120,
+          "resolution": 40,
+          "split_vertices": true,
+          "triangle_density": 0.00490234,
+          "resolution_score": 0.2465,
+          "density_score": 0.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": null,
+        "score": null,
+        "status": "insufficient_evidence",
+        "confidence": 0.0,
+        "evidence": [
+          "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+        ],
+        "candidates": [],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "物体具有明显的二维平面特性，厚度几乎可以忽略不计",
+      "边缘轮廓呈现自然的有机曲线，而非直线或标准几何形状"
+    ],
+    "candidates": [
+      {
+        "name": "道具/地垫",
+        "confidence": 0.6
+      },
+      {
+        "name": "其他/未分类",
+        "confidence": 0.4
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

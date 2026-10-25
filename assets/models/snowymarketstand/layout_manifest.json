@@ -1,0 +1,180 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515318470268300",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515318470268300.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -81.777341,
+        0.0,
+        -69.001599
+      ],
+      "max": [
+        81.777341,
+        160.0,
+        69.001599
+      ]
+    },
+    "dimensions_cm": [
+      163.554681,
+      160.0,
+      138.003198
+    ],
+    "center_cm": [
+      0,
+      80.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 160 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      344.245148,
+      336.763358,
+      290.465128
+    ],
+    "semantic_scale_factor": 0.47511107,
+    "total_scale_factor": 47.51110719,
+    "target_dimension_cm": 160.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -81.777341,
+          0.0,
+          -69.001599
+        ],
+        "max": [
+          81.777341,
+          160.0,
+          69.001599
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "容器"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "摊位",
+      "name": "水果摊",
+      "category_path": [
+        "道具",
+        "容器"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "水果摊",
+    "raw_source": "llm",
+    "canonical": "水果摊",
+    "canonical_source": "llm_raw",
+    "display": "水果摊",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.9,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角清晰展示了立柱、货架以及货架上的彩色球体，确认了摊位结构。"
+      },
+      {
+        "view": "方位 315° / 俯仰 25°",
+        "role": "supports",
+        "detail": "斜侧视角完整展示了整体比例，包括顶棚的延伸范围和底部的支撑结构。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "水果摊",
+      "parent_path": [
+        "道具",
+        "容器"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "摊位",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质结构",
+        "红色遮阳篷"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "水果"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "水果摊；类别：道具/容器；属性：红色、木质、售卖用途",
+    "terms": [
+      "水果摊",
+      "道具",
+      "容器",
+      "红色",
+      "木质",
+      "售卖用途",
+      "摊位",
+      "木质结构",
+      "红色遮阳篷",
+      "水果"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

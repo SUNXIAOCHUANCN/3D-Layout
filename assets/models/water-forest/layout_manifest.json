@@ -1,0 +1,183 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792516477785588000",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792516477785588000.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -100.0,
+        0.0,
+        -68.238462
+      ],
+      "max": [
+        100.0,
+        7.470362,
+        68.238462
+      ]
+    },
+    "dimensions_cm": [
+      200.0,
+      7.470362,
+      136.476923
+    ],
+    "center_cm": [
+      0,
+      3.735181,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 200 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      35676.049804,
+      1332.565117,
+      24344.787598
+    ],
+    "semantic_scale_factor": 0.005606,
+    "total_scale_factor": 0.56060018,
+    "target_dimension_cm": 200.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -100.0,
+          0.0,
+          -68.238462
+        ],
+        "max": [
+          100.0,
+          7.470362,
+          68.238462
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "自然物"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "地面覆盖物",
+      "name": "草地",
+      "category_path": [
+        "自然物"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "草地",
+    "raw_source": "llm",
+    "canonical": "草地",
+    "canonical_source": "llm_raw",
+    "display": "草地",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.85,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见大面积绿色平面，边缘呈波浪状弯曲，符合草地铺设形态。"
+      },
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认其极薄的厚度，进一步支持其为地表覆盖物而非立体物件。"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "轮廓显示出不规则的延伸部分，类似自然生长的草丛边界。"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "整体形态保持一致，无明显突起或凹陷结构，强化平面属性判断。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "草地",
+      "parent_path": [
+        "自然物"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "地面覆盖物",
+      "subtype": null,
+      "appearance_motifs": [
+        "不规则形状",
+        "平面"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "草地；类别：自然物；属性：绿色、不规则边缘、扁平结构",
+    "terms": [
+      "草地",
+      "自然物",
+      "绿色",
+      "不规则边缘",
+      "扁平结构",
+      "地面覆盖物",
+      "不规则形状",
+      "平面"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

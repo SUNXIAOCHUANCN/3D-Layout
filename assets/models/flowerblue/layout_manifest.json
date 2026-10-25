@@ -1,0 +1,178 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792512565964696600",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792512565964696600.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -14.252648,
+        0.0,
+        -9.634559
+      ],
+      "max": [
+        14.252648,
+        45.0,
+        9.634559
+      ]
+    },
+    "dimensions_cm": [
+      28.505297,
+      45.0,
+      19.269118
+    ],
+    "center_cm": [
+      0,
+      22.5,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 45 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      60.181046,
+      95.005047,
+      40.68141
+    ],
+    "semantic_scale_factor": 0.47365905,
+    "total_scale_factor": 47.36590468,
+    "target_dimension_cm": 45.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -14.252648,
+          0.0,
+          -9.634559
+        ],
+        "max": [
+          14.252648,
+          45.0,
+          9.634559
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "花卉",
+      "name": "郁金香",
+      "category_path": [
+        "植物"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "郁金香",
+    "raw_source": "llm",
+    "canonical": "郁金香",
+    "canonical_source": "llm_raw",
+    "display": "郁金香",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见蓝色花头与绿色叶片的组合结构，符合郁金香形态"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了花朵背面的层叠结构和叶片的分布"
+      },
+      {
+        "view": "方位 90° / 俯仰 25°",
+        "role": "supports",
+        "detail": "侧面轮廓显示高挑的茎干和修长的叶片比例"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "郁金香",
+      "parent_path": [
+        "植物"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "花卉",
+      "subtype": null,
+      "appearance_motifs": [
+        "蓝色花朵",
+        "绿色叶片"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "郁金香；类别：植物；属性：蓝色、绿色、低多边形风格",
+    "terms": [
+      "郁金香",
+      "植物",
+      "蓝色",
+      "绿色",
+      "低多边形风格",
+      "花卉",
+      "蓝色花朵",
+      "绿色叶片"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

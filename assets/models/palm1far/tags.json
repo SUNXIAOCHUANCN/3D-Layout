@@ -1,0 +1,412 @@
+{
+  "schema_version": "1.2",
+  "name": "棕榈树",
+  "object_label": {
+    "raw": "棕榈树",
+    "raw_source": "llm",
+    "canonical": "棕榈树",
+    "canonical_source": "llm_raw",
+    "display": "棕榈树",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰可见单根树干及顶部散开的绿色叶片，确认为树木形态"
+      },
+      {
+        "view": "方位 270° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视角确认了叶片的扁平结构和树干的直立姿态"
+      },
+      {
+        "view": "方位 90° / 俯仰 15°",
+        "role": "supports",
+        "detail": "展示了树冠的不对称性和叶片的延伸方向"
+      },
+      {
+        "view": "方位 180° / 俯仰 15°",
+        "role": "supports",
+        "detail": "背面视角进一步证实了整体结构的完整性"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "棕榈树",
+      "parent_path": [
+        "植物",
+        "树"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "植物",
+      "subtype": null,
+      "appearance_motifs": [
+        "热带风格",
+        "棕榈叶"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "棕榈树；类别：植物/树；属性：绿色、棕色、热带植物、低多边形风格",
+    "terms": [
+      "棕榈树",
+      "植物",
+      "树",
+      "绿色",
+      "棕色",
+      "热带植物",
+      "低多边形风格",
+      "热带风格",
+      "棕榈叶"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "树"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "植物",
+      "name": "棕榈树",
+      "category_path": [
+        "植物",
+        "树"
+      ],
+      "primary_paths": [
+        [
+          "植物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "绿色",
+    "棕色",
+    "热带植物",
+    "低多边形风格"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": "Voxel",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": "Voxel",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.8123,
+      "evidence": {
+        "topology_quality": 0.7,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.3333,
+        "uv_quality": 1.0,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.0973,
+      "evidence": {
+        "triangle_count": 8,
+        "vertex_count": 24,
+        "resolution": 8,
+        "split_vertices": true,
+        "triangle_density": 4.57e-06,
+        "resolution_score": 0.1389,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Voxel",
+      "score": 0.8667,
+      "status": "scored",
+      "evidence": [
+        "轴对齐法线比例 1.00",
+        "法线方向数 4 不超过 12",
+        "分面边比例 0.67，共同支持块状体素结构"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.0973"
+      ]
+    },
+    "modeling_style": {
+      "label": "Voxel",
+      "status": "scored",
+      "evidence": [
+        "轴对齐法线比例 1.00",
+        "法线方向数 4 不超过 12",
+        "分面边比例 0.67，共同支持块状体素结构"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "使用简单的明暗着色，无复杂纹理细节",
+        "颜色为纯色块或简单的顶点色渐变，缺乏真实材质反射"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Voxel",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Voxel",
+          "score": 0.8667,
+          "evidence": [
+            "轴对齐法线比例 1.00",
+            "法线方向数 4 不超过 12",
+            "分面边比例 0.67，共同支持块状体素结构"
+          ]
+        }
+      ],
+      "confidence": 0.8667,
+      "evidence": [
+        "轴对齐法线比例 1.00",
+        "法线方向数 4 不超过 12",
+        "分面边比例 0.67，共同支持块状体素结构"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.92,
+      "evidence": [
+        "使用简单的明暗着色，无复杂纹理细节",
+        "颜色为纯色块或简单的顶点色渐变，缺乏真实材质反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.92,
+      "evidence": [
+        "使用简单的明暗着色，无复杂纹理细节",
+        "颜色为纯色块或简单的顶点色渐变，缺乏真实材质反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.92,
+      "modeling_quality": 0.8123,
+      "modeling_precision": 0.0973,
+      "modeling_style": 0.8667
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "绿色",
+        "confidence": 1.0,
+        "evidence": "叶片呈现明显的浅绿色和深绿色顶点色分布",
+        "source": "llm"
+      },
+      {
+        "tag": "棕色",
+        "confidence": 1.0,
+        "evidence": "树干部分呈现棕褐色/红褐色",
+        "source": "llm"
+      },
+      {
+        "tag": "热带植物",
+        "confidence": 0.9,
+        "evidence": "具有典型的长条状羽状复叶，从顶部向四周辐射生长",
+        "source": "llm"
+      },
+      {
+        "tag": "低多边形风格",
+        "confidence": 0.8,
+        "evidence": "几何体面数极少（仅8个三角面），轮廓呈锯齿状简化",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "棕榈树",
+      "taxonomy_path": [
+        "植物",
+        "树"
+      ],
+      "status": "parent_only",
+      "missing_leaf": true
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.8123,
+        "evidence": {
+          "topology_quality": 0.7,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.3333,
+          "uv_quality": 1.0,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.0973,
+        "evidence": {
+          "triangle_count": 8,
+          "vertex_count": 24,
+          "resolution": 8,
+          "split_vertices": true,
+          "triangle_density": 4.57e-06,
+          "resolution_score": 0.1389,
+          "density_score": 0.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Voxel",
+        "score": 0.8667,
+        "status": "scored",
+        "confidence": 0.8667,
+        "evidence": [
+          "轴对齐法线比例 1.00",
+          "法线方向数 4 不超过 12",
+          "分面边比例 0.67，共同支持块状体素结构"
+        ],
+        "candidates": [
+          {
+            "label": "Voxel",
+            "score": 0.8667,
+            "evidence": [
+              "轴对齐法线比例 1.00",
+              "法线方向数 4 不超过 12",
+              "分面边比例 0.67，共同支持块状体素结构"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "细长的垂直主干结构，支撑顶部的冠层",
+      "顶部有多片狭长且边缘不规则的叶片向外伸展，符合棕榈科植物特征"
+    ],
+    "candidates": [
+      {
+        "name": "植物/树/普通树",
+        "confidence": 0.95
+      },
+      {
+        "name": "植物/草本",
+        "confidence": 0.3
+      },
+      {
+        "name": "其他/未分类",
+        "confidence": 0.1
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

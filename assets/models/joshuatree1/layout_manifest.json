@@ -1,0 +1,198 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792517422147516400",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792517422147516400.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -116.08897,
+        0.0,
+        -115.576213
+      ],
+      "max": [
+        116.08897,
+        300.0,
+        115.576213
+      ]
+    },
+    "dimensions_cm": [
+      232.177939,
+      300.0,
+      231.152426
+    ],
+    "center_cm": [
+      0,
+      150.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 300 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      469.800686,
+      607.035303,
+      467.72561
+    ],
+    "semantic_scale_factor": 0.49420519,
+    "total_scale_factor": 49.42051945,
+    "target_dimension_cm": 300.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -116.08897,
+          0.0,
+          -115.576213
+        ],
+        "max": [
+          116.08897,
+          300.0,
+          115.576213
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "树",
+      "普通树"
+    ],
+    "leaf": "普通树",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "树",
+      "name": "普通树",
+      "category_path": [
+        "植物",
+        "树",
+        "普通树"
+      ],
+      "primary_paths": [
+        [
+          "植物",
+          "树"
+        ]
+      ],
+      "name_paths": [
+        [
+          "植物",
+          "树",
+          "普通树"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "普通树",
+    "raw_source": "llm",
+    "canonical": "普通树",
+    "canonical_source": "llm_raw",
+    "display": "普通树",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见树干与分叉结构，以及绿色的几何叶片簇"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认了树干的直立性和树冠的体积感"
+      },
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了树冠背面的结构，确认为单体树木模型"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角完整展示了树的整体比例和枝叶分布"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "树",
+      "subtype": null,
+      "appearance_motifs": [
+        "低多边形风格",
+        "几何化树叶"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "普通树；类别：植物/树/普通树；属性：绿色、棕色、低多边形风格",
+    "terms": [
+      "普通树",
+      "植物",
+      "树",
+      "绿色",
+      "棕色",
+      "低多边形风格",
+      "几何化树叶"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

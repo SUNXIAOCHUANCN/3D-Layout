@@ -1,0 +1,185 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792516536454296100",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792516536454296100.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -18.688165,
+        0.0,
+        -18.554522
+      ],
+      "max": [
+        18.688165,
+        90.0,
+        18.554522
+      ]
+    },
+    "dimensions_cm": [
+      37.37633,
+      90.0,
+      37.109044
+    ],
+    "center_cm": [
+      0,
+      45.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 90 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      209.976696,
+      505.611515,
+      208.475112
+    ],
+    "semantic_scale_factor": 0.17800228,
+    "total_scale_factor": 17.80022751,
+    "target_dimension_cm": 90.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -18.688165,
+          0.0,
+          -18.554522
+        ],
+        "max": [
+          18.688165,
+          90.0,
+          18.554522
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "家具",
+      "椅子"
+    ],
+    "leaf": "椅子",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "椅子",
+      "name": "椅子",
+      "category_path": [
+        "家具",
+        "椅子"
+      ],
+      "primary_paths": [
+        [
+          "家具",
+          "椅子"
+        ]
+      ],
+      "name_paths": [
+        [
+          "家具",
+          "椅子"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "椅子",
+    "raw_source": "llm",
+    "canonical": "椅子",
+    "canonical_source": "llm_raw",
+    "display": "椅子",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了椅背的U型框架结构和下方的座面，确认了椅子的基本形态。"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "从背面视角再次确认了椅背框架的存在，且未见其他如柜门等结构。"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角显示了物体的厚度和深度，排除了平面板的可能性，确认了立体家具属性。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "椅子",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "椅子；类别：家具/椅子；属性：米色、棕色、靠背结构",
+    "terms": [
+      "椅子",
+      "家具",
+      "米色",
+      "棕色",
+      "靠背结构"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

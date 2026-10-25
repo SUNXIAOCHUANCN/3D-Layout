@@ -1,0 +1,194 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792516685046041900",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792516685046041900.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -2.170202,
+        0.0,
+        -2.939418
+      ],
+      "max": [
+        2.170202,
+        38.0,
+        2.939418
+      ]
+    },
+    "dimensions_cm": [
+      4.340404,
+      38.0,
+      5.878837
+    ],
+    "center_cm": [
+      0,
+      19.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 38 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      32.533359,
+      284.827805,
+      44.064635
+    ],
+    "semantic_scale_factor": 0.13341394,
+    "total_scale_factor": 13.34139411,
+    "target_dimension_cm": 38.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -2.170202,
+          0.0,
+          -2.939418
+        ],
+        "max": [
+          2.170202,
+          38.0,
+          2.939418
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "体育器材",
+      "保龄球瓶"
+    ],
+    "leaf": "保龄球瓶",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "保龄球瓶",
+      "name": "保龄球瓶",
+      "category_path": [
+        "道具",
+        "体育器材",
+        "保龄球瓶"
+      ],
+      "primary_paths": [
+        [
+          "道具",
+          "体育器材",
+          "保龄球瓶"
+        ]
+      ],
+      "name_paths": [
+        [
+          "道具",
+          "体育器材",
+          "保龄球瓶"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "保龄球瓶",
+    "raw_source": "llm",
+    "canonical": "保龄球瓶",
+    "canonical_source": "llm_raw",
+    "display": "保龄球瓶",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见物体顶部的圆头结构和底部的支撑面，侧面线条流畅，符合保龄球瓶形态。"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了物体的另一侧，确认了其旋转对称性和细长的柱状结构。"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰显示了瓶颈与瓶身的连接过渡以及底部的平面。"
+      },
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "进一步确认了物体的完整轮廓，没有发现额外的附属部件。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "保龄球瓶",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "保龄球瓶；类别：道具/体育器材/保龄球瓶；属性：棕色、细长圆柱体",
+    "terms": [
+      "保龄球瓶",
+      "道具",
+      "体育器材",
+      "棕色",
+      "细长圆柱体"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

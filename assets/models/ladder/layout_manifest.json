@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792513165174725900",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792513165174725900.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -28.924989,
+        0.0,
+        -6.813994
+      ],
+      "max": [
+        28.924989,
+        300.0,
+        6.813994
+      ]
+    },
+    "dimensions_cm": [
+      57.849978,
+      300.0,
+      13.627988
+    ],
+    "center_cm": [
+      0,
+      150.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 300 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      75.048732,
+      389.189768,
+      17.679578
+    ],
+    "semantic_scale_factor": 0.77083219,
+    "total_scale_factor": 77.08321869,
+    "target_dimension_cm": 300.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -28.924989,
+          0.0,
+          -6.813994
+        ],
+        "max": [
+          28.924989,
+          300.0,
+          6.813994
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "梯子",
+      "name": "梯子",
+      "category_path": [
+        "道具"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "梯子",
+    "raw_source": "llm",
+    "canonical": "梯子",
+    "canonical_source": "llm_raw",
+    "display": "梯子",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 45° / 俯仰 25°",
+        "role": "supports",
+        "detail": "清晰可见梯子的侧面透视，展示了侧轨和横档的连接关系。"
+      },
+      {
+        "view": "方位 135° / 俯仰 25°",
+        "role": "supports",
+        "detail": "从另一角度确认了梯子的对称结构和厚度。"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视视角下，横档的排列规律清晰可见。"
+      },
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "进一步确认了物体的细长比例和底部结构。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "梯子",
+      "parent_path": [
+        "道具"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "梯子",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "梯子；类别：道具；属性：棕色、金属质感、攀爬工具",
+    "terms": [
+      "梯子",
+      "道具",
+      "棕色",
+      "金属质感",
+      "攀爬工具"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

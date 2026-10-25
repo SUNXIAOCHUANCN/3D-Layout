@@ -3,6 +3,8 @@ import { engine } from '../../core/engine'
 import { bus } from '../../core/events'
 import { buildLogFilename, listLogs, sanitizeLogName, saveLog } from '../../core/io'
 import { useSceneStore } from '../../core/store'
+import { describeModel } from '../../core/modelCatalog'
+import { modelWorldBounds } from '../../shared/modelBounds'
 import type { SceneAsset, Transform, Vec3 } from '../../core/types'
 import type { AgentAccess, AgentToolName } from './protocol'
 import { recorder } from './recorder'
@@ -110,7 +112,7 @@ function parseScaleMul(args: Record<string, unknown>): number | Vec3 | undefined
 
 // ---------- 各工具实现 ----------
 
-/** 单资产的 Agent 视图：变换 + 按「未旋转包围盒」近似的世界尺寸/AABB */
+/** 单资产的 Agent 视图：标准模型介绍 + 含 XYZ 旋转/有符号缩放的世界 AABB。 */
 function describeAsset(a: SceneAsset): {
   id: string
   ref: string
@@ -122,11 +124,9 @@ function describeAsset(a: SceneAsset): {
   worldAabb: { min: Vec3; max: Vec3 } | null
 } {
   const meta = useSceneStore.getState().manifest?.models[a.ref]
-  const sc = a.transform.scale ?? [1, 1, 1]
-  const size: Vec3 | null = meta
-    ? [meta.dimensions.w * sc[0], meta.dimensions.h * sc[1], meta.dimensions.d * sc[2]]
-    : null
-  const p = a.transform.position
+  const worldAabb = meta ? modelWorldBounds(meta, a.transform) : null
+  const size: Vec3 | null = worldAabb
+    ? [worldAabb.max[0] - worldAabb.min[0], worldAabb.max[1] - worldAabb.min[1], worldAabb.max[2] - worldAabb.min[2]] : null
   return {
     id: a.id,
     ref: a.ref,
@@ -134,15 +134,10 @@ function describeAsset(a: SceneAsset): {
     transform: a.transform,
     visible: a.visible !== false,
     model: meta
-      ? { name: meta.name, category: meta.category ?? null, dimensions: meta.dimensions }
+      ? describeModel(a.ref, meta)
       : null,
     worldSize: size,
-    worldAabb: size
-      ? {
-          min: [p[0] - size[0] / 2, p[1], p[2] - size[2] / 2],
-          max: [p[0] + size[0] / 2, p[1] + size[1], p[2] + size[2] / 2],
-        }
-      : null,
+    worldAabb,
   }
 }
 
@@ -166,7 +161,7 @@ function sceneGetState(args: Record<string, unknown>): unknown {
         ? Object.fromEntries(
             Object.entries(s.manifest.models).map(([ref, m]) => [
               ref,
-              { name: m.name, category: m.category ?? null, tags: m.tags ?? [], dimensions: m.dimensions },
+              describeModel(ref, m),
             ]),
           )
         : null,

@@ -1,0 +1,190 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792510378355551100",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792510378355551100.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -168.101797,
+        0.0,
+        -110.071211
+      ],
+      "max": [
+        168.101797,
+        300.0,
+        110.071211
+      ]
+    },
+    "dimensions_cm": [
+      336.203594,
+      300.0,
+      220.142421
+    ],
+    "center_cm": [
+      0,
+      150.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 300 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      321.758842,
+      287.11071,
+      210.684156
+    ],
+    "semantic_scale_factor": 1.0448931,
+    "total_scale_factor": 104.48931006,
+    "target_dimension_cm": 300.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -168.101797,
+          0.0,
+          -110.071211
+        ],
+        "max": [
+          168.101797,
+          300.0,
+          110.071211
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "树",
+      "普通树"
+    ],
+    "leaf": "普通树",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "树",
+      "name": "树",
+      "category_path": [
+        "植物",
+        "树",
+        "普通树"
+      ],
+      "primary_paths": [
+        [
+          "植物",
+          "树"
+        ]
+      ],
+      "name_paths": [
+        [
+          "植物",
+          "树"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "树",
+    "raw_source": "llm",
+    "canonical": "树",
+    "canonical_source": "llm_raw",
+    "display": "树",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.95,
+    "evidence": [
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见完整的树冠和两根树干，形态符合树木特征。"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角清晰展示了树冠与树干的连接关系及比例。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "树",
+      "subtype": null,
+      "appearance_motifs": [
+        "低多边形风格",
+        "绿色树冠",
+        "棕色树干"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "树；类别：植物/树/普通树；属性：浅绿色、棕色、低多边形造型",
+    "terms": [
+      "树",
+      "植物",
+      "普通树",
+      "浅绿色",
+      "棕色",
+      "低多边形造型",
+      "低多边形风格",
+      "绿色树冠",
+      "棕色树干"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

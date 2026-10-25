@@ -1,0 +1,193 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792510004149210700",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792510004149210700.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -43.336756,
+        0.0,
+        -47.196191
+      ],
+      "max": [
+        43.336756,
+        60.0,
+        47.196191
+      ]
+    },
+    "dimensions_cm": [
+      86.673511,
+      60.0,
+      94.392382
+    ],
+    "center_cm": [
+      0,
+      30.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 60 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      227.404904,
+      157.421732,
+      247.65687
+    ],
+    "semantic_scale_factor": 0.38114179,
+    "total_scale_factor": 38.11417854,
+    "target_dimension_cm": 60.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -43.336756,
+          0.0,
+          -47.196191
+        ],
+        "max": [
+          43.336756,
+          60.0,
+          47.196191
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "仙人掌"
+    ],
+    "leaf": "仙人掌",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "植物",
+      "name": "仙人掌",
+      "category_path": [
+        "植物",
+        "仙人掌"
+      ],
+      "primary_paths": [
+        [
+          "植物"
+        ]
+      ],
+      "name_paths": [
+        [
+          "植物",
+          "仙人掌"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "仙人掌",
+    "raw_source": "llm",
+    "canonical": "仙人掌",
+    "canonical_source": "llm_raw",
+    "display": "仙人掌",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见中心主干及向上向外伸展的尖叶，符合仙人掌形态。"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角确认了叶片的对称分布和立体结构。"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角展示了叶片的厚度和层叠关系。"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "另一侧视角进一步证实了整体的辐射状结构。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "植物",
+      "subtype": null,
+      "appearance_motifs": [
+        "多肉植物",
+        "尖刺叶片"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "仙人掌；类别：植物/仙人掌；属性：绿色、多肉植物造型",
+    "terms": [
+      "仙人掌",
+      "植物",
+      "绿色",
+      "多肉植物造型",
+      "多肉植物",
+      "尖刺叶片"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

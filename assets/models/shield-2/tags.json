@@ -1,0 +1,393 @@
+{
+  "schema_version": "1.2",
+  "name": "卡通风格椅子",
+  "object_label": {
+    "raw": "卡通风格椅子",
+    "raw_source": "llm",
+    "canonical": "椅子",
+    "canonical_source": "taxonomy_normalization",
+    "display": "卡通风格椅子",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了椅子的正面（或背面）特征：拟人化的脸谱设计，包括蓝色的眼睛、白色的牙齿和红色的嘴巴，确认了物体的具体外观细节。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了物体的背面或侧面，呈现为平整的板状结构，带有两个浅黄色的矩形凹槽或装饰，符合椅子靠背的结构特征。"
+      },
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧视角度进一步确认了物体的高度和厚度比例，以及面部特征的侧面透视关系，排除了扁平画框的可能性。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "椅子",
+      "subtype": null,
+      "appearance_motifs": [
+        "拟人化面部特征",
+        "卡通造型"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "卡通风格椅子；类别：家具/椅子；属性：棕色主体、红色嘴巴、蓝色眼睛、白色牙齿、卡通风格",
+    "terms": [
+      "卡通风格椅子",
+      "椅子",
+      "家具",
+      "棕色主体",
+      "红色嘴巴",
+      "蓝色眼睛",
+      "白色牙齿",
+      "卡通风格",
+      "拟人化面部特征",
+      "卡通造型"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "家具",
+      "椅子"
+    ],
+    "leaf": "椅子",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "椅子",
+      "name": "卡通风格椅子",
+      "category_path": [
+        "家具",
+        "椅子"
+      ],
+      "primary_paths": [
+        [
+          "家具",
+          "椅子"
+        ]
+      ],
+      "name_paths": [
+        [
+          "家具",
+          "椅子"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色主体",
+    "红色嘴巴",
+    "蓝色眼睛",
+    "白色牙齿",
+    "卡通风格"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": "Cartoon",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": "Cartoon",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.933,
+      "evidence": {
+        "topology_quality": 0.9178,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.7198,
+        "uv_quality": 1.0,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.2416,
+      "evidence": {
+        "triangle_count": 175,
+        "vertex_count": 525,
+        "resolution": 175,
+        "split_vertices": true,
+        "triangle_density": 0.01960816,
+        "resolution_score": 0.3451,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": null,
+      "score": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.2416"
+      ]
+    },
+    "modeling_style": {
+      "label": "Cartoon",
+      "status": "vlm_fallback",
+      "evidence": [
+        "机器没有给出几何风格，采用这一次视觉调用的外观类候选"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "使用纯色块（Flat Shading）进行着色，无平滑过渡",
+        "颜色鲜艳且对比度高（红、蓝、白），符合卡通美术风格",
+        "光照简单，主要依靠明暗区分体积，无复杂环境反射"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": null,
+      "status": "insufficient_evidence",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [
+        "Cartoon"
+      ],
+      "confidence": 0.92,
+      "evidence": [
+        "物体表面被赋予了拟人化的五官（眼、鼻、口）",
+        "几何体块感强，边缘硬朗，符合低模卡通建模特征"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.92,
+      "evidence": [
+        "使用纯色块（Flat Shading）进行着色，无平滑过渡",
+        "颜色鲜艳且对比度高（红、蓝、白），符合卡通美术风格",
+        "光照简单，主要依靠明暗区分体积，无复杂环境反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.92,
+      "modeling_quality": 0.933,
+      "modeling_precision": 0.2416,
+      "modeling_style": null
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "vlm-style-fallback",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色主体",
+        "confidence": 1.0,
+        "evidence": "模型整体呈现棕褐色/红褐色的材质基色",
+        "source": "llm"
+      },
+      {
+        "tag": "红色嘴巴",
+        "confidence": 1.0,
+        "evidence": "正面可见明显的红色多边形区域，构成嘴部形状",
+        "source": "llm"
+      },
+      {
+        "tag": "蓝色眼睛",
+        "confidence": 1.0,
+        "evidence": "正面可见三个蓝色三角形面片，作为眼睛装饰",
+        "source": "llm"
+      },
+      {
+        "tag": "白色牙齿",
+        "confidence": 1.0,
+        "evidence": "红色嘴巴内部包含白色多边形，模拟牙齿结构",
+        "source": "llm"
+      },
+      {
+        "tag": "卡通风格",
+        "confidence": 0.9,
+        "evidence": "具有夸张的面部表情和简化的几何形体，非写实比例",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "卡通风格椅子",
+      "taxonomy_path": [
+        "家具",
+        "椅子"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.933,
+        "evidence": {
+          "topology_quality": 0.9178,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.7198,
+          "uv_quality": 1.0,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.2416,
+        "evidence": {
+          "triangle_count": 175,
+          "vertex_count": 525,
+          "resolution": 175,
+          "split_vertices": true,
+          "triangle_density": 0.01960816,
+          "resolution_score": 0.3451,
+          "density_score": 0.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": null,
+        "score": null,
+        "status": "insufficient_evidence",
+        "confidence": 0.0,
+        "evidence": [
+          "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+        ],
+        "candidates": [],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "物体具有明显的垂直高度（Y轴主导），符合直立家具的比例特征",
+      "正面视图显示类似靠背板的平面结构，并带有面部特征",
+      "底部轮廓较窄，暗示有支撑腿或底座结构（虽不可见全貌但符合重心逻辑）"
+    ],
+    "candidates": [
+      {
+        "name": "家具/椅子",
+        "confidence": 0.95
+      },
+      {
+        "name": "道具/容器/花盆",
+        "confidence": 0.3
+      },
+      {
+        "name": "角色/人物",
+        "confidence": 0.2
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

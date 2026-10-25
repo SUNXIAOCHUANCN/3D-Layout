@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792510006578179800",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792510006578179800.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -27.546771,
+        0.0,
+        -30.0
+      ],
+      "max": [
+        27.546771,
+        37.613506,
+        30.0
+      ]
+    },
+    "dimensions_cm": [
+      55.093542,
+      37.613506,
+      60.0
+    ],
+    "center_cm": [
+      0,
+      18.806753,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 60 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      227.404904,
+      155.254054,
+      247.65687
+    ],
+    "semantic_scale_factor": 0.24227069,
+    "total_scale_factor": 24.22706869,
+    "target_dimension_cm": 60.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -27.546771,
+          0.0,
+          -30.0
+        ],
+        "max": [
+          27.546771,
+          37.613506,
+          30.0
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "草本"
+    ],
+    "leaf": "草本",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "植物",
+      "name": "龙舌兰",
+      "category_path": [
+        "植物",
+        "草本"
+      ],
+      "primary_paths": [
+        [
+          "植物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "龙舌兰",
+    "raw_source": "llm",
+    "canonical": "龙舌兰",
+    "canonical_source": "llm_raw",
+    "display": "龙舌兰",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见清晰的莲座状叶片排列和底部短茎，确认为草本植物。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了叶片的厚度和尖端形状，排除了扁平树叶类植物。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "植物",
+      "subtype": null,
+      "appearance_motifs": [
+        "多肉植物",
+        "剑叶"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "龙舌兰；类别：植物/草本；属性：绿色、多肉植物造型",
+    "terms": [
+      "龙舌兰",
+      "植物",
+      "草本",
+      "绿色",
+      "多肉植物造型",
+      "多肉植物",
+      "剑叶"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

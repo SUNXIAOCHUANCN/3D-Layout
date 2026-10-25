@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792510213759306200",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792510213759306200.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -90.0,
+        0.0,
+        -29.651902
+      ],
+      "max": [
+        90.0,
+        107.828102,
+        29.651902
+      ]
+    },
+    "dimensions_cm": [
+      180.0,
+      107.828102,
+      59.303804
+    ],
+    "center_cm": [
+      0,
+      53.914051,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 180 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      190.47029,
+      114.100277,
+      62.753404
+    ],
+    "semantic_scale_factor": 0.94502927,
+    "total_scale_factor": 94.50292746,
+    "target_dimension_cm": 180.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -90.0,
+          0.0,
+          -29.651902
+        ],
+        "max": [
+          90.0,
+          107.828102,
+          29.651902
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "家具",
+      "椅子"
+    ],
+    "leaf": "椅子",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "长椅",
+      "name": "长椅",
+      "category_path": [
+        "家具",
+        "椅子"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "长椅",
+    "raw_source": "llm",
+    "canonical": "长椅",
+    "canonical_source": "llm_raw",
+    "display": "长椅",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 45° / 俯仰 25°",
+        "role": "supports",
+        "detail": "清晰可见长椅的侧面轮廓，包括四条腿、座面厚度和两层靠背板条结构。"
+      },
+      {
+        "view": "方位 315° / 俯仰 25°",
+        "role": "supports",
+        "detail": "展示了另一侧视角，确认了结构的对称性和板条排列方式。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角显示了长椅的宽度和靠背的整体布局，证实了其作为多人座椅的功能。"
+      },
+      {
+        "view": "方位 225° / 俯仰 15°",
+        "role": "supports",
+        "detail": "低角度视角进一步确认了腿部结构和座面的连接关系。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "长椅",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "长椅；类别：家具/椅子；属性：棕色、木质外观、户外家具",
+    "terms": [
+      "长椅",
+      "家具",
+      "椅子",
+      "棕色",
+      "木质外观",
+      "户外家具"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

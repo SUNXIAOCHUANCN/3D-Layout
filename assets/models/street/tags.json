@@ -1,0 +1,352 @@
+{
+  "schema_version": "1.2",
+  "name": "砖墙",
+  "object_label": {
+    "raw": "砖墙",
+    "raw_source": "llm",
+    "canonical": "砖墙",
+    "canonical_source": "llm_raw",
+    "display": "砖墙",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见横向排列的砖块结构和灰缝，确认为墙面材质。"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了墙体的长边侧面，确认其厚度较薄且为单一平面结构。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "砖墙",
+      "parent_path": [
+        "建筑",
+        "构件"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "墙体",
+      "subtype": null,
+      "appearance_motifs": [
+        "砖块纹理",
+        "灰色"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "砖墙；类别：建筑/构件；属性：灰色、砖砌结构、建筑构件",
+    "terms": [
+      "砖墙",
+      "建筑",
+      "构件",
+      "灰色",
+      "砖砌结构",
+      "建筑构件",
+      "墙体",
+      "砖块纹理"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "建筑",
+      "构件"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "墙体",
+      "name": "砖墙",
+      "category_path": [
+        "建筑",
+        "构件"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "灰色",
+    "砖砌结构",
+    "建筑构件"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": null,
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": null,
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.8693,
+      "evidence": {
+        "topology_quality": 0.9847,
+        "geometry_integrity": 0.9945,
+        "normal_quality": 0.6607,
+        "uv_quality": 0.4081,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.3407,
+      "evidence": {
+        "triangle_count": 1458,
+        "vertex_count": 4374,
+        "resolution": 1458,
+        "split_vertices": true,
+        "triangle_density": 0.00056057,
+        "resolution_score": 0.4867,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": null,
+      "score": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.3407"
+      ]
+    },
+    "modeling_style": {
+      "label": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "使用简单的明暗着色表现立体感",
+        "颜色均匀，无明显卡通描边或手绘笔触"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": null,
+      "status": "insufficient_evidence",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Realistic",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.96,
+      "evidence": [
+        "几何体由标准多边形构成，未表现出粘土、纸艺或卡通化的夸张变形"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.96,
+      "evidence": [
+        "使用简单的明暗着色表现立体感",
+        "颜色均匀，无明显卡通描边或手绘笔触"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.96,
+      "modeling_quality": 0.8693,
+      "modeling_precision": 0.3407,
+      "modeling_style": null
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "灰色",
+        "confidence": 1.0,
+        "evidence": "模型整体呈现统一的浅灰色，无其他杂色。",
+        "source": "llm"
+      },
+      {
+        "tag": "砖砌结构",
+        "confidence": 0.98,
+        "evidence": "表面具有明显的矩形砖块排列和灰缝细节。",
+        "source": "llm"
+      },
+      {
+        "tag": "建筑构件",
+        "confidence": 0.95,
+        "evidence": "形态为垂直平面，符合墙壁特征。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "砖墙",
+      "taxonomy_path": [
+        "建筑",
+        "构件"
+      ],
+      "status": "parent_only",
+      "missing_leaf": true
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.8693,
+        "evidence": {
+          "topology_quality": 0.9847,
+          "geometry_integrity": 0.9945,
+          "normal_quality": 0.6607,
+          "uv_quality": 0.4081,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.3407,
+        "evidence": {
+          "triangle_count": 1458,
+          "vertex_count": 4374,
+          "resolution": 1458,
+          "split_vertices": true,
+          "triangle_density": 0.00056057,
+          "resolution_score": 0.4867,
+          "density_score": 0.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": null,
+        "score": null,
+        "status": "insufficient_evidence",
+        "confidence": 0.0,
+        "evidence": [
+          "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+        ],
+        "candidates": [],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "物体呈现宽大于高的扁平长方体轮廓",
+      "表面覆盖有规则的交错矩形网格，模拟砖块堆叠效果"
+    ],
+    "candidates": [
+      {
+        "name": "建筑/构件/门",
+        "confidence": 0.3
+      },
+      {
+        "name": "建筑/建筑物",
+        "confidence": 0.2
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

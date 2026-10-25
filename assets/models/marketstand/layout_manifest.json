@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792513316285739000",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792513316285739000.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -60.0,
+        0.0,
+        -50.698714
+      ],
+      "max": [
+        60.0,
+        116.65,
+        50.698714
+      ]
+    },
+    "dimensions_cm": [
+      120.0,
+      116.65,
+      101.397429
+    ],
+    "center_cm": [
+      0,
+      58.325,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 120 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      344.245148,
+      334.634972,
+      290.879774
+    ],
+    "semantic_scale_factor": 0.34858879,
+    "total_scale_factor": 34.85887911,
+    "target_dimension_cm": 120.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -60.0,
+          0.0,
+          -50.698714
+        ],
+        "max": [
+          60.0,
+          116.65,
+          50.698714
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "容器"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "矿车",
+      "name": "矿车",
+      "category_path": [
+        "道具",
+        "容器"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "矿车",
+    "raw_source": "llm",
+    "canonical": "矿车",
+    "canonical_source": "llm_raw",
+    "display": "矿车",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角清晰展示了车轮、车架以及内部的矿石堆积"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角确认了把手结构和顶部的覆盖物形态"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角进一步证实了整体结构的对称性和装载状态"
+      },
+      {
+        "view": "方位 315° / 俯仰 25°",
+        "role": "supports",
+        "detail": "斜侧视角完整展示了物体的三维比例和透视关系"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "矿车",
+      "parent_path": [
+        "道具",
+        "容器"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "矿车",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质结构",
+        "矿石填充"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "矿车；类别：道具/容器；属性：棕色、白色、矿石、低多边形风格",
+    "terms": [
+      "矿车",
+      "道具",
+      "容器",
+      "棕色",
+      "白色",
+      "矿石",
+      "低多边形风格",
+      "木质结构",
+      "矿石填充"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

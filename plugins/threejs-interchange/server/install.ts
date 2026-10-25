@@ -23,7 +23,7 @@ function sha256HexSync(bytes: Uint8Array): string {
 }
 
 export const INDEX_FILES = {
-  manifest: 'assets/models/manifest.json',
+  manifest: 'assets/model-catalog.json',
   scenes: 'scenes/index.json',
 }
 

@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792514978451124400",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792514978451124400.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -33.332745,
+        0.0,
+        -34.924958
+      ],
+      "max": [
+        33.332745,
+        80.0,
+        34.924958
+      ]
+    },
+    "dimensions_cm": [
+      66.665489,
+      80.0,
+      69.849916
+    ],
+    "center_cm": [
+      0,
+      40.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 80 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      109.333968,
+      131.203079,
+      114.55655
+    ],
+    "semantic_scale_factor": 0.60974179,
+    "total_scale_factor": 60.97417881,
+    "target_dimension_cm": 80.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -33.332745,
+          0.0,
+          -34.924958
+        ],
+        "max": [
+          33.332745,
+          80.0,
+          34.924958
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "容器"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "容器",
+      "name": "木桶",
+      "category_path": [
+        "道具",
+        "容器"
+      ],
+      "primary_paths": [
+        [
+          "道具",
+          "容器"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "木桶",
+    "raw_source": "llm",
+    "canonical": "木桶",
+    "canonical_source": "llm_raw",
+    "display": "木桶",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 225° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰可见桶身的垂直分块结构和上下两圈金属箍，以及顶部的盖子。"
+      },
+      {
+        "view": "方位 180° / 俯仰 15°",
+        "role": "supports",
+        "detail": "展示了桶的另一侧，确认了圆柱形的整体轮廓和颜色分布。"
+      },
+      {
+        "view": "方位 270° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视角进一步证实了箍带的存在和桶身的几何构造。"
+      },
+      {
+        "view": "方位 135° / 俯仰 15°",
+        "role": "supports",
+        "detail": "俯视角度展示了盖子的形状和桶口的封闭状态。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "木桶",
+      "parent_path": [
+        "道具",
+        "容器"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "容器",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质纹理",
+        "金属箍"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "木桶；类别：道具/容器；属性：棕色、灰色、圆柱形、低多边形风格",
+    "terms": [
+      "木桶",
+      "道具",
+      "容器",
+      "棕色",
+      "灰色",
+      "圆柱形",
+      "低多边形风格",
+      "木质纹理",
+      "金属箍"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792513382976762200",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792513382976762200.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -33.887601,
+        0.0,
+        -52.1547
+      ],
+      "max": [
+        33.887601,
+        120.0,
+        52.1547
+      ]
+    },
+    "dimensions_cm": [
+      67.775202,
+      120.0,
+      104.309399
+    ],
+    "center_cm": [
+      0,
+      60.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 120 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      188.999606,
+      334.634972,
+      290.879774
+    ],
+    "semantic_scale_factor": 0.3585997,
+    "total_scale_factor": 35.85996983,
+    "target_dimension_cm": 120.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -33.887601,
+          0.0,
+          -52.1547
+        ],
+        "max": [
+          33.887601,
+          120.0,
+          52.1547
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "容器"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "花架",
+      "name": "花架",
+      "category_path": [
+        "道具",
+        "容器"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "花架",
+    "raw_source": "llm",
+    "canonical": "花架",
+    "canonical_source": "llm_raw",
+    "display": "花架",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.88,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角清晰展示了双层结构和顶部的红色遮盖，符合花架或售货亭的特征。"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角确认了四足支撑结构和层板的深度，排除了单面屏风的可能性。"
+      },
+      {
+        "view": "方位 315° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧前方视角展示了物体的整体比例和层板上的装饰物分布。"
+      },
+      {
+        "view": "方位 225° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧后方视角进一步确认了结构的完整性和对称性。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "花架",
+      "parent_path": [
+        "道具",
+        "容器"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "花架",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质结构",
+        "红色顶棚"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "花架；类别：道具/容器；属性：红色、棕色、多层结构、带顶棚、装饰性石块",
+    "terms": [
+      "花架",
+      "道具",
+      "容器",
+      "红色",
+      "棕色",
+      "多层结构",
+      "带顶棚",
+      "装饰性石块",
+      "木质结构",
+      "红色顶棚"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

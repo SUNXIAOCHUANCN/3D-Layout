@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792512721120238800",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792512721120238800.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -35.143943,
+        0.0,
+        -200.0
+      ],
+      "max": [
+        35.143943,
+        113.243072,
+        200.0
+      ]
+    },
+    "dimensions_cm": [
+      70.287887,
+      113.243072,
+      400.0
+    ],
+    "center_cm": [
+      0,
+      56.621536,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 400 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      238.482904,
+      384.227467,
+      1357.17783
+    ],
+    "semantic_scale_factor": 0.29472925,
+    "total_scale_factor": 29.47292471,
+    "target_dimension_cm": 400.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -35.143943,
+          0.0,
+          -200.0
+        ],
+        "max": [
+          35.143943,
+          113.243072,
+          200.0
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "建筑",
+      "构件"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "桥梁",
+      "name": "吊桥",
+      "category_path": [
+        "建筑",
+        "构件"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "吊桥",
+    "raw_source": "llm",
+    "canonical": "吊桥",
+    "canonical_source": "llm_raw",
+    "display": "吊桥",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了桥梁的侧面轮廓，包括下垂的悬索结构和桥面木板细节"
+      },
+      {
+        "view": "方位 0° / 俯仰 15°",
+        "role": "supports",
+        "detail": "正面视角确认了桥面的宽度比例及两端立柱的对称性"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "吊桥",
+      "parent_path": [
+        "建筑",
+        "构件"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "桥梁",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质结构",
+        "绳索护栏"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "吊桥；类别：建筑/构件；属性：棕色、木质外观、悬索结构",
+    "terms": [
+      "吊桥",
+      "建筑",
+      "构件",
+      "棕色",
+      "木质外观",
+      "悬索结构",
+      "桥梁",
+      "木质结构",
+      "绳索护栏"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

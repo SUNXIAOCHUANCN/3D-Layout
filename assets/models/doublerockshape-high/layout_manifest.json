@@ -1,0 +1,189 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792511009876409700",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792511009876409700.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -39.963029,
+        0.0,
+        -46.903558
+      ],
+      "max": [
+        39.963029,
+        60.0,
+        46.903558
+      ]
+    },
+    "dimensions_cm": [
+      79.926058,
+      60.0,
+      93.807115
+    ],
+    "center_cm": [
+      0,
+      30.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 60 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      1641.9384,
+      1232.59306,
+      1927.09999
+    ],
+    "semantic_scale_factor": 0.04867787,
+    "total_scale_factor": 4.86778662,
+    "target_dimension_cm": 60.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -39.963029,
+          0.0,
+          -46.903558
+        ],
+        "max": [
+          39.963029,
+          60.0,
+          46.903558
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "自然物",
+      "岩石"
+    ],
+    "leaf": "岩石",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "岩石",
+      "name": "岩石",
+      "category_path": [
+        "自然物",
+        "岩石"
+      ],
+      "primary_paths": [
+        [
+          "自然物",
+          "岩石"
+        ]
+      ],
+      "name_paths": [
+        [
+          "自然物",
+          "岩石"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "岩石",
+    "raw_source": "llm",
+    "canonical": "岩石",
+    "canonical_source": "llm_raw",
+    "display": "岩石",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.95,
+    "evidence": [
+      {
+        "view": "方位 315° / 俯仰 15°",
+        "role": "supports",
+        "detail": "可见物体具有尖锐的顶部和倾斜的侧面，底部较宽，符合岩石堆叠的形态。"
+      },
+      {
+        "view": "方位 135° / 俯仰 25°",
+        "role": "supports",
+        "detail": "展示了物体的另一侧，同样是不规则的几何体，没有发现屏幕、支架或轮子等部件。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视角度确认了物体是一个独立的单体，没有内部空腔或复杂的机械结构。"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角进一步证实了其作为自然物的随机性和非功能性特征。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "岩石",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "岩石；类别：自然物/岩石；属性：灰色、不规则块状",
+    "terms": [
+      "岩石",
+      "自然物",
+      "灰色",
+      "不规则块状"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

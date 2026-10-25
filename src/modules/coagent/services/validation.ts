@@ -18,6 +18,7 @@
  * - 区域边界使用数值容差（§6.1），不靠数组顺序决定归属。
  */
 
+import { modelWorldBounds } from '../../../shared/modelBounds'
 import type {
   AssetDTO,
   Constraint,
@@ -194,6 +195,10 @@ export function footprintAabbXZ(
   if (!catalog) return null
   const { w, h, d } = catalog.dimensions
   if (![w, h, d].every(v => Number.isFinite(v) && v >= 0)) return null
+  if (catalog.bounds) {
+    const box = modelWorldBounds(catalog, transform)
+    return { minX: box.min[0], maxX: box.max[0], minZ: box.min[2], maxZ: box.max[2] }
+  }
   const hx = (Math.abs(w) * Math.abs(transform.scale[0])) / 2
   const hy = Math.abs(h) * Math.abs(transform.scale[1])
   const hz = (Math.abs(d) * Math.abs(transform.scale[2])) / 2

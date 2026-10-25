@@ -1,0 +1,194 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792511162605171800",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792511162605171800.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -20.060662,
+        0.0,
+        -3.32062
+      ],
+      "max": [
+        20.060662,
+        86.0,
+        3.32062
+      ]
+    },
+    "dimensions_cm": [
+      40.121323,
+      86.0,
+      6.641239
+    ],
+    "center_cm": [
+      0,
+      43.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 86 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      78.66478,
+      168.617845,
+      13.021296
+    ],
+    "semantic_scale_factor": 0.51002905,
+    "total_scale_factor": 51.00290542,
+    "target_dimension_cm": 86.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -20.060662,
+          0.0,
+          -3.32062
+        ],
+        "max": [
+          20.060662,
+          86.0,
+          3.32062
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "体育器材",
+      "棒球棒"
+    ],
+    "leaf": "棒球棒",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "棒球棒",
+      "name": "棒球棒",
+      "category_path": [
+        "道具",
+        "体育器材",
+        "棒球棒"
+      ],
+      "primary_paths": [
+        [
+          "道具",
+          "体育器材",
+          "棒球棒"
+        ]
+      ],
+      "name_paths": [
+        [
+          "道具",
+          "体育器材",
+          "棒球棒"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "棒球棒",
+    "raw_source": "llm",
+    "canonical": "棒球棒",
+    "canonical_source": "llm_raw",
+    "display": "棒球棒",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了细长的握柄和顶部的击球头轮廓，侧面看击球头较厚，符合棒球棒特征。"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "斜侧视角确认了物体的整体比例，杆身笔直，顶部有体积感的头部，排除了球拍的可能性。"
+      },
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "另一侧视角再次印证了杆状结构和顶部的形状，颜色分布一致。"
+      },
+      {
+        "view": "方位 90° / 俯仰 25°",
+        "role": "supports",
+        "detail": "正侧视角显示了物体的直立姿态和极薄的深度，符合圆柱体或近似圆柱体的棒球棒截面特征。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "棒球棒",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "棒球棒；类别：道具/体育器材/棒球棒；属性：棕色、灰色、体育器材",
+    "terms": [
+      "棒球棒",
+      "道具",
+      "体育器材",
+      "棕色",
+      "灰色"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

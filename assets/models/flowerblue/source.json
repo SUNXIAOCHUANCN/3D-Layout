@@ -1,0 +1,52 @@
+{
+    "filename":  "model.glb",
+    "source_path":  "flowerblue/model.glb",
+    "source_sha256":  "0a86083d74b2e6edaa4e460394b4bf65d4bffeaa4f43722f3bc5c3b3ee51b0fd",
+    "source_axis":  "y-up",
+    "source_unit":  "m",
+    "normalization":  {
+                          "sourceAxis":  "Z-UP",
+                          "targetAxis":  "Y-UP",
+                          "sourceUnit":  "m",
+                          "targetUnit":  "cm",
+                          "scaleFactor":  100.0,
+                          "origin":  "bottom-center",
+                          "center":  [
+                                         0,
+                                         22.5,
+                                         0
+                                     ],
+                          "aabb":  {
+                                       "min":  [
+                                                   -14.252648,
+                                                   0.0,
+                                                   -9.634559
+                                               ],
+                                       "max":  [
+                                                   14.252648,
+                                                   45.0,
+                                                   9.634559
+                                               ]
+                                   },
+                          "dimensions":  [
+                                             28.505297,
+                                             45.0,
+                                             19.269118
+                                         ],
+                          "warnings":  [
+                                           "{\"asset\": \"model.glb\", \"fast_path_failed\": true, \"exception_type\": \"FastPathError\", \"exception_message\": \"无法导入 trimesh（可能缺少依赖或 Python 版本不匹配）：ImportError\", \"fallback_to_blender\": true}",
+                                           "已使用本机 Blender 读取文件元数据。导入结果是 Blender 世界坐标 Z-Up、单位米，页面上的源坐标和单位不再重复换算。"
+                                       ],
+                          "preCanonicalDimensions":  [
+                                                         60.181046,
+                                                         95.005047,
+                                                         40.68141
+                                                     ],
+                          "semanticScaleFactor":  0.47365905,
+                          "totalScaleFactor":  47.36590468,
+                          "scalePolicy":  "视觉模型估计现实高度 45 cm",
+                          "scaleSource":  "llm",
+                          "targetDimension":  45.0
+                      },
+    "source_path_base":  "input_root"
+}

@@ -1,0 +1,409 @@
+{
+  "schema_version": "1.2",
+  "name": "蕨类盆栽",
+  "object_label": {
+    "raw": "蕨类盆栽",
+    "raw_source": "llm",
+    "canonical": "蕨类盆栽",
+    "canonical_source": "llm_raw",
+    "display": "蕨类盆栽",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 225° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰可见三片主要羽状叶片向不同方向伸展，底部有棕色块状物体支撑"
+      },
+      {
+        "view": "方位 0° / 俯仰 15°",
+        "role": "supports",
+        "detail": "展示了叶片的正面纹理和锯齿边缘，确认了植物的对称性和生长方向"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视角度确认了叶片从中心点发散的结构以及花盆的顶部平面"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "植物",
+      "subtype": null,
+      "appearance_motifs": [
+        "蕨类叶片",
+        "多边形花盆"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "蕨类植物",
+        "花盆"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "蕨类盆栽；类别：植物/草本；属性：绿色、棕色、低多边形风格、室内装饰",
+    "terms": [
+      "蕨类盆栽",
+      "植物",
+      "草本",
+      "绿色",
+      "棕色",
+      "低多边形风格",
+      "室内装饰",
+      "蕨类叶片",
+      "多边形花盆",
+      "蕨类植物",
+      "花盆"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "草本"
+    ],
+    "leaf": "草本",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "植物",
+      "name": "蕨类盆栽",
+      "category_path": [
+        "植物",
+        "草本"
+      ],
+      "primary_paths": [
+        [
+          "植物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "绿色",
+    "棕色",
+    "低多边形风格",
+    "室内装饰"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "中",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "中",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9159,
+      "evidence": {
+        "topology_quality": 0.9237,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.6032,
+        "uv_quality": 1.0,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "中",
+      "score": 0.4396,
+      "evidence": {
+        "triangle_count": 448,
+        "vertex_count": 1344,
+        "resolution": 448,
+        "split_vertices": true,
+        "triangle_density": 0.21299948,
+        "resolution_score": 0.4079,
+        "density_score": 0.5137,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.904,
+      "status": "scored",
+      "evidence": [
+        "三角面 448 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.526，阈值 0.200",
+        "量化法线方向数 139",
+        "轴对齐法线比例 0.074"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "中",
+      "machine_label": "中",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 中，分数 0.4396"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 448 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.526，阈值 0.200",
+        "量化法线方向数 139",
+        "轴对齐法线比例 0.074"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "使用纯色或简单渐变色填充面片，无复杂纹理细节",
+        "光照产生简单的明暗分界，阴影硬朗，缺乏环境光遮蔽的细腻过渡",
+        "整体视觉呈现扁平化、图形化的质感"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.904,
+          "evidence": [
+            "三角面 448 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.526，阈值 0.200",
+            "量化法线方向数 139",
+            "轴对齐法线比例 0.074"
+          ]
+        }
+      ],
+      "confidence": 0.904,
+      "evidence": [
+        "三角面 448 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.526，阈值 0.200",
+        "量化法线方向数 139",
+        "轴对齐法线比例 0.074"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.96,
+      "evidence": [
+        "使用纯色或简单渐变色填充面片，无复杂纹理细节",
+        "光照产生简单的明暗分界，阴影硬朗，缺乏环境光遮蔽的细腻过渡",
+        "整体视觉呈现扁平化、图形化的质感"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.96,
+      "evidence": [
+        "使用纯色或简单渐变色填充面片，无复杂纹理细节",
+        "光照产生简单的明暗分界，阴影硬朗，缺乏环境光遮蔽的细腻过渡",
+        "整体视觉呈现扁平化、图形化的质感"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.96,
+      "modeling_quality": 0.9159,
+      "modeling_precision": 0.4396,
+      "modeling_style": 0.904
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "绿色",
+        "confidence": 1.0,
+        "evidence": "叶片呈现明显的黄绿色和深绿色渐变",
+        "source": "llm"
+      },
+      {
+        "tag": "棕色",
+        "confidence": 1.0,
+        "evidence": "底部花盆呈现红棕色/陶土色",
+        "source": "llm"
+      },
+      {
+        "tag": "低多边形风格",
+        "confidence": 0.98,
+        "evidence": "叶片边缘呈锯齿状，由明显的大面片构成，非平滑曲面",
+        "source": "llm"
+      },
+      {
+        "tag": "室内装饰",
+        "confidence": 0.9,
+        "evidence": "植物种植在容器中，形态符合室内观赏植物特征",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "蕨类盆栽",
+      "taxonomy_path": [
+        "植物",
+        "草本"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9159,
+        "evidence": {
+          "topology_quality": 0.9237,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.6032,
+          "uv_quality": 1.0,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "中",
+        "score": 0.4396,
+        "evidence": {
+          "triangle_count": 448,
+          "vertex_count": 1344,
+          "resolution": 448,
+          "split_vertices": true,
+          "triangle_density": 0.21299948,
+          "resolution_score": 0.4079,
+          "density_score": 0.5137,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.904,
+        "status": "scored",
+        "confidence": 0.904,
+        "evidence": [
+          "三角面 448 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.526，阈值 0.200",
+          "量化法线方向数 139",
+          "轴对齐法线比例 0.074"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.904,
+            "evidence": [
+              "三角面 448 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.526，阈值 0.200",
+              "量化法线方向数 139",
+              "轴对齐法线比例 0.074"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "具有典型的羽状复叶结构，小叶沿主茎两侧排列",
+      "底部连接一个规则的多面体几何形状作为基座（花盆）",
+      "整体轮廓呈现向上生长的植物形态"
+    ],
+    "candidates": [
+      {
+        "name": "植物/草本",
+        "confidence": 0.96
+      },
+      {
+        "name": "道具/容器/花盆",
+        "confidence": 0.4
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

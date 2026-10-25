@@ -26,6 +26,8 @@ export interface SceneMeta {
   unit: 'm'
   /** 向上轴，目前固定 '+Y' */
   up: '+Y'
+  /** One-time conversion of historical instances to standardized assets. */
+  modelMigration?: { id: string; reportSha256: string; appliedAt: string }
 }
 
 export interface SceneEnvironment {
@@ -93,13 +95,15 @@ export interface ViewBinding {
 
 export type ModelSource =
   | { type: 'primitive'; shape: 'box' | 'cylinder' | 'sphere' }
-  | { type: 'glb'; file: string; draco?: boolean }
+  | { type: 'glb'; file: string; url?: string; unitScale?: number; draco?: boolean }
 
 /**
  * 每个模型一个 meta.json。
- * dimensions 是 native（未缩放）真实尺寸，米；场景中最终尺寸 = dimensions × transform.scale。
+ * dimensions 是模型标准尺寸，米；局部尺寸 = dimensions × abs(transform.scale)。
+ * 世界包围盒还需应用旋转、原点偏移和有符号缩放。
  */
 export interface ModelMeta {
+  /** Stable workflow asset identity; may differ from its readable directory/ref. */
   id: string
   name: string
   category?: string
@@ -112,9 +116,21 @@ export interface ModelMeta {
   /** 入库归一化记录 */
   normalized?: { unitScale?: number; origin?: string; up?: string }
   license?: string
+  bounds?: { min: Vec3; max: Vec3 }
+  description?: string
+  retrievalTerms?: string[]
+  categoryPath?: string[]
+  assetVersion?: number
+  scaleStatus?: string
+  scalePolicy?: string | null
+  frontStatus?: string
+  labelStatus?: string
+  style?: { modeling: string | null; rendering: string | null; quality: string | null; precision: string | null }
+  thumbnail?: string
+  manifestUrl?: string
 }
 
-/** assets/models/manifest.json —— 由 scripts/gen-manifest.mjs 生成，勿手改 */
+/** assets/model-catalog.json —— generated outside the unmodified workflow bundles. */
 export interface ModelManifest {
   generatedAt: string
   /** key 为模型引用：'models/<文件夹名>' */

@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792516860236848500",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792516860236848500.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -55.510516,
+        0.0,
+        -9.282377
+      ],
+      "max": [
+        55.510516,
+        120.0,
+        9.282377
+      ]
+    },
+    "dimensions_cm": [
+      111.021032,
+      120.0,
+      18.564754
+    ],
+    "center_cm": [
+      0,
+      60.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 120 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      263.51564,
+      284.827805,
+      44.064652
+    ],
+    "semantic_scale_factor": 0.42130718,
+    "total_scale_factor": 42.13071824,
+    "target_dimension_cm": 120.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -55.510516,
+          0.0,
+          -9.282377
+        ],
+        "max": [
+          55.510516,
+          120.0,
+          9.282377
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "建筑",
+      "构件"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "栅栏",
+      "name": "木栅栏",
+      "category_path": [
+        "建筑",
+        "构件"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "木栅栏",
+    "raw_source": "llm",
+    "canonical": "木栅栏",
+    "canonical_source": "llm_raw",
+    "display": "木栅栏",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 25°",
+        "role": "supports",
+        "detail": "清晰显示右侧立柱和多层横向木板，确认栅栏结构。"
+      },
+      {
+        "view": "方位 180° / 俯仰 25°",
+        "role": "supports",
+        "detail": "背面视角同样显示立柱和横板，结构一致。"
+      },
+      {
+        "view": "方位 135° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视角展示板条厚度和连接方式，确认为栅栏而非平板。"
+      },
+      {
+        "view": "方位 45° / 俯仰 15°",
+        "role": "supports",
+        "detail": "另一侧视角进一步确认结构完整性。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "木栅栏",
+      "parent_path": [
+        "建筑",
+        "构件"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "栅栏",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质结构",
+        "横向板条"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "木栅栏；类别：建筑/构件；属性：棕色、木质纹理、围栏用途",
+    "terms": [
+      "木栅栏",
+      "建筑",
+      "构件",
+      "棕色",
+      "木质纹理",
+      "围栏用途",
+      "栅栏",
+      "木质结构",
+      "横向板条"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

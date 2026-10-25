@@ -1,0 +1,356 @@
+{
+  "schema_version": "1.2",
+  "name": "山地场景",
+  "object_label": {
+    "raw": "山地场景",
+    "raw_source": "llm",
+    "canonical": "山地场景",
+    "canonical_source": "llm_raw",
+    "display": "山地场景",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰展示了左侧的山体群以及周围分布的树木和岩石，确认为场景组合"
+      },
+      {
+        "view": "方位 270° / 俯仰 15°",
+        "role": "supports",
+        "detail": "从另一角度确认了物体的空间分散性，非单一单体资产"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "山地场景",
+      "parent_path": [],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "场景",
+      "subtype": null,
+      "appearance_motifs": [
+        "山脉",
+        "枯树",
+        "岩石"
+      ],
+      "asset_kind": "scene",
+      "members": [
+        "山",
+        "树",
+        "岩石"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "山地场景；属性：灰色山体、棕色枯树、岩石点缀",
+    "terms": [
+      "山地场景",
+      "灰色山体",
+      "棕色枯树",
+      "岩石点缀",
+      "场景",
+      "山脉",
+      "枯树",
+      "岩石",
+      "山",
+      "树"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [],
+    "leaf": null,
+    "status": "unmatched",
+    "confidence": 0.31,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "场景",
+      "name": "山地场景",
+      "category_path": [],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "灰色山体",
+    "棕色枯树",
+    "岩石点缀"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "中",
+  "modeling_style": null,
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "中",
+    "modeling_style": null,
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9551,
+      "evidence": {
+        "topology_quality": 0.9887,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.7451,
+        "uv_quality": 0.9911,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "中",
+      "score": 0.4581,
+      "evidence": {
+        "triangle_count": 17940,
+        "vertex_count": 53820,
+        "resolution": 17940,
+        "split_vertices": true,
+        "triangle_density": 0.00700364,
+        "resolution_score": 0.6544,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": null,
+      "score": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "中",
+      "machine_label": "中",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 中，分数 0.4581"
+      ]
+    },
+    "modeling_style": {
+      "label": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "使用简单的明暗着色（Simple Shading）",
+        "材质为纯色基色，无复杂纹理细节",
+        "光照产生基础阴影以区分面朝向"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": null,
+      "status": "insufficient_evidence",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.98,
+      "evidence": [
+        "使用简单的明暗着色（Simple Shading）",
+        "材质为纯色基色，无复杂纹理细节",
+        "光照产生基础阴影以区分面朝向"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.98,
+      "evidence": [
+        "使用简单的明暗着色（Simple Shading）",
+        "材质为纯色基色，无复杂纹理细节",
+        "光照产生基础阴影以区分面朝向"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.31,
+      "rendering_style": 0.98,
+      "modeling_quality": 0.9551,
+      "modeling_precision": 0.4581,
+      "modeling_style": null
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "灰色山体",
+        "confidence": 1.0,
+        "evidence": "多视角可见占据主体的灰色几何体，呈现山峰轮廓",
+        "source": "llm"
+      },
+      {
+        "tag": "棕色枯树",
+        "confidence": 1.0,
+        "evidence": "场景中散布着多个红棕色的无叶树木模型",
+        "source": "llm"
+      },
+      {
+        "tag": "岩石点缀",
+        "confidence": 0.9,
+        "evidence": "地面散落有小型的灰色不规则块状物",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "山地场景",
+      "taxonomy_path": [],
+      "status": "unmatched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9551,
+        "evidence": {
+          "topology_quality": 0.9887,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.7451,
+          "uv_quality": 0.9911,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "中",
+        "score": 0.4581,
+        "evidence": {
+          "triangle_count": 17940,
+          "vertex_count": 53820,
+          "resolution": 17940,
+          "split_vertices": true,
+          "triangle_density": 0.00700364,
+          "resolution_score": 0.6544,
+          "density_score": 0.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": null,
+        "score": null,
+        "status": "insufficient_evidence",
+        "confidence": 0.0,
+        "evidence": [
+          "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+        ],
+        "candidates": [],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "包含多个独立物体（山、树、石头）的空间组合布局",
+      "主体具有明显的山峰起伏轮廓和棱角分明的低多边形结构",
+      "存在典型的植被与地形搭配关系"
+    ],
+    "candidates": [
+      {
+        "name": "自然物/岩石",
+        "confidence": 0.4
+      },
+      {
+        "name": "植物/树/普通树",
+        "confidence": 0.3
+      },
+      {
+        "name": "建筑/建筑物",
+        "confidence": 0.2
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

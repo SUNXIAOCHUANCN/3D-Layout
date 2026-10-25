@@ -5,7 +5,7 @@
  * 写权限、作用域、证据 ID 合法性都不依赖模型自觉（§3.6）。
  */
 
-import type { GeometryResult, UnitTask } from '../contracts'
+import type { GeometryResult, UnitTask, ModelCatalogEntry } from '../contracts'
 
 export const SYSTEM_PLANNER = `你是三维场景布局规划器。你只能输出一个 JSON 对象，不能输出解释文字。
 你可以先调用只读工具（scene.list_region / scene.get_objects / library.search / camera.focus / camera.capture）核对事实，但你没有写权限。
@@ -42,6 +42,7 @@ export const SYSTEM_EXECUTOR = `你是三维场景执行器。你只能通过工
 要求：
 - 写入必须带 expectedFingerprint 或 basisObservationId（基于一次观察）；
 - 不要修改邻区对象或 global_readonly 对象；
+- 模型库尺寸已经标准化，单位米；新增默认 scale=[1,1,1]，只有设计目标或空间限制需要时调整。estimated 是估计尺寸，frontStatus=unverified 时须检查物体正面；
 - 完成后用一句话说明改了什么，然后停止调用工具。`
 
 export const SYSTEM_JUDGE = `你是三维场景判定器。你没有写权限，只能看证据下结论。
@@ -67,7 +68,7 @@ export function executorTaskText(input: {
    * 只能靠 library.search 反复猜关键词，把轮次预算耗在检索上 → budget_exceeded。
    * 把候选直接给它，它就不必猜。
    */
-  catalog?: Array<{ ref: string; name: string; category: string | null; dimensions: { w: number; h: number; d: number } }>
+  catalog?: ModelCatalogEntry[]
   feedback?: string[]
 }): string {
   const fpEntries = Object.entries(input.fingerprints ?? {}).slice(0, 12)

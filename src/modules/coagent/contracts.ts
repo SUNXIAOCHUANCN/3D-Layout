@@ -421,6 +421,13 @@ export type ModelCatalogEntry = {
   /** native 尺寸（米）[w,h,d] 对应 x/y/z 轴 */
   dimensions: { w: number; h: number; d: number }
   category: string | null
+  bounds?: { min: Vec3; max: Vec3 }
+  description?: string
+  tags?: string[]
+  retrievalTerms?: string[]
+  scaleStatus?: string
+  frontStatus?: string
+  style?: { modeling: string | null; rendering: string | null; quality: string | null; precision: string | null }
 }
 
 export type AssetDTO = {

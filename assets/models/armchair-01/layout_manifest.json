@@ -1,0 +1,185 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792510084029153700",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792510084029153700.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -37.8377,
+        0.0,
+        -34.150817
+      ],
+      "max": [
+        37.8377,
+        95.0,
+        34.150817
+      ]
+    },
+    "dimensions_cm": [
+      75.6754,
+      95.0,
+      68.301634
+    ],
+    "center_cm": [
+      0,
+      47.5,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 95 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      84.843091,
+      106.508768,
+      76.57603
+    ],
+    "semantic_scale_factor": 0.89194535,
+    "total_scale_factor": 89.19453467,
+    "target_dimension_cm": 95.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -37.8377,
+          0.0,
+          -34.150817
+        ],
+        "max": [
+          37.8377,
+          95.0,
+          34.150817
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "家具",
+      "椅子"
+    ],
+    "leaf": "椅子",
+    "status": "matched",
+    "confidence": 0.98,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "椅子",
+      "name": "欧式扶手椅",
+      "category_path": [
+        "家具",
+        "椅子"
+      ],
+      "primary_paths": [
+        [
+          "家具",
+          "椅子"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "欧式扶手椅",
+    "raw_source": "llm",
+    "canonical": "欧式扶手椅",
+    "canonical_source": "llm_raw",
+    "display": "欧式扶手椅",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 15°",
+        "role": "supports",
+        "detail": "正视图清晰展示了高靠背、宽扶手和对称的弯曲椅腿，确认为单人扶手椅。"
+      },
+      {
+        "view": "方位 315° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧视图显示了靠背的倾斜角度和扶手的连接方式，以及椅腿的S型曲线细节。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视视角确认了座面的矩形轮廓和靠背顶部的装饰性边缘。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "椅子",
+      "subtype": null,
+      "appearance_motifs": [
+        "欧式古典风格",
+        "卷曲腿",
+        "高背设计"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "欧式扶手椅；类别：家具/椅子；属性：白色坐垫、深棕色木质框架、法式弯腿、单人座",
+    "terms": [
+      "欧式扶手椅",
+      "家具",
+      "椅子",
+      "白色坐垫",
+      "深棕色木质框架",
+      "法式弯腿",
+      "单人座",
+      "欧式古典风格",
+      "卷曲腿",
+      "高背设计"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

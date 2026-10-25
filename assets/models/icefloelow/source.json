@@ -1,0 +1,52 @@
+{
+    "filename":  "model.glb",
+    "source_path":  "icefloelow/model.glb",
+    "source_sha256":  "38c2b896d41bd7666f88a6f06d9533ccacccd4410bc226d80c9cce776e452208",
+    "source_axis":  "y-up",
+    "source_unit":  "m",
+    "normalization":  {
+                          "sourceAxis":  "Z-UP",
+                          "targetAxis":  "Y-UP",
+                          "sourceUnit":  "m",
+                          "targetUnit":  "cm",
+                          "scaleFactor":  100.0,
+                          "origin":  "bottom-center",
+                          "center":  [
+                                         0,
+                                         42.759318,
+                                         0
+                                     ],
+                          "aabb":  {
+                                       "min":  [
+                                                   -86.530266,
+                                                   0.0,
+                                                   -100.0
+                                               ],
+                                       "max":  [
+                                                   86.530266,
+                                                   85.518637,
+                                                   100.0
+                                               ]
+                                   },
+                          "dimensions":  [
+                                             173.060531,
+                                             85.518637,
+                                             200.0
+                                         ],
+                          "warnings":  [
+                                           "{\"asset\": \"model.glb\", \"fast_path_failed\": true, \"exception_type\": \"FastPathError\", \"exception_message\": \"无法导入 trimesh（可能缺少依赖或 Python 版本不匹配）：ImportError\", \"fallback_to_blender\": true}",
+                                           "已使用本机 Blender 读取文件元数据。导入结果是 Blender 世界坐标 Z-Up、单位米，页面上的源坐标和单位不再重复换算。"
+                                       ],
+                          "preCanonicalDimensions":  [
+                                                         1503.922844,
+                                                         743.170214,
+                                                         1738.031006
+                                                     ],
+                          "semanticScaleFactor":  0.11507275,
+                          "totalScaleFactor":  11.50727457,
+                          "scalePolicy":  "视觉模型估计现实最长边 200 cm",
+                          "scaleSource":  "llm",
+                          "targetDimension":  200.0
+                      },
+    "source_path_base":  "input_root"
+}

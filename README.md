@@ -15,7 +15,9 @@ Vite 8 · React 19 · TypeScript · three.js（WebGL2）· @react-three/fiber ·
 ```
 3D-Layout/
 ├─ assets/                  # 素材库（数据，不参与构建）
-│  ├─ models/               #   模型库：每模型一个文件夹（meta.json + glb）
+│  ├─ models/               #   工作流标准资产包：<原始模型名>/layout_manifest.json + model/ + 标签/预览
+│  ├─ model-catalog.json    #   编辑器生成的米单位模型目录（位于资产包外）
+│  ├─ builtin-models.json   #   编辑器内置 primitive 定义
 │  ├─ hdri/  decoders/  textures/
 ├─ scenes/                  # 场景库（数据，不参与构建）
 │  └─ scene-01/
@@ -116,7 +118,10 @@ Vite 8 · React 19 · TypeScript · three.js（WebGL2）· @react-three/fiber ·
 
 ## 日常操作
 
-- **加模型**：`assets/models/<new-id>/` 放 `meta.json`（+glb），在 `src/` 下跑 `pnpm gen-manifest`。没有真实模型时可先用 primitive 占位。
+- **加模型**：将工作流输出的完整资产包目录放入 `assets/models/`，在 `src/` 下跑 `pnpm gen-manifest`。入口为各包的 `layout_manifest.json`；生成的目录写入 `assets/model-catalog.json`，不改写资产包。旧 `meta.json` 模型仍支持导入。
+- **标准尺寸**：编辑器将厘米模型和元数据统一换算成米；新增模型默认 `scale=[1,1,1]`。Agent 可读取名称、类别、检索描述、标签、尺寸可信状态和朝向状态。内置占位模型定义在 `assets/builtin-models.json`。
+- **目录命名**：当前目录采用原始模型名，如 `models/tree1`；包内 `asset_id` 和 GLB 文件名仍是工作流的稳定编号，模型加载路径从清单读取。目录重命名程序为 `src/scripts/rename_model_directories.py`，完整映射和备份位置见 `assets/model-directory-renames.json`。
+- **历史场景迁移**：现有场景已迁移到标准资产引用，实例变换保留原布局；备份位置记录在 `assets/model-migration.json`。程序和验收说明见 `src/scripts/MODEL_MIGRATION.md`。
 - **加场景**：新建 `scenes/<new-id>/scene.json`（可复制现有场景改），跑 `pnpm gen-manifest`。
 - **换 HDRI**：文件放 `assets/hdri/`，场景 `environment.hdri` 引用；不配则用程序化环境（离线可用）。
 

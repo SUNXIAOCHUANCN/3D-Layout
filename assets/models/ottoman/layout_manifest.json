@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792513702213059500",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792513702213059500.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -60.215067,
+        0.0,
+        -42.283836
+      ],
+      "max": [
+        60.215067,
+        85.0,
+        42.283836
+      ]
+    },
+    "dimensions_cm": [
+      120.430135,
+      85.0,
+      84.567672
+    ],
+    "center_cm": [
+      0,
+      42.5,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 85 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      88.455778,
+      62.43239,
+      62.114846
+    ],
+    "semantic_scale_factor": 1.36147279,
+    "total_scale_factor": 136.14727868,
+    "target_dimension_cm": 85.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -60.215067,
+          0.0,
+          -42.283836
+        ],
+        "max": [
+          60.215067,
+          85.0,
+          42.283836
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "家具",
+      "沙发"
+    ],
+    "leaf": "沙发",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "沙发",
+      "name": "单人沙发",
+      "category_path": [
+        "家具",
+        "沙发"
+      ],
+      "primary_paths": [
+        [
+          "家具",
+          "沙发"
+        ]
+      ],
+      "name_paths": [
+        [
+          "家具",
+          "沙发"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "单人沙发",
+    "raw_source": "llm",
+    "canonical": "沙发",
+    "canonical_source": "taxonomy_normalization",
+    "display": "单人沙发",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.95,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了沙发正面的靠背、座垫分界线以及底部的支脚，确认了家具属性。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "从另一角度再次确认了沙发的正面结构和对称性。"
+      },
+      {
+        "view": "方位 270° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视角显示了沙发的厚度和侧面的轮廓，进一步证实了其作为坐具的功能。"
+      },
+      {
+        "view": "方位 90° / 俯仰 15°",
+        "role": "supports",
+        "detail": "另一侧面视角与270度视角一致，提供了完整的立体信息。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "沙发",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "单人沙发；类别：家具/沙发；属性：棕色、皮质外观、现代简约风格",
+    "terms": [
+      "单人沙发",
+      "沙发",
+      "家具",
+      "棕色",
+      "皮质外观",
+      "现代简约风格"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

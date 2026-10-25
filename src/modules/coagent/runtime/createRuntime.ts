@@ -37,6 +37,7 @@ import { createModelAdapter, currentLlmSettings, isModelConfigured, modelConfigS
 import { createEvidenceStore, type EvidenceStore, type EvidenceStoreStats } from './evidenceStore'
 import { createRecorder, type Recorder } from './recorder'
 import { createRunController, isActivePhase, type RunController } from './runController'
+import { beginRunLog, finishRunLog, logError, logStage, activeRunLog } from './runLog'
 import { createScheduler, type Scheduler } from './scheduler'
 
 export interface CoAgentRuntimeDeps {
@@ -142,12 +143,31 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
   /**
    * 全局模型并发上限（§3.2）：走 scheduler 的 semaphore，而不是每个区各建一个"全局"限制。
    * 图里拿到的始终是这个受控端口，取消会以 cancelled 拒绝等待中的请求。
+   *
+   * **每一个模型请求/回包都在这里落日志**（诊断：purpose 标出 planner/executor/judge/
+   * partition，排队时间单独记，便于区分"模型慢"与"并发排队"）。
    */
   const modelPort: ModelPort = {
     async complete(request, signal) {
-      const release = await scheduler.acquireModel(signal)
+      const log = activeRunLog()
+      const queuedAt = Date.now()
+      log?.modelRequest(request)
+      let release: () => void
       try {
-        return await baseModelPort.complete(request, signal)
+        release = await scheduler.acquireModel(signal)
+      } catch (e) {
+        log?.modelError(request, e, Date.now() - queuedAt, Date.now() - queuedAt)
+        throw e
+      }
+      const startedAt = Date.now()
+      const queueMs = startedAt - queuedAt
+      try {
+        const reply = await baseModelPort.complete(request, signal)
+        log?.modelReply(request, reply, Date.now() - startedAt, queueMs)
+        return reply
+      } catch (e) {
+        log?.modelError(request, e, Date.now() - startedAt, queueMs)
+        throw e
       } finally {
         release()
       }
@@ -178,6 +198,8 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
     getRenderPort: () => renderPort,
     // W08.2：判定/执行送模型时按需把证据 Blob 转 dataURL（不复制进图状态）
     getImageDataUrl: imageId => evidence.dataUrlFor(imageId),
+    // 运行日志头部：脱敏的模型配置摘要（绝不含 key）
+    modelLabel: () => modelConfigSummary(),
     onPhase: (phase, info) => {
       onPhaseListeners.forEach(l => l(phase, info))
     },
@@ -258,69 +280,106 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
       // 分区生成也有自己的相位：面板据此显示"分区预处理"、宿主据此暂停编辑；
       // 结束后必须回到 idle（不能被上一轮 rolled_back 的终态粘住）。
       controller.emitPhase('preprocessing')
+      // 分区预处理也是一条完整的模型链路：单独落一份日志（否则"生成分区失败"无迹可查）
+      beginRunLog({
+        kind: 'preprocess',
+        runId: 'preprocess',
+        request: '生成分区（鸟瞰 VLM）',
+        config,
+        model: modelConfigSummary(),
+        note: '鸟瞰截图 → 模型提案 → 程序反算/校验/归属',
+      })
+      let logSummary = '分区预处理未产出结果'
       try {
+        logStage('preprocess.start', '开始生成分区')
         if (!isModelConfigured()) {
           throw new CoAgentError('model_protocol_error', '未配置模型：先在「AI 编辑 → 设置」填好 baseURL / API Key / 模型名')
         }
         const snap = editor.read.snapshot({})
-      if (snap.assets.length === 0) throw new CoAgentError('invalid_plan', '场景里没有资产，无法分区')
-      const camera = birdseyeCamera(snap.assets)
-      const observation = await observations.capture(
-        {
-          runId: 'preprocess',
-          phase: 'preprocess',
-          camera,
-          width: 768,
-          height: 576,
-          objectIds: snap.assets.slice(0, 120).map(a => a.id),
-          marked: false,
-          sceneRevision: snap.sceneRevision,
-          fingerprints: {},
-        },
-        signal,
-        partitionOverride?.partitionVersion ?? 0,
-      )
-      const url = evidence.urlFor(observation.rgbImageId)
-      if (!url) throw new CoAgentError('capture_failed', '鸟瞰图未登记到证据库')
-      const blob = await (await fetch(url)).blob()
-      const imageDataUrl = await blobToDataUrl(blob)
+        if (snap.assets.length === 0) throw new CoAgentError('invalid_plan', '场景里没有资产，无法分区')
+        logStage('preprocess.snapshot', `场景快照：${snap.assets.length} 个资产，sceneRevision=${snap.sceneRevision}`)
+        const camera = birdseyeCamera(snap.assets)
+        logStage(
+          'preprocess.camera',
+          `鸟瞰正交相机（${camera.id}）`,
+          `position=${JSON.stringify(camera.position)} ortho=${JSON.stringify(camera.ortho)}`,
+        )
+        const observation = await observations.capture(
+          {
+            runId: 'preprocess',
+            phase: 'preprocess',
+            camera,
+            width: 768,
+            height: 576,
+            objectIds: snap.assets.slice(0, 120).map(a => a.id),
+            marked: false,
+            sceneRevision: snap.sceneRevision,
+            fingerprints: {},
+          },
+          signal,
+          partitionOverride?.partitionVersion ?? 0,
+        )
+        logStage('preprocess.capture', `鸟瞰图已登记：${observation.id}（image=${observation.rgbImageId}）`)
+        const url = evidence.urlFor(observation.rgbImageId)
+        if (!url) throw new CoAgentError('capture_failed', '鸟瞰图未登记到证据库')
+        const blob = await (await fetch(url)).blob()
+        const imageDataUrl = await blobToDataUrl(blob)
+        logStage('preprocess.image', `鸟瞰图转 dataURL：${Math.round(blob.size / 1024)} KB`)
 
-      const bounds = { minX: Infinity, maxX: -Infinity, minZ: Infinity, maxZ: -Infinity }
-      for (const a of snap.assets) {
-        bounds.minX = Math.min(bounds.minX, a.transform.position[0])
-        bounds.maxX = Math.max(bounds.maxX, a.transform.position[0])
-        bounds.minZ = Math.min(bounds.minZ, a.transform.position[2])
-        bounds.maxZ = Math.max(bounds.maxZ, a.transform.position[2])
-      }
+        const bounds = { minX: Infinity, maxX: -Infinity, minZ: Infinity, maxZ: -Infinity }
+        for (const a of snap.assets) {
+          bounds.minX = Math.min(bounds.minX, a.transform.position[0])
+          bounds.maxX = Math.max(bounds.maxX, a.transform.position[0])
+          bounds.minZ = Math.min(bounds.minZ, a.transform.position[2])
+          bounds.maxZ = Math.max(bounds.maxZ, a.transform.position[2])
+        }
+        logStage('preprocess.request', '向模型请求分区提案（见下一条 llm.request / llm.reply）', undefined, { bounds })
 
-      const { proposal } = await requestPartition({
-        model: modelPort,
-        imageDataUrl,
-        cameraId: camera.id,
-        objectCount: snap.assets.length,
-        bounds,
-        signal,
-        timeoutMs: config.modelTimeoutMs,
-      })
-      const version = (partitionOverride?.partitionVersion ?? 0) + 1
-      const built = buildPartition({ proposal, camera, assets: snap.assets, partitionVersion: version })
-      commitPartition(built.partition)
-      partitionReport = built.report
-      recorder.append({
-        type: 'partition.ready',
-        runId: 'preprocess',
-        payload: {
-          partitionVersion: version,
+        const { proposal } = await requestPartition({
+          model: modelPort,
+          imageDataUrl,
           cameraId: camera.id,
-          regions: built.partition.regions.map(r => ({ id: r.id, objects: r.objectIds.length })),
-          issues: built.report.issues.length,
-          model: modelConfigSummary(),
-        },
-      })
+          objectCount: snap.assets.length,
+          bounds,
+          signal,
+          timeoutMs: config.modelTimeoutMs,
+        })
+        logStage('preprocess.proposal', `模型提案：${proposal.regions.length} 个区域`, undefined, proposal)
+        const version = (partitionOverride?.partitionVersion ?? 0) + 1
+        const built = buildPartition({ proposal, camera, assets: snap.assets, partitionVersion: version })
+        commitPartition(built.partition)
+        partitionReport = built.report
+        logStage(
+          'preprocess.done',
+          `分区 v${version} 生成完成`,
+          [
+            `区域：${built.partition.regions.map(r => `${r.id}(${r.objectIds.length})`).join(' / ')}`,
+            `只读：${built.partition.globalReadonlyObjectIds.length} 个；问题 ${built.report.issues.length} 条`,
+            `未归属：${built.report.unassigned.length} 个；歧义：${built.report.ambiguous.length} 个`,
+          ].join('\n'),
+          built.report,
+        )
+        logSummary = `分区 v${version}：${built.partition.regions.map(r => `${r.id}(${r.objectIds.length})`).join(' / ')}`
+        recorder.append({
+          type: 'partition.ready',
+          runId: 'preprocess',
+          payload: {
+            partitionVersion: version,
+            cameraId: camera.id,
+            regions: built.partition.regions.map(r => ({ id: r.id, objects: r.objectIds.length })),
+            issues: built.report.issues.length,
+            model: modelConfigSummary(),
+          },
+        })
         return built
+      } catch (e) {
+        logError('preprocess.error', '分区预处理失败', e instanceof Error ? e.message : String(e))
+        logSummary = `分区预处理失败：${e instanceof Error ? e.message : String(e)}`
+        throw e
       } finally {
         // 无论成功失败都回到 idle：终态相位只属于"运行"，不该粘在分区操作上
         controller.emitPhase(controller.locked() ? 'error_locked' : 'idle')
+        await finishRunLog(logSummary)
       }
     },
 

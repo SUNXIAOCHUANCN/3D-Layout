@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792512846584821200",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792512846584821200.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -220.981144,
+        0.0,
+        -195.695263
+      ],
+      "max": [
+        220.981144,
+        300.0,
+        195.695263
+      ]
+    },
+    "dimensions_cm": [
+      441.962288,
+      300.0,
+      391.390525
+    ],
+    "center_cm": [
+      0,
+      150.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 300 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      1184.034348,
+      803.711796,
+      1048.550606
+    ],
+    "semantic_scale_factor": 0.37326813,
+    "total_scale_factor": 37.32681311,
+    "target_dimension_cm": 300.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -220.981144,
+          0.0,
+          -195.695263
+        ],
+        "max": [
+          220.981144,
+          300.0,
+          195.695263
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "建筑",
+      "房屋"
+    ],
+    "leaf": "房屋",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "房屋",
+      "name": "茅草屋",
+      "category_path": [
+        "建筑",
+        "房屋"
+      ],
+      "primary_paths": [
+        [
+          "建筑",
+          "房屋"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "茅草屋",
+    "raw_source": "llm",
+    "canonical": "茅草屋",
+    "canonical_source": "llm_raw",
+    "display": "茅草屋",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 25°",
+        "role": "supports",
+        "detail": "清晰展示了正面的门框结构和通往门口的台阶，以及两侧的支撑柱"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了背面的圆柱形墙体结构和完整的茅草屋顶轮廓"
+      },
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认了房屋的立体体积和底部的架空设计"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "房屋",
+      "subtype": null,
+      "appearance_motifs": [
+        "茅草屋顶",
+        "木质结构"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "茅草屋；类别：建筑/房屋；属性：棕色、米黄色、茅草屋顶、木质结构、低多边形风格",
+    "terms": [
+      "茅草屋",
+      "建筑",
+      "房屋",
+      "棕色",
+      "米黄色",
+      "茅草屋顶",
+      "木质结构",
+      "低多边形风格"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

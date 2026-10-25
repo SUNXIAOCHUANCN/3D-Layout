@@ -1,0 +1,385 @@
+{
+  "schema_version": "1.2",
+  "name": "郁金香",
+  "object_label": {
+    "raw": "郁金香",
+    "raw_source": "llm",
+    "canonical": "郁金香",
+    "canonical_source": "llm_raw",
+    "display": "郁金香",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示蓝色花冠与绿色茎叶的连接关系，确认为花卉模型"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面轮廓显示叶片细长且向上生长，符合草本植物特征"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "植物",
+      "subtype": null,
+      "appearance_motifs": [
+        "花卉"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "郁金香；类别：植物/草本；属性：蓝色花朵、绿色茎叶、低多边形风格",
+    "terms": [
+      "郁金香",
+      "植物",
+      "草本",
+      "蓝色花朵",
+      "绿色茎叶",
+      "低多边形风格",
+      "花卉"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "草本"
+    ],
+    "leaf": "草本",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "植物",
+      "name": "郁金香",
+      "category_path": [
+        "植物",
+        "草本"
+      ],
+      "primary_paths": [
+        [
+          "植物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "蓝色花朵",
+    "绿色茎叶",
+    "低多边形风格"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9264,
+      "evidence": {
+        "topology_quality": 0.9668,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.6048,
+        "uv_quality": 0.9883,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.385,
+      "evidence": {
+        "triangle_count": 257,
+        "vertex_count": 771,
+        "resolution": 257,
+        "split_vertices": true,
+        "triangle_density": 0.13715471,
+        "resolution_score": 0.3708,
+        "density_score": 0.4181,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.9179,
+      "status": "scored",
+      "evidence": [
+        "三角面 257 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.622，阈值 0.200",
+        "量化法线方向数 116",
+        "轴对齐法线比例 0.195"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.385"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 257 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.622，阈值 0.200",
+        "量化法线方向数 116",
+        "轴对齐法线比例 0.195"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "使用纯色材质填充，无复杂纹理细节",
+        "光照产生简单的明暗对比，边缘清晰锐利"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.9179,
+          "evidence": [
+            "三角面 257 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.622，阈值 0.200",
+            "量化法线方向数 116",
+            "轴对齐法线比例 0.195"
+          ]
+        }
+      ],
+      "confidence": 0.9179,
+      "evidence": [
+        "三角面 257 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.622，阈值 0.200",
+        "量化法线方向数 116",
+        "轴对齐法线比例 0.195"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.98,
+      "evidence": [
+        "使用纯色材质填充，无复杂纹理细节",
+        "光照产生简单的明暗对比，边缘清晰锐利"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.98,
+      "evidence": [
+        "使用纯色材质填充，无复杂纹理细节",
+        "光照产生简单的明暗对比，边缘清晰锐利"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.98,
+      "modeling_quality": 0.9264,
+      "modeling_precision": 0.385,
+      "modeling_style": 0.9179
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "蓝色花朵",
+        "confidence": 1.0,
+        "evidence": "顶部可见明显的蓝色多边形花瓣结构",
+        "source": "llm"
+      },
+      {
+        "tag": "绿色茎叶",
+        "confidence": 1.0,
+        "evidence": "主体由细长的绿色几何体构成，模拟茎和叶片",
+        "source": "llm"
+      },
+      {
+        "tag": "低多边形风格",
+        "confidence": 0.9,
+        "evidence": "物体表面呈现明显的棱角和分面，非平滑曲面",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "郁金香",
+      "taxonomy_path": [
+        "植物",
+        "草本"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9264,
+        "evidence": {
+          "topology_quality": 0.9668,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.6048,
+          "uv_quality": 0.9883,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.385,
+        "evidence": {
+          "triangle_count": 257,
+          "vertex_count": 771,
+          "resolution": 257,
+          "split_vertices": true,
+          "triangle_density": 0.13715471,
+          "resolution_score": 0.3708,
+          "density_score": 0.4181,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.9179,
+        "status": "scored",
+        "confidence": 0.9179,
+        "evidence": [
+          "三角面 257 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.622，阈值 0.200",
+          "量化法线方向数 116",
+          "轴对齐法线比例 0.195"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.9179,
+            "evidence": [
+              "三角面 257 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.622，阈值 0.200",
+              "量化法线方向数 116",
+              "轴对齐法线比例 0.195"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "具有典型的单花头、长茎和基生叶的植物形态结构",
+      "顶部蓝色部分呈杯状或钟状聚合，符合郁金香花型特征"
+    ],
+    "candidates": [
+      {
+        "name": "植物/草本",
+        "confidence": 0.98
+      },
+      {
+        "name": "道具/容器/花盆",
+        "confidence": 0.02
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

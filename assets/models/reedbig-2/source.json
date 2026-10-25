@@ -1,0 +1,52 @@
+{
+    "filename":  "model.glb",
+    "source_path":  "reedbig-2/model.glb",
+    "source_sha256":  "f7986fef49fdadeab96ba55d69600f877e602fd507db8bbbe57d45929133a0d3",
+    "source_axis":  "y-up",
+    "source_unit":  "m",
+    "normalization":  {
+                          "sourceAxis":  "Z-UP",
+                          "targetAxis":  "Y-UP",
+                          "sourceUnit":  "m",
+                          "targetUnit":  "cm",
+                          "scaleFactor":  100.0,
+                          "origin":  "bottom-center",
+                          "center":  [
+                                         0,
+                                         39.464146,
+                                         0
+                                     ],
+                          "aabb":  {
+                                       "min":  [
+                                                   -50.0,
+                                                   0.0,
+                                                   -31.386601
+                                               ],
+                                       "max":  [
+                                                   50.0,
+                                                   78.928291,
+                                                   31.386601
+                                               ]
+                                   },
+                          "dimensions":  [
+                                             100.0,
+                                             78.928291,
+                                             62.773202
+                                         ],
+                          "warnings":  [
+                                           "{\"asset\": \"model.glb\", \"fast_path_failed\": true, \"exception_type\": \"FastPathError\", \"exception_message\": \"无法导入 trimesh（可能缺少依赖或 Python 版本不匹配）：ImportError\", \"fallback_to_blender\": true}",
+                                           "已使用本机 Blender 读取文件元数据。导入结果是 Blender 世界坐标 Z-Up、单位米，页面上的源坐标和单位不再重复换算。"
+                                       ],
+                          "preCanonicalDimensions":  [
+                                                         321.088362,
+                                                         253.429556,
+                                                         201.557446
+                                                     ],
+                          "semanticScaleFactor":  0.31144075,
+                          "totalScaleFactor":  31.14407491,
+                          "scalePolicy":  "视觉模型估计现实最长边 100 cm",
+                          "scaleSource":  "llm",
+                          "targetDimension":  100.0
+                      },
+    "source_path_base":  "input_root"
+}

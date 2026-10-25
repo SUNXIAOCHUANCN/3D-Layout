@@ -5,11 +5,12 @@
  * 写入规则不在提示词里，而在 registry（角色/作用域/基线）与 writeFacade（指纹/幂等/事务）。
  */
 
-import type { CoAgentConfig, ModelPort, Observation, UnitTask, WorkflowContext } from '../contracts'
+import type { CoAgentConfig, ModelPort, Observation, UnitTask, WorkflowContext, ModelCatalogEntry } from '../contracts'
 import { runToolLoop, type ToolLoopResult } from './modelLoop'
 import { executorTaskText, SYSTEM_EXECUTOR } from './prompts'
 import type { ToolRegistry } from '../tools/registry'
 import type { ObservationId } from '../contracts'
+import { logStage } from '../runtime/runLog'
 export interface ExecutorInput {
   task: UnitTask
   context: WorkflowContext
@@ -29,7 +30,7 @@ export interface ExecutorInput {
    * 真机实测（2026-10-22）：不给的话，执行器只能靠 library.search 反复猜关键词，
    * 把 6 轮预算耗在检索上 → budget_exceeded。
    */
-  catalog?: Array<{ ref: string; name: string; category: string | null; dimensions: { w: number; h: number; d: number } }>
+  catalog?: ModelCatalogEntry[]
   /** 上一轮判定的修正建议（修正轮才传） */
   feedback?: string[]
 }
@@ -43,6 +44,22 @@ export async function runExecutor(input: ExecutorInput): Promise<ExecutorOutput>
   const evidenceIds: ObservationId[] = []
   const maxRounds = Math.max(2, Math.min(6, input.config.toolBudgetPerTask))
   let toolImages = 0
+
+  logStage(
+    'executor.start',
+    `[${input.task.regionId}/${input.task.id}] 执行器开始（最多 ${maxRounds} 轮）`,
+    [
+      `目标：${input.task.objective}`,
+      `目标对象：${input.task.targetObjectIds.join(', ') || '（无：add 任务）'}`,
+      `允许操作：${input.task.allowedOperations.join('/') || '（空）'}`,
+      `判据：${input.task.criteria.map(c => `${c.id}:${c.kind}`).join('，')}`,
+      `约束：${input.task.constraints.map(c => c.kind).join('，') || '（无）'}`,
+      `本区可写对象：${input.regionObjectIds.length} 个；只读对象：${input.readonlyObjectIds.length} 个`,
+      `本任务基线证据：${input.baselineObservationId ?? '（无）'}`,
+      `可选新增资产：${input.catalog?.length ?? 0} 个`,
+      ...(input.feedback && input.feedback.length > 0 ? ['', '上一轮修正建议：', ...input.feedback.map(f => `- ${f}`)] : []),
+    ].join('\n'),
+  )
 
   const result = await runToolLoop({
     role: 'executor',
@@ -86,5 +103,10 @@ export async function runExecutor(input: ExecutorInput): Promise<ExecutorOutput>
     },
   })
 
+  logStage(
+    'executor.end',
+    `[${input.task.regionId}/${input.task.id}] 执行器结束：${result.toolCalls} 次工具调用，证据 ${evidenceIds.length} 条`,
+    result.text,
+  )
   return { ...result, evidenceIds }
 }

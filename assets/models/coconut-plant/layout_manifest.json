@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792510683861857200",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792510683861857200.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -21.898261,
+        0.0,
+        -24.036661
+      ],
+      "max": [
+        21.898261,
+        45.0,
+        24.036661
+      ]
+    },
+    "dimensions_cm": [
+      43.796522,
+      45.0,
+      48.073323
+    ],
+    "center_cm": [
+      0,
+      22.5,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 45 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      173.60859,
+      178.379154,
+      190.561748
+    ],
+    "semantic_scale_factor": 0.25227163,
+    "total_scale_factor": 25.22716303,
+    "target_dimension_cm": 45.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -21.898261,
+          0.0,
+          -24.036661
+        ],
+        "max": [
+          21.898261,
+          45.0,
+          24.036661
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "草本"
+    ],
+    "leaf": "草本",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "植物",
+      "name": "蕨类盆栽",
+      "category_path": [
+        "植物",
+        "草本"
+      ],
+      "primary_paths": [
+        [
+          "植物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "蕨类盆栽",
+    "raw_source": "llm",
+    "canonical": "蕨类盆栽",
+    "canonical_source": "llm_raw",
+    "display": "蕨类盆栽",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 225° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰可见三片主要羽状叶片向不同方向伸展，底部有棕色块状物体支撑"
+      },
+      {
+        "view": "方位 0° / 俯仰 15°",
+        "role": "supports",
+        "detail": "展示了叶片的正面纹理和锯齿边缘，确认了植物的对称性和生长方向"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视角度确认了叶片从中心点发散的结构以及花盆的顶部平面"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "植物",
+      "subtype": null,
+      "appearance_motifs": [
+        "蕨类叶片",
+        "多边形花盆"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "蕨类植物",
+        "花盆"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "蕨类盆栽；类别：植物/草本；属性：绿色、棕色、低多边形风格、室内装饰",
+    "terms": [
+      "蕨类盆栽",
+      "植物",
+      "草本",
+      "绿色",
+      "棕色",
+      "低多边形风格",
+      "室内装饰",
+      "蕨类叶片",
+      "多边形花盆",
+      "蕨类植物",
+      "花盆"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

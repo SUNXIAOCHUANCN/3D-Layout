@@ -1,0 +1,181 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792510744988185200",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792510744988185200.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -60.0,
+        0.0,
+        -37.902857
+      ],
+      "max": [
+        60.0,
+        40.771446,
+        37.902857
+      ]
+    },
+    "dimensions_cm": [
+      120.0,
+      40.771446,
+      75.805714
+    ],
+    "center_cm": [
+      0,
+      20.385723,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 120 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      154.001116,
+      52.323735,
+      97.284704
+    ],
+    "semantic_scale_factor": 0.77921513,
+    "total_scale_factor": 77.92151324,
+    "target_dimension_cm": 120.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -60.0,
+          0.0,
+          -37.902857
+        ],
+        "max": [
+          60.0,
+          40.771446,
+          37.902857
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "家具"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "梳妆台",
+      "name": "梳妆台",
+      "category_path": [
+        "家具"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "梳妆台",
+    "raw_source": "llm",
+    "canonical": "梳妆台",
+    "canonical_source": "llm_raw",
+    "display": "梳妆台",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 25°",
+        "role": "supports",
+        "detail": "清晰展示了左侧视角的侧板厚度、腿部造型以及镜面的垂直关系，确认为立式家具。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视图完整展示了双抽屉结构和中央对称的装饰雕刻，确认功能为梳妆台或写字台。"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面或侧面视图进一步证实了抽屉的存在（可见把手孔位）和整体结构的封闭性。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "梳妆台",
+      "parent_path": [
+        "家具"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "梳妆台",
+      "subtype": null,
+      "appearance_motifs": [
+        "洛可可风格",
+        "雕花腿",
+        "做旧涂装"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "梳妆台；类别：家具；属性：青色、棕色、做旧风格、带镜子、带抽屉",
+    "terms": [
+      "梳妆台",
+      "家具",
+      "青色",
+      "棕色",
+      "做旧风格",
+      "带镜子",
+      "带抽屉",
+      "洛可可风格",
+      "雕花腿",
+      "做旧涂装"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

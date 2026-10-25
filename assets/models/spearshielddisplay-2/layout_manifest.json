@@ -1,0 +1,184 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515779940708300",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515779940708300.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -16.601171,
+        0.0,
+        -3.309412
+      ],
+      "max": [
+        16.601171,
+        60.0,
+        3.309412
+      ]
+    },
+    "dimensions_cm": [
+      33.202342,
+      60.0,
+      6.618823
+    ],
+    "center_cm": [
+      0,
+      30.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 60 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      140.86132,
+      254.550695,
+      28.080434
+    ],
+    "semantic_scale_factor": 0.23570943,
+    "total_scale_factor": 23.5709433,
+    "target_dimension_cm": 60.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -16.601171,
+          0.0,
+          -3.309412
+        ],
+        "max": [
+          16.601171,
+          60.0,
+          3.309412
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "动物"
+    ],
+    "leaf": "动物",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "动物",
+      "name": "兔子",
+      "category_path": [
+        "动物"
+      ],
+      "primary_paths": [
+        [
+          "动物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "兔子",
+    "raw_source": "llm",
+    "canonical": "兔子",
+    "canonical_source": "llm_raw",
+    "display": "兔子",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见背部视角，长耳朵向后上方延伸，身体侧面有红蓝分色，腿部细长"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角清晰展示面部特征（虽然简化），以及对称的长耳朵结构"
+      },
+      {
+        "view": "方位 225° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧后方视角确认了腿部的站立姿态和身体的厚度"
+      },
+      {
+        "view": "方位 315° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧前方视角展示了耳朵的前后空间关系和身体侧面的颜色分布"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "动物",
+      "subtype": null,
+      "appearance_motifs": [
+        "长耳",
+        "红蓝配色"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "兔子；类别：动物；属性：红色、蓝色、白色、卡通造型",
+    "terms": [
+      "兔子",
+      "动物",
+      "红色",
+      "蓝色",
+      "白色",
+      "卡通造型",
+      "长耳",
+      "红蓝配色"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

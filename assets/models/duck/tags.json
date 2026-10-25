@@ -1,0 +1,347 @@
+{
+  "schema_version": "1.2",
+  "name": "小黄鸭",
+  "object_label": {
+    "raw": "小黄鸭",
+    "raw_source": "llm",
+    "canonical": "小黄鸭",
+    "canonical_source": "llm_raw",
+    "display": "小黄鸭",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见左侧面，包含黑色眼珠白瞳、橙色喙部及黄色身体"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见右侧面，确认了双眼位置和喙部的立体形状"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角展示了圆润的身体背部曲线和尾部轮廓"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角完整展示了面部特征和身体宽度"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "小黄鸭",
+      "parent_path": [],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "玩具",
+      "subtype": null,
+      "appearance_motifs": [
+        "鸭子"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "小黄鸭；属性：黄色、鸭子造型、卡通风格",
+    "terms": [
+      "小黄鸭",
+      "黄色",
+      "鸭子造型",
+      "卡通风格",
+      "玩具",
+      "鸭子"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [],
+    "leaf": null,
+    "status": "unmatched",
+    "confidence": 0.65,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "玩具",
+      "name": "小黄鸭",
+      "category_path": [],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "黄色",
+    "鸭子造型",
+    "卡通风格"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "高",
+  "modeling_style": null,
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "高",
+    "modeling_style": null,
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9943,
+      "evidence": {
+        "topology_quality": 1.0,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.9643,
+        "uv_quality": 1.0,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "高",
+      "score": 0.6903,
+      "evidence": {
+        "triangle_count": 4212,
+        "vertex_count": 12636,
+        "resolution": 4212,
+        "split_vertices": true,
+        "triangle_density": 3.55749399,
+        "resolution_score": 0.5576,
+        "density_score": 1.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": null,
+      "score": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "高",
+      "machine_label": "高",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 高，分数 0.6903"
+      ]
+    },
+    "modeling_style": {
+      "label": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "光照产生平滑的明暗过渡和阴影，符合物理光照逻辑",
+        "材质表现为均匀的漫反射颜色，无明显卡通描边或手绘纹理"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": null,
+      "status": "insufficient_evidence",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.98,
+      "evidence": [
+        "虽然造型夸张，但网格表面光滑连续，不具备粘土（Clay）的堆叠感或纸艺（Papercraft）的折痕特征"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.98,
+      "evidence": [
+        "光照产生平滑的明暗过渡和阴影，符合物理光照逻辑",
+        "材质表现为均匀的漫反射颜色，无明显卡通描边或手绘纹理"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.65,
+      "rendering_style": 0.98,
+      "modeling_quality": 0.9943,
+      "modeling_precision": 0.6903,
+      "modeling_style": null
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "黄色",
+        "confidence": 1.0,
+        "evidence": "模型主体呈现鲜艳的纯黄色",
+        "source": "llm"
+      },
+      {
+        "tag": "鸭子造型",
+        "confidence": 1.0,
+        "evidence": "具有明显的扁圆形身体、突出的橙色喙部以及圆润的头部轮廓",
+        "source": "llm"
+      },
+      {
+        "tag": "卡通风格",
+        "confidence": 0.9,
+        "evidence": "形体极度简化，眼睛为简单的黑白圆点，无解剖细节",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "小黄鸭",
+      "taxonomy_path": [],
+      "status": "unmatched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9943,
+        "evidence": {
+          "topology_quality": 1.0,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.9643,
+          "uv_quality": 1.0,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "高",
+        "score": 0.6903,
+        "evidence": {
+          "triangle_count": 4212,
+          "vertex_count": 12636,
+          "resolution": 4212,
+          "split_vertices": true,
+          "triangle_density": 3.55749399,
+          "resolution_score": 0.5576,
+          "density_score": 1.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": null,
+        "score": null,
+        "status": "insufficient_evidence",
+        "confidence": 0.0,
+        "evidence": [
+          "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+        ],
+        "candidates": [],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "所有视角均显示物体具有典型的鸭子头部与扁平身体的比例关系",
+      "侧面视图清晰展示了橙色的喙部结构及其与头部的连接方式"
+    ],
+    "candidates": [
+      {
+        "name": "动物",
+        "confidence": 0.4
+      },
+      {
+        "name": "其他/未分类",
+        "confidence": 0.3
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

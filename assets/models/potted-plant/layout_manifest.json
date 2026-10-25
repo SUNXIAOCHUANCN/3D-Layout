@@ -1,0 +1,194 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792514491616040700",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792514491616040700.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -17.40195,
+        0.0,
+        -18.770012
+      ],
+      "max": [
+        17.40195,
+        80.0,
+        18.770012
+      ]
+    },
+    "dimensions_cm": [
+      34.8039,
+      80.0,
+      37.540023
+    ],
+    "center_cm": [
+      0,
+      40.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 80 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      58.738714,
+      135.016394,
+      63.356482
+    ],
+    "semantic_scale_factor": 0.59252064,
+    "total_scale_factor": 59.25206386,
+    "target_dimension_cm": 80.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -17.40195,
+          0.0,
+          -18.770012
+        ],
+        "max": [
+          17.40195,
+          80.0,
+          18.770012
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "灌木"
+    ],
+    "leaf": "灌木",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "植物",
+      "name": "灌木",
+      "category_path": [
+        "植物",
+        "灌木"
+      ],
+      "primary_paths": [
+        [
+          "植物"
+        ]
+      ],
+      "name_paths": [
+        [
+          "植物",
+          "灌木"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "灌木",
+    "raw_source": "llm",
+    "canonical": "灌木",
+    "canonical_source": "llm_raw",
+    "display": "灌木",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.94,
+    "evidence": [
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见多根细枝从中心向上生长，叶片密集分布，符合灌木典型结构"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面轮廓显示无明显主干，枝条向四周扩展，支撑灌木分类"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角确认冠层对称性差、自然不规则，排除人工修剪造型"
+      },
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "另一侧视角再次验证无主干、多分枝结构，强化灌木判断"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "植物",
+      "subtype": null,
+      "appearance_motifs": [
+        "丛生枝叶",
+        "低矮树冠"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "灌木；类别：植物/灌木；属性：绿色、丛生结构、低矮植被",
+    "terms": [
+      "灌木",
+      "植物",
+      "绿色",
+      "丛生结构",
+      "低矮植被",
+      "丛生枝叶",
+      "低矮树冠"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

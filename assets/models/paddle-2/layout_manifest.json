@@ -1,0 +1,184 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792513718018418400",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792513718018418400.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -30.0,
+        0.0,
+        -3.428474
+      ],
+      "max": [
+        30.0,
+        1.297996,
+        3.428474
+      ]
+    },
+    "dimensions_cm": [
+      60.0,
+      1.297996,
+      6.856948
+    ],
+    "center_cm": [
+      0,
+      0.648998,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 60 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      429.637528,
+      9.29446,
+      49.100036
+    ],
+    "semantic_scale_factor": 0.13965261,
+    "total_scale_factor": 13.9652605,
+    "target_dimension_cm": 60.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -30.0,
+          0.0,
+          -3.428474
+        ],
+        "max": [
+          30.0,
+          1.297996,
+          3.428474
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "电子设备",
+      "计算机设备",
+      "显示器"
+    ],
+    "leaf": "显示器",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "显示器",
+      "name": "显示器",
+      "category_path": [
+        "电子设备",
+        "计算机设备",
+        "显示器"
+      ],
+      "primary_paths": [
+        [
+          "电子设备",
+          "计算机设备",
+          "显示器"
+        ]
+      ],
+      "name_paths": [
+        [
+          "电子设备",
+          "计算机设备",
+          "显示器"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "显示器",
+    "raw_source": "llm",
+    "canonical": "显示器",
+    "canonical_source": "llm_raw",
+    "display": "显示器",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰展示了屏幕、立柱和底座的垂直连接关系，确认了显示器形态。"
+      },
+      {
+        "view": "方位 45° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视角证实了屏幕的扁平厚度和后倾角度，排除了普通板状物或箱体的可能性。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "显示器",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "显示器；类别：电子设备/计算机设备/显示器；属性：棕色、支架结构",
+    "terms": [
+      "显示器",
+      "电子设备",
+      "计算机设备",
+      "棕色",
+      "支架结构"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

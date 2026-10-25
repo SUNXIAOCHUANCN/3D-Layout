@@ -1,0 +1,189 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792516337278282100",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792516337278282100.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -35.818841,
+        0.0,
+        -70.890526
+      ],
+      "max": [
+        35.818841,
+        60.0,
+        70.890526
+      ]
+    },
+    "dimensions_cm": [
+      71.637681,
+      60.0,
+      141.781053
+    ],
+    "center_cm": [
+      0,
+      30.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 60 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      145.047236,
+      121.484029,
+      287.068892
+    ],
+    "semantic_scale_factor": 0.49389208,
+    "total_scale_factor": 49.38920819,
+    "target_dimension_cm": 60.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -35.818841,
+          0.0,
+          -70.890526
+        ],
+        "max": [
+          35.818841,
+          60.0,
+          70.890526
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "自然物",
+      "树桩"
+    ],
+    "leaf": "树桩",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "树桩",
+      "name": "树桩",
+      "category_path": [
+        "自然物",
+        "树桩"
+      ],
+      "primary_paths": [
+        [
+          "自然物",
+          "树桩"
+        ]
+      ],
+      "name_paths": [
+        [
+          "自然物",
+          "树桩"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "树桩",
+    "raw_source": "llm",
+    "canonical": "树桩",
+    "canonical_source": "llm_raw",
+    "display": "树桩",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰可见顶部的圆形截面和侧面的根部突起，确认为树桩。"
+      },
+      {
+        "view": "方位 180° / 俯仰 15°",
+        "role": "supports",
+        "detail": "展示了另一侧的根部结构和顶部边缘，进一步确认树桩身份。"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视角度显示物体的扁平化和不规则形状，符合树桩特征。"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "再次确认了树桩的整体形态和比例。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "树桩",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "树桩；类别：自然物/树桩；属性：棕色、木质外观",
+    "terms": [
+      "树桩",
+      "自然物",
+      "棕色",
+      "木质外观"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

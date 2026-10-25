@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515502171320600",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515502171320600.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -166.054108,
+        0.0,
+        -50.591196
+      ],
+      "max": [
+        166.054108,
+        450.0,
+        50.591196
+      ]
+    },
+    "dimensions_cm": [
+      332.108217,
+      450.0,
+      101.182392
+    ],
+    "center_cm": [
+      0,
+      225.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 450 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      129.957628,
+      176.08999,
+      39.593792
+    ],
+    "semantic_scale_factor": 2.55551153,
+    "total_scale_factor": 255.55115313,
+    "target_dimension_cm": 450.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -166.054108,
+          0.0,
+          -50.591196
+        ],
+        "max": [
+          166.054108,
+          450.0,
+          50.591196
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "灯具"
+    ],
+    "leaf": "灯具",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "路灯",
+      "name": "路灯",
+      "category_path": [
+        "道具",
+        "灯具"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "路灯",
+    "raw_source": "llm",
+    "canonical": "路灯",
+    "canonical_source": "llm_raw",
+    "display": "路灯",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见棕色立柱与顶部白色灯头组合，结构完整"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认灯头向一侧延伸，非对称设计常见于现代路灯"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角显示灯头后部有轻微凸起，可能为散热或装饰结构"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正后方视角验证整体对称性缺失，符合功能性路灯设计"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "路灯",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "路灯；类别：道具/灯具；属性：棕色灯杆、白色灯头、户外照明用途",
+    "terms": [
+      "路灯",
+      "道具",
+      "灯具",
+      "棕色灯杆",
+      "白色灯头",
+      "户外照明用途"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

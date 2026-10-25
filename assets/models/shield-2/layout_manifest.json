@@ -1,0 +1,193 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792514791006070500",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792514791006070500.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -23.036844,
+        0.0,
+        -3.50444
+      ],
+      "max": [
+        23.036844,
+        90.0,
+        3.50444
+      ]
+    },
+    "dimensions_cm": [
+      46.073689,
+      90.0,
+      7.008879
+    ],
+    "center_cm": [
+      0,
+      45.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 90 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      52.557278,
+      102.664995,
+      7.995184
+    ],
+    "semantic_scale_factor": 0.87663765,
+    "total_scale_factor": 87.66376504,
+    "target_dimension_cm": 90.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -23.036844,
+          0.0,
+          -3.50444
+        ],
+        "max": [
+          23.036844,
+          90.0,
+          3.50444
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "家具",
+      "椅子"
+    ],
+    "leaf": "椅子",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "椅子",
+      "name": "卡通风格椅子",
+      "category_path": [
+        "家具",
+        "椅子"
+      ],
+      "primary_paths": [
+        [
+          "家具",
+          "椅子"
+        ]
+      ],
+      "name_paths": [
+        [
+          "家具",
+          "椅子"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "卡通风格椅子",
+    "raw_source": "llm",
+    "canonical": "椅子",
+    "canonical_source": "taxonomy_normalization",
+    "display": "卡通风格椅子",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了椅子的正面（或背面）特征：拟人化的脸谱设计，包括蓝色的眼睛、白色的牙齿和红色的嘴巴，确认了物体的具体外观细节。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了物体的背面或侧面，呈现为平整的板状结构，带有两个浅黄色的矩形凹槽或装饰，符合椅子靠背的结构特征。"
+      },
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧视角度进一步确认了物体的高度和厚度比例，以及面部特征的侧面透视关系，排除了扁平画框的可能性。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "椅子",
+      "subtype": null,
+      "appearance_motifs": [
+        "拟人化面部特征",
+        "卡通造型"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "卡通风格椅子；类别：家具/椅子；属性：棕色主体、红色嘴巴、蓝色眼睛、白色牙齿、卡通风格",
+    "terms": [
+      "卡通风格椅子",
+      "椅子",
+      "家具",
+      "棕色主体",
+      "红色嘴巴",
+      "蓝色眼睛",
+      "白色牙齿",
+      "卡通风格",
+      "拟人化面部特征",
+      "卡通造型"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

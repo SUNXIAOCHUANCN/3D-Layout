@@ -1,0 +1,349 @@
+{
+  "schema_version": "1.2",
+  "name": "棕榈叶",
+  "object_label": {
+    "raw": "棕榈叶",
+    "raw_source": "llm",
+    "canonical": "棕榈叶",
+    "canonical_source": "llm_raw",
+    "display": "棕榈叶",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰展示了叶片的整体形状和中轴结构，确认为单片叶子而非整株植物。"
+      },
+      {
+        "view": "方位 0° / 俯仰 15°",
+        "role": "supports",
+        "detail": "侧面视角确认了物体的扁平特性，厚度很小，符合叶片物理属性。"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视角度进一步证实了羽状复叶的结构细节。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "棕榈叶",
+      "parent_path": [
+        "植物"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "植物叶片",
+      "subtype": null,
+      "appearance_motifs": [
+        "羽状复叶"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "棕榈叶；类别：植物；属性：绿色、羽状结构、扁平物体",
+    "terms": [
+      "棕榈叶",
+      "植物",
+      "绿色",
+      "羽状结构",
+      "扁平物体",
+      "植物叶片",
+      "羽状复叶"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "植物"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.85,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "植物叶片",
+      "name": "棕榈叶",
+      "category_path": [
+        "植物"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "绿色",
+    "羽状结构",
+    "扁平物体"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": null,
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": null,
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9247,
+      "evidence": {
+        "topology_quality": 0.9314,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.645,
+        "uv_quality": 1.0,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.338,
+      "evidence": {
+        "triangle_count": 116,
+        "vertex_count": 348,
+        "resolution": 116,
+        "split_vertices": true,
+        "triangle_density": 0.11816171,
+        "resolution_score": 0.3176,
+        "density_score": 0.3857,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": null,
+      "score": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.338"
+      ]
+    },
+    "modeling_style": {
+      "label": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "使用简单的明暗着色表现体积感，无复杂纹理贴图，光照均匀。"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": null,
+      "status": "insufficient_evidence",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.92,
+      "evidence": [
+        "虽然低多边形，但并未表现出明显的卡通、粘土或纸艺风格特征，仅为基础建模。"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.92,
+      "evidence": [
+        "使用简单的明暗着色表现体积感，无复杂纹理贴图，光照均匀。"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.85,
+      "rendering_style": 0.92,
+      "modeling_quality": 0.9247,
+      "modeling_precision": 0.338,
+      "modeling_style": null
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "绿色",
+        "confidence": 1.0,
+        "evidence": "模型表面呈现明显的绿色基色，符合植物特征。",
+        "source": "llm"
+      },
+      {
+        "tag": "羽状结构",
+        "confidence": 1.0,
+        "evidence": "具有明显的中轴和两侧对称排列的裂片，呈羽毛状形态。",
+        "source": "llm"
+      },
+      {
+        "tag": "扁平物体",
+        "confidence": 1.0,
+        "evidence": "几何统计显示高度极小（约19cm），长宽比大，为典型的平面或薄板状物体。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "棕榈叶",
+      "taxonomy_path": [
+        "植物"
+      ],
+      "status": "parent_only",
+      "missing_leaf": true
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9247,
+        "evidence": {
+          "topology_quality": 0.9314,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.645,
+          "uv_quality": 1.0,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.338,
+        "evidence": {
+          "triangle_count": 116,
+          "vertex_count": 348,
+          "resolution": 116,
+          "split_vertices": true,
+          "triangle_density": 0.11816171,
+          "resolution_score": 0.3176,
+          "density_score": 0.3857,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": null,
+        "score": null,
+        "status": "insufficient_evidence",
+        "confidence": 0.0,
+        "evidence": [
+          "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+        ],
+        "candidates": [],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "轮廓呈现细长的椭圆形，边缘有锯齿状或裂片状突起。",
+      "中心有一条贯穿的主脉（中轴），两侧分布着次级叶片结构。"
+    ],
+    "candidates": [
+      {
+        "name": "植物/树/普通树",
+        "confidence": 0.4
+      },
+      {
+        "name": "植物/灌木",
+        "confidence": 0.3
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

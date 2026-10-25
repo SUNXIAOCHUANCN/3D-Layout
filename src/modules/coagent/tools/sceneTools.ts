@@ -59,7 +59,7 @@ export function searchLibrary(context: WorkflowContext, query: string, limit: nu
   const terms = query.trim().toLowerCase().split(/\s+/).filter(t => t.length > 0)
   const matches = (e: ModelCatalogEntry): boolean => {
     if (terms.length === 0) return true
-    const hay = `${e.ref} ${e.name} ${e.category ?? ''}`.toLowerCase()
+    const hay = `${e.ref} ${e.name} ${e.category ?? ''} ${e.description ?? ''} ${(e.tags ?? []).join(' ')} ${(e.retrievalTerms ?? []).join(' ')} ${Object.values(e.style ?? {}).join(' ')}`.toLowerCase()
     return terms.some(t => hay.includes(t))
   }
   return { entries: all.filter(matches).slice(0, limit) }

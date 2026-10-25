@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792515510037569200",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792515510037569200.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -66.421643,
+        0.0,
+        -20.236478
+      ],
+      "max": [
+        66.421643,
+        180.0,
+        20.236478
+      ]
+    },
+    "dimensions_cm": [
+      132.843287,
+      180.0,
+      40.472957
+    ],
+    "center_cm": [
+      0,
+      90.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 180 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      129.957628,
+      176.08999,
+      39.593792
+    ],
+    "semantic_scale_factor": 1.02220461,
+    "total_scale_factor": 102.22046125,
+    "target_dimension_cm": 180.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -66.421643,
+          0.0,
+          -20.236478
+        ],
+        "max": [
+          66.421643,
+          180.0,
+          20.236478
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "道具"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "路标",
+      "name": "路标",
+      "category_path": [
+        "道具"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "路标",
+    "raw_source": "llm",
+    "canonical": "路标",
+    "canonical_source": "llm_raw",
+    "display": "路标",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见立柱支撑着白色的箭头状面板，侧面有棕色背板，符合路标结构。"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了箭头的立体厚度和侧面的棕色涂装，确认了非对称的几何特征。"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "从后方视角再次确认了立柱与横梁的连接关系，以及整体的T型骨架结构。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "路标",
+      "parent_path": [
+        "道具"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "路标",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "路标；类别：道具；属性：棕色、白色、双箭头造型",
+    "terms": [
+      "路标",
+      "道具",
+      "棕色",
+      "白色",
+      "双箭头造型"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

@@ -1,0 +1,52 @@
+{
+    "filename":  "model.glb",
+    "source_path":  "house1-3/model.glb",
+    "source_sha256":  "587c9d78ab5396c1cf023730bc261d07d75f4f7e35fca611fbdc295800dc9ffa",
+    "source_axis":  "y-up",
+    "source_unit":  "m",
+    "normalization":  {
+                          "sourceAxis":  "Z-UP",
+                          "targetAxis":  "Y-UP",
+                          "sourceUnit":  "m",
+                          "targetUnit":  "cm",
+                          "scaleFactor":  100.0,
+                          "origin":  "bottom-center",
+                          "center":  [
+                                         0,
+                                         16.894565,
+                                         0
+                                     ],
+                          "aabb":  {
+                                       "min":  [
+                                                   -30.0,
+                                                   0.0,
+                                                   -26.341572
+                                               ],
+                                       "max":  [
+                                                   30.0,
+                                                   33.789131,
+                                                   26.341572
+                                               ]
+                                   },
+                          "dimensions":  [
+                                             60.0,
+                                             33.789131,
+                                             52.683143
+                                         ],
+                          "warnings":  [
+                                           "{\"asset\": \"model.glb\", \"fast_path_failed\": true, \"exception_type\": \"FastPathError\", \"exception_message\": \"无法导入 trimesh（可能缺少依赖或 Python 版本不匹配）：ImportError\", \"fallback_to_blender\": true}",
+                                           "已使用本机 Blender 读取文件元数据。导入结果是 Blender 世界坐标 Z-Up、单位米，页面上的源坐标和单位不再重复换算。"
+                                       ],
+                          "preCanonicalDimensions":  [
+                                                         740.825892,
+                                                         417.197716,
+                                                         650.483942
+                                                     ],
+                          "semanticScaleFactor":  0.08099069,
+                          "totalScaleFactor":  8.09906898,
+                          "scalePolicy":  "视觉模型估计现实最长边 60 cm",
+                          "scaleSource":  "llm",
+                          "targetDimension":  60.0
+                      },
+    "source_path_base":  "input_root"
+}

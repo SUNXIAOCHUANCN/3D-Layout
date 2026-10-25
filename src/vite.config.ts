@@ -1,6 +1,6 @@
 import { defineConfig, type Connect, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
-import { createReadStream, existsSync, readdirSync, statSync, writeFileSync } from 'node:fs'
+import { createReadStream, existsSync, mkdirSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { dirname, extname, resolve, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { IncomingMessage, ServerResponse } from 'node:http'
@@ -114,6 +114,45 @@ function handleLogs(req: IncomingMessage, res: ServerResponse): boolean {
   return false
 }
 
+/**
+ * CoAgent 运行日志接口（自动落盘：一轮运行 = logs/coAgent/ 下的一份 md）：
+ * - POST /api/coagent-log  body {filename, content} → 写 logs/coAgent/<filename>
+ * 文件名只允许字母/数字/._- 且必须以 .md 结尾（天然的"只能落在 coAgent 子目录"），
+ * resolve 后再校验一次防穿越（与场景保存/log.write 同款双保险）。
+ */
+const COAGENT_LOG_RE = /^[A-Za-z0-9][A-Za-z0-9._-]*\.md$/
+
+function handleCoAgentLogs(req: IncomingMessage, res: ServerResponse): boolean {
+  const url = decodeURIComponent((req.url ?? '').split('?')[0])
+  if (req.method !== 'POST' || url !== '/api/coagent-log') return false
+  const chunks: Buffer[] = []
+  req.on('data', (c: Buffer) => chunks.push(c))
+  req.on('end', () => {
+    try {
+      const body = JSON.parse(Buffer.concat(chunks).toString('utf8')) as {
+        filename?: unknown
+        content?: unknown
+      }
+      if (typeof body.filename !== 'string' || !COAGENT_LOG_RE.test(body.filename)) {
+        throw new Error('文件名不合规（只允许字母/数字/._-，且以 .md 结尾）')
+      }
+      if (typeof body.content !== 'string') throw new Error('content 必须是字符串')
+      const dir = resolve(layoutRoot, 'logs', 'coAgent')
+      const target = resolve(dir, body.filename)
+      if (!target.startsWith(dir + sep)) throw new Error('非法路径')
+      if (!existsSync(dir)) mkdirSync(dir, { recursive: true })
+      writeFileSync(target, body.content.endsWith('\n') ? body.content : body.content + '\n', 'utf8')
+      res.setHeader('Content-Type', 'application/json; charset=utf-8')
+      res.end(JSON.stringify({ ok: true, saved: target, bytes: body.content.length }))
+    } catch (e) {
+      res.statusCode = 400
+      res.setHeader('Content-Type', 'application/json; charset=utf-8')
+      res.end(JSON.stringify({ ok: false, error: e instanceof Error ? e.message : String(e) }))
+    }
+  })
+  return true
+}
+
 function serveDataDirs(): Plugin {
   const serve = (req: IncomingMessage, res: ServerResponse): boolean => {
     const url = decodeURIComponent((req.url ?? '').split('?')[0])
@@ -134,6 +173,7 @@ function serveDataDirs(): Plugin {
     middlewares.use((req, res, next) => {
       if (handleSaveScene(req, res)) return
       if (handleLogs(req, res)) return
+      if (handleCoAgentLogs(req, res)) return
       if (serve(req, res)) return
       next()
     })

@@ -1,0 +1,387 @@
+{
+  "schema_version": "1.2",
+  "name": "木箱",
+  "object_label": {
+    "raw": "木箱",
+    "raw_source": "llm",
+    "canonical": "木箱",
+    "canonical_source": "llm_raw",
+    "display": "木箱",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.92,
+    "evidence": [
+      {
+        "view": "方位 0° / 俯仰 25°",
+        "role": "supports",
+        "detail": "正面视角清晰展示了垂直侧边和水平板条结构，确认了箱体形态。"
+      },
+      {
+        "view": "方位 45° / 俯仰 15°",
+        "role": "supports",
+        "detail": "透视角度进一步证实了物体的厚度和板条拼接的细节。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "木箱",
+      "parent_path": [
+        "道具",
+        "容器"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "箱子",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质纹理"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "木箱；类别：道具/容器；属性：棕色、板条结构、储物用途",
+    "terms": [
+      "木箱",
+      "道具",
+      "容器",
+      "棕色",
+      "板条结构",
+      "储物用途",
+      "箱子",
+      "木质纹理"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "容器"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "箱子",
+      "name": "木箱",
+      "category_path": [
+        "道具",
+        "容器"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色",
+    "板条结构",
+    "储物用途"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "中",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "中",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9645,
+      "evidence": {
+        "topology_quality": 0.9942,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.8193,
+        "uv_quality": 0.9584,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "中",
+      "score": 0.4201,
+      "evidence": {
+        "triangle_count": 818,
+        "vertex_count": 2454,
+        "resolution": 818,
+        "split_vertices": true,
+        "triangle_density": 0.10249937,
+        "resolution_score": 0.4481,
+        "density_score": 0.3548,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.8899,
+      "status": "scored",
+      "evidence": [
+        "三角面 818 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.460，阈值 0.200",
+        "量化法线方向数 126",
+        "轴对齐法线比例 0.483"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "中",
+      "machine_label": "中",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 中，分数 0.4201"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 818 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.460，阈值 0.200",
+        "量化法线方向数 126",
+        "轴对齐法线比例 0.483"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "使用简单的明暗着色表现体积感",
+        "颜色为单一的基色（Base Color），无复杂纹理贴图细节"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.8899,
+          "evidence": [
+            "三角面 818 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.460，阈值 0.200",
+            "量化法线方向数 126",
+            "轴对齐法线比例 0.483"
+          ]
+        }
+      ],
+      "confidence": 0.8899,
+      "evidence": [
+        "三角面 818 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.460，阈值 0.200",
+        "量化法线方向数 126",
+        "轴对齐法线比例 0.483"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Realistic",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.92,
+      "evidence": [
+        "使用简单的明暗着色表现体积感",
+        "颜色为单一的基色（Base Color），无复杂纹理贴图细节"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.92,
+      "evidence": [
+        "使用简单的明暗着色表现体积感",
+        "颜色为单一的基色（Base Color），无复杂纹理贴图细节"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.92,
+      "modeling_quality": 0.9645,
+      "modeling_precision": 0.4201,
+      "modeling_style": 0.8899
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色",
+        "confidence": 1.0,
+        "evidence": "模型整体呈现均匀的棕褐色，符合木材或纸板材质特征。",
+        "source": "llm"
+      },
+      {
+        "tag": "板条结构",
+        "confidence": 0.98,
+        "evidence": "侧面可见明显的横向板条拼接缝隙，具有典型的木箱构造特征。",
+        "source": "llm"
+      },
+      {
+        "tag": "储物用途",
+        "confidence": 0.9,
+        "evidence": "封闭的箱体结构，通常用于存放物品。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "木箱",
+      "taxonomy_path": [
+        "道具",
+        "容器"
+      ],
+      "status": "parent_only",
+      "missing_leaf": true
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9645,
+        "evidence": {
+          "topology_quality": 0.9942,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.8193,
+          "uv_quality": 0.9584,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "中",
+        "score": 0.4201,
+        "evidence": {
+          "triangle_count": 818,
+          "vertex_count": 2454,
+          "resolution": 818,
+          "split_vertices": true,
+          "triangle_density": 0.10249937,
+          "resolution_score": 0.4481,
+          "density_score": 0.3548,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.8899,
+        "status": "scored",
+        "confidence": 0.8899,
+        "evidence": [
+          "三角面 818 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.460，阈值 0.200",
+          "量化法线方向数 126",
+          "轴对齐法线比例 0.483"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.8899,
+            "evidence": [
+              "三角面 818 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.460，阈值 0.200",
+              "量化法线方向数 126",
+              "轴对齐法线比例 0.483"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "物体呈长方体形状，高宽比接近1:1，深度较浅",
+      "侧面有明显的水平分层结构，模拟木板堆叠效果",
+      "边缘有倒角处理，非完全锐利的直角"
+    ],
+    "candidates": [
+      {
+        "name": "集装箱",
+        "confidence": 0.3
+      },
+      {
+        "name": "普通树桩",
+        "confidence": 0.1
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

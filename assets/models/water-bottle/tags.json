@@ -1,0 +1,359 @@
+{
+  "schema_version": "1.2",
+  "name": "水壶",
+  "object_label": {
+    "raw": "水壶",
+    "raw_source": "llm",
+    "canonical": "水壶",
+    "canonical_source": "llm_raw",
+    "display": "水壶",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见瓶盖、瓶身曲线及底部支架结构"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了侧面的品牌Logo细节，确认为商品化水壶造型"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "水壶",
+      "parent_path": [
+        "道具",
+        "容器"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "水壶",
+      "subtype": null,
+      "appearance_motifs": [
+        "户外风格"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "水壶；类别：道具/容器；属性：米色、红棕色、灰色、Logo图案",
+    "terms": [
+      "水壶",
+      "道具",
+      "容器",
+      "米色",
+      "红棕色",
+      "灰色",
+      "Logo图案",
+      "户外风格"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "道具",
+      "容器"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "水壶",
+      "name": "水壶",
+      "category_path": [
+        "道具",
+        "容器"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "米色",
+    "红棕色",
+    "灰色",
+    "Logo图案"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "高",
+  "modeling_style": null,
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "高",
+    "modeling_style": null,
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9878,
+      "evidence": {
+        "topology_quality": 0.9809,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.9695,
+        "uv_quality": 0.9823,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "高",
+      "score": 0.6935,
+      "evidence": {
+        "triangle_count": 4510,
+        "vertex_count": 13530,
+        "resolution": 4510,
+        "split_vertices": true,
+        "triangle_density": 3.84540741,
+        "resolution_score": 0.5622,
+        "density_score": 1.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": null,
+      "score": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "高",
+      "machine_label": "高",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 高，分数 0.6935"
+      ]
+    },
+    "modeling_style": {
+      "label": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "材质颜色分布符合物理规律，无卡通描边或夸张色彩",
+        "光照产生自然的明暗过渡和阴影"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": null,
+      "status": "insufficient_evidence",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Realistic",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.98,
+      "evidence": [
+        "材质颜色分布符合物理规律，无卡通描边或夸张色彩",
+        "光照产生自然的明暗过渡和阴影"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.98,
+      "evidence": [
+        "材质颜色分布符合物理规律，无卡通描边或夸张色彩",
+        "光照产生自然的明暗过渡和阴影"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.98,
+      "modeling_quality": 0.9878,
+      "modeling_precision": 0.6935,
+      "modeling_style": null
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "米色",
+        "confidence": 1.0,
+        "evidence": "瓶身主体呈现明显的米黄色/浅卡其色",
+        "source": "llm"
+      },
+      {
+        "tag": "红棕色",
+        "confidence": 1.0,
+        "evidence": "瓶盖部分为深红棕色",
+        "source": "llm"
+      },
+      {
+        "tag": "灰色",
+        "confidence": 1.0,
+        "evidence": "底部防滑底座为深灰色",
+        "source": "llm"
+      },
+      {
+        "tag": "Logo图案",
+        "confidence": 0.9,
+        "evidence": "瓶身侧面印有红色三角形山峰图形及文字",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "水壶",
+      "taxonomy_path": [
+        "道具",
+        "容器"
+      ],
+      "status": "parent_only",
+      "missing_leaf": true
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9878,
+        "evidence": {
+          "topology_quality": 0.9809,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.9695,
+          "uv_quality": 0.9823,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "高",
+        "score": 0.6935,
+        "evidence": {
+          "triangle_count": 4510,
+          "vertex_count": 13530,
+          "resolution": 4510,
+          "split_vertices": true,
+          "triangle_density": 3.84540741,
+          "resolution_score": 0.5622,
+          "density_score": 1.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": null,
+        "score": null,
+        "status": "insufficient_evidence",
+        "confidence": 0.0,
+        "evidence": [
+          "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+        ],
+        "candidates": [],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "具有典型的圆柱形瓶身、收窄瓶颈和螺旋盖结构",
+      "底部带有宽大的环形防滑底座，符合运动水壶特征"
+    ],
+    "candidates": [
+      {
+        "name": "道具/容器/花盆",
+        "confidence": 0.1
+      },
+      {
+        "name": "其他/未分类",
+        "confidence": 0.05
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

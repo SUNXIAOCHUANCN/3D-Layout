@@ -1,0 +1,367 @@
+{
+  "schema_version": "1.2",
+  "name": "桌子",
+  "object_label": {
+    "raw": "桌子",
+    "raw_source": "llm",
+    "canonical": "桌子",
+    "canonical_source": "llm_raw",
+    "display": "桌子",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.95,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 15°",
+        "role": "supports",
+        "detail": "清晰展示了左侧桌腿与桌面的连接关系，以及桌面的厚度。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角确认了物体的长宽比和两条前腿的位置，排除了显示器底座的可能性。"
+      },
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "背面视角证实了对称的四腿结构和完整的矩形轮廓。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "桌子",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "桌子；类别：家具/桌子；属性：棕色、四腿结构、平板桌面",
+    "terms": [
+      "桌子",
+      "家具",
+      "棕色",
+      "四腿结构",
+      "平板桌面"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "家具",
+      "桌子"
+    ],
+    "leaf": "桌子",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "桌子",
+      "name": "桌子",
+      "category_path": [
+        "家具",
+        "桌子"
+      ],
+      "primary_paths": [
+        [
+          "家具",
+          "桌子"
+        ]
+      ],
+      "name_paths": [
+        [
+          "家具",
+          "桌子"
+        ]
+      ],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        },
+        {
+          "field": "primary_name",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色",
+    "四腿结构",
+    "平板桌面"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": null,
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": null,
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9405,
+      "evidence": {
+        "topology_quality": 0.9545,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.7047,
+        "uv_quality": 1.0,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.2855,
+      "evidence": {
+        "triangle_count": 448,
+        "vertex_count": 1344,
+        "resolution": 448,
+        "split_vertices": true,
+        "triangle_density": 0.00875203,
+        "resolution_score": 0.4079,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": null,
+      "score": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.2855"
+      ]
+    },
+    "modeling_style": {
+      "label": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "使用简单的明暗着色（Simple Shading）表现立体感",
+        "颜色均匀无复杂纹理贴图，符合预览器或白模渲染特征"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": null,
+      "status": "insufficient_evidence",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Realistic",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.95,
+      "evidence": [
+        "使用简单的明暗着色（Simple Shading）表现立体感",
+        "颜色均匀无复杂纹理贴图，符合预览器或白模渲染特征"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.95,
+      "evidence": [
+        "使用简单的明暗着色（Simple Shading）表现立体感",
+        "颜色均匀无复杂纹理贴图，符合预览器或白模渲染特征"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.95,
+      "modeling_quality": 0.9405,
+      "modeling_precision": 0.2855,
+      "modeling_style": null
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色",
+        "confidence": 1.0,
+        "evidence": "模型整体呈现均匀的棕褐色材质基色。",
+        "source": "llm"
+      },
+      {
+        "tag": "四腿结构",
+        "confidence": 0.98,
+        "evidence": "可见四条垂直的矩形立柱支撑上方的水平板面。",
+        "source": "llm"
+      },
+      {
+        "tag": "平板桌面",
+        "confidence": 0.98,
+        "evidence": "顶部为宽大的扁平长方体结构，符合桌面的几何特征。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "桌子",
+      "taxonomy_path": [
+        "家具",
+        "桌子"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9405,
+        "evidence": {
+          "topology_quality": 0.9545,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.7047,
+          "uv_quality": 1.0,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.2855,
+        "evidence": {
+          "triangle_count": 448,
+          "vertex_count": 1344,
+          "resolution": 448,
+          "split_vertices": true,
+          "triangle_density": 0.00875203,
+          "resolution_score": 0.4079,
+          "density_score": 0.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": null,
+        "score": null,
+        "status": "insufficient_evidence",
+        "confidence": 0.0,
+        "evidence": [
+          "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+        ],
+        "candidates": [],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "物体由一个宽大的水平顶板和下方的垂直支撑结构组成",
+      "支撑结构位于顶板下方两侧，形成典型的桌腿布局",
+      "整体比例显示宽度远大于高度和深度，符合桌子的形态特征"
+    ],
+    "candidates": [
+      {
+        "name": "家具/桌子",
+        "confidence": 0.95
+      },
+      {
+        "name": "家具/柜子",
+        "confidence": 0.3
+      },
+      {
+        "name": "建筑/构件/门",
+        "confidence": 0.1
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

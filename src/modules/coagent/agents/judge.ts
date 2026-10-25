@@ -24,6 +24,7 @@ import { CoAgentError } from '../contracts'
 import { validateVerdict } from '../schemas'
 import { applyComputedToVerdict, observationPairIssues, validateTaskAgainstScene, type TaskValidation } from '../services/validation'
 import { judgeRequestText, SYSTEM_JUDGE } from './prompts'
+import { logStage, logWarn } from '../runtime/runLog'
 
 export interface JudgeInput {
   task: UnitTask
@@ -80,10 +81,24 @@ export async function judgeTask(input: JudgeInput): Promise<JudgeOutput> {
     ...(input.geometry ? { geometry: input.geometry } : {}),
   })
 
+  logStage(
+    'judge.start',
+    `[${input.task.regionId}/${input.task.id}] 判定开始`,
+    [
+      `判据：${input.task.criteria.map(c => `${c.id}:${c.kind}`).join('，')}`,
+      `约束：${input.task.constraints.map(c => c.kind).join('，') || '（无）'}`,
+      `证据：before=${input.before.id}，after=${input.after.id}，执行期 ${input.extraEvidenceIds?.length ?? 0} 条`,
+      `几何检测：${input.geometry ? input.geometry.status : '未执行'}`,
+      `程序计算（metric/constraint，模型不能推翻 pass→fail）：`,
+      JSON.stringify({ criteria: validation.criteria, constraints: validation.constraints }, null, 2),
+    ].join('\n'),
+  )
+
   // W08.2：before/after 必须同 run/任务/区域/分区版本/相机/尺寸，否则不能拿两张图比较（§6.3）。
   const pairIssues = observationPairIssues(input.task, input.before, input.after, { runId: input.runId })
   if (pairIssues.length > 0) {
     const reason = `before/after 证据不可配对：${pairIssues.join('；')}`
+    logWarn('judge.pair', `[${input.task.regionId}/${input.task.id}] before/after 不可配对（直接判 fail，不调模型）`, reason)
     return { verdict: failVerdict(input.task, reason), credible: false, issues: pairIssues, validation }
   }
 
@@ -107,8 +122,14 @@ export async function judgeTask(input: JudgeInput): Promise<JudgeOutput> {
   }
   await addImage('before', input.before)
   await addImage('after', input.after)
+  logStage(
+    'judge.images',
+    `[${input.task.regionId}/${input.task.id}] 附带证据图 ${images.length} 张（${imageLabels.join(' → ') || '无'}）`,
+    imageIssues.join('\n'),
+  )
   if (hasVisual && imageIssues.length > 0) {
     const reason = `visual 判定缺少证据图：${imageIssues.join('；')}`
+    logWarn('judge.images', `[${input.task.regionId}/${input.task.id}] visual 缺少证据图（直接判 fail）`, reason)
     return { verdict: failVerdict(input.task, reason), credible: false, issues: [reason, ...imageIssues], validation }
   }
 
@@ -140,12 +161,14 @@ export async function judgeTask(input: JudgeInput): Promise<JudgeOutput> {
     parsed = extractJson(reply.text)
   } catch (e) {
     const reason = `判定不是合法 JSON：${e instanceof Error ? e.message : String(e)}`
+    logWarn('judge.parse', `[${input.task.regionId}/${input.task.id}] 判定回包不是合法 JSON`, `${reason}\n\n回包：${reply.text.slice(0, 4_000)}`)
     return { verdict: failVerdict(input.task, reason), credible: false, issues: [reason], validation }
   }
 
   const shape = validateVerdict(parsed)
   if (!shape.ok) {
     const issues = shape.issues.map(i => `${i.path} ${i.message}`)
+    logWarn('judge.schema', `[${input.task.regionId}/${input.task.id}] 判定 schema 不合法`, issues.map(i => `- ${i}`).join('\n'))
     return { verdict: failVerdict(input.task, `判定 schema 不合法：${issues.join('; ')}`), credible: false, issues, validation }
   }
 
@@ -188,6 +211,11 @@ export async function judgeTask(input: JudgeInput): Promise<JudgeOutput> {
       status: 'fail',
       repairSuggestions: [...verdict.repairSuggestions, ...issues],
     }
+    logWarn(
+      'judge.inconsistent',
+      `[${input.task.regionId}/${input.task.id}] 判定不可信（证据/判据引用不自洽），按 fail 处理`,
+      issues.map(i => `- ${i}`).join('\n'),
+    )
     return { verdict: applyComputedToVerdict(merged, validation).verdict, credible: false, issues, validation }
   }
 
@@ -195,11 +223,23 @@ export async function judgeTask(input: JudgeInput): Promise<JudgeOutput> {
   if (verdict.status === 'pass' && !allPass) {
     const issues2 = ['verdict.status=pass 但存在非 pass 的判据，按 fail 处理']
     const merged: Verdict = { ...verdict, status: 'fail', repairSuggestions: [...verdict.repairSuggestions, ...issues2] }
+    logWarn('judge.inconsistent', `[${input.task.regionId}/${input.task.id}] status=pass 但判据并非全 pass，降级为 fail`, issues2[0])
     return { verdict: applyComputedToVerdict(merged, validation).verdict, credible: false, issues: issues2, validation }
   }
 
   // W08.1：程序 metric/constraint 的 fail/uncertain 覆盖模型的 pass（§6.6）。
   const applied = applyComputedToVerdict(verdict, validation)
+  logStage(
+    'judge.outcome',
+    `[${input.task.regionId}/${input.task.id}] 判定完成：模型给 ${verdict.status} → 应用程序事实后 ${applied.verdict.status}`,
+    [
+      `模型判据：${verdict.criteria.map(c => `${c.criterionId}:${c.status}`).join('，')}`,
+      `最终判据：${applied.verdict.criteria.map(c => `${c.criterionId}:${c.status}`).join('，')}`,
+      ...(applied.verdict.repairSuggestions.length > 0
+        ? ['修正建议：', ...applied.verdict.repairSuggestions.map(s => `- ${s}`)]
+        : []),
+    ].join('\n'),
+  )
   return { verdict: applied.verdict, credible: true, issues: [], validation }
 }
 

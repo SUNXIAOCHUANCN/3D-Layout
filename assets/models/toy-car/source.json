@@ -1,0 +1,52 @@
+{
+    "filename":  "model.glb",
+    "source_path":  "toy-car/model.glb",
+    "source_sha256":  "740ffd07b0dfd2c38f778ea66574fbdd4c5d9273ff01d7540531bd795e85fc65",
+    "source_axis":  "y-up",
+    "source_unit":  "m",
+    "normalization":  {
+                          "sourceAxis":  "Z-UP",
+                          "targetAxis":  "Y-UP",
+                          "sourceUnit":  "m",
+                          "targetUnit":  "cm",
+                          "scaleFactor":  100.0,
+                          "origin":  "bottom-center",
+                          "center":  [
+                                         0,
+                                         38.969704,
+                                         0
+                                     ],
+                          "aabb":  {
+                                       "min":  [
+                                                   -99.297792,
+                                                   0.0,
+                                                   -100.0
+                                               ],
+                                       "max":  [
+                                                   99.297792,
+                                                   77.939409,
+                                                   100.0
+                                               ]
+                                   },
+                          "dimensions":  [
+                                             198.595584,
+                                             77.939409,
+                                             200.0
+                                         ],
+                          "warnings":  [
+                                           "{\"asset\": \"model.glb\", \"fast_path_failed\": true, \"exception_type\": \"FastPathError\", \"exception_message\": \"无法导入 trimesh（可能缺少依赖或 Python 版本不匹配）：ImportError\", \"fallback_to_blender\": true}",
+                                           "已使用本机 Blender 读取文件元数据。导入结果是 Blender 世界坐标 Z-Up、单位米，页面上的源坐标和单位不再重复换算。"
+                                       ],
+                          "preCanonicalDimensions":  [
+                                                         20.258534,
+                                                         7.95052,
+                                                         20.401797
+                                                     ],
+                          "semanticScaleFactor":  9.80305803,
+                          "totalScaleFactor":  980.30580345,
+                          "scalePolicy":  "视觉模型估计现实最长边 200 cm",
+                          "scaleSource":  "llm",
+                          "targetDimension":  200.0
+                      },
+    "source_path_base":  "input_root"
+}

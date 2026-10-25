@@ -1,0 +1,21 @@
+{
+  "valid": true,
+  "errors": [],
+  "warnings": [],
+  "schema_version": "1.2",
+  "success": true,
+  "input_format": "glb",
+  "normalization_success": true,
+  "thumbnail_success": true,
+  "llm_success": true,
+  "llm_call": {
+    "attempts": 2,
+    "corrected": true,
+    "errors_before_success": [
+      "HTTP Error 429: Too Many Requests; {\"error\":{\"message\":\"Request rate increased too quickly. To ensure system stability, please adjust your client logic to scale requests more smoothly over time.\",\"type\":\"limit_burst_rate\",\"param\":null,\"code\":\"limit_burst_rate\"},\"id\":\"chatcmpl-58b02e85-f241-9569-9c8f-e1ea92ca943e\",\"request_id\":\"58b02e85-f241-9569-9c8f-e1ea92ca943e\"}"
+    ]
+  },
+  "normalization_issues": [],
+  "recovery": "corrected-retry",
+  "output_format": "glb"
+}

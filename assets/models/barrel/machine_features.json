@@ -1,0 +1,92 @@
+{
+  "geometry": {
+    "vertex_count": 1836,
+    "face_count": 612,
+    "triangle_count": 612,
+    "mesh_count": 1,
+    "surface_area": 32820.15668494,
+    "volume": 191702.98293344,
+    "bounding_box_volume": 279950.73345693
+  },
+  "bounding_box": {
+    "width": 63.23998887,
+    "height": 70.0,
+    "depth": 63.23998887
+  },
+  "topology": {
+    "watertight": true,
+    "non_manifold_edges": 0,
+    "boundary_edges": 0,
+    "degenerate_faces": 0,
+    "self_intersection": null
+  },
+  "material": {
+    "material_count": 1,
+    "texture_count": 1,
+    "has_pbr": null,
+    "has_normal_map": null
+  },
+  "detail": {
+    "triangle_density": 0.01864708,
+    "curvature_complexity": 0.479303,
+    "faceted_edge_ratio": 0.479303,
+    "planar_edge_ratio": 0.520697,
+    "axis_aligned_normal_ratio": 0.398693,
+    "normal_direction_count": 110,
+    "silhouette_complexity": null
+  },
+  "predictions": {
+    "quality": {
+      "label": "极高",
+      "score": 0.9451,
+      "evidence": {
+        "topology_quality": 1.0,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.745,
+        "uv_quality": 0.8824,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "precision": {
+      "label": "低",
+      "score": 0.3001,
+      "evidence": {
+        "triangle_count": 612,
+        "vertex_count": 1836,
+        "resolution": 612,
+        "split_vertices": true,
+        "triangle_density": 0.01864708,
+        "resolution_score": 0.4287,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.8948,
+      "status": "scored",
+      "confidence": 0.8948,
+      "evidence": [
+        "三角面 612 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.479，阈值 0.200",
+        "量化法线方向数 110",
+        "轴对齐法线比例 0.399"
+      ],
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.8948,
+          "evidence": [
+            "三角面 612 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.479，阈值 0.200",
+            "量化法线方向数 110",
+            "轴对齐法线比例 0.399"
+          ]
+        }
+      ],
+      "rule_version": "geometry-style-1.2"
+    }
+  }
+}

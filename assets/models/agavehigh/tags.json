@@ -1,0 +1,379 @@
+{
+  "schema_version": "1.2",
+  "name": "龙舌兰",
+  "object_label": {
+    "raw": "龙舌兰",
+    "raw_source": "llm",
+    "canonical": "龙舌兰",
+    "canonical_source": "llm_raw",
+    "display": "龙舌兰",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "可见清晰的莲座状叶片排列和底部短茎，确认为草本植物。"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了叶片的厚度和尖端形状，排除了扁平树叶类植物。"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "植物",
+      "subtype": null,
+      "appearance_motifs": [
+        "多肉植物",
+        "剑叶"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "龙舌兰；类别：植物/草本；属性：绿色、多肉植物造型",
+    "terms": [
+      "龙舌兰",
+      "植物",
+      "草本",
+      "绿色",
+      "多肉植物造型",
+      "多肉植物",
+      "剑叶"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "植物",
+      "草本"
+    ],
+    "leaf": "草本",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "植物",
+      "name": "龙舌兰",
+      "category_path": [
+        "植物",
+        "草本"
+      ],
+      "primary_paths": [
+        [
+          "植物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "绿色",
+    "多肉植物造型"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9469,
+      "evidence": {
+        "topology_quality": 0.9943,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.6892,
+        "uv_quality": 0.9848,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.379,
+      "evidence": {
+        "triangle_count": 528,
+        "vertex_count": 1584,
+        "resolution": 528,
+        "split_vertices": true,
+        "triangle_density": 0.07464771,
+        "resolution_score": 0.4189,
+        "density_score": 0.286,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.8873,
+      "status": "scored",
+      "evidence": [
+        "三角面 528 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.430，阈值 0.200",
+        "量化法线方向数 169",
+        "轴对齐法线比例 0.197"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.379"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 528 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.430，阈值 0.200",
+        "量化法线方向数 169",
+        "轴对齐法线比例 0.197"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "使用纯色材质填充，无复杂纹理细节",
+        "光照简单，明暗交界线清晰，缺乏真实环境反射"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.8873,
+          "evidence": [
+            "三角面 528 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.430，阈值 0.200",
+            "量化法线方向数 169",
+            "轴对齐法线比例 0.197"
+          ]
+        }
+      ],
+      "confidence": 0.8873,
+      "evidence": [
+        "三角面 528 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.430，阈值 0.200",
+        "量化法线方向数 169",
+        "轴对齐法线比例 0.197"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.96,
+      "evidence": [
+        "使用纯色材质填充，无复杂纹理细节",
+        "光照简单，明暗交界线清晰，缺乏真实环境反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.96,
+      "evidence": [
+        "使用纯色材质填充，无复杂纹理细节",
+        "光照简单，明暗交界线清晰，缺乏真实环境反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.96,
+      "modeling_quality": 0.9469,
+      "modeling_precision": 0.379,
+      "modeling_style": 0.8873
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "绿色",
+        "confidence": 1.0,
+        "evidence": "模型整体呈现不同深浅的绿色，中心嫩叶为浅黄绿色，外层老叶为深绿色。",
+        "source": "llm"
+      },
+      {
+        "tag": "多肉植物造型",
+        "confidence": 0.98,
+        "evidence": "叶片肥厚、尖锐且呈莲座状排列，符合龙舌兰或芦荟等植物的形态特征。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "龙舌兰",
+      "taxonomy_path": [
+        "植物",
+        "草本"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9469,
+        "evidence": {
+          "topology_quality": 0.9943,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.6892,
+          "uv_quality": 0.9848,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.379,
+        "evidence": {
+          "triangle_count": 528,
+          "vertex_count": 1584,
+          "resolution": 528,
+          "split_vertices": true,
+          "triangle_density": 0.07464771,
+          "resolution_score": 0.4189,
+          "density_score": 0.286,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.8873,
+        "status": "scored",
+        "confidence": 0.8873,
+        "evidence": [
+          "三角面 528 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.430，阈值 0.200",
+          "量化法线方向数 169",
+          "轴对齐法线比例 0.197"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.8873,
+            "evidence": [
+              "三角面 528 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.430，阈值 0.200",
+              "量化法线方向数 169",
+              "轴对齐法线比例 0.197"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "具有明显的中心生长点和向外辐射的尖长叶片结构",
+      "叶片边缘锋利，整体轮廓呈现低多边形风格化的几何感"
+    ],
+    "candidates": [
+      {
+        "name": "植物/仙人掌",
+        "confidence": 0.45
+      },
+      {
+        "name": "植物/灌木",
+        "confidence": 0.3
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

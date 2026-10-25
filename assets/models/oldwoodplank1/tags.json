@@ -1,0 +1,364 @@
+{
+  "schema_version": "1.2",
+  "name": "矩形板",
+  "object_label": {
+    "raw": "矩形板",
+    "raw_source": "llm",
+    "canonical": "矩形板",
+    "canonical_source": "llm_raw",
+    "display": "矩形板",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.75,
+    "evidence": [
+      {
+        "view": "方位 270° / 俯仰 15°",
+        "role": "supports",
+        "detail": "可见一个巨大的垂直面，颜色均一，无明显屏幕边框或底座结构，排除显示器。"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "俯视角度清晰展示了物体的扁平形态和长条状比例，确认其为板状结构而非箱体。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "矩形板",
+      "parent_path": [],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "矩形板",
+      "subtype": null,
+      "appearance_motifs": [],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "矩形板；属性：棕色、扁平长方体",
+    "terms": [
+      "矩形板",
+      "棕色",
+      "扁平长方体"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [],
+    "leaf": null,
+    "status": "unmatched",
+    "confidence": 0.65,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "矩形板",
+      "name": "矩形板",
+      "category_path": [],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色",
+    "扁平长方体"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": "Lowpoly",
+  "rendering_style": "Stylized",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": "Lowpoly",
+    "rendering_style": "Stylized"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9754,
+      "evidence": {
+        "topology_quality": 1.0,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.8464,
+        "uv_quality": 1.0,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.2362,
+      "evidence": {
+        "triangle_count": 156,
+        "vertex_count": 468,
+        "resolution": 156,
+        "split_vertices": true,
+        "triangle_density": 0.00898112,
+        "resolution_score": 0.3374,
+        "density_score": 0.0,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "score": 0.8885,
+      "status": "scored",
+      "evidence": [
+        "三角面 156 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.419，阈值 0.200",
+        "量化法线方向数 53",
+        "轴对齐法线比例 0.468"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.2362"
+      ]
+    },
+    "modeling_style": {
+      "label": "Lowpoly",
+      "status": "scored",
+      "evidence": [
+        "三角面 156 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.419，阈值 0.200",
+        "量化法线方向数 53",
+        "轴对齐法线比例 0.468"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "Stylized",
+      "evidence": [
+        "材质为单一纯色，缺乏真实世界的PBR物理属性（如粗糙度、金属度变化）。",
+        "光照简单，仅通过顶点色或基础明暗表现立体感，无环境反射或复杂阴影。"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": "Lowpoly",
+      "status": "confirmed_candidate",
+      "candidates": [
+        {
+          "label": "Lowpoly",
+          "score": 0.8885,
+          "evidence": [
+            "三角面 156 不超过实验上限 12000",
+            "相邻面夹角显著的分面边比例 0.419，阈值 0.200",
+            "量化法线方向数 53",
+            "轴对齐法线比例 0.468"
+          ]
+        }
+      ],
+      "confidence": 0.8885,
+      "evidence": [
+        "三角面 156 不超过实验上限 12000",
+        "相邻面夹角显著的分面边比例 0.419，阈值 0.200",
+        "量化法线方向数 53",
+        "轴对齐法线比例 0.468"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "材质为单一纯色，缺乏真实世界的PBR物理属性（如粗糙度、金属度变化）。",
+        "光照简单，仅通过顶点色或基础明暗表现立体感，无环境反射或复杂阴影。"
+      ],
+      "source": "unknown",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [
+        "Stylized"
+      ],
+      "confidence": 0.75,
+      "evidence": [
+        "材质为单一纯色，缺乏真实世界的PBR物理属性（如粗糙度、金属度变化）。",
+        "光照简单，仅通过顶点色或基础明暗表现立体感，无环境反射或复杂阴影。"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.65,
+      "rendering_style": 0.75,
+      "modeling_quality": 0.9754,
+      "modeling_precision": 0.2362,
+      "modeling_style": 0.8885
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "unknown",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色",
+        "confidence": 0.95,
+        "evidence": "多视角缩略图显示物体表面呈现均匀的棕色调，无复杂纹理。",
+        "source": "llm"
+      },
+      {
+        "tag": "扁平长方体",
+        "confidence": 0.98,
+        "evidence": "几何统计显示高度极小（约16cm），宽度极大（约289cm），长宽比接近5:1，符合板材特征。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "矩形板",
+      "taxonomy_path": [],
+      "status": "unmatched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9754,
+        "evidence": {
+          "topology_quality": 1.0,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.8464,
+          "uv_quality": 1.0,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.2362,
+        "evidence": {
+          "triangle_count": 156,
+          "vertex_count": 468,
+          "resolution": 156,
+          "split_vertices": true,
+          "triangle_density": 0.00898112,
+          "resolution_score": 0.3374,
+          "density_score": 0.0,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": "Lowpoly",
+        "score": 0.8885,
+        "status": "scored",
+        "confidence": 0.8885,
+        "evidence": [
+          "三角面 156 不超过实验上限 12000",
+          "相邻面夹角显著的分面边比例 0.419，阈值 0.200",
+          "量化法线方向数 53",
+          "轴对齐法线比例 0.468"
+        ],
+        "candidates": [
+          {
+            "label": "Lowpoly",
+            "score": 0.8885,
+            "evidence": [
+              "三角面 156 不超过实验上限 12000",
+              "相邻面夹角显著的分面边比例 0.419，阈值 0.200",
+              "量化法线方向数 53",
+              "轴对齐法线比例 0.468"
+            ]
+          }
+        ],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "轮廓呈现规则的长方形，边缘平直。",
+      "侧面视图显示厚度均匀且较薄，没有复杂的内部结构或连接部件。"
+    ],
+    "candidates": [
+      {
+        "name": "家具/桌子",
+        "confidence": 0.3
+      },
+      {
+        "name": "建筑/构件/门",
+        "confidence": 0.2
+      },
+      {
+        "name": "道具/地垫",
+        "confidence": 0.15
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

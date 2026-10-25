@@ -1,0 +1,183 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792513565301787600",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792513565301787600.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -36.597061,
+        0.0,
+        -34.169675
+      ],
+      "max": [
+        36.597061,
+        40.0,
+        34.169675
+      ]
+    },
+    "dimensions_cm": [
+      73.194122,
+      40.0,
+      68.33935
+    ],
+    "center_cm": [
+      0,
+      20.0,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实高度 40 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      280.173302,
+      153.112459,
+      261.590148
+    ],
+    "semantic_scale_factor": 0.26124589,
+    "total_scale_factor": 26.12458859,
+    "target_dimension_cm": 40.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -36.597061,
+          0.0,
+          -34.169675
+        ],
+        "max": [
+          36.597061,
+          40.0,
+          34.169675
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "植物"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "植物",
+      "name": "蘑菇",
+      "category_path": [
+        "植物"
+      ],
+      "primary_paths": [
+        [
+          "植物"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "蘑菇",
+    "raw_source": "llm",
+    "canonical": "蘑菇",
+    "canonical_source": "llm_raw",
+    "display": "蘑菇",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.96,
+    "evidence": [
+      {
+        "view": "方位 90° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰可见上方较大的蘑菇和下方较小的蘑菇，均具备菌盖和菌柄。"
+      },
+      {
+        "view": "方位 315° / 俯仰 35°",
+        "role": "supports",
+        "detail": "侧面视角确认了蘑菇的立体结构和低多边形建模特征。"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "蘑菇",
+      "parent_path": [
+        "植物"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "植物",
+      "subtype": null,
+      "appearance_motifs": [
+        "蘑菇"
+      ],
+      "asset_kind": "assembly",
+      "members": [
+        "大蘑菇",
+        "小蘑菇"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "蘑菇；类别：植物；属性：米黄色、低多边形风格、组合资产",
+    "terms": [
+      "蘑菇",
+      "植物",
+      "米黄色",
+      "低多边形风格",
+      "组合资产",
+      "大蘑菇",
+      "小蘑菇"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "schema_version": "1.0",
+  "asset_id": "AF-1792513113098622700",
+  "asset_version": 1,
+  "processing_status": "ready",
+  "artifacts": {
+    "model": "model/AF-1792513113098622700.glb",
+    "materials": [],
+    "thumbnail": "thumbnail/rgb.png",
+    "mask": "thumbnail/mask.png",
+    "tags": "tags.json",
+    "machine_features": "machine_features.json",
+    "model_dependencies": []
+  },
+  "coordinate_system": {
+    "handedness": "right-handed",
+    "up_axis": "+Y",
+    "forward_axis": "+Z",
+    "unit": "cm",
+    "origin": "bottom-center",
+    "front_status": "unverified"
+  },
+  "bounds": {
+    "aabb": {
+      "min": [
+        -226.664734,
+        0.0,
+        -250.0
+      ],
+      "max": [
+        226.664734,
+        161.507591,
+        250.0
+      ]
+    },
+    "dimensions_cm": [
+      453.329468,
+      161.507591,
+      500.0
+    ],
+    "center_cm": [
+      0,
+      80.753795,
+      0
+    ]
+  },
+  "scale": {
+    "status": "estimated",
+    "source": "llm",
+    "policy": "视觉模型估计现实最长边 500 cm",
+    "source_unit": "m",
+    "source_axis": "Z-UP",
+    "pre_semantic_dimensions_cm": [
+      2234.080887,
+      795.935512,
+      2464.08081
+    ],
+    "semantic_scale_factor": 0.20291542,
+    "total_scale_factor": 20.29154231,
+    "target_dimension_cm": 500.0
+  },
+  "placement": {
+    "support_surface": {
+      "plane": "y=0",
+      "available": true
+    },
+    "collision_proxy": {
+      "type": "aabb",
+      "aabb": {
+        "min": [
+          -226.664734,
+          0.0,
+          -250.0
+        ],
+        "max": [
+          226.664734,
+          161.507591,
+          250.0
+        ]
+      }
+    },
+    "layout_checks": [
+      "aabb_collision",
+      "support_contact",
+      "floating",
+      "front_orientation_manual"
+    ]
+  },
+  "semantic_category": {
+    "path": [
+      "其他"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "场景",
+      "name": "露营场景",
+      "category_path": [
+        "其他"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "object_label": {
+    "raw": "露营场景",
+    "raw_source": "llm",
+    "canonical": "露营场景",
+    "canonical_source": "llm_raw",
+    "display": "露营场景",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了左侧的大岩石、中间的帐篷和右侧的树木群，确认为场景组合"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了帐篷内部结构和篝火堆的细节，以及背景中的树木"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了长椅和桌子的位置关系，进一步确认了露营主题"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "露营场景",
+      "parent_path": [
+        "其他"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "场景",
+      "subtype": null,
+      "appearance_motifs": [
+        "自然",
+        "户外"
+      ],
+      "asset_kind": "scene",
+      "members": [
+        "树",
+        "岩石",
+        "帐篷",
+        "长椅",
+        "桌子",
+        "篝火",
+        "仙人掌"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "露营场景；类别：其他；属性：绿色树叶、棕色树干、灰色岩石、白色帐篷、木质家具",
+    "terms": [
+      "露营场景",
+      "其他",
+      "绿色树叶",
+      "棕色树干",
+      "灰色岩石",
+      "白色帐篷",
+      "木质家具",
+      "场景",
+      "自然",
+      "户外",
+      "树",
+      "岩石",
+      "帐篷",
+      "长椅",
+      "桌子",
+      "篝火",
+      "仙人掌"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  }
+}

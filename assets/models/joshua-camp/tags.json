@@ -1,0 +1,389 @@
+{
+  "schema_version": "1.2",
+  "name": "露营场景",
+  "object_label": {
+    "raw": "露营场景",
+    "raw_source": "llm",
+    "canonical": "露营场景",
+    "canonical_source": "llm_raw",
+    "display": "露营场景",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.98,
+    "evidence": [
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰展示了左侧的大岩石、中间的帐篷和右侧的树木群，确认为场景组合"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了帐篷内部结构和篝火堆的细节，以及背景中的树木"
+      },
+      {
+        "view": "方位 45° / 俯仰 35°",
+        "role": "supports",
+        "detail": "展示了长椅和桌子的位置关系，进一步确认了露营主题"
+      }
+    ],
+    "taxonomy_candidate": {
+      "term": "露营场景",
+      "parent_path": [
+        "其他"
+      ],
+      "status": "pending_review",
+      "source": "llm",
+      "taxonomy_version": "1.1.0"
+    },
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "场景",
+      "subtype": null,
+      "appearance_motifs": [
+        "自然",
+        "户外"
+      ],
+      "asset_kind": "scene",
+      "members": [
+        "树",
+        "岩石",
+        "帐篷",
+        "长椅",
+        "桌子",
+        "篝火",
+        "仙人掌"
+      ],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "露营场景；类别：其他；属性：绿色树叶、棕色树干、灰色岩石、白色帐篷、木质家具",
+    "terms": [
+      "露营场景",
+      "其他",
+      "绿色树叶",
+      "棕色树干",
+      "灰色岩石",
+      "白色帐篷",
+      "木质家具",
+      "场景",
+      "自然",
+      "户外",
+      "树",
+      "岩石",
+      "帐篷",
+      "长椅",
+      "桌子",
+      "篝火",
+      "仙人掌"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "其他"
+    ],
+    "leaf": null,
+    "status": "parent_only",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "unverified",
+      "primary": "场景",
+      "name": "露营场景",
+      "category_path": [
+        "其他"
+      ],
+      "primary_paths": [],
+      "name_paths": [],
+      "comparisons": [],
+      "conflicts": [],
+      "needs_review": true,
+      "action": "review",
+      "reason": "主物体未命中明确节点或同义词，不能据此判断一致",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "绿色树叶",
+    "棕色树干",
+    "灰色岩石",
+    "白色帐篷",
+    "木质家具"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "中",
+  "modeling_style": null,
+  "rendering_style": "卡通渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "中",
+    "modeling_style": null,
+    "rendering_style": "卡通渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.8797,
+      "evidence": {
+        "topology_quality": 0.8721,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.4731,
+        "uv_quality": 0.988,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "中",
+      "score": 0.5438,
+      "evidence": {
+        "triangle_count": 19324,
+        "vertex_count": 57972,
+        "resolution": 19324,
+        "split_vertices": true,
+        "triangle_density": 0.0706526,
+        "resolution_score": 0.6594,
+        "density_score": 0.274,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": null,
+      "score": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "中",
+      "machine_label": "中",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 中，分数 0.5438"
+      ]
+    },
+    "modeling_style": {
+      "label": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "卡通渲染",
+      "evidence": [
+        "物体表面使用纯色填充，无复杂纹理细节",
+        "光照效果简单，阴影边缘清晰且对比度高",
+        "整体视觉风格偏向低多边形（Low Poly）或玩具化设计"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": null,
+      "status": "insufficient_evidence",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Stylized",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.98,
+      "evidence": [
+        "物体表面使用纯色填充，无复杂纹理细节",
+        "光照效果简单，阴影边缘清晰且对比度高",
+        "整体视觉风格偏向低多边形（Low Poly）或玩具化设计"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "卡通渲染",
+      "status": "observed",
+      "candidates": [
+        "卡通渲染"
+      ],
+      "confidence": 0.98,
+      "evidence": [
+        "物体表面使用纯色填充，无复杂纹理细节",
+        "光照效果简单，阴影边缘清晰且对比度高",
+        "整体视觉风格偏向低多边形（Low Poly）或玩具化设计"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.98,
+      "modeling_quality": 0.8797,
+      "modeling_precision": 0.5438,
+      "modeling_style": null
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "绿色树叶",
+        "confidence": 1.0,
+        "evidence": "多棵树木的树冠呈现明显的亮绿色块状结构",
+        "source": "llm"
+      },
+      {
+        "tag": "棕色树干",
+        "confidence": 1.0,
+        "evidence": "所有树木的主干和树枝均为棕色",
+        "source": "llm"
+      },
+      {
+        "tag": "灰色岩石",
+        "confidence": 1.0,
+        "evidence": "场景中巨大的不规则几何体为灰色，符合岩石特征",
+        "source": "llm"
+      },
+      {
+        "tag": "白色帐篷",
+        "confidence": 1.0,
+        "evidence": "可见一个由支架支撑的白色三角形/圆锥形遮蔽物",
+        "source": "llm"
+      },
+      {
+        "tag": "木质家具",
+        "confidence": 0.9,
+        "evidence": "包含一张桌子和一条长椅，颜色呈红褐色/棕色",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "露营场景",
+      "taxonomy_path": [
+        "其他"
+      ],
+      "status": "parent_only",
+      "missing_leaf": true
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.8797,
+        "evidence": {
+          "topology_quality": 0.8721,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.4731,
+          "uv_quality": 0.988,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "中",
+        "score": 0.5438,
+        "evidence": {
+          "triangle_count": 19324,
+          "vertex_count": 57972,
+          "resolution": 19324,
+          "split_vertices": true,
+          "triangle_density": 0.0706526,
+          "resolution_score": 0.6594,
+          "density_score": 0.274,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": null,
+        "score": null,
+        "status": "insufficient_evidence",
+        "confidence": 0.0,
+        "evidence": [
+          "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+        ],
+        "candidates": [],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "多个独立物体（树、石头、家具）在空间中组合分布，构成完整环境",
+      "包含典型的露营元素：帐篷、篝火堆、野餐桌椅",
+      "树木具有简化的几何形态，非写实建模"
+    ],
+    "candidates": [
+      {
+        "name": "植物/树",
+        "confidence": 0.4
+      },
+      {
+        "name": "自然物/岩石",
+        "confidence": 0.3
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

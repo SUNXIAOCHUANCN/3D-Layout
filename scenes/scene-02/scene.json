@@ -1,33 +1,273 @@
 {
-  "meta": { "id": "scene-02", "name": "示例·仓储排布", "version": 1, "unit": "m", "up": "+Y" },
+  "meta": {
+    "id": "scene-02",
+    "name": "示例·仓储排布",
+    "version": 1,
+    "unit": "m",
+    "up": "+Y",
+    "modelMigration": {
+      "id": "20261024T084810012256Z",
+      "reportSha256": "baa2e0f2320823e81a3cf0b2f77543c71a37949ed2dac05b93a42ab751003999",
+      "appliedAt": "2026-10-24T08:48:10.012256+00:00"
+    }
+  },
   "environment": {
     "background": "#191d24",
     "sunIntensity": 1.8,
-    "ground": { "size": [24, 18], "receiveShadow": true }
+    "ground": {
+      "size": [
+        24,
+        18
+      ],
+      "receiveShadow": true
+    }
   },
   "assets": [
-    { "id": "shelf-01", "ref": "models/placeholder-box", "name": "货架A1", "tint": "#66717f",
-      "transform": { "position": [-2.2, 0, -2.4], "rotation": [0, 0, 0], "scale": [2.2, 1.9, 0.6] } },
-    { "id": "shelf-02", "ref": "models/placeholder-box", "name": "货架A2", "tint": "#66717f",
-      "transform": { "position": [0.4, 0, -2.4], "rotation": [0, 0, 0], "scale": [2.2, 1.9, 0.6] } },
-    { "id": "shelf-03", "ref": "models/placeholder-box", "name": "货架A3", "tint": "#66717f",
-      "transform": { "position": [3.0, 0, -2.4], "rotation": [0, 0, 0], "scale": [2.2, 1.9, 0.6] } },
-    { "id": "shelf-04", "ref": "models/placeholder-box", "name": "货架B1", "tint": "#66717f",
-      "transform": { "position": [-2.2, 0, 2.4], "rotation": [0, 0, 0], "scale": [2.2, 1.9, 0.6] } },
-    { "id": "shelf-05", "ref": "models/placeholder-box", "name": "货架B2", "tint": "#66717f",
-      "transform": { "position": [0.4, 0, 2.4], "rotation": [0, 0, 0], "scale": [2.2, 1.9, 0.6] } },
-    { "id": "shelf-06", "ref": "models/placeholder-box", "name": "货架B3", "tint": "#66717f",
-      "transform": { "position": [3.0, 0, 2.4], "rotation": [0, 0, 0], "scale": [2.2, 1.9, 0.6] } },
-    { "id": "barrel-01", "ref": "models/placeholder-cylinder", "name": "料桶1", "tint": "#7d8a4f",
-      "transform": { "position": [-0.6, 0, 0], "rotation": [0, 0, 0], "scale": [0.55, 0.95, 0.55] } },
-    { "id": "barrel-02", "ref": "models/placeholder-cylinder", "name": "料桶2", "tint": "#7d8a4f",
-      "transform": { "position": [0.2, 0, 0.1], "rotation": [0, 0, 0], "scale": [0.55, 0.95, 0.55] } },
-    { "id": "crate-01", "ref": "models/placeholder-box", "name": "料箱1", "tint": "#9c8b6e",
-      "transform": { "position": [1.6, 0, 0.1], "rotation": [0, 20, 0], "scale": [0.8, 0.6, 0.8] } },
-    { "id": "crate-02", "ref": "models/placeholder-box", "name": "料箱2", "tint": "#9c8b6e",
-      "transform": { "position": [2.5, 0, -0.4], "rotation": [0, -10, 0], "scale": [0.8, 0.6, 0.8] } }
+    {
+      "id": "shelf-01",
+      "ref": "models/placeholder-box",
+      "name": "货架A1",
+      "tint": "#66717f",
+      "transform": {
+        "position": [
+          -2.2,
+          0,
+          -2.4
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          2.2,
+          1.9,
+          0.6
+        ]
+      }
+    },
+    {
+      "id": "shelf-02",
+      "ref": "models/placeholder-box",
+      "name": "货架A2",
+      "tint": "#66717f",
+      "transform": {
+        "position": [
+          0.4,
+          0,
+          -2.4
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          2.2,
+          1.9,
+          0.6
+        ]
+      }
+    },
+    {
+      "id": "shelf-03",
+      "ref": "models/placeholder-box",
+      "name": "货架A3",
+      "tint": "#66717f",
+      "transform": {
+        "position": [
+          3.0,
+          0,
+          -2.4
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          2.2,
+          1.9,
+          0.6
+        ]
+      }
+    },
+    {
+      "id": "shelf-04",
+      "ref": "models/placeholder-box",
+      "name": "货架B1",
+      "tint": "#66717f",
+      "transform": {
+        "position": [
+          -2.2,
+          0,
+          2.4
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          2.2,
+          1.9,
+          0.6
+        ]
+      }
+    },
+    {
+      "id": "shelf-05",
+      "ref": "models/placeholder-box",
+      "name": "货架B2",
+      "tint": "#66717f",
+      "transform": {
+        "position": [
+          0.4,
+          0,
+          2.4
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          2.2,
+          1.9,
+          0.6
+        ]
+      }
+    },
+    {
+      "id": "shelf-06",
+      "ref": "models/placeholder-box",
+      "name": "货架B3",
+      "tint": "#66717f",
+      "transform": {
+        "position": [
+          3.0,
+          0,
+          2.4
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          2.2,
+          1.9,
+          0.6
+        ]
+      }
+    },
+    {
+      "id": "barrel-01",
+      "ref": "models/placeholder-cylinder",
+      "name": "料桶1",
+      "tint": "#7d8a4f",
+      "transform": {
+        "position": [
+          -0.6,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.55,
+          0.95,
+          0.55
+        ]
+      }
+    },
+    {
+      "id": "barrel-02",
+      "ref": "models/placeholder-cylinder",
+      "name": "料桶2",
+      "tint": "#7d8a4f",
+      "transform": {
+        "position": [
+          0.2,
+          0,
+          0.1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.55,
+          0.95,
+          0.55
+        ]
+      }
+    },
+    {
+      "id": "crate-01",
+      "ref": "models/placeholder-box",
+      "name": "料箱1",
+      "tint": "#9c8b6e",
+      "transform": {
+        "position": [
+          1.6,
+          0,
+          0.1
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          0.8,
+          0.6,
+          0.8
+        ]
+      }
+    },
+    {
+      "id": "crate-02",
+      "ref": "models/placeholder-box",
+      "name": "料箱2",
+      "tint": "#9c8b6e",
+      "transform": {
+        "position": [
+          2.5,
+          0,
+          -0.4
+        ],
+        "rotation": [
+          0,
+          -10,
+          0
+        ],
+        "scale": [
+          0.8,
+          0.6,
+          0.8
+        ]
+      }
+    }
   ],
   "cameras": [
-    { "id": "main", "position": [9, 7.5, 11], "target": [0.4, 0.8, 0], "fov": 55 }
+    {
+      "id": "main",
+      "position": [
+        9,
+        7.5,
+        11
+      ],
+      "target": [
+        0.4,
+        0.8,
+        0
+      ],
+      "fov": 55
+    }
   ]
 }

@@ -1,0 +1,366 @@
+{
+  "schema_version": "1.2",
+  "name": "木桌",
+  "object_label": {
+    "raw": "木桌",
+    "raw_source": "llm",
+    "canonical": "木桌",
+    "canonical_source": "llm_raw",
+    "display": "木桌",
+    "display_source": "llm",
+    "status": "recognized",
+    "confidence": 0.94,
+    "evidence": [
+      {
+        "view": "方位 180° / 俯仰 35°",
+        "role": "supports",
+        "detail": "清晰显示桌面背面及两条后腿，确认四足支撑结构"
+      },
+      {
+        "view": "方位 0° / 俯仰 35°",
+        "role": "supports",
+        "detail": "正面视角展示完整桌面宽度与前腿位置，比例协调"
+      },
+      {
+        "view": "方位 225° / 俯仰 35°",
+        "role": "supports",
+        "detail": "斜侧视角揭示桌面厚度、板条间隙及腿部连接方式"
+      },
+      {
+        "view": "方位 135° / 俯仰 35°",
+        "role": "supports",
+        "detail": "另一斜侧视角验证对称性与结构一致性"
+      }
+    ],
+    "taxonomy_candidate": null,
+    "taxonomy_version": "1.1.0",
+    "identity": {
+      "primary": "桌子",
+      "subtype": null,
+      "appearance_motifs": [
+        "木质纹理"
+      ],
+      "asset_kind": "single",
+      "members": [],
+      "source": "llm"
+    }
+  },
+  "retrieval_profile": {
+    "description": "木桌；类别：家具/桌子；属性：棕色、木质外观、四条腿结构",
+    "terms": [
+      "木桌",
+      "家具",
+      "桌子",
+      "棕色",
+      "木质外观",
+      "四条腿结构",
+      "木质纹理"
+    ],
+    "source": "derived_from_final_tags",
+    "name_status": "recognized"
+  },
+  "semantic_category": {
+    "path": [
+      "家具",
+      "桌子"
+    ],
+    "leaf": "桌子",
+    "status": "matched",
+    "confidence": 0.95,
+    "identity_consistency": {
+      "version": "1.0",
+      "status": "consistent",
+      "primary": "桌子",
+      "name": "木桌",
+      "category_path": [
+        "家具",
+        "桌子"
+      ],
+      "primary_paths": [
+        [
+          "家具",
+          "桌子"
+        ]
+      ],
+      "name_paths": [],
+      "comparisons": [
+        {
+          "field": "primary_category",
+          "compatible": true
+        }
+      ],
+      "conflicts": [],
+      "needs_review": false,
+      "action": "keep",
+      "reason": "主物体与类别相同或存在上下位关系；未发现名称冲突",
+      "source": "taxonomy-rule",
+      "taxonomy_version": "1.1.0"
+    }
+  },
+  "extended_tags": [
+    "棕色",
+    "木质外观",
+    "四条腿结构"
+  ],
+  "modeling_quality": "极高",
+  "modeling_precision": "低",
+  "modeling_style": null,
+  "rendering_style": "写实渲染",
+  "is_lod": false,
+  "final": {
+    "modeling_quality": "极高",
+    "modeling_precision": "低",
+    "modeling_style": null,
+    "rendering_style": "写实渲染"
+  },
+  "machine": {
+    "modeling_quality": {
+      "label": "极高",
+      "score": 0.9097,
+      "evidence": {
+        "topology_quality": 0.9791,
+        "geometry_integrity": 1.0,
+        "normal_quality": 0.6734,
+        "uv_quality": 0.7297,
+        "material_completeness": 1.0,
+        "texture_completeness": 1.0,
+        "weight_sum": 1.0
+      }
+    },
+    "modeling_precision": {
+      "label": "低",
+      "score": 0.3249,
+      "evidence": {
+        "triangle_count": 592,
+        "vertex_count": 1776,
+        "resolution": 592,
+        "split_vertices": true,
+        "triangle_density": 0.02997942,
+        "resolution_score": 0.4265,
+        "density_score": 0.0879,
+        "advanced_multiscale_analysis": "reserved"
+      }
+    },
+    "modeling_style": {
+      "label": null,
+      "score": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ]
+    }
+  },
+  "arbitration": {
+    "modeling_quality": {
+      "label": "极高",
+      "machine_label": "极高",
+      "evidence": [
+        "最终质量采用缩放后的机器结果 极高"
+      ],
+      "rejected_visual_override": null
+    },
+    "modeling_precision": {
+      "label": "低",
+      "machine_label": "低",
+      "evidence": [
+        "最终精度采用缩放后的机器结果 低，分数 0.3249"
+      ]
+    },
+    "modeling_style": {
+      "label": null,
+      "status": "insufficient_evidence",
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "rejected_label": null,
+      "rejected_reason": null
+    },
+    "rendering_style": {
+      "label": "写实渲染",
+      "evidence": [
+        "使用简单的明暗着色表现体积感",
+        "颜色为材质基色或顶点色，无复杂环境反射"
+      ],
+      "rejected_label": null
+    }
+  },
+  "style_profile": {
+    "version": "1.0",
+    "geometry_style": {
+      "value": null,
+      "status": "insufficient_evidence",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+      ],
+      "source": "geometry-algorithm",
+      "rejected": null
+    },
+    "visual_style": {
+      "value": "Realistic",
+      "status": "observed",
+      "candidates": [],
+      "confidence": 0.94,
+      "evidence": [
+        "使用简单的明暗着色表现体积感",
+        "颜色为材质基色或顶点色，无复杂环境反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "material_rendering": {
+      "value": "写实渲染",
+      "status": "observed",
+      "candidates": [
+        "写实渲染"
+      ],
+      "confidence": 0.94,
+      "evidence": [
+        "使用简单的明暗着色表现体积感",
+        "颜色为材质基色或顶点色，无复杂环境反射"
+      ],
+      "source": "llm-direct",
+      "rejected": null
+    },
+    "modeling_method": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "最终网格不足以可靠反推细分、NURBS 等制作方法"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    },
+    "generation_source": {
+      "value": null,
+      "status": "unknown",
+      "candidates": [],
+      "confidence": null,
+      "evidence": [
+        "没有原始工程或来源元数据，不从外观推断 PCG 或扫描重建"
+      ],
+      "source": "unavailable",
+      "rejected": null
+    }
+  },
+  "_meta": {
+    "generated_by": {
+      "machine": "phase2-v1.1",
+      "vlm": "Qwen/Qwen3.5-27B",
+      "arbitration": "normalized-machine+llm"
+    },
+    "confidence": {
+      "semantic_category": 0.95,
+      "rendering_style": 0.94,
+      "modeling_quality": 0.9097,
+      "modeling_precision": 0.3249,
+      "modeling_style": null
+    },
+    "sources": {
+      "objectName": "llm-direct",
+      "category": "taxonomy-resolver",
+      "extendedTags": "llm-direct",
+      "quality": "geometry-algorithm",
+      "precision": "geometry-algorithm",
+      "modelingStyle": "geometry-algorithm",
+      "visualStyle": "llm-direct",
+      "renderingStyle": "llm-direct",
+      "lod": "filename-geometry-algorithm"
+    },
+    "extended_tag_records": [
+      {
+        "tag": "棕色",
+        "confidence": 0.98,
+        "evidence": "模型整体呈现棕褐色，符合木材的常见颜色。",
+        "source": "llm"
+      },
+      {
+        "tag": "木质外观",
+        "confidence": 0.92,
+        "evidence": "表面具有横向条纹和纹理细节，模拟木板拼接效果。",
+        "source": "llm"
+      },
+      {
+        "tag": "四条腿结构",
+        "confidence": 0.96,
+        "evidence": "可见四个垂直支撑柱作为桌腿。",
+        "source": "llm"
+      }
+    ],
+    "taxonomy_coverage": {
+      "recognized_concept": "木桌",
+      "taxonomy_path": [
+        "家具",
+        "桌子"
+      ],
+      "status": "matched",
+      "missing_leaf": false
+    },
+    "phase2_machine_candidates": {
+      "quality": {
+        "label": "极高",
+        "score": 0.9097,
+        "evidence": {
+          "topology_quality": 0.9791,
+          "geometry_integrity": 1.0,
+          "normal_quality": 0.6734,
+          "uv_quality": 0.7297,
+          "material_completeness": 1.0,
+          "texture_completeness": 1.0,
+          "weight_sum": 1.0
+        }
+      },
+      "precision": {
+        "label": "低",
+        "score": 0.3249,
+        "evidence": {
+          "triangle_count": 592,
+          "vertex_count": 1776,
+          "resolution": 592,
+          "split_vertices": true,
+          "triangle_density": 0.02997942,
+          "resolution_score": 0.4265,
+          "density_score": 0.0879,
+          "advanced_multiscale_analysis": "reserved"
+        }
+      },
+      "modeling_style": {
+        "label": null,
+        "score": null,
+        "status": "insufficient_evidence",
+        "confidence": 0.0,
+        "evidence": [
+          "几何、拓扑和建模元数据不足以区分建模风格，保持空值"
+        ],
+        "candidates": [],
+        "rule_version": "geometry-style-1.2"
+      }
+    },
+    "visual_evidence": [
+      "具有明显的水平桌面与垂直桌腿分离结构",
+      "桌面由多块板条组成，边缘有轻微倒角处理"
+    ],
+    "candidates": [
+      {
+        "name": "家具/桌子",
+        "confidence": 0.95
+      },
+      {
+        "name": "家具/柜子",
+        "confidence": 0.3
+      },
+      {
+        "name": "建筑/构件/门",
+        "confidence": 0.1
+      }
+    ],
+    "extensions": {
+      "style_profile_version": "1.0",
+      "object_label_version": "1.1",
+      "retrieval_profile_version": "1.1"
+    }
+  }
+}

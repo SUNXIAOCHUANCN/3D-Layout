@@ -1,0 +1,26 @@
+{
+  "valid": true,
+  "errors": [],
+  "warnings": [],
+  "schema_version": "1.2",
+  "success": true,
+  "input_format": "glb",
+  "normalization_success": true,
+  "thumbnail_success": true,
+  "llm_success": true,
+  "llm_call": {
+    "attempts": 1,
+    "corrected": false,
+    "errors_before_success": []
+  },
+  "normalization_issues": [
+    {
+      "field": "renderingStyle",
+      "issue": "illegal_enum",
+      "raw": "Lowpoly",
+      "result": null
+    }
+  ],
+  "recovery": "none",
+  "output_format": "glb"
+}

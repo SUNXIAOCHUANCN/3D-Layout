@@ -145,7 +145,7 @@ export function makeSandbox(base: string, opts?: { withoutGenManifest?: boolean 
   mkdirSync(join(base, 'scenes'), { recursive: true })
   mkdirSync(join(base, 'assets', 'models'), { recursive: true })
   writeFileSync(join(base, 'scenes', 'index.json'), '[]\n')
-  writeFileSync(join(base, 'assets', 'models', 'manifest.json'), JSON.stringify({ generatedAt: '', models: {} }, null, 2) + '\n')
+  writeFileSync(join(base, 'assets', 'model-catalog.json'), JSON.stringify({ generatedAt: '', models: {} }, null, 2) + '\n')
   if (!opts?.withoutGenManifest) {
     // 从插件位置定位宿主脚本（沙箱可能在任意临时目录）
     const hostScript = join(HOST_ROOT, 'src', 'scripts', 'gen-manifest.mjs')
@@ -154,6 +154,7 @@ export function makeSandbox(base: string, opts?: { withoutGenManifest?: boolean 
     }
     mkdirSync(join(base, 'src', 'scripts'), { recursive: true })
     copyFileSync(hostScript, join(base, 'src', 'scripts', 'gen-manifest.mjs'))
+    copyFileSync(join(HOST_ROOT, 'src', 'scripts', 'model-catalog.mjs'), join(base, 'src', 'scripts', 'model-catalog.mjs'))
   }
   return base
 }

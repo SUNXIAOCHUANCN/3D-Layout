@@ -1,0 +1,76 @@
+{
+  "models": {
+    "models/placeholder-box": {
+      "id": "placeholder-box",
+      "name": "占位·方块",
+      "category": "placeholder",
+      "tags": [
+        "placeholder"
+      ],
+      "dimensions": {
+        "w": 1,
+        "d": 1,
+        "h": 1
+      },
+      "source": {
+        "type": "primitive",
+        "shape": "box"
+      },
+      "color": "#7ea6e0",
+      "normalized": {
+        "unitScale": 1,
+        "origin": "base-center",
+        "up": "+Y"
+      },
+      "license": "CC0"
+    },
+    "models/placeholder-cylinder": {
+      "id": "placeholder-cylinder",
+      "name": "占位·圆柱",
+      "category": "placeholder",
+      "tags": [
+        "placeholder"
+      ],
+      "dimensions": {
+        "w": 1,
+        "d": 1,
+        "h": 1
+      },
+      "source": {
+        "type": "primitive",
+        "shape": "cylinder"
+      },
+      "color": "#8fce91",
+      "normalized": {
+        "unitScale": 1,
+        "origin": "base-center",
+        "up": "+Y"
+      },
+      "license": "CC0"
+    },
+    "models/placeholder-sphere": {
+      "id": "placeholder-sphere",
+      "name": "占位·球体",
+      "category": "placeholder",
+      "tags": [
+        "placeholder"
+      ],
+      "dimensions": {
+        "w": 1,
+        "d": 1,
+        "h": 1
+      },
+      "source": {
+        "type": "primitive",
+        "shape": "sphere"
+      },
+      "color": "#d8a657",
+      "normalized": {
+        "unitScale": 1,
+        "origin": "base-center",
+        "up": "+Y"
+      },
+      "license": "CC0"
+    }
+  }
+}
