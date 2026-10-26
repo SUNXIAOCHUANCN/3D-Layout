@@ -4,7 +4,7 @@
  * 三条边界（§3.4/§5.2）：
  * 1. 工具集按角色给（registry.specs(role)），judge 的主循环里根本看不到写工具；
  * 2. 每一轮都检查 AbortSignal（取消要能打断等待中的工具/后续模型请求）；
- * 3. 轮次与工具预算都是硬上限（budget_exceeded），不靠模型自觉收尾。
+ * 3. 显式指定的轮次上限与工具预算仍然有效；不限轮数时保留取消与超时机制。
  *
  * 这里不做"对话记忆压缩"：W05 的上下文是任务级的小数据，压缩属 W07 的预算问题。
  */
@@ -33,8 +33,8 @@ export interface ToolLoopInput {
   site: { runId: string; taskId: string | null; regionId: string | null }
   signal: AbortSignal
   config: CoAgentConfig
-  /** 模型-工具往返的最大轮次（防止脚本/模型死循环） */
-  maxRounds: number
+  /** 模型-工具往返的最大轮次；省略时不限轮数 */
+  maxRounds?: number
   onToolResult?: (call: ModelToolCall, result: ToolResult<unknown>) => void
   /**
    * W08.2：把真实工具结果对应的证据图附到 toolResult 消息上（如 camera.capture）。
@@ -55,17 +55,20 @@ export async function runToolLoop(input: ToolLoopInput): Promise<ToolLoopResult>
   const transcript: ModelMessage[] = [...input.messages]
   const toolResults: Array<{ call: ModelToolCall; result: ToolResult<unknown> }> = []
   let toolCallCount = 0
+  const maxRounds = input.maxRounds ?? Infinity
+  const roundLimit = Number.isFinite(maxRounds) ? `最多 ${maxRounds} 轮` : '不限轮数'
   // 工具清单按角色过滤：judge 根本看不到写工具（这里也把清单记进日志，便于核对"角色权限没给错"）
   const specs = input.registry.specs(input.role)
   logStage(
     'llm.loop',
-    `${input.purpose} 工具循环开始（role=${input.role}，最多 ${input.maxRounds} 轮，初始消息 ${transcript.length} 条）`,
+    `${input.purpose} 工具循环开始（role=${input.role}，${roundLimit}，初始消息 ${transcript.length} 条）`,
     `可用工具：${specs.length > 0 ? specs.map(s => s.name).join(', ') : '（无，纯文本回合）'}`,
   )
 
-  for (let round = 0; round < input.maxRounds; round++) {
+  for (let round = 0; round < maxRounds; round++) {
     if (input.signal.aborted) throw new CoAgentError('cancelled', '模型循环被取消')
-    logStage('llm.round', `${input.purpose} 第 ${round + 1}/${input.maxRounds} 轮（transcript ${transcript.length} 条）`)
+    const roundLabel = Number.isFinite(maxRounds) ? `第 ${round + 1}/${maxRounds} 轮` : `第 ${round + 1} 轮（不限轮数）`
+    logStage('llm.round', `${input.purpose} ${roundLabel}（transcript ${transcript.length} 条）`)
     const reply = await input.model.complete(
       {
         purpose: input.purpose,
@@ -112,6 +115,6 @@ export async function runToolLoop(input: ToolLoopInput): Promise<ToolLoopResult>
     }
   }
 
-  logError('llm.loop', `${input.purpose} 超过 ${input.maxRounds} 轮仍未收尾（budget_exceeded）`, `已用工具调用 ${toolCallCount} 次`)
-  throw new CoAgentError('budget_exceeded', `模型-工具往返超过 ${input.maxRounds} 轮仍未收尾`)
+  logError('llm.loop', `${input.purpose} 超过 ${maxRounds} 轮仍未收尾（budget_exceeded）`, `已用工具调用 ${toolCallCount} 次`)
+  throw new CoAgentError('budget_exceeded', `模型-工具往返超过 ${maxRounds} 轮仍未收尾`)
 }

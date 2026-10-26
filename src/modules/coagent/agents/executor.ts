@@ -42,12 +42,11 @@ export interface ExecutorOutput extends ToolLoopResult {
 
 export async function runExecutor(input: ExecutorInput): Promise<ExecutorOutput> {
   const evidenceIds: ObservationId[] = []
-  const maxRounds = Math.max(2, Math.min(6, input.config.toolBudgetPerTask))
   let toolImages = 0
 
   logStage(
     'executor.start',
-    `[${input.task.regionId}/${input.task.id}] 执行器开始（最多 ${maxRounds} 轮）`,
+    `[${input.task.regionId}/${input.task.id}] 执行器开始（不限轮数）`,
     [
       `目标：${input.task.objective}`,
       `目标对象：${input.task.targetObjectIds.join(', ') || '（无：add 任务）'}`,
@@ -84,7 +83,6 @@ export async function runExecutor(input: ExecutorInput): Promise<ExecutorOutput>
     site: { runId: input.runId, taskId: input.task.id, regionId: input.task.regionId },
     signal: input.signal,
     config: input.config,
-    maxRounds,
     onToolResult: (call, toolResult) => {
       if (call.name === 'camera.capture' && toolResult.ok) {
         const data = toolResult.data as { id?: string }

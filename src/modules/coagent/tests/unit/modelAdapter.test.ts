@@ -195,6 +195,80 @@ describe('modelAdapter：真实 wire 协议', () => {
     }
   })
 
+  it.each([
+    { label: '截图后还有几何结果', images: [['AAAA'], []], secondOk: true },
+    { label: '多个截图按工具结果顺序附图', images: [['AAAA'], ['BBBB']], secondOk: true },
+    { label: '无图片的多个工具结果', images: [[], []], secondOk: true },
+    { label: '截图后的工具失败也必须回传', images: [['AAAA'], []], secondOk: false },
+  ])('$label：全部工具结果连续回传后才发送图片', async ({ images, secondOk }) => {
+    const srv = await startServer((body, res) => {
+      // 模拟服务商校验：一批 tool_calls 全部回应前，不能插入 user 图片或下一轮 assistant。
+      const pending = new Set<string>()
+      const messages = body.messages as Array<{ role: string; tool_calls?: Array<{ id: string }>; tool_call_id?: string }>
+      for (const message of messages) {
+        if ((pending.size > 0 && message.role !== 'tool') ||
+            (message.role === 'tool' && !pending.delete(message.tool_call_id ?? ''))) {
+          res.statusCode = 400
+          res.end('insufficient tool messages following tool_calls message')
+          return
+        }
+        for (const call of message.tool_calls ?? []) pending.add(call.id)
+      }
+      if (pending.size > 0) {
+        res.statusCode = 400
+        res.end('missing tool results')
+        return
+      }
+      sse(res, [{ choices: [{ delta: { content: 'ok' } }] }])
+    })
+    try {
+      const adapter = createModelAdapter({ getSettings: () => settings(srv.baseURL) })
+      const results = [{ id: 'obs-1' }, secondOk ? { status: 'clear' } : { code: 'invalid_arguments' }]
+      const reply = await adapter.complete(
+        request({
+          messages: [
+            { role: 'user', text: '检查场景' },
+            {
+              role: 'assistant', text: '', toolCalls: [
+                { id: 'capture-1', name: 'camera.capture', args: {} },
+                { id: 'check-1', name: images[1].length > 0 ? 'camera.capture' : 'geometry.check', args: {} },
+              ],
+            },
+            ...results.map((content, i) => ({
+              role: 'toolResult' as const,
+              callId: i === 0 ? 'capture-1' : 'check-1',
+              ok: i === 0 || secondOk,
+              content,
+              images: images[i].map(data => ({ mediaType: 'image/png' as const, dataUrl: `data:image/png;base64,${data}` })),
+            })),
+            // 下一轮结果必须独立，不能合并到上一批工具结果中。
+            { role: 'assistant', text: '', toolCalls: [{ id: 'read-2', name: 'scene.get_objects', args: {} }] },
+            { role: 'toolResult', callId: 'read-2', ok: true, content: { objects: [] } },
+          ],
+          tools: [],
+        }),
+        new AbortController().signal,
+      )
+      expect(reply.text).toBe('ok')
+      const body = srv.bodies[0] as { messages: Array<Record<string, unknown>> }
+      const urls = images.flat().map(data => `data:image/png;base64,${data}`)
+      expect(body.messages.map(m => m.role)).toEqual([
+        'system', 'user', 'assistant', 'tool', 'tool', ...(urls.length > 0 ? ['user'] : []), 'assistant', 'tool',
+      ])
+      expect(body.messages.slice(3, 5)).toEqual([
+        { role: 'tool', tool_call_id: 'capture-1', content: JSON.stringify(results[0]) },
+        { role: 'tool', tool_call_id: 'check-1', content: JSON.stringify(results[1]) },
+      ])
+      if (urls.length > 0) {
+        const parts = body.messages[5].content as Array<Record<string, unknown>>
+        expect(parts.slice(1)).toEqual(urls.map(url => ({ type: 'image_url', image_url: { url } })))
+      }
+      expect(body.messages.at(-1)).toEqual({ role: 'tool', tool_call_id: 'read-2', content: '{"objects":[]}' })
+    } finally {
+      await srv.close()
+    }
+  })
+
   it('401：错误可读、不可重试，且消息里不出现 API Key', async () => {
     const srv = await startServer((_body, res) => {
       res.statusCode = 401

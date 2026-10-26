@@ -67,17 +67,17 @@ export function toTurns(messages: ModelMessage[]): { system: string[]; turns: Ll
         toolCalls: m.toolCalls.map(c => ({ id: c.id, name: c.name, args: c.args })),
       })
     } else {
-      turns.push({
-        role: 'toolResults',
-        results: [
-          {
-            callId: m.callId,
-            ok: m.ok,
-            content: m.content,
-            ...(m.images && m.images.length > 0 ? { images: m.images.map(i => ({ dataUrl: i.dataUrl })) } : {}),
-          },
-        ],
-      })
+      const result = {
+        callId: m.callId,
+        ok: m.ok,
+        content: m.content,
+        ...(m.images && m.images.length > 0 ? { images: m.images.map(i => ({ dataUrl: i.dataUrl })) } : {}),
+      }
+      // 同一轮的工具结果必须连续回传；llmClient 会在整个回合后统一追加附图。
+      // 逐条建回合会让截图的 user 图片消息插到尚未回应的 tool_calls 中间，触发 HTTP 400。
+      const previous = turns[turns.length - 1]
+      if (previous?.role === 'toolResults') previous.results.push(result)
+      else turns.push({ role: 'toolResults', results: [result] })
     }
   }
   return { system, turns }

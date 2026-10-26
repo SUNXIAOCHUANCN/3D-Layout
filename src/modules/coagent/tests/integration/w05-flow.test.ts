@@ -14,6 +14,7 @@
 
 import { describe, expect, it } from 'vitest'
 import type { EditorReadPort, GeometryResult, ModelRequest, Plan, UnitTask } from '../../contracts'
+import { CoAgentError } from '../../contracts'
 import { createMainWorkflow } from '../../workflow/mainGraph'
 import { createRuntime } from '../../runtime/createRuntime'
 import { createFakeRender } from '../fakes/FakeRender'
@@ -421,9 +422,9 @@ describe('W05 失败路径', () => {
    * 于是失败信息指向的区可能根本不是出错的那个区（当时报「南侧建筑带」，
    * 实际错的是北区的任务）。修复：区域子图抛出的错误自带 regionId，主图优先用它。
    */
-  it('北区任务超预算 → 失败信息必须指向 region-north（并行下也不能被别的区覆盖）', async () => {
+  it('北区执行超过 6 轮后模型报错 → 失败信息仍指向 region-north', async () => {
     const { model, fp, run } = setup({ config: { maxRepairsPerTask: 0 } })
-    // task-n1 一直调工具不收尾 → 6 轮后 budget_exceeded
+    // 取消轮数上限后，先执行 8 轮，再模拟模型服务异常，继续验证并行分支的错误定位。
     const spin = Array.from({ length: 8 }, () => [
       { name: 'edit.transform', args: () => ({ objectId: 'tree-1', transform: T([-6, 0, -6]), expectedFingerprint: fp('tree-1') }) },
     ])
@@ -433,6 +434,14 @@ describe('W05 失败路径', () => {
       'task-s1': { rounds: [[{ name: 'edit.transform', args: () => ({ objectId: 'house-1', transform: T([-3.5, 0, 4.5]), expectedFingerprint: fp('house-1') }) }], []] },
       'task-s2': { rounds: [[{ name: 'edit.add', args: () => ({ ref: 'models/rock', transform: T([5, 0, 6]) }) }], []] },
     })
+    const complete = model.complete.bind(model)
+    model.complete = async (request, signal) => {
+      if (request.purpose === 'executor' && taskIdOf(request) === 'task-n1'
+        && request.messages.filter(m => m.role === 'toolResult').length >= 8) {
+        throw new CoAgentError('model_protocol_error', '模拟北区模型服务异常')
+      }
+      return complete(request, signal)
+    }
     scriptJudge(model, {
       'task-n1': { verdicts: ['pass'] },
       'task-n2': { verdicts: ['pass'] },
@@ -443,7 +452,8 @@ describe('W05 失败路径', () => {
     const outcome = await run()
     expect(outcome.kind).toBe('rolled_back')
     if (outcome.kind !== 'rolled_back') return
-    expect(outcome.reason.code).toBe('budget_exceeded')
+    expect(outcome.reason.code).toBe('model_protocol_error')
+    expect(model.requests.filter(r => r.purpose === 'executor' && taskIdOf(r) === 'task-n1')).toHaveLength(8)
     // 关键断言：定位到真正出错的区，而不是并行下被覆盖的最后一个区
     expect(String(outcome.reason.details?.stage)).toContain('region-north')
     expect(String(outcome.reason.details?.stage)).not.toContain('region-south')
