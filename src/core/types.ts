@@ -56,6 +56,10 @@ export interface SceneAsset {
   tint?: string
   /** 默认 true */
   visible?: boolean
+  /** 程序生成地形；高度数组按 z 行、x 列存储，局部 X/Z 中心为原点。 */
+  terrain?: { width: number; depth: number; samplesX: number; samplesZ: number; heights: number[]; seed: number }
+  /** 当前实例的完整 PBR 覆盖，不修改共享模型材质。 */
+  materialOverride?: { color: string; roughness: number; metalness: number }
 }
 
 export interface SceneCamera {

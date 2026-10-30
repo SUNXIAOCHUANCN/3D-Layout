@@ -12,7 +12,17 @@ import type { CoAgentEventEnvelope, CoAgentPhase } from './contracts'
 export interface CoAgentUiState {
   phase: CoAgentPhase
   /** 最近一轮结果（completed/rolled_back/... 的展示摘要；code/stage 用于区分回滚原因与失败节点） */
-  lastResult: { kind: string; summary?: string; reason?: string; code?: string; stage?: string } | null
+  lastResult: {
+    kind: string
+    summary?: string
+    reason?: string
+    code?: string
+    stage?: string
+    /** P3：retained_with_issues 的未通过项数量 */
+    issueCount?: number
+    /** P3：未通过项的一句话说明（面板直接展示） */
+    issues?: string[]
+  } | null
   lastError: string | null
   /** recorder 事件数（面板轻量展示；导出属 W09） */
   eventCount: number

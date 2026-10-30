@@ -51,6 +51,36 @@ export interface ToolLoopResult {
   stopReason: ModelReply['stopReason']
 }
 
+/**
+ * 把发给模型的 transcript 裁成"有界最新证据窗口"。
+ *
+ * 为什么需要：旧实现只在**产生图片时**限流（executor 里前 2 张），
+ * 一旦图进了 transcript，之后每一轮都会重发——模型看到的永远是**最早**两张，
+ * 后拍的新图反而进不去（样本日志"两次判定都不能辨认新增房屋"的直接原因）。
+ *
+ * 这里改成每轮请求重建窗口：保留最新 max 张，旧图只去掉图片、保留文字与 callId，
+ * 不破坏 tool call / toolResult 的配对。
+ */
+export function boundImages(messages: ModelMessage[], max: number): ModelMessage[] {
+  const out = [...messages]
+  if (max <= 0) {
+    return out.map(m => (m.role === 'toolResult' && m.images ? { ...m, images: undefined } : m))
+  }
+  let budget = max
+  for (let i = out.length - 1; i >= 0; i--) {
+    const m = out[i]
+    if (m.role !== 'toolResult') continue
+    if (!m.images || m.images.length === 0) continue
+    if (budget >= m.images.length) {
+      budget -= m.images.length
+      continue
+    }
+    // 超出窗口：整条去图（不截半张，避免"给了图但不知道是哪一张"）
+    out[i] = { ...m, images: undefined }
+  }
+  return out
+}
+
 export async function runToolLoop(input: ToolLoopInput): Promise<ToolLoopResult> {
   const transcript: ModelMessage[] = [...input.messages]
   const toolResults: Array<{ call: ModelToolCall; result: ToolResult<unknown> }> = []
@@ -73,7 +103,8 @@ export async function runToolLoop(input: ToolLoopInput): Promise<ToolLoopResult>
       {
         purpose: input.purpose,
         system: input.system,
-        messages: transcript,
+        // P2：每轮重建"最新 N 张"的图片窗口，而不是让 transcript 无限累积旧图
+        messages: boundImages(transcript, input.config.maxImagesPerRequest),
         tools: specs,
         timeoutMs: input.config.modelTimeoutMs,
       },

@@ -16,6 +16,7 @@ import type {
   EditorCommand,
   EditorWritePort,
   ObjectId,
+  RunCommitReceipt,
   ToolError,
   ToolResult,
   TransformDTO,
@@ -54,6 +55,12 @@ export interface WriteTargetPrimitives {
   ): { objectId: ObjectId; fingerprintAfter: string } | { error: ToolError }
   commitTargetTx(tx: unknown): boolean
   rollbackTargetTx(tx: unknown): boolean
+  /**
+   * P3：取底层事务 id（core 的 `TxHandle.id`）。
+   * 可选——不支持历史记录的实现可以不给，此时提交回执里的 transactionId 为 null，
+   * 上层据此**不生成**撤销入口（而不是给一个点不动的按钮）。
+   */
+  transactionIdOf?(tx: unknown): number | null
 }
 
 export interface WriteFacadeState {
@@ -67,9 +74,11 @@ export interface WriteFacadeState {
 }
 
 /** 门面覆盖 EditorWritePort 除 save 外的全部能力（save 是各适配层的 IO，不入共享门面） */
-export type EditorWriteFacade = Omit<EditorWritePort, 'save'> & {
+/** 撤销三件套属于宿主历史，也不进共享门面（fake 与真实 core 语义不同） */
+export type EditorWriteFacade = Omit<EditorWritePort, 'save' | 'queryUndo' | 'undoRun' | 'sceneSessionId'> & {
+  /** 诊断：武装/提交/回滚计数 */
   state(): WriteFacadeState
-  /** 外部失效（场景切换等）：作废当前武装 run，后续写入 write_failed */
+  /** 场景切换等外部原因作废当前武装事务 */
   invalidateAll(reason: string): void
 }
 
@@ -85,6 +94,8 @@ export function createEditorWriteFacade(primitives: WriteTargetPrimitives): Edit
   }
   let armed: Armed | null = null
   const idempotency = new Map<string, { commandKey: string; receipt: EditReceipt }>()
+  /** P3：本次提交包含多少次真实写入（0 表示没有可撤销的修改） */
+  let writesInRun = 0
   const state: WriteFacadeState = {
     armedLabel: null,
     materializedOpen: false,
@@ -105,16 +116,28 @@ export function createEditorWriteFacade(primitives: WriteTargetPrimitives): Edit
       armed = { label, token: mintToken(), tx: null }
       state.armedLabel = label
       state.materializedOpen = false
+      writesInRun = 0
       return armed.token
     },
 
-    commitRun(token: WriteToken): void {
-      if (armed?.token !== token) return // 与 core 一致：不匹配静默 no-op
-      if (armed.tx !== null) primitives.commitTargetTx(armed.tx)
+    commitRun(token: WriteToken): RunCommitReceipt {
+      // 与 core 一致：令牌不匹配静默 no-op——但回执必须说清楚"没提交"
+      if (armed?.token !== token) return { committed: false, historyTransactionId: null, writes: 0 }
+      const tx = armed.tx
+      let committed = false
+      let historyTransactionId: number | null = null
+      if (tx !== null) {
+        committed = primitives.commitTargetTx(tx)
+        // 只有真的提交了才给可撤销引用
+        historyTransactionId = committed ? (primitives.transactionIdOf?.(tx) ?? null) : null
+      }
+      const writes = writesInRun
       state.committedRuns++
       armed = null
       state.armedLabel = null
       state.materializedOpen = false
+      writesInRun = 0
+      return { committed, historyTransactionId, writes }
     },
 
     rollbackRun(token: WriteToken): boolean {
@@ -215,6 +238,7 @@ export function createEditorWriteFacade(primitives: WriteTargetPrimitives): Edit
         fingerprintAfter: done.fingerprintAfter,
       }
       idempotency.set(key, { commandKey, receipt })
+      writesInRun++
       return { ok: true, data: receipt }
     },
 

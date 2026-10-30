@@ -1,4 +1,4 @@
-/**
+﻿/**
  * createRuntime（W03，SPEC §3.2）——唯一装配点。
  *
  * 注入 Ports、配置、workflow factory、scheduler、recorder；测试可全部换成 fake。
@@ -21,8 +21,11 @@ import type {
   Observation,
   ObservationPhase,
   PartitionSnapshot,
+  PickRequest,
+  PickResult,
   RenderPort,
   RenderPortDiagnostics,
+  RunHistoryRef,
   RunOutcome,
   ToolResult,
   TransformDTO,
@@ -35,10 +38,19 @@ import { createObservationService, type ObservationService } from '../services/o
 import { birdseyeCamera, blobToDataUrl, buildPartition, requestPartition, type PartitionReport } from '../services/partition'
 import { createModelAdapter, currentLlmSettings, isModelConfigured, modelConfigSummary } from '../adapters/modelAdapter'
 import { createEvidenceStore, type EvidenceStore, type EvidenceStoreStats } from './evidenceStore'
+import { readPartitionFile, savePartitionFile, type PartitionSaveResult } from '../adapters/partitionAdapter'
+import {
+  buildPartitionFile,
+  planPartitionSave,
+  reconcilePartitionFile,
+  emptyReconcileReport,
+  type PartitionPersistenceState,
+  type PartitionReconcileReport,
+} from '../services/partitionPersistence'
 import { createRecorder, type Recorder } from './recorder'
 import { beginGraphFeed, disposeGraphFeed } from '../graphFeed'
 import { createRunController, isActivePhase, type RunController } from './runController'
-import { beginRunLog, finishRunLog, logError, logStage, activeRunLog } from './runLog'
+import { beginRunLog, finishRunLog, logError, logStage, logWarn, activeRunLog } from './runLog'
 import { createScheduler, type Scheduler } from './scheduler'
 
 export interface CoAgentRuntimeDeps {
@@ -62,6 +74,10 @@ export interface CoAgentRuntime {
   enable(): void
   /** 人工解锁 error_locked（§5.4）；活跃 run 中拒绝 */
   reset(): ToolResult<null>
+  /** P3：最近一轮可撤销的编辑历史引用（没有实际写入时 null） */
+  lastRunHistoryRef(): RunHistoryRef | null
+  /** P3：撤销最近一轮的修改（只支持栈顶；其后有编辑则拒绝并说明原因） */
+  undoLastRun(): { ok: boolean; message?: string }
   phase(): CoAgentPhase
   busy(): boolean
   locked(): boolean
@@ -83,6 +99,8 @@ export interface CoAgentRuntime {
   renderDiagnostics(): RenderPortDiagnostics | null
   /** W08.3：dev/E2E 限定——直接走真实渲染端口的几何检测（桥未挂载时明确报错） */
   debugGeometry(request: GeometryRequest, signal?: AbortSignal): Promise<GeometryResult>
+  /** P2：dev/E2E 限定——用给定观测相机做射线拾取（验证"点到的"与"看到的"是同一次渲染） */
+  debugPick(request: PickRequest, signal?: AbortSignal): Promise<PickResult>
   /** W04 诊断：证据占用 */
   evidenceStats(): EvidenceStoreStats
   /**
@@ -100,6 +118,16 @@ export interface CoAgentRuntime {
   setPartition(partition: PartitionSnapshot | null): void
   /** 分区变更订阅（面板显示/按钮可用性用；返回退订） */
   onPartition(listener: (partition: PartitionSnapshot | null) => void): () => void
+  /** P4：分区配套文件的读写状态（无文件是正常状态，不是错误） */
+  partitionPersistenceState(): PartitionPersistenceState  /** P4：读取并核对 `scenes/<id>/coagent/partition.json`，成功则启用恢复的分区 */
+  restorePartition(): Promise<PartitionPersistenceState>
+  /** P4：把当前分区写成配套文件（服务端不可写时降级为下载） */
+  savePartition(): Promise<PartitionSaveResult>
+  /**
+   * P4：开启"切换场景/首次挂载后自动恢复"。默认关闭——
+   * 单元测试不该因为一次场景变更就去 fetch 一个不存在的文件。
+   */
+  enablePartitionPersistence(): void
   /** 模型配置状态（脱敏；不返回 key） */
   modelStatus(): { configured: boolean; summary: string }
   /** W06 前测试注入分区用（dev/测试限定，生产面板依赖 partitionProvider） */
@@ -184,6 +212,8 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
   let renderPort: RenderPort | null = null
   let partitionOverride: PartitionSnapshot | null = null
   let partitionReport: PartitionReport | null = null
+  /** 最近一次从编辑器观察到的场景身份（T0-5：判断分区是否属于当前场景） */
+  let liveSceneId: string | null = null
   let workflowFactory: () => WorkflowRunner = deps.workflowFactory ?? (() => createWorkflow())
   let disposed = false
 
@@ -207,6 +237,8 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
     getImageDataUrl: imageId => evidence.dataUrlFor(imageId),
     // 运行日志头部：脱敏的模型配置摘要（绝不含 key）
     modelLabel: () => modelConfigSummary(),
+    // 惰性转发：afterCommitImpl 定义在本函数更靠后的位置（闭包调用时才求值）
+    afterCommit: info => afterCommitImpl(info),
     onPhase: (phase, info) => {
       onPhaseListeners.forEach(l => l(phase, info))
     },
@@ -214,10 +246,149 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
 
   const onPhaseListeners = new Set<(phase: CoAgentPhase, info: { runId: string | null; note?: string }) => void>()
   const onPartitionListeners = new Set<(partition: PartitionSnapshot | null) => void>()
+  /** 分区当前所属场景（T0-5）；提交时记录，场景一变立刻作废 */
+  let partitionSceneId: string | null = null
+  /**
+   * 分区是怎么来的。用于决定"能不能自动落盘"：
+   * - generated / restored / manual：真实来源，提交后自动保存是合理的；
+   * - injected（debugSetPartition）：测试注入的分区**不能写进真实场景目录**——
+   *   实测里浏览器脚本一次运行就把它写进了 scenes/<id>/coagent/。
+   */
+  let partitionSource: 'generated' | 'restored' | 'manual' | 'injected' | null = null
+  /** P4：分区配套文件的读写状态 */
+  let persistState: PartitionPersistenceState = { status: 'idle' }
+  let lastRestoreReport: PartitionReconcileReport | null = null
+  /** P4：是否在场景变更后自动恢复（默认关闭，由 enablePartitionPersistence 打开） */
+  let autoRestore = false
+  /**
+   * P4：提交并保存场景之后写分区。
+   *
+   * **用保存场景时那份快照**构造文件（由 runController 传入），这样两个文件描述同一时刻；
+   * 决策集中在 `planPartitionSave`（纯函数，可以把每种跳过理由都测到）。
+   */
+  const afterCommitImpl: NonNullable<Parameters<typeof createRunController>[0]['afterCommit']> = async info => {
+    const plan = planPartitionSave({
+      enabled: autoRestore,
+      partition: partitionOverride,
+      source: partitionSource,
+      snapshot: { sceneId: info.snapshot.sceneId, assets: info.snapshot.assets },
+      saved: info.saved,
+      ...(info.saveError !== undefined ? { saveError: info.saveError } : {}),
+    })
+    if (plan.action === 'skip') {
+      if (autoRestore && partitionOverride !== null) logWarn('partition.save', `跳过分区落盘：${plan.reason}`)
+      return
+    }
+    const sceneId = info.snapshot.sceneId
+    if (!sceneId) return
+    const res = await savePartitionFile(sceneId, plan.file)
+    if (res.ok) {
+      persistState = { status: 'ready', report: lastRestoreReport ?? emptyReconcileReport(sceneId) }
+      logStage('partition.save', `分区已随场景一起保存（${res.mode === 'server' ? '已写入磁盘' : '已下载导出'}）`)
+    } else {
+      // 场景成功、分区失败 → 明确显示"部分保存"，不假装整体成功
+      persistState = { status: 'save_failed', message: `场景已保存，但分区未保存：${res.message}` }
+      logWarn('partition.save', `场景已保存，分区保存失败：${res.message}`)
+    }
+  }
   /** 分区的唯一写入口：赋值 + 通知（面板按钮可用性依赖它，不能漏） */
-  const commitPartition = (next: PartitionSnapshot | null): void => {
+  const commitPartition = (next: PartitionSnapshot | null, source: 'generated' | 'restored' | 'manual' | 'injected' = 'manual'): void => {
     partitionOverride = next
+    partitionSource = next ? source : null
+    partitionSceneId = next ? liveSceneId : null
     for (const l of onPartitionListeners) l(next)
+  }
+
+  /**
+   * T0-5：分区的场景归属校验。
+   *
+   * 原实现从不监听 scene:changed，切场景后 partitionOverride 仍留着上一场景的分区，
+   * 面板据此认为"分区已就绪"，于是能用错误的分区边界启动 run（权限判定建在错的区上）。
+   * 场景级变更（changedObjectIds === null）或 sceneId 变化一律作废并广播。
+   */
+  const unsubSceneChange = editor.read.subscribe(change => {
+    const sceneLevel = change.changedObjectIds === null
+    if (change.sceneId !== undefined) liveSceneId = change.sceneId
+    const sceneChanged = sceneLevel || (change.sceneId !== undefined && partitionSceneId !== null && change.sceneId !== partitionSceneId)
+    if (!sceneChanged) return
+    if (partitionOverride !== null) {
+      logWarn('partition', '场景已变更，作废上一场景的分区（需重新预处理或等待恢复）')
+      partitionReport = null
+      commitPartition(null)
+    }
+    // P4：切场景后自动恢复（仅在显式开启时；单元测试默认关闭）
+    if (autoRestore) void restorePartition()
+  })
+
+  /** P4：读取并核对分区文件 */
+  const restorePartition = async (): Promise<PartitionPersistenceState> => {
+    const before = editor.read.snapshot({})
+    const sceneId = before.sceneId
+    if (!sceneId) {
+      persistState = { status: 'idle' }
+      return persistState
+    }
+    persistState = { status: 'loading' }
+    const read = await readPartitionFile(sceneId)
+    if (read.status === 'absent') {
+      // 没有文件是正常状态：绝不因此自动调模型重新划区
+      persistState = { status: 'absent' }
+      return persistState
+    }
+    if (read.status === 'error') {
+      persistState = { status: 'load_failed', message: read.message }
+      logWarn('partition.restore', `读取分区文件失败：${read.message}`)
+      return persistState
+    }
+    if (read.status === 'invalid') {
+      persistState = { status: 'invalid', issues: read.issues }
+      logWarn('partition.restore', '分区文件不可用（已保留原文件，不自动覆盖）', read.issues.join('\n'))
+      return persistState
+    }
+    // 迟到响应保护：await 之后重新确认场景身份
+    const after = editor.read.snapshot({})
+    if (after.sceneId !== sceneId) {
+      logWarn('partition.restore', `恢复响应已过期（场景已切到 ${String(after.sceneId)}），丢弃`)
+      return persistState
+    }
+    const { partition, report } = reconcilePartitionFile(read.file, after.assets)
+    lastRestoreReport = report
+    liveSceneId = sceneId
+    commitPartition(partition, 'restored')
+
+    const issues: string[] = []
+    if (!report.fingerprintMatch) issues.push('场景内容与保存分区时不一致（可能已被修改）')
+    if (report.droppedObjectIds.length > 0) issues.push(`${report.droppedObjectIds.length} 个对象已删除，从分区中移除`)
+    if (report.identityChangedObjectIds.length > 0) {
+      issues.push(`${report.identityChangedObjectIds.length} 个对象 ID 相同但资产已变化，需重新核对`)
+    }
+    if (report.unresolvedObjectIds.length > 0) issues.push(`${report.unresolvedObjectIds.length} 个对象归属待确认（暂不可写）`)
+    persistState = issues.length > 0 ? { status: 'needs_review', report, issues } : { status: 'ready', report }
+    logStage(
+      'partition.restore',
+      `已从配套文件恢复分区 v${partition.partitionVersion}（${partition.regions.length} 个区，${partition.regions.reduce((n, r) => n + r.objectIds.length, 0)} 个归属）`,
+      issues.join('\n'),
+    )
+    return persistState
+  }
+
+  /** P4：把当前分区写成配套文件 */
+  const savePartition = async (): Promise<PartitionSaveResult> => {
+    const snap = editor.read.snapshot({})
+    if (!snap.sceneId || !partitionOverride) return { ok: false, message: '没有可保存的分区' }
+    const file = buildPartitionFile({ sceneId: snap.sceneId, partition: partitionOverride, assets: snap.assets })
+    const res = await savePartitionFile(snap.sceneId, file)
+    if (res.ok) {
+      persistState = {
+        status: 'ready',
+        report: lastRestoreReport ?? emptyReconcileReport(snap.sceneId),
+      }
+      logStage('partition.save', `分区已保存（${res.mode === 'server' ? '已写入磁盘' : '已下载导出（服务器不可写）'}）`)
+    } else {
+      persistState = { status: 'save_failed', message: res.message }
+      logWarn('partition.save', `分区保存失败：${res.message}`)
+    }
+    return res
   }
 
   return {
@@ -234,6 +405,8 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
     requestDisable: () => controller.requestDisable(),
     enable: () => controller.enable(),
     reset: () => controller.reset(),
+    lastRunHistoryRef: () => controller.lastHistoryRef(),
+    undoLastRun: () => controller.undoLastRun(),
     phase: () => controller.phase(),
     busy: () => {
       const p = controller.phase()
@@ -275,6 +448,11 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
     debugGeometry: (request, signal = new AbortController().signal) => {
       if (!renderPort) return Promise.reject(new CoAgentError('bridge_unavailable', '渲染桥未挂载：CoAgentBridge 不在 Canvas 内'))
       return renderPort.geometry(request, signal)
+    },
+    debugPick: (request, signal = new AbortController().signal) => {
+      if (!renderPort) return Promise.reject(new CoAgentError('bridge_unavailable', '渲染桥未挂载：CoAgentBridge 不在 Canvas 内'))
+      if (!renderPort.pick) return Promise.reject(new CoAgentError('bridge_unavailable', '当前渲染端口不支持拾取'))
+      return renderPort.pick(request, signal)
     },
     evidenceStats: () => evidence.stats(),
 
@@ -354,7 +532,7 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
         logStage('preprocess.proposal', `模型提案：${proposal.regions.length} 个区域`, undefined, proposal)
         const version = (partitionOverride?.partitionVersion ?? 0) + 1
         const built = buildPartition({ proposal, camera, assets: snap.assets, partitionVersion: version })
-        commitPartition(built.partition)
+        commitPartition(built.partition, 'generated')
         partitionReport = built.report
         logStage(
           'preprocess.done',
@@ -406,11 +584,20 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
         if (!region) throw new CoAgentError('invalid_arguments', `分区里没有 ${target.regionId}`)
         region.objectIds = [...region.objectIds, objectId]
       }
-      commitPartition(next)
+      // 人工归属修正属于"真实分区变更"，应当被保存
+      commitPartition(next, 'manual')
       return next
     },
 
-    setPartition: partition => commitPartition(partition),
+    setPartition: partition => commitPartition(partition, 'manual'),
+
+    partitionPersistenceState: () => persistState,
+    restorePartition: () => restorePartition(),
+    savePartition: () => savePartition(),
+    enablePartitionPersistence: () => {
+      autoRestore = true
+      void restorePartition()
+    },
 
     modelStatus: () => ({ configured: isModelConfigured(), summary: modelConfigSummary(currentLlmSettings()) }),
     debugCapture: async (input, signal = new AbortController().signal) => {
@@ -438,7 +625,7 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
       }
       return observations.capture(request, signal, partitionOverride?.partitionVersion ?? 1)
     },
-    debugSetPartition: partition => commitPartition(partition),
+    debugSetPartition: partition => commitPartition(partition, 'injected'),
     debugSetWorkflowFactory: factory => {
       workflowFactory = factory
     },
@@ -446,6 +633,7 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
     dispose: () => {
       if (disposed) return
       disposed = true
+      unsubSceneChange()
       onPhaseListeners.clear()
       onPartitionListeners.clear()
       disposeGraphFeed() // W10：关掉图可视化通道

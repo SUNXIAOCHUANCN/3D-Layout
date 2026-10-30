@@ -12,6 +12,7 @@
     "test:coagent-browser": "node modules/coagent/tests/browser/w03-run.mjs",
     "test:coagent-browser:w04": "node modules/coagent/tests/browser/w04-run.mjs",
     "test:coagent-browser:w08": "node modules/coagent/tests/browser/w08-geometry.mjs",
+    "test:coagent-browser:w10": "node modules/coagent/tests/browser/w10-observe.mjs",
     "build:coagent-probe": "vite build -c modules/coagent/tests/browser/vite.browser-build.config.ts"
   },
   "dependencies": {

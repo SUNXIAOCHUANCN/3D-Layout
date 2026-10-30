@@ -83,6 +83,13 @@ function northTask(overrides: Partial<UnitTask> = {}): UnitTask {
 }
 
 describe('validateUnitTask', () => {
+  it('碰撞依据兼容旧格式，拒绝空白引用和伪造的系统来源', () => {
+    expect(validateUnitTask(northTask({ constraints: [{ kind: 'no_collision' }] })).ok).toBe(true)
+    expect(validateUnitTask(northTask({ constraints: [{ kind: 'no_collision', basis: { source: 'user_request', quote: '不得相交' } }] })).ok).toBe(true)
+    for (const basis of [null, {}, { source: 'system', quote: '不得相交' }, { source: 'user_request', quote: '   ' }]) {
+      expect(validateUnitTask({ ...northTask(), constraints: [{ kind: 'no_collision', basis }] }).ok).toBe(false)
+    }
+  })
   it('接受夹具任务', () => {
     const plan = makeTwoRegionPlan()
     if (plan.kind !== 'tasks') throw new Error('unreachable')

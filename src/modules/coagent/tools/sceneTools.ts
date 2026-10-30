@@ -11,20 +11,39 @@ import { CoAgentError } from '../contracts'
 export type RegionSummary = {
   regionId: string
   name: string
+  /** 与 objectIds.length 严格一致（同一份成员集合，不再一处按位置筛、一处按冻结列表数） */
   objectCount: number
   objectIds: ObjectId[]
   /** 跨区共享只读对象（global_readonly）：可看不可改 */
   readonlyObjectIds: ObjectId[]
+  /** P1：本轮在该区创建、且当前仍存活的对象 */
+  createdInRun: ObjectId[]
+  /** P1：本次查询所依据的场景版本——与 objectCount 来自同一快照 */
+  sceneRevision: number
 }
 
-export function regionSummary(context: WorkflowContext, region: Region): RegionSummary {
-  const readonly = new Set(context.partition.globalReadonlyObjectIds)
+/**
+ * 区域摘要（P1 起实时化）。
+ *
+ * 旧实现直接读冻结的 `region.objectIds`：本轮新建的对象看不到、已删除的对象还在，
+ * 模型因此无法判断自己做过什么（样本日志事件 108/136 都返回 32 个）。
+ * 现在成员由 runState 用**唯一口径**解析：(初始归属 ∪ 本轮该区创建) ∩ 当前存在。
+ */
+export function regionSummary(context: WorkflowContext, region: Region, snap?: { live: Set<ObjectId>; sceneRevision: number }): RegionSummary {
+  const scene = snap ?? (() => {
+    const s = context.editorRead.snapshot({})
+    return { live: new Set(s.assets.map(a => a.id)), sceneRevision: s.sceneRevision }
+  })()
+  const view = context.runState.resolveRegion(region, scene.live, scene.sceneRevision)
+  const initial = new Set(region.objectIds)
   return {
     regionId: region.id,
     name: region.name,
-    objectCount: region.objectIds.length,
-    objectIds: [...region.objectIds],
-    readonlyObjectIds: region.objectIds.filter(id => readonly.has(id)),
+    objectCount: view.memberIds.length,
+    objectIds: view.memberIds,
+    readonlyObjectIds: view.readonlyIds,
+    createdInRun: view.memberIds.filter(id => !initial.has(id)),
+    sceneRevision: scene.sceneRevision,
   }
 }
 
@@ -33,7 +52,10 @@ export function listRegion(context: WorkflowContext, partition: PartitionSnapsho
   if (regionId && regions.length === 0) {
     throw new CoAgentError('invalid_arguments', `分区里没有 region ${regionId}`)
   }
-  return regions.map(r => regionSummary(context, r))
+  // 一次快照服务所有区域：同一次响应里的数量与列表必须同源
+  const snap = context.editorRead.snapshot({})
+  const scene = { live: new Set(snap.assets.map(a => a.id)), sceneRevision: snap.sceneRevision }
+  return regions.map(r => regionSummary(context, r, scene))
 }
 
 export function getObjects(context: WorkflowContext, objectIds: ObjectId[]): { objects: AssetDTO[]; sceneRevision: number } {

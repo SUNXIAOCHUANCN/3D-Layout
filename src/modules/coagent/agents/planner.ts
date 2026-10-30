@@ -29,6 +29,8 @@ export interface PlannerInput {
   registry: ToolRegistry
   /** plannerContext.buildPlannerContext(...).text */
   contextText: string
+  /** 原始请求单独传入，约束依据不得从模型生成的 objective 或拼接上下文中取。 */
+  userRequest: string
   partition: PartitionSnapshot
   assets: AssetDTO[]
   limits?: PlanLimits
@@ -145,8 +147,9 @@ function repairText(issues: string[]): string {
     ...(constraintIssues
       ? [
           '约束白名单：constraints[].kind 只能是这 4 个之一（不要自创名字，也不要用同义写法）：',
-          '{"kind":"stay_in_region"} | {"kind":"no_collision"} | {"kind":"preserve_count"} | {"kind":"preserve_objects","objectIds":["obj-1"]}',
-          '（例如想表达"不与已有的重叠"就写 {"kind":"no_collision"}，不要写 no_overlap_existing。）',
+          '{"kind":"stay_in_region"} | {"kind":"no_collision","basis":{"source":"user_request","quote":"明确禁止碰撞的用户原文"}} | {"kind":"preserve_count"} | {"kind":"preserve_objects","objectIds":["obj-1"]}',
+          'no_collision 默认不启用；仅在用户明确要求且整体检查范围准确时使用，basis.quote 必须引用原始请求中支持该要求的原文。',
+          '缺少有效依据时删除该硬约束；不要在 objective/visual 中改写成同样的零碰撞要求，也不要自行补充净距。允许交叠、道路畅通等要求不能直接转换为整体零碰撞。',
         ]
       : []),
     ...(targetIssues
@@ -161,7 +164,7 @@ function repairText(issues: string[]): string {
 }
 
 export async function makePlan(input: PlannerInput): Promise<Plan> {
-  let messages: ModelMessage[] = [{ role: 'user', text: input.contextText }]
+  let messages: ModelMessage[] = [{ role: 'user', text: `原始用户请求（碰撞约束依据仅可引用此处）：\n${input.userRequest}\n\n${input.contextText}` }]
   let issues: string[] = []
 
   for (let attempt = 0; attempt <= input.config.schemaRepairAttempts; attempt++) {
@@ -208,10 +211,18 @@ export async function makePlan(input: PlannerInput): Promise<Plan> {
           logStage('planner.plan', `第 ${attempt + 1} 次计划为 ${plan.kind}（不需要执行）`, JSON.stringify(plan))
           return plan // clarify / unsupported：由上层映射
         }
-        const semantic = validatePlanSemantics(plan, input.partition, input.assets, input.limits)
+        const semantic = validatePlanSemantics(plan, input.partition, input.assets, input.limits, { userRequest: input.userRequest })
         const dag = checkTaskDag(plan.tasks)
         if (!dag.ok) semantic.push(...dag.issues.map(i => ({ path: i.path, message: i.message })))
         if (semantic.length === 0) {
+          for (const task of plan.tasks) {
+            const collision = task.constraints.find(c => c.kind === 'no_collision')
+            logStage(
+              'planner.collisionPolicy',
+              `[${task.regionId}/${task.id}] 碰撞硬约束：${collision ? '已启用' : '未启用'}`,
+              collision?.kind === 'no_collision' ? `依据：用户请求“${collision.basis?.quote}”` : undefined,
+            )
+          }
           logStage('planner.plan', `第 ${attempt + 1} 次计划通过全部校验（${plan.tasks.length} 个任务）`, JSON.stringify(plan))
           return plan
         }

@@ -1,0 +1,7066 @@
+{
+  "meta": {
+    "id": "scene-04",
+    "name": "test2",
+    "version": 2,
+    "unit": "m",
+    "up": "+Y"
+  },
+  "environment": {
+    "background": "#1c2128",
+    "sunIntensity": 1.6,
+    "ground": {
+      "size": [
+        16,
+        16
+      ],
+      "receiveShadow": true
+    }
+  },
+  "assets": [
+    {
+      "id": "castlecliff-agent",
+      "ref": "models/castlecliff",
+      "name": "王城城堡",
+      "transform": {
+        "position": [
+          -21,
+          0.53,
+          -9
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          2.4,
+          2.4,
+          2.4
+        ]
+      },
+      "materialOverride": {
+        "color": "#8f8b84",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "house1-agent",
+      "ref": "models/house1",
+      "name": "村庄茅草屋",
+      "transform": {
+        "position": [
+          -14,
+          0.53,
+          -16
+        ],
+        "rotation": [
+          0,
+          10,
+          0
+        ],
+        "scale": [
+          2.2,
+          2.2,
+          2.2
+        ]
+      }
+    },
+    {
+      "id": "house1-2-agent",
+      "ref": "models/house1-2",
+      "name": "村庄茅草屋二",
+      "transform": {
+        "position": [
+          4,
+          0.53,
+          -20
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          2.2,
+          2.2,
+          2.2
+        ]
+      }
+    },
+    {
+      "id": "woodenhouse2-agent",
+      "ref": "models/woodenhouse2",
+      "name": "木屋",
+      "transform": {
+        "position": [
+          16,
+          0.53,
+          -13
+        ],
+        "rotation": [
+          0,
+          35,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "woodenhouse1-agent",
+      "ref": "models/woodenhouse1",
+      "name": "木屋小院",
+      "transform": {
+        "position": [
+          -26,
+          0.53,
+          -15
+        ],
+        "rotation": [
+          0,
+          -8,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "well-agent",
+      "ref": "models/well",
+      "name": "村中古井",
+      "transform": {
+        "position": [
+          -2,
+          0.53,
+          -9
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          3.5,
+          3.5,
+          3.5
+        ]
+      }
+    },
+    {
+      "id": "snowymarketstand-agent",
+      "ref": "models/snowymarketstand",
+      "name": "集市摊位",
+      "transform": {
+        "position": [
+          10,
+          0.53,
+          -2
+        ],
+        "rotation": [
+          0,
+          -15,
+          0
+        ],
+        "scale": [
+          1.7,
+          1.7,
+          1.7
+        ]
+      }
+    },
+    {
+      "id": "campfireburning-agent",
+      "ref": "models/campfireburning",
+      "name": "村口篝火",
+      "transform": {
+        "position": [
+          -7,
+          0.53,
+          -3
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          2.2,
+          2.2,
+          2.2
+        ]
+      }
+    },
+    {
+      "id": "barrel-agent",
+      "ref": "models/barrel",
+      "name": "木桶",
+      "transform": {
+        "position": [
+          -11,
+          0.53,
+          -11
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          2.2,
+          2.2,
+          2.2
+        ]
+      }
+    },
+    {
+      "id": "cart-agent",
+      "ref": "models/cart",
+      "name": "手推车",
+      "transform": {
+        "position": [
+          -18,
+          0.53,
+          -9
+        ],
+        "rotation": [
+          0,
+          40,
+          0
+        ],
+        "scale": [
+          2.4,
+          2.4,
+          2.4
+        ]
+      }
+    },
+    {
+      "id": "signpost1-agent",
+      "ref": "models/signpost1",
+      "name": "路口指示牌",
+      "transform": {
+        "position": [
+          -4,
+          0.53,
+          -17
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ],
+        "scale": [
+          2.4,
+          2.4,
+          2.4
+        ]
+      }
+    },
+    {
+      "id": "lantern-agent",
+      "ref": "models/lantern",
+      "name": "村庄路灯",
+      "transform": {
+        "position": [
+          3,
+          0.53,
+          -14
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "tree2-agent",
+      "ref": "models/tree2",
+      "name": "村旁大树",
+      "transform": {
+        "position": [
+          -36,
+          0.53,
+          -6
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          1.3,
+          1.3,
+          1.3
+        ]
+      }
+    },
+    {
+      "id": "bush2-agent",
+      "ref": "models/bush2",
+      "name": "灌木丛",
+      "transform": {
+        "position": [
+          30,
+          0.53,
+          -10
+        ],
+        "rotation": [
+          0,
+          -40,
+          0
+        ],
+        "scale": [
+          1.1,
+          1.1,
+          1.1
+        ]
+      }
+    },
+    {
+      "id": "bush-3-agent",
+      "ref": "models/bush-3",
+      "name": "浅绿树",
+      "transform": {
+        "position": [
+          40,
+          0.53,
+          24
+        ],
+        "rotation": [
+          0,
+          65,
+          0
+        ]
+      }
+    },
+    {
+      "id": "conifer1-low-agent",
+      "ref": "models/conifer1-low",
+      "name": "松树",
+      "transform": {
+        "position": [
+          -28,
+          0.53,
+          30
+        ],
+        "rotation": [
+          0,
+          12,
+          0
+        ],
+        "scale": [
+          1.1,
+          1.1,
+          1.1
+        ]
+      }
+    },
+    {
+      "id": "tree3-birchyoung-agent",
+      "ref": "models/tree3-birchyoung",
+      "name": "白桦树",
+      "transform": {
+        "position": [
+          40,
+          0.53,
+          37
+        ],
+        "rotation": [
+          0,
+          -30,
+          0
+        ]
+      }
+    },
+    {
+      "id": "joshuatree1-agent",
+      "ref": "models/joshuatree1",
+      "name": "几何树",
+      "transform": {
+        "position": [
+          -30,
+          0.53,
+          20
+        ],
+        "rotation": [
+          0,
+          100,
+          0
+        ],
+        "scale": [
+          1.2,
+          1.2,
+          1.2
+        ]
+      }
+    },
+    {
+      "id": "flowerred-agent",
+      "ref": "models/flowerred",
+      "name": "红花",
+      "transform": {
+        "position": [
+          -16,
+          0.53,
+          -6
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "flowerwhite-agent",
+      "ref": "models/flowerwhite",
+      "name": "白花",
+      "transform": {
+        "position": [
+          6,
+          0.53,
+          -8
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "flowerblue-agent",
+      "ref": "models/flowerblue",
+      "name": "蓝花",
+      "transform": {
+        "position": [
+          -8,
+          0.53,
+          30
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "bigcliffwithplants-agent",
+      "ref": "models/bigcliffwithplants",
+      "name": "雪峰岩群",
+      "transform": {
+        "position": [
+          -60,
+          1.4500000000000002,
+          -58
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          3,
+          3,
+          3
+        ]
+      },
+      "materialOverride": {
+        "color": "#a3aab2",
+        "roughness": 0.8,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "snowytree-agent",
+      "ref": "models/snowytree",
+      "name": "雪松",
+      "transform": {
+        "position": [
+          -52,
+          0.63,
+          -58
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          1.4,
+          1.4,
+          1.4
+        ]
+      },
+      "materialOverride": {
+        "color": "#2e4a36",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "snowytree-2-agent",
+      "ref": "models/snowytree-2",
+      "name": "雪松二",
+      "transform": {
+        "position": [
+          -44,
+          0.63,
+          -54
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          1.2,
+          1.2,
+          1.2
+        ]
+      },
+      "materialOverride": {
+        "color": "#334f3a",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "snowydeadtree2-agent",
+      "ref": "models/snowydeadtree2",
+      "name": "枯树",
+      "transform": {
+        "position": [
+          -48,
+          0.63,
+          -64
+        ],
+        "rotation": [
+          0,
+          50,
+          0
+        ],
+        "scale": [
+          1.3,
+          1.3,
+          1.3
+        ]
+      },
+      "materialOverride": {
+        "color": "#5c5348",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "snowybarrel1-2-agent",
+      "ref": "models/snowybarrel1-2",
+      "name": "雪地木桶",
+      "transform": {
+        "position": [
+          -54,
+          0.63,
+          -54
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      },
+      "materialOverride": {
+        "color": "#8a7355",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "sharprock1-agent",
+      "ref": "models/sharprock1",
+      "name": "骨石柱",
+      "transform": {
+        "position": [
+          52,
+          0.61,
+          -26
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          2.5,
+          5,
+          2.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#9b8f7f",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "sharprock2-agent",
+      "ref": "models/sharprock2",
+      "name": "骨石柱二",
+      "transform": {
+        "position": [
+          60,
+          0.61,
+          -22
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          2.5,
+          5.5,
+          2.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#9b8f7f",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "doublerockshape-high-agent",
+      "ref": "models/doublerockshape-high",
+      "name": "沙丘岩",
+      "transform": {
+        "position": [
+          62,
+          0.61,
+          -24
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          5,
+          5,
+          5
+        ]
+      },
+      "materialOverride": {
+        "color": "#a2977f",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bigcliff-agent",
+      "ref": "models/bigcliff",
+      "name": "沙海巨岩",
+      "transform": {
+        "position": [
+          44,
+          0.61,
+          -8
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ],
+        "scale": [
+          2.5,
+          2.5,
+          2.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#8a7f6d",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "palmdead2-agent",
+      "ref": "models/palmdead2",
+      "name": "枯棕榈",
+      "transform": {
+        "position": [
+          52,
+          0.61,
+          -10
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          1.1,
+          1.1,
+          1.1
+        ]
+      }
+    },
+    {
+      "id": "palm3-leaning-agent",
+      "ref": "models/palm3-leaning",
+      "name": "倾斜棕榈",
+      "transform": {
+        "position": [
+          60,
+          0.61,
+          -14
+        ],
+        "rotation": [
+          0,
+          40,
+          0
+        ],
+        "scale": [
+          1.2,
+          1.2,
+          1.2
+        ]
+      }
+    },
+    {
+      "id": "palm3-straight-agent",
+      "ref": "models/palm3-straight",
+      "name": "直棕榈",
+      "transform": {
+        "position": [
+          62,
+          0.61,
+          -34
+        ],
+        "rotation": [
+          0,
+          -50,
+          0
+        ],
+        "scale": [
+          1.1,
+          1.1,
+          1.1
+        ]
+      }
+    },
+    {
+      "id": "agavelow-agent",
+      "ref": "models/agavelow",
+      "name": "沙地仙人掌",
+      "transform": {
+        "position": [
+          50,
+          0.61,
+          -30
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          3.5,
+          3.5,
+          3.5
+        ]
+      }
+    },
+    {
+      "id": "agavelow-3-agent",
+      "ref": "models/agavelow-3",
+      "name": "沙地仙人掌二",
+      "transform": {
+        "position": [
+          58,
+          0.61,
+          -32
+        ],
+        "rotation": [
+          0,
+          -15,
+          0
+        ],
+        "scale": [
+          3.5,
+          3.5,
+          3.5
+        ]
+      }
+    },
+    {
+      "id": "treedead1-agent",
+      "ref": "models/treedead1",
+      "name": "沙原枯树",
+      "transform": {
+        "position": [
+          42,
+          0.61,
+          -16
+        ],
+        "rotation": [
+          0,
+          80,
+          0
+        ],
+        "scale": [
+          1.1,
+          1.1,
+          1.1
+        ]
+      }
+    },
+    {
+      "id": "treegroup-agent",
+      "ref": "models/treegroup",
+      "name": "幽林松树丛",
+      "transform": {
+        "position": [
+          -60,
+          0.53,
+          55
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ]
+      },
+      "materialOverride": {
+        "color": "#2f4a2a",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "conifer1-low-agent-1",
+      "ref": "models/conifer1-low",
+      "name": "幽林巨松",
+      "transform": {
+        "position": [
+          -66,
+          0.53,
+          58
+        ],
+        "rotation": [
+          0,
+          -15,
+          0
+        ],
+        "scale": [
+          1.3,
+          1.3,
+          1.3
+        ]
+      }
+    },
+    {
+      "id": "bush-2-agent",
+      "ref": "models/bush-2",
+      "name": "幽林灌木",
+      "transform": {
+        "position": [
+          -52,
+          0.53,
+          70
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          0.9,
+          0.9,
+          0.9
+        ]
+      }
+    },
+    {
+      "id": "bush2-agent-1",
+      "ref": "models/bush2",
+      "name": "幽林树",
+      "transform": {
+        "position": [
+          -88,
+          0.53,
+          60
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ],
+        "scale": [
+          1.2,
+          1.2,
+          1.2
+        ]
+      }
+    },
+    {
+      "id": "conifer2-low-agent",
+      "ref": "models/conifer2-low",
+      "name": "幽林高松",
+      "transform": {
+        "position": [
+          -75,
+          0.53,
+          50
+        ],
+        "rotation": [
+          0,
+          35,
+          0
+        ],
+        "scale": [
+          1.3,
+          1.3,
+          1.3
+        ]
+      }
+    },
+    {
+      "id": "treedead1-agent-1",
+      "ref": "models/treedead1",
+      "name": "幽林古树",
+      "transform": {
+        "position": [
+          -62,
+          0.53,
+          47
+        ],
+        "rotation": [
+          0,
+          -30,
+          0
+        ],
+        "scale": [
+          1.3,
+          1.3,
+          1.3
+        ]
+      }
+    },
+    {
+      "id": "mushrooms-agent",
+      "ref": "models/mushrooms",
+      "name": "魔法蘑菇群",
+      "transform": {
+        "position": [
+          -58,
+          0.53,
+          40
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          4,
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "id": "mushroomsyellow-agent",
+      "ref": "models/mushroomsyellow",
+      "name": "黄蘑菇群",
+      "transform": {
+        "position": [
+          -46,
+          0.53,
+          64
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          4,
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "id": "joshuatree2-agent",
+      "ref": "models/joshuatree2",
+      "name": "尖叶树",
+      "transform": {
+        "position": [
+          -50,
+          0.53,
+          45
+        ],
+        "rotation": [
+          0,
+          90,
+          0
+        ],
+        "scale": [
+          1.3,
+          1.3,
+          1.3
+        ]
+      }
+    },
+    {
+      "id": "reedbig-agent",
+      "ref": "models/reedbig",
+      "name": "林间草丛",
+      "transform": {
+        "position": [
+          -42,
+          0.53,
+          42
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          3,
+          3,
+          3
+        ]
+      }
+    },
+    {
+      "id": "treetrunk1-agent",
+      "ref": "models/treetrunk1",
+      "name": "林间树桩",
+      "transform": {
+        "position": [
+          -64,
+          0.53,
+          38
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          3,
+          3,
+          3
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-agent",
+      "ref": "models/rockgrey2",
+      "name": "林间岩石",
+      "transform": {
+        "position": [
+          -75,
+          0.53,
+          50
+        ],
+        "rotation": [
+          0,
+          50,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      },
+      "materialOverride": {
+        "color": "#6b7159",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "waterlilies-agent",
+      "ref": "models/waterlilies",
+      "name": "睡莲",
+      "transform": {
+        "position": [
+          20,
+          0.64,
+          46
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          3.5,
+          3.5,
+          3.5
+        ]
+      }
+    },
+    {
+      "id": "waterlilies-agent-1",
+      "ref": "models/waterlilies",
+      "name": "睡莲二",
+      "transform": {
+        "position": [
+          14,
+          0.64,
+          44
+        ],
+        "rotation": [
+          0,
+          40,
+          0
+        ],
+        "scale": [
+          3.5,
+          3.5,
+          3.5
+        ]
+      }
+    },
+    {
+      "id": "waterlilies-agent-2",
+      "ref": "models/waterlilies",
+      "name": "睡莲三",
+      "transform": {
+        "position": [
+          28,
+          0.64,
+          50
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          3.5,
+          3.5,
+          3.5
+        ]
+      }
+    },
+    {
+      "id": "waterlilies-agent-3",
+      "ref": "models/waterlilies",
+      "name": "睡莲四",
+      "transform": {
+        "position": [
+          24,
+          0.64,
+          42
+        ],
+        "rotation": [
+          0,
+          70,
+          0
+        ],
+        "scale": [
+          3.5,
+          3.5,
+          3.5
+        ]
+      }
+    },
+    {
+      "id": "reed-agent",
+      "ref": "models/reed",
+      "name": "湖畔芦苇",
+      "transform": {
+        "position": [
+          10,
+          0.64,
+          44
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          4,
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "id": "reed-2-agent",
+      "ref": "models/reed-2",
+      "name": "湖畔芦苇二",
+      "transform": {
+        "position": [
+          32,
+          0.64,
+          48
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          4,
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "id": "tropicalpalmpc-agent",
+      "ref": "models/tropicalpalmpc",
+      "name": "湖畔蕨类",
+      "transform": {
+        "position": [
+          8,
+          0.64,
+          50
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          2.2,
+          2.2,
+          2.2
+        ]
+      }
+    },
+    {
+      "id": "boat1-agent",
+      "ref": "models/boat1",
+      "name": "湖上独木舟",
+      "transform": {
+        "position": [
+          24,
+          0.64,
+          48
+        ],
+        "rotation": [
+          0,
+          120,
+          0
+        ],
+        "scale": [
+          1.1,
+          1.1,
+          1.1
+        ]
+      }
+    },
+    {
+      "id": "joshuatree3-agent",
+      "ref": "models/joshuatree3",
+      "name": "荒原巨树",
+      "transform": {
+        "position": [
+          48,
+          0.58,
+          30
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          1.3,
+          1.3,
+          1.3
+        ]
+      },
+      "materialOverride": {
+        "color": "#7d6a9d",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "castlecliff-agent-1",
+      "ref": "models/castlecliff",
+      "name": "荒原遗迹城堡",
+      "transform": {
+        "position": [
+          46,
+          0.58,
+          18
+        ],
+        "rotation": [
+          0,
+          -15,
+          0
+        ],
+        "scale": [
+          0.4,
+          0.4,
+          0.4
+        ]
+      },
+      "materialOverride": {
+        "color": "#7a6f8a",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "treedead2-2-agent",
+      "ref": "models/treedead2-2",
+      "name": "荒原枯树",
+      "transform": {
+        "position": [
+          48,
+          0.58,
+          28
+        ],
+        "rotation": [
+          0,
+          -40,
+          0
+        ],
+        "scale": [
+          1.3,
+          1.3,
+          1.3
+        ]
+      },
+      "materialOverride": {
+        "color": "#6b5f7d",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "mushrooms-agent-1",
+      "ref": "models/mushrooms",
+      "name": "荒原蘑菇",
+      "transform": {
+        "position": [
+          48,
+          0.58,
+          22
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ],
+        "scale": [
+          3,
+          3,
+          3
+        ]
+      },
+      "materialOverride": {
+        "color": "#8f7aa8",
+        "roughness": 0.85,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "rocks-agent",
+      "ref": "models/rocks",
+      "name": "荒原浮石",
+      "transform": {
+        "position": [
+          50,
+          0.58,
+          34
+        ],
+        "rotation": [
+          0,
+          10,
+          0
+        ],
+        "scale": [
+          2.2,
+          2.2,
+          2.2
+        ]
+      },
+      "materialOverride": {
+        "color": "#8a7fa0",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "conifer1-low-2-agent",
+      "ref": "models/conifer1-low-2",
+      "name": "荒原松树",
+      "transform": {
+        "position": [
+          52,
+          0.58,
+          18
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          1.1,
+          1.1,
+          1.1
+        ]
+      },
+      "materialOverride": {
+        "color": "#6a5d80",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "joshuatree2-agent-1",
+      "ref": "models/joshuatree2",
+      "name": "荒原尖叶树",
+      "transform": {
+        "position": [
+          50,
+          0.58,
+          24
+        ],
+        "rotation": [
+          0,
+          -20,
+          0
+        ],
+        "scale": [
+          1.2,
+          1.2,
+          1.2
+        ]
+      },
+      "materialOverride": {
+        "color": "#7a6a92",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "reedbig-2-agent",
+      "ref": "models/reedbig-2",
+      "name": "荒原草丛",
+      "transform": {
+        "position": [
+          46,
+          0.58,
+          34
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          2.2,
+          2.2,
+          2.2
+        ]
+      },
+      "materialOverride": {
+        "color": "#6a5d80",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "treedead1-2-agent",
+      "ref": "models/treedead1-2",
+      "name": "荒原残木",
+      "transform": {
+        "position": [
+          44,
+          0.58,
+          32
+        ],
+        "rotation": [
+          0,
+          75,
+          0
+        ],
+        "scale": [
+          1.2,
+          1.2,
+          1.2
+        ]
+      },
+      "materialOverride": {
+        "color": "#6b5f7d",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-agent",
+      "ref": "models/terrainpatchgreen",
+      "name": "沙海地表A",
+      "transform": {
+        "position": [
+          46,
+          0.17,
+          -22
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          7.5,
+          1.5,
+          7.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#cbae7d",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "沙海地表B",
+      "transform": {
+        "position": [
+          54,
+          0.17,
+          -10
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          7.5,
+          1.5,
+          7.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#c7aa79",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "沙海地表C",
+      "transform": {
+        "position": [
+          48,
+          0.17,
+          0
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          7,
+          1.5,
+          7
+        ]
+      },
+      "materialOverride": {
+        "color": "#ceb180",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "沙海地表D",
+      "transform": {
+        "position": [
+          56,
+          0.17,
+          -24
+        ],
+        "rotation": [
+          0,
+          10,
+          0
+        ],
+        "scale": [
+          7,
+          1.5,
+          7
+        ]
+      },
+      "materialOverride": {
+        "color": "#c4a776",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-3",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "荒原地表A",
+      "transform": {
+        "position": [
+          52,
+          0.15,
+          30
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          4.5,
+          1.45,
+          4.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#8b76c9",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-3",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "荒原地表B",
+      "transform": {
+        "position": [
+          48,
+          0.15,
+          24
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          4,
+          1.45,
+          4
+        ]
+      },
+      "materialOverride": {
+        "color": "#907bce",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-agent-4",
+      "ref": "models/terrainpatchgreen",
+      "name": "荒原地表C",
+      "transform": {
+        "position": [
+          54,
+          0.15,
+          34
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ],
+        "scale": [
+          4.5,
+          1.45,
+          4.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#8671c5",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-3",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "荒原地表D",
+      "transform": {
+        "position": [
+          50,
+          0.15,
+          18
+        ],
+        "rotation": [
+          0,
+          10,
+          0
+        ],
+        "scale": [
+          4,
+          1.45,
+          4
+        ]
+      },
+      "materialOverride": {
+        "color": "#8d78cb",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bush2-2-agent",
+      "ref": "models/bush2-2",
+      "name": "草原树丛A",
+      "transform": {
+        "position": [
+          40,
+          0.53,
+          24
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          1.2,
+          1.2,
+          1.2
+        ]
+      }
+    },
+    {
+      "id": "bush-agent",
+      "ref": "models/bush",
+      "name": "草原树丛B",
+      "transform": {
+        "position": [
+          -44,
+          0.53,
+          12
+        ],
+        "rotation": [
+          0,
+          -20,
+          0
+        ],
+        "scale": [
+          1.4,
+          1.4,
+          1.4
+        ]
+      }
+    },
+    {
+      "id": "tree1-agent",
+      "ref": "models/tree1",
+      "name": "草原松树A",
+      "transform": {
+        "position": [
+          44,
+          0.53,
+          6
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          1.3,
+          1.3,
+          1.3
+        ]
+      }
+    },
+    {
+      "id": "conifer-proxy-agent",
+      "ref": "models/conifer-proxy",
+      "name": "草原松树B",
+      "transform": {
+        "position": [
+          -40,
+          0.53,
+          34
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          1.3,
+          1.3,
+          1.3
+        ]
+      }
+    },
+    {
+      "id": "tree3-birchyoung-agent-1",
+      "ref": "models/tree3-birchyoung",
+      "name": "草原白桦",
+      "transform": {
+        "position": [
+          -12,
+          0.53,
+          36
+        ],
+        "rotation": [
+          0,
+          80,
+          0
+        ],
+        "scale": [
+          1.2,
+          1.2,
+          1.2
+        ]
+      }
+    },
+    {
+      "id": "flowerred-2-agent",
+      "ref": "models/flowerred-2",
+      "name": "草原花丛",
+      "transform": {
+        "position": [
+          18,
+          0.53,
+          14
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          2.4,
+          2.4,
+          2.4
+        ]
+      }
+    },
+    {
+      "id": "flowerwhite-2-agent",
+      "ref": "models/flowerwhite-2",
+      "name": "草原花丛二",
+      "transform": {
+        "position": [
+          -30,
+          0.53,
+          8
+        ],
+        "rotation": [
+          0,
+          -15,
+          0
+        ],
+        "scale": [
+          2.4,
+          2.4,
+          2.4
+        ]
+      }
+    },
+    {
+      "id": "flowerblue-2-agent",
+      "ref": "models/flowerblue-2",
+      "name": "草原花丛三",
+      "transform": {
+        "position": [
+          26,
+          0.53,
+          34
+        ],
+        "rotation": [
+          0,
+          50,
+          0
+        ],
+        "scale": [
+          2.4,
+          2.4,
+          2.4
+        ]
+      }
+    },
+    {
+      "id": "reedbig-2-agent-1",
+      "ref": "models/reedbig-2",
+      "name": "草原草丛",
+      "transform": {
+        "position": [
+          -16,
+          0.53,
+          22
+        ],
+        "rotation": [
+          0,
+          10,
+          0
+        ],
+        "scale": [
+          3,
+          3,
+          3
+        ]
+      }
+    },
+    {
+      "id": "potted-plant-agent",
+      "ref": "models/potted-plant",
+      "name": "草原灌木",
+      "transform": {
+        "position": [
+          36,
+          0.53,
+          -6
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          4,
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "id": "agavelow-2-agent",
+      "ref": "models/agavelow-2",
+      "name": "沙海仙人掌A",
+      "transform": {
+        "position": [
+          54,
+          0.61,
+          -20
+        ],
+        "rotation": [
+          0,
+          35,
+          0
+        ],
+        "scale": [
+          3,
+          3,
+          3
+        ]
+      }
+    },
+    {
+      "id": "agavehigh-agent",
+      "ref": "models/agavehigh",
+      "name": "沙海仙人掌B",
+      "transform": {
+        "position": [
+          46,
+          0.61,
+          -14
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          4,
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "id": "agavelow-agent-1",
+      "ref": "models/agavelow",
+      "name": "沙海仙人掌C",
+      "transform": {
+        "position": [
+          62,
+          0.61,
+          -8
+        ],
+        "rotation": [
+          0,
+          70,
+          0
+        ],
+        "scale": [
+          3,
+          3,
+          3
+        ]
+      }
+    },
+    {
+      "id": "palmdead2-2-agent",
+      "ref": "models/palmdead2-2",
+      "name": "沙海棕榈",
+      "transform": {
+        "position": [
+          64,
+          0.61,
+          -28
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          1.3,
+          1.3,
+          1.3
+        ]
+      }
+    },
+    {
+      "id": "palm3-small-agent",
+      "ref": "models/palm3-small",
+      "name": "沙海棕榈二",
+      "transform": {
+        "position": [
+          54,
+          0.61,
+          -44
+        ],
+        "rotation": [
+          0,
+          -40,
+          0
+        ],
+        "scale": [
+          1.3,
+          1.3,
+          1.3
+        ]
+      }
+    },
+    {
+      "id": "treedead2-agent",
+      "ref": "models/treedead2",
+      "name": "沙海枯枝",
+      "transform": {
+        "position": [
+          62,
+          0.61,
+          -38
+        ],
+        "rotation": [
+          0,
+          55,
+          0
+        ],
+        "scale": [
+          1.2,
+          1.2,
+          1.2
+        ]
+      }
+    },
+    {
+      "id": "rockgrey1-agent",
+      "ref": "models/rockgrey1",
+      "name": "沙海碎石A",
+      "transform": {
+        "position": [
+          58,
+          0.61,
+          -28
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          4,
+          4,
+          4
+        ]
+      },
+      "materialOverride": {
+        "color": "#a08f75",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "rockgrey1-3-agent",
+      "ref": "models/rockgrey1-3",
+      "name": "沙海碎石B",
+      "transform": {
+        "position": [
+          44,
+          0.61,
+          -30
+        ],
+        "rotation": [
+          0,
+          -20,
+          0
+        ],
+        "scale": [
+          3.5,
+          3.5,
+          3.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#a08f75",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bush-3-agent-1",
+      "ref": "models/bush-3",
+      "name": "幽林巨木A",
+      "transform": {
+        "position": [
+          -68,
+          0.53,
+          56
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          1.5,
+          1.5,
+          1.5
+        ]
+      }
+    },
+    {
+      "id": "bush2-3-agent",
+      "ref": "models/bush2-3",
+      "name": "幽林巨木B",
+      "transform": {
+        "position": [
+          -48,
+          0.53,
+          46
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          1.5,
+          1.5,
+          1.5
+        ]
+      }
+    },
+    {
+      "id": "conifer2-distant-agent",
+      "ref": "models/conifer2-distant",
+      "name": "幽林松A",
+      "transform": {
+        "position": [
+          -78,
+          0.53,
+          44
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ],
+        "scale": [
+          1.4,
+          1.4,
+          1.4
+        ]
+      }
+    },
+    {
+      "id": "demo-forest-pine-tree-agent",
+      "ref": "models/demo-forest-pine-tree",
+      "name": "幽林松B",
+      "transform": {
+        "position": [
+          -36,
+          0.53,
+          32
+        ],
+        "rotation": [
+          0,
+          -15,
+          0
+        ],
+        "scale": [
+          1.4,
+          1.4,
+          1.4
+        ]
+      }
+    },
+    {
+      "id": "mushrooms-agent-2",
+      "ref": "models/mushrooms",
+      "name": "幽林蘑菇环A",
+      "transform": {
+        "position": [
+          -56,
+          0.53,
+          62
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          5,
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "id": "mushroomsyellow-agent-1",
+      "ref": "models/mushroomsyellow",
+      "name": "幽林蘑菇环B",
+      "transform": {
+        "position": [
+          -70,
+          0.53,
+          34
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          5,
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "id": "treetrunk1-2-agent",
+      "ref": "models/treetrunk1-2",
+      "name": "幽林古树桩",
+      "transform": {
+        "position": [
+          -56,
+          0.53,
+          54
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          2.5,
+          2.5,
+          2.5
+        ]
+      }
+    },
+    {
+      "id": "coconut-plant-2-agent",
+      "ref": "models/coconut-plant-2",
+      "name": "幽林蕨丛",
+      "transform": {
+        "position": [
+          -60,
+          0.53,
+          42
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          5,
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "id": "demo-forest-bush-agent",
+      "ref": "models/demo-forest-bush",
+      "name": "幽林怪石",
+      "transform": {
+        "position": [
+          -82,
+          0.53,
+          66
+        ],
+        "rotation": [
+          0,
+          35,
+          0
+        ],
+        "scale": [
+          5,
+          5,
+          5
+        ]
+      },
+      "materialOverride": {
+        "color": "#6d7560",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "joshuatree3-agent-1",
+      "ref": "models/joshuatree3",
+      "name": "荒原巨树A",
+      "transform": {
+        "position": [
+          60,
+          0.6,
+          46
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "joshuatree1-agent-1",
+      "ref": "models/joshuatree1",
+      "name": "荒原巨树B",
+      "transform": {
+        "position": [
+          48,
+          0.58,
+          18
+        ],
+        "rotation": [
+          0,
+          70,
+          0
+        ],
+        "scale": [
+          1.2,
+          1.2,
+          1.2
+        ]
+      },
+      "materialOverride": {
+        "color": "#6f6187",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "sharprock1-agent-1",
+      "ref": "models/sharprock1",
+      "name": "荒原水晶石",
+      "transform": {
+        "position": [
+          46,
+          0.58,
+          26
+        ],
+        "rotation": [
+          0,
+          -15,
+          0
+        ],
+        "scale": [
+          2,
+          3,
+          2
+        ]
+      },
+      "materialOverride": {
+        "color": "#b48ad6",
+        "roughness": 0.35,
+        "metalness": 0.1
+      }
+    },
+    {
+      "id": "sharprock2-agent-1",
+      "ref": "models/sharprock2",
+      "name": "荒原水晶石二",
+      "transform": {
+        "position": [
+          52,
+          0.58,
+          28
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          2,
+          4,
+          2
+        ]
+      },
+      "materialOverride": {
+        "color": "#a97fcc",
+        "roughness": 0.35,
+        "metalness": 0.1
+      }
+    },
+    {
+      "id": "treedead2-agent-1",
+      "ref": "models/treedead2",
+      "name": "荒原枯木",
+      "transform": {
+        "position": [
+          52,
+          0.58,
+          34
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          1.2,
+          1.2,
+          1.2
+        ]
+      },
+      "materialOverride": {
+        "color": "#6b5f7d",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "mountains-agent",
+      "ref": "models/mountains",
+      "name": "荒原石环",
+      "transform": {
+        "position": [
+          46,
+          0.58,
+          24
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          2.2,
+          2.2,
+          2.2
+        ]
+      },
+      "materialOverride": {
+        "color": "#8b7f8f",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "agavelow-3-agent-1",
+      "ref": "models/agavelow-3",
+      "name": "荒原仙人掌",
+      "transform": {
+        "position": [
+          48,
+          0.58,
+          36
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          2.2,
+          2.2,
+          2.2
+        ]
+      },
+      "materialOverride": {
+        "color": "#7b6b94",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bigcliff-agent-1",
+      "ref": "models/bigcliff",
+      "name": "沙海巨岩峰",
+      "transform": {
+        "position": [
+          66,
+          0.61,
+          -30
+        ],
+        "rotation": [
+          0,
+          40,
+          0
+        ],
+        "scale": [
+          5,
+          7,
+          5
+        ]
+      },
+      "materialOverride": {
+        "color": "#8a7f6d",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "doublerockshape-high-agent-1",
+      "ref": "models/doublerockshape-high",
+      "name": "沙海岩塔",
+      "transform": {
+        "position": [
+          54,
+          0.61,
+          -36
+        ],
+        "rotation": [
+          0,
+          -20,
+          0
+        ],
+        "scale": [
+          8,
+          11,
+          8
+        ]
+      },
+      "materialOverride": {
+        "color": "#a2977f",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "rockgrey2-high-agent",
+      "ref": "models/rockgrey2-high",
+      "name": "草原石台",
+      "transform": {
+        "position": [
+          -42,
+          0,
+          16
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          6,
+          6,
+          6
+        ]
+      },
+      "materialOverride": {
+        "color": "#8a8b86",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-4",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "湖心水面",
+      "transform": {
+        "position": [
+          22,
+          0.57,
+          48
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          14,
+          0.6,
+          11
+        ]
+      },
+      "materialOverride": {
+        "color": "#2d7591",
+        "roughness": 0.3,
+        "metalness": 0.1
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-5",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "湖湾水面",
+      "transform": {
+        "position": [
+          28,
+          0.57,
+          52
+        ],
+        "rotation": [
+          0,
+          -30,
+          0
+        ],
+        "scale": [
+          6,
+          0.6,
+          6
+        ]
+      },
+      "materialOverride": {
+        "color": "#2d7591",
+        "roughness": 0.3,
+        "metalness": 0.1
+      }
+    },
+    {
+      "id": "terrainpatchbrown-agent-1",
+      "ref": "models/terrainpatchbrown",
+      "name": "湖汊水面",
+      "transform": {
+        "position": [
+          12,
+          0.57,
+          54
+        ],
+        "rotation": [
+          0,
+          55,
+          0
+        ],
+        "scale": [
+          8,
+          0.6,
+          8
+        ]
+      },
+      "materialOverride": {
+        "color": "#2d7591",
+        "roughness": 0.3,
+        "metalness": 0.1
+      }
+    },
+    {
+      "id": "terrainpatchbrown-2-agent-1",
+      "ref": "models/terrainpatchbrown-2",
+      "name": "湖南岸水面",
+      "transform": {
+        "position": [
+          24,
+          0.57,
+          44
+        ],
+        "rotation": [
+          0,
+          -10,
+          0
+        ],
+        "scale": [
+          11,
+          0.6,
+          7
+        ]
+      },
+      "materialOverride": {
+        "color": "#2d7591",
+        "roughness": 0.3,
+        "metalness": 0.1
+      }
+    },
+    {
+      "id": "bigcliff-agent-4",
+      "ref": "models/bigcliff",
+      "name": "海边礁石A",
+      "transform": {
+        "position": [
+          -90,
+          -1.3,
+          20
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          6,
+          5,
+          6
+        ]
+      },
+      "materialOverride": {
+        "color": "#93968a",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bigcliffwithplants-agent-3",
+      "ref": "models/bigcliffwithplants",
+      "name": "海边礁石B",
+      "transform": {
+        "position": [
+          96,
+          -1.3,
+          10
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          5,
+          5,
+          5
+        ]
+      },
+      "materialOverride": {
+        "color": "#8f9482",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "rockgrey2-3-agent-1",
+      "ref": "models/rockgrey2-3",
+      "name": "海岸岩台A",
+      "transform": {
+        "position": [
+          92,
+          -0.4,
+          40
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          10,
+          6,
+          10
+        ]
+      },
+      "materialOverride": {
+        "color": "#7b8069",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "rockgrey2-3-agent-2",
+      "ref": "models/rockgrey2-3",
+      "name": "海岸岩台B",
+      "transform": {
+        "position": [
+          -92,
+          -0.4,
+          52
+        ],
+        "rotation": [
+          0,
+          -30,
+          0
+        ],
+        "scale": [
+          9,
+          6,
+          9
+        ]
+      },
+      "materialOverride": {
+        "color": "#7b8069",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bigcliff-agent-5",
+      "ref": "models/bigcliff",
+      "name": "海岸礁岩1",
+      "transform": {
+        "position": [
+          -96,
+          -1.3,
+          -60
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          7,
+          6,
+          7
+        ]
+      },
+      "materialOverride": {
+        "color": "#93968a",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bigcliffwithplants-agent-4",
+      "ref": "models/bigcliffwithplants",
+      "name": "海岸礁岩2",
+      "transform": {
+        "position": [
+          -88,
+          -1.3,
+          -28
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          6,
+          5,
+          6
+        ]
+      },
+      "materialOverride": {
+        "color": "#8f9482",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bigcliff-agent-6",
+      "ref": "models/bigcliff",
+      "name": "海岸礁岩4",
+      "transform": {
+        "position": [
+          -78,
+          -1.3,
+          70
+        ],
+        "rotation": [
+          0,
+          -15,
+          0
+        ],
+        "scale": [
+          7,
+          5,
+          7
+        ]
+      },
+      "materialOverride": {
+        "color": "#93968a",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bigcliffwithplants-agent-5",
+      "ref": "models/bigcliffwithplants",
+      "name": "海岸礁岩6",
+      "transform": {
+        "position": [
+          2,
+          -1.3,
+          88
+        ],
+        "rotation": [
+          0,
+          10,
+          0
+        ],
+        "scale": [
+          6,
+          5,
+          6
+        ]
+      },
+      "materialOverride": {
+        "color": "#8f9482",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bigcliff-agent-7",
+      "ref": "models/bigcliff",
+      "name": "海岸礁岩8",
+      "transform": {
+        "position": [
+          86,
+          -1.3,
+          72
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          7,
+          6,
+          7
+        ]
+      },
+      "materialOverride": {
+        "color": "#93968a",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "rockgrey2-3-agent-4",
+      "ref": "models/rockgrey2-3",
+      "name": "海岸礁岩9",
+      "transform": {
+        "position": [
+          96,
+          -0.6,
+          28
+        ],
+        "rotation": [
+          0,
+          -20,
+          0
+        ],
+        "scale": [
+          9,
+          6,
+          9
+        ]
+      },
+      "materialOverride": {
+        "color": "#7b8069",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bigcliffwithplants-agent-6",
+      "ref": "models/bigcliffwithplants",
+      "name": "海岸礁岩10",
+      "transform": {
+        "position": [
+          94,
+          -1.3,
+          -22
+        ],
+        "rotation": [
+          0,
+          65,
+          0
+        ],
+        "scale": [
+          6,
+          5,
+          6
+        ]
+      },
+      "materialOverride": {
+        "color": "#8f9482",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bigcliff-agent-8",
+      "ref": "models/bigcliff",
+      "name": "海岸礁岩12",
+      "transform": {
+        "position": [
+          42,
+          -1.3,
+          -88
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          7,
+          5,
+          7
+        ]
+      },
+      "materialOverride": {
+        "color": "#93968a",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bigcliffwithplants-agent-7",
+      "ref": "models/bigcliffwithplants",
+      "name": "海岸礁岩14",
+      "transform": {
+        "position": [
+          -56,
+          -1.3,
+          -86
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          6,
+          5,
+          6
+        ]
+      },
+      "materialOverride": {
+        "color": "#95998a",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "tree2-agent-1",
+      "ref": "models/tree2",
+      "name": "草原填充树1",
+      "transform": {
+        "position": [
+          44,
+          0.53,
+          16
+        ],
+        "rotation": [
+          0,
+          35,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "bush-3-agent-2",
+      "ref": "models/bush-3",
+      "name": "草原填充树2",
+      "transform": {
+        "position": [
+          48,
+          0.53,
+          30
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          1.7,
+          1.7,
+          1.7
+        ]
+      }
+    },
+    {
+      "id": "bush2-agent-2",
+      "ref": "models/bush2",
+      "name": "草原填充树3",
+      "transform": {
+        "position": [
+          12,
+          0.53,
+          6
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "tree1-agent-1",
+      "ref": "models/tree1",
+      "name": "草原填充树4",
+      "transform": {
+        "position": [
+          -4,
+          0.53,
+          26
+        ],
+        "rotation": [
+          0,
+          -50,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "joshuatree1-agent-2",
+      "ref": "models/joshuatree1",
+      "name": "草原填充树5",
+      "transform": {
+        "position": [
+          32,
+          0.53,
+          6
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          1.5,
+          1.5,
+          1.5
+        ]
+      }
+    },
+    {
+      "id": "joshuatree2-agent-2",
+      "ref": "models/joshuatree2",
+      "name": "草原填充树6",
+      "transform": {
+        "position": [
+          -8,
+          0.53,
+          -30
+        ],
+        "rotation": [
+          0,
+          100,
+          0
+        ],
+        "scale": [
+          1.5,
+          1.5,
+          1.5
+        ]
+      }
+    },
+    {
+      "id": "bush2-2-agent-1",
+      "ref": "models/bush2-2",
+      "name": "草原填充树7",
+      "transform": {
+        "position": [
+          36,
+          0.53,
+          8
+        ],
+        "rotation": [
+          0,
+          -15,
+          0
+        ],
+        "scale": [
+          1.7,
+          1.7,
+          1.7
+        ]
+      }
+    },
+    {
+      "id": "rockgrey1-2-agent",
+      "ref": "models/rockgrey1-2",
+      "name": "草原填充石2",
+      "transform": {
+        "position": [
+          26,
+          0.53,
+          -8
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          4,
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "id": "flowerred-agent-1",
+      "ref": "models/flowerred",
+      "name": "草原填充花1",
+      "transform": {
+        "position": [
+          20,
+          0.53,
+          24
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          3,
+          3,
+          3
+        ]
+      }
+    },
+    {
+      "id": "flowerwhite-3-agent",
+      "ref": "models/flowerwhite-3",
+      "name": "草原填充花2",
+      "transform": {
+        "position": [
+          -20,
+          0.53,
+          -2
+        ],
+        "rotation": [
+          0,
+          -30,
+          0
+        ],
+        "scale": [
+          3,
+          3,
+          3
+        ]
+      }
+    },
+    {
+      "id": "flowerblue-agent-1",
+      "ref": "models/flowerblue",
+      "name": "草原填充花3",
+      "transform": {
+        "position": [
+          44,
+          0.53,
+          -12
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          3,
+          3,
+          3
+        ]
+      }
+    },
+    {
+      "id": "placeholder-box-agent",
+      "ref": "models/placeholder-box",
+      "name": "海洋",
+      "transform": {
+        "position": [
+          0,
+          -1.8,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          420,
+          1.2,
+          420
+        ]
+      },
+      "materialOverride": {
+        "color": "#1b4f72",
+        "roughness": 0.85,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-agent-5",
+      "ref": "models/terrainpatchgreen",
+      "name": "陆地A",
+      "transform": {
+        "position": [
+          -42,
+          0.07999999999999999,
+          20
+        ],
+        "rotation": [
+          0,
+          12,
+          0
+        ],
+        "scale": [
+          21.427200000000003,
+          0.9424,
+          20.534399999999998
+        ]
+      },
+      "materialOverride": {
+        "color": "#5e7d45",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-5",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "陆地B",
+      "transform": {
+        "position": [
+          40,
+          0.08,
+          -30
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          24,
+          0.94,
+          23
+        ]
+      },
+      "materialOverride": {
+        "color": "#5a7842",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-4",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "陆地C",
+      "transform": {
+        "position": [
+          -30,
+          0.07999999999999999,
+          -62
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          20.534399999999998,
+          0.9424,
+          19.6416
+        ]
+      },
+      "materialOverride": {
+        "color": "#618149",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-6",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "陆地D",
+      "transform": {
+        "position": [
+          46,
+          0.08,
+          44
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          30,
+          0.94,
+          29
+        ]
+      },
+      "materialOverride": {
+        "color": "#587540",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-agent-6",
+      "ref": "models/terrainpatchgreen",
+      "name": "陆地E",
+      "transform": {
+        "position": [
+          10,
+          0.07999999999999999,
+          8
+        ],
+        "rotation": [
+          0,
+          70,
+          0
+        ],
+        "scale": [
+          19.6416,
+          0.9424,
+          18.7488
+        ]
+      },
+      "materialOverride": {
+        "color": "#5e7d45",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-6",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "陆地F",
+      "transform": {
+        "position": [
+          -62,
+          0.07999999999999999,
+          -22
+        ],
+        "rotation": [
+          0,
+          -50,
+          0
+        ],
+        "scale": [
+          18.7488,
+          0.9424,
+          17.855999999999998
+        ]
+      },
+      "materialOverride": {
+        "color": "#5a7842",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "snowytownhousetower-agent",
+      "ref": "models/snowytownhousetower",
+      "name": "王城高塔",
+      "transform": {
+        "position": [
+          -34,
+          0.53,
+          -2
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          1.4,
+          1.4,
+          1.4
+        ]
+      },
+      "materialOverride": {
+        "color": "#8f8b84",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "woodenhouse3-agent",
+      "ref": "models/woodenhouse3",
+      "name": "村中木屋",
+      "transform": {
+        "position": [
+          10,
+          0.53,
+          -8
+        ],
+        "rotation": [
+          0,
+          -30,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "tent1-agent",
+      "ref": "models/tent1",
+      "name": "村中帐篷",
+      "transform": {
+        "position": [
+          -8,
+          0.53,
+          -24
+        ],
+        "rotation": [
+          0,
+          40,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "campfire-3-agent",
+      "ref": "models/campfire-3",
+      "name": "营地篝火",
+      "transform": {
+        "position": [
+          -6,
+          0.53,
+          -20
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "bench1-agent",
+      "ref": "models/bench1",
+      "name": "村口长椅",
+      "transform": {
+        "position": [
+          -10,
+          0.53,
+          -7
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "woodentable-agent",
+      "ref": "models/woodentable",
+      "name": "村中木桌",
+      "transform": {
+        "position": [
+          2,
+          0.53,
+          -16
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "marketstandred-agent",
+      "ref": "models/marketstandred",
+      "name": "集市第二摊",
+      "transform": {
+        "position": [
+          18,
+          0.53,
+          -6
+        ],
+        "rotation": [
+          0,
+          -40,
+          0
+        ],
+        "scale": [
+          2.4,
+          2.4,
+          2.4
+        ]
+      }
+    },
+    {
+      "id": "tree2-agent-2",
+      "ref": "models/tree2",
+      "name": "湖畔林1",
+      "transform": {
+        "position": [
+          -24,
+          0.53,
+          12
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "bush2-agent-3",
+      "ref": "models/bush2",
+      "name": "湖畔林2",
+      "transform": {
+        "position": [
+          40,
+          0.53,
+          8
+        ],
+        "rotation": [
+          0,
+          -40,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "tree1-agent-2",
+      "ref": "models/tree1",
+      "name": "湖畔林3",
+      "transform": {
+        "position": [
+          -6,
+          0.53,
+          22
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ],
+        "scale": [
+          1.5,
+          1.5,
+          1.5
+        ]
+      }
+    },
+    {
+      "id": "reedbig-agent-1",
+      "ref": "models/reedbig",
+      "name": "沙海绿洲草",
+      "transform": {
+        "position": [
+          64,
+          0.61,
+          -18
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          3.5,
+          3.5,
+          3.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#6b8c48",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "cactus-agent",
+      "ref": "models/cactus",
+      "name": "沙海绿洲草二",
+      "transform": {
+        "position": [
+          56,
+          0.61,
+          -42
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      },
+      "materialOverride": {
+        "color": "#c9b48c",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-5",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "沙地延伸1",
+      "transform": {
+        "position": [
+          38,
+          0.25,
+          -32
+        ],
+        "rotation": [
+          0,
+          65,
+          0
+        ],
+        "scale": [
+          4.5,
+          1.5,
+          4.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#c8ab7c",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-7",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "沙地延伸2",
+      "transform": {
+        "position": [
+          58,
+          0.21,
+          -14
+        ],
+        "rotation": [
+          0,
+          -40,
+          0
+        ],
+        "scale": [
+          5.5,
+          1.5,
+          5.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#c4a776",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-agent-7",
+      "ref": "models/terrainpatchgreen",
+      "name": "沙地延伸3",
+      "transform": {
+        "position": [
+          56,
+          0.17,
+          -44
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          6.5,
+          1.5,
+          6.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#cbae7d",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-7",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "沙地延伸4",
+      "transform": {
+        "position": [
+          56,
+          0.25,
+          -30
+        ],
+        "rotation": [
+          0,
+          50,
+          0
+        ],
+        "scale": [
+          5.5,
+          1.5,
+          5.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#c1a473",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "snowytownhousetower-agent-1",
+      "ref": "models/snowytownhousetower",
+      "name": "幽林古塔",
+      "transform": {
+        "position": [
+          -56,
+          0.53,
+          40
+        ],
+        "rotation": [
+          0,
+          40,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      },
+      "materialOverride": {
+        "color": "#6b5a48",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "oldwall1-agent",
+      "ref": "models/oldwall1",
+      "name": "荒原方尖碑",
+      "transform": {
+        "position": [
+          52,
+          0.58,
+          16
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          2.2,
+          4.5,
+          2.2
+        ]
+      },
+      "materialOverride": {
+        "color": "#8f7fa0",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "snowytent-agent",
+      "ref": "models/snowytent",
+      "name": "雪山营帐",
+      "transform": {
+        "position": [
+          -42,
+          0.63,
+          -62
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          2.4,
+          2.4,
+          2.4
+        ]
+      }
+    },
+    {
+      "id": "signpost1-3-agent",
+      "ref": "models/signpost1-3",
+      "name": "沙海路标",
+      "transform": {
+        "position": [
+          46,
+          0.61,
+          -18
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "lantern-agent-1",
+      "ref": "models/lantern",
+      "name": "村边风灯",
+      "transform": {
+        "position": [
+          14,
+          0.53,
+          -4
+        ],
+        "rotation": [
+          0,
+          -20,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "fence1-agent",
+      "ref": "models/fence1",
+      "name": "村边木栅",
+      "transform": {
+        "position": [
+          -4,
+          0.53,
+          -26
+        ],
+        "rotation": [
+          0,
+          10,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "woodenwalldamaged1-agent",
+      "ref": "models/woodenwalldamaged1",
+      "name": "村边木栅二",
+      "transform": {
+        "position": [
+          22,
+          0.53,
+          -22
+        ],
+        "rotation": [
+          0,
+          -40,
+          0
+        ],
+        "scale": [
+          4,
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "id": "snowybarrels3-agent",
+      "ref": "models/snowybarrels3",
+      "name": "荒原紫晶簇",
+      "transform": {
+        "position": [
+          52,
+          0.58,
+          30
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          3.5,
+          4.5,
+          3.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#9b6fc4",
+        "roughness": 0.4,
+        "metalness": 0.1
+      }
+    },
+    {
+      "id": "snowybarrels3-2-agent",
+      "ref": "models/snowybarrels3-2",
+      "name": "荒原紫晶簇二",
+      "transform": {
+        "position": [
+          50,
+          0.58,
+          26
+        ],
+        "rotation": [
+          0,
+          -30,
+          0
+        ],
+        "scale": [
+          3,
+          4,
+          3
+        ]
+      },
+      "materialOverride": {
+        "color": "#8d63b8",
+        "roughness": 0.4,
+        "metalness": 0.1
+      }
+    },
+    {
+      "id": "terrainpatchgreen-agent-8",
+      "ref": "models/terrainpatchgreen",
+      "name": "沙海过渡1",
+      "transform": {
+        "position": [
+          36,
+          0.31,
+          -16
+        ],
+        "rotation": [
+          0,
+          35,
+          0
+        ],
+        "scale": [
+          4,
+          1.5,
+          4
+        ]
+      },
+      "materialOverride": {
+        "color": "#cbae7d",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "snowytree-agent-1",
+      "ref": "models/snowytree",
+      "name": "雪山针叶林1",
+      "transform": {
+        "position": [
+          -56,
+          0.63,
+          -64
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      },
+      "materialOverride": {
+        "color": "#2b4634",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "snowytree-2-agent-1",
+      "ref": "models/snowytree-2",
+      "name": "雪山针叶林2",
+      "transform": {
+        "position": [
+          -38,
+          0.63,
+          -58
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          1.7,
+          1.7,
+          1.7
+        ]
+      },
+      "materialOverride": {
+        "color": "#30503b",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "snowytree-agent-2",
+      "ref": "models/snowytree",
+      "name": "雪山针叶林3",
+      "transform": {
+        "position": [
+          -58,
+          0.63,
+          -52
+        ],
+        "rotation": [
+          0,
+          65,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      },
+      "materialOverride": {
+        "color": "#2e4a36",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "snowytree-2-agent-2",
+      "ref": "models/snowytree-2",
+      "name": "雪山针叶林4",
+      "transform": {
+        "position": [
+          -36,
+          0.63,
+          -50
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          1.5,
+          1.5,
+          1.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#334f3a",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "rockgrey2-agent-1",
+      "ref": "models/rockgrey2",
+      "name": "雪山暗岩",
+      "transform": {
+        "position": [
+          -60,
+          0.63,
+          -58
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          5,
+          3.5,
+          5
+        ]
+      },
+      "materialOverride": {
+        "color": "#8a95a0",
+        "roughness": 0.8,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "rockgrey2-3-agent",
+      "ref": "models/rockgrey2-3",
+      "name": "雪山暗岩二",
+      "transform": {
+        "position": [
+          -46,
+          0.63,
+          -50
+        ],
+        "rotation": [
+          0,
+          -40,
+          0
+        ],
+        "scale": [
+          6,
+          3,
+          6
+        ]
+      },
+      "materialOverride": {
+        "color": "#8e99a3",
+        "roughness": 0.8,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "campfire-3-agent-1",
+      "ref": "models/campfire-3",
+      "name": "雪山营地",
+      "transform": {
+        "position": [
+          -48,
+          0.63,
+          -60
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "bigcliff-agent-2",
+      "ref": "models/bigcliff",
+      "name": "沙丘巨岩",
+      "transform": {
+        "position": [
+          62,
+          0.61,
+          -30
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          5,
+          4,
+          5
+        ]
+      },
+      "materialOverride": {
+        "color": "#c6a87c",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bigcliffwithplants-agent-1",
+      "ref": "models/bigcliffwithplants",
+      "name": "沙丘巨岩二",
+      "transform": {
+        "position": [
+          46,
+          0.61,
+          -24
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          3.5,
+          3.5,
+          3.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#b9a077",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "tree1-agent-3",
+      "ref": "models/tree1",
+      "name": "西北林地1",
+      "transform": {
+        "position": [
+          -66,
+          0.53,
+          -34
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          1.5,
+          1.5,
+          1.5
+        ]
+      }
+    },
+    {
+      "id": "tree2-agent-3",
+      "ref": "models/tree2",
+      "name": "西北林地2",
+      "transform": {
+        "position": [
+          -58,
+          0.53,
+          -20
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          1.7,
+          1.7,
+          1.7
+        ]
+      }
+    },
+    {
+      "id": "bush2-agent-4",
+      "ref": "models/bush2",
+      "name": "西北林地3",
+      "transform": {
+        "position": [
+          -72,
+          0.53,
+          2
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "tree3-birchyoung-agent-2",
+      "ref": "models/tree3-birchyoung",
+      "name": "西北林地4",
+      "transform": {
+        "position": [
+          -50,
+          0.53,
+          -44
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          1.4,
+          1.4,
+          1.4
+        ]
+      }
+    },
+    {
+      "id": "bush-3-agent-3",
+      "ref": "models/bush-3",
+      "name": "北地草甸1",
+      "transform": {
+        "position": [
+          -8,
+          0.53,
+          -40
+        ],
+        "rotation": [
+          0,
+          40,
+          0
+        ],
+        "scale": [
+          1.5,
+          1.5,
+          1.5
+        ]
+      }
+    },
+    {
+      "id": "joshuatree2-agent-3",
+      "ref": "models/joshuatree2",
+      "name": "北地草甸2",
+      "transform": {
+        "position": [
+          16,
+          0.53,
+          -34
+        ],
+        "rotation": [
+          0,
+          -20,
+          0
+        ],
+        "scale": [
+          1.4,
+          1.4,
+          1.4
+        ]
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-10",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "沙a",
+      "transform": {
+        "position": [
+          52,
+          0.16,
+          -18
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          4.5,
+          1.5,
+          4.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#c8ab7c",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-6",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "沙b",
+      "transform": {
+        "position": [
+          52,
+          0.18,
+          -4
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          4.5,
+          1.5,
+          4.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#ceb180",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-agent-10",
+      "ref": "models/terrainpatchgreen",
+      "name": "沙c",
+      "transform": {
+        "position": [
+          56,
+          0.2,
+          -20
+        ],
+        "rotation": [
+          0,
+          50,
+          0
+        ],
+        "scale": [
+          4.5,
+          1.5,
+          4.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#c7aa79",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-8",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "沙d",
+      "transform": {
+        "position": [
+          44,
+          0.22,
+          -32
+        ],
+        "rotation": [
+          0,
+          -15,
+          0
+        ],
+        "scale": [
+          4.5,
+          1.5,
+          4.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#c4a776",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-8",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "紫a",
+      "transform": {
+        "position": [
+          54,
+          0.29,
+          28
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          3.5,
+          1.45,
+          3.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#9889c1",
+        "roughness": 0.92,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-10",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "紫b",
+      "transform": {
+        "position": [
+          51,
+          0.31,
+          24
+        ],
+        "rotation": [
+          0,
+          -40,
+          0
+        ],
+        "scale": [
+          3.5,
+          1.45,
+          3.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#9e8fc7",
+        "roughness": 0.92,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-agent-11",
+      "ref": "models/terrainpatchgreen",
+      "name": "紫c",
+      "transform": {
+        "position": [
+          52,
+          0.33,
+          28
+        ],
+        "rotation": [
+          0,
+          70,
+          0
+        ],
+        "scale": [
+          3.5,
+          1.45,
+          3.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#9b8cc4",
+        "roughness": 0.92,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-11",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "紫d",
+      "transform": {
+        "position": [
+          46,
+          0.35,
+          18
+        ],
+        "rotation": [
+          0,
+          10,
+          0
+        ],
+        "scale": [
+          3.5,
+          1.45,
+          3.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#9889c1",
+        "roughness": 0.92,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-10",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "沙海N1",
+      "transform": {
+        "position": [
+          50,
+          0.15,
+          -10
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          6,
+          1.5,
+          6
+        ]
+      },
+      "materialOverride": {
+        "color": "#c6a97b",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-12",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "沙海N2",
+      "transform": {
+        "position": [
+          54,
+          0.15,
+          -12
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          5.5,
+          1.5,
+          5.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#c3a677",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-12",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "沙海N4",
+      "transform": {
+        "position": [
+          44,
+          0.15,
+          -20
+        ],
+        "rotation": [
+          0,
+          -15,
+          0
+        ],
+        "scale": [
+          6,
+          1.5,
+          6
+        ]
+      },
+      "materialOverride": {
+        "color": "#c9ac7e",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-agent-13",
+      "ref": "models/terrainpatchgreen",
+      "name": "沙海N3",
+      "transform": {
+        "position": [
+          56,
+          0.15,
+          -20
+        ],
+        "rotation": [
+          0,
+          40,
+          0
+        ],
+        "scale": [
+          6,
+          1.5,
+          6
+        ]
+      },
+      "materialOverride": {
+        "color": "#c6a97b",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-14",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "紫原N1",
+      "transform": {
+        "position": [
+          52,
+          0.17,
+          24
+        ],
+        "rotation": [
+          0,
+          35,
+          0
+        ],
+        "scale": [
+          4,
+          1.45,
+          4
+        ]
+      },
+      "materialOverride": {
+        "color": "#907bce",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-11",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "紫原N2",
+      "transform": {
+        "position": [
+          50,
+          0.21,
+          32
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          4,
+          1.5,
+          4
+        ]
+      },
+      "materialOverride": {
+        "color": "#8b76c9",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-13",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "紫原N3",
+      "transform": {
+        "position": [
+          54,
+          0.21,
+          24
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ],
+        "scale": [
+          4,
+          1.45,
+          4
+        ]
+      },
+      "materialOverride": {
+        "color": "#927dd0",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-agent-14",
+      "ref": "models/terrainpatchgreen",
+      "name": "紫原N4",
+      "transform": {
+        "position": [
+          48,
+          0.25,
+          26
+        ],
+        "rotation": [
+          0,
+          10,
+          0
+        ],
+        "scale": [
+          4,
+          1.5,
+          4
+        ]
+      },
+      "materialOverride": {
+        "color": "#8d78cb",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-12",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "沙海扩展1",
+      "transform": {
+        "position": [
+          50,
+          0.17,
+          -32
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          6.5,
+          1.5,
+          6.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#cbb07f",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-14",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "沙海扩展2",
+      "transform": {
+        "position": [
+          58,
+          0.17,
+          -18
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          6.5,
+          1.5,
+          6.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#c8ad7b",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-15",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "紫原扩展1",
+      "transform": {
+        "position": [
+          54,
+          0.25,
+          30
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          3.5,
+          1.45,
+          3.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#907bce",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-agent-15",
+      "ref": "models/terrainpatchgreen",
+      "name": "紫原扩展2",
+      "transform": {
+        "position": [
+          54,
+          0.27,
+          32
+        ],
+        "rotation": [
+          0,
+          -20,
+          0
+        ],
+        "scale": [
+          3.5,
+          1.45,
+          3.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#8b76c9",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-16",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "雪原扩展2",
+      "transform": {
+        "position": [
+          -44,
+          0.18,
+          -62
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          13,
+          1.5,
+          12
+        ]
+      },
+      "materialOverride": {
+        "color": "#f2f8fd",
+        "roughness": 0.7,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "tree1-agent-4",
+      "ref": "models/tree1",
+      "name": "草原树群1",
+      "transform": {
+        "position": [
+          -16,
+          0.53,
+          -34
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "tree2-agent-4",
+      "ref": "models/tree2",
+      "name": "草原树群2",
+      "transform": {
+        "position": [
+          24,
+          0.53,
+          -32
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "bush2-agent-5",
+      "ref": "models/bush2",
+      "name": "草原树群3",
+      "transform": {
+        "position": [
+          -32,
+          0.53,
+          44
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          1.9,
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "conifer1-low-agent-2",
+      "ref": "models/conifer1-low",
+      "name": "草原树群4",
+      "transform": {
+        "position": [
+          -14,
+          0.53,
+          -6
+        ],
+        "rotation": [
+          0,
+          -40,
+          0
+        ],
+        "scale": [
+          1.5,
+          1.5,
+          1.5
+        ]
+      }
+    },
+    {
+      "id": "tree3-birchyoung-agent-3",
+      "ref": "models/tree3-birchyoung",
+      "name": "草原树群5",
+      "transform": {
+        "position": [
+          -8,
+          0.53,
+          12
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ],
+        "scale": [
+          1.7,
+          1.7,
+          1.7
+        ]
+      }
+    },
+    {
+      "id": "bush-3-agent-4",
+      "ref": "models/bush-3",
+      "name": "草原树群6",
+      "transform": {
+        "position": [
+          34,
+          0.53,
+          -2
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          1.9,
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "conifer2-low-agent-1",
+      "ref": "models/conifer2-low",
+      "name": "草原树群7",
+      "transform": {
+        "position": [
+          -42,
+          0.53,
+          -18
+        ],
+        "rotation": [
+          0,
+          -15,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "joshuatree1-agent-3",
+      "ref": "models/joshuatree1",
+      "name": "草原树群8",
+      "transform": {
+        "position": [
+          8,
+          0.53,
+          -26
+        ],
+        "rotation": [
+          0,
+          80,
+          0
+        ],
+        "scale": [
+          1.7,
+          1.7,
+          1.7
+        ]
+      }
+    },
+    {
+      "id": "tree1-agent-5",
+      "ref": "models/tree1",
+      "name": "草原树群9",
+      "transform": {
+        "position": [
+          -20,
+          0.53,
+          30
+        ],
+        "rotation": [
+          0,
+          -70,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "bush2-2-agent-2",
+      "ref": "models/bush2-2",
+      "name": "草原树群10",
+      "transform": {
+        "position": [
+          30,
+          0.53,
+          14
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "tree2-agent-5",
+      "ref": "models/tree2",
+      "name": "草原树群11",
+      "transform": {
+        "position": [
+          -6,
+          0.53,
+          -42
+        ],
+        "rotation": [
+          0,
+          -50,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "joshuatree2-agent-4",
+      "ref": "models/joshuatree2",
+      "name": "草原树群12",
+      "transform": {
+        "position": [
+          24,
+          0.53,
+          6
+        ],
+        "rotation": [
+          0,
+          35,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "rockgrey2-3-agent-3",
+      "ref": "models/rockgrey2-3",
+      "name": "草原石1",
+      "transform": {
+        "position": [
+          -26,
+          0.53,
+          -6
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          2.5,
+          2.5,
+          2.5
+        ]
+      }
+    },
+    {
+      "id": "rockgrey1-3-agent-1",
+      "ref": "models/rockgrey1-3",
+      "name": "草原石2",
+      "transform": {
+        "position": [
+          12,
+          0.53,
+          4
+        ],
+        "rotation": [
+          0,
+          -30,
+          0
+        ],
+        "scale": [
+          3,
+          3,
+          3
+        ]
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-13",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "沙心填充",
+      "transform": {
+        "position": [
+          52,
+          0.17,
+          -16
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          7,
+          1.5,
+          7
+        ]
+      },
+      "materialOverride": {
+        "color": "#c8ab7c",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-15",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "沙心填充二",
+      "transform": {
+        "position": [
+          50,
+          0.17,
+          -6
+        ],
+        "rotation": [
+          0,
+          -30,
+          0
+        ],
+        "scale": [
+          8,
+          1.5,
+          8
+        ]
+      },
+      "materialOverride": {
+        "color": "#c4a776",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-17",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "紫心填充",
+      "transform": {
+        "position": [
+          46,
+          0.15,
+          26
+        ],
+        "rotation": [
+          0,
+          40,
+          0
+        ],
+        "scale": [
+          4.5,
+          1.45,
+          4.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#907bce",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bg-mauntains-agent",
+      "ref": "models/bg-mauntains",
+      "name": "草丘1",
+      "transform": {
+        "position": [
+          -36,
+          0.53,
+          -10
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          9,
+          6,
+          9
+        ]
+      },
+      "materialOverride": {
+        "color": "#5d7a47",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bg-mauntains-agent-1",
+      "ref": "models/bg-mauntains",
+      "name": "草丘2",
+      "transform": {
+        "position": [
+          22,
+          0.53,
+          -10
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          8,
+          5,
+          8
+        ]
+      },
+      "materialOverride": {
+        "color": "#57733f",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bg-mauntains-agent-2",
+      "ref": "models/bg-mauntains",
+      "name": "草丘3",
+      "transform": {
+        "position": [
+          -18,
+          0.53,
+          18
+        ],
+        "rotation": [
+          0,
+          55,
+          0
+        ],
+        "scale": [
+          8,
+          4.5,
+          8
+        ]
+      },
+      "materialOverride": {
+        "color": "#5a7643",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "tree1-agent-6",
+      "ref": "models/tree1",
+      "name": "西部林1",
+      "transform": {
+        "position": [
+          -56,
+          0.53,
+          6
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          1.7,
+          1.7,
+          1.7
+        ]
+      }
+    },
+    {
+      "id": "tree2-agent-6",
+      "ref": "models/tree2",
+      "name": "西部林2",
+      "transform": {
+        "position": [
+          -64,
+          0.53,
+          24
+        ],
+        "rotation": [
+          0,
+          -30,
+          0
+        ],
+        "scale": [
+          1.9,
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "bush2-agent-6",
+      "ref": "models/bush2",
+      "name": "西部林3",
+      "transform": {
+        "position": [
+          -48,
+          0.53,
+          -28
+        ],
+        "rotation": [
+          0,
+          50,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "conifer1-low-agent-3",
+      "ref": "models/conifer1-low",
+      "name": "西部林4",
+      "transform": {
+        "position": [
+          -60,
+          0.53,
+          -36
+        ],
+        "rotation": [
+          0,
+          10,
+          0
+        ],
+        "scale": [
+          1.5,
+          1.5,
+          1.5
+        ]
+      }
+    },
+    {
+      "id": "tree3-birchyoung-agent-4",
+      "ref": "models/tree3-birchyoung",
+      "name": "西部林5",
+      "transform": {
+        "position": [
+          -40,
+          0.53,
+          42
+        ],
+        "rotation": [
+          0,
+          -60,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "tree1-agent-7",
+      "ref": "models/tree1",
+      "name": "南原林1",
+      "transform": {
+        "position": [
+          -30,
+          0.53,
+          42
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "tree2-agent-7",
+      "ref": "models/tree2",
+      "name": "南原林2",
+      "transform": {
+        "position": [
+          -48,
+          0.53,
+          48
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          2.1,
+          2.1,
+          2.1
+        ]
+      }
+    },
+    {
+      "id": "bush2-3-agent-1",
+      "ref": "models/bush2-3",
+      "name": "南原林3",
+      "transform": {
+        "position": [
+          -16,
+          0.53,
+          52
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "conifer1-low-agent-4",
+      "ref": "models/conifer1-low",
+      "name": "南原林4",
+      "transform": {
+        "position": [
+          -36,
+          0.53,
+          56
+        ],
+        "rotation": [
+          0,
+          -15,
+          0
+        ],
+        "scale": [
+          1.7,
+          1.7,
+          1.7
+        ]
+      }
+    },
+    {
+      "id": "tree3-birchyoung-agent-5",
+      "ref": "models/tree3-birchyoung",
+      "name": "南原林5",
+      "transform": {
+        "position": [
+          -56,
+          0.53,
+          28
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "tree2-agent-8",
+      "ref": "models/tree2",
+      "name": "西原林1",
+      "transform": {
+        "position": [
+          -66,
+          0.53,
+          -26
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "bush2-agent-7",
+      "ref": "models/bush2",
+      "name": "西原林2",
+      "transform": {
+        "position": [
+          -52,
+          0.53,
+          -38
+        ],
+        "rotation": [
+          0,
+          -50,
+          0
+        ],
+        "scale": [
+          1.9,
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "joshuatree1-agent-4",
+      "ref": "models/joshuatree1",
+      "name": "西原林3",
+      "transform": {
+        "position": [
+          -74,
+          0.53,
+          14
+        ],
+        "rotation": [
+          0,
+          40,
+          0
+        ],
+        "scale": [
+          1.9,
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "conifer2-low-agent-2",
+      "ref": "models/conifer2-low",
+      "name": "中原林1",
+      "transform": {
+        "position": [
+          0,
+          0.53,
+          -44
+        ],
+        "rotation": [
+          0,
+          30,
+          0
+        ],
+        "scale": [
+          1.7,
+          1.7,
+          1.7
+        ]
+      }
+    },
+    {
+      "id": "tree1-agent-8",
+      "ref": "models/tree1",
+      "name": "中原林2",
+      "transform": {
+        "position": [
+          -24,
+          0.53,
+          -46
+        ],
+        "rotation": [
+          0,
+          -20,
+          0
+        ],
+        "scale": [
+          1.9,
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "bush-3-agent-5",
+      "ref": "models/bush-3",
+      "name": "中原林3",
+      "transform": {
+        "position": [
+          26,
+          0.53,
+          -48
+        ],
+        "rotation": [
+          0,
+          55,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "tree2-agent-9",
+      "ref": "models/tree2",
+      "name": "中原林4",
+      "transform": {
+        "position": [
+          34,
+          0.53,
+          -40
+        ],
+        "rotation": [
+          0,
+          -65,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "conifer1-low-2-agent-1",
+      "ref": "models/conifer1-low-2",
+      "name": "东原林1",
+      "transform": {
+        "position": [
+          16,
+          0.53,
+          4
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "tree1-agent-9",
+      "ref": "models/tree1",
+      "name": "东原林2",
+      "transform": {
+        "position": [
+          6,
+          0.53,
+          10
+        ],
+        "rotation": [
+          0,
+          -30,
+          0
+        ],
+        "scale": [
+          1.7,
+          1.7,
+          1.7
+        ]
+      }
+    },
+    {
+      "id": "flowerred-3-agent",
+      "ref": "models/flowerred-3",
+      "name": "草原花海",
+      "transform": {
+        "position": [
+          -40,
+          0.53,
+          6
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          3.5,
+          3.5,
+          3.5
+        ]
+      }
+    },
+    {
+      "id": "flowerwhite-agent-1",
+      "ref": "models/flowerwhite",
+      "name": "草原花海二",
+      "transform": {
+        "position": [
+          8,
+          0.53,
+          -34
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          3.5,
+          3.5,
+          3.5
+        ]
+      }
+    },
+    {
+      "id": "flowerblue-2-agent-1",
+      "ref": "models/flowerblue-2",
+      "name": "草原花海三",
+      "transform": {
+        "position": [
+          -18,
+          0.53,
+          44
+        ],
+        "rotation": [
+          0,
+          50,
+          0
+        ],
+        "scale": [
+          3.5,
+          3.5,
+          3.5
+        ]
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-15",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "沙缘柔化1",
+      "transform": {
+        "position": [
+          44,
+          0.09,
+          -6
+        ],
+        "rotation": [
+          0,
+          40,
+          0
+        ],
+        "scale": [
+          6,
+          1.5,
+          6
+        ]
+      },
+      "materialOverride": {
+        "color": "#cbae7d",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-16",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "沙缘柔化2",
+      "transform": {
+        "position": [
+          52,
+          0.09,
+          -38
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          6,
+          1.5,
+          6
+        ]
+      },
+      "materialOverride": {
+        "color": "#c4a776",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-agent-9",
+      "ref": "models/terrainpatchgreen",
+      "name": "沙缘柔化3",
+      "transform": {
+        "position": [
+          36,
+          0.09,
+          -20
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ],
+        "scale": [
+          6,
+          1.5,
+          6
+        ]
+      },
+      "materialOverride": {
+        "color": "#c8ab7c",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-16",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "紫原扩张东",
+      "transform": {
+        "position": [
+          42,
+          0.15,
+          28
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          4.5,
+          1.45,
+          4.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#907bce",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-17",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "紫原扩张南",
+      "transform": {
+        "position": [
+          44,
+          0.15,
+          20
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          4,
+          1.45,
+          4
+        ]
+      },
+      "materialOverride": {
+        "color": "#8d78cb",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "sharprock1-agent-2",
+      "ref": "models/sharprock1",
+      "name": "紫晶尖石1",
+      "transform": {
+        "position": [
+          52,
+          0.58,
+          22
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          3,
+          6,
+          3
+        ]
+      },
+      "materialOverride": {
+        "color": "#b6a6cd",
+        "roughness": 0.6,
+        "metalness": 0.05
+      }
+    },
+    {
+      "id": "sharprock2-agent-2",
+      "ref": "models/sharprock2",
+      "name": "紫晶尖石2",
+      "transform": {
+        "position": [
+          54,
+          0.58,
+          28
+        ],
+        "rotation": [
+          0,
+          -30,
+          0
+        ],
+        "scale": [
+          2.5,
+          5,
+          2.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#ad9dc5",
+        "roughness": 0.6,
+        "metalness": 0.05
+      }
+    },
+    {
+      "id": "sharprock1-agent-3",
+      "ref": "models/sharprock1",
+      "name": "紫晶尖石3",
+      "transform": {
+        "position": [
+          50,
+          0.58,
+          16
+        ],
+        "rotation": [
+          0,
+          60,
+          0
+        ],
+        "scale": [
+          2,
+          4,
+          2
+        ]
+      },
+      "materialOverride": {
+        "color": "#bcacd3",
+        "roughness": 0.6,
+        "metalness": 0.05
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-19",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "沙缘过渡甲",
+      "transform": {
+        "position": [
+          38,
+          0.09,
+          -32
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          5,
+          1.5,
+          5
+        ]
+      },
+      "materialOverride": {
+        "color": "#5e7d45",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-18",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "沙缘过渡乙",
+      "transform": {
+        "position": [
+          64,
+          0.09,
+          -36
+        ],
+        "rotation": [
+          0,
+          -20,
+          0
+        ],
+        "scale": [
+          5,
+          1.5,
+          5
+        ]
+      },
+      "materialOverride": {
+        "color": "#5e7d45",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-19",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "紫原补1",
+      "transform": {
+        "position": [
+          48,
+          0.15,
+          34
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          4,
+          1.45,
+          4
+        ]
+      },
+      "materialOverride": {
+        "color": "#907bce",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-20",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "紫原补2",
+      "transform": {
+        "position": [
+          46,
+          0.15,
+          38
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          4,
+          1.45,
+          4
+        ]
+      },
+      "materialOverride": {
+        "color": "#8d78cb",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-20",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "紫原补3",
+      "transform": {
+        "position": [
+          48,
+          0.15,
+          22
+        ],
+        "rotation": [
+          0,
+          10,
+          0
+        ],
+        "scale": [
+          4,
+          1.45,
+          4
+        ]
+      },
+      "materialOverride": {
+        "color": "#8b76c9",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-20",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "紫原扩A",
+      "transform": {
+        "position": [
+          56,
+          0.15,
+          36
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          5,
+          1.45,
+          5
+        ]
+      },
+      "materialOverride": {
+        "color": "#907bce",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-4-agent-21",
+      "ref": "models/terrainpatchgreen-4",
+      "name": "紫原扩B",
+      "transform": {
+        "position": [
+          46,
+          0.15,
+          32
+        ],
+        "rotation": [
+          0,
+          -30,
+          0
+        ],
+        "scale": [
+          4.5,
+          1.45,
+          4.5
+        ]
+      },
+      "materialOverride": {
+        "color": "#8d78cb",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-21",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "紫原扩C",
+      "transform": {
+        "position": [
+          50,
+          0.15,
+          22
+        ],
+        "rotation": [
+          0,
+          50,
+          0
+        ],
+        "scale": [
+          5,
+          1.45,
+          5
+        ]
+      },
+      "materialOverride": {
+        "color": "#8b76c9",
+        "roughness": 0.9,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "tree1-agent-10",
+      "ref": "models/tree1",
+      "name": "林带1",
+      "transform": {
+        "position": [
+          -14,
+          0.53,
+          -22
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "conifer1-low-agent-5",
+      "ref": "models/conifer1-low",
+      "name": "林带2",
+      "transform": {
+        "position": [
+          -24,
+          0.53,
+          -30
+        ],
+        "rotation": [
+          0,
+          -30,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "tree2-agent-10",
+      "ref": "models/tree2",
+      "name": "林带3",
+      "transform": {
+        "position": [
+          -6,
+          0.53,
+          -14
+        ],
+        "rotation": [
+          0,
+          50,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "bush2-agent-8",
+      "ref": "models/bush2",
+      "name": "林带4",
+      "transform": {
+        "position": [
+          -34,
+          0.53,
+          4
+        ],
+        "rotation": [
+          0,
+          15,
+          0
+        ],
+        "scale": [
+          1.9,
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "tree3-birchyoung-agent-6",
+      "ref": "models/tree3-birchyoung",
+      "name": "林带5",
+      "transform": {
+        "position": [
+          -44,
+          0.53,
+          -44
+        ],
+        "rotation": [
+          0,
+          -20,
+          0
+        ],
+        "scale": [
+          1.9,
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "conifer2-low-agent-3",
+      "ref": "models/conifer2-low",
+      "name": "林带6",
+      "transform": {
+        "position": [
+          4,
+          0.53,
+          -50
+        ],
+        "rotation": [
+          0,
+          35,
+          0
+        ],
+        "scale": [
+          1.7,
+          1.7,
+          1.7
+        ]
+      }
+    },
+    {
+      "id": "joshuatree1-agent-5",
+      "ref": "models/joshuatree1",
+      "name": "林带7",
+      "transform": {
+        "position": [
+          -16,
+          0.53,
+          -48
+        ],
+        "rotation": [
+          0,
+          65,
+          0
+        ],
+        "scale": [
+          1.9,
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "bush-3-agent-6",
+      "ref": "models/bush-3",
+      "name": "林带8",
+      "transform": {
+        "position": [
+          18,
+          0.53,
+          -28
+        ],
+        "rotation": [
+          0,
+          -45,
+          0
+        ],
+        "scale": [
+          1.9,
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "tree1-agent-11",
+      "ref": "models/tree1",
+      "name": "林带9",
+      "transform": {
+        "position": [
+          -52,
+          0.53,
+          4
+        ],
+        "rotation": [
+          0,
+          -55,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "conifer1-low-2-agent-2",
+      "ref": "models/conifer1-low-2",
+      "name": "林带10",
+      "transform": {
+        "position": [
+          -20,
+          0.53,
+          62
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          1.8,
+          1.8,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "tree2-agent-11",
+      "ref": "models/tree2",
+      "name": "林带11",
+      "transform": {
+        "position": [
+          -40,
+          0.53,
+          74
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          2,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "joshuatree2-agent-5",
+      "ref": "models/joshuatree2",
+      "name": "林带12",
+      "transform": {
+        "position": [
+          -8,
+          0.53,
+          18
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          1.9,
+          1.9,
+          1.9
+        ]
+      }
+    },
+    {
+      "id": "snowytree-agent-3",
+      "ref": "models/snowytree",
+      "name": "雪缘林1",
+      "transform": {
+        "position": [
+          -62,
+          0.6,
+          -56
+        ],
+        "rotation": [
+          0,
+          25,
+          0
+        ],
+        "scale": [
+          1.7,
+          1.7,
+          1.7
+        ]
+      }
+    },
+    {
+      "id": "snowytree-2-agent-3",
+      "ref": "models/snowytree-2",
+      "name": "雪缘林2",
+      "transform": {
+        "position": [
+          -30,
+          0.6,
+          -52
+        ],
+        "rotation": [
+          0,
+          -40,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "snowytree-agent-4",
+      "ref": "models/snowytree",
+      "name": "雪缘林3",
+      "transform": {
+        "position": [
+          -66,
+          0.6,
+          -68
+        ],
+        "rotation": [
+          0,
+          70,
+          0
+        ],
+        "scale": [
+          1.6,
+          1.6,
+          1.6
+        ]
+      }
+    },
+    {
+      "id": "snowyrock1-agent",
+      "ref": "models/snowyrock1",
+      "name": "雪缘石1",
+      "transform": {
+        "position": [
+          -58,
+          0.6,
+          -50
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          5,
+          4,
+          5
+        ]
+      },
+      "materialOverride": {
+        "color": "#dde7f0",
+        "roughness": 0.75,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "snowyrock1-agent-1",
+      "ref": "models/snowyrock1",
+      "name": "雪缘石2",
+      "transform": {
+        "position": [
+          -34,
+          0.6,
+          -84
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          5,
+          4,
+          5
+        ]
+      },
+      "materialOverride": {
+        "color": "#d8e3ee",
+        "roughness": 0.75,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-agent-19",
+      "ref": "models/terrainpatchgreen",
+      "name": "湖南岸陆地",
+      "transform": {
+        "position": [
+          16,
+          0.06,
+          64
+        ],
+        "rotation": [
+          0,
+          10,
+          0
+        ],
+        "scale": [
+          11,
+          0.95,
+          11
+        ]
+      },
+      "materialOverride": {
+        "color": "#5e7d45",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-2-agent-22",
+      "ref": "models/terrainpatchgreen-2",
+      "name": "湖南岸陆地二",
+      "transform": {
+        "position": [
+          34,
+          0.06,
+          60
+        ],
+        "rotation": [
+          0,
+          -25,
+          0
+        ],
+        "scale": [
+          10,
+          0.95,
+          10
+        ]
+      },
+      "materialOverride": {
+        "color": "#5a7842",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "terrainpatchgreen-3-agent-21",
+      "ref": "models/terrainpatchgreen-3",
+      "name": "湖南岸陆地三",
+      "transform": {
+        "position": [
+          -2,
+          0.06,
+          62
+        ],
+        "rotation": [
+          0,
+          45,
+          0
+        ],
+        "scale": [
+          10,
+          0.95,
+          10
+        ]
+      },
+      "materialOverride": {
+        "color": "#618149",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bg-mauntains-agent-3",
+      "ref": "models/bg-mauntains",
+      "name": "缓丘一",
+      "transform": {
+        "position": [
+          -52,
+          0.36,
+          6
+        ],
+        "rotation": [
+          0,
+          20,
+          0
+        ],
+        "scale": [
+          12,
+          10,
+          12
+        ]
+      },
+      "materialOverride": {
+        "color": "#6b8a50",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bg-mauntains-agent-4",
+      "ref": "models/bg-mauntains",
+      "name": "缓丘二",
+      "transform": {
+        "position": [
+          -24,
+          0.36,
+          34
+        ],
+        "rotation": [
+          0,
+          -35,
+          0
+        ],
+        "scale": [
+          11,
+          8,
+          11
+        ]
+      },
+      "materialOverride": {
+        "color": "#688750",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bg-mauntains-agent-5",
+      "ref": "models/bg-mauntains",
+      "name": "缓丘三",
+      "transform": {
+        "position": [
+          20,
+          0.36,
+          -14
+        ],
+        "rotation": [
+          0,
+          55,
+          0
+        ],
+        "scale": [
+          10,
+          7,
+          10
+        ]
+      },
+      "materialOverride": {
+        "color": "#6d8c53",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    },
+    {
+      "id": "bg-mauntains-agent-6",
+      "ref": "models/bg-mauntains",
+      "name": "城堡后岩丘",
+      "transform": {
+        "position": [
+          -34,
+          0.36,
+          -20
+        ],
+        "rotation": [
+          0,
+          10,
+          0
+        ],
+        "scale": [
+          10,
+          12,
+          10
+        ]
+      },
+      "materialOverride": {
+        "color": "#8b8f7d",
+        "roughness": 0.95,
+        "metalness": 0
+      }
+    }
+  ],
+  "cameras": [
+    {
+      "id": "main",
+      "position": [
+        5.5,
+        4.2,
+        6.8
+      ],
+      "target": [
+        0,
+        0.8,
+        0
+      ],
+      "fov": 50
+    }
+  ]
+}

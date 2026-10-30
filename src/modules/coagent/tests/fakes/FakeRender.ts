@@ -12,6 +12,8 @@ import type {
   GeometryRequest,
   GeometryResult,
   ObjectId,
+  PickRequest,
+  PickResult,
   RenderPort,
   TransformDTO,
 } from '../../contracts'
@@ -26,6 +28,8 @@ export interface FakeRenderOptions {
   readyFailures?: number
   /** geometry 的固定返回；缺省对每对返回 unknown */
   geometryResult?: GeometryResult
+  /** P2：拾取的固定返回；缺省报"不支持拾取"（不伪装成空命中） */
+  pickResult?: PickResult
 }
 
 export interface FakeRender extends RenderPort {
@@ -109,14 +113,32 @@ export function createFakeRender(opts: FakeRenderOptions = {}): FakeRender {
       if (delayMs > 0) await sleep(delayMs, signal)
       if (!online) throw new CoAgentError('bridge_unavailable', '渲染桥已卸载')
       if (opts.geometryResult) return opts.geometryResult
-      const all = [...request.objectIds, ...(request.staticObjectIds ?? [])]
+      // 与真实实现同口径：targets×targets + targets×statics，不含 statics×statics
+      const targets = [...new Set(request.objectIds)]
+      const targetSet = new Set(targets)
+      const statics = [...new Set(request.staticObjectIds ?? [])].filter(id => !targetSet.has(id))
       const pairs: GeometryResult['pairs'] = []
-      for (let i = 0; i < all.length; i++) {
-        for (let j = i + 1; j < all.length; j++) {
-          pairs.push({ a: all[i], b: all[j], status: 'unknown', level: 'aabb', note: 'fake：未编程具体结果' })
-        }
+      const push = (a: ObjectId, b: ObjectId): void => {
+        pairs.push({ a, b, status: 'unknown', level: 'aabb', note: 'fake：未编程具体结果' })
+      }
+      for (let i = 0; i < targets.length; i++) {
+        for (let j = i + 1; j < targets.length; j++) push(targets[i], targets[j])
+      }
+      for (const t of targets) {
+        for (const s of statics) push(t, s)
       }
       return { status: 'unknown', highestLevel: 'aabb', pairs }
+    },
+
+    /**
+     * P2：fake 没有真实场景，不能假装"点了但什么都没点到"。
+     * 未编程时明确报不可用；给了 pickResult 就按脚本返回。
+     */
+    async pick(request: PickRequest, signal: AbortSignal): Promise<PickResult> {
+      if (delayMs > 0) await sleep(delayMs, signal)
+      if (!online) throw new CoAgentError('bridge_unavailable', '渲染桥已卸载')
+      if (opts.pickResult) return opts.pickResult
+      throw new CoAgentError('bridge_unavailable', `fake 未编程拾取结果（u=${request.u}, v=${request.v}）`)
     },
 
     get captureRequests(): ReadonlyArray<Readonly<CaptureRequest>> {

@@ -23,4 +23,6 @@ export const DEFAULT_COAGENT_CONFIG: Readonly<CoAgentConfig> = {
   // 32 MB：事件序列化上限 [P2/P4 实测调整]
   logSizeCapBytes: 32 * 1024 * 1024,
   evidenceMaxEntries: 200,
+  // 4 张：基线 + 最新观察 + 同视角前后对，足以对比又不至于把请求撑爆 [P2 实测调整]
+  maxImagesPerRequest: 4,
 }

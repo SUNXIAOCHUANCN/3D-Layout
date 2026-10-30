@@ -26,11 +26,18 @@ export function AgentPanel() {
   const log = useAgentStore(s => s.log)
   // 双保险：store 加载层已消毒，这里仍对空值兜底，坏数据不许炸渲染
   const configured = useLlmSettingsStore(
-    s =>
-      (s.baseURL ?? '').trim() !== '' &&
-      (s.model ?? '').trim() !== '' &&
-      (s.apiKey ?? '').trim() !== '',
+    s => {
+      const p = s.profiles.find(x => x.id === s.activeId)
+      return (
+        (p?.baseURL ?? '').trim() !== '' &&
+        (p?.model ?? '').trim() !== '' &&
+        (p?.apiKey ?? '').trim() !== ''
+      )
+    },
   )
+  // 多档案：当前生效的那一份（用于面板顶部快速切换）
+  const profiles = useLlmSettingsStore(s => s.profiles)
+  const activeId = useLlmSettingsStore(s => s.activeId)
 
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [input, setInput] = useState('')
@@ -72,6 +79,22 @@ export function AgentPanel() {
           </button>
         )}
       </div>
+
+      {/* 档案快速切换（多档案：立即切到对应那一份的 baseURL/Key/模型） */}
+      {chatEnabled && profiles.length > 0 && (
+        <select
+          className="agent-profile-select"
+          value={activeId}
+          onChange={e => useLlmSettingsStore.getState().selectProfile(e.target.value)}
+          title="当前使用的 API 档案"
+        >
+          {profiles.map(p => (
+            <option key={p.id} value={p.id}>
+              {p.name} · {p.model || '未填模型'}
+            </option>
+          ))}
+        </select>
+      )}
 
       {/* 未配置 API 引导（仅浏览器直连模式） */}
       {chatEnabled && !configured && (

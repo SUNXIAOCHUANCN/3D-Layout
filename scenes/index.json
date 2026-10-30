@@ -24,6 +24,14 @@
     "name": "示例·仓储排布"
   },
   {
+    "id": "scene-03",
+    "name": "test1"
+  },
+  {
+    "id": "scene-04",
+    "name": "test2"
+  },
+  {
     "id": "scene-models",
     "name": "模型库预览"
   },

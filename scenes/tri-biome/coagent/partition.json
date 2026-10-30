@@ -1,0 +1,1069 @@
+{
+  "schemaVersion": 1,
+  "sceneId": "tri-biome",
+  "partitionVersion": 1,
+  "savedAt": "2026-10-27T07:09:52.673Z",
+  "sceneFingerprint": "pfp1:61d82057",
+  "regions": [
+    {
+      "id": "region-北部冰封水域",
+      "name": "北部冰封水域",
+      "polygonXZ": [
+        [
+          -126.57146631958929,
+          -110.90235480622457
+        ],
+        [
+          -23.388594437358414,
+          -110.90235480622457
+        ],
+        [
+          -23.388594437358414,
+          -67.24806285604996
+        ],
+        [
+          -33.97145309194621,
+          -49.38948887643306
+        ],
+        [
+          -44.554311746533976,
+          -31.530914896816185
+        ],
+        [
+          -57.78288506476871,
+          -17.640912912669734
+        ],
+        [
+          -126.57146631958929,
+          -17.640912912669734
+        ]
+      ]
+    },
+    {
+      "id": "region-中央雪岛与岩壁",
+      "name": "中央雪岛与岩壁",
+      "polygonXZ": [
+        [
+          -18.09716511006453,
+          -110.90235480622457
+        ],
+        [
+          24.23426950828661,
+          -110.90235480622457
+        ],
+        [
+          34.817128162874376,
+          -87.09092283340206
+        ],
+        [
+          34.817128162874376,
+          -61.295204862844315
+        ],
+        [
+          26.87998417193355,
+          -25.578056903610573
+        ],
+        [
+          18.942840180992725,
+          -5.735196926258453
+        ],
+        [
+          -4.868591791829793,
+          -5.735196926258453
+        ],
+        [
+          -18.09716511006453,
+          -25.578056903610573
+        ],
+        [
+          -23.388594437358414,
+          -53.35806087190349
+        ],
+        [
+          -15.451450446417589,
+          -83.12235083793163
+        ]
+      ]
+    },
+    {
+      "id": "region-西南绿林聚落",
+      "name": "西南绿林聚落",
+      "polygonXZ": [
+        [
+          -126.57146631958929,
+          -17.640912912669734
+        ],
+        [
+          -94.82289035582596,
+          -15.65662691493452
+        ],
+        [
+          -81.59431703759122,
+          -1.7666249307880406
+        ],
+        [
+          -65.72002905570955,
+          2.201947064682358
+        ],
+        [
+          -44.554311746533976,
+          10.139091055623211
+        ],
+        [
+          -44.554311746533976,
+          27.99766503524009
+        ],
+        [
+          -60.428599728415655,
+          47.840525012592195
+        ],
+        [
+          -126.57146631958929,
+          47.840525012592195
+        ]
+      ]
+    },
+    {
+      "id": "region-东南秋色岩岸聚落",
+      "name": "东南秋色岩岸聚落",
+      "polygonXZ": [
+        [
+          66.56570412663774,
+          -9.70376892172888
+        ],
+        [
+          106.25142408134192,
+          -13.672340917199307
+        ],
+        [
+          138.00000004510528,
+          -27.562342901345787
+        ],
+        [
+          138.00000004510528,
+          37.91909502391614
+        ],
+        [
+          114.18856807228278,
+          45.85623901485699
+        ],
+        [
+          90.37713609946024,
+          41.88766701938656
+        ],
+        [
+          69.21141879028468,
+          35.93480902618093
+        ],
+        [
+          63.91998946299079,
+          14.107663051093624
+        ]
+      ]
+    }
+  ],
+  "assignments": [
+    {
+      "objectId": "snow-cliff-1",
+      "regionId": "region-北部冰封水域",
+      "source": "auto",
+      "ref": "models/snowycliff"
+    },
+    {
+      "objectId": "terrain-snow",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowyhillflat"
+    },
+    {
+      "objectId": "snow-mountain-range",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/mountains"
+    },
+    {
+      "objectId": "snow-foothill",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/bigcliff"
+    },
+    {
+      "objectId": "snow-street-1",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/street"
+    },
+    {
+      "objectId": "snow-street-2",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/street"
+    },
+    {
+      "objectId": "snow-street-3",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/street"
+    },
+    {
+      "objectId": "snow-house-1",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowytownhouse1"
+    },
+    {
+      "objectId": "snow-house-2",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowytownhouse2"
+    },
+    {
+      "objectId": "snow-house-3",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowytownhouse1"
+    },
+    {
+      "objectId": "snow-house-4",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowytownhouse2"
+    },
+    {
+      "objectId": "snow-tower",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowytownhousetower"
+    },
+    {
+      "objectId": "snow-stall-1",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowymarketstand"
+    },
+    {
+      "objectId": "snow-stall-2",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowymarketstandsmall"
+    },
+    {
+      "objectId": "snow-well",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/well-3"
+    },
+    {
+      "objectId": "snow-barrels-1",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowybarrels3"
+    },
+    {
+      "objectId": "snow-barrel-2",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowybarrel1"
+    },
+    {
+      "objectId": "snow-cart",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowycart"
+    },
+    {
+      "objectId": "snow-sign",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowysignpost"
+    },
+    {
+      "objectId": "snow-fire",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/campfireburning"
+    },
+    {
+      "objectId": "snow-tree-2",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowytree"
+    },
+    {
+      "objectId": "snow-stump",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowytreestump"
+    },
+    {
+      "objectId": "snowytownhouse1-agent",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowytownhouse1"
+    },
+    {
+      "objectId": "snowytownhouse2-agent",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowytownhouse2"
+    },
+    {
+      "objectId": "snowytownhouse2-agent-1",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowytownhouse2"
+    },
+    {
+      "objectId": "snowytownhouse1-agent-1",
+      "regionId": "region-中央雪岛与岩壁",
+      "source": "auto",
+      "ref": "models/snowytownhouse1"
+    },
+    {
+      "objectId": "mountain-ring-west",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/mountains"
+    },
+    {
+      "objectId": "terrain-forest",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/basemesh-forest"
+    },
+    {
+      "objectId": "forest-well",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/well"
+    },
+    {
+      "objectId": "forest-fire",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/campfire"
+    },
+    {
+      "objectId": "forest-bench-2",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bench1"
+    },
+    {
+      "objectId": "forest-path-0",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/oldwoodplank1"
+    },
+    {
+      "objectId": "forest-path-1",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/oldwoodplank1"
+    },
+    {
+      "objectId": "forest-path-2",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/oldwoodplank1"
+    },
+    {
+      "objectId": "forest-path-3",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/oldwoodplank1"
+    },
+    {
+      "objectId": "forest-tree-1",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-2",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-3",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-4",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-5",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-6",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-7",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-8",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-9",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-10",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-11",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-12",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-13",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-14",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-15",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-16",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-17",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-18",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-19",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-20",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-21",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-22",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-23",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-24",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-25",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-26",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-27",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-28",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-29",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-30",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-31",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-32",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-33",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-34",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/conifer1-low"
+    },
+    {
+      "objectId": "forest-tree-35",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/treegroup"
+    },
+    {
+      "objectId": "forest-tree-36",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/treegroup"
+    },
+    {
+      "objectId": "forest-tree-37",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/treegroup"
+    },
+    {
+      "objectId": "forest-tree-38",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/treegroup"
+    },
+    {
+      "objectId": "forest-tree-39",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/treegroup"
+    },
+    {
+      "objectId": "forest-tree-40",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/treegroup"
+    },
+    {
+      "objectId": "forest-tree-41",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/treegroup"
+    },
+    {
+      "objectId": "forest-tree-42",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/treegroup"
+    },
+    {
+      "objectId": "forest-tree-43",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/treegroup"
+    },
+    {
+      "objectId": "forest-tree-45",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/treegroup"
+    },
+    {
+      "objectId": "forest-tree-46",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/treegroup"
+    },
+    {
+      "objectId": "forest-tree-47",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree1"
+    },
+    {
+      "objectId": "forest-tree-48",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree1"
+    },
+    {
+      "objectId": "forest-tree-49",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree1"
+    },
+    {
+      "objectId": "forest-tree-50",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree1"
+    },
+    {
+      "objectId": "forest-tree-51",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree1"
+    },
+    {
+      "objectId": "forest-tree-52",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree1"
+    },
+    {
+      "objectId": "forest-tree-53",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree1"
+    },
+    {
+      "objectId": "forest-tree-54",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree1"
+    },
+    {
+      "objectId": "forest-tree-55",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree2"
+    },
+    {
+      "objectId": "forest-tree-56",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree2"
+    },
+    {
+      "objectId": "forest-tree-57",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree2"
+    },
+    {
+      "objectId": "forest-tree-58",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree2"
+    },
+    {
+      "objectId": "forest-tree-59",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree2"
+    },
+    {
+      "objectId": "forest-tree-60",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree2"
+    },
+    {
+      "objectId": "forest-tree-61",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree3-birchyoung"
+    },
+    {
+      "objectId": "forest-tree-62",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree3-birchyoung"
+    },
+    {
+      "objectId": "forest-tree-63",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree3-birchyoung"
+    },
+    {
+      "objectId": "forest-tree-64",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree3-birchyoung"
+    },
+    {
+      "objectId": "forest-tree-65",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree3-birchyoung"
+    },
+    {
+      "objectId": "forest-tree-66",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/tree3-birchyoung"
+    },
+    {
+      "objectId": "forest-bush-0",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush"
+    },
+    {
+      "objectId": "forest-bush-1",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush2"
+    },
+    {
+      "objectId": "forest-bush-2",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush-3"
+    },
+    {
+      "objectId": "forest-bush-3",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush"
+    },
+    {
+      "objectId": "forest-bush-4",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush2"
+    },
+    {
+      "objectId": "forest-bush-6",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush"
+    },
+    {
+      "objectId": "forest-bush-7",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush2"
+    },
+    {
+      "objectId": "forest-bush-8",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush-3"
+    },
+    {
+      "objectId": "forest-bush-9",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush"
+    },
+    {
+      "objectId": "forest-bush-10",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush2"
+    },
+    {
+      "objectId": "forest-bush-11",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush-3"
+    },
+    {
+      "objectId": "forest-bush-12",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush"
+    },
+    {
+      "objectId": "forest-bush-13",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush2"
+    },
+    {
+      "objectId": "forest-bush-14",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush-3"
+    },
+    {
+      "objectId": "forest-bush-15",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush"
+    },
+    {
+      "objectId": "forest-bush-16",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush2"
+    },
+    {
+      "objectId": "forest-bush-17",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush-3"
+    },
+    {
+      "objectId": "forest-bush-18",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush"
+    },
+    {
+      "objectId": "forest-bush-19",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush2"
+    },
+    {
+      "objectId": "forest-bush-20",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush-3"
+    },
+    {
+      "objectId": "forest-bush-21",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush"
+    },
+    {
+      "objectId": "forest-bush-22",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush2"
+    },
+    {
+      "objectId": "forest-bush-23",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/bush-3"
+    },
+    {
+      "objectId": "forest-rock-2",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/rockgrey2"
+    },
+    {
+      "objectId": "forest-rock-3",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/rock"
+    },
+    {
+      "objectId": "forest-rock-4",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/rockgrey1"
+    },
+    {
+      "objectId": "forest-rock-5",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/rockgrey2"
+    },
+    {
+      "objectId": "forest-rock-6",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/rock"
+    },
+    {
+      "objectId": "forest-rock-7",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/rockgrey1"
+    },
+    {
+      "objectId": "forest-rock-8",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/rockgrey2"
+    },
+    {
+      "objectId": "forest-rock-9",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/rock"
+    },
+    {
+      "objectId": "forest-rock-10",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/rockgrey1"
+    },
+    {
+      "objectId": "forest-rock-11",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/rockgrey2"
+    },
+    {
+      "objectId": "forest-rock-12",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/rock"
+    },
+    {
+      "objectId": "forest-rock-13",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/rockgrey1"
+    },
+    {
+      "objectId": "forest-rock-14",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/rockgrey2"
+    },
+    {
+      "objectId": "forest-rock-15",
+      "regionId": "region-西南绿林聚落",
+      "source": "auto",
+      "ref": "models/rock"
+    },
+    {
+      "objectId": "mountain-ring-east",
+      "regionId": "region-东南秋色岩岸聚落",
+      "source": "auto",
+      "ref": "models/mountains"
+    },
+    {
+      "objectId": "terrain-desert",
+      "regionId": "region-东南秋色岩岸聚落",
+      "source": "auto",
+      "ref": "models/scene"
+    },
+    {
+      "objectId": "terrain-dunes",
+      "regionId": "region-东南秋色岩岸聚落",
+      "source": "auto",
+      "ref": "models/dunes"
+    },
+    {
+      "objectId": "desert-plant-0",
+      "regionId": "region-东南秋色岩岸聚落",
+      "source": "auto",
+      "ref": "models/joshuatree1"
+    },
+    {
+      "objectId": "desert-plant-1",
+      "regionId": "region-东南秋色岩岸聚落",
+      "source": "auto",
+      "ref": "models/joshuatree1"
+    },
+    {
+      "objectId": "desert-plant-2",
+      "regionId": "region-东南秋色岩岸聚落",
+      "source": "auto",
+      "ref": "models/joshuatree2"
+    },
+    {
+      "objectId": "desert-plant-3",
+      "regionId": "region-东南秋色岩岸聚落",
+      "source": "auto",
+      "ref": "models/joshuatree3"
+    },
+    {
+      "objectId": "desert-rock-1",
+      "regionId": "region-东南秋色岩岸聚落",
+      "source": "auto",
+      "ref": "models/sharprock1"
+    },
+    {
+      "objectId": "desert-rock-2",
+      "regionId": "region-东南秋色岩岸聚落",
+      "source": "auto",
+      "ref": "models/sharprock2"
+    },
+    {
+      "objectId": "desert-rock-3",
+      "regionId": "region-东南秋色岩岸聚落",
+      "source": "auto",
+      "ref": "models/sharprock2"
+    },
+    {
+      "objectId": "desert-coast-9",
+      "regionId": "region-东南秋色岩岸聚落",
+      "source": "auto",
+      "ref": "models/rockgrey2-2"
+    },
+    {
+      "objectId": "desert-coast-10",
+      "regionId": "region-东南秋色岩岸聚落",
+      "source": "auto",
+      "ref": "models/sharprock1"
+    },
+    {
+      "objectId": "desert-coast-11",
+      "regionId": "region-东南秋色岩岸聚落",
+      "source": "auto",
+      "ref": "models/rockgrey1-2"
+    }
+  ],
+  "readonlyAssignments": [],
+  "unresolvedObjectIds": []
+}

@@ -122,7 +122,7 @@ Vite 8 · React 19 · TypeScript · three.js（WebGL2）· @react-three/fiber ·
 - **标准尺寸**：编辑器将厘米模型和元数据统一换算成米；新增模型默认 `scale=[1,1,1]`。Agent 可读取名称、类别、检索描述、标签、尺寸可信状态和朝向状态。内置占位模型定义在 `assets/builtin-models.json`。
 - **目录命名**：当前目录采用原始模型名，如 `models/tree1`；包内 `asset_id` 和 GLB 文件名仍是工作流的稳定编号，模型加载路径从清单读取。目录重命名程序为 `src/scripts/rename_model_directories.py`，完整映射和备份位置见 `assets/model-directory-renames.json`。
 - **历史场景迁移**：现有场景已迁移到标准资产引用，实例变换保留原布局；备份位置记录在 `assets/model-migration.json`。程序和验收说明见 `src/scripts/MODEL_MIGRATION.md`。
-- **加场景**：新建 `scenes/<new-id>/scene.json`（可复制现有场景改），跑 `pnpm gen-manifest`。
+- **加场景**：顶栏下拉旁的「新建」按钮一键创建空场景（自动分配 `scene-NN` 编号并登记索引）；「删除」按钮删除当前场景（至少保留一个，不可恢复）。也可手工新建 `scenes/<new-id>/scene.json`（可复制现有场景改），跑 `pnpm gen-manifest`。
 - **换 HDRI**：文件放 `assets/hdri/`，场景 `environment.hdri` 引用；不配则用程序化环境（离线可用）。
 
 ## Agent 模块（modules/agent，提案式场景编辑）

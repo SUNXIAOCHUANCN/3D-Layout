@@ -5,7 +5,7 @@
  */
 
 import { describe, expect, it, vi } from 'vitest'
-import type { RunInput, RunOutcome, ToolResult, WorkflowContext, WorkflowRunner } from '../../contracts'
+import type { EditReceipt, PartitionSnapshot, RunInput, RunOutcome, TasksPlan, ToolResult, WorkflowContext, WorkflowRunner } from '../../contracts'
 import { createRuntime } from '../../runtime/createRuntime'
 import { createFakeEditor } from '../fakes/FakeEditor'
 import { createKnownTransformWorkflow } from '../fakes/fakeWorkflow'
@@ -218,6 +218,180 @@ describe('recorder 订阅（UI 计数）', () => {
     off()
     await runtime.start('第二次')
     expect(seen.length).toBe(before)
+  })
+})
+
+/**
+ * T0-5：分区的场景归属。
+ *
+ * 原实现从不监听 scene:changed，切场景后仍返回上一场景的分区，
+ * 于是能用错误的边界启动 run（权限判定建在错的区域上）。
+ */
+describe('T0-5 场景切换必须作废分区', () => {
+  it('切场景后 partition() 变为 null，并通知分区订阅者', () => {
+    const editor = createFakeEditor({ sceneId: 'scene-a', assets: TWO_REGION_ASSETS, catalog: TWO_REGION_CATALOG })
+    const runtime = createRuntime({ editor: { read: editor, write: editor } })
+    const seen: Array<PartitionSnapshot | null> = []
+    runtime.onPartition(p => seen.push(p))
+
+    runtime.debugSetPartition(makeTwoRegionPartition())
+    expect(runtime.partition()).not.toBeNull()
+
+    editor.simulateSceneSwitch('scene-b', TWO_REGION_ASSETS)
+
+    expect(runtime.partition()).toBeNull()
+    expect(seen.at(-1)).toBeNull()
+    runtime.dispose()
+  })
+
+  it('同一场景的对象级变更不误清分区', () => {
+    const editor = createFakeEditor({ sceneId: 'scene-a', assets: TWO_REGION_ASSETS, catalog: TWO_REGION_CATALOG })
+    const runtime = createRuntime({ editor: { read: editor, write: editor } })
+    runtime.debugSetPartition(makeTwoRegionPartition())
+
+    const fingerprint = editor.snapshot({ objectIds: ['tree-1'] }).assets[0].fingerprint
+    const token = editor.beginRun('测试写')
+    const receipt = editor.applyAuthorized(
+      { kind: 'transform', objectId: 'tree-1', transform: T([-6, 0, -3]), expectedFingerprint: fingerprint },
+      { runId: 'run-x', taskId: null, toolCallId: 'c1', token, writableObjectIds: new Set(['tree-1']) },
+    )
+    editor.endRun(token)
+
+    expect(receipt.ok).toBe(true)
+    expect(runtime.partition()).not.toBeNull()
+    runtime.dispose()
+  })
+
+  it('本来就没有分区时，切场景不会产生多余的分区通知', () => {
+    const editor = createFakeEditor({ sceneId: 'scene-a', assets: TWO_REGION_ASSETS, catalog: TWO_REGION_CATALOG })
+    const runtime = createRuntime({ editor: { read: editor, write: editor } })
+    const seen: Array<PartitionSnapshot | null> = []
+    runtime.onPartition(p => seen.push(p))
+
+    editor.simulateSceneSwitch('scene-b', TWO_REGION_ASSETS)
+
+    expect(seen).toEqual([])
+    runtime.dispose()
+  })
+})
+
+/**
+ * P1：新增名额必须在**真实写路径**上生效。
+ *
+ * 这是样本日志"两栋变四栋"的直接回归：第二轮修复若再 add，会被程序拒绝而不是默默多建。
+ */
+describe('P1 新增名额（runController 写路径）', () => {
+  const planFor = (): TasksPlan => ({
+    schemaVersion: 1,
+    kind: 'tasks',
+    assumptions: ['P1 名额测试'],
+    tasks: [
+      {
+        schemaVersion: 1,
+        id: 'task-add',
+        regionId: 'region-north',
+        objective: '新增两栋',
+        targetObjectIds: [],
+        allowedOperations: ['add'],
+        criteria: [{ id: 'c1', kind: 'visual', description: '看起来合理' }],
+        constraints: [{ kind: 'stay_in_region' }],
+        dependsOn: [],
+        creationTarget: { minCount: 2, maxCount: 2 },
+      },
+    ],
+  })
+
+  it('第三次新增被拒（task_creation_limit），场景只多两个对象', async () => {
+    const results: Array<ToolResult<EditReceipt>> = []
+    const { runtime, editor } = setup({
+      workflow: () => ({
+        async run(_input: RunInput, ctx: WorkflowContext): Promise<RunOutcome> {
+          ctx.runState.registerTasks(planFor().tasks)
+          for (let i = 0; i < 3; i++) {
+            results.push(
+              await ctx.applyWrite(
+                { kind: 'add', ref: 'models/rock', name: `岩石${i}`, transform: T([i * 3, 0, 0]) },
+                { taskId: 'task-add', toolCallId: `c${i}`, regionId: 'region-north' },
+              ),
+            )
+          }
+          return completed
+        },
+      }),
+    })
+
+    const before = editor.state().assetCount
+    const outcome = await runtime.start('在雪原加两栋')
+
+    expect(outcome.ok).toBe(true)
+    expect(results[0].ok).toBe(true)
+    expect(results[1].ok).toBe(true)
+    expect(results[2].ok).toBe(false)
+    if (!results[2].ok) {
+      expect(results[2].error.code).toBe('task_creation_limit')
+      expect(results[2].error.message).toContain('名额已用尽')
+    }
+    expect(editor.state().assetCount).toBe(before + 2)
+  })
+
+  it('被拒的写入留下 write.rejected 事件（便于对账）', async () => {
+    const { runtime } = setup({
+      workflow: () => ({
+        async run(_input: RunInput, ctx: WorkflowContext): Promise<RunOutcome> {
+          ctx.runState.registerTasks(planFor().tasks)
+          for (let i = 0; i < 3; i++) {
+            await ctx.applyWrite(
+              { kind: 'add', ref: 'models/rock', transform: T([i * 3, 0, 0]) },
+              { taskId: 'task-add', toolCallId: `c${i}`, regionId: 'region-north' },
+            )
+          }
+          return completed
+        },
+      }),
+    })
+
+    await runtime.start('加两栋')
+    const rejected = runtime.recorder.events().filter(e => e.type === 'write.rejected')
+    expect(rejected).toHaveLength(1)
+    expect(rejected[0].payload).toMatchObject({ code: 'task_creation_limit', command: 'add' })
+  })
+
+  it('删除一个后可以再建一个（释放名额）', async () => {
+    const results: Array<ToolResult<EditReceipt>> = []
+    const { runtime, editor } = setup({
+      workflow: () => ({
+        async run(_input: RunInput, ctx: WorkflowContext): Promise<RunOutcome> {
+          ctx.runState.registerTasks(planFor().tasks)
+          const add = async (i: number): Promise<void> => {
+            results.push(
+              await ctx.applyWrite(
+                { kind: 'add', ref: 'models/rock', transform: T([i * 3, 0, 0]) },
+                { taskId: 'task-add', toolCallId: `a${i}`, regionId: 'region-north' },
+              ),
+            )
+          }
+          await add(0)
+          await add(1)
+          const second = results[1]
+          if (second.ok) {
+            results.push(
+              await ctx.applyWrite(
+                { kind: 'remove', objectId: second.data.objectId, expectedFingerprint: second.data.fingerprintAfter },
+                { taskId: 'task-add', toolCallId: 'r0', regionId: 'region-north' },
+              ),
+            )
+          }
+          await add(2)
+          return completed
+        },
+      }),
+    })
+
+    const before = editor.state().assetCount
+    await runtime.start('删一个再建一个')
+
+    expect(results.map(r => r.ok)).toEqual([true, true, true, true])
+    expect(editor.state().assetCount).toBe(before + 2)
   })
 })
 

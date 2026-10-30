@@ -6,6 +6,8 @@
 
 interface EventMap {
   'scene:changed': { sceneId: string | null }
+  /** 场景索引变化（新建/删除场景）：顶栏下拉据此重新拉取 scenes/index.json */
+  'scene:index-changed': Record<string, never>
   'asset:selected': { assetId: string | null }
   'asset:loaded': { assetId: string; ref: string }
   'command:dispatched': { type: string }

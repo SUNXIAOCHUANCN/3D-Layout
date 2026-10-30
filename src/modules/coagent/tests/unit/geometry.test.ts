@@ -140,3 +140,105 @@ describe('W08.3 unknown 分支', () => {
     expect(result.pairs).toEqual([])
   })
 })
+
+/**
+ * P0 修订：配对范围从"全量两两"收窄为
+ *   targets×targets（去重）+ targets×statics，**不含 statics×statics**。
+ *
+ * 原因：原场景静态物之间的旧碰撞与本任务无关，把静态×静态算进来会让
+ * "新对象摆对了也过不了"（样本日志 2026-10-26 15:46:29 的 561/630 对即由此产生）。
+ */
+describe('P0 配对范围：静态×静态不参与', () => {
+  it('两个静态互相穿插 + 目标正常 → clear，且不带任何 s×s 对', () => {
+    const scene = sceneOf(
+      box('s1', [2, 2, 2], [0, 1, 0]),
+      box('s2', [2, 2, 2], [0.2, 1, 0]), // 与 s1 穿插：旧实现会在这里报 collision
+      box('a', [1, 1, 1], [10, 0.5, 0]),
+    )
+    const result = checkSceneGeometry(scene, request(['a'], ['s1', 's2']))
+
+    expect(result.status).toBe('clear')
+    // 只有 a×s1、a×s2 两对
+    expect(result.pairs).toHaveLength(2)
+    const stats = new Set(['s1', 's2'])
+    expect(result.pairs.some(p => stats.has(p.a) && stats.has(p.b))).toBe(false)
+    expect(result.coverage?.truncated).toBe(false)
+    expect(result.coverage?.pairCount).toBe(2)
+  })
+
+  it('目标与静态穿插仍然 collision（收窄不能放过真实碰撞）', () => {
+    const scene = sceneOf(
+      box('s1', [2, 2, 2], [0, 1, 0]),
+      box('a', [1, 1, 1], [0.2, 0.5, 0]),
+    )
+    const result = checkSceneGeometry(scene, request(['a'], ['s1']))
+    expect(result.status).toBe('collision')
+    expect(result.pairs).toHaveLength(1)
+  })
+
+  it('目标×目标仍在检测范围内', () => {
+    const scene = sceneOf(
+      box('a', [1, 1, 1], [0, 0.5, 0]),
+      box('b', [1, 1, 1], [0.3, 0.5, 0]),
+    )
+    const result = checkSceneGeometry(scene, request(['a', 'b'], []))
+    expect(result.status).toBe('collision')
+    expect(result.pairs).toHaveLength(1)
+  })
+
+  it('同一 id 同时出现在目标与环境里不会自配对', () => {
+    const scene = sceneOf(box('a', [1, 1, 1], [0, 0.5, 0]))
+    const result = checkSceneGeometry(scene, request(['a'], ['a']))
+    expect(result.status).toBe('unknown')
+    expect(result.pairs).toEqual([])
+    expect(result.coverage?.checkedObjectIds).toEqual([])
+  })
+})
+
+describe('P0 覆盖报告：候选被截断时不得伪报 clear', () => {
+  it('超过单次检测对象上限 → unknown + 列出被排除对象', () => {
+    const boxes: Mesh[] = [box('target', [1, 1, 1], [0, 0.5, 0])]
+    for (let i = 0; i < 70; i++) boxes.push(box(`s${i}`, [1, 1, 1], [100 + i * 5, 0.5, 0]))
+    const scene = sceneOf(...boxes)
+
+    const statics = Array.from({ length: 70 }, (_, i) => `s${i}`)
+    const result = checkSceneGeometry(scene, request(['target'], statics))
+
+    // 目标与环境都离得很远，逐对都是 clear；但覆盖不足 ⇒ 整体不能是 clear
+    expect(result.status).toBe('unknown')
+    expect(result.coverage?.truncated).toBe(true)
+    expect(result.coverage?.skipped).toHaveLength(6) // 70 - 64
+    expect(result.coverage?.skipped[0].reason).toContain('上限')
+    expect(result.coverage?.skipped.map(s => s.objectId)).not.toContain('target')
+  })
+
+  it('配对数超过上限 → unknown，且说明哪些对象没被检查', () => {
+    const scene = sceneOf(
+      box('a', [1, 1, 1], [0, 0.5, 0]),
+      box('s1', [1, 1, 1], [50, 0.5, 0]),
+      box('s2', [1, 1, 1], [80, 0.5, 0]),
+    )
+    const result = checkSceneGeometry(scene, request(['a'], ['s1', 's2']), { maxPairsPerCheck: 1 })
+
+    expect(result.status).toBe('unknown')
+    expect(result.pairs).toHaveLength(1)
+    expect(result.coverage?.truncated).toBe(true)
+    expect(result.coverage?.skipped.map(s => s.objectId)).toEqual(['s2'])
+  })
+
+  it('未截断时 coverage 明确为 false 并给出真实配对数', () => {
+    const scene = sceneOf(
+      box('a', [1, 1, 1], [0, 0.5, 0]),
+      box('b', [1, 1, 1], [10, 0.5, 0]),
+      box('s1', [1, 1, 1], [20, 0.5, 0]),
+    )
+    const result = checkSceneGeometry(scene, request(['a', 'b'], ['s1']))
+    expect(result.status).toBe('clear')
+    expect(result.coverage).toEqual({
+      checkedObjectIds: ['a', 'b', 's1'],
+      skipped: [],
+      truncated: false,
+      pairCount: 3, // a×b + a×s1 + b×s1
+    })
+  })
+})

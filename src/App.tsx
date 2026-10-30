@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent } from 'react'
 import { SceneCanvas } from './components/SceneCanvas'
+import { bus } from './core/events'
 import { loadSceneIndex } from './core/loader'
 import { useSceneStore } from './core/store'
 import type { SceneIndexEntry } from './core/types'
 import { AgentPanel, AgentPickHighlight, useAgentModule, useAgentStore } from './modules/agent'
+import { AgentPanel as NewAgentPanel, AgentPickHighlight as NewAgentPickHighlight, useAgentModule as useNewAgentModule, useAgentStore as useNewAgentStore } from './modules/llm-agent'
 import { CoAgentBridge, CoAgentPanel, deriveHostLocks, useCoAgentModule } from './modules/coagent'
 import { EditorGizmo, EditorPanel, useEditorModule } from './modules/editor'
 import { HistorySidebar } from './modules/history/HistorySidebar'
@@ -42,6 +44,7 @@ export default function App() {
   const [editorOn, setEditorOn] = useState(urlEditor !== '0')
   // Agent 模块开关：默认开；传输层由 ?agent= 决定（缺省=浏览器直连 LLM）
   const [agentOn, setAgentOn] = useState(true)
+  const [newAgentOn, setNewAgentOn] = useState(false)
   // 导入导出插件入口（独立本地工具,开关仅控制本面板显隐）
   const [interchangeOn, setInterchangeOn] = useState(true)
   // CoAgent 模块开关：多区自动布局；活跃时暂停人工编辑与旧 Agent（写者互斥）
@@ -51,11 +54,12 @@ export default function App() {
   const [sizes, setSizes] = useState(loadSizes)
   // Agent 任务预览期（提案执行/等待裁决）暂停人工编辑：防止双写者搅同一本账
   const agentPhase = useAgentStore(s => s.phase)
+  const newAgentPhase = useNewAgentStore(s => s.phase)
   // CoAgent：唯一 runtime 装配（isHostBusy 传稳定引用，内部不进 hook 依赖）
-  const hostBusyRef = useRef(() => useAgentStore.getState().phase !== 'idle')
+  const hostBusyRef = useRef(() => useAgentStore.getState().phase !== 'idle' || useNewAgentStore.getState().phase !== 'idle')
   const coagent = useCoAgentModule(coagentOn, { isHostBusy: hostBusyRef.current })
   // 写者互斥的唯一判断来源（SPEC §1.4 清单，单测 + T13 实跑覆盖）
-  const locks = deriveHostLocks({ editorEnabled: editorOn, agentBusy: agentPhase !== 'idle', coagentPhase: coagent.phase })
+  const locks = deriveHostLocks({ editorEnabled: editorOn, agentBusy: agentPhase !== 'idle' || newAgentPhase !== 'idle', coagentPhase: coagent.phase })
   const manualEditing = locks.manualEditing
 
   useEffect(() => {
@@ -78,6 +82,19 @@ export default function App() {
     if (urlEditor === '0' || urlEditor === '1') return
     setEditorOn(view.editor?.enabled !== false)
   }, [view, urlEditor])
+
+  // 场景新建/删除后重拉场景索引（顶栏下拉的数据源）
+  useEffect(
+    () =>
+      bus.on('scene:index-changed', () => {
+        void loadSceneIndex()
+          .then(setScenes)
+          .catch(() => {
+            /* 索引缺失不致命：下拉保留旧列表 */
+          })
+      }),
+    [],
+  )
 
   useEffect(() => {
     try {
@@ -114,6 +131,7 @@ export default function App() {
 
   useEditorModule(manualEditing)
   useAgentModule(agentOn && locks.agentModuleEnabled)
+  useNewAgentModule(newAgentOn && locks.agentModuleEnabled)
 
   const leftStyle: CSSProperties = { width: sizes.left }
   const rightStyle: CSSProperties = { width: sizes.right }
@@ -138,8 +156,15 @@ export default function App() {
               id: 'llm-agent',
               name: 'AI 编辑',
               enabled: agentOn,
-              onToggle: () => setAgentOn(v => !v),
+              onToggle: () => { setAgentOn(v => !v); if (!agentOn) setNewAgentOn(false) },
               panel: <AgentPanel />,
+            },
+            {
+              id: 'llm-agent-experiment',
+              name: 'LLM Agent 实验',
+              enabled: newAgentOn,
+              onToggle: () => { setNewAgentOn(v => !v); if (!newAgentOn) setAgentOn(false) },
+              panel: <NewAgentPanel />,
             },
             {
               id: 'interchange',
@@ -163,6 +188,7 @@ export default function App() {
             <SceneCanvas>
               {manualEditing && <EditorGizmo />}
               {agentOn && <AgentPickHighlight />}
+              {newAgentOn && <NewAgentPickHighlight />}
               {/* W04：CoAgent 渲染端口（独立相机 + 离屏捕获），关插件即卸载并释放离屏资源 */}
               {coagentOn && <CoAgentBridge runtime={coagent.runtime} />}
             </SceneCanvas>

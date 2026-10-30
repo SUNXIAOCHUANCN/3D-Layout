@@ -24,6 +24,8 @@ import type {
   GeometryRequest,
   GeometryResult,
   ObjectId,
+  PickRequest,
+  PickResult,
   RenderPort,
   RenderPortDiagnostics,
   TransformDTO,
@@ -32,6 +34,7 @@ import { CoAgentError } from '../contracts'
 import type { CoAgentRuntime } from '../runtime/createRuntime'
 import { captureStill } from './capture'
 import { checkSceneGeometry } from './geometry'
+import { pickFromSnapshot } from './pick'
 
 export interface CoAgentBridgeProps {
   runtime: CoAgentRuntime | null
@@ -217,6 +220,22 @@ function createPort(gl: WebGLRenderer, scene: Scene, camera: Camera, timeoutMs: 
         scene.updateMatrixWorld(true)
         const result = checkSceneGeometry(scene, request)
         if (signal.aborted) throw new CoAgentError('cancelled', '几何检测完成前已取消')
+        return result
+      } catch (e) {
+        throw CoAgentError.from(e)
+      }
+    },
+
+    /**
+     * P2：按观测相机拾取。
+     * 用 cameraFromSnapshot 现造一台相机——**不动**用户主视口，也不用它的姿态。
+     */
+    async pick(request: PickRequest, signal: AbortSignal): Promise<PickResult> {
+      if (!mounted) throw new CoAgentError('bridge_unavailable', '渲染桥已卸载')
+      if (signal.aborted) throw new CoAgentError('cancelled', '拾取前已取消')
+      try {
+        const result = pickFromSnapshot(scene, request)
+        if (signal.aborted) throw new CoAgentError('cancelled', '拾取完成前已取消')
         return result
       } catch (e) {
         throw CoAgentError.from(e)

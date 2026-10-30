@@ -16,6 +16,7 @@ import { composeClarifiedRequest, isUsableAnswer } from './clarify'
 import type { CoAgentPhase } from './contracts'
 import { PartitionPreview, RunProgress } from './CoAgentProgress'
 import type { PartitionReport } from './services/partition'
+import type { PartitionPersistenceState } from './services/partitionPersistence'
 import { useCoAgentModule } from './useCoAgentModule'
 import { useCoAgentStore } from './uiStore'
 
@@ -31,14 +32,36 @@ const PHASE_TEXT: Record<CoAgentPhase, string> = {
   validating: '判定中',
   committing: '提交中',
   completed: '已完成',
+  retained: '已保留（有未通过项）',
   cancelling: '取消中',
   rolled_back: '已回滚',
   failed: '失败',
   error_locked: '错误锁定',
 }
 
-export function CoAgentPanel(props: { coagent: ReturnType<typeof useCoAgentModule> }) {
-  const { coagent } = props
+/** P4：把分区持久化状态翻成一句人话（"没有文件"与"读取失败"必须区分） */
+function persistenceText(state: PartitionPersistenceState): string {
+  switch (state.status) {
+    case 'loading':
+      return '分区文件：读取中…'
+    case 'absent':
+      return '分区文件：尚未保存（首次使用属正常）'
+    case 'ready':
+      return `分区文件：已恢复（${state.report.fingerprintMatch ? '内容一致' : '场景已变化，已按当前场景核对'}）`
+    case 'needs_review':
+      return `分区文件：已恢复，但有 ${state.issues.length} 项待核对——${state.issues.slice(0, 2).join('；')}`
+    case 'invalid':
+      return `分区文件不可用（已保留原文件）：${state.issues.slice(0, 2).join('；')}`
+    case 'load_failed':
+      return `分区文件读取失败：${state.message}`
+    case 'save_failed':
+      return `分区文件保存失败：${state.message}`
+    default:
+      return '分区文件：未检查'
+  }
+}
+
+export function CoAgentPanel(props: { coagent: ReturnType<typeof useCoAgentModule> }) {  const { coagent } = props
   const [request, setRequest] = useState('')
   const [running, setRunning] = useState(false)
   const lastResult = useCoAgentStore(s => s.lastResult)
@@ -151,13 +174,25 @@ export function CoAgentPanel(props: { coagent: ReturnType<typeof useCoAgentModul
         <div className={lastError ? 'agent-denied' : 'agent-chat-note'}>
           {lastError
             ? `！${lastError}`
-            : lastResult?.kind === 'completed'
-              ? `✓ ${lastResult.summary ?? '已完成'}`
-              : lastResult?.kind === 'rolled_back'
-                ? `↺ 已回滚${lastResult.code ? `（${lastResult.code}${lastResult.stage ? ` @${lastResult.stage}` : ''}）` : ''}：${lastResult.reason ?? ''}`
-                : lastResult?.kind === 'cancelled'
-                  ? '已取消并回滚'
-                  : '需要澄清（见下方问答）'}
+            : lastResult?.kind === 'undone'
+              ? `↶ ${lastResult.summary ?? '已撤销本轮修改'}`
+              : lastResult?.kind === 'completed'
+                ? `✓ ${lastResult.summary ?? '已完成'}`
+                : lastResult?.kind === 'retained_with_issues'
+                  ? `⚠ 改动已保留，存在未通过项（${lastResult.issueCount ?? 0} 项）：${lastResult.summary ?? ''}`
+                  : lastResult?.kind === 'rolled_back'
+                    ? `↺ 已回滚${lastResult.code ? `（${lastResult.code}${lastResult.stage ? ` @${lastResult.stage}` : ''}）` : ''}：${lastResult.reason ?? ''}`
+                    : lastResult?.kind === 'cancelled'
+                      ? '已取消并回滚'
+                      : '需要澄清（见下方问答）'}
+          {/* P3：只有本轮真的产生了可撤销历史、且仍是栈顶时才给按钮 */}
+          {coagent.canUndoLastRun && (lastResult?.kind === 'completed' || lastResult?.kind === 'retained_with_issues') && (
+            <div className="agent-input-row">
+              <button className="agent-mini-btn" disabled={busy} onClick={() => coagent.undoLastRun()}>
+                撤销本轮修改
+              </button>
+            </div>
+          )}
         </div>
       )}
 
@@ -177,16 +212,26 @@ export function CoAgentPanel(props: { coagent: ReturnType<typeof useCoAgentModul
       <div className="agent-section">
         <div className="agent-task-label">分区</div>
         <div className="agent-chat-note">
-          模型：
-          {model
-            ? model.configured
-              ? `已配置（${model.summary}）`
-              : '未配置——去「AI 编辑 → 设置」填 baseURL / Key / 模型名'
-            : 'runtime 未就绪'}
+          <div>
+            模型：
+            {model
+              ? model.configured
+                ? `已配置（${model.summary}）`
+                : '未配置——去「AI 编辑 → 设置」填 baseURL / Key / 模型名'
+              : 'runtime 未就绪'}
+          </div>
+          {/* P4：分区配套文件状态（无文件是正常状态，不是错误） */}
+          <div>{persistenceText(coagent.partitionPersistence)}</div>
         </div>
         <div className="agent-input-row">
           <button className="agent-mini-btn" disabled={!runtime || partitioning || busy || !model?.configured} onClick={onPreprocess}>
             {partitioning ? '生成中…' : '生成分区（鸟瞰 VLM）'}
+          </button>
+          <button className="agent-mini-btn" disabled={!runtime || busy} onClick={() => void coagent.restorePartition()}>
+            恢复已保存分区
+          </button>
+          <button className="agent-mini-btn" disabled={!runtime || busy || !partition} onClick={() => void coagent.savePartition()}>
+            保存分区
           </button>
         </div>
         {partition && (

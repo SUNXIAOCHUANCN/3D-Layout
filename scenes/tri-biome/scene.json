@@ -2,7 +2,7 @@
   "meta": {
     "id": "tri-biome",
     "name": "三地貌·雪山森林沙漠",
-    "version": 2,
+    "version": 3,
     "unit": "m",
     "up": "+Y",
     "modelMigration": {

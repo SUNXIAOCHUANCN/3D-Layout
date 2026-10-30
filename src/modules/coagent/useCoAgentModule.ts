@@ -12,6 +12,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import type { CoAgentPhase, RunOutcome, ToolResult } from './contracts'
+import type { PartitionPersistenceState } from './services/partitionPersistence'
 import { createRuntime, type CoAgentRuntime } from './runtime/createRuntime'
 import { keepRecent } from './uiProjection'
 import { useCoAgentStore, isBusyPhase } from './uiStore'
@@ -27,6 +28,16 @@ export interface UseCoAgentModuleResult {
   reset: () => void
   /** 分区就绪标志（W06 前恒 false，面板据此禁用开始并给出指引） */
   partitionReady: boolean
+  /** P3：最近一轮是否有可撤销的历史（没有实际写入时为 false） */
+  canUndoLastRun: boolean
+  /** P3：撤销最近一轮（只支持栈顶；不可用时返回原因） */
+  undoLastRun: () => { ok: boolean; message?: string }
+  /** P4：分区配套文件状态 */
+  partitionPersistence: PartitionPersistenceState
+  /** P4：重新读取并核对分区文件 */
+  restorePartition: () => Promise<void>
+  /** P4：把当前分区写成配套文件 */
+  savePartition: () => Promise<void>
   runtime: CoAgentRuntime | null
 }
 
@@ -61,6 +72,8 @@ export function useCoAgentModule(enabled: boolean, opts?: { isHostBusy?: () => b
     runtimeRef.current = runtime
     setRuntime(runtime) // 供 <CoAgentBridge/> 注册渲染端口（W04）
     runtime.enable() // 重挂载后复活（disabled → idle；锁定保留为 error_locked）
+    // P4：开启分区配套文件的自动恢复（首挂载与切场景都会读一次；无文件是正常状态）
+    runtime.enablePartitionPersistence()
 
     const sync = (): void => {
       const p = runtime.phase()
@@ -137,7 +150,14 @@ export function useCoAgentModule(enabled: boolean, opts?: { isHostBusy?: () => b
         useCoAgentStore.getState().setResult(
           k === 'completed'
             ? { kind: k, summary: result.data.summary }
-            : k === 'rolled_back'
+            : k === 'retained_with_issues'
+              ? {
+                  kind: k,
+                  summary: result.data.summary,
+                  issueCount: result.data.issues.length,
+                  issues: result.data.issues.slice(0, 5).map(i => `${i.name}：${i.reason}`),
+                }
+              : k === 'rolled_back'
               ? {
                   kind: k,
                   reason: result.data.reason.message,
@@ -160,6 +180,37 @@ export function useCoAgentModule(enabled: boolean, opts?: { isHostBusy?: () => b
       const r = rt.reset()
       if (!r.ok) useCoAgentStore.getState().setError(r.error.message)
       else useCoAgentStore.getState().setError(null)
+    },
+    // ---- P3：撤销本轮 ----
+    canUndoLastRun: Boolean(runtime?.lastRunHistoryRef()),
+    undoLastRun: () => {
+      const rt = runtimeRef.current ?? runtimeSingleton
+      if (!rt) return { ok: false, message: '运行时未就绪' }
+      const res = rt.undoLastRun()
+      // 撤销成功后结果卡片要反映"已撤销"，否则按钮还在说可以撤
+      if (res.ok) {
+        const s = useCoAgentStore.getState()
+        const prev = s.lastResult
+        if (prev) s.setResult({ ...prev, kind: 'undone', summary: '已撤销本轮修改' })
+      } else if (res.message) {
+        useCoAgentStore.getState().setError(res.message)
+      }
+      setPhase(rt.phase())
+      return res
+    },
+    // ---- P4：分区持久化 ----
+    partitionPersistence: runtime?.partitionPersistenceState() ?? { status: 'idle' as const },
+    restorePartition: async () => {
+      const rt = runtimeRef.current ?? runtimeSingleton
+      if (!rt) return
+      await rt.restorePartition()
+      setPhase(rt.phase())
+    },
+    savePartition: async () => {
+      const rt = runtimeRef.current ?? runtimeSingleton
+      if (!rt) return
+      await rt.savePartition()
+      setPhase(rt.phase())
     },
     partitionReady: Boolean(runtime?.partition()),
     runtime,

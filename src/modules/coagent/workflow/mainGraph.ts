@@ -16,6 +16,7 @@
 import { Annotation } from '@langchain/langgraph'
 import type {
   AssetDTO,
+  FinalCheck,
   FinalCheckItem,
   GeometryResult,
   ModelCatalogEntry,
@@ -25,6 +26,7 @@ import type {
   RegionId,
   RegionResult,
   RunInput,
+  RunIssue,
   RunOutcome,
   TaskResult,
   TasksPlan,
@@ -39,6 +41,7 @@ import { makePlan, tasksOfRegion } from '../agents/planner'
 import { buildPlannerContext } from '../agents/plannerContext'
 import { validatePlanSemantics } from '../services/planValidation'
 import { validateFinalScene } from '../services/validation'
+import { prioritizeAnnotationIds } from '../services/annotation'
 import { captureWith, regionCamera } from '../tools/cameraTools'
 import { createToolRegistry } from '../tools/registry'
 import { buildRegionGraph, regionPassed, type RegionStateType } from './regionGraph'
@@ -65,6 +68,11 @@ const MainState = Annotation.Root({
   finalCheckRuns: Annotation<number>({ reducer: (l, r) => l + r, default: () => 0 }),
   finalCheckNote: Annotation<string | null>({ reducer: (_l, r) => r, default: () => null }),
   finalChecks: Annotation<FinalCheckItem[]>({ reducer: (_l, r) => r, default: () => [] }),
+  /**
+   * P3：终检的**普通未通过项**。它们不再被编码成 failureCode/rolled_back，
+   * 而是随结果保留下来交给用户判断；只有基础设施错误才走 failureCode。
+   */
+  finalCheckProblems: Annotation<string[]>({ reducer: (_l, r) => r, default: () => [] }),
   summary: Annotation<string>({ reducer: (_l, r) => r, default: () => '' }),
   failureCode: Annotation<ToolError['code'] | null>({ reducer: (_l, r) => r, default: () => null }),
   failureReason: Annotation<string | null>({ reducer: (_l, r) => r, default: () => null }),
@@ -137,7 +145,7 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
           [
             `候选对象 ${bundle.candidateIds.length} 个（关键词命中 ${bundle.matchedIds.length} 个），截断=${JSON.stringify(bundle.truncated)}`,
             `视口相机：${viewport ? '可用（已加入上下文）' : '不可用'}`,
-            '规划器上下文（这就是发给模型的用户消息全文）：',
+            '规划器场景上下文（原始用户请求另行标明）：',
             bundle.text,
           ].join('\n'),
         )
@@ -148,6 +156,7 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
           config: context.config,
           registry,
           contextText: bundle.text,
+          userRequest: state.request,
           partition,
           assets,
         })
@@ -187,7 +196,7 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
           logStage('node.validatePlan', `跳过语义校验（计划类型 ${state.plan?.kind ?? 'null'}）`)
           return { trace: [{ type: 'validatePlan', at: Date.now(), note: state.plan?.kind ?? 'null' }] }
         }
-        const issues = validatePlanSemantics(state.plan, partition, assets)
+        const issues = validatePlanSemantics(state.plan, partition, assets, undefined, { userRequest: state.request })
         if (issues.length > 0) {
           logWarn(
             'node.validatePlan',
@@ -202,6 +211,12 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
           }
         }
         logStage('node.validatePlan', `计划语义校验通过（${state.plan.tasks.length} 个任务）`)
+        // P1：校验通过后立刻登记任务台账（数量目标/允许操作），写入配额从此刻起生效
+        context.runState.registerTasks(state.plan.tasks)
+        const caps = state.plan.tasks
+          .map(t => `${t.id}:${t.creationTarget ? `${t.creationTarget.minCount}-${t.creationTarget.maxCount}` : '—'}`)
+          .join('，')
+        logStage('node.validatePlan', `任务台账已登记`, `新增名额：${caps}`)
         return { trace: [{ type: 'validatePlan', at: Date.now(), note: `${state.plan.tasks.length} 个任务` }] }
       })
 
@@ -350,7 +365,12 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
               runId: input.runId,
               camera: regionCamera(region),
               phase: 'after',
-              objectIds: [...new Set([...task.targetObjectIds, ...region.objectIds, ...(result.createdObjectIds ?? [])])].slice(0, 12),
+              objectIds: prioritizeAnnotationIds({
+                created: result.createdObjectIds ?? [],
+                modified: result.modifiedObjectIds ?? [],
+                targets: task.targetObjectIds,
+                environment: region.objectIds,
+              }),
               marked: true,
               taskId: task.id,
               regionId: task.regionId,
@@ -415,14 +435,9 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
           finalCheckRuns: 1,
           finalCheckNote: note,
           finalChecks: checks,
-          ...(passed
-            ? { trace: [{ type: 'finalCheck', at: Date.now(), note }] }
-            : {
-                failureCode: 'write_failed' as const,
-                failureReason: note,
-                failureStage: 'finalCheck',
-                trace: [{ type: 'finalCheck', at: Date.now(), note }],
-              }),
+          // P3：未通过不再等同于"失败回滚"。写入结果保留，问题结构化交给用户。
+          ...(!passed ? { finalCheckProblems: problems } : {}),
+          trace: [{ type: 'finalCheck', at: Date.now(), note }],
         }
       })
 
@@ -491,22 +506,58 @@ export function createMainWorkflow(_opts: MainWorkflowOptions = {}): WorkflowRun
           }
         }
 
-        return {
-          kind: 'completed',
-          summary: final.summary,
-          plan: planTasks,
-          regions: final.regionResults,
-          finalCheck: {
-            passed: final.finalChecks.every(c => c.passed),
-            checkedAt: new Date().toISOString(),
-            checks: [
-              ...final.finalChecks,
-              ...Object.values(final.regionResults).flatMap((r: RegionResult) =>
-                r.tasks.map((t: TaskResult) => ({ name: `task:${t.taskId}`, passed: t.status === 'pass', evidenceIds: t.evidenceIds })),
-              ),
-            ],
-          },
+        const taskChecks: FinalCheckItem[] = Object.values(final.regionResults).flatMap((r: RegionResult) =>
+          r.tasks.map((t: TaskResult) => ({ name: `task:${t.taskId}`, passed: t.status === 'pass', evidenceIds: t.evidenceIds })),
+        )
+        const checks: FinalCheckItem[] = [...final.finalChecks, ...taskChecks]
+        const finalCheck: FinalCheck = {
+          passed: checks.every(c => c.passed) && final.finalCheckProblems.length === 0,
+          checkedAt: new Date().toISOString(),
+          checks,
         }
+        const base = { summary: final.summary, plan: planTasks, regions: final.regionResults, finalCheck }
+        if (finalCheck.passed) return { kind: 'completed', ...base }
+
+        // P3：正常执行但存在未通过项 —— 结果保留，问题如实上报
+        const issues: RunIssue[] = [
+          ...checks
+            .filter(c => !c.passed)
+            .map(c => ({
+              scope: 'finalCheck' as const,
+              name: c.name,
+              status: 'fail' as const,
+              reason: c.note ?? '未通过',
+              evidenceIds: c.evidenceIds,
+            })),
+          ...final.finalCheckProblems.map(p => ({
+            scope: 'finalCheck' as const,
+            name: 'finalCheck',
+            status: 'fail' as const,
+            reason: p,
+          })),
+          ...Object.values(final.regionResults).flatMap((r: RegionResult) =>
+            r.tasks
+              .filter((t: TaskResult) => t.status !== 'pass')
+              .map((t: TaskResult) => ({
+                scope: 'task' as const,
+                taskId: t.taskId,
+                regionId: r.regionId,
+                name: `task:${t.taskId}`,
+                status: (t.status === 'skipped' ? 'uncertain' : 'fail') as 'fail' | 'uncertain',
+                reason:
+                  t.status === 'skipped'
+                    ? '任务未执行（依赖失败或区域已停止）'
+                    : (t.verdicts
+                        .at(-1)
+                        ?.criteria.filter(c => c.status !== 'pass')
+                        .map(c => `${c.criterionId}：${c.reason}`)
+                        .join('；') || '任务未通过'),
+                evidenceIds: t.evidenceIds,
+              })),
+          ),
+        ]
+        logStage('node.summarizer', `结果保留：${issues.length} 个未通过项`, issues.map(i => `- ${i.name}：${i.reason}`).join('\n'))
+        return { kind: 'retained_with_issues', ...base, issues }
       } catch (e) {
         if (context.signal.aborted) {
           logWarn('run.error', '运行被取消（AbortSignal 已中止）')

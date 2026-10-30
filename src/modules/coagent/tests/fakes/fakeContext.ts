@@ -12,6 +12,7 @@ import type {
   ObservationId,
   PartitionSnapshot,
   ToolResult,
+  UnitTask,
   WorkflowContext,
   WorkflowEventInput,
   WorkflowWriteCall,
@@ -19,6 +20,8 @@ import type {
 import type { EditReceipt } from '../../contracts'
 import { DEFAULT_COAGENT_CONFIG } from '../../config'
 import { blobToDataUrl } from '../../services/imageData'
+import { createRunState } from '../../runtime/runState'
+import { createRegionViews } from '../../runtime/regionViews'
 import { createFakeEditor, type FakeEditor, type FakeEditorOptions } from './FakeEditor'
 import { createFakeModel } from './FakeModel'
 import { createFakeRender, type FakeRender } from './FakeRender'
@@ -39,6 +42,8 @@ export interface FakeContextOptions {
   editor?: FakeEditorOptions
   config?: Partial<CoAgentConfig>
   signal?: AbortSignal
+  /** P1：预登记的任务（写入名额/操作声明从此刻生效） */
+  tasks?: UnitTask[]
 }
 
 export function createFakeWorkflowContext(opts: FakeContextOptions = {}): FakeWorkflowContext {
@@ -66,6 +71,11 @@ export function createFakeWorkflowContext(opts: FakeContextOptions = {}): FakeWo
       if (!readonlyIds.has(id)) writable.add(id)
     }
   }
+  // P1：与 runController 同构的台账；调用方可直接用 fakeContext.runState.registerTasks 登记任务
+  const runState = createRunState({ runId: 'fakeContext-run', readonlyObjectIds: [...readonlyIds] })
+  if (opts.tasks) runState.registerTasks(opts.tasks)
+  // P2：每区工作相机（与 runController 同构）
+  const regionViews = createRegionViews()
 
   return {
     signal,
@@ -74,11 +84,16 @@ export function createFakeWorkflowContext(opts: FakeContextOptions = {}): FakeWo
     editorRead: editor,
     partition,
     config,
+    runState,
+    regionViews,
     emit: event => {
       events.push(event)
     },
     capture: async request => {
-      const frame = await render.capture(request, signal)
+      // 与真实 runtime 同口径：sceneRevision 取自编辑器快照（不是 fake 自己的计数器），
+      // 否则 scene.pick 的"截图是否过期"检查在 fake 路径下会误报。
+      const liveRevision = editor.snapshot({ objectIds: [] }).sceneRevision
+      const frame = await render.capture({ ...request, sceneRevision: liveRevision }, signal)
       const id = `obs-${String(++obsSeq).padStart(3, '0')}`
       const observation: Observation = {
         schemaVersion: 1,
@@ -109,16 +124,30 @@ export function createFakeWorkflowContext(opts: FakeContextOptions = {}): FakeWo
       return blob ? await blobToDataUrl(blob) : null
     },
     applyWrite: (command: EditorCommand, call: WorkflowWriteCall): Promise<ToolResult<EditReceipt>> =>
-      Promise.resolve(
-        editor.applyAuthorized(command, {
+      Promise.resolve().then(() => {
+        // P1：名额/操作检查与真实路径一致（未登记任务时不施加任务级规则）
+        const rejected = runState.checkWrite(call.taskId, command, call.toolCallId)
+        if (rejected) {
+          events.push({
+            type: 'write.rejected',
+            runId: 'fakeContext-run',
+            ...(call.taskId !== null ? { taskId: call.taskId } : {}),
+            ...(typeof call.regionId === 'string' ? { regionId: call.regionId } : {}),
+            payload: { code: rejected.code, message: rejected.message, command: command.kind },
+          })
+          return { ok: false, error: rejected }
+        }
+        const result = editor.applyAuthorized(command, {
           runId: 'fakeContext-run',
           taskId: call.taskId,
           toolCallId: call.toolCallId,
           token: writeToken,
           writableObjectIds: writable,
-        }),
-      ).then(result => {
-        if (result.ok && command.kind === 'add') writable.add(result.data.objectId)
+        })
+        if (result.ok) {
+          runState.recordWrite(call.taskId, command, result.data.objectId, call.toolCallId)
+          if (command.kind === 'add') writable.add(result.data.objectId)
+        }
         return result
       }),
     get events() {

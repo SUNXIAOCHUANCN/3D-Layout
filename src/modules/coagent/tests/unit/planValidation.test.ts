@@ -40,6 +40,33 @@ function plan(...tasks: UnitTask[]): TasksPlan {
 
 const issuesOf = (p: TasksPlan): string[] => validateTaskPlanSemantics(p, partition, assets).map(i => `${i.path}:${i.message}`)
 
+describe('新计划的碰撞硬约束依据', () => {
+  const collisionPlan = (constraints: UnitTask['constraints']) => plan(task({ id: 't1', regionId: 'region-north', constraints }))
+  const validate = (p: TasksPlan, userRequest: string) => validateTaskPlanSemantics(p, partition, assets, undefined, { userRequest })
+
+  it('普通任务允许不声明碰撞硬约束，旧计划读取仍兼容无依据的约束', () => {
+    expect(validate(collisionPlan([]), '种一片茂密树林，允许树冠交叠')).toEqual([])
+    expect(issuesOf(collisionPlan([{ kind: 'no_collision' }]))).toEqual([])
+  })
+
+  it('新计划缺少依据时拒绝，即使 objective 自行声明了不相交', () => {
+    const p = collisionPlan([{ kind: 'no_collision' }])
+    p.tasks[0].objective = '树木不得相交'
+    expect(validate(p, '添加几棵树')).toEqual([expect.objectContaining({ path: 'tasks[0].constraints[0].basis', message: expect.stringContaining('缺少原始用户请求依据') })])
+  })
+
+  it.each(['', '   ', '用户没说过的禁止碰撞要求'])('空白或伪造引用 %j 被拒绝', quote => {
+    expect(validate(collisionPlan([{ kind: 'no_collision', basis: { source: 'user_request', quote } }]), '移动两棵树')).toEqual([
+      expect.objectContaining({ message: expect.stringContaining('必须引用原始用户请求') }),
+    ])
+  })
+
+  it('明确要求的真实原文引用可以通过', () => {
+    const quote = '移动的树不得与其他对象相交'
+    expect(validate(collisionPlan([{ kind: 'no_collision', basis: { source: 'user_request', quote } }]), `调整树木位置，${quote}。`)).toEqual([])
+  })
+})
+
 describe('sceneDiagonal', () => {
   it('按对象位置计算平面尺度', () => {
     expect(sceneDiagonal(assets)).toBeCloseTo(Math.hypot(7, 9), 6)

@@ -1,6 +1,6 @@
 import { useGLTF } from '@react-three/drei'
 import { useEffect, useMemo } from 'react'
-import { BackSide, Mesh, MeshBasicMaterial, Vector3 } from 'three'
+import { BackSide, BufferGeometry, Float32BufferAttribute, Mesh, MeshBasicMaterial, MeshStandardMaterial, Vector3 } from 'three'
 import type { Object3D, SkinnedMesh } from 'three'
 import { bus } from '../core/events'
 import { useSceneStore } from '../core/store'
@@ -90,8 +90,8 @@ export function makeOutline(src: Object3D): Object3D {
 }
 
 /** 占位几何：按 meta 的 native 尺寸建模，原点归一化到底面中心 */
-function PrimitiveModel(props: { meta: ModelMeta; tint?: string; outline?: boolean }) {
-  const { meta, tint, outline } = props
+function PrimitiveModel(props: { meta: ModelMeta; tint?: string; outline?: boolean; materialOverride?: SceneAsset['materialOverride'] }) {
+  const { meta, tint, outline, materialOverride } = props
   const { w, d, h } = meta.dimensions
   const color = tint ?? meta.color ?? '#7ea6e0'
   const shape = meta.source.type === 'primitive' ? meta.source.shape : 'box'
@@ -104,7 +104,7 @@ function PrimitiveModel(props: { meta: ModelMeta; tint?: string; outline?: boole
       }
     : {
         scale: 1,
-        material: <meshStandardMaterial color={color} roughness={0.65} metalness={0.05} />,
+        material: <meshStandardMaterial color={materialOverride?.color ?? color} roughness={materialOverride?.roughness ?? 0.65} metalness={materialOverride?.metalness ?? 0.05} />,
         userData: undefined,
       }
 
@@ -139,13 +139,25 @@ function GlbModel(props: {
   assetId: string
   refId: string
   selected: boolean
+  materialOverride?: SceneAsset['materialOverride']
 }) {
-  const { url, draco, assetId, refId, selected } = props
+  const { url, draco, assetId, refId, selected, materialOverride } = props
   const { scene } = useGLTF(url, draco ? '/assets/decoders/' : false)
   const cloned = useMemo(() => {
     normalizeGltf(scene)
-    return scene.clone(true)
-  }, [scene])
+    const copy = scene.clone(true)
+    if (materialOverride) {
+      const material = new MeshStandardMaterial(materialOverride)
+      copy.traverse(o => { if ((o as Mesh).isMesh) (o as Mesh).material = material })
+    }
+    return copy
+  }, [scene, materialOverride])
+  useEffect(() => () => {
+    if (!materialOverride) return
+    const materials = new Set<MeshStandardMaterial>()
+    cloned.traverse(o => { const m = o as Mesh; if (m.isMesh && m.material instanceof MeshStandardMaterial) materials.add(m.material) })
+    materials.forEach(m => m.dispose())
+  }, [cloned, materialOverride])
   const outline = useMemo(() => (selected ? makeOutline(cloned) : null), [cloned, selected])
 
   useEffect(() => {
@@ -161,6 +173,29 @@ function GlbModel(props: {
       {outline && <primitive object={outline} />}
     </>
   )
+}
+
+function TerrainModel({ terrain, material }: { terrain: NonNullable<SceneAsset['terrain']>; material?: SceneAsset['materialOverride'] }) {
+  const geometry = useMemo(() => {
+    const g = new BufferGeometry()
+    const positions: number[] = []
+    const indices: number[] = []
+    for (let z = 0; z < terrain.samplesZ; z++) {
+      for (let x = 0; x < terrain.samplesX; x++) {
+        positions.push((x / (terrain.samplesX - 1) - 0.5) * terrain.width, terrain.heights[z * terrain.samplesX + x], (z / (terrain.samplesZ - 1) - 0.5) * terrain.depth)
+        if (x < terrain.samplesX - 1 && z < terrain.samplesZ - 1) {
+          const a = z * terrain.samplesX + x, b = a + 1, c = a + terrain.samplesX, d = c + 1
+          indices.push(a, c, b, b, c, d)
+        }
+      }
+    }
+    g.setAttribute('position', new Float32BufferAttribute(positions, 3))
+    g.setIndex(indices)
+    g.computeVertexNormals()
+    return g
+  }, [terrain])
+  useEffect(() => () => geometry.dispose(), [geometry])
+  return <mesh geometry={geometry} castShadow receiveShadow><meshStandardMaterial color={material?.color ?? '#66875b'} roughness={material?.roughness ?? 0.9} metalness={material?.metalness ?? 0} /></mesh>
 }
 
 /**
@@ -198,7 +233,7 @@ export function AssetInstance(props: { asset: SceneAsset }) {
         onPointerOver={() => (document.body.style.cursor = 'pointer')}
         onPointerOut={() => (document.body.style.cursor = 'auto')}
       >
-        {meta ? (
+        {asset.terrain ? <TerrainModel terrain={asset.terrain} material={asset.materialOverride} /> : meta ? (
           glbSource ? (
             <group scale={glbSource.unitScale ?? 1}>
               <GlbModel
@@ -207,11 +242,12 @@ export function AssetInstance(props: { asset: SceneAsset }) {
                 assetId={asset.id}
                 refId={asset.ref}
                 selected={selected}
+                materialOverride={asset.materialOverride}
               />
             </group>
           ) : (
             <>
-              <PrimitiveModel meta={meta} tint={asset.tint} />
+              <PrimitiveModel meta={meta} tint={asset.tint} materialOverride={asset.materialOverride} />
               {selected && <PrimitiveModel meta={meta} outline />}
             </>
           )

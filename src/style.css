@@ -1141,6 +1141,141 @@ body {
   margin-top: 4px;
 }
 
+/* ---------- 多档案设置窗口（档案列表 + 编辑器） ---------- */
+
+.modal.llm-modal-wide {
+  width: 760px;
+}
+
+.llm-layout {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.llm-side {
+  flex: 0 0 190px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-right: 1px solid var(--border);
+  padding-right: 12px;
+}
+
+.llm-side-title {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.llm-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.llm-list-item {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  cursor: pointer;
+  background: var(--bg);
+}
+
+.llm-list-item:hover {
+  border-color: var(--accent);
+}
+
+.llm-list-item.on {
+  border-color: var(--accent);
+  background: rgba(76, 141, 255, 0.12);
+}
+
+.llm-list-name {
+  font-size: 12px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.llm-list-meta {
+  font-size: 10px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.llm-badge {
+  flex: none;
+  font-size: 9px;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 0 5px;
+  line-height: 1.5;
+}
+
+.llm-badge.llm-badge-warn {
+  color: #d29922;
+  border-color: #d29922;
+}
+
+.llm-side-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.llm-select {
+  width: 100%;
+  font-size: 12px;
+  padding: 4px 6px;
+}
+
+.llm-profile-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.llm-test-btn.llm-danger {
+  color: #f85149;
+  border-color: #f85149;
+}
+
+.llm-test-btn.llm-danger:hover:not(:disabled) {
+  border-color: #f85149;
+  filter: brightness(1.15);
+}
+
+/* 面板顶部档案快速切换 */
+.agent-profile-select {
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 3px 6px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.agent-profile-select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
 
 /* 导入导出插件薄入口（modules/interchange） */
 .interchange-panel {

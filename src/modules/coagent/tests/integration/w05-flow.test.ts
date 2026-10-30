@@ -63,6 +63,8 @@ function defaultPlan(): Plan {
       id: 'task-s2',
       regionId: 'region-south',
       allowedOperations: ['add'],
+      // P1：add 任务必须声明结构化数量目标（新计划强制；这里新增 1 块石头）
+      creationTarget: { minCount: 1, maxCount: 1 },
       // W08.1：南区当前 2 个对象（house-1/rock-1），add 一块石头后应为 3；之前写 6 是因为判据尚未真正计算
       criteria: [{ id: 'crit-task-s2', kind: 'metric', metric: 'region.object_count', operator: 'eq', value: 3, unit: 'count' }],
       constraints: [{ kind: 'stay_in_region' }, { kind: 'preserve_count' }],
@@ -251,7 +253,7 @@ describe('W05 正常闭环（场景 1/2/3/4/5）', () => {
 })
 
 describe('W05 失败路径', () => {
-  it('场景 6：B 区终局失败 → 整轮 rolled_back，A 区已完成修改一并回滚（runtime 真实事务）', async () => {
+  it('场景 6：B 区终局失败 → 修改仍保留（P3），判据如实 fail，A 区成果不回滚', async () => {
     const model = createDirectorModel()
     model.on('planner', () => jsonReply(defaultPlan()))
     const editor = createFakeEditor({ sceneId: 'scene-fixture', assets: TWO_REGION_ASSETS, catalog: TWO_REGION_CATALOG })
@@ -282,16 +284,22 @@ describe('W05 失败路径', () => {
     const result = await runtime.start('两个区都整理')
     expect(result.ok).toBe(true)
     if (!result.ok) return
-    expect(result.data.kind).toBe('rolled_back')
+    // P3：正常执行结束、有判据未通过 → 保留修改，不再整轮回滚
+    expect(result.data.kind).toBe('retained_with_issues')
+    if (result.data.kind === 'retained_with_issues') {
+      expect(result.data.issues.length).toBeGreaterThan(0)
+      expect(result.data.issues.some(i => i.taskId === 'task-s2' && i.status === 'fail')).toBe(true)
+    }
 
     const st = editor.state()
-    expect(st.rolledBackRuns).toBe(1)
-    expect(st.committedRuns).toBe(0)
-    // A 区的修改被回滚
-    expect(editor.snapshot({ objectIds: ['tree-1'] }).assets[0].transform.position).toEqual([-3, 0, -4])
-    expect(editor.snapshot({ objectIds: ['tree-2'] }).assets[0].transform.position).toEqual([2, 0, -5])
-    expect(editor.snapshot({}).assets.filter(a => a.ref === 'models/rock').length).toBe(1)
-    expect(st.savedVersions).toEqual([])
+    expect(st.committedRuns).toBe(1)
+    expect(st.rolledBackRuns).toBe(0)
+    // A 区（北区）的修改被保留
+    expect(editor.snapshot({ objectIds: ['tree-1'] }).assets[0].transform.position).toEqual([-6, 0, -6])
+    expect(editor.snapshot({ objectIds: ['tree-2'] }).assets[0].transform.position).toEqual([6, 0, -2])
+    // 失败任务的写入也保留（用户自行决定是否撤销）
+    expect(editor.snapshot({}).assets.filter(a => a.ref === 'models/rock').length).toBe(2) // 原始 1 + 新增 1
+    expect(st.savedVersions).toHaveLength(1)
   })
 
   it('场景 5：正常一轮只 commit 一次、只 save 一次', async () => {
@@ -404,8 +412,11 @@ describe('W05 失败路径', () => {
     })
 
     const outcome = await run()
-    expect(outcome.kind).toBe('rolled_back')
-    if (outcome.kind === 'rolled_back') expect(outcome.reason.code).toBe('write_failed')
+    // P3：普通判据/工具拒绝属于"结果保留但存在问题"，不再整轮回滚
+    expect(outcome.kind).toBe('retained_with_issues')
+    if (outcome.kind === 'retained_with_issues') {
+      expect(outcome.issues.some(i => i.taskId === 'task-n1')).toBe(true)
+    }
     // road-1 是 globalReadonly：工具层直接拒绝，场景未变
     expect(ctx.fakeEditor.snapshot({ objectIds: ['road-1'] }).assets[0].transform.position).toEqual([0, 0, 0])
     // 拒绝原因确实回灌给了模型（toolResult 里是 out_of_scope，而不是静默失败）
@@ -474,15 +485,15 @@ describe('W05 失败路径', () => {
     })
 
     const outcome = await run()
-    expect(outcome.kind).toBe('rolled_back')
-    if (outcome.kind === 'rolled_back') {
-      // 走的是"区域未通过"的流程失败，而不是内部异常收口
-      expect(outcome.reason.code).toBe('write_failed')
-      expect(outcome.reason.message).toContain('未通过')
+    expect(outcome.kind).toBe('retained_with_issues')
+    if (outcome.kind === 'retained_with_issues') {
+      // 判据仍是 fail（保留不等于通过），问题被如实上报
+      expect(outcome.issues.some(i => i.taskId === 'task-n1' && i.status === 'fail')).toBe(true)
+      expect(outcome.finalCheck.passed).toBe(false)
     }
   })
 
-  it('T17 最终一致性：后任务破坏前任务的 metric 条件（仍在同一区内）→ finalCheck 不通过、整轮回滚', async () => {
+  it('T17 最终一致性：后任务破坏前任务的 metric 条件（仍在同一区内）→ finalCheck 不通过，改动保留', async () => {
     const plan = planOf([
       task({
         id: 'task-n1',
@@ -511,10 +522,11 @@ describe('W05 失败路径', () => {
     })
 
     const outcome = await run()
-    expect(outcome.kind).toBe('rolled_back')
-    if (outcome.kind === 'rolled_back') {
-      expect(outcome.reason.code).toBe('write_failed')
-      expect(outcome.reason.message).toContain('min_pair_distance_xz')
+    // P3：终检发现指标被后续任务破坏 → 判据仍 fail，但成果保留给用户判断
+    expect(outcome.kind).toBe('retained_with_issues')
+    if (outcome.kind === 'retained_with_issues') {
+      expect(outcome.finalCheck.passed).toBe(false)
+      expect(outcome.issues.some(i => i.reason.includes('min_pair_distance_xz') || i.name.includes('task-n1'))).toBe(true)
     }
   })
 })

@@ -39,7 +39,15 @@ if (!CHROME) {
   process.exit(2)
 }
 
-const SCENE_FILE = join(LAYOUT, 'scenes', 'scene-01', 'scene.json')
+/**
+ * 备份/还原**实际加载的那个场景**。
+ *
+ * 旧实现写死 scene-01，但本脚本导航时不带 ?scene=，应用会加载默认的
+ * alpinewoodlanddemo —— 于是每跑一次就把真实的 alpinewoodlanddemo/scene.json
+ * 永久改掉（资产被移动、meta.version 递增）。实测踩到过，这里改正。
+ */
+const SCENE_ID = 'alpinewoodlanddemo'
+const SCENE_FILE = join(LAYOUT, 'scenes', SCENE_ID, 'scene.json')
 const sha = buf => createHash('sha256').update(buf).digest('hex')
 const sceneBackup = existsSync(SCENE_FILE) ? readFileSync(SCENE_FILE) : null
 

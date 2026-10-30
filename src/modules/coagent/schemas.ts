@@ -269,8 +269,17 @@ function validateConstraint(v: unknown, path: string): ValidationResult {
         return fail(`${path}.objectIds`, 'preserve_objects 必须带字符串数组')
       }
       return ok
-    case 'stay_in_region':
     case 'no_collision':
+      if (v.basis !== undefined) {
+        if (!isRecord(v.basis) || v.basis.source !== 'user_request') {
+          return fail(`${path}.basis.source`, 'no_collision 的依据来源只能是 user_request')
+        }
+        if (!isNonEmptyString(v.basis.quote) || !v.basis.quote.trim()) {
+          return fail(`${path}.basis.quote`, 'no_collision 必须引用原始用户请求中的非空原文')
+        }
+      }
+      return ok
+    case 'stay_in_region':
     case 'preserve_count':
       return ok
     default:
@@ -282,6 +291,8 @@ function validateConstraint(v: unknown, path: string): ValidationResult {
 }
 
 const OPERATIONS = ['add', 'transform', 'remove'] as const
+/** P1：单任务新增上限（防止一个任务把整个区填满；也约束 creationTarget.maxCount） */
+export const MAX_CREATIONS_PER_TASK = 24
 
 export function validateUnitTask(v: unknown): ValidationResult {
   if (!isRecord(v)) return fail('task', '必须是对象')
@@ -313,6 +324,23 @@ export function validateUnitTask(v: unknown): ValidationResult {
   }
   if (!Array.isArray(v.dependsOn) || !v.dependsOn.every(isNonEmptyString)) {
     return fail('task.dependsOn', '必须是字符串数组')
+  }
+  // P1：结构化数量目标（可选；新 add 计划由 planValidation 强制要求）
+  if (v.creationTarget !== undefined) {
+    const ct = v.creationTarget
+    if (!isRecord(ct)) return fail('task.creationTarget', '必须是 { minCount, maxCount } 对象')
+    const min = ct.minCount
+    const max = ct.maxCount
+    if (typeof min !== 'number' || !Number.isInteger(min) || min < 0) {
+      return fail('task.creationTarget.minCount', '必须是非负整数')
+    }
+    if (typeof max !== 'number' || !Number.isInteger(max) || max < 0) {
+      return fail('task.creationTarget.maxCount', '必须是非负整数')
+    }
+    if (min > max) return fail('task.creationTarget', 'minCount 不能大于 maxCount')
+    if (max > MAX_CREATIONS_PER_TASK) {
+      return fail('task.creationTarget.maxCount', `单任务新增上限不能超过 ${MAX_CREATIONS_PER_TASK}`)
+    }
   }
   return ok
 }

@@ -15,7 +15,7 @@ import type { SceneAsset, Transform } from './types'
 
 export type EditSource = 'human' | 'agent'
 
-export type EditCommand = 'set_transform' | 'add_asset' | 'remove_asset'
+export type EditCommand = 'set_transform' | 'add_asset' | 'remove_asset' | 'update_asset'
 
 /** 期刊条目：before/after 携带完整的资产对象，撤销/重做就是写回对应侧 */
 export interface HistoryEntry {
@@ -105,6 +105,12 @@ function record(entry: HistoryEntry): void {
 }
 
 export const edit = {
+  updateAsset(assetId: string, patch: Partial<Pick<SceneAsset, 'materialOverride' | 'terrain'>>, meta?: EditMeta): boolean {
+    const cur = useSceneStore.getState().document?.assets.find(a => a.id === assetId)
+    if (!cur) return false
+    record({ cmd: 'update_asset', assetId, before: cur, after: { ...cur, ...patch }, source: meta?.source ?? 'human', txId: meta?.tx?.id ?? ++txCounter, label: `修改 ${cur.name ?? assetId}`, time: Date.now() })
+    return true
+  },
   setTransform(assetId: string, transform: Transform, meta?: EditMeta): boolean {
     const doc = useSceneStore.getState().document
     const cur = doc?.assets.find(a => a.id === assetId)

@@ -22,6 +22,8 @@ import type {
   Observation,
   ObservationPhase,
   PartitionSnapshot,
+  PickRequest,
+  PickResult,
   Region,
   RenderPortDiagnostics,
   TransformDTO,
@@ -94,6 +96,8 @@ export interface DevHarness {
   renderDiagnostics(): RenderPortDiagnostics | null
   /** W08.3：真实渲染端口上的几何检测（AABB/三角形/包含/接触） */
   geometry(input: GeometryRequest): Promise<GeometryResult>
+  /** P2：真实渲染端口上的截图点选（用观测相机，不用主视口） */
+  pick(input: PickRequest): Promise<PickResult>
   /** W04：页面内解码证据图，供像素/方向/颜色断言 */
   decode(imageId: string): Promise<DecodedImage>
   /** W04：读证据图某像素（左上原点） */
@@ -337,6 +341,7 @@ export function installDevHarness(runtime: CoAgentRuntime): () => void {
     evidenceStats: () => runtime.evidenceStats(),
     renderDiagnostics: () => runtime.renderDiagnostics(),
     geometry: input => runtime.debugGeometry(input),
+    pick: input => runtime.debugPick(input),
     async decode(imageId: string): Promise<DecodedImage> {
       const img = await loadImage(imageId)
       const { width, height, data } = img

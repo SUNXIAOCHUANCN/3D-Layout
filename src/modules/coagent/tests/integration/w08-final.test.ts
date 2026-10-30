@@ -106,6 +106,7 @@ describe('W08.4 修正轮写集与 remove', () => {
         id: 'task-s2',
         regionId: 'region-south',
         allowedOperations: ['add'],
+        creationTarget: { minCount: 1, maxCount: 1 },
         criteria: [{ id: 'c-count', kind: 'metric', metric: 'region.object_count', operator: 'eq', value: 3, unit: 'count' }],
         constraints: [{ kind: 'stay_in_region' }, { kind: 'preserve_count' }],
       }),
@@ -173,12 +174,81 @@ describe('W08.5 终检视觉重判', () => {
     })
 
     const outcome = await run()
-    expect(outcome.kind).toBe('rolled_back')
+    expect(outcome.kind).toBe('retained_with_issues')
     expect(model.count('judge')).toBe(3) // n1 首次 + n1 终检重判 + n2 首次；未受影响的 n2 不重判
-    expect(outcome.kind === 'rolled_back' ? outcome.reason.message : '').toContain('视觉重判')
+    if (outcome.kind === 'retained_with_issues') {
+      expect(outcome.finalCheck.passed).toBe(false)
+      expect(outcome.issues.some(i => i.reason.includes('视觉重判') || i.name.includes('task-n1'))).toBe(true)
+    }
     // 终检证据里确实有第二张 after 图
     const finalEvidence = ctx.observations.size
     expect(finalEvidence).toBeGreaterThan(0)
     expect(ctx.fakeEditor.snapshot({ objectIds: ['tree-1'] }).assets[0].transform.position).toEqual([1, 0, -5])
+  })
+})
+
+/**
+ * P1：同区第二任务不得继承第一任务的写集（S11）。
+ *
+ * 旧实现的 `advance` 不返回 writes，而 writes 的 reducer 是"替换"语义 →
+ * 通道保留上一任务的值 → 第二任务的 TaskResult 把第一任务新增的对象也算成自己的。
+ */
+describe('P1 任务隔离', () => {
+  it('同区两个 add 任务各记自己新增的对象，互不串账', async () => {
+    const plan = planOf([
+      task({ id: 'task-a1', regionId: 'region-north', allowedOperations: ['add'], creationTarget: { minCount: 1, maxCount: 1 } }),
+      task({ id: 'task-a2', regionId: 'region-north', allowedOperations: ['add'], creationTarget: { minCount: 1, maxCount: 1 } }),
+    ])
+    const { model, ctx, run } = setup(plan)
+    installExecutor(model, {
+      'task-a1': [[{ name: 'edit.add', args: () => ({ ref: 'models/rock', name: '岩石一', transform: T([-6, 0, -3]) }) }]],
+      'task-a2': [[{ name: 'edit.add', args: () => ({ ref: 'models/rock', name: '岩石二', transform: T([4, 0, -3]) }) }]],
+    })
+    installJudge(model, (t, _round, req) => passVerdict(t, req))
+
+    const outcome = await run()
+    expect(outcome.kind, JSON.stringify(outcome)).toBe('completed')
+    if (outcome.kind !== 'completed') return
+
+    const results = outcome.regions['region-north'].tasks
+    expect(results.map(t => t.taskId)).toEqual(['task-a1', 'task-a2'])
+    // 每个任务只记自己的那一个
+    expect(results[0].createdObjectIds).toHaveLength(1)
+    expect(results[1].createdObjectIds).toHaveLength(1)
+    expect(results[0].createdObjectIds[0]).not.toBe(results[1].createdObjectIds[0])
+    expect(results[1].liveCreatedObjectIds).toHaveLength(1)
+    // 场景里确实有两个新对象
+    expect(ctx.fakeEditor.state().assetCount).toBeGreaterThan(0)
+  })
+
+  it('第二任务的 executionState 不含第一任务的对象（修复上下文不串）', async () => {
+    const plan = planOf([
+      task({ id: 'task-a1', regionId: 'region-north', allowedOperations: ['add'], creationTarget: { minCount: 1, maxCount: 1 } }),
+      task({ id: 'task-a2', regionId: 'region-north', allowedOperations: ['add'], creationTarget: { minCount: 1, maxCount: 1 } }),
+    ])
+    const { model, run } = setup(plan)
+    installExecutor(model, {
+      'task-a1': [[{ name: 'edit.add', args: () => ({ ref: 'models/rock', name: '岩石一', transform: T([-6, 0, -3]) }) }]],
+      'task-a2': [[{ name: 'edit.add', args: () => ({ ref: 'models/rock', name: '岩石二', transform: T([4, 0, -3]) }) }]],
+    })
+    installJudge(model, (t, _round, req) => passVerdict(t, req))
+
+    // 抓 task-a2 第一次执行时收到的提示词（DirectorModel 记录所有请求）
+    const outcome = await run()
+    expect(outcome.kind).toBe('completed')
+
+    const textOf = (req: ModelRequest): string =>
+      req.messages
+        .filter(m => m.role === 'user')
+        .map(m => (m as { text: string }).text)
+        .join('\n')
+    const secondTaskPrompt =
+      model.requests.find(r => r.purpose === 'executor' && textOf(r).includes('"id":"task-a2"'))
+    expect(secondTaskPrompt, '没有抓到 task-a2 的执行请求').toBeTruthy()
+    const text = textOf(secondTaskPrompt!)
+    // a2 开始时自己还没建任何对象
+    expect(text).toContain('已创建且仍存活 0 个')
+    expect(text).toContain('还可新增 1 个')
+    expect(text).not.toContain('岩石一')
   })
 })

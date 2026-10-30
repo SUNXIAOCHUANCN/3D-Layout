@@ -32,6 +32,11 @@ export interface PlanIssue {
   message: string
 }
 
+/** 仅新生成计划传入；旧计划读取与执行期事实校验不要求补写依据。 */
+export interface PlanPolicyContext {
+  userRequest: string
+}
+
 export function sceneDiagonal(assets: Array<{ transform: { position: [number, number, number] } }>): number {
   let minX = Infinity
   let maxX = -Infinity
@@ -53,6 +58,7 @@ export function validateTaskPlanSemantics(
   partition: PartitionSnapshot,
   assets: AssetDTO[],
   limits: PlanLimits = DEFAULT_PLAN_LIMITS,
+  policy?: PlanPolicyContext,
 ): PlanIssue[] {
   const issues: PlanIssue[] = []
   const assetById = new Map(assets.map(a => [a.id, a]))
@@ -153,6 +159,14 @@ export function validateTaskPlanSemantics(
     // ---- 约束自洽 ----
     for (let k = 0; k < t.constraints.length; k++) {
       const con = t.constraints[k]
+      if (con.kind === 'no_collision' && policy) {
+        const path = `${at}.constraints[${k}].basis`
+        if (!con.basis) {
+          issues.push({ path, message: 'no_collision 缺少原始用户请求依据；普通布局不默认要求零碰撞' })
+        } else if (con.basis.source !== 'user_request' || !con.basis.quote.trim() || !policy.userRequest.includes(con.basis.quote)) {
+          issues.push({ path, message: 'no_collision 的依据必须引用原始用户请求中的非空原文，不能引用任务 objective 或自行编造' })
+        }
+      }
       if (con.kind === 'stay_in_region' && t.targetObjectIds.length === 0 && !t.allowedOperations.includes('add')) {
         // add 任务的新对象此刻还没有 id，stay_in_region 约束的是"落点"，允许没有 target
         issues.push({ path: `${at}.constraints[${k}]`, message: 'stay_in_region 需要至少一个目标对象（或 add 操作）' })
@@ -174,6 +188,21 @@ export function validateTaskPlanSemantics(
       if (!depTask) issues.push({ path: `${at}.dependsOn`, message: `依赖的任务 ${dep} 不存在` })
       else if (depTask.regionId !== t.regionId) issues.push({ path: `${at}.dependsOn`, message: `禁止跨区依赖（${dep}）` })
     }
+
+    // ---- P1：add 任务必须有结构化数量目标 ----
+    // 只在"新生成计划"的路径（传了 policy）强制；旧计划重放/执行期事实校验不补写。
+    if (policy && t.allowedOperations.includes('add')) {
+      if (!t.creationTarget) {
+        issues.push({
+          path: `${at}.creationTarget`,
+          message: 'add 任务必须给出结构化数量目标 { minCount, maxCount }；"几栋"要落成具体数字，不能只写在 objective 里',
+        })
+      } else if (t.creationTarget.minCount > t.creationTarget.maxCount) {
+        issues.push({ path: `${at}.creationTarget`, message: 'minCount 不能大于 maxCount' })
+      }
+    } else if (t.creationTarget && !t.allowedOperations.includes('add')) {
+      issues.push({ path: `${at}.creationTarget`, message: '非 add 任务不能声明 creationTarget（不能借此获得新增权限）' })
+    }
   }
 
   return issues
@@ -185,7 +214,8 @@ export function validatePlanSemantics(
   partition: PartitionSnapshot,
   assets: AssetDTO[],
   limits: PlanLimits = DEFAULT_PLAN_LIMITS,
+  policy?: PlanPolicyContext,
 ): PlanIssue[] {
   if (plan.kind !== 'tasks') return []
-  return validateTaskPlanSemantics(plan, partition, assets, limits)
+  return validateTaskPlanSemantics(plan, partition, assets, limits, policy)
 }

@@ -26,10 +26,11 @@ import type {
 } from '../contracts'
 import { CoAgentError, TOOL_NAMES } from '../contracts'
 import { optBool, optNumber, optString, optStringArray, reqRecord, reqString, reqStringArray, fail } from './args'
-import { captureWith, focusCamera, regionCamera } from './cameraTools'
+import { adjustWith, captureWith, focusCamera, inspectWith, regionCamera } from './cameraTools'
 import { applyCommand, parseTransform, resolveExpectedFingerprint } from './editTools'
 import { checkGeometry } from './geometryTools'
 import { getObjects, listRegion, searchLibrary } from './sceneTools'
+import { pickAt } from './pickTools'
 import { validateCameraSnapshot } from '../schemas'
 
 export interface ToolCallSite {
@@ -58,7 +59,42 @@ const EXEC_ROLES: AgentRole[] = ['executor']
 const SCHEMAS: Record<ToolName, Record<string, unknown>> = {
   'scene.list_region': { type: 'object', properties: { regionId: { type: 'string' } }, additionalProperties: false },
   'scene.get_objects': { type: 'object', properties: { objectIds: { type: 'array', items: { type: 'string' }, minItems: 1 } }, required: ['objectIds'] },
+  // P2：截图点选（归一化坐标，左上原点）
+  'scene.pick': {
+    type: 'object',
+    properties: {
+      observationId: { type: 'string' },
+      u: { type: 'number', minimum: 0, maximum: 1 },
+      v: { type: 'number', minimum: 0, maximum: 1 },
+    },
+    required: ['observationId', 'u', 'v'],
+  },
   'library.search': { type: 'object', properties: { query: { type: 'string' }, limit: { type: 'number' } } },
+  // P2：一次调用完成"调整 + 截图"
+  'camera.inspect': {
+    type: 'object',
+    properties: {
+      objectIds: { type: 'array', items: { type: 'string' }, minItems: 1 },
+      framing: { type: 'string', enum: ['tight', 'context'] },
+      phase: { type: 'string', enum: ['baseline', 'task_before', 'after', 'supplement'] },
+      marked: { type: 'boolean' },
+    },
+    required: ['objectIds'],
+  },
+  'camera.adjust': {
+    type: 'object',
+    properties: {
+      camera: { type: 'object' },
+      fromObservationId: { type: 'string' },
+      azimuthDeltaDeg: { type: 'number' },
+      elevationDeg: { type: 'number' },
+      zoomFactor: { type: 'number' },
+      pan: { type: 'object', properties: { right: { type: 'number' }, up: { type: 'number' } } },
+      objectIds: { type: 'array', items: { type: 'string' } },
+      phase: { type: 'string', enum: ['baseline', 'task_before', 'after', 'supplement'] },
+      marked: { type: 'boolean' },
+    },
+  },
   'camera.capture': {
     type: 'object',
     properties: {
@@ -91,6 +127,14 @@ const SCHEMAS: Record<ToolName, Record<string, unknown>> = {
     },
     required: ['objectIds'],
   },
+}
+
+/** 观测阶段参数（camera.* 共用；非法值直接拒绝，不猜默认） */
+function observationPhase(args: Record<string, unknown>): ObservationPhase {
+  const raw = optString(args, 'phase') ?? 'supplement'
+  const phases: ObservationPhase[] = ['preprocess', 'baseline', 'task_before', 'after', 'supplement']
+  if (!phases.includes(raw as ObservationPhase)) fail('phase', `必须是 ${phases.join('/')}`)
+  return raw as ObservationPhase
 }
 
 export function createToolRegistry(context: WorkflowContext, opts: ToolRegistryOptions): ToolRegistry {
@@ -133,6 +177,23 @@ export function createToolRegistry(context: WorkflowContext, opts: ToolRegistryO
         const ids = reqStringArray(args, 'objectIds', { min: 1 })
         if (ids.length > 20) fail('objectIds', '一次最多 20 个')
         return { ok: true, data: getObjects(context, ids) }
+      },
+    },
+
+    /**
+     * P2：按截图坐标识别对象。
+     * 已知 id 时不该用它——它的价值只在"模型看不清是哪个"的时候。
+     */
+    'scene.pick': {
+      name: 'scene.pick',
+      description: '按截图归一化坐标（左上原点，u 向右 v 向下）识别对象 id；只识别，改对象仍需 edit 工具',
+      inputSchema: SCHEMAS['scene.pick'],
+      allowedRoles: READ_ROLES,
+      effect: 'read',
+      async handler(args) {
+        const observationId = reqString(args, 'observationId')
+        const result = await pickAt(context, { observationId, u: args.u, v: args.v })
+        return { ok: true, data: result }
       },
     },
 
@@ -222,6 +283,91 @@ export function createToolRegistry(context: WorkflowContext, opts: ToolRegistryO
         const check = validateCameraSnapshot(raw)
         if (!check.ok) throw new CoAgentError('invalid_arguments', `camera 非法：${check.issues.map(i => `${i.path} ${i.message}`).join('; ')}`)
         return { ok: true, data: { camera: raw as CameraSnapshot } }
+      },
+    },
+
+    /**
+     * P2：聚焦对象并当场截图（一次调用完成"调整 + 观察"）。
+     * 返回值带**相机实际状态**与 warnings，不只回显请求参数。
+     */
+    'camera.inspect': {
+      name: 'camera.inspect',
+      description: '聚焦指定对象并截图（framing=tight 更近，context 带环境）；返回相机状态与新证据',
+      inputSchema: SCHEMAS['camera.inspect'],
+      allowedRoles: READ_ROLES,
+      effect: 'render',
+      async handler(args, ctx) {
+        const objectIds = reqStringArray(args, 'objectIds', { min: 1 })
+        if (objectIds.length > 20) fail('objectIds', '一次最多 20 个')
+        const framing = optString(args, 'framing') === 'tight' ? 'tight' : 'context'
+        const phase = observationPhase(args)
+        const marked = optBool(args, 'marked') ?? true
+        const data = await inspectWith(context, {
+          runId: ctx.runId,
+          taskId: ctx.taskId,
+          regionId: ctx.regionId,
+          objectIds,
+          framing,
+          phase,
+          marked,
+        })
+        return { ok: true, data }
+      },
+    },
+
+    /**
+     * P2：在当前视角上做相对调整并截图。
+     * 基相机：显式 camera > fromObservationId > 本区总览；模型不能指定别的区域。
+     */
+    'camera.adjust': {
+      name: 'camera.adjust',
+      description: '环绕/俯仰/缩放/平移当前视角并截图；azimuth 正角转向 +X，zoomFactor<1 拉近',
+      inputSchema: SCHEMAS['camera.adjust'],
+      allowedRoles: READ_ROLES,
+      effect: 'render',
+      async handler(args, ctx) {
+        const phase = observationPhase(args)
+        const marked = optBool(args, 'marked') ?? true
+        const cameraRaw = args.camera
+        let baseCamera: CameraSnapshot | undefined
+        if (cameraRaw !== undefined) {
+          const check = validateCameraSnapshot(cameraRaw)
+          if (!check.ok) {
+            throw new CoAgentError('invalid_arguments', `camera 非法：${check.issues.map(i => `${i.path} ${i.message}`).join('; ')}`)
+          }
+          baseCamera = cameraRaw as CameraSnapshot
+        }
+        const panRaw = args.pan
+        const pan =
+          panRaw !== undefined && typeof panRaw === 'object' && panRaw !== null
+            ? {
+                right: Number((panRaw as Record<string, unknown>).right ?? 0),
+                up: Number((panRaw as Record<string, unknown>).up ?? 0),
+              }
+            : undefined
+        const adjust = {
+          ...(optNumber(args, 'azimuthDeltaDeg') !== undefined ? { azimuthDeltaDeg: optNumber(args, 'azimuthDeltaDeg') } : {}),
+          ...(optNumber(args, 'elevationDeg') !== undefined ? { elevationDeg: optNumber(args, 'elevationDeg') } : {}),
+          ...(optNumber(args, 'zoomFactor') !== undefined ? { zoomFactor: optNumber(args, 'zoomFactor') } : {}),
+          ...(pan ? { pan } : {}),
+        }
+        const objectIds = optStringArray(args, 'objectIds')
+        const region = ctx.regionId ? context.partition.regions.find(r => r.id === ctx.regionId) ?? null : null
+        const data = await adjustWith(context, {
+          runId: ctx.runId,
+          taskId: ctx.taskId,
+          regionId: ctx.regionId,
+          region,
+          ...(baseCamera ? { baseCamera } : {}),
+          ...(optString(args, 'fromObservationId') !== undefined
+            ? { fromObservationId: optString(args, 'fromObservationId') }
+            : {}),
+          adjust,
+          ...(objectIds ? { objectIds } : {}),
+          phase,
+          marked,
+        })
+        return { ok: true, data }
       },
     },
 

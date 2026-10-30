@@ -24,8 +24,10 @@ import type {
   ModelCatalogEntry,
   ObjectId,
   ReadScope,
+  RunHistoryRef,
   SceneChange,
   SceneSnapshot,
+  UndoEligibility,
 } from '../contracts'
 import {
   createEditorWriteFacade,
@@ -81,6 +83,8 @@ function toCoreTransform(t: { position: [number, number, number]; rotationDeg: [
 
 export function createEditorAdapter(): EditorAdapter {
   let revision = 1
+  /** P3：编辑器会话序号——同一 sceneId 重新加载后历史会被清空，事务 id 会重来 */
+  let sessionSeq = 1
   const listeners = new Set<(change: SceneChange) => void>()
 
   const currentDoc = (): SceneDocument | null => useSceneStore.getState().document
@@ -93,7 +97,12 @@ export function createEditorAdapter(): EditorAdapter {
   // ---------- 读侧订阅：document/sceneId 引用变化 → revision 增长 + 通知 ----------
 
   const notify = (changed: ObjectId[] | null): void => {
-    const change: SceneChange = { sceneRevision: revision, changedObjectIds: changed }
+    const sceneId = useSceneStore.getState().sceneId
+    const change: SceneChange = {
+      sceneRevision: revision,
+      changedObjectIds: changed,
+      ...(sceneId ? { sceneId } : {}),
+    }
     for (const l of listeners) l(change)
   }
 
@@ -114,11 +123,36 @@ export function createEditorAdapter(): EditorAdapter {
 
   const unsubScene = bus.on('scene:changed', () => {
     writeFacade.invalidateAll('scene:changed')
+    sessionSeq++ // core 切场景会清空 journal，旧的事务 id 不再可比
     revision++
     notify(null)
   })
 
   // ---------- 写侧：共享门面 + core 原子操作 ----------
+
+  /**
+   * P3：撤销资格判定。
+   *
+   * core 的历史是数组当栈，`undoTo(txId)` 的语义是"撤销该步之后的所有步"，
+   * 没有"只撤销中间某个事务"的能力。所以只有**栈顶**才允许一键撤销；
+   * 其后有用户编辑时必须拒绝，并告诉他有多少次。
+   */
+  const queryUndoImpl = (ref: RunHistoryRef): UndoEligibility => {
+    if (useSceneStore.getState().sceneId !== ref.sceneId) {
+      return { eligible: false, reason: '场景已切换，旧历史不可用', editsAfter: 0 }
+    }
+    if (ref.sceneSessionId !== String(sessionSeq)) {
+      return { eligible: false, reason: '编辑器已重新加载，旧历史不可用', editsAfter: 0 }
+    }
+    const units = edit.historyUnits()
+    const idx = units.findIndex(u => u.txId === ref.transactionId)
+    if (idx < 0) return { eligible: false, reason: '该事务已不在编辑历史中（可能已被撤销）', editsAfter: 0 }
+    const editsAfter = units.length - 1 - idx
+    if (editsAfter > 0) {
+      return { eligible: false, reason: `其后还有 ${editsAfter} 次编辑，只能从最新一步开始撤销`, editsAfter }
+    }
+    return { eligible: true, editsAfter: 0 }
+  }
 
   const primitives: WriteTargetPrimitives = {
     getObject: id => {
@@ -169,12 +203,18 @@ export function createEditorAdapter(): EditorAdapter {
       return { objectId: prepared.objectId, fingerprintAfter: after?.fingerprint ?? '' }
     },
     commitTargetTx(tx) {
-      ;(tx as TxHandle).commit()
-      return true
+      const handle = tx as TxHandle
+      handle.commit()
+      // core 的 commit() 对不匹配的 openTx 是静默 no-op，不能凭"调用没抛错"就宣称提交成功。
+      // 用"该事务是否真的进了历史"来验证（有写入必然产生 journal entry）。
+      return edit.historyUnits().some(u => u.txId === handle.id)
     },
     rollbackTargetTx(tx) {
       ;(tx as TxHandle).rollback()
       return true
+    },
+    transactionIdOf(tx) {
+      return (tx as TxHandle).id
     },
   }
 
@@ -221,6 +261,20 @@ export function createEditorAdapter(): EditorAdapter {
     rollbackRun: token => writeFacade.rollbackRun(token),
     endRun: token => writeFacade.endRun(token),
     applyAuthorized: (command: EditorCommand, ctx) => writeFacade.applyAuthorized(command, ctx),
+
+    // ---- P3：撤销资格与撤销（只支持栈顶，符合 core 的历史模型） ----
+    sceneSessionId: () => String(sessionSeq),
+    queryUndo: (ref: RunHistoryRef): UndoEligibility => queryUndoImpl(ref),
+    undoRun: (ref: RunHistoryRef): { ok: boolean; message?: string } => {
+      const eligibility = queryUndoImpl(ref)
+      if (!eligibility.eligible) return { ok: false, ...(eligibility.reason ? { message: eligibility.reason } : {}) }
+      const before = edit.historyUnits().length
+      const done = edit.undo()
+      const after = edit.historyUnits().length
+      // core 的 undo 是纯栈顶 pop：长度必须真的减少，否则不能声称撤销成功
+      if (!done || after >= before) return { ok: false, message: '撤销未生效（编辑器拒绝或历史为空）' }
+      return { ok: true }
+    },
 
     save: () => saveScene(),
 

@@ -8,10 +8,11 @@
  * - 捕获一律走 `context.capture`（W04 的 ready→渲染→证据登记），工具不碰 WebGL。
  */
 
-import type { CameraSnapshot, ObjectId, Observation, ObservationPhase, TransformDTO, WorkflowContext } from '../contracts'
+import type { CameraSnapshot, ObjectId, Observation, ObservationPhase, Region, TransformDTO, WorkflowContext } from '../contracts'
 import { CoAgentError } from '../contracts'
 import { validateCameraSnapshot } from '../schemas'
 import { modelWorldBounds } from '../../../shared/modelBounds'
+import { orbitCamera, type CameraAdjust } from '../services/regionCamera'
 
 /** 区域默认俯视正交相机：覆盖 polygon 包围盒并留 10% 余量 */
 export function regionCamera(region: { id: string; polygonXZ: Array<[number, number]> }, aspect = 4 / 3): CameraSnapshot {
@@ -107,6 +108,9 @@ export async function captureWith(
     marked: boolean
     taskId: string | null
     regionId: string | null
+    /** P2：局部观察可用更高分辨率；缺省沿用 320×240（before/after 必须同尺寸可比） */
+    width?: number
+    height?: number
   },
 ): Promise<Observation> {
   const check = validateCameraSnapshot(args.camera)
@@ -117,8 +121,8 @@ export async function captureWith(
     ...(args.regionId !== null ? { regionId: args.regionId } : {}),
     phase: args.phase,
     camera: args.camera,
-    width: 320,
-    height: 240,
+    width: args.width ?? 320,
+    height: args.height ?? 240,
     objectIds: args.objectIds,
     marked: args.marked,
     // runtime 会用自己的冻结口径覆盖这两项；fake 直驱时用空值即可
@@ -126,6 +130,131 @@ export async function captureWith(
     fingerprints: {},
   })
   return observation
+}
+
+/** 局部观察的默认画幅（文档 05 §5：工作 640×480，局部可到 960×720） */
+export const DETAIL_WIDTH = 640
+export const DETAIL_HEIGHT = 480
+
+/**
+ * P2 `camera.inspect`：聚焦若干对象并**当场截图**。
+ *
+ * 一次调用完成"调整 + 截图"，避免模型用三个回合做一次观察。
+ * 返回相机实际状态与 warnings——参数被夹取时要让模型知道实际用了什么。
+ */
+export async function inspectWith(
+  context: WorkflowContext,
+  args: {
+    runId: string
+    taskId: string | null
+    regionId: string | null
+    objectIds: ObjectId[]
+    framing: 'tight' | 'context'
+    phase: ObservationPhase
+    marked: boolean
+  },
+): Promise<{ observation: Observation; camera: CameraSnapshot; warnings: string[] }> {
+  /**
+   * 取景倍数必须让**整个包围盒**进画面。
+   *
+   * fov 45° 时完整包含半径 r 的物体需要 ≈ r/tan(22.5°) ≈ 2.41r 的距离；
+   * 原来 tight 用 1.5 会把目标裁掉一角（实测 tree-1 的角点算出 1.06，出画 6%），
+   * 模型自然"看不清"。这里改成安全值，并用视锥包含性单测锁住。
+   */
+  const camera = focusCamera(context, args.objectIds, args.framing === 'tight' ? 2.1 : 2.9)
+  const observation = await captureWith(context, {
+    runId: args.runId,
+    camera,
+    phase: args.phase,
+    objectIds: args.objectIds,
+    marked: args.marked,
+    taskId: args.taskId,
+    regionId: args.regionId,
+    width: DETAIL_WIDTH,
+    height: DETAIL_HEIGHT,
+  })
+  // P2：把这次聚焦记成该区的工作视角，后续 camera.adjust 从它继续
+  if (args.regionId) {
+    context.regionViews.put(args.regionId, {
+      camera,
+      target: camera.target,
+      focusedObjectIds: args.objectIds,
+      latestObservationId: observation.id,
+    })
+  }
+  return { observation, camera, warnings: [] }
+}
+
+/**
+ * P2 `camera.adjust`：在给定基相机上做相对调整并截图。
+ *
+ * 基相机优先用调用方给的快照，其次用上一张观测的相机，最后回落到本区总览。
+ * 归属由 tool call 的 runId/regionId 决定——模型不能传别的区域 id 来动别人的相机。
+ */
+export async function adjustWith(
+  context: WorkflowContext,
+  args: {
+    runId: string
+    taskId: string | null
+    regionId: string | null
+    region: Region | null
+    baseCamera?: CameraSnapshot
+    fromObservationId?: string
+    adjust: CameraAdjust
+    objectIds?: ObjectId[]
+    phase: ObservationPhase
+    marked: boolean
+  },
+): Promise<{ observation: Observation; camera: CameraSnapshot; warnings: string[] }> {
+  const warnings: string[] = []
+  let base: CameraSnapshot | null = args.baseCamera ?? null
+  if (!base && args.fromObservationId) {
+    const obs = context.getObservation(args.fromObservationId)
+    if (!obs) throw new CoAgentError('invalid_arguments', `observationId 不存在：${args.fromObservationId}`)
+    base = obs.camera
+  }
+  // P2：没有显式基相机时，从该区上一次的工作视角继续——这样"环绕/拉近"才是连续的
+  if (!base && args.regionId) {
+    const view = context.regionViews.get(args.regionId)
+    if (view) {
+      const live = new Set(context.editorRead.snapshot({}).assets.map(a => a.id))
+      const focusAlive = view.focusedObjectIds.length === 0 || view.focusedObjectIds.some(id => live.has(id))
+      if (focusAlive) {
+        base = view.camera
+      } else {
+        // 聚焦目标已被删除：不能继续对着旧包围盒声称"已聚焦"
+        context.regionViews.clearFocus(args.regionId)
+        warnings.push('上一次聚焦的对象已被删除，已退回本区总览')
+      }
+    }
+  }
+  if (!base && args.region) base = regionCamera(args.region)
+  if (!base) throw new CoAgentError('out_of_scope', '没有可用的基相机：请给 camera 或 fromObservationId，或在分区内调用')
+
+  const orbit = orbitCamera(base, args.adjust, { fovDeg: base.fovDeg ?? 45 })
+  const camera = orbit.camera
+  warnings.push(...orbit.warnings)
+  const objectIds = args.objectIds && args.objectIds.length > 0 ? args.objectIds : (args.region?.objectIds.slice(0, 12) ?? [])
+  const observation = await captureWith(context, {
+    runId: args.runId,
+    camera,
+    phase: args.phase,
+    objectIds,
+    marked: args.marked,
+    taskId: args.taskId,
+    regionId: args.regionId,
+    width: DETAIL_WIDTH,
+    height: DETAIL_HEIGHT,
+  })
+  if (args.regionId) {
+    context.regionViews.put(args.regionId, {
+      camera,
+      target: camera.target,
+      focusedObjectIds: objectIds,
+      latestObservationId: observation.id,
+    })
+  }
+  return { observation, camera, warnings }
 }
 
 /** 便捷：按 transform 里的位置判断某对象是否仍在分区多边形内（最终检查用） */

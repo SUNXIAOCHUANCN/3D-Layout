@@ -36,6 +36,7 @@ const PHASE_STEP: Record<CoAgentPhase, string> = {
   validating: '判定中',
   committing: '提交中',
   completed: '已完成',
+  retained: '已保留（有未通过项）',
   cancelling: '取消中',
   rolled_back: '已回滚',
   failed: '失败',
@@ -95,7 +96,7 @@ export function deriveRunProgress(events: CoAgentEventEnvelope[], phase: CoAgent
       if (str(e.payload.status) === 'fail') failed++
       else passed++
     }
-    if (e.type === 'run.committed') current = '已提交'
+    if (e.type === 'run.committed') current = str(e.payload.validationStatus) === 'issues' ? '已保留（有未通过项）' : '已提交'
     if (e.type === 'run.rolled_back') current = '已回滚'
     if (e.type === 'run.failed') current = `失败：${str(e.payload.reason)}`
     if (e.type === 'partition.ready') current = `分区 v${num(e.payload.partitionVersion)} 已生成`
@@ -105,7 +106,7 @@ export function deriveRunProgress(events: CoAgentEventEnvelope[], phase: CoAgent
   let percent: number
   if (total > 0) {
     percent = Math.min(100, Math.round(((passed + failed) / total) * 100))
-    if (phase === 'committing' || phase === 'completed') percent = 100
+    if (phase === 'committing' || phase === 'completed' || phase === 'retained') percent = 100
   } else {
     const fallback: Partial<Record<CoAgentPhase, number>> = {
       planning: 10,
@@ -114,6 +115,7 @@ export function deriveRunProgress(events: CoAgentEventEnvelope[], phase: CoAgent
       validating: 80,
       committing: 95,
       completed: 100,
+      retained: 100,
     }
     percent = fallback[phase] ?? 0
   }

@@ -86,7 +86,11 @@ export function createFakeEditor(opts: FakeEditorOptions = {}): FakeEditor {
   let savedVersion = 0
 
   const notify = (changedObjectIds: ObjectId[] | null): void => {
-    const change: SceneChange = { sceneRevision: revision, changedObjectIds }
+    const change: SceneChange = {
+      sceneRevision: revision,
+      changedObjectIds,
+      ...(sceneId ? { sceneId } : {}),
+    }
     for (const l of listeners) l(change)
   }
   const recordOf = (a: AssetRecord): AssetRecord => ({ ...a, transform: { ...a.transform } })
@@ -200,6 +204,18 @@ export function createFakeEditor(opts: FakeEditorOptions = {}): FakeEditor {
     rollbackRun: token => facade.rollbackRun(token),
     endRun: token => facade.endRun(token),
     applyAuthorized: (command, ctx) => facade.applyAuthorized(command, ctx),
+
+    /**
+     * P3：FakeEditor **不实现**编辑历史（历史栈属 core 职责，见 commitTargetTx 注释）。
+     * 因此这里明确报"不可撤销"，而不是假装成功——撤销行为必须用 realCoreTx 测真实 core。
+     */
+    sceneSessionId: () => 'fake-session',
+    queryUndo: () => ({
+      eligible: false,
+      reason: 'FakeEditor 不实现编辑历史；请用真实 core 的集成测试验证撤销',
+      editsAfter: 0,
+    }),
+    undoRun: () => ({ ok: false, message: 'FakeEditor 不实现编辑历史撤销' }),
 
     async save(): Promise<{ mode: 'server' | 'download'; version: number }> {
       savedVersion++

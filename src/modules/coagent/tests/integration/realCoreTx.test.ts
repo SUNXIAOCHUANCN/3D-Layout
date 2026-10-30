@@ -274,5 +274,132 @@ describe('真实 core：editorAdapter 直接驱动', () => {
   })
 })
 
+/**
+ * P3：撤销本轮（真实 core 历史栈）。
+ *
+ * 断言的是文档要求的三件事：
+ * 1. 提交后能拿到真实事务 id（回执证明，不靠猜）；
+ * 2. 撤销恢复整轮修改；
+ * 3. 其后有用户编辑 → **拒绝**一键撤销，并说明还有几次（不能误撤用户操作）。
+ */
+describe('P3 撤销本轮（真实 core）', () => {
+  it('提交后可撤销整轮，且同一轮不能重复撤销', async () => {
+    const runtime = createRuntime({
+      editor: { read: adapter, write: adapter },
+      workflowFactory: () => createKnownTransformWorkflow({ steps: NORMAL_STEPS }),
+      partitionProvider: () => PARTITION,
+    })
+
+    const result = await runtime.start('撤销本轮验证')
+    expect(result.ok).toBe(true)
+    if (!result.ok) return
+    expect(result.data.kind).toBe('completed')
+
+    const ref = runtime.lastRunHistoryRef()
+    expect(ref).not.toBeNull()
+    expect(ref!.sceneId).toBe('scene-w03')
+    expect(ref!.transactionId).toBeGreaterThan(0)
+    expect(ref!.sceneSessionId.length).toBeGreaterThan(0)
+
+    expect(adapter.queryUndo(ref!)).toEqual({ eligible: true, editsAfter: 0 })
+
+    const undone = runtime.undoLastRun()
+    expect(undone).toEqual({ ok: true })
+
+    // 整轮恢复
+    expect(assetOf('tree-1')?.transform.position).toEqual([-3, 0, -4])
+    expect(assetOf('house-1')?.transform.position).toEqual([-2, 0, 4])
+    expect(useSceneStore.getState().document!.assets.filter(a => a.ref === 'models/rock')).toHaveLength(1) // 只剩原有的 rock-1
+    expect(runtime.recorder.events().map(e => e.type)).toContain('run.undone')
+
+    // 同一轮不能再撤一次
+    expect(runtime.undoLastRun().ok).toBe(false)
+  })
+
+  it('用户在本轮之后又编辑 → 拒绝一键撤销，并告诉他还有几次', async () => {
+    const runtime = createRuntime({
+      editor: { read: adapter, write: adapter },
+      workflowFactory: () => createKnownTransformWorkflow({ steps: NORMAL_STEPS }),
+      partitionProvider: () => PARTITION,
+    })
+
+    const result = await runtime.start('先跑一轮')
+    expect(result.ok).toBe(true)
+    const ref = runtime.lastRunHistoryRef()
+    expect(ref).not.toBeNull()
+
+    // 模拟用户手动改了一次
+    const handle = edit.begin('用户手动移动', 'human')
+    edit.setTransform('tree-2', { position: [0, 0, -5], rotation: [0, 0, 0] }, { source: 'human', tx: handle })
+    handle.commit()
+
+    const eligibility = adapter.queryUndo(ref!)
+    expect(eligibility.eligible).toBe(false)
+    expect(eligibility.editsAfter).toBeGreaterThan(0)
+
+    const denied = runtime.undoLastRun()
+    expect(denied.ok).toBe(false)
+    expect(denied.message ?? '').toContain('其后还有')
+    // 用户那次编辑没有被撤销
+    expect(assetOf('tree-2')?.transform.position).toEqual([0, 0, -5])
+  })
+})
+
+/**
+ * P3 R04/R05：撤销入口的两个"不该出现"的情形。
+ */
+describe('P3 撤销边界（真实 core）', () => {
+  it('R05 没有实际写入 → 不生成撤销入口，也不借用上一条事务', async () => {
+    const runtime = createRuntime({
+      editor: { read: adapter, write: adapter },
+      workflowFactory: () => createKnownTransformWorkflow({ steps: [] }),
+      partitionProvider: () => PARTITION,
+    })
+
+    const before = edit.historyUnits().length
+    const result = await runtime.start('什么都不改')
+    expect(result.ok).toBe(true)
+    if (!result.ok) return
+    expect(result.data.kind).toBe('completed')
+
+    // 没有新历史单元
+    expect(edit.historyUnits().length).toBe(before)
+    // 没有可撤销的本轮历史
+    expect(runtime.lastRunHistoryRef()).toBeNull()
+    const undo = runtime.undoLastRun()
+    expect(undo.ok).toBe(false)
+    expect(undo.message ?? '').toContain('没有可撤销')
+
+    // 提交回执里 writes=0、没有 historyTransactionId
+    const committed = runtime.recorder.events().find(e => e.type === 'run.committed')
+    expect(committed?.payload).toMatchObject({ writes: 0 })
+    expect(committed?.payload?.historyTransactionId).toBeUndefined()
+  })
+
+  it('R04 场景重新加载后 → 旧历史引用不可用', async () => {
+    const runtime = createRuntime({
+      editor: { read: adapter, write: adapter },
+      workflowFactory: () => createKnownTransformWorkflow({ steps: NORMAL_STEPS }),
+      partitionProvider: () => PARTITION,
+    })
+
+    const result = await runtime.start('先跑一轮')
+    expect(result.ok).toBe(true)
+    const ref = runtime.lastRunHistoryRef()
+    expect(ref).not.toBeNull()
+    expect(adapter.queryUndo(ref!).eligible).toBe(true)
+
+    // 重新加载场景：core 清空 journal，adapter 的会话号前进
+    bus.emit('scene:changed', { sceneId: 'scene-w03' })
+
+    const after = adapter.queryUndo(ref!)
+    expect(after.eligible).toBe(false)
+    expect(after.reason ?? '').toBeTruthy()
+
+    const undo = runtime.undoLastRun()
+    expect(undo.ok).toBe(false)
+  })
+})
+
 // 静默 TS：ToolResult 类型在本文件用于将来扩展（保持 import 完整性）
 export type { ToolResult as _ToolResult }

@@ -40,6 +40,40 @@ export async function saveScene(): Promise<{ mode: 'server' | 'download'; versio
   return { mode, version: next.meta.version }
 }
 
+// ---------- 场景的新建与删除（IO 动作，不进 edit、不进历史） ----------
+
+/**
+ * 新建一个空场景：服务端建目录、写 scene.json、登记 scenes/index.json。
+ *
+ * 与 saveScene 同属 IO 动作而非场景变更：不进编辑历史、不触发 scene:changed。
+ * 成功后调用方自行 dispatch('load_scene') 切过去。
+ */
+export async function createScene(name: string): Promise<{ id: string }> {
+  const res = await fetch('/api/scene', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name }),
+  })
+  if (!res.ok) {
+    const detail = await res.text().catch(() => '')
+    throw new Error(`HTTP ${res.status}${detail ? ` ${detail}` : ''}`)
+  }
+  const data = (await res.json()) as { id?: string }
+  if (!data.id) throw new Error('服务端未返回新场景 id')
+  bus.emit('scene:index-changed', {})
+  return { id: data.id }
+}
+
+/** 删除一个场景（连同其 threejs/ 与 coagent/ 附属文件）：服务端删目录、摘除索引 */
+export async function deleteScene(sceneId: string): Promise<void> {
+  const res = await fetch(`/api/scene/${encodeURIComponent(sceneId)}`, { method: 'DELETE' })
+  if (!res.ok) {
+    const detail = await res.text().catch(() => '')
+    throw new Error(`HTTP ${res.status}${detail ? ` ${detail}` : ''}`)
+  }
+  bus.emit('scene:index-changed', {})
+}
+
 // ---------- 调用记录（logs/ 目录，Agent 的 log.write 专用 IO） ----------
 
 /** 日志文件名规约：log + 14 位紧凑时间戳 + '-' + 名称 + .md（对齐 logs/ 现有示例） */

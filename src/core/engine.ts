@@ -1,5 +1,27 @@
-import { Box3, Raycaster, Vector2, Vector3 } from 'three'
-import type { Camera, Object3D, PerspectiveCamera, Scene, Vector3 as V3, WebGLRenderer } from 'three'
+import { Box3, OrthographicCamera, PerspectiveCamera, Raycaster, Vector2, Vector3, WebGLRenderTarget } from 'three'
+import type { Camera, Object3D, Scene, Vector3 as V3, WebGLRenderer } from 'three'
+
+export interface CaptureCamera {
+  projection: 'perspective' | 'orthographic'
+  position: [number, number, number]
+  target: [number, number, number]
+  up: [number, number, number]
+  near: number
+  far: number
+  fovDeg?: number
+  viewHeight?: number
+}
+
+function makeCaptureCamera(spec: CaptureCamera, aspect: number): PerspectiveCamera | OrthographicCamera {
+  const camera = spec.projection === 'perspective'
+    ? new PerspectiveCamera(spec.fovDeg, aspect, spec.near, spec.far)
+    : new OrthographicCamera(-spec.viewHeight! * aspect / 2, spec.viewHeight! * aspect / 2, spec.viewHeight! / 2, -spec.viewHeight! / 2, spec.near, spec.far)
+  camera.position.fromArray(spec.position)
+  camera.up.fromArray(spec.up)
+  camera.lookAt(...spec.target)
+  camera.updateMatrixWorld(true)
+  return camera
+}
 
 /**
  * 引擎对外 API —— 封装渲染细节，供 UI / 编辑器模块 / 后期 Agent（截图→VLM）调用。
@@ -25,6 +47,8 @@ export interface EngineApi {
   pickNormalized(u: number, v: number): PickHit | null
   /** 无 UI 视口截图（dataURL）：同构图、隐藏编辑器视觉件。场景预览图 / VLM 视觉校验用 */
   captureScreenshot(): string
+  captureFromCamera(spec: CaptureCamera, width: number, height: number): string
+  pickFromCamera(spec: CaptureCamera, width: number, height: number, u: number, v: number): PickHit | null
   /** 找到某资产的 three 对象（gizmo attach、聚焦等渲染侧操作用） */
   findAssetObject(assetId: string): Object3D | null
   /** 把相机对准某资产（保持当前朝向，调整距离），F 聚焦 / Agent 定位用 */
@@ -63,6 +87,45 @@ function isEditorHelper(obj: Object3D | null): boolean {
 }
 
 export const engine: EngineApi = {
+  captureFromCamera(spec, width, height) {
+    if (!bridge) throw new Error('engine 尚未就绪（场景未渲染）')
+    const { gl, scene } = bridge
+    const camera = makeCaptureCamera(spec, width / height)
+    const target = new WebGLRenderTarget(width, height)
+    const previousTarget = gl.getRenderTarget()
+    const hidden: Object3D[] = []
+    try {
+      scene.traverse(o => { if (o.userData?.editorHelper === true && o.visible) { o.visible = false; hidden.push(o) } })
+      gl.setRenderTarget(target)
+      gl.render(scene, camera)
+      const pixels = new Uint8Array(width * height * 4)
+      gl.readRenderTargetPixels(target, 0, 0, width, height, pixels)
+      const canvas = document.createElement('canvas')
+      canvas.width = width; canvas.height = height
+      const context = canvas.getContext('2d')
+      if (!context) throw new Error('无法创建截图画布')
+      const image = context.createImageData(width, height)
+      for (let y = 0; y < height; y++) image.data.set(pixels.subarray((height - y - 1) * width * 4, (height - y) * width * 4), y * width * 4)
+      context.putImageData(image, 0, 0)
+      return canvas.toDataURL('image/png')
+    } finally {
+      gl.setRenderTarget(previousTarget)
+      for (const o of hidden) o.visible = true
+      target.dispose()
+    }
+  },
+
+  pickFromCamera(spec, width, height, u, v) {
+    if (!bridge || !Number.isFinite(u) || !Number.isFinite(v) || u < 0 || u > 1 || v < 0 || v > 1) return null
+    ndc.set(u * 2 - 1, -(v * 2 - 1))
+    raycaster.setFromCamera(ndc, makeCaptureCamera(spec, width / height))
+    for (const hit of raycaster.intersectObjects(bridge.scene.children, true)) {
+      if (isEditorHelper(hit.object)) continue
+      const id = findAssetId(hit.object)
+      if (id) return { assetId: id, point: [hit.point.x, hit.point.y, hit.point.z], distance: hit.distance }
+    }
+    return null
+  },
   pick(clientX, clientY) {
     if (!bridge) return null
     const rect = bridge.gl.domElement.getBoundingClientRect()

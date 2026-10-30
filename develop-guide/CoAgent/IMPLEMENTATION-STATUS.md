@@ -18,6 +18,12 @@
 | W07 Planner | 完成 | 2026-10-21 | 只读工具规划器 + 精简上下文 + 语义校验 + 澄清 UI + 190 测试全绿（W07 当时 26；10-22 修复后总数 190） |
 | W08 Executor/Judge/几何闭环 | 完成（代码/自动化/浏览器） | 2026-10-22 | W08.1 判定 + W08.2 看图 + W08.3 几何 + W08.4 修正/矩阵同步 + W08.5 终检视觉重判 + 246 测试全绿；浏览器 W03 33/33、W04 35/35、W08 9/9。真实模型质量已在 W06 T14 验证 |
 | W09 导出、综合验收 | 未开始 | | |
+| W10-P0 碰撞配对与分区归属 | 完成 | 2026-10-27 | 见 §17：配对收窄为 targets×targets + targets×statics（不含 statics×statics）+ 覆盖报告 + 切场景作废分区；308 测试全绿 |
+| W10-P1 实时状态与增量修复 | 完成 | 2026-10-27 | 见 §18：runState 台账（唯一写集）、写入名额、executionState 修复上下文、区域查询实时化、task-created-count；325 测试全绿 |
+| W10-P3 验收保留 | 完成（撤销仅栈顶） | 2026-10-27 | 见 §19：`retained_with_issues` 终态 + 提交保留 + 提交回执 + 撤销资格 + "撤销本轮修改"按钮；353 测试全绿，浏览器 77/77 |
+| W10-P4 分区长期存储 | 完成（保存链一致性待补） | 2026-10-27 | 见 §20：partition.json 契约/指纹/核对 + `/api/scene/<id>/coagent` 写接口 + 自动恢复 + 面板状态与按钮；353 测试全绿 |
+| W10-P2 观察与定位 | 完成（分区相机状态未做） | 2026-10-27 | 见 §21：有界最新图片窗口 + `scene.pick` + `camera.inspect/adjust`；386 测试全绿；**新增 `w10-observe.mjs` 14/14** 验证真实场景点选与取景 |
+| W10-P5 端到端复现 | fake 部分完成 | 2026-10-27 | 见 §22：`w11-endtoend.test.ts` 复现原失败链条并通过变异验证；**真实模型端到端需要模型配置，未做** |
 
 ## 1. W00 现状核查结果（2026-10-21）
 
@@ -795,3 +801,189 @@ node modules/coagent/tests/browser/w06-t14.mjs reload      # 改完模块必须�
 - 浏览器回归命令：`pnpm dev -- --host 127.0.0.1 --port 5173 --strictPort`，然后 `test:coagent-browser`、`test:coagent-browser:w04`、`test:coagent-browser:w08`；真实模型场景用 `node modules/coagent/tests/browser/w06-t14.mjs`（可见 Chrome + 手填 Key）。
   - **实测坑（2026-10-22）**：这三个 w03/w04/w08 脚本**必须显式传 `--url=http://localhost:5173/`**（默认连 `127.0.0.1:5199`，而 dev server 只绑 `::1`，不传就报 `timeout waiting: dev harness`）；T14 脚本已改用独立端口 **9334**（默认 9333 会与 w03/w04/w08 抢端口，导致它们连到 T14 的浏览器上而误判失败）。
 - 几何压测（alpine 523 资产/GLB 高模）放到 W09 前，统计 unknown/耗时，再决定是否引入 BVH；当前预算 20k 三角形/对象、500k 三角形对。
+
+## 17. W10-P0 碰撞配对与分区归属（完成，2026-10-27）
+
+来源：[revision-2026-10-27](revision-2026-10-27/README.md) 的 P0 阶段。本包只做"让现有检测不再误伤"和"分区不再跨场景串用"，**不改变验收语义**（保留/回滚策略属 P3）。
+
+### 交付内容
+
+| 项 | 改动 |
+| --- | --- |
+| 配对范围 | `rendering/geometry.ts` 入口：`targets = request.objectIds`、`statics = staticObjectIds − targets`；只测 `targets×targets`（去重）+ `targets×statics`，**不测 statics×statics** |
+| 覆盖报告 | `contracts.ts` 新增 `GeometryCoverage { checkedObjectIds, skipped[], truncated, pairCount }`；`GeometryResult.coverage?` 为可选字段 |
+| 上限 | `GeometryOptions.maxObjectsPerCheck`（默认 64，targets/statics **单侧**各计）、`maxPairsPerCheck`（默认 4096）；截断或三角预算耗尽时 `status` 强制不为 `clear` |
+| 场景归属 | `SceneChange.sceneId?`；`createRuntime` 订阅编辑器变更，场景级变更或 sceneId 变化即作废 `partitionOverride` / `partitionReport` 并广播；`dispose` 退订 |
+| fake 对齐 | `FakeRender.geometry` 与 `FakeEditor.notify` 采用同一口径（配对范围、sceneId），避免 fake 与真实实现分叉 |
+
+### 测试与结果
+
+```
+pnpm test:coagent   → 28 文件 / 308 用例全绿（基线 298，新增 10）
+pnpm exec tsc -b    → 通过
+pnpm build          → 通过
+```
+
+新增用例：`tests/unit/geometry.test.ts` 7 条（静态×静态不参与、目标×静态仍 collision、targets×targets 仍检测、同 id 不自配对、超对象上限、超配对上限、未截断时 coverage 精确）；`tests/integration/runtimeLifecycle.test.ts` 3 条（切场景作废分区、对象级变更不误清、无分区时不产生多余通知）。
+
+### 语义变更
+
+- 静态物之间的旧碰撞**不再进入** `geometry.check` 的结果，原场景的既有穿插不会让新任务失败。
+- 覆盖不足从"静默 `unknown` + 空 pairs"变为"`unknown` + 明确列出被排除对象"；`clear` 只在**没有截断**时出现。
+- 切场景后 `partition()` 返回 `null`（此前会返回上一场景的分区）。
+
+### 未覆盖 / 已知限制
+
+- **没有**按包围盒筛选附近环境对象：`statics` 仍由调用方给出全量，超大场景可能撞 `maxPairsPerCheck` 而返回覆盖不足。按邻近度筛选属后续增强。
+- `liveSceneId` 只能从变更事件学到（`SceneSnapshot` 不含 sceneId），首次 `setPartition` 时 `partitionSceneId` 可能为 null，靠"场景级变更"信号兜底。
+- **未跑浏览器实跑**（W03/W04/W08 套件需要 dev server 与真实 Chrome，本轮只跑单测与构建）。几何改动的真实渲染行为尚未在浏览器中复验。
+- 未改动 `mainGraph` / `regionGraph` 的几何调用点，`writeIds` 仍为 `targetObjectIds ∪ writes.created`（不含 `modified`），该缺口留给 P1。
+
+## 18. W10-P1 实时状态与增量修复（完成，2026-10-27）
+
+### 交付内容
+
+- **唯一写集**：新建 `runtime/runState.ts`。修订前"本轮新增对象"散在 4 处（`RegionState.writes`、`TaskResult.createdObjectIds`、`registry.createdByRegion`、`runController.writable`），各自更新、口径不同 —— 这是"修复轮又加两栋"的根因。现在由 runState 按对象粒度记账。
+- **写入名额**：`UnitTask.creationTarget` + `checkWrite` 在**场景队列内部**执行。名额口径是"本任务仍存活的新增数"，不是调用次数、不是区域总量。超限返回 `task_creation_limit`，附 current/max/存活 ID 与"调整或先删再建"的建议。
+- **修复上下文**：`ExecutorInput.executionState` 每轮用新快照生成，含阶段/尝试次数/场景版本/数量目标/存活新增/剩余名额/对象当前 transform+fingerprint/已删除摘要/允许对象/基线证据/最新证据/待解决问题。**指纹是实时的**——旧实现复用 `prepare` 时冻结的基线指纹，修复轮必然 `stale_object`。
+- **区域查询实时化**：`scene.list_region` 走 `runState.resolveRegion`，`objectCount === objectIds.length`，带 `sceneRevision` 与 `createdInRun`。不再出现"新建了但查询还是 32 个"。
+- **数量判据**：程序生成 `task-created-count:<taskId>`，模型不能推翻。
+- **任务隔离**：`advance` 显式清空 `writes`/`executionEvidence`（reducer 是替换语义，不返回值就等于沿用上一任务）；`finishFail` 保留本区已完成任务、未执行任务标 `skipped`、补 `judgedFingerprints`。
+
+### 测试与结果
+
+```
+pnpm test:coagent   → 29 文件 / 325 用例全绿
+pnpm exec tsc -b    → 通过
+pnpm build          → 通过
+```
+
+### 语义变更
+
+- 新增对象必须带 `creationTarget`（新计划强制），旧计划字段可选仍可解析。
+- 超额新增从"静默多建"变成"稳定错误码 + 无场景副作用"。
+- 同区相邻任务不再共享写集。
+
+### 未覆盖 / 已知限制
+
+- `registry.createdByRegion` 仍存在（`writableIn` 用它做 transform/remove 的存在性判断），尚未并入 runState。二者当前不会冲突（runState 只做名额，registry 只做作用域），但仍是重复状态。
+- `validateFinalScene` 仍读 `TaskResult.createdObjectIds`（累计语义），终检的"数量"判断用的是最后场景重算的 metric，未接 `liveCreatedObjectIds`。
+- 修复轮的 `latestObservationId` 取"最后一次执行期证据或基线"，尚未做"同视角最新复拍"。
+
+## 19. W10-P3 验收保留（核心完成，2026-10-27）
+
+### 交付内容
+
+- `RunOutcome` 新增 `retained_with_issues`（与 completed 同报告字段 + `issues: RunIssue[]`）；`CoAgentPhase` 新增 `retained`（**不在** `ACTIVE_PHASES`，宿主锁按预期释放）。
+- `mainGraph` 终检未通过不再编码成 `failureCode: 'write_failed'`，改为 `finalCheckProblems`；只有**基础设施错误**（invalid_plan / model_protocol_error / rollback_failed）仍走 `rolled_back`。
+- `runController` 把 `completed` 与 `retained_with_issues` 统一按"提交 + 保存"处理，`run.committed` 事件带 `validationStatus`。
+- UI 全链路同步：`PHASE_STEP`、`PHASE_TEXT`、`useCoAgentModule` 结果投影、面板结果卡片（"⚠ 改动已保留，存在未通过项（N 项）"）、`uiStore.lastResult.issueCount/issues`、进度百分比与 current 文案。
+
+### 语义变更（用户已确认的方向）
+
+正常执行后判据未通过 → **修改提交并保留**，任务/区域状态如实为 fail/uncertain。旧行为是整轮 `rolled_back`、用户看不到任何成果。
+
+### 未覆盖 / 已知限制
+
+- **撤销只支持栈顶**：core 的历史是数组当栈，`undoTo` 的语义是"撤销该步之后所有步"，没有选择性撤销。本轮之后用户再编辑过，一键撤销会被明确拒绝并告知"其后还有 N 次编辑"。
+- `devHarness.outcomeKind` 仍由相位推导，没有 `retained_with_issues` 分支（只影响浏览器脚本）。
+- R01–R10 完整测试矩阵未逐条补齐；当前由 2 条真实 core 断言覆盖核心路径。
+
+### 浏览器复验（2026-10-27）
+
+`w03-run.mjs` 33/33、`w08-geometry.mjs` 9/9、`w04-run.mjs` 35/35，合计 77/77（真实 Chrome + 真实场景）。证据见 [revision-2026-10-27/09 §20](../revision-2026-10-27/09-实施任务分解.md)。
+
+## 20. W10-P4 分区长期存储（服务与 IO 完成，2026-10-27）
+
+### 交付内容
+
+- **文件契约** `services/partitionPersistence.ts`：`scenes/<sceneId>/coagent/partition.json`。保存区域定义（世界米制 XZ 多边形、稳定区域 ID）、归属与来源（`auto`/`agent`）、只读归属、unresolved。**不保存** objectCount / token / runState / 对话 / 证据图 / 未提交事务。
+- **版本分离**：`schemaVersion`（格式，未知版本直接拒绝、不自动迁移）与 `partitionVersion`（内容变化）分开。
+- **内容指纹**：按 ID 排序的规范化摘要（ref/transform/visible，scale 缺省归一 `[1,1,1]`），带算法版本。明确不用 `sceneRevision`（内存计数器）与 `meta.version`（落盘副本才递增）。
+- **恢复核对**：对象已删除 → 丢弃并记录；同 ID 换资产 → unresolved 且并入 `globalReadonlyObjectIds`（可见不可写）；文件未记录的新对象 → `unassigned`，**不自动归属**；指纹不一致 → 明确标记 `fingerprintMatch: false`，不假装 exact。
+- **IO**：读走静态资源（404 = 正常"无文件"）；写走 `POST /api/scene/<id>/coagent`（vite middleware，dev/preview 都注册），带 sceneId 白名单、路径穿越双保险、5MB 上限、`mkdirSync` 建目录、临时文件改名原子替换；服务端不可写时降级为下载并明确 `mode: 'download'`。
+- **生命周期**：`restorePartition` / `savePartition` / `enablePartitionPersistence`；切场景作废分区后自动恢复；恢复前捕获 sceneId、await 之后再比对，过期响应丢弃。`run.committed` 后自动保存分区。
+
+### 测试与结果
+
+```
+pnpm test:coagent   → 30 文件 / 350 用例全绿
+pnpm exec tsc -b    → 通过
+pnpm build          → 通过
+```
+
+### 未覆盖 / 已知限制
+
+- 人工覆盖入口未做（`manual` 来源取值保留但不会产生）。
+- 未做多窗口冲突检测。
+- 写接口已在真实 dev server 上验证（POST 写入 → GET 回读，内容类型正确）；**纯静态托管下的降级只由单测覆盖**（stub fetch → download 分支）。
+- **保存链已对齐（同日追加）**：`runController` 在 `save()` 前取快照，提交后经 `afterCommit` 交给 runtime；新增纯函数 `planPartitionSave` 决定是否落盘（5 种跳过理由各有测试），分区文件用**同一份快照**构造指纹；场景成功而分区失败时显示"场景已保存，但分区未保存"。跨文件原子性仍不成立（两次独立 IO），只做到如实显示。
+- **自动保存会写真实文件**：`run.committed` 后自动保存分区（设计行为），实测在浏览器跑一轮就落了一个 1.7KB 的 `scenes/<id>/coagent/partition.json`——同时也证明写盘链路端到端可用。**已修**：分区现在带来源标记（`generated/restored/manual/injected`），`debugSetPartition` 注入的分区**不再自动落盘**（否则每个浏览器脚本都会往真实场景目录写文件）。验证：修后重跑 w03 33/33，`git status` 在 `scenes/` 下**零残留**。
+
+## 21. W10-P2 观察与定位（链路完成，2026-10-27）
+
+### 交付内容
+
+- **有界最新图片窗口**：`CoAgentConfig.maxImagesPerRequest`（默认 4）+ `modelLoop.boundImages`。每轮请求重建窗口、**最新优先**；旧图只去图不去文字，保持 tool call/result 配对。旧实现只限制"产生"（executor 前 2 张），图一旦进了 transcript 就每轮重发——模型永远看最早两张，后拍的新图反而进不去。
+- **截图点选** `scene.pick`：`rendering/pick.ts` 用 `cameraFromSnapshot` 现造观测相机（**不动主视口**），射线排序跳过编辑辅助件与不可见对象，沿父链找 `assetId`。工具层校验 observationId 存在、u/v ∈ [0,1]、`sceneRevision` 未过期（`stale_observation` 并提示复拍）。命中返回 id/命中点/ref/**当前指纹**/`readonly`；空命中是正常结果，不吸附。`RenderPort.pick?` 为可选能力，未实现时明确 `bridge_unavailable`，绝不伪装空命中。
+- **区域相机数学** `services/regionCamera.ts`：`orbitOffset` 实现文档公式（azimuth 0 = +Z，正角转向 +X）；`orbitCamera` 支持方位增量、绝对俯仰、缩放、按画面跨度平移；正交基相机按等效视高换算距离；俯仰/距离夹取并在 `warnings` 报实际值；非法参数不产生 NaN。
+- **一次调用完成观察**：`camera.inspect`（聚焦+截图）与 `camera.adjust`（相对调整+截图），640×480，返回相机实际状态与 warnings；before/after 仍用默认 320×240 保证可比。
+
+### 测试与结果
+
+```
+pnpm test:coagent   → 33 文件 / 386 用例全绿（新增 33：pick 11 + pickTool 6 + regionCamera 16）
+pnpm exec tsc -b    → 通过
+pnpm build          → 通过
+浏览器回归            → w03 33/33、w04 35/35、w08 9/9（合计 77/77）
+```
+
+### 浏览器验证（W10-P2 新增套件）
+
+`node modules/coagent/tests/browser/w10-observe.mjs --url=http://localhost:5173/` → **14/14**（真实 Chrome + scene-02 + 真实 Bridge）。断言：
+
+- 正交俯视与透视两种视角下，**标注框中心点选都命回同一个对象**（证明 pick 用的是观测相机，与标注同一次渲染）；
+- 从全部对象的标注框反推一个真正空白的像素，点它 → `hit: null`（不吸附）；
+- 移动对象后，**旧图的旧坐标不再命中它**、新图新坐标命中（每次按当前场景拾取，不是缓存）；
+- 拾取前后 `renderDiagnostics().mainCamera` 完全一致（不动用户主视口）；
+- 距离减半后目标在画面上的面积比 **4.71×**（拉近确实让细节变大）。
+
+脚本端口用 9337（w03/w04/w08 用 9333、T14 用 9334、w08 用 9336），跑完自动还原 `scene-02/scene.json`。
+
+### 未覆盖 / 已知限制
+
+- **`camera.inspect`/`camera.adjust` 没有工具级浏览器验证**：相机数学、工作相机连续性、标注优先级都有单测；浏览器套件覆盖"拉近变大"与"观测相机拾取一致"，但两个工具本身尚未在真实 workflow 里跑过。
+- `scene.pick` 未校验 run 归属（`WorkflowContext` 没有 runId），只靠 sceneRevision 过期检查兜底。
+- judge 仍只送 before/after，没有"最多 2 张相关局部图"。
+- 工作相机状态不跨 run 保留；`camera.restore(viewId)` 未实现。
+
+### 追加（同日）：工作相机状态与标注优先级
+
+- **每区一台工作相机**：`contracts.RegionViewState/RegionViews` + `runtime/regionViews.ts`，经 `WorkflowContext.regionViews` 注入（runController 每轮创建、fakeContext 同构）。`camera.adjust` 的基相机优先序：显式 camera > fromObservationId > **本区上次工作视角** > 区域总览；聚焦对象被删除时 `clearFocus` 并回报"已退回总览"。**这是"绕到侧面看"能连续完成的前提**——此前每次调整都从顶视重来。
+- **标注优先级**：`services/annotation.ts::prioritizeAnnotationIds`（created → modified → targets → environment → readonly）。`regionGraph` 的 task_before/after 与 `mainGraph` 终检重判取证都改用它。旧实现把本轮新增拼在末尾再截断，区里对象一多新对象就进不了 12 个标注名额。
+- **测试**：395 用例全绿（新增 4 条工作相机 + 5 条标注优先级）；w03 33/33、w10 14/14 浏览器回归通过。
+
+### 追加（同日第二轮）：取景包含性
+
+`tests/unit/cameraFraming.test.ts` 用视锥包含性验证 `focusCamera` 是否把目标**完整框进画面**。**发现真实缺陷**：`camera.inspect` 的 `tight` 倍数 1.5 会让目标出画——tree-1 的角点归一化坐标算到 **1.06**（出画约 6%），这正是"判定看不清新增房屋"的成因之一。改成 2.1（tight）/ 2.9（context）后两种取景都完整包含，`tight` 仍比 `context` 近；单测锁住"不出画"且"不缩到看不见"。
+
+> 数学依据：fov 45° 时要完整包含半径 r 的物体，距离需 ≥ r/tan(22.5°) ≈ 2.41r；原公式 `r·multiplier + 2` 在 r 较小时严重不足。
+
+## 22. W10-P5 端到端复现（fake 驱动，2026-10-27）
+
+`tests/integration/w11-endtoend.test.ts` 把样本日志 2026-10-26 15:46:29 的失败链条编码成回归：
+
+1. 首轮加 2 栋（`creationTarget: 2/2`），名额占满；
+2. 判定连续两轮 fail；
+3. 修复轮尝试第 3 次 add → **`task_creation_limit`，场景无副作用**（原链条这里是"又加两栋"）；
+4. 修复上下文明确含"已创建且仍存活 2 个 / 还可新增 0 个"；
+5. 终态 `retained_with_issues`：改动保留、判据如实 fail、issues 列出失败任务（原链条是整轮回滚）。
+
+**变异验证（证明测试有效）**：把 `runState.checkWrite` 的名额分支短路后重跑 → 场景对象数 8（应为 7），用例失败。恢复后 **397 用例全绿**、`tsc`/`build` 通过。
+
+第二条用例覆盖"同区两个任务各算各的名额"，任务结果按 taskId 分开。
+
+### 未覆盖
+
+- **真实模型端到端未做**：需要 baseURL / API Key / 模型名。fake 通过只证明流程与不变量，**不证明布局质量**——按 [08-测试与交付清单](../revision-2026-10-27/08-测试与交付清单.md) §6 的要求，这两类证据必须分开报告。
+- 复现只覆盖"修复轮重复新增"这一条主链，未覆盖跨区依赖（东侧任务未执行）的跳过语义在真实 plan 下的表现。

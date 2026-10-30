@@ -52,12 +52,18 @@ export interface GeometryOptions {
   maxTrianglePairTests?: number
   /** 包含检测最多采样多少个内层顶点（默认 2000） */
   maxContainmentVertices?: number
+  /** 单侧（targets 或 statics）最多参与检测的对象数；超过返回覆盖不足（默认 64） */
+  maxObjectsPerCheck?: number
+  /** 最多生成的配对数量；超过返回覆盖不足（默认 4096） */
+  maxPairsPerCheck?: number
 }
 
 const DEFAULTS: Required<GeometryOptions> = {
   maxTrianglesPerObject: 20_000,
   maxTrianglePairTests: 500_000,
   maxContainmentVertices: 2_000,
+  maxObjectsPerCheck: 64,
+  maxPairsPerCheck: 4_096,
 }
 
 const EPS = 1e-7
@@ -637,37 +643,93 @@ function checkPair(
 // 入口
 // ---------------------------------------------------------------------------
 
+/**
+ * 入口。
+ *
+ * 配对范围（本轮修订）：只查 targets×targets（去重）与 targets×statics，
+ * **不查 statics×statics**——原场景里静态物之间的旧碰撞与本任务无关，
+ * 把静态×静态算进来会让"新对象摆对了也过不了"。
+ *
+ * 覆盖不足一律 unknown，绝不伪报 clear：对象数或配对数被上限截断、
+ * 三角形预算耗尽时，结果里都带 coverage 说明谁没被检查。
+ */
 export function checkSceneGeometry(scene: Scene, request: GeometryRequest, options: GeometryOptions = {}): GeometryResult {
   const opts = { ...DEFAULTS, ...options }
   scene.updateMatrixWorld(true)
 
-  const allIds = [...new Set([...request.objectIds, ...(request.staticObjectIds ?? [])])]
-  if (allIds.length < 2) {
-    return { status: 'unknown', highestLevel: 'aabb', pairs: [] }
+  const uniq = (ids: ObjectId[]): ObjectId[] => [...new Set(ids)]
+  const targetIds = uniq(request.objectIds)
+  const targetSet = new Set(targetIds)
+  // 与目标重复的 id 不再当环境，避免自己和自己配对
+  const staticIds = uniq(request.staticObjectIds ?? []).filter(id => !targetSet.has(id))
+
+  const skipped: Array<{ objectId: ObjectId; reason: string }> = []
+  const cap = Math.max(1, opts.maxObjectsPerCheck)
+  const cappedTargets = targetIds.slice(0, cap)
+  for (const id of targetIds.slice(cap)) skipped.push({ objectId: id, reason: `超过单次检测目标上限 ${cap}，未参与检测` })
+  const cappedStatics = staticIds.slice(0, cap)
+  for (const id of staticIds.slice(cap)) skipped.push({ objectId: id, reason: `超过单次检测环境对象上限 ${cap}，未参与检测` })
+
+  // 配对：targets×targets + targets×statics
+  const plan: Array<[ObjectId, ObjectId]> = []
+  for (let i = 0; i < cappedTargets.length; i++) {
+    for (let j = i + 1; j < cappedTargets.length; j++) plan.push([cappedTargets[i], cappedTargets[j]])
   }
-  if (allIds.length > 64) {
-    return { status: 'unknown', highestLevel: 'aabb', pairs: [] }
+  for (const t of cappedTargets) {
+    for (const s of cappedStatics) plan.push([t, s])
   }
 
-  const roots = collectRoots(scene, allIds)
-  const prepared = new Map<ObjectId, Prepared>()
-  for (const id of allIds) prepared.set(id, prepareObject(roots.get(id), id, opts.maxTrianglesPerObject))
-
-  const budget: Budget = { left: opts.maxTrianglePairTests }
-  const pairs: GeometryPairResult[] = []
-  for (let i = 0; i < allIds.length; i++) {
-    for (let j = i + 1; j < allIds.length; j++) {
-      const a = prepared.get(allIds[i])
-      const b = prepared.get(allIds[j])
-      if (!a || !b) continue
-      pairs.push(checkPair(a, b, request, Math.max(0, request.contactToleranceM), opts, budget))
+  const maxPairs = Math.max(1, opts.maxPairsPerCheck)
+  const active = plan.slice(0, maxPairs)
+  if (plan.length > maxPairs) {
+    const kept = new Set<ObjectId>()
+    for (const [a, b] of active) {
+      kept.add(a)
+      kept.add(b)
+    }
+    for (const id of [...cappedTargets, ...cappedStatics]) {
+      if (!kept.has(id)) skipped.push({ objectId: id, reason: `配对数量超过上限 ${maxPairs}，该对象未参与检测` })
     }
   }
 
-  let highestLevel: GeometryCheckLevel = 'aabb'
-  for (const p of pairs) highestLevel = levelMax(highestLevel, p.level)
+  const checkedObjectIds = [...new Set(active.flatMap(([a, b]) => [a, b]))]
 
-  if (pairs.some(p => p.status === 'collision')) return { status: 'collision', highestLevel, pairs }
-  if (pairs.some(p => p.status === 'unknown')) return { status: 'unknown', highestLevel, pairs }
-  return { status: 'clear', highestLevel, pairs }
+  const make = (status: GeometryResult['status'], pairs: GeometryPairResult[], truncated: boolean): GeometryResult => ({
+    status,
+    highestLevel: highestLevelOf(pairs),
+    pairs,
+    coverage: { checkedObjectIds, skipped, truncated, pairCount: pairs.length },
+  })
+
+  if (active.length === 0) {
+    // 没有可验证的对象对：仍然 unknown（不是 clear）
+    return make('unknown', [], skipped.length > 0)
+  }
+
+  const roots = collectRoots(scene, checkedObjectIds)
+  const prepared = new Map<ObjectId, Prepared>()
+  for (const id of checkedObjectIds) prepared.set(id, prepareObject(roots.get(id), id, opts.maxTrianglesPerObject))
+
+  const budget: Budget = { left: opts.maxTrianglePairTests }
+  const pairs: GeometryPairResult[] = []
+  const tol = Math.max(0, request.contactToleranceM)
+  for (const [idA, idB] of active) {
+    const a = prepared.get(idA)
+    const b = prepared.get(idB)
+    if (!a || !b) continue
+    pairs.push(checkPair(a, b, request, tol, opts, budget))
+  }
+
+  const budgetExhausted = budget.left <= 0
+  const truncated = skipped.length > 0 || budgetExhausted
+  if (pairs.some(p => p.status === 'collision')) return make('collision', pairs, truncated)
+  if (pairs.some(p => p.status === 'unknown')) return make('unknown', pairs, truncated)
+  // 覆盖不足时不能声称 clear
+  return make(truncated ? 'unknown' : 'clear', pairs, truncated)
+}
+
+function highestLevelOf(pairs: GeometryPairResult[]): GeometryCheckLevel {
+  let highest: GeometryCheckLevel = 'aabb'
+  for (const p of pairs) highest = levelMax(highest, p.level)
+  return highest
 }

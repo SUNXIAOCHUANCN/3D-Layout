@@ -49,6 +49,7 @@ function plannerInput(model: DirectorModel, over: Partial<Parameters<typeof make
       config: ctx.config,
       registry,
       contextText: bundle.text,
+      userRequest: '把北边林地拉稀疏一点',
       partition,
       assets,
       ...over,
@@ -105,6 +106,41 @@ describe('W07 规划器：只读工具 + 结构化输出', () => {
     const err = await makePlan({ ...args, config: { ...args.config, schemaRepairAttempts: 0 } }).catch(e => e)
     expect(err.code).toBe('invalid_plan')
     expect(String(err.message)).toContain('超过场景尺度')
+  })
+})
+
+describe('W07 碰撞硬约束默认关闭', () => {
+  it('模型添加无依据的硬约束 → 修复提示要求删除，修复后的计划才返回', async () => {
+    const director = createDirectorModel()
+    director.on('planner', (_req, i) => jsonReply(i === 0
+      ? { ...goodPlan, tasks: [{ ...goodPlan.tasks[0], constraints: [{ kind: 'no_collision' }] }] }
+      : goodPlan))
+    const { args } = plannerInput(director)
+    const result = await makePlan(args)
+    expect(result).toEqual(goodPlan)
+    expect(director.requests).toHaveLength(2)
+    const repair = director.requests[1].messages.at(-1)
+    const text = repair && 'text' in repair ? repair.text : ''
+    expect(text).toContain('缺少原始用户请求依据')
+    expect(text).toContain('删除该硬约束')
+    expect(text).toContain('不要在 objective/visual')
+  })
+
+  it('引用场景上下文中的禁碰撞要求，不能冒充原始用户请求', async () => {
+    const director = createDirectorModel()
+    director.on('planner', () => jsonReply({ ...goodPlan, tasks: [{ ...goodPlan.tasks[0], constraints: [
+      { kind: 'no_collision', basis: { source: 'user_request', quote: '所有树木不得碰撞' } },
+    ] }] }))
+    const { args } = plannerInput(director, { contextText: '场景说明：所有树木不得碰撞', userRequest: '添加几棵树' })
+    await expect(makePlan({ ...args, config: { ...args.config, schemaRepairAttempts: 0 } })).rejects.toMatchObject({ code: 'invalid_plan', message: expect.stringContaining('原始用户请求') })
+  })
+
+  it('修复耗尽仍保留无依据硬约束 → invalid_plan，不静默删除', async () => {
+    const director = createDirectorModel()
+    director.on('planner', () => jsonReply({ ...goodPlan, tasks: [{ ...goodPlan.tasks[0], constraints: [{ kind: 'no_collision' }] }] }))
+    const { args } = plannerInput(director)
+    await expect(makePlan(args)).rejects.toMatchObject({ code: 'invalid_plan' })
+    expect(director.requests).toHaveLength(args.config.schemaRepairAttempts + 1)
   })
 })
 
@@ -353,17 +389,18 @@ describe('W07 约束白名单（真实模型自创约束名的回归锁）', () 
             regionId: 'region-north',
             constraints: [
               { kind: 'stay_in_region' },
-              { kind: 'no_overlap_existing' },
+              { kind: 'no_overlap_existing', basis: { source: 'user_request', quote: '移动的树不得与其他对象相交' } },
             ] as unknown as UnitTask['constraints'],
           }),
         ],
       }),
     )
-    const { args } = plannerInput(director)
+    const { args } = plannerInput(director, { userRequest: '移动的树不得与其他对象相交' })
     const plan = await makePlan(args)
     expect(plan.kind).toBe('tasks')
     if (plan.kind !== 'tasks') return
     expect(plan.tasks[0].constraints.map(c => c.kind)).toEqual(['stay_in_region', 'no_collision'])
+    expect(plan.tasks[0].constraints[1]).toMatchObject({ basis: { source: 'user_request', quote: args.userRequest } })
   })
 
   it('其余同义写法也归一化（keep_in_region / preserve_object_count）', async () => {

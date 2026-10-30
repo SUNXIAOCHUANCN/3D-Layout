@@ -7,7 +7,7 @@
  * 3. add 落点越界在写前被 out_of_scope 拒绝，最终不通过且回滚。
  */
 
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import type { ModelRequest, Plan, UnitTask } from '../../contracts'
 import { createMainWorkflow } from '../../workflow/mainGraph'
 import { createFakeWorkflowContext } from '../fakes/fakeContext'
@@ -75,18 +75,18 @@ function installExecutorOnce(
   })
 }
 
-function setup(plan: Plan, config: Record<string, unknown> = {}) {
+function setup(plan: Plan, config: Record<string, unknown> = {}, options: { request?: string; render?: ReturnType<typeof createFakeRender> } = {}) {
   const model = createDirectorModel()
   model.on('planner', () => jsonReply(plan))
   const ctx = createFakeWorkflowContext({
     model,
-    render: createFakeRender(),
+    render: options.render ?? createFakeRender(),
     ...(Object.keys(config).length > 0 ? { config: config as never } : {}),
   })
   const fp = (id: string) => ctx.editorRead.snapshot({ objectIds: [id] }).assets[0].fingerprint
   const run = () =>
     createMainWorkflow().run(
-      { runId: 'run-w08', request: '按计划整理场景', partition: makeTwoRegionPartition(), sceneRevisionAtStart: 1 },
+      { runId: 'run-w08', request: options.request ?? '按计划整理场景', partition: makeTwoRegionPartition(), sceneRevisionAtStart: 1 },
       ctx,
     )
   return { model, ctx, fp, run }
@@ -120,13 +120,61 @@ describe('W08.1 计划只覆盖一个区域', () => {
   })
 })
 
+describe('碰撞诊断与硬性验收', () => {
+  const collision = () => createFakeRender({ geometryResult: {
+    status: 'collision', highestLevel: 'mesh', pairs: [{ a: 'tree-1', b: 'tree-2', status: 'collision', level: 'mesh' }],
+  } })
+
+  it.each([false, true])('未声明硬约束：主动诊断=%s，任务与终检可以通过', async diagnostic => {
+    const plan = planOf([task({ id: 'task-n1', regionId: 'region-north', targetObjectIds: ['tree-1'] })])
+    const { model, ctx, fp, run } = setup(plan, {}, { render: collision() })
+    const geometry = vi.spyOn(ctx.render, 'geometry')
+    installExecutorOnce(model, [
+      { name: 'edit.transform', args: { objectId: 'tree-1', transform: T([-5.5, 0, -5.5]), expectedFingerprint: fp('tree-1') } },
+      ...(diagnostic ? [{ name: 'geometry.check', args: { objectIds: ['tree-1', 'tree-2'] } }] : []),
+    ])
+    installPassJudge(model)
+    const outcome = await run()
+    expect(outcome.kind, JSON.stringify(outcome)).toBe('completed')
+    // 仅执行器主动调用会发生检查；区域判定与终检均不自动添加硬约束。
+    expect(geometry).toHaveBeenCalledTimes(diagnostic ? 1 : 0)
+    if (outcome.kind === 'completed') {
+      expect(outcome.finalCheck.passed).toBe(true)
+      expect(outcome.finalCheck.checks.some(c => c.name.endsWith(':no_collision'))).toBe(false)
+    }
+  })
+
+  it('用户明确启用硬约束：即使模型判 pass，碰撞仍导致终检失败', async () => {
+    const request = '移动树木，移动的树不得与其他对象相交'
+    const plan = planOf([task({ id: 'task-n1', regionId: 'region-north', targetObjectIds: ['tree-1'], constraints: [
+      { kind: 'stay_in_region' },
+      { kind: 'no_collision', basis: { source: 'user_request', quote: '移动的树不得与其他对象相交' } },
+    ] })])
+    const { model, ctx, fp, run } = setup(plan, { maxRepairsPerTask: 0 }, { request, render: collision() })
+    const geometry = vi.spyOn(ctx.render, 'geometry')
+    installExecutorOnce(model, [
+      { name: 'edit.transform', args: { objectId: 'tree-1', transform: T([-5.5, 0, -5.5]), expectedFingerprint: fp('tree-1') } },
+    ])
+    installPassJudge(model)
+    const outcome = await run()
+    expect(geometry).toHaveBeenCalled()
+    // P3：硬约束未通过 → 判据仍 fail、结果保留（不再整轮回滚）
+    expect(outcome.kind).toBe('retained_with_issues')
+    if (outcome.kind === 'retained_with_issues') {
+      expect(outcome.finalCheck.passed).toBe(false)
+      expect(outcome.issues.some(i => i.reason.includes('no_collision'))).toBe(true)
+    }
+  })
+})
+
 describe('W08.1 程序指标覆盖模型判定', () => {
-  it('模型判 pass，但 region.object_count 实际 3 ≠ 4 → 判定降级、整轮 rolled_back', async () => {
+  it('模型判 pass，但 region.object_count 实际 3 ≠ 4 → 判定降级，改动保留', async () => {
     const plan = planOf([
       task({
         id: 'task-s2',
         regionId: 'region-south',
         allowedOperations: ['add'],
+        creationTarget: { minCount: 1, maxCount: 1 },
         criteria: [
           { id: 'c-count', kind: 'metric', metric: 'region.object_count', operator: 'eq', value: 4, unit: 'count' },
         ],
@@ -140,19 +188,21 @@ describe('W08.1 程序指标覆盖模型判定', () => {
     installPassJudge(model)
 
     const outcome = await run()
-    expect(outcome.kind).toBe('rolled_back')
-    if (outcome.kind === 'rolled_back') {
-      expect(outcome.reason.code).toBe('write_failed')
-      expect(outcome.reason.message).toContain('region.object_count')
+    // 程序指标覆盖模型判定：仍然是 fail，但成果保留
+    expect(outcome.kind).toBe('retained_with_issues')
+    if (outcome.kind === 'retained_with_issues') {
+      expect(outcome.finalCheck.passed).toBe(false)
+      expect(outcome.issues.some(i => i.reason.includes('region.object_count') || i.name.includes('task-s2'))).toBe(true)
     }
   })
 
-  it('add 落点越界 → 工具返回 out_of_scope，最终不通过并回滚（场景不变）', async () => {
+  it('add 落点越界 → 工具返回 out_of_scope，最终不通过但场景不变', async () => {
     const plan = planOf([
       task({
         id: 'task-s2',
         regionId: 'region-south',
         allowedOperations: ['add'],
+        creationTarget: { minCount: 1, maxCount: 1 },
         criteria: [{ id: 'c-count', kind: 'metric', metric: 'region.object_count', operator: 'eq', value: 3, unit: 'count' }],
         constraints: [{ kind: 'stay_in_region' }],
       }),
@@ -164,8 +214,9 @@ describe('W08.1 程序指标覆盖模型判定', () => {
     installPassJudge(model)
 
     const outcome = await run()
-    expect(outcome.kind).toBe('rolled_back')
-    if (outcome.kind === 'rolled_back') expect(outcome.reason.code).toBe('write_failed')
+    // 写入被拒 → 没有实际改动可保留，但结果仍是"有问题"而不是内部异常
+    expect(outcome.kind).toBe('retained_with_issues')
+    if (outcome.kind === 'retained_with_issues') expect(outcome.finalCheck.passed).toBe(false)
     // 写前检查直接拒绝，不是静默写入
     const toolResults = model.requests
       .flatMap(r => r.messages)

@@ -19,6 +19,7 @@ import type {
   CoAgentPhase,
   EditorReadPort,
   EditorWritePort,
+  EditReceipt,
   ImageId,
   ModelPort,
   Observation,
@@ -26,7 +27,9 @@ import type {
   PartitionSnapshot,
   RenderPort,
   RunInput,
+  RunHistoryRef,
   RunOutcome,
+  SceneSnapshot,
   ToolResult,
   TransformDTO,
   WorkflowContext,
@@ -36,6 +39,8 @@ import { CoAgentError } from '../contracts'
 import type { Scheduler } from './scheduler'
 import type { Recorder } from './recorder'
 import { beginRunLog, eventsTable, finishRunLog, logStage, logWarn } from './runLog'
+import { createRunState } from './runState'
+import { createRegionViews } from './regionViews'
 
 export interface RunControllerDeps {
   editorRead: EditorReadPort
@@ -67,12 +72,24 @@ export interface RunControllerDeps {
   onPhase: (phase: CoAgentPhase, info: { runId: string | null; note?: string }) => void
   /** 脱敏后的模型配置摘要（写进运行日志头部；不得含 key） */
   modelLabel?: () => string
+  /**
+   * P4：提交+保存之后的收尾钩子（分区落盘）。
+   * `snapshot` 是**保存场景之前**取的同一份快照，用于保证两个文件描述同一时刻。
+   */
+  afterCommit?: (info: {
+    snapshot: SceneSnapshot
+    saved: { mode: 'server' | 'download'; version: number } | null
+    saveError?: string
+  }) => Promise<void>
 }
 
 /** 运行终态的日志摘要（写进日志头部与结果明细） */
 function describeOutcome(outcome: RunOutcome | null): string {
   if (!outcome) return '未产出 outcome（工作流异常中断）'
   if (outcome.kind === 'completed') return `completed：${outcome.summary}`
+  if (outcome.kind === 'retained_with_issues') {
+    return `retained_with_issues：已保留修改，${outcome.issues.length} 个未通过项（${outcome.summary}）`
+  }
   if (outcome.kind === 'needs_clarification') return `needs_clarification：${outcome.question}`
   if (outcome.kind === 'rolled_back') {
     const stage = outcome.reason.details?.stage
@@ -134,6 +151,10 @@ export interface RunController {
   phase(): CoAgentPhase
   /** error_locked 后须重置才能再次运行 */
   locked(): boolean
+  /** P3：最近一次可撤销的编辑历史引用（没有实际写入时为 null） */
+  lastHistoryRef(): RunHistoryRef | null
+  /** P3：撤销最近一轮的修改（只支持栈顶；其后有编辑则拒绝） */
+  undoLastRun(): { ok: boolean; message?: string }
   /**
    * 人工解锁（§5.4）：清 error_locked → idle；有活跃 run 时拒绝。
    * 不自动恢复被回滚失败的资产，只解除"禁止新 run"的闸门，并要求操作者已看过日志。
@@ -150,6 +171,8 @@ export function createRunController(deps: RunControllerDeps): RunController {
   let runCounter = 0
   /** 最近一次 runId：解锁事件挂在它名下，便于按 run 追溯（§5.5） */
   let lastRunId: string | null = null
+  /** P3：最近一轮可撤销的历史引用 */
+  let lastHistoryRef: RunHistoryRef | null = null
 
   const setPhase = (p: CoAgentPhase, note?: string): void => {
     const from = phase
@@ -163,6 +186,25 @@ export function createRunController(deps: RunControllerDeps): RunController {
     phase: () => phase,
     locked: () => locked,
     emitPhase: (p, note) => setPhase(p, note),
+    lastHistoryRef: () => lastHistoryRef,
+    undoLastRun: () => {
+      if (active) return { ok: false, message: '有活跃 run，暂不能撤销' }
+      const ref = lastHistoryRef
+      if (!ref) return { ok: false, message: '没有可撤销的本轮修改' }
+      const eligibility = deps.editorWrite.queryUndo(ref)
+      if (!eligibility.eligible) return { ok: false, ...(eligibility.reason ? { message: eligibility.reason } : {}) }
+      const res = deps.editorWrite.undoRun(ref)
+      if (!res.ok) return res
+      // 同一事务只能撤一次：成功即失效
+      lastHistoryRef = null
+      deps.recorder.append({
+        type: 'run.undone',
+        runId: ref.runId,
+        payload: { transactionId: ref.transactionId },
+      })
+      logStage('undo', `已撤销 ${ref.runId} 的修改（事务 #${ref.transactionId}）`)
+      return { ok: true }
+    },
 
     async start(request: string): Promise<ToolResult<RunOutcome>> {
       if (locked) {
@@ -201,6 +243,10 @@ export function createRunController(deps: RunControllerDeps): RunController {
           if (!readonlyIds.has(id)) writable.add(id)
         }
       }
+      // P1：run 级台账。任务在规划校验通过后经 context.runState.registerTasks 登记。
+      const runState = createRunState({ runId, readonlyObjectIds: [...readonlyIds] })
+      // P2：每区工作相机状态（本轮内有效；随 run 结束丢弃）
+      const regionViews = createRegionViews()
 
       // ---- 本轮日志（诊断）：一轮运行 = logs/CoAgent 下的一份 md ----
       let modelLabel = ''
@@ -239,6 +285,8 @@ export function createRunController(deps: RunControllerDeps): RunController {
         editorRead: deps.editorRead,
         partition: frozenPartition,
         config: deps.config,
+        runState,
+        regionViews,
         emit: event => {
           deps.recorder.append({ ...event, runId })
         },
@@ -262,21 +310,40 @@ export function createRunController(deps: RunControllerDeps): RunController {
         getObservation: id => deps.observations.get(id),
         getImageDataUrl: imageId => deps.getImageDataUrl(imageId),
         applyWrite: async (command, call) => {
-          // 迟到回调拦截（§5.4）：信号已中止的 run 不允许再写
-          if (abort.signal.aborted) {
-            return { ok: false, error: new CoAgentError('cancelled', 'run 已取消，拒绝迟到写入').toToolError() }
-          }
-          const result = await deps.scheduler.runScene(() =>
-            deps.editorWrite.applyAuthorized(command, {
+          // P1：检查与登记都必须在场景队列**内部**完成。
+          // 旧实现只在入队前看 signal，排队期间的取消/状态变化一律拦不住。
+          const result = await deps.scheduler.runScene((): ToolResult<EditReceipt> => {
+            if (abort.signal.aborted) {
+              return { ok: false, error: new CoAgentError('cancelled', 'run 已取消，拒绝迟到写入').toToolError() }
+            }
+            // 任务级规则（名额/操作声明）：幂等重放会在这里直接放行
+            const rejected = runState.checkWrite(call.taskId, command, call.toolCallId)
+            if (rejected) {
+              deps.recorder.append({
+                type: 'write.rejected',
+                runId,
+                ...(call.taskId !== null ? { taskId: call.taskId } : {}),
+                ...(typeof call.regionId === 'string' ? { regionId: call.regionId } : {}),
+                payload: { code: rejected.code, message: rejected.message, command: command.kind },
+              })
+              logWarn('write.rejected', `[${call.taskId ?? 'main'}] ${rejected.code}：${rejected.message}`)
+              return { ok: false, error: rejected }
+            }
+            const written = deps.editorWrite.applyAuthorized(command, {
               runId,
               taskId: call.taskId,
               toolCallId: call.toolCallId,
               token,
               writableObjectIds: writable,
-            }),
-          )
-          // 新增对象加入本 run 写集合（§6.2）
-          if (result.ok && command.kind === 'add') writable.add(result.data.objectId)
+            })
+            // 写成功即刻登记：正常响应绝不能先于登记返回
+            if (written.ok) {
+              runState.recordWrite(call.taskId, command, written.data.objectId, call.toolCallId)
+              // 新增对象加入本 run 写集合（§6.2）
+              if (command.kind === 'add') writable.add(written.data.objectId)
+            }
+            return written
+          })
           return result
         },
       }
@@ -311,23 +378,59 @@ export function createRunController(deps: RunControllerDeps): RunController {
 
           // ---- 终态处理：等场景队列清空 → 提交或回滚 → 保存 → 清理 ----
           try {
-            if (decided.kind === 'completed') {
+            if (decided.kind === 'completed' || decided.kind === 'retained_with_issues') {
+              // P3：正常结束——无论判据是否全部通过，**提交并保留**。判据结果照实上报。
+              const hasIssues = decided.kind === 'retained_with_issues'
               setPhase('committing')
               await deps.scheduler.sceneIdle()
-              deps.editorWrite.commitRun(token)
-              deps.recorder.append({ type: 'run.committed', runId, payload: {} })
-              setPhase('completed')
+              // P3：提交必须拿回执——"有历史"由回执证明，不靠调用没抛错
+              const receipt = deps.editorWrite.commitRun(token)
+              if (receipt.historyTransactionId !== null) {
+                lastHistoryRef = {
+                  runId,
+                  sceneId: deps.editorRead.snapshot({}).sceneId ?? '',
+                  sceneSessionId: deps.editorWrite.sceneSessionId(),
+                  transactionId: receipt.historyTransactionId,
+                }
+              } else {
+                // 没有实际写入：不生成假的撤销入口
+                lastHistoryRef = null
+              }
+              deps.recorder.append({
+                type: 'run.committed',
+                runId,
+                payload: {
+                  validationStatus: hasIssues ? 'issues' : 'pass',
+                  ...(hasIssues ? { issueCount: decided.issues.length } : {}),
+                  writes: receipt.writes,
+                  ...(receipt.historyTransactionId !== null ? { historyTransactionId: receipt.historyTransactionId } : {}),
+                },
+              })
+              setPhase(hasIssues ? 'retained' : 'completed')
+              // P4：保存前取一份快照，场景与分区都用它——否则分区指纹描述的是另一个时刻
+              const snapshotBeforeSave = deps.editorRead.snapshot({})
+              let saved: { mode: 'server' | 'download'; version: number } | null = null
+              let saveError: string | undefined
               try {
-                const saved = await deps.editorWrite.save()
-                logStage('commit', `已提交并保存（${saved.mode}，版本 v${saved.version}）`)
+                saved = await deps.editorWrite.save()
+                logStage('commit', `${hasIssues ? '已保留（存在未通过项）' : '已提交'}并保存（${saved.mode}，版本 v${saved.version}）`)
               } catch (e) {
-                // 保存失败不改变已提交结果（§3.2 recorder 同款语义）；事件记录
-                logWarn('commit', '已提交，但保存失败（不改变本轮结果）', e instanceof Error ? e.message : String(e))
+                // 保存失败不撤销已提交修改（§3.2 recorder 同款语义）；事件记录
+                saveError = e instanceof Error ? e.message : String(e)
+                logWarn('commit', '已提交，但保存失败（不改变本轮结果）', saveError)
                 deps.recorder.append({
                   type: 'save.failed',
                   runId,
-                  payload: { message: e instanceof Error ? e.message.slice(0, 200) : String(e) },
+                  payload: { message: saveError.slice(0, 200) },
                 })
+              }
+              // 分区落盘（可选）：失败只影响持久化状态，不影响已提交的结果
+              if (deps.afterCommit) {
+                try {
+                  await deps.afterCommit({ snapshot: snapshotBeforeSave, saved, ...(saveError ? { saveError } : {}) })
+                } catch (e) {
+                  logWarn('commit', '分区保存失败（结果不受影响）', e instanceof Error ? e.message : String(e))
+                }
               }
             } else if (decided.kind === 'needs_clarification') {
               // 澄清不保留活跃事务（§7.1）；本 run 未产生写入则直接结束
@@ -379,6 +482,8 @@ export function createRunController(deps: RunControllerDeps): RunController {
 
           return { ok: true, data: decided }
         } finally {
+          // P1：终态后立刻封闸——迟到写入即使绕过 signal 也会被 runState 拒绝
+          runState.finish()
           // 落盘：成功/回滚/取消/异常都留同一份可读记录（附 recorder 事件表，便于对账）
           const runEvents = deps.recorder.events().filter(e => e.runId === runId)
           await finishRunLog(describeOutcome(outcome), {

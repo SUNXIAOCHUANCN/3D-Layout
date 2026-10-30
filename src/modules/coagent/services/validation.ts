@@ -555,6 +555,24 @@ export function validateTaskAgainstScene(input: {
 
   const objects = regionObjectsFromSnapshot(input.snapshot, input.partition, region)
   const criteria = evaluateCriteria(input.task, objects)
+  // P1：程序生成的数量检查（模型不能推翻）。
+  // 口径是"本任务仍存活的新增数"，不是区域总量、也不是调用次数——
+  // 旧口径下别的任务多建几个就能替本任务"达标"（样本日志 task-2 未执行却满足总数）。
+  if (input.task.creationTarget) {
+    const target = input.task.creationTarget
+    const live = (input.createdObjectIds ?? []).length
+    const ok = live >= target.minCount && live <= target.maxCount
+    criteria.push({
+      criterionId: `task-created-count:${input.task.id}`,
+      kind: 'metric',
+      status: ok ? 'pass' : 'fail',
+      actual: live,
+      expected: { operator: 'gte', value: target.minCount, unit: 'count' },
+      reason: ok
+        ? `本任务存活新增 ${live} 个，符合 ${target.minCount}–${target.maxCount}`
+        : `本任务存活新增 ${live} 个，不符合 ${target.minCount}–${target.maxCount}`,
+    })
+  }
   const constraints = evaluateConstraints(input.task, {
     snapshot: input.snapshot,
     partition: input.partition,

@@ -14,12 +14,12 @@
  */
 
 import { llmChat, type LlmChatOptions, type LlmChatResult, type LlmTurn } from '../../agent/llmClient'
-import { useLlmSettingsStore, type LlmSettings } from '../../agent/llmSettings'
+import { getActiveSettings, useLlmSettingsStore, type LlmSettings } from '../../agent/llmSettings'
 import type { ModelMessage, ModelPort, ModelReply, ModelRequest } from '../contracts'
 import { CoAgentError } from '../contracts'
 
 export interface ModelAdapterOptions {
-  /** 设置快照来源（默认读宿主 store；测试可注入固定设置） */
+  /** 设置快照来源（默认读宿主 store 的当前档案；测试可注入固定设置） */
   getSettings?: () => LlmSettings
   /** 注入底层实现（测试用本地 SSE 服务时走同一路径，无需替换） */
   chat?: (opts: LlmChatOptions) => Promise<LlmChatResult>
@@ -28,7 +28,7 @@ export interface ModelAdapterOptions {
 }
 
 export function currentLlmSettings(): LlmSettings {
-  return useLlmSettingsStore.getState()
+  return getActiveSettings(useLlmSettingsStore.getState())
 }
 
 /** 是否已配置到"可以发请求"的程度（不含在线校验） */

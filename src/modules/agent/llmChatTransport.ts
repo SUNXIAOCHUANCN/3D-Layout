@@ -2,7 +2,7 @@ import { bus } from '../../core/events'
 import { useAgentStore } from './agentStore'
 import { llmChat } from './llmClient'
 import type { LlmChatResult, LlmResultImage, LlmToolSpec, LlmTurn, ToolCallOut } from './llmClient'
-import { useLlmSettingsStore } from './llmSettings'
+import { getActiveSettings } from './llmSettings'
 import type { AgentInbound, AgentOutbound, AgentTransport, AgentTransportHandlers } from './protocol'
 import { recorder } from './recorder'
 import { AGENT_TOOLS } from './tools'
@@ -145,15 +145,8 @@ export class LlmChatTransport implements AgentTransport {
     for (let round = 0; round < MAX_ROUNDS; round++) {
       if (!this.handlers) return
       this.ac = new AbortController()
-      const s = useLlmSettingsStore.getState()
-      const settings = {
-        provider: s.provider,
-        protocol: s.protocol,
-        baseURL: s.baseURL,
-        apiKey: s.apiKey,
-        model: s.model,
-        sendImages: s.sendImages,
-      }
+      // 取当前生效档案的连接配置（多档案：只有 active 那份参与本次会话）
+      const settings = getActiveSettings()
 
       const bubbleId = useAgentStore.getState().pushChat('assistant', '', true)
       let result: LlmChatResult
@@ -268,7 +261,7 @@ export class LlmChatTransport implements AgentTransport {
     if (tool === 'viewport.screenshot') {
       const d = data as { image?: string; width?: number; height?: number }
       const base = { width: d?.width ?? null, height: d?.height ?? null }
-      if (useLlmSettingsStore.getState().sendImages && typeof d?.image === 'string') {
+      if (getActiveSettings().sendImages && typeof d?.image === 'string') {
         return {
           content: { ...base, note: '截图已随本结果附图回传；图像坐标左上原点（像素），供 viewport_pick 使用' },
           images: [{ dataUrl: d.image }],
