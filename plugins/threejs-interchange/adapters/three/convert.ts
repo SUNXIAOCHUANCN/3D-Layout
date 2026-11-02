@@ -17,7 +17,7 @@ import {
 import { InterchangeError, type Issue, infoIssue } from '../../application/errors.js'
 import { sha256Hex, textBytes } from '../../application/digest.js'
 import { stableStringify, roundForHash } from '../../application/json.js'
-import { inspectGlb, COMPRESSED_EXTENSIONS } from '../../application/glb-inspect.js'
+import { inspectGlb, assertStaticExtensions } from '../../application/glb-inspect.js'
 import { modelDirName, modelRef } from '../../application/naming.js'
 import {
   normalizationMatrix, sourceBoundsOf, convertInstanceTrs, convertPoint, convertGroundSize,
@@ -171,11 +171,7 @@ async function convertModel(model: ImportModelDecl, sourceBytes: Uint8Array, dec
 
   // 第一道：纯数据检查（与服务端共享同一实现，先于解码，快速失败）
   const inspection = inspectGlb(sourceBytes, coords)
-  for (const ext of inspection.extensionsUsed) {
-    if (COMPRESSED_EXTENSIONS.has(ext) || inspection.extensionsRequired.includes(ext)) {
-      throw new InterchangeError('COMPRESSED_INPUT', `模型 ${key} 使用压缩/必需扩展 ${ext}；一期只接收未压缩静态 GLB，请先解码导出`, { path: file })
-    }
-  }
+  assertStaticExtensions(inspection, key, file)
   if (inspection.externalRefs.length > 0) {
     throw new InterchangeError('EXTERNAL_RESOURCE_REF', `模型 ${key} 引用外部资源 ${inspection.externalRefs.join(', ')}；请导出自包含 GLB（一期 B 才支持 glTF 文件集合）`, { path: file })
   }

@@ -22,6 +22,24 @@ export const COMPRESSED_EXTENSIONS = new Set([
   'EXT_meshopt_compression',
 ])
 
+/** Supported by both the bundled GLTFLoader and GLTFExporter; preserve UV transforms. */
+const SUPPORTED_REQUIRED_EXTENSIONS = new Set(['KHR_texture_transform'])
+
+export function assertStaticExtensions(
+  inspection: Pick<GlbInspection, 'extensionsUsed' | 'extensionsRequired'>,
+  key: string,
+  file: string,
+): void {
+  for (const ext of new Set([...inspection.extensionsUsed, ...inspection.extensionsRequired])) {
+    if (COMPRESSED_EXTENSIONS.has(ext)) {
+      throw new InterchangeError('COMPRESSED_INPUT', `模型 ${key} 使用压缩扩展 ${ext}；请先解码导出`, { path: file })
+    }
+    if (inspection.extensionsRequired.includes(ext) && !SUPPORTED_REQUIRED_EXTENSIONS.has(ext)) {
+      throw new InterchangeError('UNSUPPORTED_REQUIRED_EXTENSION', `模型 ${key} 使用尚未支持的必需扩展 ${ext}`, { path: file })
+    }
+  }
+}
+
 export interface Bounds {
   min: Vec3
   max: Vec3

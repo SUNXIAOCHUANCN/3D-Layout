@@ -2,8 +2,18 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { inspectGlb, axisUnitTransform, canonicalTransform, COMPRESSED_EXTENSIONS } from '../application/glb-inspect.js'
+import { inspectGlb, axisUnitTransform, canonicalTransform, COMPRESSED_EXTENSIONS, assertStaticExtensions } from '../application/glb-inspect.js'
 import { buildGlb } from './helpers.js'
+
+test('必需 UV 变换扩展可用，压缩及未知必需扩展仍拒绝', () => {
+  const check = (used: string[], required: string[]) => assertStaticExtensions(
+    { extensionsUsed: used, extensionsRequired: required }, 'model', 'model.glb',
+  )
+  assert.doesNotThrow(() => check(['KHR_texture_transform'], ['KHR_texture_transform']))
+  assert.throws(() => check([], ['KHR_draco_mesh_compression']), /压缩扩展/)
+  assert.throws(() => check(['EXT_unknown'], ['EXT_unknown']), /尚未支持/)
+  assert.throws(() => check([], ['EXT_unknown']), /尚未支持/)
+})
 
 test('GLB 解析 + 厘米/Z-up 规范化边界', () => {
   // 源：厘米坐标，Z-up —— 高度 120 放在源 Z 轴上（无歧义数据）
