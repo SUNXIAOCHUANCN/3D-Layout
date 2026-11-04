@@ -1,6 +1,8 @@
 import { bus } from './events'
 import { useSceneStore } from './store'
 import type { SceneAsset, Transform } from './types'
+import { queueWorkspace } from './persistence'
+import type { Workspace } from './workspaceTypes'
 
 /**
  * edit —— 引擎中唯一的场景变更入口（架构定案：编辑接口 + 历史记录 + 撤销回滚一体化）。
@@ -102,6 +104,25 @@ function record(entry: HistoryEntry): void {
   }
   applySide(entry, 'after')
   bus.emit('history:changed', {})
+  if (!openTx) persist(entry.label)
+}
+
+function persist(label: string): void {
+  const document = useSceneStore.getState().document
+  if (document) queueWorkspace({ document, journal, redoStack, txCounter }, label)
+}
+
+export function restoreHistory(workspace: Workspace): void {
+  journal = workspace.journal
+  redoStack = workspace.redoStack
+  txCounter = workspace.txCounter
+  openTx = null
+  bus.emit('history:changed', {})
+}
+
+export function exportWorkspace(): Workspace | null {
+  const document = useSceneStore.getState().document
+  return document ? structuredClone({ document, journal, redoStack, txCounter }) : null
 }
 
 export const edit = {
@@ -112,6 +133,7 @@ export const edit = {
     return true
   },
   setTransform(assetId: string, transform: Transform, meta?: EditMeta): boolean {
+    if (useSceneStore.getState().loading) return false
     const doc = useSceneStore.getState().document
     const cur = doc?.assets.find(a => a.id === assetId)
     if (!cur) return false
@@ -129,6 +151,7 @@ export const edit = {
   },
 
   addAsset(asset: SceneAsset, meta?: EditMeta): boolean {
+    if (useSceneStore.getState().loading) return false
     const doc = useSceneStore.getState().document
     if (!doc || doc.assets.some(a => a.id === asset.id)) return false
     record({
@@ -145,6 +168,7 @@ export const edit = {
   },
 
   removeAsset(assetId: string, meta?: EditMeta): boolean {
+    if (useSceneStore.getState().loading) return false
     const doc = useSceneStore.getState().document
     const cur = doc?.assets.find(a => a.id === assetId)
     if (!cur) return false
@@ -166,20 +190,33 @@ export const edit = {
 
   /** 开启事务：事务内的所有修改合并为一条可撤销记录 */
   begin(label: string, source: EditSource = 'human'): TxHandle {
+    if (useSceneStore.getState().loading) throw new Error('正在切换场景')
+    if (openTx) throw new Error('已有未完成的编辑事务')
+    const previousRedo = redoStack
     const id = ++txCounter
     const unit: Unit = { txId: id, label, source, entries: [] }
     const handle: TxHandle = {
       id,
       commit() {
         if (openTx?.handle.id !== id) return
+        const compact = new Map<string, HistoryEntry>()
+        for (const entry of unit.entries) {
+          const first = compact.get(entry.assetId)
+          compact.set(entry.assetId, first ? { ...entry, before: first.before } : entry)
+        }
+        unit.entries = [...compact.values()].filter(e => JSON.stringify(e.before) !== JSON.stringify(e.after))
+        for (const entry of unit.entries) entry.cmd = entry.before === null ? 'add_asset' : entry.after === null ? 'remove_asset' : 'set_transform'
         if (unit.entries.length > 0) journal.push(unit)
+        else redoStack = previousRedo
         openTx = null
         bus.emit('history:changed', {})
+        if (unit.entries.length) persist(label)
       },
       rollback() {
         if (openTx?.handle.id !== id) return
         for (const e of [...unit.entries].reverse()) applySide(e, 'before')
         openTx = null
+        redoStack = previousRedo
         bus.emit('history:changed', {})
       },
     }
@@ -196,20 +233,24 @@ export const edit = {
   },
 
   undo(): boolean {
+    if (openTx || useSceneStore.getState().loading) return false
     const unit = journal.pop()
     if (!unit) return false
     for (const e of [...unit.entries].reverse()) applySide(e, 'before')
     redoStack.push(unit)
     bus.emit('history:changed', {})
+    persist(`撤销 ${unit.label}`)
     return true
   },
 
   redo(): boolean {
+    if (openTx || useSceneStore.getState().loading) return false
     const unit = redoStack.pop()
     if (!unit) return false
     for (const e of unit.entries) applySide(e, 'after')
     journal.push(unit)
     bus.emit('history:changed', {})
+    persist(`重做 ${unit.label}`)
     return true
   },
 
@@ -250,7 +291,7 @@ export const edit = {
   },
 }
 
-// 场景切换即换文档：历史属于当前文档会话，自动清空
+// 先清理旧场景历史；store 随后通过 restoreHistory 恢复新工作区。
 bus.on('scene:changed', () => {
   journal = []
   redoStack = []

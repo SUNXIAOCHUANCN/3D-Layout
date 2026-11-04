@@ -1,4 +1,8 @@
-import { LlmChatTransport } from './llmChatTransport'
+import { ServerAgentTransport } from '../../core/serverAgentTransport'
+import { AGENT_TOOLS, runAgentTool } from './tools'
+import { useAgentStore } from './agentStore'
+import { getActiveSettings } from '../agent/llmSettings'
+import { LlmChatTransport, SYSTEM_PROMPT } from './llmChatTransport'
 import type { AgentInbound, AgentOutbound, AgentTransport, AgentTransportHandlers } from './protocol'
 
 /**
@@ -211,7 +215,12 @@ class WebSocketTransport implements AgentTransport {
 /** 依据 URL 参数选择传输层 */
 export function createTransport(): AgentTransport {
   const param = new URLSearchParams(location.search).get('agent')
-  if (param === null) return new LlmChatTransport()
+  if (param === 'browser') return new LlmChatTransport()
+  if (param === null) return new ServerAgentTransport({
+    channel: 'llm-agent', view: () => useAgentStore.getState(), settings: getActiveSettings,
+    system: SYSTEM_PROMPT, tools: AGENT_TOOLS,
+    runTool: (name, args, tx) => runAgentTool(name as Parameters<typeof runAgentTool>[0], args, { tx }),
+  })
   if (param === 'loopback' || param === 'demo' || param === '0') return new LoopbackTransport()
   if (param === '1' || param === 'ws') return new WebSocketTransport()
   return new WebSocketTransport(param)
@@ -219,6 +228,7 @@ export function createTransport(): AgentTransport {
 
 /** 面板「重连」按钮：仅 WebSocket 传输有意义 */
 export function retryIfWs(t: AgentTransport): boolean {
+  if (t instanceof ServerAgentTransport) { t.reconnect();return true }
   if (t instanceof WebSocketTransport) {
     t.retry()
     return true

@@ -53,6 +53,8 @@ export interface EngineApi {
   findAssetObject(assetId: string): Object3D | null
   /** 把相机对准某资产（保持当前朝向，调整距离），F 聚焦 / Agent 定位用 */
   focusAsset(assetId: string): boolean
+  /** Focus a review range, including a removed asset's former location. */
+  focusBounds(box: Box3): boolean
   /** 二期：给资产挂 TransformControls gizmo（translate/rotate/scale）——由编辑器模块实现 */
   attachGizmo(assetId: string, mode: 'translate' | 'rotate' | 'scale'): void
 }
@@ -191,6 +193,11 @@ export const engine: EngineApi = {
     const obj = engine.findAssetObject(assetId)
     if (!obj) return false
     const box = new Box3().setFromObject(obj)
+    return engine.focusBounds(box)
+  },
+
+  focusBounds(box) {
+    if (!bridge || box.isEmpty()) return false
     const center = box.getCenter(new Vector3())
     const radius = Math.max(box.getSize(new Vector3()).length() / 2, 0.5)
     const camera = bridge.camera as PerspectiveCamera
@@ -199,6 +206,8 @@ export const engine: EngineApi = {
     if (dir.lengthSq() < 1e-6) dir.set(1, 0.75, 1)
     dir.normalize()
     camera.position.copy(center).add(dir.multiplyScalar(Math.max(radius * 3, 2)))
+    camera.far = Math.max(camera.far, radius * 10)
+    camera.updateProjectionMatrix()
     camera.lookAt(center)
     if (bridge.controls) {
       bridge.controls.target.copy(center)

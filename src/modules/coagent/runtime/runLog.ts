@@ -173,7 +173,7 @@ async function postLog(filename: string, content: string): Promise<void> {
   try {
     const res = await fetch('/api/coagent-log', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'X-Layout-Client': '1' },
       body: JSON.stringify({ filename, content }),
     })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)

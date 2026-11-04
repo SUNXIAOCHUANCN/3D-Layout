@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { usePersistence, flushWorkspace, discardPending } from '../core/persistence'
+import { exportWorkspace } from '../core/edit'
 import { commandBus } from '../core/commands'
 import { engine } from '../core/engine'
 import { createScene, deleteScene } from '../core/io'
@@ -12,6 +14,17 @@ export function TopBar(props: { scenes: SceneIndexEntry[]; locked?: boolean }) {
   const sceneId = useSceneStore(s => s.sceneId)
   const sceneDoc = useSceneStore(s => s.document)
   const selected = useSceneStore(s => s.selectedAssetId)
+  const loading = useSceneStore(s => s.loading)
+  const { status, message } = usePersistence()
+  const labels = { loading: '加载中', saving: '保存中', saved: '已保存', offline: '离线待保存', conflict: '版本冲突', error: '保存失败' }
+  const recovery = () => {
+    const workspace = exportWorkspace()
+    if (!workspace) return
+    const url = URL.createObjectURL(new Blob([JSON.stringify(workspace, null, 2)], { type: 'application/json' }))
+    const a = document.createElement('a')
+    a.href = url; a.download = `${sceneId}.workspace.json`; a.click()
+    setTimeout(() => URL.revokeObjectURL(url), 1000)
+  }
   const sceneError = useSceneStore(s => s.sceneError)
 
   const [dialog, setDialog] = useState<Dialog>(null)
@@ -76,7 +89,7 @@ export function TopBar(props: { scenes: SceneIndexEntry[]; locked?: boolean }) {
       <span className="brand">3D-Layout</span>
       <select
         value={sceneId ?? ''}
-        disabled={locked}
+        disabled={locked || loading}
         title={locked ? 'CoAgent 运行中：场景切换已锁定' : undefined}
         onChange={e => commandBus.dispatch({ type: 'load_scene', sceneId: e.target.value })}
       >
@@ -97,6 +110,17 @@ export function TopBar(props: { scenes: SceneIndexEntry[]; locked?: boolean }) {
       {sceneError && <span className="error">{sceneError}</span>}
       {msg && <span className="error">{msg}</span>}
       <span style={{ flex: 1 }} />
+      <span className={status === 'error' || status === 'conflict' ? 'error' : 'muted'} title={message || labels[status]} role="status">{labels[status]}{message && status === 'saved' ? '（文件同步待重试）' : ''}</span>
+      {['offline', 'conflict', 'error'].includes(status) && <>
+        <button onClick={() => void flushWorkspace().catch(() => {})} title={message}>重试保存</button>
+        <button onClick={recovery}>导出本地副本</button>
+        <button onClick={() => {
+          if (window.confirm('放弃当前标签页尚未提交的修改，并加载服务器版本？建议先导出本地副本。')) {
+            void discardPending().then(() => window.location.reload())
+          }
+        }}>重新加载</button>
+      </>}
+
       <button onClick={shot} title="测试 engine.captureScreenshot 预留接口">
         截图
       </button>

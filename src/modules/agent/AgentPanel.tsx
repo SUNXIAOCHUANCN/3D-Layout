@@ -4,6 +4,9 @@ import { useAgentStore } from './agentStore'
 import { useLlmSettingsStore } from './llmSettings'
 import { LlmSettingsModal } from './LlmSettingsModal'
 import { AGENT_DENIED, AGENT_TOOLS } from './tools'
+import { AiReviewPanel } from '../../components/AiReviewPanel'
+import { AgentCapabilities } from '../../components/AgentCapabilities'
+import { enabledAgentTools, useAgentCapabilities } from '../../core/agentCapabilities'
 
 /**
  * Agent 模块面板（装配点②：左侧插件侧边栏）——聊天式 AI 编辑。
@@ -19,11 +22,14 @@ export function AgentPanel() {
   const llmBusy = useAgentStore(s => s.llmBusy)
   const permissionMode = useAgentStore(s => s.permissionMode)
   const setPermissionMode = useAgentStore(s => s.setPermissionMode)
+  const [rejectionReason, setRejectionReason] = useState('')
   const phase = useAgentStore(s => s.phase)
   const task = useAgentStore(s => s.task)
   const lastScreenshot = useAgentStore(s => s.lastScreenshot)
   const chat = useAgentStore(s => s.chat)
   const log = useAgentStore(s => s.log)
+  const capabilities = useAgentCapabilities()
+  const tools = enabledAgentTools(AGENT_TOOLS, capabilities)
   // 双保险：store 加载层已消毒，这里仍对空值兜底，坏数据不许炸渲染
   const configured = useLlmSettingsStore(
     s => {
@@ -107,22 +113,45 @@ export function AgentPanel() {
       {task && (
         <div className={`agent-task${awaitingVerdict ? ' verdict' : ''}`}>
           <div className="agent-task-label">{task.label}</div>
+          {task.detail && <div className="agent-task-meta" role="status">{task.detail}</div>}
           <div className="agent-task-meta">
             读 {task.reads} · 写 {task.writes}
-            {phase === 'task' && <span className="muted"> · 执行中，人工编辑已暂停</span>}
+            {phase === 'task' && <span className="muted"> · {task.retryable ? '等待重试' : '执行中'}，人工编辑已暂停</span>}
+            {awaitingVerdict && <span className="muted"> · 尚未保存，接受后才提交</span>}
           </div>
+          {task.retryable && <div>
+            <div className="agent-task-meta">当前提案已保留，不会自动重试。可切换上方模型档案后继续。</div>
+            <button className="agent-mini-btn" onClick={() => agentSession.retry()}>重试本轮</button>
+            <button className="agent-mini-btn" onClick={() => setSettingsOpen(true)}>更换模型设置</button>
+          </div>}
           {awaitingVerdict && (
-            <div className="agent-task-btns">
-              <button className="agent-accept" onClick={() => agentSession.accept()}>
-                接受（入账）
-              </button>
-              <button className="agent-reject" onClick={() => agentSession.reject()}>
-                拒绝（回滚）
-              </button>
+            <div>
+              <textarea
+                className="agent-input"
+                aria-label="修改意见"
+                placeholder="修改意见（选填），例如：只修正椅子朝向，保留其余布局"
+                maxLength={4000}
+                value={rejectionReason}
+                onChange={e => setRejectionReason(e.target.value)}
+                style={{ width: '100%', boxSizing: 'border-box', minHeight: 64 }}
+              />
+              <div className="agent-task-btns">
+                <button className="agent-accept" onClick={() => agentSession.accept()}>
+                  接受并保存
+                </button>
+                {transportName.includes('后端') && <button className="agent-mini-btn" onClick={() => { agentSession.revise(rejectionReason); setRejectionReason('') }}>
+                  保留提案并继续修改
+                </button>}
+                <button className="agent-reject" onClick={() => { agentSession.reject(rejectionReason); setRejectionReason('') }}>
+                  回滚全部并重做
+                </button>
+              </div>
             </div>
           )}
         </div>
       )}
+
+      <AiReviewPanel channel="agent" />
 
       {/* 最近一次无 UI 截图 */}
       {lastScreenshot && (
@@ -204,18 +233,19 @@ export function AgentPanel() {
             className="agent-mini-btn"
             disabled={llmBusy}
             onClick={() => agentSession.clearChat()}
-            title="清空对话"
+            title={llmBusy ? '请先停止当前任务，再清除对话' : '清除当前场景的对话，场景修改保持不变'}
           >
-            ⟲
+            清除对话
           </button>
         </div>
       )}
 
+      <AgentCapabilities disabled={llmBusy} />
       {/* 权限与日志（折叠收纳） */}
       <details className="agent-section">
-        <summary>权限清单（开放 {AGENT_TOOLS.length} 项）</summary>
+        <summary>权限清单（开放 {tools.length} 项）</summary>
         <ul className="agent-tools">
-          {AGENT_TOOLS.map(t => (
+          {tools.map(t => (
             <li key={t.name} className={t.access}>
               <span className="agent-tool-access">{t.access === 'read' ? '读' : '写'}</span>
               <span className="agent-tool-body">

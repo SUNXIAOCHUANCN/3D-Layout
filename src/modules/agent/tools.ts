@@ -4,6 +4,9 @@ import { bus } from '../../core/events'
 import { buildLogFilename, listLogs, sanitizeLogName, saveLog } from '../../core/io'
 import { useSceneStore } from '../../core/store'
 import { describeModel } from '../../core/modelCatalog'
+import { modelSearchTool } from '../../core/modelSearch'
+import { sceneOverlapTool } from '../../core/sceneOverlaps'
+import { useAgentCapabilities } from '../../core/agentCapabilities'
 import { modelWorldBounds } from '../../shared/modelBounds'
 import type { SceneAsset, Transform, Vec3 } from '../../core/types'
 import type { AgentAccess, AgentToolName } from './protocol'
@@ -146,7 +149,9 @@ function sceneGetState(args: Record<string, unknown>): unknown {
   const s = useSceneStore.getState()
   const doc = s.document
   if (!doc) throw new Error('场景未加载')
-  const includeManifest = args.includeManifest !== false
+  const search = useAgentCapabilities.getState().modelSearch
+  const includeManifest = args.includeManifest === undefined ? !search : args.includeManifest === true
+  const refs = new Set(doc.assets.map(a => a.ref))
 
   return {
     sceneId: s.sceneId,
@@ -156,10 +161,11 @@ function sceneGetState(args: Record<string, unknown>): unknown {
     /** 约定：米；+Y 向上；欧拉角角度制；原点在底面中心 */
     conventions: { unit: 'm', up: '+Y', rotation: 'deg XYZ', origin: 'bottom-center' },
     assets: doc.assets.map(describeAsset),
+    ...(search ? { modelLibrary: { total: Object.keys(s.manifest?.models ?? {}).length, searchTool: 'model.search' } } : {}),
     manifest:
       includeManifest && s.manifest
         ? Object.fromEntries(
-            Object.entries(s.manifest.models).map(([ref, m]) => [
+            Object.entries(s.manifest.models).filter(([ref]) => !search || refs.has(ref)).map(([ref, m]) => [
               ref,
               describeModel(ref, m),
             ]),
@@ -268,7 +274,7 @@ function assetAdd(args: Record<string, unknown>, ctx: AgentToolContext): unknown
   const s = useSceneStore.getState()
   if (!s.document) throw new Error('场景未加载')
   const meta = s.manifest?.models[ref]
-  if (!meta) throw new Error(`模型库中不存在 ${ref}（可用引用见 scene.get_state 的 manifest）`)
+  if (!meta) throw new Error(`模型库中不存在 ${ref}，请用 model.search 检索有效引用`)
 
   // id 由前端铸造，保证场景内唯一；Agent 不应自带 id
   const base = `${ref.split('/').pop() ?? 'asset'}-agent`
@@ -373,18 +379,20 @@ const vec3Schema = (desc: string): Record<string, unknown> => ({
 })
 
 export const AGENT_TOOLS: readonly AgentToolDef[] = [
+  modelSearchTool,
+  sceneOverlapTool,
   {
     name: 'scene.get_state',
     access: 'read',
     summary: '读场景状态（资产/变换/AABB/模型目录）',
     description:
       '读取当前场景的中立快照：资产清单（id、ref、transform、世界包围盒）、环境、选中项，' +
-      '可附带模型库目录。来源是内存中的 SceneDocument（含未保存编辑），不是磁盘文件。',
+      '默认附带模型库目录；启用可选检索时默认不附带全库，可用 model.search 获取候选。来源是内存中的 SceneDocument（含未保存编辑）。',
     argsDoc: '{ includeManifest?: boolean }',
     schema: {
       type: 'object',
       properties: {
-        includeManifest: { type: 'boolean', description: '是否附带模型库目录（默认 true）' },
+        includeManifest: { type: 'boolean', description: '是否附带模型目录，原版模式默认 true；可选检索模式默认 false' },
       },
       additionalProperties: false,
     },
@@ -515,7 +523,7 @@ export const AGENT_TOOLS: readonly AgentToolDef[] = [
       type: 'object',
       required: ['ref', 'position'],
       properties: {
-        ref: { type: 'string', description: "模型库引用，如 'models/placeholder-box'，必须来自 manifest" },
+        ref: { type: 'string', description: '模型库引用，必须来自当前场景已有引用或 model.search 检索结果' },
         position: vec3Schema('放置位置（米，+Y 向上，底面中心落点）'),
         rotation: vec3Schema('欧拉角，角度制，默认 [0,0,0]'),
         scale: vec3Schema('相对 native 尺寸的缩放，默认 [1,1,1]'),

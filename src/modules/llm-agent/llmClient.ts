@@ -36,7 +36,7 @@ export interface LlmToolSpec {
   schema: Record<string, unknown>
 }
 
-export type LlmStreamEvent = { type: 'text'; delta: string }
+export type LlmStreamEvent = { type: 'text'; delta: string } | { type: 'activity'; stage: 'connected' | 'reasoning' | 'tool' }
 
 export type LlmStopReason = 'end' | 'tool_use' | 'max_tokens'
 
@@ -115,11 +115,11 @@ async function postSse(
     })
   } catch (e) {
     if (e instanceof DOMException && e.name === 'AbortError') throw e
-    throw new Error('网络请求失败：可能是 CORS（该服务商不允许浏览器直连）或网络不可达，请检查地址/代理')
+    throw Object.assign(new Error('网络请求失败，请检查模型服务地址或网络代理'), { code: 'MODEL_SERVICE_ERROR', providerCode: 'network_error' })
   }
   if (!res.ok || !res.body) {
     const detail = await res.text().catch(() => '')
-    throw new Error(`HTTP ${res.status}：${detail.slice(0, 300)}`)
+    throw Object.assign(new Error(`HTTP ${res.status}：${detail.slice(0, 300)}`), { code: 'MODEL_SERVICE_ERROR', providerCode: `http_${res.status}` })
   }
   return res
 }
@@ -130,7 +130,9 @@ async function readSse(res: Response, onData: (obj: Record<string, unknown>) => 
   const decoder = new TextDecoder()
   let buf = ''
   for (;;) {
-    const { done, value } = await reader.read()
+    const { done, value } = await reader.read().catch(() => {
+      throw Object.assign(new Error('模型响应流中断，当前提案可在重新连接后继续'), { code: 'MODEL_SERVICE_ERROR', providerCode: 'stream_interrupted' })
+    })
     if (done) break
     buf += decoder.decode(value, { stream: true })
     const lines = buf.split('\n')
@@ -145,6 +147,11 @@ async function readSse(res: Response, onData: (obj: Record<string, unknown>) => 
         obj = JSON.parse(payload) as Record<string, unknown>
       } catch {
         continue // 忽略坏帧
+      }
+      if (obj.error) {
+        const error = obj.error as { code?: string; type?: string }
+        throw Object.assign(new Error('模型服务返回流式错误：' + JSON.stringify(obj.error).slice(0, 300)),
+          { code: 'MODEL_SERVICE_ERROR', providerCode: String(error.code ?? error.type ?? 'stream_error').slice(0, 100) })
       }
       onData(obj)
     }
@@ -224,23 +231,27 @@ async function openaiChat(o: LlmChatOptions): Promise<LlmChatResult> {
       : {}),
   }
   const res = await postSse(o.settings, joinUrl(o.settings.baseURL, '/chat/completions'), body, o.signal)
+  o.onEvent({ type: 'activity', stage: 'connected' })
 
   let text = ''
   const acc = new Map<number, { id: string; name: string; args: string }>()
   interface ChatChoice {
     delta?: {
       content?: string | null
+      reasoning_content?: string | null
       tool_calls?: Array<{ index: number; id?: string; function?: { name?: string; arguments?: string } }>
     }
   }
   await readSse(res, data => {
     const choice = (data.choices as ChatChoice[] | undefined)?.[0]
     if (!choice?.delta) return
+    if (choice.delta.reasoning_content) o.onEvent({ type: 'activity', stage: 'reasoning' })
     if (typeof choice.delta.content === 'string' && choice.delta.content) {
       text += choice.delta.content
       o.onEvent({ type: 'text', delta: choice.delta.content })
     }
     for (const tc of choice.delta.tool_calls ?? []) {
+      o.onEvent({ type: 'activity', stage: 'tool' })
       const a = acc.get(tc.index) ?? { id: '', name: '', args: '' }
       if (tc.id) a.id = tc.id
       if (tc.function?.name) a.name += tc.function.name

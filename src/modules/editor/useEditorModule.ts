@@ -5,14 +5,14 @@ import { useEditorShortcuts } from './useEditorShortcuts'
 
 /**
  * 编辑器模块的装配钩子（App 调用一次）。
- * 模块挂载 = 订阅渲染层上报的交互事实：点击资产→选中、点空白→取消；
- * 模块卸载 = 无人订阅 → 点击无任何效果（纯渲染器模式）。
+ * 点击选择是只读交互，与修改快捷键独立控制。
+ * AI 任务锁定人工修改时，仍可点击选中和取消选中。
  */
-export function useEditorModule(enabled: boolean): void {
+export function useEditorModule(enabled: boolean, selectionEnabled = enabled): void {
   useEditorShortcuts(enabled)
 
   useEffect(() => {
-    if (!enabled) return
+    if (!selectionEnabled) return
     const offClicked = bus.on('asset:clicked', ({ assetId }) => {
       useSceneStore.getState().select(assetId)
     })
@@ -30,5 +30,5 @@ export function useEditorModule(enabled: boolean): void {
       offEmpty()
       offHistory()
     }
-  }, [enabled])
+  }, [selectionEnabled])
 }

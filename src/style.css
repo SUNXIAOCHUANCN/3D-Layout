@@ -650,12 +650,13 @@ body {
 
 .agent-task-btns {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
   margin-top: 2px;
 }
 
 .agent-task-btns button {
-  flex: 1;
+  flex: 1 1 110px;
   border-radius: 6px;
   border: 1px solid transparent;
   padding: 5px 0;
@@ -1305,3 +1306,10 @@ body {
   line-height: 1.6;
   margin: 0;
 }
+.ai-review { padding: 10px; margin: 8px 0; border: 1px solid #465264; border-radius: 8px; font-size: 12px; }
+.ai-review-legend, .ai-review-options { display: flex; flex-wrap: wrap; gap: 12px; margin: 8px 0; }
+.ai-review-options label { display: flex; align-items: center; gap: 4px; cursor: pointer; }
+.ai-review-list { max-height: 230px; overflow: auto; margin-bottom: 8px; }
+.ai-review-item { display: flex; flex-direction: column; gap: 4px; width: 100%; text-align: left; padding: 8px; margin: 4px 0; border: 1px solid #465264; border-left: 3px solid; border-radius: 4px; background: #202a36; color: #e6edf3; cursor: pointer; overflow-wrap: anywhere; }
+.ai-review-item:hover, .ai-review-item.active { background: #33445b; }
+.ai-review-item small { color: #b9c6d6; }

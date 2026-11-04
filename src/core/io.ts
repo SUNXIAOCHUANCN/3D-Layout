@@ -1,10 +1,10 @@
 import { bus } from './events'
 import { useSceneStore } from './store'
-import type { SceneDocument } from './types'
+import { flushWorkspace } from './persistence'
 
 /**
- * 场景持久化。保存是 IO 动作而非场景变换：不进 edit、不进历史；
- * 版本号只在落盘的文件里自增（内存文档不动，重复保存幂等）。
+ * 显式保存等待自动提交队列完成；失败向调用方报告，不静默降级为下载。
+ * meta.version 保留原文档格式版本；并发控制使用后端独立 revision。
  */
 export async function saveScene(): Promise<{ mode: 'server' | 'download'; version: number }> {
   const s = useSceneStore.getState()
@@ -12,32 +12,10 @@ export async function saveScene(): Promise<{ mode: 'server' | 'download'; versio
   const doc = s.document
   if (!sceneId || !doc) throw new Error('没有可保存的场景')
 
-  const next: SceneDocument = {
-    ...doc,
-    meta: { ...doc.meta, version: doc.meta.version + 1 },
-  }
-
-  let mode: 'server' | 'download' = 'server'
-  try {
-    const res = await fetch(`/api/scene/${sceneId}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(next),
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  } catch {
-    // 无保存服务（生产静态托管等）：降级为下载 scene.json
-    mode = 'download'
-    const blob = new Blob([JSON.stringify(next, null, 2)], { type: 'application/json' })
-    const a = window.document.createElement('a')
-    a.href = URL.createObjectURL(blob)
-    a.download = `${sceneId}.scene.json`
-    a.click()
-    URL.revokeObjectURL(a.href)
-  }
-
-  bus.emit('scene:saved', { sceneId, version: next.meta.version, mode })
-  return { mode, version: next.meta.version }
+  await flushWorkspace(sceneId)
+  const version = doc.meta.version
+  bus.emit('scene:saved', { sceneId, version, mode: 'server' })
+  return { mode: 'server', version }
 }
 
 // ---------- 场景的新建与删除（IO 动作，不进 edit、不进历史） ----------
@@ -113,7 +91,7 @@ export async function saveLog(filename: string, content: string): Promise<{ mode
   try {
     const res = await fetch('/api/log', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'X-Layout-Client': '1' },
       body: JSON.stringify({ filename, content }),
     })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)

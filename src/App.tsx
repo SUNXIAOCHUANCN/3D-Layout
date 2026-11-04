@@ -129,7 +129,7 @@ export default function App() {
     document.body.style.userSelect = 'none'
   }
 
-  useEditorModule(manualEditing)
+  useEditorModule(manualEditing, editorOn || agentOn || newAgentOn)
   useAgentModule(agentOn && locks.agentModuleEnabled)
   useNewAgentModule(newAgentOn && locks.agentModuleEnabled)
 

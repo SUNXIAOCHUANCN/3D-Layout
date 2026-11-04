@@ -7,6 +7,7 @@ import type { LlmSettings } from '../agent/llmSettings'
 import type { AgentInbound, AgentOutbound, AgentTransport, AgentTransportHandlers } from './protocol'
 import { recorder } from './recorder'
 import { AGENT_TOOLS } from './tools'
+import { agentSystemPrompt, useAgentCapabilities } from '../../core/agentCapabilities'
 import { runLog } from './runLog'
 import { clearGeneratedResults } from './generatedResults'
 
@@ -42,7 +43,7 @@ const TOOL_SPECS: LlmToolSpec[] = AGENT_TOOLS.filter(t => !t.name.startsWith('lo
   schema: t.schema,
 }))
 
-const SYSTEM_PROMPT = `你是 3D-Layout 的场景编辑助手。根据用户任务自行选择是否使用工具及调用顺序。
+export const SYSTEM_PROMPT = `你是 3D-Layout 的场景编辑助手。根据用户任务自行选择是否使用工具及调用顺序。
 场景单位为米，+Y 向上，旋转为 XYZ 欧拉角度制；模型原点位于底面中心。
 asset.add 的 ref 必须来自模型目录，对象 ID 必须存在。场景写入通过工具进行，同一批写调用形成一个可接受或撤回的事务；自动编辑模式会直接提交。截图能否传给模型取决于模型配置。`
 
@@ -124,7 +125,9 @@ export class LlmChatTransport implements AgentTransport {
       this.ac = null
       return
     }
-    const tools = pythonAvailable ? TOOL_SPECS : TOOL_SPECS.filter(t => t.name !== 'python_execute')
+    const options = useAgentCapabilities.getState()
+    const tools = TOOL_SPECS.filter(t => (pythonAvailable || t.name !== 'python_execute') &&
+      (options.modelSearch || t.name !== 'model_search') && (options.overlapCheck || t.name !== 'scene_check_overlaps'))
     if (!pythonAvailable) store.pushChat('note', 'Python 工具不可用：需要 Docker 和本地 python:3.12-alpine 镜像。本次运行未开放该工具。')
     try {
       await runLog.start(text, { provider: settings.provider, model: settings.model, protocol: settings.protocol, sendImages: settings.sendImages, system: SYSTEM_PROMPT, tools, pythonAvailable, maxRounds: null, permissionMode: store.permissionMode }, settings.apiKey)
@@ -171,7 +174,7 @@ export class LlmChatTransport implements AgentTransport {
         runLog.event('model.requested', { round, turns: this.turns })
         result = await llmChat({
           settings,
-          system: SYSTEM_PROMPT,
+          system: agentSystemPrompt(SYSTEM_PROMPT, useAgentCapabilities.getState()),
           turns: this.turns,
           tools,
           signal: this.ac!.signal,
