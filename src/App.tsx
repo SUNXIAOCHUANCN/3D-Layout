@@ -132,7 +132,7 @@ export default function App() {
     document.body.style.userSelect = 'none'
   }
 
-  useEditorModule(manualEditing)
+  useEditorModule(manualEditing, editorOn || agentOn || newAgentOn || partitionAgentOn)
   useAgentModule(agentOn && locks.agentModuleEnabled)
   useNewAgentModule(newAgentOn && locks.agentModuleEnabled)
   usePartitionAgentModule(partitionAgentOn && locks.agentModuleEnabled)

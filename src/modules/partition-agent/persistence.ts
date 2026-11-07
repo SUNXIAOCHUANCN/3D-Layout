@@ -1,4 +1,6 @@
 import { emptySession, type SceneSession } from './types'
+import { flushWorkspace } from '../../core/persistence'
+import { useSceneStore } from '../../core/store'
 import type { SceneDocument } from '../../core/types'
 import { boundHistoricalResults } from './history'
 
@@ -158,6 +160,9 @@ export async function saveSession(session: SceneSession): Promise<void> {
   if (!res.ok) throw new Error(`会话写入磁盘失败：HTTP ${res.status}。浏览器缓存仍保留。`)
 }
 export async function saveSceneSnapshot(sceneId: string, document: SceneDocument): Promise<void> {
-  const res = await fetch(`/api/scene/${encodeURIComponent(sceneId)}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(document) })
-  if (!res.ok) throw new Error(`场景自动保存失败：HTTP ${res.status}。已应用的修改仍在当前场景中。`)
+  // 场景已由 SQLite 工作区接管（scene.json 只是投影），直接写 /api/scene 会被数据库版本覆盖。
+  // 分区编辑本身走 core/edit，落库由工作区提交队列完成，这里只需把当前场景的队列刷完。
+  void document
+  if (sceneId !== useSceneStore.getState().sceneId) return
+  await flushWorkspace()
 }

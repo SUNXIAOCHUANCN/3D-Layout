@@ -3,6 +3,8 @@ import { commandBus } from '../core/commands'
 import { engine } from '../core/engine'
 import { createScene, deleteScene } from '../core/io'
 import { useSceneStore } from '../core/store'
+import { exportWorkspace } from '../core/edit'
+import { discardPending, flushWorkspace, usePersistence } from '../core/persistence'
 import type { SceneIndexEntry } from '../core/types'
 import { ThemeSwitch } from './ThemeSwitch'
 import { BrandMark } from './icons'
@@ -16,6 +18,27 @@ export function TopBar(props: { scenes: SceneIndexEntry[]; locked?: boolean }) {
   const sceneDoc = useSceneStore(s => s.document)
   const selected = useSceneStore(s => s.selectedAssetId)
   const sceneError = useSceneStore(s => s.sceneError)
+  const loading = useSceneStore(s => s.loading)
+  const { status, message } = usePersistence()
+  const labels: Record<typeof status, string> = {
+    loading: '加载中',
+    saving: '保存中',
+    saved: '已保存',
+    offline: '离线待保存',
+    conflict: '版本冲突',
+    error: '保存失败',
+  }
+  const needsAttention = status === 'offline' || status === 'conflict' || status === 'error'
+  const recovery = () => {
+    const workspace = exportWorkspace()
+    if (!workspace) return
+    const url = URL.createObjectURL(new Blob([JSON.stringify(workspace, null, 2)], { type: 'application/json' }))
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${sceneId}.workspace.json`
+    a.click()
+    setTimeout(() => URL.revokeObjectURL(url), 1000)
+  }
 
   const [dialog, setDialog] = useState<Dialog>(null)
   const [name, setName] = useState('')
@@ -88,7 +111,7 @@ export function TopBar(props: { scenes: SceneIndexEntry[]; locked?: boolean }) {
         <span className="field-tag">SCENE</span>
         <select
           value={sceneId ?? ''}
-          disabled={locked}
+          disabled={locked || loading}
           title={locked ? 'CoAgent 运行中：场景切换已锁定' : '切换场景'}
           onChange={e => commandBus.dispatch({ type: 'load_scene', sceneId: e.target.value })}
         >
@@ -123,6 +146,35 @@ export function TopBar(props: { scenes: SceneIndexEntry[]; locked?: boolean }) {
       {msg && <span className="error">{msg}</span>}
 
       <span className="spacer" />
+      <span
+        className={status === 'error' || status === 'conflict' ? 'error' : 'muted'}
+        title={message || labels[status]}
+        role="status"
+      >
+        {labels[status]}
+        {message && status === 'saved' ? '（文件同步待重试）' : ''}
+      </span>
+      {needsAttention && (
+        <>
+          <button className="btn" onClick={() => void flushWorkspace().catch(() => {})} title={message}>
+            重试保存
+          </button>
+          <button className="btn" onClick={recovery} title="把当前工作区导出为 JSON 文件">
+            导出本地副本
+          </button>
+          <button
+            className="btn"
+            title="放弃本标签页未提交的修改，加载服务器版本"
+            onClick={() => {
+              if (window.confirm('放弃当前标签页尚未提交的修改，并加载服务器版本？建议先导出本地副本。')) {
+                void discardPending().then(() => window.location.reload())
+              }
+            }}
+          >
+            重新加载
+          </button>
+        </>
+      )}
       <ThemeSwitch />
       <button className="btn" onClick={shot} title="按当前相机导出视口截图（不含 UI）">
         截图

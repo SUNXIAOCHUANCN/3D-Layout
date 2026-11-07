@@ -29,6 +29,8 @@ export interface AgentLogLine {
 }
 
 export interface AgentTaskView {
+  retryable?: boolean
+  detail?: string
   taskId: string
   label: string
   /** 任务内已执行的读 / 写调用数 */
@@ -78,10 +80,11 @@ interface AgentState {
   /** 流结束；最终文本为空（模型只发工具调用）则移除气泡 */
   finishChat: (id: number) => void
   clearChat: () => void
+  /** Restore the full durable conversation in one update, without the live-event cap. */
+  replaceChat: (messages: Array<Pick<ChatMsg, 'role' | 'text'>>) => void
 }
 
 const LOG_CAP = 80
-const CHAT_CAP = 200
 let logId = 0
 let chatId = 0
 
@@ -144,7 +147,7 @@ export const useAgentStore = create<AgentState>((set, get) => ({
 
   pushChat: (role, text, streaming) => {
     const id = ++chatId
-    set(s => ({ chat: [...s.chat, { id, role, text, ...(streaming ? { streaming: true } : {}) }].slice(-CHAT_CAP) }))
+    set(s => ({ chat: [...s.chat, { id, role, text, ...(streaming ? { streaming: true } : {}) }] }))
     return id
   },
 
@@ -162,4 +165,5 @@ export const useAgentStore = create<AgentState>((set, get) => ({
     })),
 
   clearChat: () => set({ chat: [] }),
+  replaceChat: messages => set({ chat: messages.map(message => ({ ...message, id: ++chatId })) }),
 }))

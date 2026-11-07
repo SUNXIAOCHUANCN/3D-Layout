@@ -11,6 +11,9 @@ import { bus } from '../../core/events'
 import { buildLogFilename, listLogs, sanitizeLogName, saveLog } from '../../core/io'
 import { useSceneStore } from '../../core/store'
 import { describeModel } from '../../core/modelCatalog'
+import { modelSearchTool } from '../../core/modelSearch'
+import { sceneOverlapTool } from '../../core/sceneOverlaps'
+import { useAgentCapabilities } from '../../core/agentCapabilities'
 import { modelWorldBounds } from '../../shared/modelBounds'
 import type { SceneAsset, Transform, Vec3 } from '../../core/types'
 import type { AgentAccess, AgentToolName } from './protocol'
@@ -159,14 +162,17 @@ function sceneGetState(args: Record<string, unknown>): unknown {
   const s = useSceneStore.getState()
   const doc = s.document
   if (!doc) throw new Error('场景未加载')
-  const includeManifest = args.includeManifest === true
+  const search = useAgentCapabilities.getState().modelSearch
+  const includeManifest = args.includeManifest === undefined ? !search : args.includeManifest === true
   const offset = args.offset === undefined ? 0 : reqInt(args, 'offset')
   const limit = args.limit === undefined ? 24 : reqInt(args, 'limit')
   if (offset < 0 || limit < 1 || limit > 50) throw new Error('offset 须非负，limit 须为 1–50')
   const ids = args.assetIds
   if (ids !== undefined && (!Array.isArray(ids) || ids.length > 50 || ids.some(id => typeof id !== 'string'))) throw new Error('assetIds 最多 50 项')
   const assets = ids ? doc.assets.filter(a => (ids as string[]).includes(a.id)) : doc.assets
-  const models = Object.entries(s.manifest?.models ?? {})
+  const refs = new Set(doc.assets.map(a => a.ref))
+  // 开了按需检索就只给当前场景用到的模型，避免把整库塞进上下文。
+  const models = Object.entries(s.manifest?.models ?? {}).filter(([ref]) => !search || refs.has(ref))
 
   return {
     sceneId: s.sceneId,
@@ -179,7 +185,10 @@ function sceneGetState(args: Record<string, unknown>): unknown {
     pagination: { offset, limit, total: assets.length, nextOffset: offset + limit < assets.length ? offset + limit : null },
     assetCount: doc.assets.length,
     catalogCount: models.length,
-    catalogNote: '模型目录按需使用 catalog.search 检索。includeManifest 仅返回前 12 个示例。',
+    catalogNote: search
+      ? '已开启按需检索：只列出当前场景用到的模型，新增模型请用 model.search 检索。'
+      : '模型目录按需使用 catalog.search 检索。includeManifest 仅返回前 12 个示例。',
+    ...(search ? { modelLibrary: { searchTool: 'model.search' } } : {}),
     manifest:
       includeManifest && s.manifest
         ? Object.fromEntries(
@@ -361,7 +370,7 @@ function assetAdd(args: Record<string, unknown>, ctx: AgentToolContext): unknown
   const s = useSceneStore.getState()
   if (!s.document) throw new Error('场景未加载')
   const meta = s.manifest?.models[ref]
-  if (!meta) throw new Error(`模型库中不存在 ${ref}（可用引用见 scene.get_state 的 manifest）`)
+  if (!meta) throw new Error(`模型库中不存在 ${ref}，请用 model.search 或 catalog.search 检索有效引用`)
 
   // id 由前端铸造，保证场景内唯一；Agent 不应自带 id
   const base = `${ref.split('/').pop() ?? 'asset'}-agent`
@@ -466,6 +475,8 @@ const vec3Schema = (desc: string): Record<string, unknown> => ({
 })
 
 export const AGENT_TOOLS: readonly AgentToolDef[] = [
+  modelSearchTool,
+  sceneOverlapTool,
   ...GENERATION_TOOLS,
   ...TERRAIN_SURFACE_TOOLS,
   ...PLAN_TOOLS,

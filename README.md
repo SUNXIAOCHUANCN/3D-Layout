@@ -1,16 +1,16 @@
 # 3D-Layout
 
-Web 端 3D 布局软件（毕业设计）。**当前阶段：一期 · 场景渲染器**——数据驱动的 ThreeJS 场景渲染，编辑器与 Agent 在其上叠加。
+Web 端 3D 布局软件（毕业设计）。数据驱动的 Three.js 场景渲染，支持人工与 AI 编辑，并提供 SQLite 工作区持久化。
 
 ## 技术栈
 
 Vite 8 · React 19 · TypeScript · three.js（WebGL2）· @react-three/fiber · @react-three/drei · zustand · pnpm
 
-> 环境要求：Node ≥ 20.19（或 ≥ 22.12），pnpm ≥ 9
+> 环境要求：Node ≥ 22.18；npm 或 pnpm。后端使用 Node 内置 SQLite，无需安装数据库服务。
 
 ## 目录结构
 
-根目录只有三个文件夹 + 本 README：
+主要目录：
 
 ```
 3D-Layout/
@@ -19,9 +19,11 @@ Vite 8 · React 19 · TypeScript · three.js（WebGL2）· @react-three/fiber ·
 │  ├─ model-catalog.json    #   编辑器生成的米单位模型目录（位于资产包外）
 │  ├─ builtin-models.json   #   编辑器内置 primitive 定义
 │  ├─ hdri/  decoders/  textures/
-├─ scenes/                  # 场景库（数据，不参与构建）
+├─ server/                  # SQLite 持久化 API、独立服务、备份和测试
+├─ .data/                   # 本机数据库（自动创建，不进 Git）
+├─ scenes/                  # 场景库与数据库文档投影（数据，不参与构建）
 │  └─ scene-01/
-│     ├─ scene.json         #   中立场景描述 —— 唯一事实源，所有语言共用
+│     ├─ scene.json         #   中立场景描述；已接管场景由数据库同步导出
 │     └─ threejs/view.json  #   ThreeJS 渲染绑定（相机/网格/环境覆盖），可选
 └─ src/                     # 源码文件夹（vite 工程根，所有代码与工程文件都在这）
    ├─ package.json  vite.config.ts  tsconfig.json  index.html  .npmrc  .gitignore
@@ -48,10 +50,26 @@ Vite 8 · React 19 · TypeScript · three.js（WebGL2）· @react-three/fiber ·
 - 或手动：
   ```bat
   cd src
-  pnpm install && pnpm gen-manifest && pnpm dev
+  npm.cmd install
+  npm.cmd run gen-manifest
+  npm.cmd run dev
   ```
-- 构建：`src\scripts\build.bat`（产物 `src\dist\`；部署时把 `src\dist + assets + scenes` 放到同一台静态服务器）
+- 构建：`src\scripts\build.bat`（产物 `src\dist\`；本地持久化部署使用 `npm.cmd run server`，详见下文）
 - URL 参数 `?scene=scene-02` 直接打开指定场景
+
+## 后端与刷新恢复
+
+默认“AI 编辑”的模型请求和工具循环已移到后端。刷新后恢复任务对话、执行进度、草稿及接受/拒绝状态；浏览器视口工具等待重连，已确认工具不重复执行。详见 [AI 任务持久化与重连](develop-guide/AI任务持久化与重连.md)。
+
+开发模式 `npm.cmd run dev` 会自动挂载持久化 API，不需要额外启动后端进程。人工操作或 AI 事务完成后自动保存；刷新、切换场景以及服务重启后恢复场景与撤销/重做历史。顶栏显示保存状态，并提供重试和冲突恢复入口。
+
+- 数据库：`.data/layout.sqlite`；模型与贴图继续存放在 `assets/`。
+- 首次读取自动接管已有场景；之后数据库为持久化依据，`scene.json` 是供旧工具使用的文件投影。
+- 构建后运行：在 `src/` 执行 `npm.cmd run build`，再执行 `npm.cmd run server`，访问 `http://127.0.0.1:5173`。
+- 数据库备份：`npm.cmd run backup`；完整备份还需包含模型资源和视图文件。
+- 测试：`npm.cmd run test:backend`、`npm.cmd run test:backend-browser`。
+
+具体接口、离线恢复限制及备份步骤见 [后端 README](server/README.md)，架构说明见 [后端持久化技术设计](develop-guide/后端持久化技术设计.md)。本版本面向本地单用户；多个标签页遇到版本冲突时会拒绝覆盖，尚不提供多人实时合并。
 
 ## 视口操作
 
@@ -141,7 +159,7 @@ Vite 8 · React 19 · TypeScript · three.js（WebGL2）· @react-three/fiber ·
 
 **聊天式编辑 + API 设置**：面板是对话框（流式输出、工具调用过程行、可停止/清空）；⚙ 设置 打开 API 设置窗口——**接入方式三选一**（OpenAI Chat `/chat/completions`、OpenAI Response `/responses`、Anthropic `/v1/messages`），**预设 10 家服务商**（OpenAI / Anthropic / Gemini / Grok / DeepSeek / Qwen / GLM / Kimi / Xiaomi MiMo / OpenCode Go，另加自定义），含 Base URL、API Key（仅存本浏览器 localStorage）、模型名（建议值可自由输入）与**测试连接**。其他厂商通过浏览器直连 API（Anthropic 自动附带浏览器直连声明头），OpenCode Go 通过现有本地服务转发。
 
-**权限模式与提案式事务**：面板可切换两种权限模式——**变更前确认**（默认）：一个任务 = 一个 `edit.begin(label, 'agent')` 事务，写操作即时生效到视口供人查看，`task_end` 后面板出现「接受（入账）/ 拒绝（回滚）」，预览期人工编辑自动暂停；**自动编辑**：任务完成直接入账，不经人工裁决。两种模式下任务入账后都会**自动保存** `scene.json`（dev/preview 走保存接口，静态托管降级为下载）。接受后进统一历史（带 Agent 标签），可像人工操作一样撤销/回退；拒绝则全部回滚且不留重做痕迹，裁决结果会作为系统消息回告模型，模型可调整后重新提案。关插件 = 未裁决提案自动回滚。
+**权限模式与提案式事务**：默认采用原版模型循环和连续上下文。**变更前确认**模式在每批写工具后等待裁决：接受保存本批并继续，拒绝只回滚本批，已接受批次保留；也可保留当前提案并填写意见继续局部调整。**自动编辑**模式自动提交批次。提案预览期间暂停人工写操作，仍可选择和审查物体。保存由 SQLite 后端确认，成功后进入统一撤销历史；关闭面板或刷新页面保留任务，明确“停止生成”才取消并撤销未提交草稿。模型检索与疑似重叠检查可单独开启，默认关闭。
 
 **传输层可换**（消息协议：`modules/agent/protocol.ts`；LLM 循环见 `llmChatTransport.ts`）：
 - 缺省 = **浏览器直连 LLM**：本地 Harness——用户指令 → LLM function calling（工具 schema 由权限注册表生成）→ 工具调用走统一协议 → 提案裁决回流续跑；

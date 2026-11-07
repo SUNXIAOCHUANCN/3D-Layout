@@ -1,3 +1,4 @@
+import { ServerAgentTransport } from '../../core/serverAgentTransport'
 import { edit, type TxHandle } from '../../core/edit'
 import { bus } from '../../core/events'
 import { saveScene } from '../../core/io'
@@ -35,7 +36,7 @@ class AgentSession {
     this.transport = t
     const st = useAgentStore.getState()
     st.setTransport(t.name, false)
-    st.setChatEnabled(t instanceof LlmChatTransport)
+    st.setChatEnabled(t instanceof LlmChatTransport || t instanceof ServerAgentTransport)
     st.pushLog('info', `Agent 模块启动（${t.name}）`)
     t.start({
       onInbound: msg => this.enqueue(() => this.handleInbound(msg)),
@@ -66,7 +67,7 @@ class AgentSession {
   /** 面板聊天输入：仅浏览器直连 LLM 传输支持 */
   sendChat(text: string): void {
     const t = this.transport
-    if (!(t instanceof LlmChatTransport)) {
+    if (!(t instanceof LlmChatTransport) && !(t instanceof ServerAgentTransport)) {
       useAgentStore.getState().pushChat('note', '当前传输不支持聊天（仅浏览器直连 LLM 模式）')
       return
     }
@@ -79,17 +80,18 @@ class AgentSession {
 
   /** 中止生成（不裁决已打开的提案） */
   abortChat(): void {
-    if (this.transport instanceof LlmChatTransport) this.transport.abortChat()
+    if (this.transport instanceof LlmChatTransport || this.transport instanceof ServerAgentTransport) this.transport.abortChat()
   }
 
   /** 清空对话历史 */
   clearChat(): void {
-    if (this.transport instanceof LlmChatTransport) this.transport.resetConversation()
+    if (this.transport instanceof LlmChatTransport || this.transport instanceof ServerAgentTransport) this.transport.resetConversation()
     else useAgentStore.getState().clearChat()
   }
 
   /** origin：user=面板点击接受；auto=自动编辑模式直接入账 */
   accept(origin: 'user' | 'auto' = 'user'): void {
+    if (this.transport instanceof ServerAgentTransport) { void this.transport.verdict('accepted');return }
     if (!this.tx || !this.taskId) return
     const t = useAgentStore.getState().task
     this.tx.commit()
@@ -121,7 +123,16 @@ class AgentSession {
     }
   }
 
-  reject(): void {
+  revise(reason?: string): void {
+    if (this.transport instanceof ServerAgentTransport) void this.transport.verdict('revised', reason)
+  }
+
+  retry(): void {
+    if (this.transport instanceof ServerAgentTransport) void this.transport.retry()
+  }
+
+  reject(reason?: string): void {
+    if (this.transport instanceof ServerAgentTransport) { void this.transport.verdict('rejected', reason);return }
     if (!this.tx || !this.taskId) return
     const t = useAgentStore.getState().task
     this.tx.rollback()

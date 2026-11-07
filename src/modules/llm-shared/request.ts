@@ -8,11 +8,15 @@ export interface RequestSettings {
 
 export const GO_BASE_URL = 'https://opencode.ai/inference/go/openai/v1'
 
+/** 服务端（Node）没有 CORS 限制，直连上游；浏览器才需要本机转发。由后端在加载模型客户端前置位。 */
+const serverSide = (globalThis as { __LAYOUT_NO_RELAY__?: boolean }).__LAYOUT_NO_RELAY__ === true
+
 export function newLlmSession(): string {
   return crypto.randomUUID()
 }
 
 export function usesGoRelay(settings: RequestSettings): boolean {
+  if (serverSide) return false
   if (settings.provider === 'opencode-go') return true
   try {
     const url = new URL(settings.baseURL)
@@ -56,20 +60,26 @@ export async function requestLlm(
     })
   } catch (error) {
     if (signal.aborted) throw signal.reason ?? error
-    throw new Error(relay
+    throw Object.assign(new Error(relay
       ? '网络请求失败：无法连接本地模型转发服务，请检查 3D-Layout 是否正常运行'
-      : '网络请求失败：可能是 CORS 或网络不可达，请检查地址和代理')
+      : '网络请求失败：可能是 CORS 或网络不可达，请检查地址和代理'), {
+      code: 'MODEL_SERVICE_ERROR', providerCode: 'network_error',
+    })
   }
   if (relay && res.headers.get('x-layout-llm-relay') !== '1') {
     await res.body?.cancel()
-    throw new Error('当前启动方式未提供模型转发服务，请重启项目的开发服务或构建预览；纯静态托管需要服务端转发')
+    throw Object.assign(new Error('当前启动方式未提供模型转发服务，请重启项目的开发服务或构建预览；纯静态托管需要服务端转发'), {
+      code: 'MODEL_SERVICE_ERROR', providerCode: 'relay_unavailable',
+    })
   }
   if (!res.ok) {
     const detail = redactLlmError(await res.text(), settings.apiKey).slice(0, 600)
     const hint = res.status === 401 || res.status === 403 ? '请检查密钥、模型权限或服务商使用限制'
       : res.status === 404 ? '请检查接口地址和模型名称'
       : res.status === 429 ? '额度或请求频率受限，请查看服务商详情' : '模型请求失败'
-    throw new Error(`HTTP ${res.status}：${hint}；${detail}`)
+    throw Object.assign(new Error(`HTTP ${res.status}：${hint}；${detail}`), {
+      code: 'MODEL_SERVICE_ERROR', providerCode: `http_${res.status}`,
+    })
   }
   return res
 }

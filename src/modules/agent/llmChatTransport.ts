@@ -2,11 +2,12 @@ import { newLlmSession } from '../llm-shared/request'
 import { bus } from '../../core/events'
 import { useAgentStore } from './agentStore'
 import { llmChat } from './llmClient'
-import type { LlmChatResult, LlmResultImage, LlmToolSpec, LlmTurn, ToolCallOut } from './llmClient'
+import type { LlmChatResult, LlmResultImage, LlmTurn, ToolCallOut } from './llmClient'
 import { getActiveSettings } from './llmSettings'
 import type { AgentInbound, AgentOutbound, AgentTransport, AgentTransportHandlers } from './protocol'
 import { recorder } from './recorder'
 import { AGENT_TOOLS } from './tools'
+import { agentSystemPrompt, enabledAgentTools, useAgentCapabilities } from '../../core/agentCapabilities'
 
 /**
  * LlmChatTransport —— 浏览器直连 LLM 的"本地 Harness"。
@@ -37,13 +38,7 @@ const wireName = (n: string) => n.replace(/\./g, '_')
 const WIRE_TO_CANONICAL = new Map<string, string>(AGENT_TOOLS.map(t => [wireName(t.name), t.name]))
 const resolveToolName = (n: string) => WIRE_TO_CANONICAL.get(n) ?? n
 
-const TOOL_SPECS: LlmToolSpec[] = AGENT_TOOLS.map(t => ({
-  name: wireName(t.name),
-  description: `${t.description}\n参数：${t.argsDoc}`,
-  schema: t.schema,
-}))
-
-const SYSTEM_PROMPT = `你是 3D-Layout 场景编辑器里的布局助手，通过工具直接操作用户的 3D 场景。
+export const SYSTEM_PROMPT = `你是 3D-Layout 场景编辑器里的布局助手，通过工具直接操作用户的 3D 场景。
 
 场景约定：单位米；+Y 向上；欧拉角为角度制（XYZ 顺序）；资产原点在底面中心，position 即底面中心的世界坐标。
 
@@ -158,9 +153,9 @@ export class LlmChatTransport implements AgentTransport {
         result = await llmChat({
           sessionId: this.sessionId,
           settings,
-          system: SYSTEM_PROMPT,
+          system: agentSystemPrompt(SYSTEM_PROMPT, useAgentCapabilities.getState()),
           turns: this.turns,
-          tools: TOOL_SPECS,
+          tools: enabledAgentTools(AGENT_TOOLS, useAgentCapabilities.getState()).map(t => ({ name: wireName(t.name), description: `${t.description}\n参数：${t.argsDoc}`, schema: t.schema })),
           signal: this.ac.signal,
           onEvent: ev => {
             if (ev.type === 'text') {

@@ -9,7 +9,17 @@ const fetchJson = async <T>(url: string): Promise<T> => {
 
 export const loadManifest = () => fetchJson<ModelManifest>('/assets/model-catalog.json')
 
-export const loadSceneIndex = () => fetchJson<SceneIndexEntry[]>('/scenes/index.json')
+/**
+ * 场景列表优先问工作区后端（可发现新导入的场景目录）；
+ * 纯静态托管没有该接口时回落到构建期生成的 scenes/index.json。
+ */
+export const loadSceneIndex = async (): Promise<SceneIndexEntry[]> => {
+  try {
+    return await fetchJson<SceneIndexEntry[]>('/api/scenes')
+  } catch {
+    return fetchJson<SceneIndexEntry[]>('/scenes/index.json')
+  }
+}
 
 export const loadSceneDocument = async (sceneId: string) => {
   const doc = await fetchJson<SceneDocument>(`/scenes/${sceneId}/scene.json`)

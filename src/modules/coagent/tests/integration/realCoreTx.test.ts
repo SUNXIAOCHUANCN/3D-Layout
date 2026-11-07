@@ -137,7 +137,7 @@ describe('真实 core：一轮多写单事务（T08 雏形）', () => {
     const added = useSceneStore.getState().document!.assets.find(a => a.ref === 'models/rock' && a.id !== 'rock-1')
     expect(added).toBeTruthy()
 
-    // node 环境无 window：saveScene 降级下载路径抛错 → 事件 save.failed，结果仍是 completed（§3.2）
+    // 未连接持久化工作区：保存失败应明确记录，任务结果仍是 completed（§3.2）
     expect(runtime.recorder.events().map(e => e.type)).toContain('save.failed')
 
     // undo 恢复初始资产集合与 transform
@@ -194,7 +194,7 @@ describe('真实 core：一轮多写单事务（T08 雏形）', () => {
     expect(edit.historyUnits().length).toBe(0)
   })
 
-  it('宿主限制记录：先人工编辑产生可 redo 项，CoAgent 回滚后 redo 栈已被 record() 清空', async () => {
+  it('人工编辑撤销后，CoAgent 回滚保留原 redo 栈', async () => {
     // 人工改动一次（产生 journal 单元）
     edit.setTransform('tree-1', { ...T([-3.5, 0, -4]), rotation: [0, 30, 0] }, { source: 'human' })
     edit.undo()
@@ -206,9 +206,10 @@ describe('真实 core：一轮多写单事务（T08 雏形）', () => {
       partitionProvider: () => PARTITION,
     })
     await runtime.start('回滚')
-    // 已知宿主限制（W00 §1.2 / SPEC §1.4）：CoAgent 的写入（record）清空 redo 栈，
-    // 回滚不恢复 redo —— 断言该行为成立并留痕
-    expect(edit.canRedo).toBe(false)
+    // 未提交事务不能破坏此前的重做分支。
+    expect(edit.canRedo).toBe(true)
+    expect(edit.redo()).toBe(true)
+    expect(assetOf('tree-1')?.transform.position).toEqual([-3.5, 0, -4])
   })
 })
 

@@ -1,4 +1,5 @@
 import { newLlmSession } from '../llm-shared/request'
+import { agentSystemPrompt, useAgentCapabilities } from '../../core/agentCapabilities'
 import { compactionCut, historyText, HISTORY_BUDGET, retainImages, boundHistoricalResults, fatalApiError } from './history'
 import { beginTaskInput, checkpoint, RunGuard, selectTask, taskContext, useTaskState } from './taskState'
 import { readPlan } from './plan'
@@ -49,7 +50,7 @@ const TOOL_SPECS: LlmToolSpec[] = AGENT_TOOLS.filter(t => !t.name.startsWith('lo
   schema: t.schema,
 }))
 
-const SYSTEM_PROMPT = `你是 3D-Layout 的场景编辑助手。根据用户任务自行选择是否使用工具及调用顺序。
+export const SYSTEM_PROMPT = `你是 3D-Layout 的场景编辑助手。根据用户任务自行选择是否使用工具及调用顺序。
 复杂任务先调用 task.criteria 建立总体验收条件，用 plan.set 维护布局、主体、细节、验收四阶段及每步 acceptance。
 每个阶段通过验收后推进下一阶段。修复每个问题前说明对象、问题、预期改善和测量依据，最多尝试六次同类修复，仍无改善则标记 blocked 并继续其他阶段。
 先确定边界、主视角、区域密度和对象预算，再用 scene.density 检查密度，asset.scatter 分批填充。保留道路、空地等设计意图。
@@ -150,7 +151,9 @@ export class LlmChatTransport implements AgentTransport {
       this.ac = null
       return
     }
-    const tools = pythonAvailable ? TOOL_SPECS : TOOL_SPECS.filter(t => t.name !== 'python_execute')
+    const options = useAgentCapabilities.getState()
+    const tools = TOOL_SPECS.filter(t => (pythonAvailable || t.name !== 'python_execute') &&
+      (options.modelSearch || t.name !== 'model_search') && (options.overlapCheck || t.name !== 'scene_check_overlaps'))
     if (!pythonAvailable) store.pushChat('note', 'Python 工具不可用：需要 Docker 和本地 python:3.12-alpine 镜像。本次运行未开放该工具。')
     try {
       await runLog.start(text, { provider: settings.provider, model: settings.model, protocol: settings.protocol, sendImages: settings.sendImages, system: SYSTEM_PROMPT, tools, pythonAvailable, maxRounds: this.guard.limits.requests, limits: this.guard.limits, task: taskContext(), permissionMode: store.permissionMode }, settings.apiKey)
@@ -211,7 +214,7 @@ export class LlmChatTransport implements AgentTransport {
         result = await llmChat({
           sessionId: this.sessionId,
           settings,
-          system: SYSTEM_PROMPT + '\n独立保存的原始任务和约束：' + taskContext() +
+          system: agentSystemPrompt(SYSTEM_PROMPT, useAgentCapabilities.getState()) + '\n独立保存的原始任务和约束：' + taskContext() +
             '\n当前计划：' + JSON.stringify(readPlan(useSceneStore.getState().sceneId)) + '\n' + this.guard!.warning(),
           turns: this.turns,
           tools,

@@ -1,3 +1,4 @@
+import { createWorkspaceApi } from '../server/http.mjs'
 import { handleLlmRelay } from './modules/llm-shared/relayServer'
 import { defineConfig, type Connect, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
@@ -11,7 +12,7 @@ import { handleLlmAgentPython } from './modules/llm-agent/pythonServer'
 import { partitionAgentPlugin } from './modules/partition-agent/server'
 
 // 3D-Layout 根目录（本配置文件位于 src/ 内，数据目录在上一级）
-const layoutRoot = fileURLToPath(new URL('..', import.meta.url))
+const layoutRoot = process.env.LAYOUT_ROOT ?? fileURLToPath(new URL('..', import.meta.url))
 
 const MIME: Record<string, string> = {
   '.json': 'application/json; charset=utf-8',
@@ -376,7 +377,10 @@ function serveDataDirs(): Plugin {
     createReadStream(filePath).pipe(res)
     return true
   }
+  let api: ReturnType<typeof createWorkspaceApi> | undefined
   const install = (middlewares: Connect.Server) => {
+    api ??= createWorkspaceApi(layoutRoot)
+    middlewares.use(api.handler)
     middlewares.use((req, res, next) => {
       if (handleLlmRelay(req, res)) return
       if (handlePartitionWrite(req, res)) return
@@ -393,8 +397,29 @@ function serveDataDirs(): Plugin {
   }
   return {
     name: 'serve-data-dirs',
-    configureServer: server => install(server.middlewares),
-    configurePreviewServer: server => install(server.middlewares),
+    configureServer: server => {
+      install(server.middlewares)
+      // These Node modules are held by the middleware, outside React's hot updates.
+      const runtimeFiles = new Set([
+        '../server/http.mjs', '../server/tasks.mjs', '../server/workspaces.mjs',
+        './modules/llm-agent/llmClient.ts',
+      ].map(path => fileURLToPath(new URL(path, import.meta.url))))
+      server.watcher.add([...runtimeFiles])
+      let restarting = false
+      const reloadApi = (path: string) => {
+        if (!runtimeFiles.has(resolve(path)) || restarting) return
+        restarting = true
+        api?.close();api = undefined
+        void server.restart().catch(error => server.config.logger.error(String(error)))
+      }
+      server.watcher.on('change', reloadApi)
+      server.httpServer?.once('close', () => server.watcher.off('change', reloadApi))
+      server.httpServer?.once('close', () => api?.close())
+    },
+    configurePreviewServer: server => {
+      install(server.middlewares)
+      server.httpServer.once('close', () => api?.close())
+    },
   }
 }
 

@@ -33,6 +33,8 @@ export type AgentAccess = 'read' | 'write' | 'export' | 'generate'
 /** 只读工具：无副作用，任务内外均可调用 */
 export type AgentReadToolName =
   | 'scene.get_state'
+  | 'model.search'
+  | 'scene.check_overlaps'
   | 'catalog.search'
   | 'scene.density'
   | 'viewport.screenshot'

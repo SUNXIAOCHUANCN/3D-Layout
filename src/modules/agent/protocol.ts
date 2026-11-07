@@ -33,6 +33,8 @@ export type AgentAccess = 'read' | 'write' | 'export'
 /** 只读工具：无副作用，任务内外均可调用 */
 export type AgentReadToolName =
   | 'scene.get_state'
+  | 'model.search'
+  | 'scene.check_overlaps'
   | 'viewport.screenshot'
   | 'viewport.pick'
   | 'log.list'
@@ -50,7 +52,7 @@ export type AgentExportToolName = 'log.write'
 export type AgentToolName = AgentReadToolName | AgentWriteToolName | AgentExportToolName
 
 export interface SceneGetStateArgs {
-  /** 是否附带模型库目录（name/category/dimensions），默认 true */
+  /** 是否附带当前场景引用模型的介绍，默认 false；新增模型用 model.search */
   includeManifest?: boolean
 }
 
