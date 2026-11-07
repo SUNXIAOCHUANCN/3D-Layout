@@ -10,18 +10,53 @@ const FIRST_BYTE_MS = 600_000
 /** 已经开始回包后，两段数据之间允许的最长静默时间。 */
 const IDLE_MS = 120_000
 const LOOPBACK_HOSTS = new Set(['localhost', '127.0.0.1', '[::1]'])
-const GO_PATHS = new Set([
-  '/inference/go/openai/v1/chat/completions',
-  '/inference/go/v1/chat/completions',
-  '/zen/go/v1/chat/completions',
-])
 
-export function allowedGoUrl(raw: string): URL | null {
+/**
+ * 上游地址白名单：https 任意主机（可带端口，如自建网关）；http 仅限本机回环
+ * （Ollama/LM Studio 等只提供明文本地接口的模型服务）。禁用凭据内嵌、query 和 hash，
+ * 避免把转发服务变成任意 URL 代理。
+ */
+export function allowedUpstreamUrl(raw: string): URL | null {
   try {
     const url = new URL(raw)
-    return url.protocol === 'https:' && url.hostname === 'opencode.ai' && !url.port &&
-      !url.username && !url.password && !url.search && !url.hash && GO_PATHS.has(url.pathname) ? url : null
+    if (url.username || url.password || url.search || url.hash) return null
+    if (url.protocol === 'https:') return url
+    return url.protocol === 'http:' && LOOPBACK_HOSTS.has(url.hostname) ? url : null
   } catch { return null }
+}
+
+const MAX_FORWARD_HEADERS = 40
+const MAX_FORWARD_VALUE_CHARS = 8 * 1024
+/** 不转发给上游的头：逐跳头、能伪造来源的头和我们自己的标记头。 */
+const DROPPED_HEADERS = /^(?:connection|keep-alive|content-length|transfer-encoding|te|trailer|upgrade|expect|host|origin|referer|cookie|cookie2|accept-encoding|sec-[\w-]+|proxy-[\w-]+|x-layout-[\w-]+)$/i
+const HEADER_NAME = /^[!#$%&'*+\-.^_`|~0-9a-z]+$/i
+
+/** 解析浏览器打包的上游请求头（base64 JSON），过滤后作为发往上游的头。 */
+function forwardedHeaders(raw: string): Record<string, string> | null {
+  let parsed: unknown
+  try { parsed = JSON.parse(Buffer.from(raw, 'base64').toString('utf8')) } catch { return null }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null
+  const entries: [string, string][] = []
+  for (const [name, value] of Object.entries(parsed)) {
+    if (typeof value === 'string' && value.length > 0 && HEADER_NAME.test(name) && !DROPPED_HEADERS.test(name)) {
+      entries.push([name, value])
+    }
+  }
+  if (entries.length === 0 || entries.length > MAX_FORWARD_HEADERS ||
+    entries.some(([, value]) => value.length > MAX_FORWARD_VALUE_CHARS)) return null
+  const headers = Object.fromEntries(entries)
+  headers['Content-Type'] ??= 'application/json'
+  headers['User-Agent'] ??= '3d-layout/0.1.0'
+  headers['Accept'] ??= '*/*'
+  return headers
+}
+
+/** 上游错误体里可能回显密钥：Bearer 与 x-api-key 两种形态都要抹掉（空值跳过，防 split('')）。 */
+function secretVariants(headers: Record<string, string>): string[] {
+  return [headers.Authorization, headers['x-api-key']].flatMap(value => {
+    if (!value?.trim()) return []
+    return value.startsWith('Bearer ') ? [value, value.slice(7)] : [value]
+  }).filter(secret => secret.trim())
 }
 
 export interface UpstreamReply {
@@ -107,13 +142,15 @@ export function handleLlmRelay(req: IncomingMessage, res: ServerResponse, option
     fail(403, '模型转发只接受本机同源请求'); return true
   }
   if (req.method !== 'POST') { fail(405, '仅支持 POST'); return true }
-  const target = allowedGoUrl(String(req.headers['x-layout-upstream'] ?? ''))
-  const auth = String(req.headers.authorization ?? '')
-  const session = String(req.headers['x-opencode-session'] ?? '')
-  if (!target) { fail(400, '只允许 OpenCode Go 的 Chat 接口，请检查 Base URL'); return true }
-  if (!/^Bearer \S+$/.test(auth) || !/^[a-zA-Z0-9_-]{1,128}$/.test(session) ||
-      !String(req.headers['content-type']).startsWith('application/json')) {
-    fail(400, '密钥、会话标识或请求类型不正确'); return true
+  const target = allowedUpstreamUrl(String(req.headers['x-layout-upstream'] ?? ''))
+  const headers = forwardedHeaders(String(req.headers['x-layout-upstream-headers'] ?? ''))
+  if (!target) { fail(400, '上游地址不被允许：仅支持 https 接口或本机 http 服务，请检查 Base URL'); return true }
+  if (!headers) { fail(400, '上游请求头缺失或不合法，请刷新页面后重试'); return true }
+  if (![headers.Authorization, headers['x-api-key']].some(value => value?.trim())) {
+    fail(400, '缺少 API 密钥（Authorization 或 x-api-key），请在设置中填写'); return true
+  }
+  if (!String(req.headers['content-type']).startsWith('application/json')) {
+    fail(400, '请求不是 JSON 类型'); return true
   }
   const controller = new AbortController()
   // 分阶段计时：等响应头用 firstByteMs，开始回包后每个分片重置 idleMs。
@@ -145,11 +182,7 @@ export function handleLlmRelay(req: IncomingMessage, res: ServerResponse, option
       const body = Buffer.concat(chunks)
       try { JSON.parse(body.toString('utf8')) } catch { fail(400, '请求不是合法 JSON'); return }
       const upstream = await transport(target, {
-        'Content-Type': 'application/json',
-        Authorization: auth,
-        'User-Agent': '3d-layout/0.1.0',
-        'x-opencode-session': session,
-        Accept: '*/*',
+        ...headers,
         // 让上游直接给明文：我们只转发 Content-Type，不转发 Content-Encoding。
         'Accept-Encoding': 'identity',
       }, body, controller.signal)
@@ -157,7 +190,7 @@ export function handleLlmRelay(req: IncomingMessage, res: ServerResponse, option
       arm(idleMs)
       if (upstream.status >= 300 && upstream.status < 400) {
         upstream.body.destroy()
-        fail(502, 'OpenCode Go 返回重定向，请更新接口地址'); return
+        fail(502, '上游模型服务返回重定向，请检查接口地址'); return
       }
       if (upstream.status < 200 || upstream.status >= 300) {
         // Bound error bodies and strip an echoed credential before displaying it.
@@ -167,8 +200,8 @@ export function handleLlmRelay(req: IncomingMessage, res: ServerResponse, option
           if (detail.length >= 4096) break
         }
         upstream.body.destroy()
-        const key = auth.slice(7)
-        fail(upstream.status, detail.split(key).join('***').slice(0, 2000)); return
+        const redacted = secretVariants(headers).reduce((text, secret) => text.split(secret).join('***'), detail)
+        fail(upstream.status, redacted.slice(0, 2000)); return
       }
       res.statusCode = upstream.status
       res.setHeader('Content-Type', upstream.contentType ?? 'application/json')
@@ -187,11 +220,11 @@ export function handleLlmRelay(req: IncomingMessage, res: ServerResponse, option
       else await pipeline(upstream.body, heartbeat, res)
     } catch {
       if (!controller.signal.aborted) {
-        fail(502, '无法连接 OpenCode Go，请检查本机网络及服务端代理配置'); return
+        fail(502, '无法连接上游模型服务，请检查本机网络及代理配置'); return
       }
       if (cancelledByClient) fail(504, '请求已取消')
-      else if (streaming) fail(504, `OpenCode Go 已停止输出超过 ${seconds(idleMs)} 秒，本次请求已中止`)
-      else fail(504, `等待 OpenCode Go 响应超过 ${seconds(firstByteMs)} 秒，模型可能排队或请求过大`)
+      else if (streaming) fail(504, `上游模型服务已停止输出超过 ${seconds(idleMs)} 秒，本次请求已中止`)
+      else fail(504, `等待上游模型服务响应超过 ${seconds(firstByteMs)} 秒，模型可能排队或请求过大`)
     } finally {
       if (timer !== null) clearTimeout(timer)
       controller.abort()

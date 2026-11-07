@@ -49,7 +49,7 @@ export const LLM_PROVIDERS: readonly LlmProviderPreset[] = [
     protocol: 'anthropic',
     models: ['claude-sonnet-4.5', 'claude-opus-4.5', 'claude-haiku-4.5'],
     keyUrl: 'https://console.anthropic.com/settings/keys',
-    note: '浏览器直连已自动附带 anthropic-dangerous-direct-browser-access 头',
+    note: '已自动附带 anthropic-dangerous-direct-browser-access 头（直连回退时同样生效）',
   },
   {
     id: 'gemini',

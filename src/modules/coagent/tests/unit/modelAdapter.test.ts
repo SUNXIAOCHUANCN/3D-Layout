@@ -7,12 +7,16 @@
  */
 
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http'
-import { describe, expect, it } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import type { LlmSettings } from '../../../agent/llmSettings'
 import { createModelAdapter } from '../../adapters/modelAdapter'
 import type { ModelRequest } from '../../contracts'
 
 const KEY = 'sk-test-secret-should-never-leak-123456'
+
+// 本套件用本地假上游验证 wire 协议，不走 /api/llm/request 转发，显式声明无转发环境（调用时读取）。
+beforeAll(() => { (globalThis as { __LAYOUT_NO_RELAY__?: boolean }).__LAYOUT_NO_RELAY__ = true })
+afterAll(() => { delete (globalThis as { __LAYOUT_NO_RELAY__?: boolean }).__LAYOUT_NO_RELAY__ })
 
 function settings(baseURL: string, over: Partial<LlmSettings> = {}): LlmSettings {
   return {

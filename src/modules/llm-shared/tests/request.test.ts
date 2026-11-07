@@ -1,16 +1,15 @@
 import { afterEach, expect, it, vi } from 'vitest'
-import { GO_BASE_URL, joinLlmUrl, requestLlm, usesGoRelay } from '../request'
+import { GO_BASE_URL, joinLlmUrl, requestLlm } from '../request'
 import { llmChat as agentChat, testLlmConnection } from '../../agent/llmClient'
 import { llmChat as editorChat } from '../../llm-agent/llmClient'
 import { createProfileFromPreset } from '../../agent/llmSettings'
 import { createProfileFromPreset as editorProfile } from '../../llm-agent/llmSettings'
 
 const settings = { ...createProfileFromPreset('opencode-go'), apiKey: 'test-key' }
+const headersOf = (init: RequestInit | undefined): Record<string, string> => (init?.headers ?? {}) as Record<string, string>
 afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks() })
 
-it('recognizes old custom Go settings and normalizes pasted endpoints', () => {
-  expect(usesGoRelay({ ...settings, provider: 'custom', baseURL: 'https://opencode.ai/zen/go/v1' })).toBe(true)
-  expect(usesGoRelay({ ...settings, provider: 'custom', baseURL: 'https://api.deepseek.com/v1' })).toBe(false)
+it('normalizes pasted endpoints and keeps both preset copies in sync', () => {
   expect(joinLlmUrl(' ' + GO_BASE_URL + '/chat/completions/ ', '/chat/completions')).toBe(GO_BASE_URL + '/chat/completions')
   expect(editorProfile('opencode-go').baseURL).toBe(GO_BASE_URL)
 })
@@ -31,18 +30,42 @@ it('both clients relay tools, screenshots, and a stable conversation ID', async 
   }
   for (const [url, init] of calls.mock.calls) {
     expect(url).toBe('/api/llm/request')
-    expect(init?.headers).toMatchObject({ 'x-opencode-session': 'stable-session' })
+    expect(headersOf(init)).toMatchObject({
+      'x-layout-upstream': GO_BASE_URL + '/chat/completions',
+      'x-layout-upstream-headers': expect.any(String),
+    })
+    const forwarded = JSON.parse(atob(headersOf(init)['x-layout-upstream-headers']))
+    expect(forwarded['x-opencode-session']).toBe('stable-session')
+    expect(forwarded.Authorization).toBe('Bearer test-key')
     expect(String(init?.body)).toContain('image_url'); expect(String(init?.body)).toContain('scene_read')
   }
 })
 
-it('keeps other providers direct and identifies missing relay on static hosting', async () => {
-  const fetch = vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response('{}'))
+it('routes every provider through the relay first, packaging protocol-specific headers', async () => {
+  const calls = vi.spyOn(globalThis, 'fetch').mockResolvedValue(
+    new Response('{}', { headers: { 'x-layout-llm-relay': '1' } }))
+  const glm = { ...createProfileFromPreset('glm'), apiKey: 'glm-key' }
+  await requestLlm(glm, glm.baseURL + '/chat/completions', '{}', new AbortController().signal)
+  expect(calls).toHaveBeenCalledTimes(1)
+  expect(calls.mock.calls[0][0]).toBe('/api/llm/request')
+  expect(calls.mock.calls[0][1]?.headers).toMatchObject({ 'x-layout-upstream': glm.baseURL + '/chat/completions' })
+  const anthropic = { ...createProfileFromPreset('anthropic'), apiKey: 'ant-key' }
+  await requestLlm(anthropic, anthropic.baseURL + '/v1/messages', '{}', new AbortController().signal)
+  const forwarded = JSON.parse(atob(headersOf(calls.mock.calls[1][1])['x-layout-upstream-headers']))
+  expect(forwarded).toMatchObject({ 'x-api-key': 'ant-key', 'anthropic-version': '2023-06-01' })
+})
+
+it('falls back to browser-direct only when the relay middleware is absent (static hosting)', async () => {
+  const fetch = vi.spyOn(globalThis, 'fetch')
+    .mockResolvedValueOnce(new Response('<html>fallback</html>'))
+    .mockResolvedValueOnce(new Response('{"ok":true}'))
   const direct = { ...settings, provider: 'deepseek', baseURL: 'https://api.deepseek.com/v1' }
-  await requestLlm(direct, direct.baseURL + '/chat/completions', '{}', new AbortController().signal)
-  expect(fetch.mock.calls[0][0]).toBe(direct.baseURL + '/chat/completions')
-  fetch.mockResolvedValue(new Response('<html>fallback</html>'))
-  await expect(requestLlm(settings, GO_BASE_URL, '{}', new AbortController().signal)).rejects.toThrow('未提供模型转发服务')
+  const res = await requestLlm(direct, direct.baseURL + '/chat/completions', '{}', new AbortController().signal)
+  expect(await res.text()).toBe('{"ok":true}')
+  expect(fetch).toHaveBeenCalledTimes(2)
+  expect(fetch.mock.calls[0][0]).toBe('/api/llm/request')
+  expect(fetch.mock.calls[1][0]).toBe(direct.baseURL + '/chat/completions')
+  expect((fetch.mock.calls[1][1]?.headers as Record<string, string>).Authorization).toBe('Bearer test-key')
 })
 
 it('connection test uses relay and reports actual upstream errors without leaking keys', async () => {

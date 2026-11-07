@@ -14,7 +14,7 @@ if (nodeMajor < 22 || (nodeMajor === 22 && nodeMinor < 18)) {
 
 const root = process.env.LAYOUT_ROOT ?? fileURLToPath(new URL('..', import.meta.url))
 const api = createWorkspaceApi(root)
-// 浏览器端 OpenCode Go 需要 /api/llm/request 转发；开发模式由 Vite 中间件提供，独立服务在这里挂同一份。
+// 浏览器端所有 LLM 请求都需要 /api/llm/request 转发（规避厂商 CORS 限制）；开发模式由 Vite 中间件提供，独立服务在这里挂同一份。
 const relay = await import('data:text/javascript;base64,' + Buffer.from(stripTypeScriptTypes(
   readFileSync(new URL('../src/modules/llm-shared/relayServer.ts', import.meta.url), 'utf8'),
 )).toString('base64'))

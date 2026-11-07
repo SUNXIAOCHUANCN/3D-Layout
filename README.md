@@ -157,7 +157,7 @@ Vite 8 · React 19 · TypeScript · three.js（WebGL2）· @react-three/fiber ·
 
 明确不开放：直接操作 three 对象、保存/落盘、切场景/相机/改选中、任务事务外的写操作、白名单外的任何工具。
 
-**聊天式编辑 + API 设置**：面板是对话框（流式输出、工具调用过程行、可停止/清空）；⚙ 设置 打开 API 设置窗口——**接入方式三选一**（OpenAI Chat `/chat/completions`、OpenAI Response `/responses`、Anthropic `/v1/messages`），**预设 10 家服务商**（OpenAI / Anthropic / Gemini / Grok / DeepSeek / Qwen / GLM / Kimi / Xiaomi MiMo / OpenCode Go，另加自定义），含 Base URL、API Key（仅存本浏览器 localStorage）、模型名（建议值可自由输入）与**测试连接**。其他厂商通过浏览器直连 API（Anthropic 自动附带浏览器直连声明头），OpenCode Go 通过现有本地服务转发。
+**聊天式编辑 + API 设置**：面板是对话框（流式输出、工具调用过程行、可停止/清空）；⚙ 设置 打开 API 设置窗口——**接入方式三选一**（OpenAI Chat `/chat/completions`、OpenAI Response `/responses`、Anthropic `/v1/messages`），**预设 10 家服务商**（OpenAI / Anthropic / Gemini / Grok / DeepSeek / Qwen / GLM / Kimi / Xiaomi MiMo / OpenCode Go，另加自定义），含 Base URL、API Key（仅存本浏览器 localStorage）、模型名（建议值可自由输入）与**测试连接**。所有服务商的浏览器请求都优先经本机 /api/llm/request 转发（规避智谱等不对 localhost 开放 CORS 的厂商；Anthropic 自动附带浏览器直连声明头），纯静态托管时回退浏览器直连。
 
 **权限模式与提案式事务**：默认采用原版模型循环和连续上下文。**变更前确认**模式在每批写工具后等待裁决：接受保存本批并继续，拒绝只回滚本批，已接受批次保留；也可保留当前提案并填写意见继续局部调整。**自动编辑**模式自动提交批次。提案预览期间暂停人工写操作，仍可选择和审查物体。保存由 SQLite 后端确认，成功后进入统一撤销历史；关闭面板或刷新页面保留任务，明确“停止生成”才取消并撤销未提交草稿。模型检索与疑似重叠检查可单独开启，默认关闭。
 
@@ -172,16 +172,15 @@ Vite 8 · React 19 · TypeScript · three.js（WebGL2）· @react-three/fiber ·
 - **三期 · Agent**：前端全链路已就绪（modules/agent：权限白名单 + 提案式事务 + 无UI截图 + 浏览器直连聊天编辑[OpenAI Chat/Response/Anthropic 三协议、9 厂商预设] + loopback/WS 双传输）；待办：`validate_layout` 布局校验、VLM 截图校验闭环、远端 Node Harness（可选，WS 协议已留）
 
 
-## OpenCode Go 模型接入
+## 模型接入与本地转发
 
-在 AI 编辑的 API 设置中新增 **OpenCode Go** 档案，填写 Go 密钥，选择 DeepSeek 或 MiMo 模型，测试后保存并设为当前。
-默认 Base URL 为 `https://opencode.ai/inference/go/openai/v1`，协议为 **OpenAI Chat**；模型名可手动输入。
-旧的自定义档案只要使用 `opencode.ai` 下的 Go 路径，也会自动使用本地转发。
+浏览器侧所有 LLM 请求（设置测试、聊天编辑、CoAgent）统一先走本机转发 `/api/llm/request`，用于规避厂商 CORS 差异（智谱 open.bigmodel.cn 只对自家域名开放跨域，DeepSeek/月之暗面/阿里等则对 localhost 放行）。
+OpenCode Go 档案填写 Go 密钥即可；默认 Base URL `https://opencode.ai/inference/go/openai/v1`，协议 **OpenAI Chat**，会话标识与应用标识由转发自动附带。
 
 - 开发启动与 `pnpm preview` 共用 `/api/llm/request`，无需额外启动服务。修改后须重启原有服务。
-- 本地转发仅接受回环地址上的同源请求，并仅连接固定的 OpenCode Go Chat 接口；不支持任意代理目标或局域网访问。
+- 本地转发仅接受回环地址上的同源请求；上游限 https 接口与本机 http 服务（如 Ollama 的 11434），不支持任意代理目标或局域网访问。
 - 密钥仍保存在浏览器 localStorage，调用时经本机服务转发，不在服务端落盘或记入日志。
 - 上游收到真实应用标识 `3d-layout/0.1.0` 和稳定会话 ID；清空聊天会更新 ID，CoAgent 每次运行使用自己的 ID。
 - Go 面向编码 Agent。3D 布局任务是否可用由服务商决定；连接成功不代表工具调用、图片输入及实际任务均受支持。
-- 纯静态部署没有转发接口，需另配服务端。浏览器的代理扩展也不一定作用于 Node 本地服务，网络问题需检查服务进程的网络环境。
+- 纯静态部署没有转发接口：请求自动回退浏览器直连，是否可用取决于各厂商 CORS 策略（智谱等不支持，需另配服务端）。浏览器的代理扩展也不一定作用于 Node 本地服务，网络问题需检查服务进程的网络环境。
 - 验证：在 `src` 中运行 `pnpm test:llm`、`pnpm test:coagent` 和 `pnpm build`。真实密钥在设置中输入，不写入测试脚本。

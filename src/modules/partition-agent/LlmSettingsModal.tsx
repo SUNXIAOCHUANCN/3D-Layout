@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { usesGoRelay } from '../llm-shared/request'
 import { testLlmConnection } from './llmClient'
 import {
   createProfileFromPreset,
@@ -196,7 +195,7 @@ export function LlmSettingsModal(props: { onClose: () => void }) {
               </select>
 
               <div className="llm-note">
-                {usesGoRelay(editing) ? '连接方式：本机服务转发（OpenCode Go）' : '连接方式：浏览器直连'}
+                连接方式：本机服务转发（静态托管无转发服务时浏览器直连）
               </div>
               <div className="llm-label">Base URL</div>
               <input
@@ -283,8 +282,8 @@ export function LlmSettingsModal(props: { onClose: () => void }) {
         </div>
         <div className="llm-hint">
           可保存多套服务商配置，各自独立保存 Key；「设为当前」决定实际使用哪一套。
-          模型名是建议值，各厂迭代快，可直接输入任意型号。浏览器直连需服务商允许跨域（CORS），
-          OpenCode Go 经本机服务转发，密钥不在服务端保存。测试连接成功后，还需验证工具调用及截图能力。
+          模型名是建议值，各厂迭代快，可直接输入任意型号。所有请求优先经本机服务转发（规避厂商 CORS 限制），
+          纯静态托管时回退浏览器直连；密钥不在服务端保存。测试连接成功后，还需验证工具调用及截图能力。
         </div>
         <div className="modal-actions">
           <button onClick={props.onClose}>取消</button>
