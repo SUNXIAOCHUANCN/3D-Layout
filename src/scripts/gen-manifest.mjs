@@ -18,10 +18,13 @@ const root = rootArg >= 0 ? resolve(process.argv[rootArg + 1]) : fileURLToPath(n
 const modelsDir = join(root, 'assets', 'models')
 const catalog = buildModelCatalog(modelsDir, readBuiltinModels(root))
 const models = catalog.models
-writeFileSync(
-  join(root, 'assets', 'model-catalog.json'),
-  JSON.stringify(catalog, null, 2) + '\n',
-)
+const catalogPath = join(root, 'assets', 'model-catalog.json')
+let previous = null
+try { previous = JSON.parse(readFileSync(catalogPath, 'utf8')) } catch { /* 首次生成或旧文件不可读 */ }
+// generatedAt 每次运行都会变：其余内容一致时保留旧文件，避免每次启动都弄脏工作区。
+const unchanged = previous !== null &&
+  JSON.stringify({ ...previous, generatedAt: null }) === JSON.stringify({ ...catalog, generatedAt: null })
+if (!unchanged) writeFileSync(catalogPath, JSON.stringify(catalog, null, 2) + '\n')
 
 // ---- 场景索引 ----
 const scenesDir = join(root, 'scenes')
