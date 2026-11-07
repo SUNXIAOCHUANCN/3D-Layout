@@ -336,6 +336,8 @@ export class TaskService {
     try {
       const response = await Promise.race([stopped, Promise.resolve().then(() => this.requestModel({
         settings: { ...t.settings, apiKey: this.secrets.get(t.id) }, system: t.system, turns: t.turns,
+        // 稳定的会话标识：OpenCode Go 用它做路由，重试/重连沿用同一个任务 ID。
+        sessionId: t.id,
         tools: t.tools.map(tool => ({ ...tool, name: tool.name.replaceAll('.', '_') })), signal: controller.signal,
         onEvent: event => {
           if (this.closed || controller.signal.aborted) return

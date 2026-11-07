@@ -15,13 +15,17 @@ export function newLlmSession(): string {
   return crypto.randomUUID()
 }
 
-export function usesGoRelay(settings: RequestSettings): boolean {
-  if (serverSide) return false
+function isOpencodeGo(settings: RequestSettings): boolean {
   if (settings.provider === 'opencode-go') return true
   try {
     const url = new URL(settings.baseURL)
     return url.hostname === 'opencode.ai' && /^\/(?:inference|zen)\/go\//.test(url.pathname)
   } catch { return false }
+}
+
+export function usesGoRelay(settings: RequestSettings): boolean {
+  if (serverSide) return false
+  return isOpencodeGo(settings)
 }
 
 export function joinLlmUrl(base: string, path: string): string {
@@ -30,11 +34,17 @@ export function joinLlmUrl(base: string, path: string): string {
   return clean.endsWith(path) ? clean : clean + path
 }
 
-function directHeaders(s: RequestSettings): Record<string, string> {
-  return s.protocol === 'anthropic'
+function directHeaders(s: RequestSettings, sessionId?: string): Record<string, string> {
+  const headers: Record<string, string> = s.protocol === 'anthropic'
     ? { 'Content-Type': 'application/json', 'x-api-key': s.apiKey,
         'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' }
     : { 'Content-Type': 'application/json', Authorization: `Bearer ${s.apiKey}` }
+  // OpenCode Go 要求会话标识，否则 400 MissingSessionID（浏览器走转发时由 relay 补，直连时在这里补）。
+  if (isOpencodeGo(s)) {
+    headers['x-opencode-session'] = sessionId ?? newLlmSession()
+    headers['User-Agent'] = '3d-layout/0.1.0'
+  }
+  return headers
 }
 
 export function redactLlmError(value: string, key: string): string {
@@ -55,7 +65,7 @@ export async function requestLlm(
       headers: relay ? {
         'Content-Type': 'application/json', Authorization: `Bearer ${settings.apiKey}`,
         'x-layout-upstream': url, 'x-opencode-session': sessionId ?? newLlmSession(),
-      } : directHeaders(settings),
+      } : directHeaders(settings, sessionId),
       body,
     })
   } catch (error) {
