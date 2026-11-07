@@ -4,9 +4,12 @@ import { engine } from '../core/engine'
 import { createScene, deleteScene } from '../core/io'
 import { useSceneStore } from '../core/store'
 import type { SceneIndexEntry } from '../core/types'
+import { ThemeSwitch } from './ThemeSwitch'
+import { BrandMark } from './icons'
 
 type Dialog = { kind: 'create' } | { kind: 'delete' } | null
 
+/** 顶栏：品牌 / 场景字段板 / 场景增删 / 仪表读数 / 配色切换 / 截图 */
 export function TopBar(props: { scenes: SceneIndexEntry[]; locked?: boolean }) {
   const { scenes, locked } = props
   const sceneId = useSceneStore(s => s.sceneId)
@@ -71,33 +74,57 @@ export function TopBar(props: { scenes: SceneIndexEntry[]; locked?: boolean }) {
     }
   }
 
+  const assetCount = sceneDoc ? String(sceneDoc.assets.length).padStart(2, '0') : null
+
   return (
     <header className="topbar">
-      <span className="brand">3D-Layout</span>
-      <select
-        value={sceneId ?? ''}
-        disabled={locked}
-        title={locked ? 'CoAgent 运行中：场景切换已锁定' : undefined}
-        onChange={e => commandBus.dispatch({ type: 'load_scene', sceneId: e.target.value })}
-      >
-        {scenes.map(s => (
-          <option key={s.id} value={s.id}>
-            {s.name}
-          </option>
-        ))}
-      </select>
-      <button onClick={openCreate} disabled={locked} title="新建空场景">
-        新建
+      <span className="brand">
+        <BrandMark />
+        <span className="brand-name">3D·LAYOUT</span>
+      </span>
+      <span className="vrule" />
+
+      <label className={`field${locked ? ' is-disabled' : ''}`}>
+        <span className="field-tag">SCENE</span>
+        <select
+          value={sceneId ?? ''}
+          disabled={locked}
+          title={locked ? 'CoAgent 运行中：场景切换已锁定' : '切换场景'}
+          onChange={e => commandBus.dispatch({ type: 'load_scene', sceneId: e.target.value })}
+        >
+          {scenes.map(s => (
+            <option key={s.id} value={s.id}>
+              {s.name}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <button className="btn" onClick={openCreate} disabled={locked} title="新建空场景">
+        <span className="glyph">+</span>新建
       </button>
-      <button onClick={openDelete} disabled={locked || !sceneId} title="删除当前场景">
-        删除
+      <button className="btn" onClick={openDelete} disabled={locked || !sceneId} title="删除当前场景">
+        <span className="glyph">−</span>删除
       </button>
-      {sceneDoc && <span className="muted">{sceneDoc.assets.length} 个资产</span>}
-      {selected && <span className="chip">已选中：{selected}</span>}
+
+      {assetCount !== null && (
+        <span className="readout" title="当前场景资产数">
+          <b>{assetCount}</b>
+          <i>资产</i>
+        </span>
+      )}
+      {selected && (
+        <span className="chip" title={`已选中：${selected}`}>
+          <span className="pip" />
+          {selected}
+        </span>
+      )}
       {sceneError && <span className="error">{sceneError}</span>}
       {msg && <span className="error">{msg}</span>}
-      <span style={{ flex: 1 }} />
-      <button onClick={shot} title="测试 engine.captureScreenshot 预留接口">
+
+      <span className="spacer" />
+      <ThemeSwitch />
+      <button className="btn" onClick={shot} title="按当前相机导出视口截图（不含 UI）">
         截图
       </button>
 

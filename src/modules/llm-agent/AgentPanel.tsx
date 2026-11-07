@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { agentSession } from './session'
+import { usePlan, clearPlan } from './plan'
+import { resetTask, selectTask, setLimits, useTaskState } from './taskState'
+import { useSceneStore } from '../../core/store'
 import { useAgentStore } from './agentStore'
 import { useLlmSettingsStore } from '../agent/llmSettings'
 import { LlmSettingsModal } from './LlmSettingsModal'
 import { AGENT_DENIED, AGENT_TOOLS } from './tools'
+import { ClearIcon, SendIcon, StopIcon } from '../../ui/icons'
 
 /**
  * Agent 模块面板（装配点②：左侧插件侧边栏）——聊天式 AI 编辑。
@@ -13,6 +17,10 @@ import { AGENT_DENIED, AGENT_TOOLS } from './tools'
  * 面板同时回答「编辑器给 Agent 开放了什么权限」。
  */
 export function AgentPanel() {
+  const plan = usePlan()
+  const sceneId = useSceneStore(s => s.sceneId)
+  const taskState = useTaskState(s => s.task)
+  useEffect(() => { selectTask(sceneId) }, [sceneId])
   const transportName = useAgentStore(s => s.transportName)
   const connected = useAgentStore(s => s.connected)
   const chatEnabled = useAgentStore(s => s.chatEnabled)
@@ -76,10 +84,49 @@ export function AgentPanel() {
         )}
         {chatEnabled && (
           <button className="agent-mini-btn" disabled={llmBusy} onClick={() => setSettingsOpen(true)} title="API 设置">
-            ⚙ 设置
+            设置
           </button>
         )}
       </div>
+
+      <details>
+        <summary>目标与运行预算</summary>
+        <p>{taskState.goal || '发送第一条指令后保存原始目标'}</p>
+        {taskState.criteria.length > 0 && <ul>{taskState.criteria.map((criterion, i) => <li key={i}>{criterion}</li>)}</ul>}
+        <label>最多 API 请求
+          <input type="number" min={1} max={300} value={taskState.limits.requests} disabled={llmBusy}
+            onChange={e => setLimits({ ...taskState.limits, requests: Number(e.target.value) })} />
+        </label>
+        <label>运行分钟数
+          <input type="number" min={1} max={120} value={taskState.limits.minutes} disabled={llmBusy}
+            onChange={e => setLimits({ ...taskState.limits, minutes: Number(e.target.value) })} />
+        </label>
+        <label>最多工具调用
+          <input type="number" min={1} max={2000} value={taskState.limits.tools} disabled={llmBusy}
+            onChange={e => setLimits({ ...taskState.limits, tools: Number(e.target.value) })} />
+        </label>
+        {taskState.checkpoint && <p>
+          已运行 {taskState.checkpoint.requests} 次请求、{taskState.checkpoint.tools} 次工具调用。
+          {taskState.checkpoint.reason}
+        </p>}
+        <button disabled={llmBusy || phase !== 'idle' || !sceneId} onClick={() => {
+          resetTask()
+          if (sceneId) clearPlan(sceneId)
+          agentSession.clearChat()
+        }}>新建目标</button>
+      </details>
+
+      {plan.length > 0 && (
+        <details open>
+          <summary>场景计划 {plan.filter(step => step.status === 'done').length}/{plan.length}</summary>
+          <ol>{plan.map(step => (
+            <li key={step.id}>{({ pending: '待执行', active: '进行中', done: '完成', blocked: '受阻' })[step.status]} · {step.title}
+              {step.acceptance && <div>验收条件 · {step.acceptance}</div>}
+              {step.evidence && <div>{step.evidence}</div>}
+            </li>
+          ))}</ol>
+        </details>
+      )}
 
       {/* 档案快速切换（多档案：立即切到对应那一份的 baseURL/Key/模型） */}
       {chatEnabled && profiles.length > 0 && (
@@ -108,6 +155,7 @@ export function AgentPanel() {
       {/* 任务卡：提案执行 / 等待裁决 */}
       {task && (
         <div className={`agent-task${awaitingVerdict ? ' verdict' : ''}`}>
+          <span className="agent-task-tag">{awaitingVerdict ? '待裁决' : '提案'}</span>
           <div className="agent-task-label">{task.label}</div>
           <div className="agent-task-meta">
             读 {task.reads} · 写 {task.writes}
@@ -141,6 +189,11 @@ export function AgentPanel() {
         const el = e.currentTarget
         followRef.current = el.scrollHeight - el.scrollTop - el.clientHeight < 32
       }}>
+        {chat.length === 0 && (
+          <div className="agent-chat-empty">
+            {'还没有对话。\n例如：把长桌向北移动 0.5 米，别挡住门。'}
+          </div>
+        )}
         {chat.map(m =>
           m.role === 'note' ? (
             <div key={m.id} className="agent-chat-note">
@@ -200,12 +253,12 @@ export function AgentPanel() {
             }}
           />
           {llmBusy ? (
-            <button className="agent-mini-btn stop" onClick={() => agentSession.abortChat()} title="停止生成">
-              ■
+            <button className="agent-mini-btn stop" onClick={() => agentSession.abortChat()} title="停止生成" aria-label="停止生成">
+              <StopIcon />
             </button>
           ) : (
-            <button className="agent-mini-btn send" disabled={inputDisabled} onClick={submit} title="发送">
-              ➤
+            <button className="agent-mini-btn send" disabled={inputDisabled} onClick={submit} title="发送" aria-label="发送">
+              <SendIcon />
             </button>
           )}
           <button
@@ -213,8 +266,9 @@ export function AgentPanel() {
             disabled={llmBusy}
             onClick={() => agentSession.clearChat()}
             title="清空对话"
+            aria-label="清空对话"
           >
-            ⟲
+            <ClearIcon />
           </button>
         </div>
       )}

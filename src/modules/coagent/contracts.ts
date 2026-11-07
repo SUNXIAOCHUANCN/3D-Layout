@@ -307,6 +307,8 @@ export type ModelReply = {
 }
 
 export type ModelRequest = {
+  /** Stable for all model requests belonging to one run. */
+  sessionId?: string
   /** 用途标签（planner/executor/judge/partition…）：进 recorder 时保留，便于归类 */
   purpose: string
   system: string

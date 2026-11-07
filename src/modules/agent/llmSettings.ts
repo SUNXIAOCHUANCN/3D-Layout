@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 /**
- * LLM 接入设置（浏览器直连模式）。
+ * LLM 接入设置（OpenCode Go 本地转发，其他厂商浏览器直连）。
  * 三种接入方式（wire 协议）：openai-chat（/chat/completions）、
  * openai-response（/responses）、anthropic（/v1/messages）。
  * 预设覆盖常见厂商；模型名只是建议值，可自由输入（各厂 API 迭代快）。
@@ -9,7 +9,7 @@ import { create } from 'zustand'
  * **多档案（阶段 A）**：设置不再是"一条记录"，而是一组档案（profile）——
  * 每份档案自带一套 baseURL / API Key / 模型，互不干扰；`activeId` 指向当前
  * 生效的那一份，AI 编辑聊天与 CoAgent 都只读"当前档案"。
- * 持久化到 localStorage（API Key 只存在本浏览器，不经过任何服务器）。
+ * 持久化到 localStorage（API Key 保存在本浏览器；Go 调用时经本机服务转发且不落盘）。
  * 旧版 v1（单条记录）首次读取时自动迁移成一份档案，用户的 Key 不丢。
  */
 
@@ -109,6 +109,13 @@ export const LLM_PROVIDERS: readonly LlmProviderPreset[] = [
     models: ['MiMo-V2-Pro', 'MiMo-V2'],
     keyUrl: 'https://platform.xiaomimimo.com',
     note: 'OpenAI 兼容；文档见 mimo.mi.com',
+  },
+  {
+    id: 'opencode-go', name: 'OpenCode Go',
+    baseURL: 'https://opencode.ai/inference/go/openai/v1', protocol: 'openai-chat',
+    models: ['deepseek-v4.1-flash', 'deepseek-v4-pro', 'mimo-v2.6-flash', 'mimo-v2.6-pro', 'mimo-v2.5', 'mimo-v2.5-pro'],
+    keyUrl: 'https://opencode.ai/console',
+    note: '通过本机服务连接，使用 OpenCode Go 密钥。服务商面向编码 Agent；实际任务是否可用以服务商响应为准。',
   },
   { id: 'custom', name: '自定义', baseURL: '', protocol: 'openai-chat', models: [] },
 ]

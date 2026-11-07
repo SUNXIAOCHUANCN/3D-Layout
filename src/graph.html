@@ -3,51 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
     <title>CoAgent 图视图</title>
     <link rel="icon" href="data:," />
     <style>
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        background: #0f1319;
-        color: #c9d1d9;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
-      }
-      #root {
-        height: 100%;
-      }
-      @keyframes coagent-pulse {
-        0%,
-        100% {
-          box-shadow: 0 0 0 0 rgba(76, 141, 255, 0.55);
-        }
-        50% {
-          box-shadow: 0 0 0 6px rgba(76, 141, 255, 0);
-        }
-      }
-      .react-flow__attribution {
-        display: none;
-      }
-      /* React Flow 自带样式是浅色的，这里压成与主应用一致的深色 */
-      .react-flow__controls {
-        box-shadow: none;
-        border: 1px solid #30363d;
-        border-radius: 6px;
-        overflow: hidden;
-      }
-      .react-flow__controls-button {
-        background: #161b22;
-        border-bottom: 1px solid #30363d;
-        color: #c9d1d9;
-      }
-      .react-flow__controls-button:hover {
-        background: #1f2630;
-      }
-      .react-flow__controls-button svg {
-        fill: currentColor;
-      }
+      /* 首帧底色与当前配色一致，避免刷新时闪一下白/黑 */
+      html { background: #100f0d; }
+      html[data-theme="light"] { background: #e2dccf; }
     </style>
+    <script>
+      // 与主应用共用同一条配色偏好（localStorage 键一致），开窗即同色
+      (function () {
+        try {
+          var t = localStorage.getItem('ui-theme-v1')
+          var q = new URLSearchParams(location.search).get('theme')
+          if (q === 'light' || q === 'dark') {
+            t = q
+          } else if (t !== 'light' && t !== 'dark') {
+            t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+          }
+          document.documentElement.dataset.theme = t
+          document.documentElement.style.colorScheme = t
+        } catch (e) {
+          /* 隐私模式等：交给应用内初始化 */
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

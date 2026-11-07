@@ -90,8 +90,8 @@ export const GENERATION_TOOLS: readonly AgentToolDef[] = [
   {
     name: 'terrain.generate', access: 'write', summary: '按参数生成高度场地形',
     description: '创建高度场地形。尺寸单位为米，随机种子使同一参数产生相同地形；地形加入场景事务，不自动移动其他对象。',
-    argsDoc: '{ width?, depth?, samples?, amplitude?, noiseScale?, seed?, position?, name? }',
-    schema: { type: 'object', properties: { width: { type: 'number', minimum: 1, maximum: 1000 }, depth: { type: 'number', minimum: 1, maximum: 1000 }, samples: { type: 'integer', minimum: 2, maximum: 257 }, amplitude: { type: 'number', minimum: 0, maximum: 100 }, noiseScale: { type: 'number', minimum: 0.01, maximum: 50 }, seed: { type: 'integer', minimum: -2147483648, maximum: 2147483647 }, position: vec3Schema, name: { type: 'string' } }, additionalProperties: false },
+    argsDoc: '{ width?, depth?, samples?, amplitude?, noiseScale?, octaves?, edgeFalloff?, seed?, position?, name? }',
+    schema: { type: 'object', properties: { width: { type: 'number', minimum: 1, maximum: 1000 }, depth: { type: 'number', minimum: 1, maximum: 1000 }, samples: { type: 'integer', minimum: 2, maximum: 257 }, amplitude: { type: 'number', minimum: 0, maximum: 100 }, noiseScale: { type: 'number', minimum: 0.01, maximum: 50, description: '跨越地形的噪声格数，越大起伏越密' }, octaves: { type: 'integer', minimum: 1, maximum: 6 }, edgeFalloff: { type: 'number', minimum: 0, maximum: 1 }, seed: { type: 'integer', minimum: -2147483648, maximum: 2147483647 }, position: vec3Schema, name: { type: 'string' } }, additionalProperties: false },
     exec(args, ctx) {
       if (!ctx.tx) throw new Error('地形生成需要编辑事务')
       const width = number(args, 'width', 20, 1, 1000), depth = number(args, 'depth', 20, 1, 1000)
@@ -100,8 +100,23 @@ export const GENERATION_TOOLS: readonly AgentToolDef[] = [
       const p = args.position ?? [0, 0, 0]
       if (!Array.isArray(p) || p.length !== 3 || !p.every(n => typeof n === 'number' && Number.isFinite(n))) throw new Error('position 必须为三个有限数字')
       if (args.name !== undefined && typeof args.name !== 'string') throw new Error('name 必须为字符串')
+      const octaves = number(args, 'octaves', 1, 1, 6)
+      const edgeFalloff = number(args, 'edgeFalloff', 0, 0, 1)
+      if (!Number.isInteger(octaves)) throw new Error('octaves 必须是整数')
       const heights: number[] = []
-      for (let z = 0; z < samples; z++) for (let x = 0; x < samples; x++) heights.push(noise(x / (samples - 1) * scale, z / (samples - 1) * scale, seed) * amplitude)
+      for (let z = 0; z < samples; z++) for (let x = 0; x < samples; x++) {
+        const u = x / (samples - 1), v = z / (samples - 1)
+        let sum = 0, weights = 0
+        for (let octave = 0; octave < octaves; octave++) {
+          const frequency = 2 ** octave
+          const weight = 1 / frequency
+          sum += noise(u * scale * frequency, v * scale * frequency, seed + octave) * weight
+          weights += weight
+        }
+        const edge = 2 * Math.min(u, v, 1 - u, 1 - v)
+        const blend = edgeFalloff ? Math.min(1, edge / edgeFalloff) : 1
+        heights.push(sum / weights * amplitude * blend * blend * (3 - 2 * blend))
+      }
       const id = `terrain-${crypto.randomUUID()}`
       const terrain = { width, depth, samplesX: samples, samplesZ: samples, heights, seed }
       if (!edit.addAsset({ id, ref: 'generated/terrain', name: (args.name as string | undefined) ?? '地形', terrain, transform: { position: p as Vec3, rotation: [0, 0, 0] } }, { source: 'agent', tx: ctx.tx })) throw new Error('添加地形失败')
@@ -144,7 +159,8 @@ export const GENERATION_TOOLS: readonly AgentToolDef[] = [
     schema: { type: 'object', required: ['assetId', 'color'], properties: { assetId: { type: 'string' }, color: { type: 'string', pattern: '^#[0-9a-fA-F]{6}$' }, roughness: { type: 'number', minimum: 0, maximum: 1 }, metalness: { type: 'number', minimum: 0, maximum: 1 } }, additionalProperties: false },
     exec(args, ctx) {
       if (!ctx.tx) throw new Error('材质修改需要编辑事务')
-      const id = assetId(args); find(id)
+      const id = assetId(args); const target = find(id)
+      if (target.terrain?.surface) throw new Error('分层地形请使用 terrain.surface 工具；先 reset 才能整体覆盖')
       if (typeof args.color !== 'string' || !/^#[0-9a-f]{6}$/i.test(args.color)) throw new Error('color 必须为 #RRGGBB')
       const materialOverride = { color: args.color, roughness: number(args, 'roughness', 0.65, 0, 1), metalness: number(args, 'metalness', 0, 0, 1) }
       if (!edit.updateAsset(id, { materialOverride }, { source: 'agent', tx: ctx.tx })) throw new Error('应用材质失败')
@@ -155,7 +171,8 @@ export const GENERATION_TOOLS: readonly AgentToolDef[] = [
     name: 'material.reset', access: 'write', summary: '恢复对象原始材质', description: '清除指定对象的实例级材质覆盖。', argsDoc: '{ assetId }', schema: objectSchema,
     exec(args, ctx) {
       if (!ctx.tx) throw new Error('材质修改需要编辑事务')
-      const id = assetId(args); find(id)
+      const id = assetId(args); const target = find(id)
+      if (target.terrain?.surface) throw new Error('分层地形请使用 terrain.surface 工具；先 reset 才能整体覆盖')
       if (!edit.updateAsset(id, { materialOverride: undefined }, { source: 'agent', tx: ctx.tx })) throw new Error('恢复材质失败')
       return { assetId: id, materialOverride: null }
     },

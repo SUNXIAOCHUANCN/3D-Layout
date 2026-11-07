@@ -10,16 +10,17 @@ import type { CoAgentEventEnvelope, CoAgentPhase, PartitionSnapshot } from './co
 import { deriveRunProgress, formatEvent } from './uiProjection'
 
 const STYLE_BAR: React.CSSProperties = {
-  height: 6,
-  borderRadius: 3,
-  background: '#2d333b',
+  height: 4,
+  borderRadius: 2,
+  background: 'var(--field)',
+  border: '1px solid var(--rule)',
   overflow: 'hidden',
   margin: '6px 0 4px',
 }
 const STYLE_FILL: React.CSSProperties = {
   height: '100%',
-  background: 'linear-gradient(90deg,#4c8dff,#6ee7b7)',
-  transition: 'width .25s ease',
+  background: 'linear-gradient(90deg, var(--accent), var(--ochre))',
+  transition: 'width .25s var(--ease)',
 }
 
 /** 简单计时：active 变 true 时重新开始，结束后保留总耗时 */
@@ -49,16 +50,19 @@ export function RunProgress(props: { events: CoAgentEventEnvelope[]; phase: CoAg
   const latest = props.events.slice(-120)
   const failed = props.phase === 'rolled_back' || props.phase === 'failed' || props.phase === 'error_locked'
   const fillStyle: React.CSSProperties = failed
-    ? { ...STYLE_FILL, background: 'linear-gradient(90deg,#f85149,#f0b429)', transition: 'none' }
+    ? { ...STYLE_FILL, background: 'linear-gradient(90deg, var(--danger), var(--ochre))', transition: 'none' }
     : STYLE_FILL
 
   return (
     <div className="agent-section">
-      <div className="agent-task-label">
-        进度 {view.percent}%
-        {view.total > 0 ? `（${view.passed}/${view.total} 任务${view.failed > 0 ? `，失败 ${view.failed}` : ''}）` : '（按阶段估算）'}
-        {props.busy ? `，${seconds}s` : ''}
-        {failed ? '，已停止' : ''}
+      <div className="cp-progress-label">
+        <span className="micro">进度</span>
+        <b>{view.percent}%</b>
+        <span>
+          {view.total > 0 ? `${view.passed}/${view.total} 任务${view.failed > 0 ? `，失败 ${view.failed}` : ''}` : '按阶段估算'}
+          {props.busy ? ` · ${seconds}s` : ''}
+          {failed ? ' · 已停止' : ''}
+        </span>
       </div>
       <div style={STYLE_BAR}>
         <div style={{ ...fillStyle, width: `${view.percent}%` }} />
@@ -67,7 +71,7 @@ export function RunProgress(props: { events: CoAgentEventEnvelope[]; phase: CoAg
         阶段：{view.step}｜当前：{view.current}
       </div>
       <details open={props.busy || failed} style={{ marginTop: 4 }}>
-        <summary style={{ cursor: 'pointer', color: '#9aa4b2', fontSize: 12 }}>
+        <summary style={{ cursor: 'pointer', color: 'var(--ink-3)', fontSize: 12 }}>
           执行明细（{props.events.length} 条事件，可折叠）
         </summary>
         <div
@@ -77,8 +81,8 @@ export function RunProgress(props: { events: CoAgentEventEnvelope[]; phase: CoAg
             fontFamily: 'ui-monospace, Consolas, monospace',
             fontSize: 11,
             lineHeight: 1.5,
-            color: '#9aa4b2',
-            borderLeft: '2px solid #2d333b',
+            color: 'var(--ink-3)',
+            borderLeft: '2px solid var(--rule)',
             paddingLeft: 6,
             marginTop: 4,
           }}
@@ -94,7 +98,14 @@ export function RunProgress(props: { events: CoAgentEventEnvelope[]; phase: CoAg
   )
 }
 
-const PALETTE = ['#4c8dff', '#6ee7b7', '#f0b429', '#f97583', '#b392f0', '#79c0ff']
+const PALETTE = [
+  'var(--chart-1)',
+  'var(--chart-2)',
+  'var(--chart-3)',
+  'var(--chart-4)',
+  'var(--chart-5)',
+  'var(--chart-6)',
+]
 
 /** 分区俯视示意（俯视图：画面上方 = 世界 -Z，与鸟瞰相机一致） */
 export function PartitionPreview(props: { partition: PartitionSnapshot | null }) {
@@ -131,7 +142,7 @@ export function PartitionPreview(props: { partition: PartitionSnapshot | null })
   return (
     <svg
       viewBox={`0 0 ${VW} ${VH}`}
-      style={{ width: '100%', height: previewHeight, background: '#0f1319', border: '1px solid #2d333b', borderRadius: 4 }}
+      style={{ width: '100%', height: previewHeight, background: 'var(--field)', border: '1px solid var(--rule-2)', borderRadius: 3 }}
       role="img"
       aria-label="分区俯视示意"
     >
@@ -142,14 +153,14 @@ export function PartitionPreview(props: { partition: PartitionSnapshot | null })
         const color = PALETTE[i % PALETTE.length]
         return (
           <g key={r.id}>
-            <polygon points={points} fill={`${color}22`} stroke={color} strokeWidth="1.2" />
+            <polygon points={points} fill={color} fillOpacity={0.14} stroke={color} strokeWidth="1.2" />
             <text x={cx} y={cy} fill={color} fontSize="8" textAnchor="middle" dominantBaseline="middle">
               {r.name}
             </text>
           </g>
         )
       })}
-      <text x={4} y={VH - 3} fill="#586069" fontSize="7">
+      <text x={4} y={VH - 3} fill="var(--ink-3)" fontSize="7">
         {`x:${minX.toFixed(1)}~${maxX.toFixed(1)}  z:${minZ.toFixed(1)}~${maxZ.toFixed(1)}（上方=-Z）`}
       </text>
     </svg>

@@ -1,3 +1,4 @@
+import { newLlmSession } from '../llm-shared/request'
 import { bus } from '../../core/events'
 import { useAgentStore } from './agentStore'
 import { llmChat } from './llmClient'
@@ -59,9 +60,10 @@ const SYSTEM_PROMPT = `你是 3D-Layout 场景编辑器里的布局助手，通�
 type CallResultMsg = Extract<AgentOutbound, { kind: 'call_result' }>
 
 export class LlmChatTransport implements AgentTransport {
-  readonly name = '浏览器直连 LLM'
+  readonly name = '本地 LLM'
   private handlers: AgentTransportHandlers | null = null
   private turns: LlmTurn[] = []
+  private sessionId = newLlmSession()
   private ac: AbortController | null = null
   private pendingCalls = new Map<string, (r: CallResultMsg) => void>()
   private pendingVerdict: ((v: 'accepted' | 'rejected') => void) | null = null
@@ -74,6 +76,7 @@ export class LlmChatTransport implements AgentTransport {
     this.offBus = bus.on('scene:changed', () => {
       if (this.turns.length > 0) {
         this.turns = []
+        this.sessionId = newLlmSession()
         useAgentStore.getState().pushChat('note', '场景已切换，对话已重置')
       }
     })
@@ -107,6 +110,7 @@ export class LlmChatTransport implements AgentTransport {
 
   resetConversation(): void {
     this.turns = []
+    this.sessionId = newLlmSession()
     recorder.reset()
     useAgentStore.getState().clearChat()
   }
@@ -152,6 +156,7 @@ export class LlmChatTransport implements AgentTransport {
       let result: LlmChatResult
       try {
         result = await llmChat({
+          sessionId: this.sessionId,
           settings,
           system: SYSTEM_PROMPT,
           turns: this.turns,

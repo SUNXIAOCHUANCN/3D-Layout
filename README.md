@@ -139,7 +139,7 @@ Vite 8 · React 19 · TypeScript · three.js（WebGL2）· @react-three/fiber ·
 
 明确不开放：直接操作 three 对象、保存/落盘、切场景/相机/改选中、任务事务外的写操作、白名单外的任何工具。
 
-**聊天式编辑 + API 设置**：面板是对话框（流式输出、工具调用过程行、可停止/清空）；⚙ 设置 打开 API 设置窗口——**接入方式三选一**（OpenAI Chat `/chat/completions`、OpenAI Response `/responses`、Anthropic `/v1/messages`），**预设 9 家厂商**（OpenAI / Anthropic / Gemini / Grok / DeepSeek / Qwen / GLM / Kimi / Xiaomi MiMo，另加自定义），含 Base URL、API Key（仅存本浏览器 localStorage）、模型名（建议值可自由输入）与**测试连接**。浏览器直连厂商 API（Anthropic 自动附带浏览器直连声明头），无后端即可用真实模型驱动编辑。
+**聊天式编辑 + API 设置**：面板是对话框（流式输出、工具调用过程行、可停止/清空）；⚙ 设置 打开 API 设置窗口——**接入方式三选一**（OpenAI Chat `/chat/completions`、OpenAI Response `/responses`、Anthropic `/v1/messages`），**预设 10 家服务商**（OpenAI / Anthropic / Gemini / Grok / DeepSeek / Qwen / GLM / Kimi / Xiaomi MiMo / OpenCode Go，另加自定义），含 Base URL、API Key（仅存本浏览器 localStorage）、模型名（建议值可自由输入）与**测试连接**。其他厂商通过浏览器直连 API（Anthropic 自动附带浏览器直连声明头），OpenCode Go 通过现有本地服务转发。
 
 **权限模式与提案式事务**：面板可切换两种权限模式——**变更前确认**（默认）：一个任务 = 一个 `edit.begin(label, 'agent')` 事务，写操作即时生效到视口供人查看，`task_end` 后面板出现「接受（入账）/ 拒绝（回滚）」，预览期人工编辑自动暂停；**自动编辑**：任务完成直接入账，不经人工裁决。两种模式下任务入账后都会**自动保存** `scene.json`（dev/preview 走保存接口，静态托管降级为下载）。接受后进统一历史（带 Agent 标签），可像人工操作一样撤销/回退；拒绝则全部回滚且不留重做痕迹，裁决结果会作为系统消息回告模型，模型可调整后重新提案。关插件 = 未裁决提案自动回滚。
 
@@ -152,3 +152,18 @@ Vite 8 · React 19 · TypeScript · three.js（WebGL2）· @react-three/fiber ·
 
 - **二期 · 编辑器**：TransformControls gizmo、属性面板、多选、撤销/重做（命令事务化）
 - **三期 · Agent**：前端全链路已就绪（modules/agent：权限白名单 + 提案式事务 + 无UI截图 + 浏览器直连聊天编辑[OpenAI Chat/Response/Anthropic 三协议、9 厂商预设] + loopback/WS 双传输）；待办：`validate_layout` 布局校验、VLM 截图校验闭环、远端 Node Harness（可选，WS 协议已留）
+
+
+## OpenCode Go 模型接入
+
+在 AI 编辑的 API 设置中新增 **OpenCode Go** 档案，填写 Go 密钥，选择 DeepSeek 或 MiMo 模型，测试后保存并设为当前。
+默认 Base URL 为 `https://opencode.ai/inference/go/openai/v1`，协议为 **OpenAI Chat**；模型名可手动输入。
+旧的自定义档案只要使用 `opencode.ai` 下的 Go 路径，也会自动使用本地转发。
+
+- 开发启动与 `pnpm preview` 共用 `/api/llm/request`，无需额外启动服务。修改后须重启原有服务。
+- 本地转发仅接受回环地址上的同源请求，并仅连接固定的 OpenCode Go Chat 接口；不支持任意代理目标或局域网访问。
+- 密钥仍保存在浏览器 localStorage，调用时经本机服务转发，不在服务端落盘或记入日志。
+- 上游收到真实应用标识 `3d-layout/0.1.0` 和稳定会话 ID；清空聊天会更新 ID，CoAgent 每次运行使用自己的 ID。
+- Go 面向编码 Agent。3D 布局任务是否可用由服务商决定；连接成功不代表工具调用、图片输入及实际任务均受支持。
+- 纯静态部署没有转发接口，需另配服务端。浏览器的代理扩展也不一定作用于 Node 本地服务，网络问题需检查服务进程的网络环境。
+- 验证：在 `src` 中运行 `pnpm test:llm`、`pnpm test:coagent` 和 `pnpm build`。真实密钥在设置中输入，不写入测试脚本。

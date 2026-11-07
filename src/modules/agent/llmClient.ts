@@ -1,4 +1,5 @@
-import type { LlmProtocol, LlmSettings } from './llmSettings'
+import { requestLlm, joinLlmUrl as joinUrl, newLlmSession, redactLlmError } from '../llm-shared/request'
+import type { LlmSettings } from './llmSettings'
 
 /**
  * LLM 流式客户端 —— 三种 wire 协议适配到统一接口：
@@ -6,7 +7,7 @@ import type { LlmProtocol, LlmSettings } from './llmSettings'
  *   openai-response  POST {base}/responses（OpenAI 新一代接口）
  *   anthropic        POST {base}/v1/messages（Claude 系，浏览器直连需专用头）
  * 统一产出：文本增量流式回调 + 完整工具调用列表（参数已 JSON.parse）。
- * 浏览器直连 fetch；CORS 失败/HTTP 错误统一翻成可读中文错误。
+ * 共享请求层：OpenCode Go 经本地服务转发，其他厂商保持浏览器直连。
  */
 
 // ---------- 统一对话格式 ----------
@@ -48,6 +49,7 @@ export interface LlmChatResult {
 
 export interface LlmChatOptions {
   settings: LlmSettings
+  sessionId?: string
   system: string
   turns: LlmTurn[]
   tools: LlmToolSpec[]
@@ -57,23 +59,6 @@ export interface LlmChatOptions {
 }
 
 // ---------- 基础设施 ----------
-
-function joinUrl(base: string, path: string): string {
-  return base.replace(/\/+$/, '') + path
-}
-
-function headersFor(protocol: LlmProtocol, apiKey: string): Record<string, string> {
-  const h: Record<string, string> = { 'Content-Type': 'application/json' }
-  if (protocol === 'anthropic') {
-    h['x-api-key'] = apiKey
-    h['anthropic-version'] = '2023-06-01'
-    // Anthropic 官方要求的浏览器直连声明头
-    h['anthropic-dangerous-direct-browser-access'] = 'true'
-  } else {
-    h['Authorization'] = `Bearer ${apiKey}`
-  }
-  return h
-}
 
 function parseArgs(raw: string): Record<string, unknown> {
   try {
@@ -104,23 +89,10 @@ async function postSse(
   url: string,
   body: unknown,
   signal: AbortSignal,
+  sessionId?: string,
 ): Promise<Response> {
-  let res: Response
-  try {
-    res = await fetch(url, {
-      method: 'POST',
-      headers: headersFor(settings.protocol, settings.apiKey),
-      body: JSON.stringify(body),
-      signal,
-    })
-  } catch (e) {
-    if (e instanceof DOMException && e.name === 'AbortError') throw e
-    throw new Error('网络请求失败：可能是 CORS（该服务商不允许浏览器直连）或网络不可达，请检查地址/代理')
-  }
-  if (!res.ok || !res.body) {
-    const detail = await res.text().catch(() => '')
-    throw new Error(`HTTP ${res.status}：${detail.slice(0, 300)}`)
-  }
+  const res = await requestLlm(settings, url, JSON.stringify(body), signal, sessionId)
+  if (!res.body) throw new Error('模型服务返回空响应')
   return res
 }
 
@@ -223,7 +195,7 @@ async function openaiChat(o: LlmChatOptions): Promise<LlmChatResult> {
         }
       : {}),
   }
-  const res = await postSse(o.settings, joinUrl(o.settings.baseURL, '/chat/completions'), body, o.signal)
+  const res = await postSse(o.settings, joinUrl(o.settings.baseURL, '/chat/completions'), body, o.signal, o.sessionId)
 
   let text = ''
   const acc = new Map<number, { id: string; name: string; args: string }>()
@@ -316,7 +288,7 @@ async function openaiResponse(o: LlmChatOptions): Promise<LlmChatResult> {
         }
       : {}),
   }
-  const res = await postSse(o.settings, joinUrl(o.settings.baseURL, '/responses'), body, o.signal)
+  const res = await postSse(o.settings, joinUrl(o.settings.baseURL, '/responses'), body, o.signal, o.sessionId)
 
   let text = ''
   let incomplete = false
@@ -423,7 +395,7 @@ async function anthropicMessages(o: LlmChatOptions): Promise<LlmChatResult> {
         }
       : {}),
   }
-  const res = await postSse(o.settings, joinUrl(o.settings.baseURL, '/v1/messages'), body, o.signal)
+  const res = await postSse(o.settings, joinUrl(o.settings.baseURL, '/v1/messages'), body, o.signal, o.sessionId)
 
   let text = ''
   let stopReason: LlmStopReason = 'end'
@@ -505,24 +477,13 @@ export async function testLlmConnection(
           (j.choices as Array<{ message?: { content?: string } }> | undefined)?.[0]?.message?.content ?? '',
         )
     }
-    let res: Response
-    try {
-      res = await fetch(url, {
-        method: 'POST',
-        headers: headersFor(s.protocol, s.apiKey),
-        body: JSON.stringify(body),
-        signal: ac.signal,
-      })
-    } catch {
-      return { ok: false, message: '网络请求失败：可能是 CORS（该服务商不允许浏览器直连）或地址错误' }
-    }
-    const j = (await res.json().catch(() => null)) as Record<string, unknown> | null
-    if (!res.ok) {
-      const detail = JSON.stringify(j ?? {}).slice(0, 300)
-      return { ok: false, message: `HTTP ${res.status}：${detail}` }
-    }
+    const res = await requestLlm(s, url, JSON.stringify(body), ac.signal, newLlmSession())
+    const j = (await res.json()) as Record<string, unknown>
     const reply = j ? pick(j).slice(0, 60) : ''
     return { ok: true, message: reply ? `连接成功，模型回复：${reply}` : '连接成功' }
+  } catch (error) {
+    return { ok: false, message: ac.signal.aborted ? '连接测试超时（20 秒），请检查网络或稍后重试'
+      : redactLlmError(error instanceof Error ? error.message : String(error), s.apiKey) }
   } finally {
     window.clearTimeout(timer)
   }

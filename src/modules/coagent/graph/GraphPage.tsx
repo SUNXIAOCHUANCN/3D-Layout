@@ -7,6 +7,7 @@
  * 3. 底部时间轴：最近的节点边界事件，点一条也能定位到节点。
  *
  * 只读投影：本页不发任何业务请求，也不回写主应用。
+ * 外观走「制图台」：纸面做节点、墨线做边、朱砂标着正在跑的那个；配色与主应用同步。
  */
 
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -26,40 +27,30 @@ import type { CoAgentEventEnvelope } from '../contracts'
 import { deriveView, formatEventLine, relatedEvents, str, type VisualState } from './derive'
 import { buildFlow, type GraphNodeData } from './toFlow'
 import { useGraphFeed } from './useGraphFeed'
+import { BrandMark } from '../../../ui/icons'
+import { ThemeSwitch } from '../../../ui/ThemeSwitch'
+import { useTheme } from '../../../ui/theme'
 
-const TONE: Record<VisualState, { border: string; dot: string; text: string; bg: string }> = {
-  idle: { border: '#2d333b', dot: '#586069', text: '#9aa4b2', bg: '#161b22' },
-  running: { border: '#4c8dff', dot: '#4c8dff', text: '#dbe9ff', bg: '#16202e' },
-  ok: { border: '#2ea043', dot: '#3fb950', text: '#d7f5dd', bg: '#131c15' },
-  error: { border: '#f85149', dot: '#f85149', text: '#ffd7d5', bg: '#211314' },
+/** 节点状态 → 类名（颜色全在 graph.css 里，按主题切换） */
+const STATE_CLASS: Record<VisualState, string> = {
+  idle: 'is-idle',
+  running: 'is-running',
+  ok: 'is-ok',
+  error: 'is-error',
 }
 
 function CoAgentNode({ data, selected }: NodeProps<Node<GraphNodeData>>) {
   const visual = data.visual
-  const tone = TONE[visual.state]
 
   if (data.kind !== 'node') {
     return (
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: `1px dashed ${tone.border}`,
-          borderRadius: 999,
-          color: '#8b949e',
-          fontSize: 11,
-          background: 'transparent',
-        }}
-      >
-        {data.kind === 'start' ? '▶ start' : '■ end'}
+      <div className="gp-term">
         {data.kind === 'start' ? (
-          <Handle type="source" position={Position.Bottom} style={{ opacity: 0 }} />
+          <Handle type="source" position={Position.Bottom} className="gp-handle" />
         ) : (
-          <Handle type="target" position={Position.Top} style={{ opacity: 0 }} />
+          <Handle type="target" position={Position.Top} className="gp-handle" />
         )}
+        {data.kind === 'start' ? 'START' : 'END'}
       </div>
     )
   }
@@ -74,30 +65,19 @@ function CoAgentNode({ data, selected }: NodeProps<Node<GraphNodeData>>) {
           : '未执行'
 
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-        boxSizing: 'border-box',
-        padding: '6px 10px',
-        border: `1.5px solid ${selected ? '#79c0ff' : tone.border}`,
-        borderRadius: 8,
-        background: tone.bg,
-        animation: visual.state === 'running' ? 'coagent-pulse 1.6s ease-in-out infinite' : undefined,
-      }}
-    >
-      <Handle type="target" position={Position.Top} style={{ opacity: 0 }} />
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 16 }}>
-        <span style={{ width: 7, height: 7, borderRadius: '50%', background: tone.dot, flex: '0 0 auto' }} />
-        <span style={{ fontSize: 12, fontWeight: 600, color: tone.text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+    <div className={`gp-node ${STATE_CLASS[visual.state]}${selected ? ' is-selected' : ''}`}>
+      <Handle type="target" position={Position.Top} className="gp-handle" />
+      <div className="gp-node-head">
+        <span className="gp-node-dot" />
+        <span className="gp-node-title" title={data.label}>
           {data.label}
         </span>
       </div>
-      <div style={{ fontSize: 10, color: '#8b949e', marginTop: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-        {label}
-        {visual.substep ? ` · ${visual.substep}` : ''}
+      <div className="gp-node-foot">
+        <span>{label}</span>
+        {visual.substep ? <span className="gp-node-sub">· {visual.substep}</span> : null}
       </div>
-      <Handle type="source" position={Position.Bottom} style={{ opacity: 0 }} />
+      <Handle type="source" position={Position.Bottom} className="gp-handle" />
     </div>
   )
 }
@@ -115,13 +95,31 @@ function useNow(active: boolean): number {
 }
 
 function seconds(ms: number): string {
-  return `${(ms / 1000).toFixed(1)}s`
+  return (ms / 1000).toFixed(1)
 }
 
 function off(e: CoAgentEventEnvelope, startedAt: number | null): string {
   const t = Date.parse(e.time)
   if (!Number.isFinite(t) || startedAt === null) return ''
   return `+${((t - startedAt) / 1000).toFixed(2)}s`
+}
+
+/**
+ * 从 CSS 变量里取实际色值：边的描边与网格点要的是具体颜色
+ * （SVG 的 marker 用呈现属性，吃不了 var()），主题一换就重取。
+ */
+function useFlowColors(): { edge: string; edgeConditional: string; grid: string } {
+  const theme = useTheme()
+  return useMemo(() => {
+    const style = typeof window === 'undefined' ? null : getComputedStyle(document.documentElement)
+    const read = (name: string, fallback: string): string => style?.getPropertyValue(name).trim() || fallback
+    return {
+      edge: read('--rule-2', '#3d4654'),
+      edgeConditional: read('--ink-3', '#6b7280'),
+      grid: read('--grid', '#1b222b'),
+    }
+    // theme 变化时重取（此时 data-theme 已经落位）
+  }, [theme])
 }
 
 function Header(props: {
@@ -137,64 +135,49 @@ function Header(props: {
   onToggleFollow: () => void
   onFit: () => void
 }) {
-  const toneColor = TONE[props.tone === 'idle' ? 'idle' : props.tone === 'running' ? 'running' : props.tone === 'ok' ? 'ok' : 'error']
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 12,
-        padding: '10px 14px',
-        borderBottom: '1px solid #21262d',
-        background: '#0d1117',
-        flex: '0 0 auto',
-      }}
-    >
-      <div style={{ fontSize: 13, fontWeight: 700, color: '#e6edf3' }}>CoAgent 图视图</div>
-      <span
-        style={{
-          fontSize: 11,
-          padding: '2px 8px',
-          borderRadius: 999,
-          border: `1px solid ${toneColor.border}`,
-          color: toneColor.text,
-          background: toneColor.bg,
-        }}
-      >
+    <header className="gp-bar">
+      <span className="gp-brand">
+        <BrandMark size={14} />
+        <span className="gp-brand-name">COAGENT</span>
+      </span>
+      <span className="vrule" />
+      <span className="gp-title">图视图</span>
+      <span className="sheet-meta">
+        LANGGRAPH / {props.nodeCount}N · {props.edgeCount}E
+      </span>
+
+      <span className={`gp-phase is-${props.tone}`}>
+        <span className="gp-phase-dot" />
         {props.label}
       </span>
-      {props.activeCount > 0 ? (
-        <span style={{ fontSize: 11, color: '#79c0ff' }}>{props.activeCount} 个节点并行</span>
+      {props.activeCount > 0 ? <span className="gp-active">{props.activeCount} 并行</span> : null}
+
+      {props.elapsedMs > 0 ? (
+        <span className="readout" title="本轮已用时">
+          <b>{seconds(props.elapsedMs)}</b>
+          <i>s</i>
+        </span>
       ) : null}
-      <span style={{ fontSize: 11, color: '#8b949e' }}>
-        {props.nodeCount} 节点 / {props.edgeCount} 边
-        {props.elapsedMs > 0 ? ` · ${seconds(props.elapsedMs)}` : ''}
+
+      <span className="spacer" />
+
+      <span className={`gp-link${props.connected ? ' on' : ''}`} title={props.connected ? '已收到主应用广播' : '等待主应用广播'}>
+        <span className="gp-link-dot" />
+        {props.connected ? '已连接主应用' : '等待主应用'}
       </span>
-      <span style={{ flex: 1 }} />
-      <span style={{ fontSize: 11, color: props.connected ? '#3fb950' : '#8b949e' }}>
-        {props.connected ? '● 已连接主应用' : '○ 等待主应用'}
+      <span className="gp-runid" title={props.runId ?? '本轮 runId'}>
+        {props.runId ?? '—'}
       </span>
-      <span style={{ fontSize: 11, color: '#586069', fontFamily: 'ui-monospace, Consolas, monospace' }}>{props.runId ?? '—'}</span>
-      <button type="button" onClick={props.onToggleFollow} style={btn(props.follow)}>
+      <button type="button" className={`btn${props.follow ? ' is-on' : ''}`} onClick={props.onToggleFollow} title="视图自动跟到正在跑的节点">
         跟随当前节点
       </button>
-      <button type="button" onClick={props.onFit} style={btn(false)}>
+      <button type="button" className="btn" onClick={props.onFit} title="缩放到看得见整张图">
         适应窗口
       </button>
-    </div>
+      <ThemeSwitch />
+    </header>
   )
-}
-
-function btn(active: boolean): React.CSSProperties {
-  return {
-    fontSize: 11,
-    padding: '3px 8px',
-    borderRadius: 6,
-    cursor: 'pointer',
-    border: `1px solid ${active ? '#4c8dff' : '#30363d'}`,
-    background: active ? '#16202e' : '#161b22',
-    color: active ? '#79c0ff' : '#8b949e',
-  }
 }
 
 function Drawer(props: { node: string; events: CoAgentEventEnvelope[]; startedAt: number | null; onClose: () => void }) {
@@ -205,38 +188,50 @@ function Drawer(props: { node: string; events: CoAgentEventEnvelope[]; startedAt
   const message = visual.message ?? str(lastNodeEvent?.payload.message)
 
   return (
-    <div
-      style={{
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        bottom: 0,
-        width: 320,
-        background: '#0d1117',
-        borderLeft: '1px solid #21262d',
-        padding: 12,
-        overflowY: 'auto',
-        fontSize: 12,
-        zIndex: 5,
-      }}
-    >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <span style={{ fontSize: 13, fontWeight: 700, color: '#e6edf3', flex: 1 }}>{props.node}</span>
-        <button type="button" onClick={props.onClose} style={btn(false)}>
+    <aside className="gp-drawer">
+      <div className="gp-drawer-head">
+        <span className="gp-drawer-title" title={props.node}>
+          {props.node}
+        </span>
+        <button type="button" className="btn" onClick={props.onClose}>
           关闭
         </button>
       </div>
-      <div style={{ marginTop: 8, color: '#8b949e', lineHeight: 1.7 }}>
-        <div>状态：{visual.state === 'running' ? '执行中' : visual.state === 'ok' ? '已完成' : visual.state === 'error' ? '失败' : '未执行'}</div>
-        {visual.ms !== undefined ? <div>耗时：{visual.ms}ms</div> : null}
-        {visual.substep ? <div>子步骤：{visual.substep}</div> : null}
-        {message ? <div style={{ color: '#ff9c96' }}>错误：{message}</div> : null}
+
+      <dl className="gp-kv">
+        <dt>状态</dt>
+        <dd>
+          {visual.state === 'running' ? '执行中' : visual.state === 'ok' ? '已完成' : visual.state === 'error' ? '失败' : '未执行'}
+        </dd>
+        {visual.ms !== undefined ? (
+          <>
+            <dt>耗时</dt>
+            <dd className="mono">{visual.ms} ms</dd>
+          </>
+        ) : null}
+        {visual.substep ? (
+          <>
+            <dt>子步骤</dt>
+            <dd className="mono">{visual.substep}</dd>
+          </>
+        ) : null}
+        {message ? (
+          <>
+            <dt>错误</dt>
+            <dd className="is-error">{message}</dd>
+          </>
+        ) : null}
+      </dl>
+
+      <div className="gp-subhead">相关事件 · {related.length}</div>
+      <div className="gp-events">
+        {related.length === 0 ? (
+          <span className="gp-events-empty">（无）</span>
+        ) : (
+          related.map(e => <div key={e.eventSeq}>{formatEventLine(e)}</div>)
+        )}
       </div>
-      <div style={{ marginTop: 12, fontSize: 11, color: '#6e7681' }}>相关事件（最近 {related.length} 条）</div>
-      <div style={{ marginTop: 4, fontFamily: 'ui-monospace, Consolas, monospace', fontSize: 10.5, lineHeight: 1.6, color: '#9aa4b2' }}>
-        {related.length === 0 ? <div>（无）</div> : related.map(e => <div key={e.eventSeq}>{formatEventLine(e)}</div>)}
-      </div>
-    </div>
+    </aside>
   )
 }
 
@@ -244,7 +239,8 @@ function GraphView() {
   const feed = useGraphFeed()
   const view = useMemo(() => deriveView(feed.events, feed.outcome), [feed.events, feed.outcome])
   const topo = feed.topologies.main
-  const { nodes, edges } = useMemo(() => buildFlow(topo, view.visuals), [topo, view.visuals])
+  const colors = useFlowColors()
+  const { nodes, edges } = useMemo(() => buildFlow(topo, view.visuals, colors), [topo, view.visuals, colors])
   const [selected, setSelected] = useState<string | null>(null)
   // 默认关：先给"整张图"的全景（找得到上下文）；想看"当前在哪"再点右上角跟随
   const [follow, setFollow] = useState(false)
@@ -275,7 +271,7 @@ function GraphView() {
   const elapsedMs = view.startedAt ? Math.max(0, (view.lastAt ?? now) - view.startedAt) : 0
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+    <div className="gp">
       <Header
         runId={feed.runId}
         connected={feed.connected}
@@ -290,8 +286,9 @@ function GraphView() {
         onFit={fit}
       />
 
-      <div style={{ position: 'relative', flex: '1 1 auto', minHeight: 0 }}>
+      <div className="gp-canvas">
         <ReactFlow
+          className="gp-flow"
           nodes={nodes}
           edges={edges}
           nodeTypes={nodeTypes}
@@ -303,29 +300,15 @@ function GraphView() {
           proOptions={{ hideAttribution: true }}
           onNodeClick={(_, node) => setSelected(node.id)}
           onPaneClick={() => setSelected(null)}
-          style={{ background: '#0f1319' }}
         >
-          <Background gap={18} color="#1b222b" />
+          <Background gap={18} size={1} color={colors.grid} />
           <Controls showInteractive={false} />
         </ReactFlow>
 
         {nodes.length === 0 ? (
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexDirection: 'column',
-              gap: 6,
-              pointerEvents: 'none',
-              color: '#586069',
-              fontSize: 12,
-            }}
-          >
-            <div style={{ fontSize: 14, color: '#8b949e' }}>等待 CoAgent 运行…</div>
-            <div>在主应用里点「开始」，图拓扑会实时出现在这里（本轮结束前不会消失）</div>
+          <div className="gp-empty">
+            <div className="gp-empty-title">等待 CoAgent 运行…</div>
+            <div className="gp-empty-note">在主应用里点「开始」，图拓扑会实时出现在这里（本轮结束前不会消失）</div>
           </div>
         ) : null}
 
@@ -334,30 +317,30 @@ function GraphView() {
         ) : null}
       </div>
 
-      <div style={{ flex: '0 0 auto', borderTop: '1px solid #21262d', background: '#0d1117', padding: '6px 12px', maxHeight: 132, overflowY: 'auto' }}>
-        <div style={{ fontSize: 10.5, color: '#6e7681', marginBottom: 2 }}>时间轴（节点边界，最近 12 条）</div>
+      <div className="gp-timeline">
+        <div className="gp-timeline-head">
+          <span className="sheet-meta">时间轴 / 节点边界 · 最近 12 条</span>
+        </div>
         {timeline.length === 0 ? (
-          <div style={{ fontSize: 11, color: '#484f58' }}>（还没有节点事件）</div>
+          <div className="gp-timeline-empty">（还没有节点事件）</div>
         ) : (
           timeline.map(e => {
             const node = str(e.payload.node)
             const running = e.type === 'node.started'
+            const failed = !running && e.payload.status === 'error'
+            const cls = `gp-tl-row${node ? ' is-clickable' : ''}${running ? ' is-running' : failed ? ' is-error' : ' is-ok'}`
             return (
               <div
                 key={e.eventSeq}
-                onClick={() => setSelected(node)}
-                style={{
-                  fontSize: 11,
-                  fontFamily: 'ui-monospace, Consolas, monospace',
-                  lineHeight: 1.65,
-                  color: running ? '#79c0ff' : '#9aa4b2',
-                  cursor: node ? 'pointer' : 'default',
-                }}
+                className={cls}
+                onClick={() => (node ? setSelected(node) : undefined)}
               >
-                <span style={{ color: '#484f58', display: 'inline-block', width: 62 }}>{off(e, view.startedAt)}</span>
-                {running ? '▸ ' : e.payload.status === 'error' ? '✗ ' : '✓ '}
-                {node}
-                {!running && typeof e.payload.ms === 'number' ? ` ${e.payload.ms}ms` : ''}
+                <span className="gp-tl-off">{off(e, view.startedAt)}</span>
+                <span className="gp-tl-name">
+                  {running ? '▸ ' : failed ? '✗ ' : '✓ '}
+                  {node}
+                  {!running && typeof e.payload.ms === 'number' ? ` · ${e.payload.ms}ms` : ''}
+                </span>
               </div>
             )
           })

@@ -1,3 +1,9 @@
+import { surfaceSummary } from '../terrain/surface'
+import { TERRAIN_SURFACE_TOOLS } from './terrainSurfaceTools'
+import { QUERY_TOOLS } from './queryTools'
+import { TASK_TOOLS } from './taskState'
+import { PLAN_TOOLS } from './plan'
+import { SCENE_TOOLS } from './sceneTools'
 import { edit, type TxHandle } from '../../core/edit'
 import { engine } from '../../core/engine'
 import type { CaptureCamera } from '../../core/engine'
@@ -125,7 +131,7 @@ function describeAsset(a: SceneAsset): {
   model: { name: string; category: string | null; dimensions: { w: number; d: number; h: number } } | null
   worldSize: Vec3 | null
   worldAabb: { min: Vec3; max: Vec3 } | null
-  terrain: Omit<NonNullable<SceneAsset['terrain']>, 'heights'> | null
+  terrain: (Omit<NonNullable<SceneAsset['terrain']>, 'heights' | 'surface'> & { surface: ReturnType<typeof surfaceSummary> }) | null
   materialOverride: SceneAsset['materialOverride'] | null
 } {
   const meta = useSceneStore.getState().manifest?.models[a.ref]
@@ -139,11 +145,11 @@ function describeAsset(a: SceneAsset): {
     transform: a.transform,
     visible: a.visible !== false,
     model: meta
-      ? describeModel(a.ref, meta)
+      ? { name: meta.name, category: meta.category ?? null, dimensions: meta.dimensions }
       : null,
     worldSize: size,
     worldAabb,
-    terrain: a.terrain ? { width: a.terrain.width, depth: a.terrain.depth, samplesX: a.terrain.samplesX, samplesZ: a.terrain.samplesZ, seed: a.terrain.seed } : null,
+    terrain: a.terrain ? { width: a.terrain.width, depth: a.terrain.depth, samplesX: a.terrain.samplesX, samplesZ: a.terrain.samplesZ, seed: a.terrain.seed, surface: surfaceSummary(a.terrain.surface) } : null,
     materialOverride: a.materialOverride ?? null,
   }
 }
@@ -153,7 +159,14 @@ function sceneGetState(args: Record<string, unknown>): unknown {
   const s = useSceneStore.getState()
   const doc = s.document
   if (!doc) throw new Error('场景未加载')
-  const includeManifest = args.includeManifest !== false
+  const includeManifest = args.includeManifest === true
+  const offset = args.offset === undefined ? 0 : reqInt(args, 'offset')
+  const limit = args.limit === undefined ? 24 : reqInt(args, 'limit')
+  if (offset < 0 || limit < 1 || limit > 50) throw new Error('offset 须非负，limit 须为 1–50')
+  const ids = args.assetIds
+  if (ids !== undefined && (!Array.isArray(ids) || ids.length > 50 || ids.some(id => typeof id !== 'string'))) throw new Error('assetIds 最多 50 项')
+  const assets = ids ? doc.assets.filter(a => (ids as string[]).includes(a.id)) : doc.assets
+  const models = Object.entries(s.manifest?.models ?? {})
 
   return {
     sceneId: s.sceneId,
@@ -162,11 +175,15 @@ function sceneGetState(args: Record<string, unknown>): unknown {
     selectedAssetId: s.selectedAssetId,
     /** 约定：米；+Y 向上；欧拉角角度制；原点在底面中心 */
     conventions: { unit: 'm', up: '+Y', rotation: 'deg XYZ', origin: 'bottom-center' },
-    assets: doc.assets.map(describeAsset),
+    assets: assets.slice(offset, offset + limit).map(describeAsset),
+    pagination: { offset, limit, total: assets.length, nextOffset: offset + limit < assets.length ? offset + limit : null },
+    assetCount: doc.assets.length,
+    catalogCount: models.length,
+    catalogNote: '模型目录按需使用 catalog.search 检索。includeManifest 仅返回前 12 个示例。',
     manifest:
       includeManifest && s.manifest
         ? Object.fromEntries(
-            Object.entries(s.manifest.models).map(([ref, m]) => [
+            models.slice(0, 12).map(([ref, m]) => [
               ref,
               describeModel(ref, m),
             ]),
@@ -176,7 +193,44 @@ function sceneGetState(args: Record<string, unknown>): unknown {
 }
 
 /** 无 UI 截图：与视口同一相机同一构图，隐藏编辑器视觉件（描边/gizmo），等比缩小后返回 dataURL */
-let latestCapture: { id: string; camera: CaptureCamera; width: number; height: number; document: unknown } | null = null
+type Capture = { id: string; camera: CaptureCamera; width: number; height: number; document: unknown }
+const captures = new Map<string, Capture>()
+let latestCapture: Capture | null = null
+bus.on('scene:changed', () => { captures.clear(); latestCapture = null })
+
+/** 给模型看的截图统一用 JPEG：同一张 1400×900 图从 ~3MB base64 降到 ~300KB。 */
+const SCREENSHOT_ENCODING = { format: 'jpeg', quality: 0.85 } as const
+/** 单张截图进入请求体的上限（dataURL 字符数）；超过就缩边重编码。 */
+const MAX_IMAGE_CHARS = 1_200_000
+
+async function decodeImage(dataUrl: string): Promise<HTMLImageElement> {
+  const image = new Image()
+  await new Promise<void>((resolve, reject) => {
+    image.onload = () => resolve()
+    image.onerror = () => reject(new Error('截图解码失败'))
+    image.src = dataUrl
+  })
+  return image
+}
+
+function drawImage(source: CanvasImageSource, width: number, height: number): string {
+  const canvas = document.createElement('canvas')
+  canvas.width = width; canvas.height = height
+  canvas.getContext('2d')?.drawImage(source, 0, 0, width, height)
+  return canvas.toDataURL('image/jpeg', 0.8)
+}
+
+/** 超过上限时按 0.75 逐级缩边，保证单张图不会把请求体撑爆；返回的宽高与图像一致，视觉点选仍可用。 */
+async function fitImage(dataUrl: string, width: number, height: number): Promise<{ image: string; width: number; height: number }> {
+  if (dataUrl.length <= MAX_IMAGE_CHARS) return { image: dataUrl, width, height }
+  const source = await decodeImage(dataUrl)
+  let size = { width, height }, image = dataUrl
+  while (image.length > MAX_IMAGE_CHARS && Math.min(size.width, size.height) > 64) {
+    size = { width: Math.round(size.width * 0.75), height: Math.round(size.height * 0.75) }
+    image = drawImage(source, size.width, size.height)
+  }
+  return { image, ...size }
+}
 
 async function viewportScreenshot(args: Record<string, unknown>): Promise<unknown> {
   if (args.camera !== undefined) {
@@ -186,7 +240,9 @@ async function viewportScreenshot(args: Record<string, unknown>): Promise<unknow
     if (projection !== 'perspective' && projection !== 'orthographic') throw new Error('projection 必须是 perspective 或 orthographic')
     const position = reqVec3(c, 'position')
     const target = reqVec3(c, 'target')
-    const up = optVec3(c, 'up') ?? [0, 1, 0]
+    const directionLength = Math.hypot(...position.map((n, i) => n - target[i]))
+    const vertical = directionLength > 0 && Math.abs(position[1] - target[1]) / directionLength > 0.999
+    const up = optVec3(c, 'up') ?? (vertical ? [0, 0, -1] : [0, 1, 0])
     const near = optNumber(c, 'near', 0.1), far = optNumber(c, 'far', 300)
     const direction = position.map((n, i) => n - target[i])
     const cross = [direction[1] * up[2] - direction[2] * up[1], direction[2] * up[0] - direction[0] * up[2], direction[0] * up[1] - direction[1] * up[0]]
@@ -198,28 +254,21 @@ async function viewportScreenshot(args: Record<string, unknown>): Promise<unknow
     const height = args.height === undefined ? 768 : reqInt(args, 'height')
     if (width < 1 || height < 1 || width > 2048 || height > 2048) throw new Error('截图宽高须为 1–2048 的整数')
     const camera: CaptureCamera = { projection, position, target, up, near, far, ...(fovDeg === undefined ? {} : { fovDeg }), ...(viewHeight === undefined ? {} : { viewHeight }) }
-    const image = engine.captureFromCamera(camera, width, height)
+    const fitted = await fitImage(engine.captureFromCamera(camera, width, height, SCREENSHOT_ENCODING), width, height)
     const id = crypto.randomUUID()
-    latestCapture = { id, camera, width, height, document: useSceneStore.getState().document }
-    return { image, width, height, screenshotId: id, camera }
+    latestCapture = { id, camera, width: fitted.width, height: fitted.height, document: useSceneStore.getState().document }
+    captures.set(id, latestCapture)
+    while (captures.size > 12) captures.delete(captures.keys().next().value!)
+    return { image: fitted.image, width: fitted.width, height: fitted.height, screenshotId: id, camera }
   }
   latestCapture = null
   const maxWidth = optNumber(args, 'maxWidth', 1024)
-  const src = engine.captureScreenshot()
-  const img = new Image()
-  const loaded = new Promise<void>((resolve, reject) => {
-    img.onload = () => resolve()
-    img.onerror = () => reject(new Error('截图解码失败'))
-    img.src = src
-  })
-  await loaded
-  if (img.width <= maxWidth) return { image: src, width: img.width, height: img.height }
-  const scale = maxWidth / img.width
-  const canvas = document.createElement('canvas')
-  canvas.width = maxWidth
-  canvas.height = Math.round(img.height * scale)
-  canvas.getContext('2d')?.drawImage(img, 0, 0, canvas.width, canvas.height)
-  return { image: canvas.toDataURL('image/png'), width: canvas.width, height: canvas.height }
+  const src = engine.captureScreenshot(SCREENSHOT_ENCODING)
+  const img = await decodeImage(src)
+  if (img.width <= maxWidth) return fitImage(src, img.width, img.height)
+  const width = Math.max(1, Math.round(maxWidth))
+  const height = Math.max(1, Math.round(img.height * Math.min(1, maxWidth / img.width)))
+  return fitImage(drawImage(img, width, height), width, height)
 }
 
 /**
@@ -239,10 +288,11 @@ function viewportPick(args: Record<string, unknown>): unknown {
   // 像素中心 → 归一化图像坐标（左上原点）
   let hit
   if (args.screenshotId !== undefined) {
-    if (!latestCapture || args.screenshotId !== latestCapture.id) throw new Error('截图不存在或已过期')
-    if (latestCapture.document !== useSceneStore.getState().document) throw new Error('场景已变化，截图已过期')
-    if (imageWidth !== latestCapture.width || imageHeight !== latestCapture.height) throw new Error('截图尺寸不匹配')
-    hit = engine.pickFromCamera(latestCapture.camera, imageWidth, imageHeight, (x + 0.5) / imageWidth, (y + 0.5) / imageHeight)
+    const capture = captures.get(String(args.screenshotId))
+    if (!capture) throw new Error('截图不存在或已过期，请重新截图')
+    if (capture.document !== useSceneStore.getState().document) throw new Error('场景已变化，截图已过期')
+    if (imageWidth !== capture.width || imageHeight !== capture.height) throw new Error('截图尺寸不匹配')
+    hit = engine.pickFromCamera(capture.camera, imageWidth, imageHeight, (x + 0.5) / imageWidth, (y + 0.5) / imageHeight)
   } else {
     if (latestCapture) throw new Error('自定义相机截图拾取必须提供 screenshotId')
     hit = engine.pickNormalized((x + 0.5) / imageWidth, (y + 0.5) / imageHeight)
@@ -417,18 +467,26 @@ const vec3Schema = (desc: string): Record<string, unknown> => ({
 
 export const AGENT_TOOLS: readonly AgentToolDef[] = [
   ...GENERATION_TOOLS,
+  ...TERRAIN_SURFACE_TOOLS,
+  ...PLAN_TOOLS,
+  ...TASK_TOOLS,
+  ...QUERY_TOOLS,
+  ...SCENE_TOOLS,
   {
     name: 'scene.get_state',
     access: 'read',
     summary: '读场景状态（资产/变换/AABB/模型目录）',
     description:
       '读取当前场景的中立快照：资产清单（id、ref、transform、世界包围盒）、环境、选中项，' +
-      '可附带模型库目录。来源是内存中的 SceneDocument（含未保存编辑），不是磁盘文件。',
-    argsDoc: '{ includeManifest?: boolean }',
+      '默认不附目录，资产分页默认每页 24 项，assetIds 可指定查询对象。目录使用 catalog.search。来源是内存中的 SceneDocument（含未保存编辑），不是磁盘文件。',
+    argsDoc: '{ includeManifest?: boolean, assetIds?: string[], offset?: number, limit?: number }',
     schema: {
       type: 'object',
       properties: {
-        includeManifest: { type: 'boolean', description: '是否附带模型库目录（默认 true）' },
+        includeManifest: { type: 'boolean', description: '附带前 12 个目录示例，默认 false。检索使用 catalog.search。' },
+        offset: { type: 'integer', minimum: 0 },
+        limit: { type: 'integer', minimum: 1, maximum: 50 },
+        assetIds: { type: 'array', maxItems: 50, items: { type: 'string' } },
       },
       additionalProperties: false,
     },
@@ -462,10 +520,10 @@ export const AGENT_TOOLS: readonly AgentToolDef[] = [
     access: 'read',
     summary: '视觉点选（截图像素坐标 → 射线拾取资产）',
     description:
-      '视觉点选：基于最近一次 viewport.screenshot 的截图拾取物体。(x,y) 是该截图图像上的像素坐标' +
+      '视觉点选：按 screenshotId 拾取缓存中的自定义相机截图（最多 12 张，场景修改后失效）。(x,y) 是该截图图像上的像素坐标' +
       '（左上原点），imageWidth/imageHeight 填该截图返回的宽高。返回命中的资产' +
       '（id/transform/worldAabb）与射线命中点 hit.point（世界坐标，米）。' +
-      '重要：坐标必须对应最近一次截图；截图后若场景或视角已变化，先重新截图再点选。' +
+      '坐标必须对应指定截图；自定义相机截图按 screenshotId 查询缓存，场景写入后须重新截图。' +
       '未命中不报错，返回 assetId:null。命中物体会在视口瞬时高亮（视觉反馈，不改变选中状态）。',
     argsDoc: '{ x, y, imageWidth, imageHeight, highlight? } → { assetId, transform, hit } | { assetId:null }',
     schema: {

@@ -1,3 +1,4 @@
+import { newLlmSession } from '../../llm-shared/request'
 /**
  * modelAdapter（W06）——把 CoAgent 的 `ModelPort` 接到宿主现有的 `llmChat`。
  *
@@ -99,7 +100,7 @@ export function mapModelError(e: unknown, settings: LlmSettings, timedOut: boole
   if (m) {
     const status = Number(m[1])
     if (status === 401 || status === 403) {
-      return new CoAgentError('model_protocol_error', `模型鉴权失败（HTTP ${status}）：请检查 API Key 与模型权限`, {
+      return new CoAgentError('model_protocol_error', `模型鉴权失败（HTTP ${status}）：请检查 API Key、模型权限及服务商限制；${raw}`, {
         retryable: false,
         details: { status },
         cause: e,
@@ -148,6 +149,7 @@ export function mapModelError(e: unknown, settings: LlmSettings, timedOut: boole
 export function createModelAdapter(opts: ModelAdapterOptions = {}): ModelPort {
   const getSettings = opts.getSettings ?? currentLlmSettings
   const chat = opts.chat ?? llmChat
+  const sessionId = newLlmSession()
   const grace = opts.timeoutGraceMs ?? 2_000
 
   return {
@@ -181,6 +183,7 @@ export function createModelAdapter(opts: ModelAdapterOptions = {}): ModelPort {
 
       try {
         const result = await chat({
+          sessionId: request.sessionId ?? sessionId,
           settings,
           system: [request.system, ...system].filter(s => s.length > 0).join('\n\n'),
           turns,

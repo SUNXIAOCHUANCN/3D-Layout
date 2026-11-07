@@ -1,4 +1,5 @@
-﻿/**
+﻿import { newLlmSession } from '../../llm-shared/request'
+/**
  * createRuntime（W03，SPEC §3.2）——唯一装配点。
  *
  * 注入 Ports、配置、workflow factory、scheduler、recorder；测试可全部换成 fake。
@@ -174,6 +175,7 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
    */
   const graphFeed = beginGraphFeed()
   recorder.subscribe(() => graphFeed.onEvents(recorder.events()))
+  let modelSessionId = newLlmSession()
   const baseModelPort = deps.modelPort ?? createModelAdapter()
   /**
    * 全局模型并发上限（§3.2）：走 scheduler 的 semaphore，而不是每个区各建一个"全局"限制。
@@ -184,6 +186,7 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
    */
   const modelPort: ModelPort = {
     async complete(request, signal) {
+      const sessionId = request.sessionId ?? modelSessionId
       const log = activeRunLog()
       const queuedAt = Date.now()
       log?.modelRequest(request)
@@ -197,7 +200,7 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
       const startedAt = Date.now()
       const queueMs = startedAt - queuedAt
       try {
-        const reply = await baseModelPort.complete(request, signal)
+        const reply = await baseModelPort.complete({ ...request, sessionId }, signal)
         log?.modelReply(request, reply, Date.now() - startedAt, queueMs)
         return reply
       } catch (e) {
@@ -240,6 +243,7 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
     // 惰性转发：afterCommitImpl 定义在本函数更靠后的位置（闭包调用时才求值）
     afterCommit: info => afterCommitImpl(info),
     onPhase: (phase, info) => {
+      if (info.runId) modelSessionId = `coagent-${info.runId}`
       onPhaseListeners.forEach(l => l(phase, info))
     },
   })
@@ -464,6 +468,7 @@ export function createRuntime(deps: CoAgentRuntimeDeps = {}): CoAgentRuntime {
       if (controller.locked()) throw new CoAgentError('run_busy', 'error_locked：请先重置再生成分区')
       // 分区生成也有自己的相位：面板据此显示"分区预处理"、宿主据此暂停编辑；
       // 结束后必须回到 idle（不能被上一轮 rolled_back 的终态粘住）。
+      modelSessionId = newLlmSession()
       controller.emitPhase('preprocessing')
       // 分区预处理也是一条完整的模型链路：单独落一份日志（否则"生成分区失败"无迹可查）
       beginRunLog({

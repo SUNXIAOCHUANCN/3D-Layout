@@ -1,0 +1,1205 @@
+/* ============================================================================
+   3D-LAYOUT · 模块面板：编辑器 / Agent / API 设置 / 导入导出
+   （只改外观，不改任何交互与数据流；类名沿用既有模块）
+   ========================================================================== */
+
+/* ------------------------------- 人工编辑 ------------------------------- */
+
+.editor-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+/* 小节标题：细线延伸，像图纸上的分区标注 */
+.panel-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 9px 0 5px;
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.panel-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.editor-panel > .panel-label:first-child {
+  margin-top: 2px;
+}
+
+.btn-grid {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.btn-grid.g2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.btn-grid button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  min-width: 0;
+  height: 27px;
+  padding: 0 6px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--paper-2);
+  color: var(--ink-2);
+  font-size: 10.5px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  box-shadow: var(--bevel);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-1) var(--ease),
+    border-color var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease),
+    transform 80ms var(--ease);
+}
+
+.btn-grid button:hover:not(:disabled) {
+  background: var(--paper-3);
+  border-color: var(--rule-2);
+  color: var(--ink);
+}
+
+.btn-grid button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-grid button.active {
+  background: var(--accent);
+  border-color: var(--accent-2);
+  color: var(--accent-ink);
+  font-weight: 600;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* 开关型按钮（吸附）：不着色整块，只亮边框与文字 */
+.btn-grid button.toggle.on {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.btn-grid button.toggle.on:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent);
+}
+
+.btn-grid button:disabled {
+  opacity: 0.36;
+  box-shadow: none;
+  cursor: default;
+  transform: none;
+}
+
+/* 键帽：W / E / R / F / Del */
+.btn-grid .hint {
+  flex: none;
+  padding: 2px 3px;
+  border: 1px solid var(--rule-2);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  line-height: 1;
+  color: var(--ink-3);
+}
+
+.btn-grid button.active .hint {
+  color: var(--accent-ink);
+  border-color: rgba(255, 255, 255, 0.4);
+  opacity: 0.85;
+}
+
+.panel-divider {
+  height: 1px;
+  margin: 10px 0 2px;
+  background: var(--rule);
+}
+
+.save-status {
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  line-height: 1.6;
+  color: var(--sage);
+  word-break: break-all;
+}
+
+/* ------------------------------- 数值面板 ------------------------------- */
+
+.inspector {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.inspector-head {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  word-break: break-all;
+}
+
+.inspector-sub {
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--ink-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inspector-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 4px;
+}
+
+.inspector-empty {
+  padding: 8px 0;
+  font-size: 10.5px;
+  line-height: 1.7;
+  color: var(--ink-3);
+}
+
+.vec-row {
+  display: grid;
+  grid-template-columns: 30px repeat(3, minmax(0, 1fr));
+  gap: 3px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.vec-label {
+  font-size: 9.5px;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.vec-cell {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  height: 22px;
+  padding: 0 4px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--field);
+  transition:
+    border-color var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+
+.vec-cell:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+.vec-cell .ax {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 600;
+}
+
+.ax-x {
+  color: var(--accent);
+}
+
+.ax-y {
+  color: var(--sage);
+}
+
+.ax-z {
+  color: var(--steel);
+}
+
+.vec-cell input {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  outline: none;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.vec-cell input::-webkit-outer-spin-button,
+.vec-cell input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ------------------------------- 折叠区 ------------------------------- */
+
+details {
+  min-width: 0;
+}
+
+.agent-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.agent-section + .agent-section {
+  margin-top: 2px;
+  padding-top: 7px;
+  border-top: 1px solid var(--rule);
+}
+
+details > summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  padding: 4px 0;
+  font-size: 10px;
+  color: var(--ink-3);
+  cursor: pointer;
+  user-select: none;
+  transition: color var(--dur-1) var(--ease);
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details > summary::before {
+  content: '';
+  flex: none;
+  width: 0;
+  height: 0;
+  border-left: 4px solid var(--ink-3);
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  transition: transform var(--dur-1) var(--ease);
+}
+
+details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+details > summary:hover {
+  color: var(--ink-2);
+}
+
+/* ------------------------------- Agent 面板 ------------------------------- */
+
+.agent-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.agent-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 10.5px;
+  color: var(--ink-2);
+}
+
+.agent-dot {
+  position: relative;
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-3);
+}
+
+.agent-dot.on {
+  background: var(--sage);
+}
+
+/* 连接中的呼吸环：只动 transform / opacity */
+.agent-dot.on::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid var(--sage);
+  animation: breathe 2.6s var(--ease) infinite;
+  will-change: transform, opacity;
+}
+
+.agent-transport {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink-2);
+}
+
+.agent-mini-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--rule-2);
+  border-radius: 2px;
+  background: var(--paper-2);
+  color: var(--ink-2);
+  font-size: 10px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--bevel);
+  transition:
+    background-color var(--dur-1) var(--ease),
+    border-color var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.agent-mini-btn:hover:not(:disabled) {
+  background: var(--paper-3);
+  border-color: var(--rule-2);
+  color: var(--ink);
+}
+
+.agent-mini-btn:disabled {
+  opacity: 0.42;
+  cursor: default;
+  box-shadow: none;
+}
+
+.agent-mini-btn.send {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  background: var(--accent-soft);
+}
+
+.agent-mini-btn.send:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--accent);
+}
+
+.agent-mini-btn.stop {
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 40%, transparent);
+}
+
+.agent-profile-select {
+  width: 100%;
+  height: 24px;
+  padding: 0 6px;
+  font-size: 10.5px;
+  cursor: pointer;
+}
+
+.agent-setup-btn {
+  padding: 8px 9px;
+  border: 1px dashed color-mix(in srgb, var(--accent) 55%, transparent);
+  border-radius: 3px;
+  background: var(--accent-soft);
+  color: var(--ink-2);
+  font-size: 10.5px;
+  line-height: 1.6;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-1) var(--ease),
+    background-color var(--dur-1) var(--ease);
+}
+
+.agent-setup-btn:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+/* 提案卡：双细线框 + 顶部标签，替代「左侧彩色边条」 */
+.agent-task {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 9px;
+  padding: 11px 9px 9px;
+  border: 1px solid var(--rule-2);
+  border-radius: 3px;
+  background: var(--paper-2);
+}
+
+.agent-task::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.agent-task > * {
+  position: relative;
+}
+
+.agent-task-tag {
+  position: absolute;
+  top: -7px;
+  left: 8px;
+  padding: 0 5px;
+  background: var(--paper);
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  letter-spacing: 0.15em;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.agent-task.verdict {
+  border-color: color-mix(in srgb, var(--ochre) 60%, var(--rule-2));
+}
+
+.agent-task.verdict .agent-task-tag {
+  color: var(--ochre);
+}
+
+.agent-task-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink);
+  padding-right: 44px;
+}
+
+.agent-task-meta {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--ink-3);
+}
+
+.agent-task-btns {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.agent-task-btns button {
+  flex: 1;
+  height: 24px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background: transparent;
+  font-size: 10.5px;
+  cursor: pointer;
+  transition: background-color var(--dur-1) var(--ease);
+}
+
+.agent-accept {
+  border-color: color-mix(in srgb, var(--sage) 55%, transparent);
+  color: var(--sage);
+}
+
+.agent-accept:hover {
+  background: color-mix(in srgb, var(--sage) 14%, transparent);
+}
+
+.agent-reject {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--accent);
+}
+
+.agent-reject:hover {
+  background: var(--accent-soft);
+}
+
+.agent-shot {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--rule-2);
+  border-radius: 2px;
+}
+
+/* ------------------------------- 对话区 ------------------------------- */
+
+.agent-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 110px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 8px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--field);
+}
+
+.agent-chat-empty {
+  margin: auto;
+  color: var(--ink-3);
+  font-size: 10.5px;
+  line-height: 1.8;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.agent-chat-row {
+  display: flex;
+}
+
+.agent-chat-row.user {
+  justify-content: flex-end;
+}
+
+.agent-bubble {
+  max-width: 88%;
+  padding: 5px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  font-size: 10.5px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.agent-bubble.ai {
+  background: var(--paper-2);
+  color: var(--ink-2);
+  border-bottom-left-radius: 1px;
+}
+
+.agent-bubble.user {
+  background: var(--accent-soft);
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--ink);
+  border-bottom-right-radius: 1px;
+}
+
+.agent-cursor {
+  display: inline-block;
+  margin-left: 1px;
+  color: var(--accent);
+  animation: caret-blink 0.9s steps(1) infinite;
+}
+
+.agent-chat-note {
+  align-self: stretch;
+  max-width: 100%;
+  font-size: 9.5px;
+  line-height: 1.65;
+  color: var(--ink-3);
+  word-break: break-word;
+}
+
+.agent-input-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: 0;
+}
+
+/* 输入框占位基准小一些：窄侧栏里发送/清空按钮仍然留在同一行 */
+.agent-input-row > .agent-input {
+  flex: 1 1 110px;
+}
+
+.agent-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 27px;
+  padding: 5px 8px;
+  font-size: 10.5px;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+input.agent-input {
+  height: 27px;
+  padding: 0 8px;
+  resize: none;
+}
+
+/* 权限清单 */
+.agent-tools,
+.agent-denied {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 3px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.agent-tools li {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.agent-tool-access {
+  flex: none;
+  padding: 0 4px;
+  border: 1px solid;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  line-height: 1.6;
+}
+
+.agent-tools li.read .agent-tool-access {
+  color: var(--steel);
+  border-color: color-mix(in srgb, var(--steel) 45%, transparent);
+}
+
+.agent-tools li.write .agent-tool-access {
+  color: var(--ochre);
+  border-color: color-mix(in srgb, var(--ochre) 45%, transparent);
+}
+
+.agent-tools li.generate .agent-tool-access {
+  color: var(--sage);
+  border-color: color-mix(in srgb, var(--sage) 45%, transparent);
+}
+
+.agent-tools li.export .agent-tool-access {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.agent-tool-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.agent-tool-body code {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--ink);
+}
+
+.agent-tool-summary {
+  font-size: 9.5px;
+  color: var(--ink-3);
+}
+
+.agent-denied-title {
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.agent-denied li {
+  position: relative;
+  padding-left: 11px;
+  font-size: 9.5px;
+  color: var(--ink-3);
+}
+
+.agent-denied li::before {
+  content: '✕';
+  position: absolute;
+  left: 0;
+  font-size: 8px;
+  color: var(--danger);
+}
+
+/* 调用日志 */
+.agent-log {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 170px;
+  margin: 3px 0 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.agent-log li {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+.agent-log-time {
+  flex: none;
+  color: var(--ink-3);
+}
+
+.agent-log li.info {
+  color: var(--ink-3);
+}
+
+.agent-log li.call {
+  color: var(--steel);
+}
+
+.agent-log li.ok {
+  color: var(--sage);
+}
+
+.agent-log li.error {
+  color: var(--danger);
+}
+
+.agent-log li.verdict {
+  color: var(--ochre);
+  font-weight: 600;
+}
+
+.agent-log-empty {
+  font-size: 9.5px;
+  color: var(--ink-3);
+}
+
+.agent-demo-btn {
+  width: 100%;
+  height: 27px;
+  padding: 0 8px;
+  border: 1px solid var(--rule-2);
+  border-radius: 3px;
+  background: var(--paper-2);
+  color: var(--ink-2);
+  font-size: 10.5px;
+  cursor: pointer;
+  box-shadow: var(--bevel);
+  transition:
+    background-color var(--dur-1) var(--ease),
+    border-color var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.agent-demo-btn:hover {
+  background: var(--paper-3);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+/* ------------------------------- API 设置窗口 ------------------------------- */
+
+.modal.llm-modal {
+  width: 460px;
+}
+
+.modal.llm-modal-wide {
+  width: 780px;
+}
+
+.llm-layout {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.llm-side {
+  flex: 0 0 190px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 12px;
+  border-right: 1px solid var(--rule);
+}
+
+.llm-side-title {
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  letter-spacing: 0.15em;
+  color: var(--ink-3);
+}
+
+.llm-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 330px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.llm-list-item {
+  padding: 6px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--field);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-1) var(--ease),
+    background-color var(--dur-1) var(--ease);
+}
+
+.llm-list-item:hover {
+  border-color: var(--rule-2);
+}
+
+.llm-list-item.on {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.llm-list-name {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  font-size: 11px;
+  color: var(--ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.llm-list-meta {
+  margin-top: 2px;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  color: var(--ink-3);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.llm-badge {
+  flex: none;
+  padding: 0 4px;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  font-size: 8px;
+  line-height: 1.5;
+  color: var(--accent);
+}
+
+.llm-badge.llm-badge-warn {
+  color: var(--ochre);
+  border-color: var(--ochre);
+}
+
+.llm-side-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.llm-form {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.llm-label {
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.llm-label a {
+  color: var(--accent);
+}
+
+.llm-providers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.llm-chip {
+  padding: 3px 9px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper-2);
+  color: var(--ink-3);
+  font-size: 10.5px;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease),
+    background-color var(--dur-1) var(--ease);
+}
+
+.llm-chip:hover {
+  color: var(--ink);
+  border-color: var(--rule-2);
+}
+
+.llm-chip.on {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.llm-chip.on:hover {
+  color: var(--accent);
+}
+
+.llm-input {
+  height: 26px;
+  padding: 0 8px;
+}
+
+select.llm-input {
+  padding: 0 4px;
+  cursor: pointer;
+}
+
+.llm-note {
+  font-size: 9.5px;
+  line-height: 1.65;
+  color: var(--ink-3);
+}
+
+.llm-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 10.5px;
+  color: var(--ink-2);
+  cursor: pointer;
+  user-select: none;
+}
+
+.llm-test-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+  margin-top: 6px;
+}
+
+.llm-test-btn {
+  height: 26px;
+  padding: 0 12px;
+  border: 1px solid var(--rule-2);
+  border-radius: 2px;
+  background: var(--paper-2);
+  color: var(--ink-2);
+  font-size: 10.5px;
+  cursor: pointer;
+  box-shadow: var(--bevel);
+  transition:
+    background-color var(--dur-1) var(--ease),
+    border-color var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.llm-test-btn:hover:not(:disabled) {
+  background: var(--paper-3);
+  border-color: var(--ink-3);
+  color: var(--ink);
+}
+
+.llm-test-btn:disabled {
+  opacity: 0.42;
+  cursor: default;
+  box-shadow: none;
+}
+
+.llm-test-row > span {
+  font-size: 9.5px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.llm-test-ok {
+  color: var(--sage);
+}
+
+.llm-test-err {
+  color: var(--danger);
+}
+
+.llm-profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.llm-test-btn.llm-danger {
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 50%, transparent);
+}
+
+.llm-test-btn.llm-danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+}
+
+.llm-hint {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  font-size: 9.5px;
+  line-height: 1.8;
+  color: var(--ink-3);
+}
+
+.llm-select {
+  width: 100%;
+}
+
+/* ------------------------------- 导入导出 ------------------------------- */
+
+.interchange-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 插件服务可达性：一点状态色 + 一句人话 */
+.ip-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  color: var(--ink-2);
+}
+
+.ip-dot {
+  width: 5px;
+  height: 5px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ink-3);
+}
+
+.ip-status.is-up {
+  color: var(--sage);
+}
+
+.ip-status.is-up .ip-dot {
+  background: var(--sage);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--sage) 20%, transparent);
+}
+
+.ip-status.is-down {
+  color: var(--ochre);
+}
+
+.ip-status.is-down .ip-dot {
+  background: var(--ochre);
+}
+
+.ip-open {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: 29px;
+  padding: 0 10px;
+  border: 1px solid var(--accent-2);
+  border-radius: 3px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition:
+    background-color var(--dur-1) var(--ease),
+    transform 80ms var(--ease);
+}
+
+.ip-open:hover {
+  background: var(--accent-2);
+}
+
+.ip-open:active {
+  transform: translateY(1px);
+}
+
+.ip-arrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.ip-hint {
+  margin: 0;
+  font-size: 9.5px;
+  line-height: 1.7;
+  color: var(--ink-3);
+}
+
+/* ------------------------------- CoAgent 面板补充 ------------------------------- */
+
+/* 分区动作：主操作占整行，两个次操作并排 */
+.cp-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+
+.cp-actions > :first-child {
+  grid-column: 1 / -1;
+}
+
+.cp-actions .agent-mini-btn {
+  height: 24px;
+}
+
+/* 进度行：图签标签 + 等宽大数字 + 一句状态 */
+.cp-progress-label {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  min-width: 0;
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+.cp-progress-label b {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+.cp-progress-label span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

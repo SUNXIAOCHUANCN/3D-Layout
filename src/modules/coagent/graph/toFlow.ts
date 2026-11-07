@@ -33,6 +33,8 @@ function sizeOf(kind: NodeKind): { w: number; h: number } {
 export function buildFlow(
   topo: TopologyGraph | undefined,
   visuals: Map<string, NodeVisual>,
+  /** 描边颜色由页面按当前配色取（SVG marker 吃不了 CSS 变量），这里只负责用 */
+  colors: { edge: string; edgeConditional: string } = { edge: '#3d4654', edgeConditional: '#6b7280' },
 ): { nodes: Array<Node<GraphNodeData>>; edges: Edge[] } {
   if (!topo || topo.nodes.length === 0) return { nodes: [], edges: [] }
 
@@ -81,8 +83,15 @@ export function buildFlow(
       source: e.source,
       target: e.target,
       animated: !!e.conditional,
-      style: e.conditional ? { stroke: '#6b7280', strokeDasharray: '5 4' } : { stroke: '#3d4654' },
-      markerEnd: { type: MarkerType.ArrowClosed, width: 14, height: 14, color: e.conditional ? '#6b7280' : '#3d4654' },
+      style: e.conditional
+        ? { stroke: colors.edgeConditional, strokeDasharray: '5 4', strokeWidth: 1 }
+        : { stroke: colors.edge, strokeWidth: 1 },
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+        width: 12,
+        height: 12,
+        color: e.conditional ? colors.edgeConditional : colors.edge,
+      },
     })
   }
 

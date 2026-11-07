@@ -1,0 +1,649 @@
+/* ============================================================================
+   3D-LAYOUT · CoAgent 图视图（graph.html）
+   ----------------------------------------------------------------------------
+   画布是桌面上的另一张图：纸面做节点，墨线做边，朱砂标着正在跑的那个。
+   与主应用共用 tokens.css 的两套色系，不引入 shell / modules（那是主应用的壳）。
+   ========================================================================== */
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.gp {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--desk);
+  color: var(--ink);
+}
+
+/* ------------------------------- 顶栏 ------------------------------- */
+
+.gp-bar {
+  flex: none;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 12px;
+  background-color: var(--paper);
+  background-image: var(--grain);
+  background-size: var(--grain-size);
+  border-bottom: 1px solid var(--rule);
+  box-shadow: var(--shadow-1);
+  z-index: 20;
+}
+
+.gp-brand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  user-select: none;
+}
+
+.gp-brand svg {
+  display: block;
+  color: var(--accent);
+}
+
+.gp-brand-name {
+  font-family: var(--font-display);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.gp-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.gp-bar .spacer {
+  flex: 1;
+}
+
+/* 阶段徽标：一点颜色，不铺满 */
+.gp-phase {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 21px;
+  padding: 0 8px;
+  border: 1px solid var(--rule-2);
+  border-radius: 2px;
+  background: var(--paper-2);
+  font-size: 10.5px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.gp-phase-dot {
+  position: relative;
+  width: 5px;
+  height: 5px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ink-3);
+}
+
+.gp-phase.is-running {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.gp-phase.is-running .gp-phase-dot {
+  background: var(--accent);
+}
+
+/* 运行中：一点呼吸环，只动 transform / opacity */
+.gp-phase.is-running .gp-phase-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  animation: breathe 2.4s var(--ease) infinite;
+  will-change: transform, opacity;
+}
+
+.gp-phase.is-ok {
+  border-color: color-mix(in srgb, var(--sage) 55%, transparent);
+  color: var(--sage);
+}
+
+.gp-phase.is-ok .gp-phase-dot {
+  background: var(--sage);
+}
+
+.gp-phase.is-error {
+  border-color: color-mix(in srgb, var(--danger) 55%, transparent);
+  color: var(--danger);
+}
+
+.gp-phase.is-error .gp-phase-dot {
+  background: var(--danger);
+}
+
+/* 并行节点计数 */
+.gp-active {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* 与主应用的连接状态：图签式小字 */
+.gp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.gp-link-dot {
+  width: 5px;
+  height: 5px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ink-3);
+}
+
+.gp-link.on {
+  color: var(--sage);
+}
+
+.gp-link.on .gp-link-dot {
+  background: var(--sage);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--sage) 20%, transparent);
+}
+
+.gp-runid {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--ink-3);
+}
+
+/* ------------------------------- 画布 ------------------------------- */
+
+.gp-canvas {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  background: var(--desk);
+  overflow: hidden;
+}
+
+/* 四角裁切记号：与主应用视口同一套记号 */
+.gp-canvas::after {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--tick), var(--tick)) left top / 9px 1px no-repeat,
+    linear-gradient(var(--tick), var(--tick)) left top / 1px 9px no-repeat,
+    linear-gradient(var(--tick), var(--tick)) right top / 9px 1px no-repeat,
+    linear-gradient(var(--tick), var(--tick)) right top / 1px 9px no-repeat,
+    linear-gradient(var(--tick), var(--tick)) left bottom / 9px 1px no-repeat,
+    linear-gradient(var(--tick), var(--tick)) left bottom / 1px 9px no-repeat,
+    linear-gradient(var(--tick), var(--tick)) right bottom / 9px 1px no-repeat,
+    linear-gradient(var(--tick), var(--tick)) right bottom / 1px 9px no-repeat;
+  opacity: 0.75;
+}
+
+.gp-canvas .react-flow {
+  background: transparent;
+}
+
+.gp-canvas .react-flow__pane {
+  cursor: default;
+}
+
+/* 控制按钮：与小按钮同族 */
+.gp-canvas .react-flow__controls {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--rule-2);
+  border-radius: 3px;
+  box-shadow: var(--shadow-1);
+}
+
+.gp-canvas .react-flow__controls-button {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-2);
+  color: var(--ink-2);
+  transition: background-color var(--dur-1) var(--ease);
+}
+
+.gp-canvas .react-flow__controls-button:last-child {
+  border-bottom: 0;
+}
+
+.gp-canvas .react-flow__controls-button:hover {
+  background: var(--paper-3);
+  color: var(--ink);
+}
+
+.gp-canvas .react-flow__controls-button svg {
+  fill: currentColor;
+  max-width: 10px;
+  max-height: 10px;
+}
+
+.gp-canvas .react-flow__attribution {
+  display: none;
+}
+
+/* ------------------------------- 节点 ------------------------------- */
+
+.gp-node {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 6px 9px;
+  border: 1px solid var(--rule-2);
+  border-radius: 3px;
+  background-color: var(--paper-2);
+  background-image: var(--grain);
+  background-size: var(--grain-size);
+  box-shadow: var(--bevel);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-1) var(--ease),
+    background-color var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+
+.gp-node:hover {
+  border-color: var(--ink-3);
+}
+
+.gp-node.is-selected {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 1px var(--accent),
+    var(--bevel);
+}
+
+.gp-node-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.gp-node-dot {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ink-3);
+}
+
+.gp-node-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.gp-node-foot {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+}
+
+.gp-node-sub {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--ink-3);
+}
+
+/* 未执行：退到背景里 */
+.gp-node.is-idle .gp-node-title {
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+/* 执行中：朱砂描边 + 呼吸环 */
+.gp-node.is-running {
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+  background-color: color-mix(in srgb, var(--accent) 8%, var(--paper-2));
+}
+
+.gp-node.is-running .gp-node-dot {
+  background: var(--accent);
+}
+
+.gp-node.is-running .gp-node-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  animation: breathe 2.2s var(--ease) infinite;
+  will-change: transform, opacity;
+}
+
+.gp-node.is-running .gp-node-foot {
+  color: var(--ink-2);
+}
+
+/* 已完成 */
+.gp-node.is-ok .gp-node-dot {
+  background: var(--sage);
+}
+
+.gp-node.is-ok .gp-node-foot {
+  color: var(--ink-3);
+}
+
+/* 失败 */
+.gp-node.is-error {
+  border-color: color-mix(in srgb, var(--danger) 62%, transparent);
+  background-color: color-mix(in srgb, var(--danger) 7%, var(--paper-2));
+}
+
+.gp-node.is-error .gp-node-dot {
+  background: var(--danger);
+}
+
+.gp-node.is-error .gp-node-foot {
+  color: var(--danger);
+}
+
+/* 起止点：虚线小牌，不用彩色药丸 */
+.gp-term {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--rule-2);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--paper) 55%, transparent);
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.gp-handle {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ------------------------------- 详情抽屉 ------------------------------- */
+
+@keyframes gp-drawer-in {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.gp-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 12px;
+  overflow-y: auto;
+  background-color: var(--paper);
+  background-image: var(--grain);
+  background-size: var(--grain-size);
+  border-left: 1px solid var(--rule);
+  box-shadow: -20px 0 44px -38px rgba(0, 0, 0, 0.55);
+  animation: gp-drawer-in var(--dur-3) var(--ease) both;
+}
+
+.gp-drawer-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.gp-drawer-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+/* 键值对：左边标签等宽小字，右边读数 */
+.gp-kv {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 3px 8px;
+  align-items: baseline;
+}
+
+.gp-kv dt {
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.gp-kv dd {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.gp-kv dd.mono {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.gp-kv dd.is-error {
+  color: var(--danger);
+}
+
+.gp-subhead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.gp-subhead::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.gp-events {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.gp-events-empty {
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+/* ------------------------------- 底部时间轴 ------------------------------- */
+
+.gp-timeline {
+  flex: none;
+  max-height: 132px;
+  overflow-y: auto;
+  padding: 7px 12px 8px;
+  background-color: var(--paper);
+  background-image: var(--grain);
+  background-size: var(--grain-size);
+  border-top: 1px solid var(--rule);
+}
+
+.gp-timeline-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 3px;
+}
+
+.gp-tl-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.7;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+  border-radius: 2px;
+  transition: background-color var(--dur-1) var(--ease);
+}
+
+.gp-tl-row.is-clickable {
+  cursor: pointer;
+}
+
+.gp-tl-row.is-clickable:hover {
+  background: var(--paper-2);
+  color: var(--ink);
+}
+
+.gp-tl-off {
+  flex: none;
+  width: 62px;
+  color: var(--ink-3);
+}
+
+.gp-tl-row.is-running {
+  color: var(--accent);
+}
+
+.gp-tl-row.is-error {
+  color: var(--danger);
+}
+
+.gp-tl-row.is-ok {
+  color: var(--sage);
+}
+
+.gp-tl-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gp-timeline-empty {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+/* ------------------------------- 空态 ------------------------------- */
+
+.gp-empty {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  pointer-events: none;
+  color: var(--ink-3);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.gp-empty::before {
+  content: '';
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--rule-2);
+  border-radius: 50%;
+  background:
+    linear-gradient(var(--ink-3), var(--ink-3)) center / 1px 26px no-repeat,
+    linear-gradient(var(--ink-3), var(--ink-3)) center / 26px 1px no-repeat;
+  opacity: 0.8;
+}
+
+.gp-empty-title {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  letter-spacing: 0.06em;
+}
+
+.gp-empty-note {
+  max-width: 46ch;
+  line-height: 1.7;
+}

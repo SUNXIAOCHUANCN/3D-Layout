@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { usesGoRelay } from '../llm-shared/request'
 import { testLlmConnection } from './llmClient'
 import {
   createProfileFromPreset,
@@ -15,7 +16,7 @@ import type { LlmProtocol, LlmProfile } from './llmSettings'
  * 每份档案 = 一套独立的 baseURL / API Key / 模型；列表里点选即编辑该档案，
  * 「设为当前」决定 AI 编辑聊天与 CoAgent 实际用哪一份（阶段 A：手动切换，不做按用途路由）。
  *
- * 接入方式（OpenAI Chat / OpenAI Response / Anthropic）+ 服务商预设（9 家 + 自定义）
+ * 接入方式（OpenAI Chat / OpenAI Response / Anthropic）+ 服务商预设（含 OpenCode Go 和自定义）
  * + Base URL / API Key / 模型，附测试连接。
  * 保存进 localStorage（Key 只存本浏览器）。模型输入框带 datalist 建议但可自由输入。
  */
@@ -194,6 +195,9 @@ export function LlmSettingsModal(props: { onClose: () => void }) {
                 ))}
               </select>
 
+              <div className="llm-note">
+                {usesGoRelay(editing) ? '连接方式：本机服务转发（OpenCode Go）' : '连接方式：浏览器直连'}
+              </div>
               <div className="llm-label">Base URL</div>
               <input
                 className="llm-input"
@@ -280,7 +284,7 @@ export function LlmSettingsModal(props: { onClose: () => void }) {
         <div className="llm-hint">
           可保存多套服务商配置，各自独立保存 Key；「设为当前」决定实际使用哪一套。
           模型名是建议值，各厂迭代快，可直接输入任意型号。浏览器直连需服务商允许跨域（CORS），
-          失败时可换接入方式或改走代理；全部流量只在 你的浏览器 与 模型商 之间。
+          OpenCode Go 经本机服务转发，密钥不在服务端保存。测试连接成功后，还需验证工具调用及截图能力。
         </div>
         <div className="modal-actions">
           <button onClick={props.onClose}>取消</button>

@@ -1,0 +1,734 @@
+/* ============================================================================
+   3D-LAYOUT · 「制图台 / ATELIER」设计语言 · 基础层
+   ----------------------------------------------------------------------------
+   一、两个色系共用同一套结构：暖中性底 + 墨色分层 + 单一颜料色（朱砂）。
+   二、深度不靠大阴影，靠 1px 墨线、1px 内高光（--bevel）与极窄投影。
+   三、所有颜色 / 间距 / 动效都从变量取，模块层不写死色值。
+   ========================================================================== */
+
+:root {
+  /* 排印：DIN 系做标签，中文用 Noto，数值用等宽（表格数字） */
+  --font-ui: 'Noto Sans SC', 'HarmonyOS Sans SC', 'Microsoft YaHei UI', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Bahnschrift', 'DIN Alternate', 'Segoe UI Variable Display', 'Noto Sans SC', sans-serif;
+  --font-mono: 'Cascadia Mono', 'JetBrains Mono', Consolas, monospace;
+
+  /* 动效：机械式落位，只动 transform / opacity */
+  --ease: cubic-bezier(0.22, 0.8, 0.24, 1);
+  --dur-1: 110ms;
+  --dur-2: 170ms;
+  --dur-3: 240ms;
+
+  --grain: url('../assets/grain.png');
+  --grain-size: 128px 128px;
+}
+
+/* ---------------- 暗房 DARK ---------------- */
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --desk: #100f0d;
+  --paper: #1a1815;
+  --paper-2: #211e1a;
+  --paper-3: #2a2621;
+  --field: #14120f;
+
+  --ink: #ece5d7;
+  --ink-2: #b5ac9c;
+  --ink-3: #9a9182;
+
+  --rule: #2e2a24;
+  --rule-2: #433c34;
+
+  --accent: #e1744e;
+  --accent-2: #c85c38;
+  --accent-ink: #1b120d;
+  --accent-soft: rgba(225, 116, 78, 0.14);
+
+  --sage: #9dba7e;
+  --steel: #8bafbc;
+  --ochre: #d3a253;
+  --danger: #e2705f;
+
+  --bevel: inset 0 1px 0 rgba(255, 246, 232, 0.05);
+  --shadow-1: 0 1px 0 rgba(0, 0, 0, 0.35);
+  --shadow-2: 0 24px 48px -36px rgba(0, 0, 0, 0.9), 0 2px 6px rgba(0, 0, 0, 0.3);
+  --scrim: rgba(9, 8, 6, 0.66);
+  --tick: rgba(236, 229, 215, 0.4);
+  --grid: #2b2722;
+  --shot: #0d1113;
+
+  --chart-1: #e1744e;
+  --chart-2: #9dba7e;
+  --chart-3: #d3a253;
+  --chart-4: #e2705f;
+  --chart-5: #b49ad6;
+  --chart-6: #8bafbc;
+}
+
+/* ---------------- 纸面 LIGHT ---------------- */
+:root[data-theme='light'] {
+  color-scheme: light;
+  --desk: #e2dccf;
+  --paper: #f7f4ec;
+  --paper-2: #f0ebdf;
+  --paper-3: #e8e2d4;
+  --field: #efeade;
+
+  --ink: #1b1a16;
+  --ink-2: #59544a;
+  --ink-3: #6b6455;
+
+  --rule: #ded6c5;
+  --rule-2: #c4baa6;
+
+  --accent: #b03a20;
+  --accent-2: #8f2e18;
+  --accent-ink: #fdf7ed;
+  --accent-soft: rgba(176, 58, 32, 0.08);
+
+  --sage: #4a683b;
+  --steel: #345767;
+  --ochre: #8a6014;
+  --danger: #a32b1f;
+
+  --bevel: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --shadow-1: 0 1px 0 rgba(84, 68, 46, 0.06);
+  --shadow-2: 0 24px 48px -34px rgba(70, 55, 35, 0.5), 0 1px 3px rgba(70, 55, 35, 0.12);
+  --scrim: rgba(58, 49, 37, 0.42);
+  --tick: rgba(255, 255, 255, 0.45);
+  --grid: #cdc3b0;
+  --shot: #0d1113;
+
+  --chart-1: #b03a20;
+  --chart-2: #4a683b;
+  --chart-3: #8a6014;
+  --chart-4: #a32b1f;
+  --chart-5: #6d4f8f;
+  --chart-6: #345767;
+}
+
+/* ============================ 基线 ============================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--desk);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  text-underline-offset: 2px;
+}
+
+/* 细滚动条：墨线拇指，不抢视线 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule-2) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rule-2);
+  background-clip: content-box;
+  border: 3px solid transparent;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-3);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ============================ 文本工具 ============================ */
+
+.muted {
+  color: var(--ink-3);
+}
+
+.error {
+  color: var(--danger);
+  font-size: 11px;
+  max-width: 34ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 图签微标签：等宽字母距的大写小字，像图纸角标 */
+.sheet-meta,
+.micro {
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================ 基础控件 ============================ */
+
+/* 按钮：纸面凸起 + 1px 内高光，按下落 1px（纯 transform） */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 9px;
+  border: 1px solid var(--rule-2);
+  border-radius: 3px;
+  background: var(--paper-2);
+  color: var(--ink-2);
+  font: 500 11.5px var(--font-ui);
+  letter-spacing: 0.01em;
+  box-shadow: var(--bevel);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-1) var(--ease),
+    border-color var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease),
+    transform 80ms var(--ease);
+}
+
+.btn:hover {
+  background: var(--paper-3);
+  border-color: var(--ink-3);
+  color: var(--ink);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.42;
+  box-shadow: none;
+  cursor: default;
+  transform: none;
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent-2);
+  color: var(--accent-ink);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.btn.primary:hover {
+  background: var(--accent-2);
+  color: var(--accent-ink);
+}
+
+/* 可切换态（跟随 / 吸附这类开关型按钮）：只亮边框与文字，不着色整块 */
+.btn.is-on {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.btn.is-on:hover {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn .glyph {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  color: var(--ink-3);
+}
+
+.btn:hover .glyph {
+  color: var(--ink-2);
+}
+
+/* 配色切换：日 / 夜两档拨片（主应用顶栏与图视图共用） */
+.theme-switch {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--rule-2);
+  border-radius: 3px;
+  background: var(--field);
+  flex: none;
+}
+
+.theme-switch button {
+  width: 27px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.theme-switch button:hover {
+  color: var(--ink);
+}
+
+.theme-switch button[aria-pressed='true'] {
+  background: var(--paper-2);
+  color: var(--ink);
+  box-shadow: var(--bevel);
+}
+
+.theme-switch button svg {
+  display: block;
+}
+
+/* 图标按钮（方块） */
+.icon-btn {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-1) var(--ease),
+    border-color var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.icon-btn:hover {
+  background: var(--paper-2);
+  border-color: var(--rule);
+  color: var(--ink);
+}
+
+/* 字段板：标签 + 内容，像仪表上的铭牌 */
+.field {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding-left: 8px;
+  border: 1px solid var(--rule-2);
+  border-radius: 3px;
+  background: var(--paper-2);
+  box-shadow: var(--bevel);
+}
+
+.field-tag {
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  letter-spacing: 0.17em;
+  color: var(--ink-3);
+  padding-right: 7px;
+  border-right: 1px solid var(--rule-2);
+  white-space: nowrap;
+}
+
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 24px;
+  max-width: 168px;
+  padding: 0 22px 0 8px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 11.5px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+
+.field select:focus-visible {
+  outline-offset: -2px;
+}
+
+.field::after {
+  content: '';
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-right: 1px solid var(--ink-3);
+  border-bottom: 1px solid var(--ink-3);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.field:focus-within {
+  border-color: var(--accent);
+}
+
+.field.is-disabled {
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+.field.is-disabled select {
+  cursor: not-allowed;
+}
+
+/* 仪表读数：等宽数字 + 小字单位 */
+.readout {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  padding-left: 9px;
+  border-left: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.readout b {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.readout i {
+  font-style: normal;
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+/* 键值行：左边等宽小标签，右边读数。面板里的元信息用它，比一段小字好扫 */
+.kv {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 2px 8px;
+  align-items: baseline;
+  margin: 0;
+}
+
+.kv dt {
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.kv dd {
+  margin: 0;
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.kv dd.mono {
+  color: var(--ink);
+}
+
+.kv dd.ok {
+  color: var(--sage);
+}
+
+.kv dd.warn {
+  color: var(--ochre);
+}
+
+.kv dd.bad {
+  color: var(--danger);
+}
+
+/* 标签小片 */
+.chip {  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 20px;
+  max-width: 22ch;
+  padding: 0 7px;
+  border: 1px solid var(--rule-2);
+  border-radius: 2px;
+  background: var(--paper-2);
+  font-size: 10.5px;
+  color: var(--ink-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chip .pip {
+  width: 5px;
+  height: 5px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* 竖向分隔线 */
+.vrule {
+  width: 1px;
+  height: 16px;
+  flex: none;
+  background: var(--rule);
+}
+
+/* 机械式开关：轨道 + 小销钉，不用「开/关」两个字 */
+.switch {
+  position: relative;
+  width: 32px;
+  height: 17px;
+  flex: none;
+  padding: 0;
+  border: 1px solid var(--rule-2);
+  border-radius: 999px;
+  background: var(--field);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-2) var(--ease),
+    border-color var(--dur-2) var(--ease);
+}
+
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  transition:
+    transform var(--dur-2) var(--ease),
+    background-color var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+.switch.on {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.switch.on::after {
+  transform: translateX(15px);
+  background: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+/* 输入框：凹槽（1px 墨线 + 一丝内阴影），聚焦时才亮朱砂 */
+.input,
+.llm-input,
+.agent-input,
+.agent-profile-select {
+  background: var(--field);
+  border: 1px solid var(--rule-2);
+  border-radius: 2px;
+  color: var(--ink);
+  font-size: 11.5px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+  transition:
+    border-color var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+
+.input::placeholder,
+.llm-input::placeholder,
+.agent-input::placeholder {
+  color: var(--ink-3);
+}
+
+.input:focus,
+.llm-input:focus,
+.agent-input:focus,
+.agent-profile-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+input[type='checkbox'] {
+  accent-color: var(--accent);
+}
+
+/* 分段控件：两档拨片 */
+.seg,
+.agent-mode-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--field);
+}
+
+.seg button,
+.agent-mode-row button {
+  height: 21px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ink-3);
+  font-size: 10.5px;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.seg button:hover,
+.agent-mode-row button:hover {
+  color: var(--ink-2);
+}
+
+.seg button.on,
+.agent-mode-row button.on {
+  background: var(--paper-2);
+  color: var(--ink);
+  font-weight: 600;
+  box-shadow: var(--bevel);
+}
+
+/* ============================ 动效 ============================ */
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sheen {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(2.4);
+  }
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* 主题切换：View Transitions 若可用，由 theme.ts 触发；这里是时长与缓动 */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--dur-3);
+  animation-timing-function: var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

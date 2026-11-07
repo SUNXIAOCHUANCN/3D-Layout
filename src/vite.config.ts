@@ -1,3 +1,4 @@
+import { handleLlmRelay } from './modules/llm-shared/relayServer'
 import { defineConfig, type Connect, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { createReadStream, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs'
@@ -7,6 +8,7 @@ import type { IncomingMessage, ServerResponse } from 'node:http'
 import type { SceneDocument } from './core/types'
 import { handleLlmAgentLog } from './modules/llm-agent/logServer'
 import { handleLlmAgentPython } from './modules/llm-agent/pythonServer'
+import { partitionAgentPlugin } from './modules/partition-agent/server'
 
 // 3D-Layout 根目录（本配置文件位于 src/ 内，数据目录在上一级）
 const layoutRoot = fileURLToPath(new URL('..', import.meta.url))
@@ -376,6 +378,7 @@ function serveDataDirs(): Plugin {
   }
   const install = (middlewares: Connect.Server) => {
     middlewares.use((req, res, next) => {
+      if (handleLlmRelay(req, res)) return
       if (handlePartitionWrite(req, res)) return
       // 场景新建/删除（POST /api/scene 与 DELETE /api/scene/<id>）先于保存接口判定
       if (handleSceneAdmin(req, res)) return
@@ -396,7 +399,7 @@ function serveDataDirs(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), serveDataDirs()],
+  plugins: [react(), partitionAgentPlugin(layoutRoot), serveDataDirs()],
   server: { port: 5173 },
   build: {
     rollupOptions: {

@@ -4,6 +4,7 @@ import { useAgentStore } from './agentStore'
 import { useLlmSettingsStore } from './llmSettings'
 import { LlmSettingsModal } from './LlmSettingsModal'
 import { AGENT_DENIED, AGENT_TOOLS } from './tools'
+import { ClearIcon, SendIcon, StopIcon } from '../../ui/icons'
 
 /**
  * Agent 模块面板（装配点②：左侧插件侧边栏）——聊天式 AI 编辑。
@@ -75,7 +76,7 @@ export function AgentPanel() {
         )}
         {chatEnabled && (
           <button className="agent-mini-btn" onClick={() => setSettingsOpen(true)} title="API 设置">
-            ⚙ 设置
+            设置
           </button>
         )}
       </div>
@@ -106,6 +107,7 @@ export function AgentPanel() {
       {/* 任务卡：提案执行 / 等待裁决 */}
       {task && (
         <div className={`agent-task${awaitingVerdict ? ' verdict' : ''}`}>
+          <span className="agent-task-tag">{awaitingVerdict ? '待裁决' : '提案'}</span>
           <div className="agent-task-label">{task.label}</div>
           <div className="agent-task-meta">
             读 {task.reads} · 写 {task.writes}
@@ -136,6 +138,11 @@ export function AgentPanel() {
 
       {/* 对话区 */}
       <div className="agent-chat" ref={listRef}>
+        {chat.length === 0 && (
+          <div className="agent-chat-empty">
+            {'还没有对话。\n例如：把长桌向北移动 0.5 米，别挡住门。'}
+          </div>
+        )}
         {chat.map(m =>
           m.role === 'note' ? (
             <div key={m.id} className="agent-chat-note">
@@ -192,12 +199,12 @@ export function AgentPanel() {
             }}
           />
           {llmBusy ? (
-            <button className="agent-mini-btn stop" onClick={() => agentSession.abortChat()} title="停止生成">
-              ■
+            <button className="agent-mini-btn stop" onClick={() => agentSession.abortChat()} title="停止生成" aria-label="停止生成">
+              <StopIcon />
             </button>
           ) : (
-            <button className="agent-mini-btn send" disabled={inputDisabled} onClick={submit} title="发送">
-              ➤
+            <button className="agent-mini-btn send" disabled={inputDisabled} onClick={submit} title="发送" aria-label="发送">
+              <SendIcon />
             </button>
           )}
           <button
@@ -205,8 +212,9 @@ export function AgentPanel() {
             disabled={llmBusy}
             onClick={() => agentSession.clearChat()}
             title="清空对话"
+            aria-label="清空对话"
           >
-            ⟲
+            <ClearIcon />
           </button>
         </div>
       )}

@@ -64,10 +64,10 @@ export function ViewRig(props: { env: SceneEnvironment; view: ViewBinding }) {
           args={groundSize}
           cellSize={0.5}
           cellThickness={0.8}
-          cellColor="#465062"
+          cellColor="#3f3a34"
           sectionSize={2.5}
           sectionThickness={1.2}
-          sectionColor="#5f7191"
+          sectionColor="#5b544a"
           fadeDistance={45}
           fadeStrength={1}
           followCamera={false}

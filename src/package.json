@@ -8,6 +8,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "gen-manifest": "node scripts/gen-manifest.mjs",
+    "test:llm": "vitest run -c modules/llm-shared/vitest.config.ts",
+    "test:partition-agent": "vitest run -c modules/partition-agent/vitest.config.ts",
     "test:coagent": "vitest run -c modules/coagent/vitest.config.ts",
     "test:coagent-browser": "node modules/coagent/tests/browser/w03-run.mjs",
     "test:coagent-browser:w04": "node modules/coagent/tests/browser/w04-run.mjs",

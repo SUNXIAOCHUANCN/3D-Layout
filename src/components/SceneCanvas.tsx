@@ -34,7 +34,7 @@ export function SceneCanvas(props: { children?: ReactNode }) {
       }}
     >
       <EngineBridgeReg />
-      <CameraRig cameras={document.cameras} view={view} sceneKey={sceneId ?? ''} />
+      <CameraRig cameras={document.cameras} view={view} sceneKey={sceneId ?? ''} assets={document.assets} />
       <Suspense fallback={null}>
         <SceneContent />
         <ViewRig env={document.environment} view={view} />
@@ -49,8 +49,8 @@ export function SceneCanvas(props: { children?: ReactNode }) {
       {/* 坐标轴指示器：右手系（X红 Y绿上 Z蓝朝向观察者）；点击轴球把相机对齐到该轴 */}
       <GizmoHelper alignment="bottom-right" margin={[80, 80]}>
         <GizmoViewport
-          axisColors={['#ff7b72', '#7ee787', '#79c0ff']}
-          labelColor="#e6edf3"
+          axisColors={['#d9694a', '#9bb87c', '#86aab7']}
+          labelColor="#ece5d7"
         />
       </GizmoHelper>
       {props.children}

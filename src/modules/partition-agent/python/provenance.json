@@ -1,0 +1,19 @@
+{
+  "source_project": "Map2Area",
+  "files": [
+    {
+      "source": "backend/app/processing/boundaries/contracts.py",
+      "sha256": "a7aacb79f630c54398efa723a581fb6f3d21effa1eac9b724cecaf0c9a4a39e8"
+    },
+    {
+      "source": "backend/app/processing/boundaries/render.py",
+      "sha256": "70400cfac4eb515291853121d9f9b62f415a09fa236f0067ae73b2a04084c7fe"
+    },
+    {
+      "source": "backend/app/processing/boundaries/refine.py",
+      "sha256": "f3c3f9c83c13019d29774ac7763e8c55a2bfc409b7877b467d1642bb7bebcb42"
+    }
+  ],
+  "prompt_source": "saved workflow LLM分区",
+  "note": "Source snapshot only. No runtime dependency on the source project."
+}

@@ -72,14 +72,16 @@ export function HistorySidebar(props: {
 
   return (
     <aside className="sidebar sidebar-right" style={props.style}>
-      <div className="sidebar-head row">
-        <span>历史记录</span>
-        <button className="collapse-btn" onClick={props.onToggle} title="收起">
+      <div className="sheet-head">
+        <span className="sheet-title">历史记录</span>
+        <span className="sheet-meta">LOG / {String(total).padStart(2, '0')}</span>
+        <span className="spacer" />
+        <button className="icon-btn" onClick={props.onToggle} title="收起历史记录" aria-label="收起历史记录">
           »
         </button>
       </div>
       <div className="history-list" ref={listRef}>
-        {total === 0 && <div className="inspector-empty">暂无编辑记录</div>}
+        {total === 0 && <div className="inspector-empty history-empty">暂无编辑记录</div>}
         {done.map((u, i) => (
           <button
             key={u.txId}
@@ -87,22 +89,28 @@ export function HistorySidebar(props: {
             onClick={() => clickUndoable(u)}
             title="撤回到此步之后的状态"
           >
-            <span className="history-label">{u.label}</span>
-            <span className="history-meta">
-              {u.source === 'agent' ? 'Agent' : '人工'}
-              {u.ops > 1 && ` · ${u.ops} 步`} · {fmtTime(u.time)}
+            <span className="history-idx">{String(i + 1).padStart(2, '0')}</span>
+            <span>
+              <span className="history-label">{u.label}</span>
+              <span className="history-meta">
+                {u.source === 'agent' ? 'Agent' : '人工'}
+                {u.ops > 1 && ` · ${u.ops} 步`} · {fmtTime(u.time)}
+              </span>
             </span>
           </button>
         ))}
-        {undone.map(u => (
+        {undone.map((u, j) => (
           <button
             key={u.txId}
             className="history-item undone"
             onClick={() => clickRedoable(u)}
             title="重做到此步"
           >
-            <span className="history-label">{u.label}</span>
-            <span className="history-meta">已撤销 · 点击重做 · {fmtTime(u.time)}</span>
+            <span className="history-idx">{String(done.length + j + 1).padStart(2, '0')}</span>
+            <span>
+              <span className="history-label">{u.label}</span>
+              <span className="history-meta">已撤销 · 点击重做 · {fmtTime(u.time)}</span>
+            </span>
           </button>
         ))}
       </div>

@@ -21,21 +21,22 @@ export function InterchangePanel() {
 
   return (
     <div className="interchange-panel">
+      <div className={`ip-status ${up === null ? 'is-checking' : up ? 'is-up' : 'is-down'}`}>
+        <span className="ip-dot" />
+        {up === null ? '正在检查插件服务…' : up ? '插件服务运行中 · 127.0.0.1:5175' : '插件服务未启动'}
+      </div>
       <button
         className="ip-open"
         onClick={() => window.open(PLUGIN_URL, '_blank', 'noopener')}
+        title="在新标签页打开导入导出工具"
       >
-        打开导入导出工具 ↗
+        打开导入导出工具
+        <span className="ip-arrow">↗</span>
       </button>
       <p className="ip-hint">
-        {up === null
-          ? '正在检查插件服务…'
-          : up
-            ? '● 插件服务运行中(127.0.0.1:5175)'
-            : '○ 插件服务未启动:双击 dev.bat 会自动拉起,或手动运行 plugins/threejs-interchange 下 pnpm start'}
-      </p>
-      <p className="ip-hint">
-        导入外部 Three.js 场景、导出场景包(.layout.zip)与模型包(.model.zip)都在新标签页完成,不影响当前页面。
+        {up === false
+          ? '双击 dev.bat 会自动拉起；也可手动运行 plugins/threejs-interchange 下的 pnpm start。'
+          : '导入外部 Three.js 场景、导出场景包（.layout.zip）与模型包（.model.zip），都在新标签页完成，不影响当前页面。'}
       </p>
     </div>
   )

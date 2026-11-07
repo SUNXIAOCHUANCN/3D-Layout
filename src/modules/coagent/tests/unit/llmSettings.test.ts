@@ -235,8 +235,12 @@ describe('llmSettings · 读取助手', () => {
     expect(isLlmConfigured()).toBe(true)
   })
 
-  it('厂商预设表仍完整可用（9 家 + 自定义）', () => {
-    expect(LLM_PROVIDERS.length).toBe(10)
+  it('厂商预设表包含原有厂商、OpenCode Go 和自定义', () => {
+    expect(LLM_PROVIDERS.length).toBe(11)
+    expect(createProfileFromPreset('opencode-go')).toMatchObject({
+      provider: 'opencode-go', protocol: 'openai-chat',
+      baseURL: 'https://opencode.ai/inference/go/openai/v1',
+    })
     expect(LLM_PROVIDERS.some(p => p.id === 'custom')).toBe(true)
   })
 })

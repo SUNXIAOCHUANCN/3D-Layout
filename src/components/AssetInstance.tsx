@@ -1,6 +1,7 @@
+import { TerrainModel } from '../modules/terrain/TerrainModel'
 import { useGLTF } from '@react-three/drei'
 import { useEffect, useMemo } from 'react'
-import { BackSide, BufferGeometry, Float32BufferAttribute, Mesh, MeshBasicMaterial, MeshStandardMaterial, Vector3 } from 'three'
+import { BackSide, Mesh, MeshBasicMaterial, MeshStandardMaterial, Vector3 } from 'three'
 import type { Object3D, SkinnedMesh } from 'three'
 import { bus } from '../core/events'
 import { useSceneStore } from '../core/store'
@@ -173,29 +174,6 @@ function GlbModel(props: {
       {outline && <primitive object={outline} />}
     </>
   )
-}
-
-function TerrainModel({ terrain, material }: { terrain: NonNullable<SceneAsset['terrain']>; material?: SceneAsset['materialOverride'] }) {
-  const geometry = useMemo(() => {
-    const g = new BufferGeometry()
-    const positions: number[] = []
-    const indices: number[] = []
-    for (let z = 0; z < terrain.samplesZ; z++) {
-      for (let x = 0; x < terrain.samplesX; x++) {
-        positions.push((x / (terrain.samplesX - 1) - 0.5) * terrain.width, terrain.heights[z * terrain.samplesX + x], (z / (terrain.samplesZ - 1) - 0.5) * terrain.depth)
-        if (x < terrain.samplesX - 1 && z < terrain.samplesZ - 1) {
-          const a = z * terrain.samplesX + x, b = a + 1, c = a + terrain.samplesX, d = c + 1
-          indices.push(a, c, b, b, c, d)
-        }
-      }
-    }
-    g.setAttribute('position', new Float32BufferAttribute(positions, 3))
-    g.setIndex(indices)
-    g.computeVertexNormals()
-    return g
-  }, [terrain])
-  useEffect(() => () => geometry.dispose(), [geometry])
-  return <mesh geometry={geometry} castShadow receiveShadow><meshStandardMaterial color={material?.color ?? '#66875b'} roughness={material?.roughness ?? 0.9} metalness={material?.metalness ?? 0} /></mesh>
 }
 
 /**

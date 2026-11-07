@@ -3,10 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
     <title>3D-Layout</title>
     <style>
-      html, body { background: #14181f; }
+      /* 首帧底色与当前配色一致，避免刷新时闪一下白/黑 */
+      html { background: #100f0d; }
+      html[data-theme="light"] { background: #e2dccf; }
     </style>
+    <script>
+      // 在样式与脚本加载前落定配色（与 ui/theme.ts 共用同一个键）
+      (function () {
+        try {
+          var t = localStorage.getItem('ui-theme-v1')
+          var q = new URLSearchParams(location.search).get('theme')
+          if (q === 'light' || q === 'dark') {
+            t = q
+          } else if (t !== 'light' && t !== 'dark') {
+            t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+          }
+          document.documentElement.dataset.theme = t
+          document.documentElement.style.colorScheme = t
+        } catch (e) {
+          /* 隐私模式等：交给应用内初始化 */
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -57,9 +57,47 @@ export interface SceneAsset {
   /** 默认 true */
   visible?: boolean
   /** 程序生成地形；高度数组按 z 行、x 列存储，局部 X/Z 中心为原点。 */
-  terrain?: { width: number; depth: number; samplesX: number; samplesZ: number; heights: number[]; seed: number }
+  terrain?: { width: number; depth: number; samplesX: number; samplesZ: number; heights: number[]; seed: number; surface?: TerrainSurface }
   /** 当前实例的完整 PBR 覆盖，不修改共享模型材质。 */
   materialOverride?: { color: string; roughness: number; metalness: number }
+}
+
+export interface TerrainSurfaceLayer {
+  id: string
+  presetId?: 'grass' | 'sand' | 'rock' | 'snow'
+  materialId?: string
+  normalStrength?: number
+  /** Texture repeat size in local metres. */
+  tileSize: number
+  tint?: string
+  roughness?: number
+}
+
+export interface TerrainMaterialResource {
+  id: string
+  name?: string
+  color?: string
+  roughness?: number
+  normalStrength?: number
+  maps?: { color?: string; normal?: string; roughness?: string; ao?: string; height?: string }
+}
+
+export interface TerrainSurfaceBlend {
+  mode: 'weight' | 'height'
+  heightContrast?: number
+  noiseStrength?: number
+  noiseScale?: number
+  seed?: number
+}
+
+export interface TerrainSurface {
+  version: 1
+  layers: TerrainSurfaceLayer[]
+  baseLayerId: string
+  materials?: TerrainMaterialResource[]
+  blend?: TerrainSurfaceBlend
+  /** RGBA channels follow layers order; every pixel sums to 255. */
+  weightMap: { width: number; height: number; encoding: 'rgba8'; data: number[] }
 }
 
 export interface SceneCamera {

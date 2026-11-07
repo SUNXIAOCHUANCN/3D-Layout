@@ -43,21 +43,37 @@ const PHASE_TEXT: Record<CoAgentPhase, string> = {
 function persistenceText(state: PartitionPersistenceState): string {
   switch (state.status) {
     case 'loading':
-      return '分区文件：读取中…'
+      return '读取中…'
     case 'absent':
-      return '分区文件：尚未保存（首次使用属正常）'
+      return '尚未保存（首次使用属正常）'
     case 'ready':
-      return `分区文件：已恢复（${state.report.fingerprintMatch ? '内容一致' : '场景已变化，已按当前场景核对'}）`
+      return `已恢复（${state.report.fingerprintMatch ? '内容一致' : '场景已变化，已按当前场景核对'}）`
     case 'needs_review':
-      return `分区文件：已恢复，但有 ${state.issues.length} 项待核对——${state.issues.slice(0, 2).join('；')}`
+      return `已恢复，但有 ${state.issues.length} 项待核对——${state.issues.slice(0, 2).join('；')}`
     case 'invalid':
-      return `分区文件不可用（已保留原文件）：${state.issues.slice(0, 2).join('；')}`
+      return `不可用（已保留原文件）：${state.issues.slice(0, 2).join('；')}`
     case 'load_failed':
-      return `分区文件读取失败：${state.message}`
+      return `读取失败：${state.message}`
     case 'save_failed':
-      return `分区文件保存失败：${state.message}`
+      return `保存失败：${state.message}`
     default:
-      return '分区文件：未检查'
+      return '未检查'
+  }
+}
+
+/** 同一份状态的语气：好 / 待看 / 坏（用来上色，不重复文案） */
+function persistenceTone(state: PartitionPersistenceState): '' | 'ok' | 'warn' | 'bad' {
+  switch (state.status) {
+    case 'ready':
+      return 'ok'
+    case 'needs_review':
+      return 'warn'
+    case 'invalid':
+    case 'load_failed':
+    case 'save_failed':
+      return 'bad'
+    default:
+      return ''
   }
 }
 
@@ -163,11 +179,18 @@ export function CoAgentPanel(props: { coagent: ReturnType<typeof useCoAgentModul
   }
 
   return (
-    <div className="agent-panel" data-partition={partition ? String(partition.partitionVersion) : 'none'}>
+    <div className="agent-panel coagent-panel" data-partition={partition ? String(partition.partitionVersion) : 'none'}>
       <div className="agent-status">
-        状态：{PHASE_TEXT[coagent.phase]}
-        {busy && ' …'}
-        {eventCount > 0 && `（事件 ${eventCount} 条）`}
+        <span className={`agent-dot${busy ? ' on' : ''}`} />
+        <span className="agent-transport">
+          状态：{PHASE_TEXT[coagent.phase]}
+          {busy && ' …'}
+        </span>
+        {eventCount > 0 && (
+          <span className="sheet-meta" title="本轮已记录的事件数">
+            EVT / {String(eventCount).padStart(2, '0')}
+          </span>
+        )}
       </div>
 
       {(lastError || lastResult) && (
@@ -179,7 +202,7 @@ export function CoAgentPanel(props: { coagent: ReturnType<typeof useCoAgentModul
               : lastResult?.kind === 'completed'
                 ? `✓ ${lastResult.summary ?? '已完成'}`
                 : lastResult?.kind === 'retained_with_issues'
-                  ? `⚠ 改动已保留，存在未通过项（${lastResult.issueCount ?? 0} 项）：${lastResult.summary ?? ''}`
+                  ? `！ 改动已保留，存在未通过项（${lastResult.issueCount ?? 0} 项）：${lastResult.summary ?? ''}`
                   : lastResult?.kind === 'rolled_back'
                     ? `↺ 已回滚${lastResult.code ? `（${lastResult.code}${lastResult.stage ? ` @${lastResult.stage}` : ''}）` : ''}：${lastResult.reason ?? ''}`
                     : lastResult?.kind === 'cancelled'
@@ -210,25 +233,31 @@ export function CoAgentPanel(props: { coagent: ReturnType<typeof useCoAgentModul
       )}
 
       <div className="agent-section">
-        <div className="agent-task-label">分区</div>
-        <div className="agent-chat-note">
-          <div>
-            模型：
-            {model
-              ? model.configured
-                ? `已配置（${model.summary}）`
-                : '未配置——去「AI 编辑 → 设置」填 baseURL / Key / 模型名'
-              : 'runtime 未就绪'}
-          </div>
-          {/* P4：分区配套文件状态（无文件是正常状态，不是错误） */}
-          <div>{persistenceText(coagent.partitionPersistence)}</div>
-        </div>
-        <div className="agent-input-row">
-          <button className="agent-mini-btn" disabled={!runtime || partitioning || busy || !model?.configured} onClick={onPreprocess}>
-            {partitioning ? '生成中…' : '生成分区（鸟瞰 VLM）'}
+        <div className="panel-label">分区</div>
+        <dl className="kv">
+          <dt>模型</dt>
+          <dd className={`mono${model ? (model.configured ? ' ok' : ' warn') : ' bad'}`}>
+            {model ? (model.configured ? model.summary : '未配置') : 'runtime 未就绪'}
+          </dd>
+          <dt>分区文件</dt>
+          <dd className={persistenceTone(coagent.partitionPersistence)}>
+            {persistenceText(coagent.partitionPersistence)}
+          </dd>
+        </dl>
+        {model && !model.configured && (
+          <div className="agent-chat-note">去「AI 编辑 → 设置」填 baseURL / Key / 模型名后，才能生成分区。</div>
+        )}
+        <div className="cp-actions">
+          <button
+            className="agent-mini-btn"
+            disabled={!runtime || partitioning || busy || !model?.configured}
+            onClick={onPreprocess}
+            title="用鸟瞰图让 VLM 自动划分可用区域"
+          >
+            {partitioning ? '生成中…' : '生成分区'}
           </button>
           <button className="agent-mini-btn" disabled={!runtime || busy} onClick={() => void coagent.restorePartition()}>
-            恢复已保存分区
+            恢复已保存
           </button>
           <button className="agent-mini-btn" disabled={!runtime || busy || !partition} onClick={() => void coagent.savePartition()}>
             保存分区
@@ -278,7 +307,7 @@ export function CoAgentPanel(props: { coagent: ReturnType<typeof useCoAgentModul
 
       {pendingClarify && (
         <div className="agent-section">
-          <div className="agent-task-label">需要澄清</div>
+          <div className="panel-label">需要澄清</div>
           <div className="agent-chat-note">{pendingClarify.question}</div>
           {pendingClarify.options.length > 0 && (
             <div className="agent-input-row" style={{ flexWrap: 'wrap' }}>
@@ -305,7 +334,7 @@ export function CoAgentPanel(props: { coagent: ReturnType<typeof useCoAgentModul
       )}
 
       <div className="agent-section">
-        <div className="agent-task-label">布局指令</div>
+        <div className="panel-label">布局指令</div>
         <textarea
           className="agent-input"
           rows={3}

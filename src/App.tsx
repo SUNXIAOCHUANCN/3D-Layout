@@ -7,6 +7,7 @@ import type { SceneIndexEntry } from './core/types'
 import { AgentPanel, AgentPickHighlight, useAgentModule, useAgentStore } from './modules/agent'
 import { AgentPanel as NewAgentPanel, AgentPickHighlight as NewAgentPickHighlight, useAgentModule as useNewAgentModule, useAgentStore as useNewAgentStore } from './modules/llm-agent'
 import { CoAgentBridge, CoAgentPanel, deriveHostLocks, useCoAgentModule } from './modules/coagent'
+import { PartitionAgentPanel, usePartitionAgentModule, usePartitionAgentStore } from './modules/partition-agent'
 import { EditorGizmo, EditorPanel, useEditorModule } from './modules/editor'
 import { HistorySidebar } from './modules/history/HistorySidebar'
 import { InterchangePanel } from './modules/interchange/InterchangePanel'
@@ -45,6 +46,8 @@ export default function App() {
   // Agent 模块开关：默认开；传输层由 ?agent= 决定（缺省=浏览器直连 LLM）
   const [agentOn, setAgentOn] = useState(true)
   const [newAgentOn, setNewAgentOn] = useState(false)
+  const [partitionAgentOn, setPartitionAgentOn] = useState(false)
+  const partitionAgentBusy = usePartitionAgentStore(s => s.busy)
   // 导入导出插件入口（独立本地工具,开关仅控制本面板显隐）
   const [interchangeOn, setInterchangeOn] = useState(true)
   // CoAgent 模块开关：多区自动布局；活跃时暂停人工编辑与旧 Agent（写者互斥）
@@ -56,10 +59,10 @@ export default function App() {
   const agentPhase = useAgentStore(s => s.phase)
   const newAgentPhase = useNewAgentStore(s => s.phase)
   // CoAgent：唯一 runtime 装配（isHostBusy 传稳定引用，内部不进 hook 依赖）
-  const hostBusyRef = useRef(() => useAgentStore.getState().phase !== 'idle' || useNewAgentStore.getState().phase !== 'idle')
+  const hostBusyRef = useRef(() => useAgentStore.getState().phase !== 'idle' || useNewAgentStore.getState().phase !== 'idle' || usePartitionAgentStore.getState().busy)
   const coagent = useCoAgentModule(coagentOn, { isHostBusy: hostBusyRef.current })
   // 写者互斥的唯一判断来源（SPEC §1.4 清单，单测 + T13 实跑覆盖）
-  const locks = deriveHostLocks({ editorEnabled: editorOn, agentBusy: agentPhase !== 'idle' || newAgentPhase !== 'idle', coagentPhase: coagent.phase })
+  const locks = deriveHostLocks({ editorEnabled: editorOn, agentBusy: agentPhase !== 'idle' || newAgentPhase !== 'idle' || partitionAgentBusy, coagentPhase: coagent.phase })
   const manualEditing = locks.manualEditing
 
   useEffect(() => {
@@ -132,6 +135,7 @@ export default function App() {
   useEditorModule(manualEditing)
   useAgentModule(agentOn && locks.agentModuleEnabled)
   useNewAgentModule(newAgentOn && locks.agentModuleEnabled)
+  usePartitionAgentModule(partitionAgentOn && locks.agentModuleEnabled)
 
   const leftStyle: CSSProperties = { width: sizes.left }
   const rightStyle: CSSProperties = { width: sizes.right }
@@ -148,6 +152,7 @@ export default function App() {
             {
               id: 'manual-editor',
               name: '人工编辑',
+              description: '变换 · 属性 · 保存',
               enabled: manualEditing,
               onToggle: () => setEditorOn(v => !v),
               panel: <EditorPanel />,
@@ -155,20 +160,31 @@ export default function App() {
             {
               id: 'llm-agent',
               name: 'AI 编辑',
+              description: '对话式布局修改',
               enabled: agentOn,
-              onToggle: () => { setAgentOn(v => !v); if (!agentOn) setNewAgentOn(false) },
+              onToggle: () => { setAgentOn(v => !v); if (!agentOn) { setNewAgentOn(false); setPartitionAgentOn(false) } },
               panel: <AgentPanel />,
             },
             {
               id: 'llm-agent-experiment',
               name: 'LLM Agent 实验',
+              description: '新链路 · 规划与预算',
               enabled: newAgentOn,
-              onToggle: () => { setNewAgentOn(v => !v); if (!newAgentOn) setAgentOn(false) },
+              onToggle: () => { setNewAgentOn(v => !v); if (!newAgentOn) { setAgentOn(false); setPartitionAgentOn(false) } },
               panel: <NewAgentPanel />,
+            },
+            {
+              id: 'partition-agent',
+              name: '场景分区 Agent',
+              description: '鸟瞰分区 · 并行编辑',
+              enabled: partitionAgentOn,
+              onToggle: () => { setPartitionAgentOn(v => !v); if (!partitionAgentOn) { setAgentOn(false); setNewAgentOn(false) } },
+              panel: <PartitionAgentPanel />,
             },
             {
               id: 'interchange',
               name: '导入导出',
+              description: '外部场景与模型包',
               enabled: interchangeOn,
               onToggle: () => setInterchangeOn(v => !v),
               panel: <InterchangePanel />,
@@ -176,6 +192,7 @@ export default function App() {
             {
               id: 'coagent',
               name: 'CoAgent 布局',
+              description: '多区自动布局',
               enabled: coagentOn,
               onToggle: () => setCoagentOn(v => !v),
               panel: <CoAgentPanel coagent={coagent} />,

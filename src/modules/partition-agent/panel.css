@@ -1,0 +1,293 @@
+/* 场景分区 Agent 面板：只引用全局设计变量，自带作用域，不写死色值 */
+
+.partition-agent-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  font-size: 11px;
+}
+
+.partition-agent-panel p {
+  margin: 0;
+  line-height: 1.65;
+}
+
+.pa-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pa-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.pa-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-3);
+}
+
+.pa-status.active::before {
+  background: var(--accent);
+}
+
+.pa-muted {
+  color: var(--ink-3);
+  font-size: 9.5px;
+  overflow-wrap: anywhere;
+}
+
+.pa-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 8px;
+  font-size: 9.5px;
+  color: var(--ink-3);
+}
+
+.pa-field select,
+.pa-field input,
+.pa-field textarea,
+.partition-agent-panel textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 6px 7px;
+  border: 1px solid var(--rule-2);
+  border-radius: 2px;
+  background: var(--field);
+  color: var(--ink);
+  font: inherit;
+  line-height: 1.55;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+  transition:
+    border-color var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease);
+}
+
+/* 小节标题：与编辑器面板同款（细线延伸） */
+.pa-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.pa-head::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.partition-agent-panel textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.pa-field select:focus-visible,
+.pa-field input:focus-visible,
+.pa-field textarea:focus-visible,
+.partition-agent-panel textarea:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+.pa-error {
+  padding: 7px 8px;
+  border: 1px solid color-mix(in srgb, var(--danger) 40%, transparent);
+  border-radius: 2px;
+  color: var(--danger);
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.pa-progress {
+  padding: 7px 8px;
+  border-left: 2px solid var(--accent);
+  background: var(--accent-soft);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.pa-regions,
+.pa-workers {
+  padding: 8px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--paper-2);
+}
+
+.pa-regions > summary,
+.pa-workers > summary {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink-2);
+  padding: 1px 0;
+}
+
+.pa-regions details > summary {
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+.pa-regions details,
+.pa-workers details {
+  margin-top: 6px;
+}
+
+.partition-agent-panel summary {
+  cursor: pointer;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.pa-count {
+  float: right;
+  margin-left: 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--ink-3);
+}
+
+.pa-regions img {
+  display: block;
+  width: 100%;
+  margin: 7px 0;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+
+.pa-live-preview {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+
+.pa-object {
+  padding: 2px 0;
+  color: var(--ink-2);
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.pa-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-height: 120px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* 没有对话时不占高度：空态本身就是一条提示，不必留一大片空 */
+.pa-chat.is-empty {
+  min-height: 0;
+}
+
+.pa-empty {
+  padding: 10px 9px;
+  border: 1px dashed var(--rule-2);
+  border-radius: 3px;
+  color: var(--ink-3);
+  font-size: 10.5px;
+  line-height: 1.7;
+  text-align: left;
+}
+
+.pa-message {
+  padding: 7px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper-2);
+  font-size: 10.5px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.pa-message small {
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+
+.pa-message.user {
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  background: var(--accent-soft);
+}
+
+.pa-message.note {
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink-3);
+  font-size: 9.5px;
+}
+
+.partition-agent-panel button {
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper-2);
+  color: var(--ink-2);
+  font-size: 10px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--bevel);
+  transition:
+    background-color var(--dur-1) var(--ease),
+    border-color var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
+}
+
+.partition-agent-panel button:hover:not(:disabled) {
+  background: var(--paper-3);
+  border-color: var(--rule-2);
+  color: var(--ink);
+}
+
+.partition-agent-panel button:disabled {
+  opacity: 0.42;
+  cursor: default;
+  box-shadow: none;
+}
+
+.partition-agent-panel .pa-send {
+  border-color: var(--accent-2);
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.partition-agent-panel .pa-send:hover:not(:disabled) {
+  background: var(--accent-2);
+  color: var(--accent-ink);
+}

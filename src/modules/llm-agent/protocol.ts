@@ -33,11 +33,17 @@ export type AgentAccess = 'read' | 'write' | 'export' | 'generate'
 /** 只读工具：无副作用，任务内外均可调用 */
 export type AgentReadToolName =
   | 'scene.get_state'
+  | 'catalog.search'
+  | 'scene.density'
   | 'viewport.screenshot'
   | 'viewport.pick'
   | 'log.list'
   | 'terrain.sample'
+  | 'terrain.surface.get'
+  | 'terrain.surface.sample'
   | 'material.get'
+  | 'plan.get'
+  | 'material.get_many'
 
 /** 写工具：仅任务事务内可用，提案式生效，commit 由人工裁决 */
 export type AgentWriteToolName =
@@ -46,14 +52,25 @@ export type AgentWriteToolName =
   | 'asset.add'
   | 'asset.remove'
   | 'terrain.generate'
+  | 'terrain.surface.configure'
+  | 'terrain.surface.set_material'
+  | 'terrain.surface.set_blend'
+  | 'terrain.surface.paint'
+  | 'terrain.surface.apply_rules'
+  | 'terrain.surface.reset'
   | 'material.apply'
   | 'material.reset'
   | 'terrain.create_heightfield'
+  | 'asset.batch'
+  | 'asset.scatter'
+  | 'asset.snap'
+  | 'terrain.sculpt'
+  | 'material.batch'
 
 /** 导出工具：写 logs/ 下的调用记录文件，不受任务事务约束 */
 export type AgentExportToolName = 'log.write'
 
-export type AgentToolName = AgentReadToolName | AgentWriteToolName | AgentExportToolName | 'python.execute'
+export type AgentToolName = AgentReadToolName | AgentWriteToolName | AgentExportToolName | 'python.execute' | 'plan.set' | 'task.criteria'
 
 export interface SceneGetStateArgs {
   /** 是否附带模型库目录（name/category/dimensions），默认 true */

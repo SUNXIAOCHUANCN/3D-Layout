@@ -69,7 +69,7 @@ export function EditorPanel() {
           坐标系：{space === 'world' ? '全局' : '局部'}
         </button>
         <button
-          className={snap ? 'active' : ''}
+          className={snap ? 'toggle on' : 'toggle'}
           onClick={toggleSnap}
           title={`移动 ${SNAP.translate}m / 旋转 ${SNAP.rotateDeg}° / 缩放 ${SNAP.scale}，按住 Ctrl 临时反转`}
         >
