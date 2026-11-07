@@ -11,6 +11,12 @@ import { handleLlmAgentLog } from './modules/llm-agent/logServer'
 import { handleLlmAgentPython } from './modules/llm-agent/pythonServer'
 import { partitionAgentPlugin } from './modules/partition-agent/server'
 
+// node:sqlite 与 module.stripTypeScriptTypes 需要 Node 22.18+；不足时直接给出可读错误，而不是底层模块报错。
+const [nodeMajor, nodeMinor] = process.versions.node.split('.').map(Number)
+if (nodeMajor < 22 || (nodeMajor === 22 && nodeMinor < 18)) {
+  throw new Error(`3D-Layout 需要 Node.js ≥ 22.18，当前为 ${process.versions.node}。请升级 Node 后重试。`)
+}
+
 // 3D-Layout 根目录（本配置文件位于 src/ 内，数据目录在上一级）
 const layoutRoot = process.env.LAYOUT_ROOT ?? fileURLToPath(new URL('..', import.meta.url))
 

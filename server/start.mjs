@@ -5,6 +5,13 @@ import { fileURLToPath } from 'node:url'
 import { resolve, sep, extname } from 'node:path'
 import { createWorkspaceApi } from './http.mjs'
 
+// node:sqlite 与 module.stripTypeScriptTypes 需要 Node 22.18+；版本不够时给出明确提示。
+const [nodeMajor, nodeMinor] = process.versions.node.split('.').map(Number)
+if (nodeMajor < 22 || (nodeMajor === 22 && nodeMinor < 18)) {
+  console.error(`3D-Layout 需要 Node.js ≥ 22.18，当前为 ${process.versions.node}。请升级 Node 后重试。`)
+  process.exit(1)
+}
+
 const root = process.env.LAYOUT_ROOT ?? fileURLToPath(new URL('..', import.meta.url))
 const api = createWorkspaceApi(root)
 // 浏览器端 OpenCode Go 需要 /api/llm/request 转发；开发模式由 Vite 中间件提供，独立服务在这里挂同一份。

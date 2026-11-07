@@ -6,7 +6,7 @@ Web 端 3D 布局软件（毕业设计）。数据驱动的 Three.js 场景渲�
 
 Vite 8 · React 19 · TypeScript · three.js（WebGL2）· @react-three/fiber · @react-three/drei · zustand · pnpm
 
-> 环境要求：Node ≥ 22.18；npm 或 pnpm。后端使用 Node 内置 SQLite，无需安装数据库服务。
+> 环境要求：Node ≥ 22.18（当前验证版本 22.23.4，见 `.nvmrc`）；npm 或 pnpm。后端使用 Node 内置 SQLite，无需安装数据库服务。
 
 ## 目录结构
 

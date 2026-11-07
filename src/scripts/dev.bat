@@ -10,6 +10,15 @@ if errorlevel 1 (
   exit /b 1
 )
 
+rem Node 版本检查：后端使用 node:sqlite 与 stripTypeScriptTypes，需要 22.18+
+node -e "const v=process.versions.node.split('.').map(Number);process.exit(v[0]*1000+v[1]>=22018?0:1)"
+if errorlevel 1 (
+  echo [ERROR] Node.js 22.18 or newer is required. Current version:
+  node -v
+  pause
+  exit /b 1
+)
+
 if not exist node_modules (
   echo [INFO] First run - installing dependencies...
   call npm.cmd install
