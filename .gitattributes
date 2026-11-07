@@ -1,0 +1,4 @@
+# Windows 批处理必须是 CRLF：cmd.exe 无法正确解析 LF-only 的 .bat
+# （表现为 "The syntax of the command is incorrect."，dev.bat 直接退出）
+*.bat text eol=crlf
+*.cmd text eol=crlf
