@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-270",
+  "name": "Shelf_01.005",
+  "dimensions": {
+    "w": 0.7978896498680115,
+    "h": 0.21972501277923584,
+    "d": 0.7300140261650085
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

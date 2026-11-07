@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-162",
+  "name": "vall.019",
+  "dimensions": {
+    "w": 2.000999927520752,
+    "h": 1.2400000095367432,
+    "d": 0.09800013899803162
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

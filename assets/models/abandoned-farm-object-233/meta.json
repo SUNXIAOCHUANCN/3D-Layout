@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-233",
+  "name": "Botella.003",
+  "dimensions": {
+    "w": 0.15044231712818146,
+    "h": 0.1976575404405594,
+    "d": 0.1475052535533905
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

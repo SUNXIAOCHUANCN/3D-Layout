@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-238",
+  "name": "Licuadora.001",
+  "dimensions": {
+    "w": 0.2705053985118866,
+    "h": 0.48886141180992126,
+    "d": 0.2513890862464905
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

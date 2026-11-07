@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-330",
+  "name": "molino.001",
+  "dimensions": {
+    "w": 10.049612045288086,
+    "h": 18.00311279296875,
+    "d": 10.049612045288086
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

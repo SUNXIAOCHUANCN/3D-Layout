@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-133",
+  "name": "cosechas",
+  "dimensions": {
+    "w": 21.243999481201172,
+    "h": 2.014162540435791,
+    "d": 12.587808609008789
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

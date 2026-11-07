@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-286",
+  "name": "Lamps_04.005",
+  "dimensions": {
+    "w": 0.2879633605480194,
+    "h": 0.46038198471069336,
+    "d": 0.2999010980129242
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-104",
+  "name": "Watermelon.005",
+  "dimensions": {
+    "w": 0.4287106692790985,
+    "h": 0.37856343388557434,
+    "d": 0.4375530183315277
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

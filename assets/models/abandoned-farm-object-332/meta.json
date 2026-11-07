@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-332",
+  "name": "Combi.001",
+  "dimensions": {
+    "w": 8.627689361572266,
+    "h": 3.416370153427124,
+    "d": 4.03329610824585
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

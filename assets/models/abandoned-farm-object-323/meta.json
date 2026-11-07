@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-323",
+  "name": "parlant.002",
+  "dimensions": {
+    "w": 0.5356768369674683,
+    "h": 0.11760001629590988,
+    "d": 0.4665907323360443
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

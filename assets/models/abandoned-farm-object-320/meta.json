@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-320",
+  "name": "monitor.002",
+  "dimensions": {
+    "w": 0.35404613614082336,
+    "h": 0.35280004143714905,
+    "d": 0.303934782743454
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-225",
+  "name": "Olla.001",
+  "dimensions": {
+    "w": 0.5248644351959229,
+    "h": 0.2330472469329834,
+    "d": 0.5978595614433289
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

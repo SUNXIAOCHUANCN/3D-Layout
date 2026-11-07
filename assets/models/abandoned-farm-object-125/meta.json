@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-125",
+  "name": "Banana.003",
+  "dimensions": {
+    "w": 0.34534674882888794,
+    "h": 0.17042332887649536,
+    "d": 0.29310816526412964
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-344",
+  "name": "Cooking_oil_02.001",
+  "dimensions": {
+    "w": 0.05926813557744026,
+    "h": 0.31337594985961914,
+    "d": 0.059268202632665634
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

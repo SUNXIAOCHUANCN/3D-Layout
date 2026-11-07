@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-261",
+  "name": "Washing_machine.001",
+  "dimensions": {
+    "w": 0.9009424448013306,
+    "h": 0.9374346733093262,
+    "d": 0.901504397392273
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

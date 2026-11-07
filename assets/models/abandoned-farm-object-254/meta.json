@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-254",
+  "name": "Shampoo_03.001",
+  "dimensions": {
+    "w": 0.07444245368242264,
+    "h": 0.2917516529560089,
+    "d": 0.07868374139070511
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

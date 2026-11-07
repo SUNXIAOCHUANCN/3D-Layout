@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-080",
+  "name": "C.009",
+  "dimensions": {
+    "w": 1.4443061351776123,
+    "h": 1.2970401048660278,
+    "d": 1.4408074617385864
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

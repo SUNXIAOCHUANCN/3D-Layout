@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-244",
+  "name": "Watering_can_01.001",
+  "dimensions": {
+    "w": 0.518467128276825,
+    "h": 1.0299485921859741,
+    "d": 0.5469521284103394
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

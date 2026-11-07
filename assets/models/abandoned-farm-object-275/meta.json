@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-275",
+  "name": "Armchair.001",
+  "dimensions": {
+    "w": 1.6736822128295898,
+    "h": 0.9465084075927734,
+    "d": 1.80129075050354
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

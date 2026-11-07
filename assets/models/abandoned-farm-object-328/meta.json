@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-328",
+  "name": "letrina.006",
+  "dimensions": {
+    "w": 3.6219120025634766,
+    "h": 4.199999809265137,
+    "d": 3.4000003337860107
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

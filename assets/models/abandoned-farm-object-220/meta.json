@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-220",
+  "name": "Microondas.002",
+  "dimensions": {
+    "w": 0.38774487376213074,
+    "h": 0.29870322346687317,
+    "d": 0.5786418318748474
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

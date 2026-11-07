@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-265",
+  "name": "Soap_powder.001",
+  "dimensions": {
+    "w": 0.17162509262561798,
+    "h": 0.2533985376358032,
+    "d": 0.11283664405345917
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

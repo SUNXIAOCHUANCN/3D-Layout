@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-271",
+  "name": "shower_bas.001",
+  "dimensions": {
+    "w": 1.8252780437469482,
+    "h": 0.41516008973121643,
+    "d": 1.9080268144607544
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

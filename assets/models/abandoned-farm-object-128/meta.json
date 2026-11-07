@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-128",
+  "name": "Cantaloupe.004",
+  "dimensions": {
+    "w": 0.38400977849960327,
+    "h": 0.38400980830192566,
+    "d": 0.38400980830192566
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

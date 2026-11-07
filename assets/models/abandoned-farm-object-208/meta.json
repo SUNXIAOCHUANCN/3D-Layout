@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-208",
+  "name": "brid.032",
+  "dimensions": {
+    "w": 4.525731086730957,
+    "h": 5.1112260818481445,
+    "d": 3.918891429901123
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-243",
+  "name": "Toilet_01.001",
+  "dimensions": {
+    "w": 0.8250913619995117,
+    "h": 1.043975591659546,
+    "d": 0.8621095418930054
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

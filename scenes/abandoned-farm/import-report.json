@@ -1,0 +1,4356 @@
+{
+  "format": "3d-layout-import-report",
+  "schemaVersion": 1,
+  "sceneId": "abandoned-farm",
+  "instanceCount": 362,
+  "models": [
+    {
+      "key": "object-001",
+      "dir": "abandoned-farm-object-001",
+      "sourceSha256": "651536b7d87d018de1ba6a3ae8cbf6ff4c9ce6d6aa5c763585726b62c07569ca",
+      "canonicalSha256": "bff798fd21d84c07dbb00d2797c90cd56b59a78fefde9c8a0f7a526ae8a37de7",
+      "dimensions": {
+        "w": 35.224910736083984,
+        "h": 20.492557525634766,
+        "d": 69.17266082763672
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-002",
+      "dir": "abandoned-farm-object-002",
+      "sourceSha256": "211f09179b23ce16fa118e5b6fa41d230182f3d5004f027b66ace16b00426cf5",
+      "canonicalSha256": "4d2336a38ead1f0d4427e55ab4ec0750dd3e13c7dac7809cac24c58e9268f521",
+      "dimensions": {
+        "w": 44.32354736328125,
+        "h": 23.00039291381836,
+        "d": 52.851043701171875
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-003",
+      "dir": "abandoned-farm-object-003",
+      "sourceSha256": "c6132636a96c1e22aaf652b7b08d66da0bb81305390aad56e63e2e6f8adb52e1",
+      "canonicalSha256": "5369d54f85c4610138060a4a65810cdc54ab33f00a71e3402a0d2300a2666dc4",
+      "dimensions": {
+        "w": 197.74002075195312,
+        "h": 0.000030586732464144006,
+        "d": 187.74002075195312
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-004",
+      "dir": "abandoned-farm-object-004",
+      "sourceSha256": "f3ffc3acdedb91fac27533fbc6f76e78c03e9680dcd641ca15d989769d6dfe93",
+      "canonicalSha256": "c6b70f6c594594a24d539fcb45f7f915d88f7dc6ae5ba442a518fad94fca74f1",
+      "dimensions": {
+        "w": 183.6070098876953,
+        "h": 12.005520820617676,
+        "d": 183.92001342773438
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-005",
+      "dir": "abandoned-farm-object-005",
+      "sourceSha256": "ed659f82010b20a473727a430f2959c7bfee1eafcb1c956094935710b5ec95e6",
+      "canonicalSha256": "6e0dddba273ba11e4bdd2f4dee86282fcb01499bc9092cdcd9a6c7a7994476ea",
+      "dimensions": {
+        "w": 97.22100067138672,
+        "h": 25.589662551879883,
+        "d": 110.13939666748047
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-006",
+      "dir": "abandoned-farm-object-006",
+      "sourceSha256": "0e599ed3767daed117a17509402c78e2c2ccfa85456e450bf6989f0c479da329",
+      "canonicalSha256": "87473782326edb8b3df1738adb15e4064f631ae6c300400f167de4db001a181f",
+      "dimensions": {
+        "w": 0.2000001072883606,
+        "h": 1.3000000715255737,
+        "d": 1.9920010566711426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-007",
+      "dir": "abandoned-farm-object-007",
+      "sourceSha256": "c8f33e6ee9829423eb1ee1ab42c767c2252823536ae827fd5e57d6d67bc776e1",
+      "canonicalSha256": "05f7caf826da2ddf877bca1bfd87e056fd2c74ad62da0994f59d242500221fd6",
+      "dimensions": {
+        "w": 1.1726658344268799,
+        "h": 1.3000001907348633,
+        "d": 2
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-008",
+      "dir": "abandoned-farm-object-008",
+      "sourceSha256": "e56f905aa50b84b65628ef78be7e663ee4fe6a19800405abc7cfe486ba0ad68f",
+      "canonicalSha256": "677210bb5ec218a7111589a28df01fb2de7b20f80b40e46c27e0d63110d64924",
+      "dimensions": {
+        "w": 1.0980006456375122,
+        "h": 1.3000000715255737,
+        "d": 2.006000518798828
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-009",
+      "dir": "abandoned-farm-object-009",
+      "sourceSha256": "4f1f27aadd5b04235d698ba00088c70a6fa0176bf51c5c7df3c480d5d250cb9e",
+      "canonicalSha256": "927b4f877c7b47161d7e80924252115bd64754aef00880e2fb630744bbcc4f91",
+      "dimensions": {
+        "w": 0.2000001072883606,
+        "h": 1.3000000715255737,
+        "d": 1.9920010566711426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-010",
+      "dir": "abandoned-farm-object-010",
+      "sourceSha256": "4ef82ab0b52c653302354f728ec7371ed71833468804880902658635ec64f1ce",
+      "canonicalSha256": "d3d8e7901f225d814b2bc17b0b59d1d79a5bbbfca874a613047256f9fc15f62b",
+      "dimensions": {
+        "w": 0.2000001072883606,
+        "h": 1.3000000715255737,
+        "d": 1.9920010566711426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-011",
+      "dir": "abandoned-farm-object-011",
+      "sourceSha256": "5b0836deb5b05394364633c9ce67607d647d235cd55f750627dcf50ef2f13c05",
+      "canonicalSha256": "c7ac7f0241ce27a275770a51c2cfe8b837be8268448d4377a5a215067a46107b",
+      "dimensions": {
+        "w": 0.2000001072883606,
+        "h": 1.3000000715255737,
+        "d": 1.9920010566711426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-012",
+      "dir": "abandoned-farm-object-012",
+      "sourceSha256": "1d1933c3ccff3e7601242a5e090654bcf717bc671788dc9a96309af266f2152e",
+      "canonicalSha256": "23d47ee39cc639ca92c65a8a25a1ec71e93fdc8ac08dea0e2f3dfc60a1c8bc71",
+      "dimensions": {
+        "w": 0.2000001072883606,
+        "h": 1.3000000715255737,
+        "d": 1.9920010566711426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-013",
+      "dir": "abandoned-farm-object-013",
+      "sourceSha256": "f9ecfe1ccb6024fc732487c50cb0eafdf24ea7b0d412b2cbfbc3cdf06203ceba",
+      "canonicalSha256": "dabb75d6b1e0e022fa48eaa1e6057985af9dd814e4b626e77b46b042e7f72eaa",
+      "dimensions": {
+        "w": 2.592000961303711,
+        "h": 1.3000000715255737,
+        "d": 0.20000028610229492
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-014",
+      "dir": "abandoned-farm-object-014",
+      "sourceSha256": "5d331d4221d74d1015cf6acac38a4e977591c301122417ff53bd5919fd9441f3",
+      "canonicalSha256": "218f4b6322ea6abbbb33f693212620bc86b68b4bdf360337a19142639b26250a",
+      "dimensions": {
+        "w": 0.20000089704990387,
+        "h": 4.300000190734863,
+        "d": 4
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-015",
+      "dir": "abandoned-farm-object-015",
+      "sourceSha256": "c4afe3c1fccb6079bdbba62179a5bf98827bf6e5c051da45fc3c9cecf64c2c59",
+      "canonicalSha256": "53b15bd8ffcc0f414f663eea27ec7e0ccda4094cd2783bd5fa1268b20c93d51f",
+      "dimensions": {
+        "w": 0.20000022649765015,
+        "h": 0.21000006794929504,
+        "d": 1.899999976158142
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-016",
+      "dir": "abandoned-farm-object-016",
+      "sourceSha256": "9eb5bacd77c38d0051fe1c4fb3fdec48c2ef68131b6457d7e163cfbc7c348205",
+      "canonicalSha256": "54c7d0a159fce92d62ec428045ef593f4803f82d4ce237b03cf3d3e60337666d",
+      "dimensions": {
+        "w": 3.5999999046325684,
+        "h": 0.21000006794929504,
+        "d": 0.2000000774860382
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-017",
+      "dir": "abandoned-farm-object-017",
+      "sourceSha256": "3b52853c607515675d29e6998236c29042ecbdc3db6ce2ff9f534e80202444f4",
+      "canonicalSha256": "bf13061ee5c9266fdac9e2ba2b07a070efd36154557b9508c9d0cadf90330154",
+      "dimensions": {
+        "w": 3.700000047683716,
+        "h": 4.300000190734863,
+        "d": 4
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-018",
+      "dir": "abandoned-farm-object-018",
+      "sourceSha256": "027c2128655d53846eeb08e4303e6de552eb0799a4467e24d00f950ae5d6ccd2",
+      "canonicalSha256": "05640dd7b3b63d54c567bc6712d5ae1351f38a9fea09a7c21fe43fbac899d330",
+      "dimensions": {
+        "w": 0.2000001072883606,
+        "h": 1.3000000715255737,
+        "d": 1.9920010566711426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-019",
+      "dir": "abandoned-farm-object-019",
+      "sourceSha256": "21856e7bb3c419b5d047c82214df9f3b5ae7a4ed40f1796a2632696a7560dc79",
+      "canonicalSha256": "9c2d150b37e73e1238f99601f2a11cfc41127d2eb5d992eaf24ddfa90b24e62e",
+      "dimensions": {
+        "w": 0.2000001072883606,
+        "h": 1.3000000715255737,
+        "d": 1.9920010566711426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-020",
+      "dir": "abandoned-farm-object-020",
+      "sourceSha256": "96fe0af9838abbe951c1860e3b31fb15a5cfbd52921355862281daabd42fb56f",
+      "canonicalSha256": "ef80f02c1bc2132d60e655192a9aa6f1f107ed39b8f9368250aeb0ef7e687227",
+      "dimensions": {
+        "w": 0.2000001072883606,
+        "h": 1.3000000715255737,
+        "d": 1.9920010566711426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-021",
+      "dir": "abandoned-farm-object-021",
+      "sourceSha256": "5c49473113aaf36478bde03577a49f51ca5ce8282960fddab54e19231bfdb5d1",
+      "canonicalSha256": "7b05089326574a694faa5d3229b63eb7c92228193952a378f0666bd98780199d",
+      "dimensions": {
+        "w": 0.20000037550926208,
+        "h": 1.100000023841858,
+        "d": 2
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-022",
+      "dir": "abandoned-farm-object-022",
+      "sourceSha256": "70baeb4f2f5e63cc22f75b19bdd0fe4605ff1c8b1c3d1db08b78581533ae2a83",
+      "canonicalSha256": "137e1af0d911d883dfc0fec6034a6edc8f2b675f5b52f089eb31d01bef748fcd",
+      "dimensions": {
+        "w": 0.10260261595249176,
+        "h": 0.8717092871665955,
+        "d": 1.6090140342712402
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-023",
+      "dir": "abandoned-farm-object-023",
+      "sourceSha256": "8c81d3b3ccd77525e7377115f589831f91e34629d29fe5dd80885345dcda7d4f",
+      "canonicalSha256": "e2934b7e65a813a1c637ea637d2602296dedb6425733baf69e6fafbc13e6c326",
+      "dimensions": {
+        "w": 0.20000089704990387,
+        "h": 4.300000190734863,
+        "d": 4
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-024",
+      "dir": "abandoned-farm-object-024",
+      "sourceSha256": "5d98cd81f7729cc4e59ebf55e02b3f84f7741afe30b20aa7b7a0865549876bb2",
+      "canonicalSha256": "bab60dac32b9fb97f703a47ccea91c559a0cbace72977612627911c871af1d63",
+      "dimensions": {
+        "w": 0.20000089704990387,
+        "h": 4.300000190734863,
+        "d": 4
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-025",
+      "dir": "abandoned-farm-object-025",
+      "sourceSha256": "ff06424fcc89fb55165ad8024bf3d5299d9cb3ed4232fdbcaded09a71860a30d",
+      "canonicalSha256": "25cf1e486ad36f692f7f825d87c5315a2de75272140ee6c34d51d5ae4b5e7161",
+      "dimensions": {
+        "w": 0.20000089704990387,
+        "h": 4.300000190734863,
+        "d": 4
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-026",
+      "dir": "abandoned-farm-object-026",
+      "sourceSha256": "2d7fcbeca79b453f49d199b62058fd5f140d05b8ea09f14d04b5808aa884d814",
+      "canonicalSha256": "206fd1770bef77d92ff30000d6324e845a686f109f6390d478e8b277c96d961a",
+      "dimensions": {
+        "w": 3.700000762939453,
+        "h": 4.300000190734863,
+        "d": 4
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-027",
+      "dir": "abandoned-farm-object-027",
+      "sourceSha256": "33aea36e6a34bda533c36709bf072267479e8ccb0f4d2334e818c1a2c9745fc4",
+      "canonicalSha256": "ad787a113708d8eeff76a27725a3fef0788cb64f96229e281029870ba696307a",
+      "dimensions": {
+        "w": 0.2000003159046173,
+        "h": 4.300000190734863,
+        "d": 4
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-028",
+      "dir": "abandoned-farm-object-028",
+      "sourceSha256": "ac57fab983a0afe26c25c8cc5e91d75b2dfc4463d8bb03f6f7185a05b0282cf5",
+      "canonicalSha256": "38d229f4a63e2a2a5c52c49e323eda9426b9c97e611a1f403eee64d036d82980",
+      "dimensions": {
+        "w": 0.2000001072883606,
+        "h": 1.3000000715255737,
+        "d": 1.9920010566711426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-029",
+      "dir": "abandoned-farm-object-029",
+      "sourceSha256": "9baaaa7be109bb07d7cf50fb8937fba39eeb28485538fe9d8b47e2cca86fd0c4",
+      "canonicalSha256": "b9d5c08c75d68e47745174eda01aa34bfbfe9330c0116fe8839a15197bb78787",
+      "dimensions": {
+        "w": 0.2000003159046173,
+        "h": 4.300000190734863,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-030",
+      "dir": "abandoned-farm-object-030",
+      "sourceSha256": "b10cdfe76c639d36caa25b955472c79c934193103a856ce224f225e64b859007",
+      "canonicalSha256": "c41c53f0d3d675e8550207c5691be49eebdf5c55bb5169655d0fe91dc0671803",
+      "dimensions": {
+        "w": 3.5,
+        "h": 0.21000006794929504,
+        "d": 0.2000000774860382
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-031",
+      "dir": "abandoned-farm-object-031",
+      "sourceSha256": "c73a51da944a08e5c2f57e09bf27dfd705167d40b33c3289c7cfcd087d000ffd",
+      "canonicalSha256": "997dcb678bfcf76185039c9925092a6ea19a52ff749ff8471c6e44dd68544e60",
+      "dimensions": {
+        "w": 0.2000001072883606,
+        "h": 1.3000000715255737,
+        "d": 1.9920010566711426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-032",
+      "dir": "abandoned-farm-object-032",
+      "sourceSha256": "bc9cdd7e8af647464ff290c95801ff04c0abca2d9a8771f8a75e346eb2707e65",
+      "canonicalSha256": "428ffaaa0e17b20db988e057e023ae403c7f20d9c5be5a05d0f220d83c7801fc",
+      "dimensions": {
+        "w": 1.0980006456375122,
+        "h": 1.3000000715255737,
+        "d": 1.1000005006790161
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-033",
+      "dir": "abandoned-farm-object-033",
+      "sourceSha256": "7700d7394c0a800cd71ccd83eecb745739354970642f20686407870ede414d17",
+      "canonicalSha256": "cd20ca82a9ce9b4d5abd2d31ec343857175c16f5440dfc3f3007cb9eebed9362",
+      "dimensions": {
+        "w": 2.59200119972229,
+        "h": 1.3000000715255737,
+        "d": 0.20000028610229492
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-034",
+      "dir": "abandoned-farm-object-034",
+      "sourceSha256": "354b6ec1f82877459d810f3552905a2b20042461db7d19aa23cafd6b422340e7",
+      "canonicalSha256": "549ab52ac899d5575ea64e7f41c17979ec17c9d6b681816d534acd0bcf5aa44d",
+      "dimensions": {
+        "w": 0.2000001072883606,
+        "h": 1.3000000715255737,
+        "d": 1.9920010566711426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-035",
+      "dir": "abandoned-farm-object-035",
+      "sourceSha256": "090cd4d5411dedc8791efd558cc4296fe8e62f4de3924b3cb8690eed7ccb0a6d",
+      "canonicalSha256": "c4032bba184c2c0f8ce696bae980a47058060a13de1b742285be24238db4d13a",
+      "dimensions": {
+        "w": 0.2000001072883606,
+        "h": 1.3000000715255737,
+        "d": 1.9920010566711426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-036",
+      "dir": "abandoned-farm-object-036",
+      "sourceSha256": "ecee9762ecdd81b37d2850a7398f03ffd58f600f21836891712f0715dce0c8b7",
+      "canonicalSha256": "88ffc9371bb0e835457bb2f2b96d39f64802ac7e71f4750845a2a74d46dd231a",
+      "dimensions": {
+        "w": 0.2000001072883606,
+        "h": 1.3000000715255737,
+        "d": 1.9920010566711426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-037",
+      "dir": "abandoned-farm-object-037",
+      "sourceSha256": "72f86c9a1317350af4c27a3f41f7346ca35a786ad10c8b4a9069b44b991522b2",
+      "canonicalSha256": "1ec84bf3a9c8d934586fc586f022a5eb9e37bdaa91ca3cdc2524e5407cbbb869",
+      "dimensions": {
+        "w": 1.0980006456375122,
+        "h": 1.3000000715255737,
+        "d": 1.1000005006790161
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-038",
+      "dir": "abandoned-farm-object-038",
+      "sourceSha256": "25bfcb28854e2a0b6ab467cf66a135af16b3cee3de04ebce3ff2de185df3b3ff",
+      "canonicalSha256": "2c685fb4f04588ad49756e560c7c067a964d073c838c9b8fc1119260bea5f02f",
+      "dimensions": {
+        "w": 2.59200119972229,
+        "h": 1.3000000715255737,
+        "d": 0.20000028610229492
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-039",
+      "dir": "abandoned-farm-object-039",
+      "sourceSha256": "1aa9ae083a72413fc1deea1efbbce23ba74a2deb8c3b6f74adb942ca9877393f",
+      "canonicalSha256": "b2ad21ebd3bc65152a3f468e0eef857827f0aad3d8240631216843ed1e430816",
+      "dimensions": {
+        "w": 0.20000025629997253,
+        "h": 1.3000000715255737,
+        "d": 2
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-040",
+      "dir": "abandoned-farm-object-040",
+      "sourceSha256": "a7e1c86958722e7c772a1b7299ddc97c6797ebf596bfc84374e02ae7e41b9ebe",
+      "canonicalSha256": "731fa66fbbbadd73fe4c11bd395ae61c87d77709615d0fc3f258510b176c44c6",
+      "dimensions": {
+        "w": 0.20000028610229492,
+        "h": 4.300000190734863,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-041",
+      "dir": "abandoned-farm-object-041",
+      "sourceSha256": "4701f9ffc475b5c8a8c10e08b33b9ef5b7c1e1a401afd2ac00356cf4e7e81632",
+      "canonicalSha256": "21a786bf9ed3d3ac3197a48ec8bc9d991fc06410b34576d11288af6d8808edef",
+      "dimensions": {
+        "w": 3.5,
+        "h": 0.21000006794929504,
+        "d": 0.2000000774860382
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-042",
+      "dir": "abandoned-farm-object-042",
+      "sourceSha256": "4ebf7b0a8b7940313d36bb02b69b6dc38cbd66c472bd3b4205723b9ef3cae756",
+      "canonicalSha256": "2fe51820c0ad28ecfd1197652000016f1aff87d3a0f78d214acc8968efbf7b8f",
+      "dimensions": {
+        "w": 1.9920010566711426,
+        "h": 1.3000000715255737,
+        "d": 0.20000025629997253
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-043",
+      "dir": "abandoned-farm-object-043",
+      "sourceSha256": "f0cb82ed9ee89e63897e68c8e2731a5c396c1f6846d16a9fd6ee5aea05f1f2dc",
+      "canonicalSha256": "711f229a163f631c94784687cd286999f8a2a9d64b636ed4044e5831a97ad07c",
+      "dimensions": {
+        "w": 2.592000961303711,
+        "h": 1.3000000715255737,
+        "d": 0.20000025629997253
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-044",
+      "dir": "abandoned-farm-object-044",
+      "sourceSha256": "d5c62642003754a8d46900e2b5198d346d3e8ec8a22603b20547a4ef4382b5e0",
+      "canonicalSha256": "46ba5a1eae9f6b7ce891bc2236f63088850d18bd8e175b674f7d964f59d497cc",
+      "dimensions": {
+        "w": 1.9920010566711426,
+        "h": 1.3000000715255737,
+        "d": 0.20000025629997253
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-045",
+      "dir": "abandoned-farm-object-045",
+      "sourceSha256": "e478b28424dd91d10586b13030eb806367c07e739df93afec8106210557a115a",
+      "canonicalSha256": "2a9ad4f519bd98f4c29a85f5cbeea1abcfc8222291b52fcc83b1c98d9eae301d",
+      "dimensions": {
+        "w": 2.4920010566711426,
+        "h": 1.3000000715255737,
+        "d": 0.20000025629997253
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-046",
+      "dir": "abandoned-farm-object-046",
+      "sourceSha256": "ec295265ee08700f611bb4ae924fddb81c48b7e3c542afb4ce2a835f891a3c49",
+      "canonicalSha256": "2ef5d175c6ca36c943130752829f051568f61768ab917a4257cb996adc28f984",
+      "dimensions": {
+        "w": 2.3912012577056885,
+        "h": 1.3000000715255737,
+        "d": 0.20000025629997253
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-047",
+      "dir": "abandoned-farm-object-047",
+      "sourceSha256": "684b5fb17be0543e1a39a90f143333a2f6c3b22f81ae99ffbfebf137d98128a4",
+      "canonicalSha256": "86958102b26e3cfbbab3bea433c9cdd50117965adcf9ca3c219e406f350489f9",
+      "dimensions": {
+        "w": 1.0000001192092896,
+        "h": 0.8920836448669434,
+        "d": 2
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-048",
+      "dir": "abandoned-farm-object-048",
+      "sourceSha256": "777e5652d45b36b738f2b16be6c0385b6156c6bab4a5587ec8181db220159cbc",
+      "canonicalSha256": "fd34c9a1d8239f60cf8520032012834dcf481f6fcf33fa05c43548a330cf7bd9",
+      "dimensions": {
+        "w": 1.5805795192718506,
+        "h": 0.37208354473114014,
+        "d": 2.0687901973724365
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-049",
+      "dir": "abandoned-farm-object-049",
+      "sourceSha256": "7994a8eb52ba7fcc942c58de2b88d05b91584a9608a3377e2d633e5418ee6bf3",
+      "canonicalSha256": "451156f8890a9021f544516b7bc1019b881d1c5a7847000efc515c51cf271cde",
+      "dimensions": {
+        "w": 0.41719552874565125,
+        "h": 0.9670541286468506,
+        "d": 0.44000008702278137
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-050",
+      "dir": "abandoned-farm-object-050",
+      "sourceSha256": "fb027fa2a1f870153ba831e7ef85a4397edc8b29a81748dba5f2b44f3d0661c1",
+      "canonicalSha256": "93b73d9c18da6cc7552652d8b1be55a0a12629f6ec4086afc529078e638b3491",
+      "dimensions": {
+        "w": 0.41719552874565125,
+        "h": 0.9670541286468506,
+        "d": 0.44000008702278137
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-051",
+      "dir": "abandoned-farm-object-051",
+      "sourceSha256": "15c749d9c4d75f5d8a01deee30b7ae2294417e98ab9f5ba8b71096b20379c9bc",
+      "canonicalSha256": "169675f370bb235580b21474a92e085e62ad3beb30aeb0d141352f8bb5e5caf3",
+      "dimensions": {
+        "w": 0.41719552874565125,
+        "h": 0.9670541286468506,
+        "d": 0.44000008702278137
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-052",
+      "dir": "abandoned-farm-object-052",
+      "sourceSha256": "f6a13aa8ffa135f819085e1ce55b528f781a020f9734253705706dacad783fe4",
+      "canonicalSha256": "d24f7cb82a949c54438662490e745ea27f29eb16d8edca5d8c20eadf051b8c44",
+      "dimensions": {
+        "w": 0.440000057220459,
+        "h": 4.72582483291626,
+        "d": 1.785276174545288
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-053",
+      "dir": "abandoned-farm-object-053",
+      "sourceSha256": "2e2ec27f5b60f49b2264840330ed3694d9d7ce02ec3814a65f37bfb05e243ef3",
+      "canonicalSha256": "4e37aa2fba89a44973f47f839ae368478423a7681b6d6a75b226046c0ec5f88e",
+      "dimensions": {
+        "w": 0.20000019669532776,
+        "h": 1.3000000715255737,
+        "d": 2.0959999561309814
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-054",
+      "dir": "abandoned-farm-object-054",
+      "sourceSha256": "15014e8b6d189bec9afe58fbf241984f5b316715f6980bc9ab5cb7c68cb2867b",
+      "canonicalSha256": "44e665aae0940426ba16a552939dcf5b6290dd0aac5cf6daad13d7d792f30449",
+      "dimensions": {
+        "w": 0.440000057220459,
+        "h": 7.976529121398926,
+        "d": 0.7769426107406616
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-055",
+      "dir": "abandoned-farm-object-055",
+      "sourceSha256": "5dd9f207840e212c732294ab2259f0daa0f0cb1e27112a78af6c0bedeadadd2d",
+      "canonicalSha256": "5c4d09513efbf1d7a38ff96f4bd7d754255fbe3949dbafad004f6ee9698047fe",
+      "dimensions": {
+        "w": 4,
+        "h": 1.3000001907348633,
+        "d": 2.1958110332489014
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-056",
+      "dir": "abandoned-farm-object-056",
+      "sourceSha256": "b9985570eac14b1fb2ddbae7d0ef7c7dffdadcd8a25decbe33decd424f12287e",
+      "canonicalSha256": "e79cacfe0832dcdab5c063b0064fc8a41ca44f65294e6f28d1e92eaf7ff6f7b8",
+      "dimensions": {
+        "w": 1.661264181137085,
+        "h": 0.824870228767395,
+        "d": 0.6015818119049072
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-057",
+      "dir": "abandoned-farm-object-057",
+      "sourceSha256": "7ddb4d3f9055b6f7b300643767bb4a5ee94d10cbb86f251b66bb046c723fe3cc",
+      "canonicalSha256": "0b51b3f4488885c1cca9738b4d63cb9cd7f0b56946b2c165aa4235e1a999e729",
+      "dimensions": {
+        "w": 0.9674726128578186,
+        "h": 2.4533548526051163e-7,
+        "d": 0.8695831894874573
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-058",
+      "dir": "abandoned-farm-object-058",
+      "sourceSha256": "2589774ff8a85ed9ab8b6bb1f6eea93f3e549a76e859c4de02114dd883b62b27",
+      "canonicalSha256": "a18c25dfcbe532fab5b9e193ccd5384074fa2868c8fef9a2e6defbf7419c36a9",
+      "dimensions": {
+        "w": 0.6174085736274719,
+        "h": 0.011162017472088337,
+        "d": 0.6542794108390808
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-059",
+      "dir": "abandoned-farm-object-059",
+      "sourceSha256": "48fea2532ced7efb34fdb049001b4dfc29e2ec704ed77a61b72828448dab4817",
+      "canonicalSha256": "678be7654c83dc0932bdbd6a9c5fb8917bc9fca6b0287266736b20023ebe4d31",
+      "dimensions": {
+        "w": 0.6035131216049194,
+        "h": 0.011162005364894867,
+        "d": 0.6507282853126526
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-060",
+      "dir": "abandoned-farm-object-060",
+      "sourceSha256": "2be1b41ced8e373192bbb713bacbb9264fb19653f8cb3d356fcc061fa00ca1d2",
+      "canonicalSha256": "16c8a6de4d644d63df7445513a71f42c2671a3c6182252364dfc227d5230e784",
+      "dimensions": {
+        "w": 0.5977774858474731,
+        "h": 0.011162067763507366,
+        "d": 0.6488282084465027
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-061",
+      "dir": "abandoned-farm-object-061",
+      "sourceSha256": "f9c5a2ba7bba0f646b8e00e2e7c8cee66bce8aa7a1350ae4de6db3e18183577a",
+      "canonicalSha256": "2e474fc9e9d9cbce550f61739d3b7120c9dce2c380b39e09101b87247bf36a5b",
+      "dimensions": {
+        "w": 0.7729082107543945,
+        "h": 1.1811927556991577,
+        "d": 0.7766251564025879
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-062",
+      "dir": "abandoned-farm-object-062",
+      "sourceSha256": "577805f0af9c6c9e89a03c63259f0a312e2c4776a349edb90183721b45543f3f",
+      "canonicalSha256": "c38d14c2704aec373f91b27e3a2f3e55463c64c067031efe2da7f7d19107059e",
+      "dimensions": {
+        "w": 0.23233485221862793,
+        "h": 0.6201596856117249,
+        "d": 0.23233485221862793
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-063",
+      "dir": "abandoned-farm-object-063",
+      "sourceSha256": "dbfd7f0bd1d37937f96261b82198355d3fd763813d93ab55200db45dd08257a7",
+      "canonicalSha256": "4e0a288d467daff9b9821c4f190ae6a0cfe88ecee3713dc4c99d02c0e06847a0",
+      "dimensions": {
+        "w": 0.19340862333774567,
+        "h": 0.6197001934051514,
+        "d": 0.19340862333774567
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-064",
+      "dir": "abandoned-farm-object-064",
+      "sourceSha256": "04cac827f404524044c31f7a7cccbd0a590a82068042c0bc07c3fa7d08a5e14d",
+      "canonicalSha256": "4a45482e4c955b5568f8feddb3c4f8fa6c2fc5dceb73df1d584e46701eecc6ef",
+      "dimensions": {
+        "w": 0.7423024773597717,
+        "h": 0.6070708632469177,
+        "d": 0.7427125573158264
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-065",
+      "dir": "abandoned-farm-object-065",
+      "sourceSha256": "1b852dca2ec27123fd2386df2fa74c943c609ea2036bd8e609910f78c9c855fa",
+      "canonicalSha256": "2dd6bf6259d9bd7ad7dc1987b259052dbc39af63f3c09d929cb64514c358bfd9",
+      "dimensions": {
+        "w": 0.3276227116584778,
+        "h": 0.6517133712768555,
+        "d": 0.6044606566429138
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-066",
+      "dir": "abandoned-farm-object-066",
+      "sourceSha256": "322de906830d0b47a90c7500e0ef7f9d6e6f1c7b49e11dfd8f6f843025612ce8",
+      "canonicalSha256": "ae0fc676e7b5cad3a57d7c15cefede89b1b6d68066631ee71fd68ac97fa4348c",
+      "dimensions": {
+        "w": 0.810612142086029,
+        "h": 1.1105115413665771,
+        "d": 0.9200381636619568
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-067",
+      "dir": "abandoned-farm-object-067",
+      "sourceSha256": "a624f84ef7d79a65f735280c5e1077e406b8d376f9bef1aeae1985c444df87c6",
+      "canonicalSha256": "247e65ebc8fe7c79151c68365f298a68bc081dde1066bb058d49aefacf0acc3a",
+      "dimensions": {
+        "w": 0.19877459108829498,
+        "h": 0.16495105624198914,
+        "d": 0.15028488636016846
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-068",
+      "dir": "abandoned-farm-object-068",
+      "sourceSha256": "66116fa85df07ebdaba18268fb23d46509c726873bbaa54f143601120ecc4e3c",
+      "canonicalSha256": "71f0a2bd8337d6e89b42fabc7ea960ac852e451f0c5e811882519099c887216e",
+      "dimensions": {
+        "w": 0.6676468253135681,
+        "h": 0.024957897141575813,
+        "d": 0.7020055055618286
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-069",
+      "dir": "abandoned-farm-object-069",
+      "sourceSha256": "a08538da97a338e381ff6dc589a3ca83f88b72d79e7127742996738c094a4c1a",
+      "canonicalSha256": "7ce4ca4fa9a8acc6cd14891a3dd19350affcc7807065f207cb26ebf429ab59ed",
+      "dimensions": {
+        "w": 2.245349645614624,
+        "h": 0.8252571821212769,
+        "d": 2.634420156478882
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-070",
+      "dir": "abandoned-farm-object-070",
+      "sourceSha256": "f3c3f42c5095c8d31bccf9449d6289a17b2d512852fefd804d4a56872baa61c3",
+      "canonicalSha256": "82b2110a1f44918fe7bd54e70e17f6487070dfa4d6f0bd1695a2dfc596fe2f3c",
+      "dimensions": {
+        "w": 0.4006179869174957,
+        "h": 0.3717901110649109,
+        "d": 0.46543076634407043
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-071",
+      "dir": "abandoned-farm-object-071",
+      "sourceSha256": "fdbdcdd6807b40b75d5f33215eed5568ef1528eb9874abea9bd4e49f7b176068",
+      "canonicalSha256": "90375249d26dfc363ca7ac9a39761dbc76c277c386fae263952b3fdb3ff38f93",
+      "dimensions": {
+        "w": 1.6522059440612793,
+        "h": 1.819492220878601,
+        "d": 1.110491394996643
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-072",
+      "dir": "abandoned-farm-object-072",
+      "sourceSha256": "7169ddd4562e1ef6ddb40f9e98a03bb1cb9a7e9d341013d60dd69c31b87cfdab",
+      "canonicalSha256": "dca75509e6c1faecf7e678a65d31ffe193bf82bf841786909a664c7ff90d01a8",
+      "dimensions": {
+        "w": 1.1961368322372437,
+        "h": 1.297040343284607,
+        "d": 1.191235899925232
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-073",
+      "dir": "abandoned-farm-object-073",
+      "sourceSha256": "a6805fce9dd93c8d559d09a40ad073276ae6dd0f060a54656594894323569d94",
+      "canonicalSha256": "3cba81acfd4169621019e261ff261be448cf89c39a1e710f57c187cc67b3458d",
+      "dimensions": {
+        "w": 1.0489494800567627,
+        "h": 0.8724298477172852,
+        "d": 1.047300934791565
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-074",
+      "dir": "abandoned-farm-object-074",
+      "sourceSha256": "1baa6bcfe105af16523c2ddcf211840593f139bfa8310c72a8f73b74f4b3c67b",
+      "canonicalSha256": "caf3cb64fa198c1105d24812fa876c4e67fdf0b711e38ff85e02c9e28d58a922",
+      "dimensions": {
+        "w": 1.6207945346832275,
+        "h": 1.2970399856567383,
+        "d": 1.6192190647125244
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-075",
+      "dir": "abandoned-farm-object-075",
+      "sourceSha256": "3966e284cd9d4295171021cbe78141e86a2aa975597bec510a31b7718dcc9596",
+      "canonicalSha256": "91d96352fbf404c8f48d1603519080ca99d08202d6836ebcf40325a3c0f2309c",
+      "dimensions": {
+        "w": 1.0904932022094727,
+        "h": 0.8724299073219299,
+        "d": 1.0915278196334839
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-076",
+      "dir": "abandoned-farm-object-076",
+      "sourceSha256": "30987c850102cdb421a898a0f86ee847229583367e8de3b59c5e9a07d8b3f3d0",
+      "canonicalSha256": "77d3b82b2238e8e79528f664c657661411f6d6c34dd16fa8254281fdb16050e4",
+      "dimensions": {
+        "w": 1.560347557067871,
+        "h": 0.8168308734893799,
+        "d": 2.3950977325439453
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-077",
+      "dir": "abandoned-farm-object-077",
+      "sourceSha256": "fa9f415cde550495f4aac7860d5ba5a60af239b4588eb54d183823216e1bf0c1",
+      "canonicalSha256": "11f01fb04ebee837600d0ce755c5890c3708e6dbd535069b06fb90cc5faf171c",
+      "dimensions": {
+        "w": 1.6150869131088257,
+        "h": 1.7252464294433594,
+        "d": 1.6214689016342163
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-078",
+      "dir": "abandoned-farm-object-078",
+      "sourceSha256": "453a3ccdb33abc21097259988398279967b0626c092f5c77b6cb259d357f7b9f",
+      "canonicalSha256": "8044d5123cd60308e9a6a6ef7a6fb5980d898cf8b51d0da369f0770487071b5c",
+      "dimensions": {
+        "w": 1.7516331672668457,
+        "h": 1.8223000764846802,
+        "d": 1.7450731992721558
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-079",
+      "dir": "abandoned-farm-object-079",
+      "sourceSha256": "b62e07870179cf10ee576b2e459e742dfa2d35793dabea64bfcbdd634e6df5fc",
+      "canonicalSha256": "0c83040930c321659edcc15dd340c4d62f53f0f20a6027b33b38d0679d4c9b93",
+      "dimensions": {
+        "w": 1.4445183277130127,
+        "h": 1.2970399856567383,
+        "d": 1.441021203994751
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-080",
+      "dir": "abandoned-farm-object-080",
+      "sourceSha256": "824a82db1393e57171ea4cb61d62172a587a241a1667e7ef0453dbae208598a0",
+      "canonicalSha256": "db38f3d2f56bd8f4ea3ee750c2988365a6225262d2156e38b88814748950b5ad",
+      "dimensions": {
+        "w": 1.4443061351776123,
+        "h": 1.2970401048660278,
+        "d": 1.4408074617385864
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-081",
+      "dir": "abandoned-farm-object-081",
+      "sourceSha256": "fe21befbfc01e24066a054529b8f451b945855624957cc55f338a9f8b6bda6f8",
+      "canonicalSha256": "b0a0495783f695584735131bf4fe7863fc30837b6813ceb1d1d62d64d45c58bb",
+      "dimensions": {
+        "w": 2.259185314178467,
+        "h": 2.0762994289398193,
+        "d": 2.2651207447052
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-082",
+      "dir": "abandoned-farm-object-082",
+      "sourceSha256": "67749a64ebdd3cb35f00b18f65f407457de47f9d14201c7c5d1f21c52cb5acc8",
+      "canonicalSha256": "ea647302a49eb005bd0f65212dd6b7140680d67655cbebe8d204e58c8159cac1",
+      "dimensions": {
+        "w": 0.6299753785133362,
+        "h": 1.0438427925109863,
+        "d": 0.6299749612808228
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-083",
+      "dir": "abandoned-farm-object-083",
+      "sourceSha256": "9f6d2afc88cb59f29daee3903d7deb528aae73b7a4b25190d3bb1ee7484257c9",
+      "canonicalSha256": "232439c7314d4dea0f2a7a30df097cc30ff6f513e6047718b1e21307a8f627f4",
+      "dimensions": {
+        "w": 0.5100089311599731,
+        "h": 1.0438427925109863,
+        "d": 0.5100095868110657
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-084",
+      "dir": "abandoned-farm-object-084",
+      "sourceSha256": "04c31e1c8b312a55d9136b847f847b53f13ba201e260ae90655716415735d72e",
+      "canonicalSha256": "57558cf774dde1f85a4937471203770acaa379d0d08cb663ccb7cc664e2d53d4",
+      "dimensions": {
+        "w": 0.6298195123672485,
+        "h": 1.0438427925109863,
+        "d": 0.629819929599762
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-085",
+      "dir": "abandoned-farm-object-085",
+      "sourceSha256": "598e552fbe1bb5bc76b9be6fbd890bc5235dd169ddd7e6695feb588a6271b28e",
+      "canonicalSha256": "81d03edb1bd787a9a808e989ce146f4c2a910e82ff8046e7e69a6a78a4263a05",
+      "dimensions": {
+        "w": 3.0481715202331543,
+        "h": 3.356799602508545,
+        "d": 2.0487568378448486
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-086",
+      "dir": "abandoned-farm-object-086",
+      "sourceSha256": "88594d64b29539421b59eb65a00b8691ee87b5a0eb9e786414541ec5ad495edf",
+      "canonicalSha256": "756f4034b2b20ab810a8604544a95da31ff040ef62e1bd5c375761924695ec33",
+      "dimensions": {
+        "w": 3.108349084854126,
+        "h": 3.3568003177642822,
+        "d": 3.616945266723633
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-087",
+      "dir": "abandoned-farm-object-087",
+      "sourceSha256": "a6f12c71d21422073b6c4a7ad7cca629b81418c17496313dcde2c4452516bb1b",
+      "canonicalSha256": "ff1add9f3d0e39fe70b37a8d435d49f358d9ce723092480c23c69ac125f63a89",
+      "dimensions": {
+        "w": 1.3703124523162842,
+        "h": 0.9792664647102356,
+        "d": 1.490712285041809
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-088",
+      "dir": "abandoned-farm-object-088",
+      "sourceSha256": "a8b4b686e381a39b2f958bbfb31a7b60244655f1fe9f2625e64b53a32b6658cb",
+      "canonicalSha256": "93c644e1368ba6436b6a9be4471147776d47152692b804d94b2ce4ba59f4e9af",
+      "dimensions": {
+        "w": 0.32436004281044006,
+        "h": 0.5632544755935669,
+        "d": 0.31734639406204224
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-089",
+      "dir": "abandoned-farm-object-089",
+      "sourceSha256": "207a9e613cfd45116b6f8dfb44c895ca9be04b2c57147433a2e22c00258d14cc",
+      "canonicalSha256": "599ba0f6e1bf01dd9762b7e4b2c2e81a1bf6001b55cfbf5b6775fc1ff36b207e",
+      "dimensions": {
+        "w": 0.46289700269699097,
+        "h": 0.37856343388557434,
+        "d": 0.3751893937587738
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-090",
+      "dir": "abandoned-farm-object-090",
+      "sourceSha256": "31ef5cc9b65311d9645dfbd129ffcb882306ff0f8509f32ccae4a89cc2d92cd8",
+      "canonicalSha256": "29e48c4a86c2d554044b700a8b03247bd298e47cf81c7c960f9988cda1c64e95",
+      "dimensions": {
+        "w": 0.37858009338378906,
+        "h": 0.1985337883234024,
+        "d": 0.47750648856163025
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-091",
+      "dir": "abandoned-farm-object-091",
+      "sourceSha256": "1a291ddc4ab7eb9440b3e9a1c27ae598d6196fc27f35be3335df530dd9e52d89",
+      "canonicalSha256": "207d6793778f6385e8ddbb061c2b9bc7063a45def1800ce651f4ba011233ceab",
+      "dimensions": {
+        "w": 0.32436004281044006,
+        "h": 0.3159340023994446,
+        "d": 0.5658782124519348
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-092",
+      "dir": "abandoned-farm-object-092",
+      "sourceSha256": "b04b4badf11b726b4c8efc4da98c03cb9153123a4e8c72b34d50ec833e29d51c",
+      "canonicalSha256": "1a351052a63c584e14b73140c5e9da5f1b16ce4fa24a276d9552a4ced7a94833",
+      "dimensions": {
+        "w": 0.38400977849960327,
+        "h": 0.38400980830192566,
+        "d": 0.38400980830192566
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-093",
+      "dir": "abandoned-farm-object-093",
+      "sourceSha256": "9a56b4085bd6b65f7ea9802ce3577a320815a0a0af7410abfdd28fc5b2283613",
+      "canonicalSha256": "b5ae0942f452ff604b3b4ad48afa23423f8361c17b2bc58d5c0e8ba9c5d782a3",
+      "dimensions": {
+        "w": 0.34528011083602905,
+        "h": 0.17042332887649536,
+        "d": 0.3663451671600342
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-094",
+      "dir": "abandoned-farm-object-094",
+      "sourceSha256": "02fabf1f82c5f1a6aeaa61907607b54f3844c496949f0325ddc14ba9fdfdb21b",
+      "canonicalSha256": "5e082a6a0f4e5dc5a8d8495edea5cd1b794fb0335e1749879aa774758498b808",
+      "dimensions": {
+        "w": 0.142992302775383,
+        "h": 0.45813319087028503,
+        "d": 0.142992302775383
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-095",
+      "dir": "abandoned-farm-object-095",
+      "sourceSha256": "91ea587c4b22fc56871ccba95b82fd161821dd4e5b5ce5ec823adf34c25db436",
+      "canonicalSha256": "2388e81d99ac09c3ddd786e87bc9f3f8e41d77914809f31d1d8fc0e9f531d60b",
+      "dimensions": {
+        "w": 0.23233485221862793,
+        "h": 0.6201596856117249,
+        "d": 0.23233485221862793
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-096",
+      "dir": "abandoned-farm-object-096",
+      "sourceSha256": "cd890d12166385845355eb3bf4609d99d00a05bb3d852d6c9c9f3d9b7d63b891",
+      "canonicalSha256": "86feb8dd363438a7987f74c727b481a7ccdcbd42f5fee057a0bfcb74d9aed71f",
+      "dimensions": {
+        "w": 0.5412765145301819,
+        "h": 0.1971912384033203,
+        "d": 0.453030526638031
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-097",
+      "dir": "abandoned-farm-object-097",
+      "sourceSha256": "3d001bfba7a7e38ef879c69c38b89ec786438cf4fc2c0ae226d42135444911e7",
+      "canonicalSha256": "e3adab256d268049e63a603b5d08a60e0442734c871b97912a481b8443d3094d",
+      "dimensions": {
+        "w": 0.5355877876281738,
+        "h": 0.029950767755508423,
+        "d": 0.4212837219238281
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-098",
+      "dir": "abandoned-farm-object-098",
+      "sourceSha256": "1e5897cbf9337ba9f6ae1287f050411feaacc0921061dfdd27af1398a9205489",
+      "canonicalSha256": "7f436466c532f0258abd3882ceff3ae2fdd09cf67e7fdd7b477d60b6bac5d1f0",
+      "dimensions": {
+        "w": 0.42224180698394775,
+        "h": 0.048213839530944824,
+        "d": 0.42224180698394775
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-099",
+      "dir": "abandoned-farm-object-099",
+      "sourceSha256": "f89a680befc910cec7ffb99e7f2ba042fd7a07395a15deef8ec8920604165e37",
+      "canonicalSha256": "12d53581faae77a5254d60658dfa7b1234295938c8a9bc3192968f4c9ca2ee32",
+      "dimensions": {
+        "w": 1.604025959968567,
+        "h": 1.8134865342744888e-7,
+        "d": 1.5865428447723389
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-100",
+      "dir": "abandoned-farm-object-100",
+      "sourceSha256": "fcd60f022d27f967919ce80dfcb508e3735ca74c53ea5e75466acf6803b93351",
+      "canonicalSha256": "c0ed41d6badd332a904db1c4e74654feacdaf0273e69479ffadff0662d22a8c9",
+      "dimensions": {
+        "w": 1.9945671558380127,
+        "h": 0.8168314695358276,
+        "d": 2.5673158168792725
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-101",
+      "dir": "abandoned-farm-object-101",
+      "sourceSha256": "2cc87fdeaadf52ed03a99cc42653f657ccb2e783c7dda871e3527c2c7011ba62",
+      "canonicalSha256": "8742104d693364daf8f1653bcbbf30ef9e0d88cf66ae762725208981a59da748",
+      "dimensions": {
+        "w": 1.7595324516296387,
+        "h": 0.816830575466156,
+        "d": 2.485614538192749
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-102",
+      "dir": "abandoned-farm-object-102",
+      "sourceSha256": "fd44500d4a2b4a04d149f09053821c37309aaceb65619267c2d3c6d7fd8c5305",
+      "canonicalSha256": "80bafd5fe792613bdc447f19402236770139c3679a3e6e830b8350d7a1fccd87",
+      "dimensions": {
+        "w": 0.45773845911026,
+        "h": 0.1985337883234024,
+        "d": 0.4284854233264923
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-103",
+      "dir": "abandoned-farm-object-103",
+      "sourceSha256": "1c1c79da0fc6931545ea9af653c6f775277267b3a06bf80ca6485ec18945375b",
+      "canonicalSha256": "9520f38285ba475ee9abcfedaa977145b738f7fc07abf528d7ed504c31ba67bd",
+      "dimensions": {
+        "w": 0.4362514317035675,
+        "h": 0.37856340408325195,
+        "d": 0.4302196502685547
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-104",
+      "dir": "abandoned-farm-object-104",
+      "sourceSha256": "6073837baaadc4b7d8831f2a06a69f5727790e1e44feae7897ba095bc61b1233",
+      "canonicalSha256": "66832f8baa58d44ddb691fb20284304ffa19648e4cb2e2fff4d3b0092206a5b2",
+      "dimensions": {
+        "w": 0.4287106692790985,
+        "h": 0.37856343388557434,
+        "d": 0.4375530183315277
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-105",
+      "dir": "abandoned-farm-object-105",
+      "sourceSha256": "ecebf2fb738b7d8de7b2e780da3a706e915c071d3bc49aa5a0313af95fbd4277",
+      "canonicalSha256": "21e64d2991b3556cff1a1bdd8fb797c83720e91218643e24e0d7238d50d0e0cd",
+      "dimensions": {
+        "w": 1.343217372894287,
+        "h": 1.789229457926922e-7,
+        "d": 1.2420622110366821
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-106",
+      "dir": "abandoned-farm-object-106",
+      "sourceSha256": "ab4392ae032e972bb495d88a7a5dca0eee689198eb788464e2c1d3c1a177e62c",
+      "canonicalSha256": "e459a0e454e3ccaa486cb60b09295b3a847fc047d053e3b4aa6a77c17e962a6c",
+      "dimensions": {
+        "w": 1.4826421737670898,
+        "h": 1.375242533185883e-7,
+        "d": 1.539834976196289
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-107",
+      "dir": "abandoned-farm-object-107",
+      "sourceSha256": "2aa3db4d4868065bd8a345e5c5e6ae139b980a9e73b3ffd35ab8161df82f1478",
+      "canonicalSha256": "145f74ae38857f7bc1faab148070a286ada0a365f73b9420e763e861670dd34d",
+      "dimensions": {
+        "w": 0.6366898417472839,
+        "h": 0.01116207055747509,
+        "d": 0.6551390290260315
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-108",
+      "dir": "abandoned-farm-object-108",
+      "sourceSha256": "1eedb524633d2fb8e87286c8cfb2899278f62d9418e25696e28c61edadb13329",
+      "canonicalSha256": "6fd21135228cb9cb903cc0977bed971c9d73613a39521c70b9643d7b34e8dab8",
+      "dimensions": {
+        "w": 0.652756929397583,
+        "h": 0.011162109673023224,
+        "d": 0.6443496346473694
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-109",
+      "dir": "abandoned-farm-object-109",
+      "sourceSha256": "4634c5e6f7e545731cc83c1d00066a5e29f881fe2e39c186fa81c6f4ee32d0bc",
+      "canonicalSha256": "cd4661282ac42b481e06e933211aacd3a780b9b2edfe5cf66e6330ccb1020aa0",
+      "dimensions": {
+        "w": 0.6555771827697754,
+        "h": 0.011162119917571545,
+        "d": 0.6322418451309204
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-110",
+      "dir": "abandoned-farm-object-110",
+      "sourceSha256": "2cdb6e8705c1d67afab1f1f0fbda55f47f0ae2e09b069fe6cab2b23d7c67ae02",
+      "canonicalSha256": "59692175a42199e89223bc8dbeda82ba110f89432306ebb4e2e8c64b67ffddb4",
+      "dimensions": {
+        "w": 1.5909751653671265,
+        "h": 1.8168103110838274e-7,
+        "d": 1.60523521900177
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-111",
+      "dir": "abandoned-farm-object-111",
+      "sourceSha256": "56cdfe986a1dbdde412a4237ac92539a4280b813d671f42c56ca57b2aea9a225",
+      "canonicalSha256": "d131366b1110fa0bcaac1dd79343b6e00233c1de5cb682d68b9832ecdc913b2f",
+      "dimensions": {
+        "w": 0.6337849497795105,
+        "h": 0.01116202212870121,
+        "d": 0.6554833054542542
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-112",
+      "dir": "abandoned-farm-object-112",
+      "sourceSha256": "31a69e2a2a4c461e82ec6207c3c5a4f836aff108152ba902795d5d6dba2e0147",
+      "canonicalSha256": "4b8d156be237e0bfda04b0d610521b7f2f2e60f7e3fb2d66a47aafdef7ef6bd9",
+      "dimensions": {
+        "w": 0.5309785008430481,
+        "h": 0.011162029579281807,
+        "d": 0.6163907051086426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-113",
+      "dir": "abandoned-farm-object-113",
+      "sourceSha256": "c091b8aa2409e6fc05a6a26b9a41c5582ce730f9c725160ec0b0d90f6ef35a3c",
+      "canonicalSha256": "145bc44ce68e234fe674dbb05cd9a8c42d9e943d2493c2e82a58ebfb9493cb77",
+      "dimensions": {
+        "w": 0.23233485221862793,
+        "h": 0.6201596856117249,
+        "d": 0.23233485221862793
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-114",
+      "dir": "abandoned-farm-object-114",
+      "sourceSha256": "08f96cb1093144493603e87b9ab622db8d4d535ce1a5525a82e2992670d48a9c",
+      "canonicalSha256": "f51d00cf42f27ac5eac1441c682798ec536dad8674a8d839760b3d7b2aa02310",
+      "dimensions": {
+        "w": 0.23233485221862793,
+        "h": 0.6201596856117249,
+        "d": 0.23233485221862793
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-115",
+      "dir": "abandoned-farm-object-115",
+      "sourceSha256": "d7f350d0df5738635c973a25a63c2042e03d5733e843b507d8f2012e698c716b",
+      "canonicalSha256": "2bb569866f30240b4e43954791a84d6c72631db3771ebc295d3cbffaa807f48b",
+      "dimensions": {
+        "w": 0.23233485221862793,
+        "h": 0.6201596856117249,
+        "d": 0.23233485221862793
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-116",
+      "dir": "abandoned-farm-object-116",
+      "sourceSha256": "80d63d256d00a56b3ce5e65c95ec7dca2242aed535506a0b8ef62c0f7b1291d0",
+      "canonicalSha256": "4406b840f34ed1bf88e720fac0a39255693863287ba68be65494fffa76feb61c",
+      "dimensions": {
+        "w": 0.2320721596479416,
+        "h": 0.6201596856117249,
+        "d": 0.2320721447467804
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-117",
+      "dir": "abandoned-farm-object-117",
+      "sourceSha256": "6d08031fb0e8817c24a585dad1e95f68626d21f4c8c74b949be023e71677ed4a",
+      "canonicalSha256": "feba5db75606e638ad920ddf608ceaef97aa089249605eae0a5b5a2c403d3010",
+      "dimensions": {
+        "w": 0.2320721596479416,
+        "h": 0.6201596856117249,
+        "d": 0.2320721447467804
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-118",
+      "dir": "abandoned-farm-object-118",
+      "sourceSha256": "41825e5ca8f25187ba3dab20c02f4ff44200d51467726655a27f1c4e05c75aaf",
+      "canonicalSha256": "70aa7a50209fa9aabf5c5ebf1935ce7182d939d05c6cacd18d6248ae74d66011",
+      "dimensions": {
+        "w": 0.2320721596479416,
+        "h": 0.6201596856117249,
+        "d": 0.2320721447467804
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-119",
+      "dir": "abandoned-farm-object-119",
+      "sourceSha256": "d5679f01d880da2ef2357475f8ef63bf2897ab30e91dcbc7d4e9526547dbb336",
+      "canonicalSha256": "9293bd60d5db5c3e43ae083de6fe9acded9096960c836b175d266b2c034c1cdb",
+      "dimensions": {
+        "w": 0.2320721596479416,
+        "h": 0.6201596856117249,
+        "d": 0.2320721447467804
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-120",
+      "dir": "abandoned-farm-object-120",
+      "sourceSha256": "187518518bba751c8ba22e0f42636c6465b6793b747e26abb7ad1b4f245e7c63",
+      "canonicalSha256": "ce8e97e9339cb8aa6329b063067e4f36dbea319bfec2c5d07a243c204a511cfe",
+      "dimensions": {
+        "w": 0.2320721596479416,
+        "h": 0.6201596856117249,
+        "d": 0.2320721447467804
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-121",
+      "dir": "abandoned-farm-object-121",
+      "sourceSha256": "a69fae981b91460e0910eca766cd39df0acabead4a259e38c750308a397acbc3",
+      "canonicalSha256": "96a5c8e80607323654f471edba97e4fac64ae066b73eb9d43af3aca72251791c",
+      "dimensions": {
+        "w": 0.2320721596479416,
+        "h": 0.6201596856117249,
+        "d": 0.2320721447467804
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-122",
+      "dir": "abandoned-farm-object-122",
+      "sourceSha256": "004d3a7d9e8dc893831f81c53d8b12953eaf75be4daf624a439531b267281e78",
+      "canonicalSha256": "4fbd659b951b27e1fd563397e90975f363ef162f0ac0be895918c5d95372e1b7",
+      "dimensions": {
+        "w": 0.2320721596479416,
+        "h": 0.6201596856117249,
+        "d": 0.2320721447467804
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-123",
+      "dir": "abandoned-farm-object-123",
+      "sourceSha256": "d9decf58942ee12cfdd35fac42c22452daa2e812d22b03ffc975735c85bf2960",
+      "canonicalSha256": "605e978e76be7d4e1a9d3333dfb12c3cb76e71008ede9aea311be2d6fd9c9dac",
+      "dimensions": {
+        "w": 0.2320721596479416,
+        "h": 0.6201596856117249,
+        "d": 0.2320721447467804
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-124",
+      "dir": "abandoned-farm-object-124",
+      "sourceSha256": "cdce1af57f8f5a0d4dc692e88c28813a8b32096bbf0b05c65c2eba787c039b4e",
+      "canonicalSha256": "1fdf628a025b520e3f5153d28eadc5ff544950a4b746e4af8eb8a34626104eb8",
+      "dimensions": {
+        "w": 0.142992302775383,
+        "h": 0.45813319087028503,
+        "d": 0.142992302775383
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-125",
+      "dir": "abandoned-farm-object-125",
+      "sourceSha256": "2e17c402692b4ff41ead50317a1594f479c36ce5713db71e30a5c0088d4e09ec",
+      "canonicalSha256": "96267d04c6686ebe302d7471f52d62e973e03a3399c23a3cdebf50d78dc352f5",
+      "dimensions": {
+        "w": 0.34534674882888794,
+        "h": 0.17042332887649536,
+        "d": 0.29310816526412964
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-126",
+      "dir": "abandoned-farm-object-126",
+      "sourceSha256": "139acd918bf2bddc5d16dec5e08184b34410c4a7fca4a4f337b36101eb8ae9d5",
+      "canonicalSha256": "b846a06e34f81b7f837ba2320b25f4570b1dc71c5b8184b41185e6825c3cd71d",
+      "dimensions": {
+        "w": 0.33568674325942993,
+        "h": 0.17042332887649536,
+        "d": 0.3450809121131897
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-127",
+      "dir": "abandoned-farm-object-127",
+      "sourceSha256": "45b342f2c88d90c0eeeb103cbc01024f065ffb3dac6ca2f6616ffc2188602064",
+      "canonicalSha256": "6c6faf1c5b5e7eee84276cfa6e33f4d22163048ab662753a3a3fbe9df8fd1592",
+      "dimensions": {
+        "w": 0.38400977849960327,
+        "h": 0.38400980830192566,
+        "d": 0.38400980830192566
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-128",
+      "dir": "abandoned-farm-object-128",
+      "sourceSha256": "2df140ecff087fcf36de52314f952f9d7b59988e922c9217e311a8501a35dd61",
+      "canonicalSha256": "6ad1e53f3c428e79abb47cac4d0aaaf43ce0fbcd8c8bc50e73ef2783f1423325",
+      "dimensions": {
+        "w": 0.38400977849960327,
+        "h": 0.38400980830192566,
+        "d": 0.38400980830192566
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-129",
+      "dir": "abandoned-farm-object-129",
+      "sourceSha256": "368000797f175aedf1d2b7b313fe16aac725330feaada00e48b6208549818def",
+      "canonicalSha256": "859478862df37c9eff3e3ec136824ad7e3d63e06eae0b823349340ea35520b1f",
+      "dimensions": {
+        "w": 2.305145502090454,
+        "h": 0.8168306946754456,
+        "d": 1.3888535499572754
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-130",
+      "dir": "abandoned-farm-object-130",
+      "sourceSha256": "060b04516c2f341b3a58b4d0c9e8a820b8f1f82803bf72223209d47aeb4782ae",
+      "canonicalSha256": "569d486139102ed730118bc9c57ef120048baa05aaeca901dea903b6ccc7086c",
+      "dimensions": {
+        "w": 0.42224180698394775,
+        "h": 0.048213839530944824,
+        "d": 0.42224180698394775
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-131",
+      "dir": "abandoned-farm-object-131",
+      "sourceSha256": "7c2680eab645da9a45f189efc30286346829205304d3934114a5d895803f81c0",
+      "canonicalSha256": "6f64442ee25e43645c6d76e8a731d9aa0921be7c83785bcb7bad15a1ce38494e",
+      "dimensions": {
+        "w": 0.4136810004711151,
+        "h": 0.04821380227804184,
+        "d": 0.4136810004711151
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-132",
+      "dir": "abandoned-farm-object-132",
+      "sourceSha256": "4b6095925e92014f608b6ec33cf9fc7b50a702773ee9a97fdf54980b1c429302",
+      "canonicalSha256": "7838d20e0eba2ac5dfdbc3280dfc904393a9c9300e27faa407620879e44facb2",
+      "dimensions": {
+        "w": 0.4136810004711151,
+        "h": 0.04821380227804184,
+        "d": 0.4136810004711151
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-133",
+      "dir": "abandoned-farm-object-133",
+      "sourceSha256": "e3b0fc1f9658a63e5cffa26fde42207a12a67968b20e59834d9da9c9bec2c2d5",
+      "canonicalSha256": "b9d934245d1b15ae9b01603a3ba04c8d28249a84ea8456cfe1ac9d6838d68d16",
+      "dimensions": {
+        "w": 21.243999481201172,
+        "h": 2.014162540435791,
+        "d": 12.587808609008789
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-134",
+      "dir": "abandoned-farm-object-134",
+      "sourceSha256": "332e12c7126f83f64661d3626037fa74728321b006a29c2eccf3c2d2612c5553",
+      "canonicalSha256": "c62cdb97c2df492dd289ad533dcdf403db2076e70acde9bd1c76284badf93495",
+      "dimensions": {
+        "w": 14.199999809265137,
+        "h": 13.00000286102295,
+        "d": 22.22064971923828
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-135",
+      "dir": "abandoned-farm-object-135",
+      "sourceSha256": "a8c579f553fe4e00fb513719f220ef9f8edbb356aebb83f862b1160f9e12ee9a",
+      "canonicalSha256": "d9dd4c7869d832ffbd09fb8491245a53b9d5be059d1706dd5808398fabcf0139",
+      "dimensions": {
+        "w": 15.542508125305176,
+        "h": 8.650003433227539,
+        "d": 23.800003051757812
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-136",
+      "dir": "abandoned-farm-object-136",
+      "sourceSha256": "f7f187d02ce63fbe560bcc9776e76d0e1249067b61b8fc85b9de5a1b2a1bd140",
+      "canonicalSha256": "086bd02742d061b7c04017ecbcf503146ea1add633925cc4457ba285ae962d3d",
+      "dimensions": {
+        "w": 6.599999904632568,
+        "h": 4.300000190734863,
+        "d": 0.45000067353248596
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-137",
+      "dir": "abandoned-farm-object-137",
+      "sourceSha256": "9ac2c3e0618b683047742533e950f09159912ab6b776f0e2af077601bf287d37",
+      "canonicalSha256": "a036012256cac729c1d4b0a9e71764bdea15a365b8a10e2e7d83d5f2d51ce059",
+      "dimensions": {
+        "w": 14.40000057220459,
+        "h": 5.300003528594971,
+        "d": 22.540000915527344
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-138",
+      "dir": "abandoned-farm-object-138",
+      "sourceSha256": "69e31c32b93af1d50752b5a1bae4adeb693574fbcb4cad4620d562d260cbb05e",
+      "canonicalSha256": "b840e9036f519a542727fe4f324899087f79d60e76de021bcd83cc0398524d4e",
+      "dimensions": {
+        "w": 8,
+        "h": 0.20000338554382324,
+        "d": 22
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-139",
+      "dir": "abandoned-farm-object-139",
+      "sourceSha256": "17674b4343667952edc5de10c0efc11a0a79d9f7f054c78f16372b4120a12827",
+      "canonicalSha256": "a8521a7e6d31e080fe16046626b00d54ee302f31d0fb014506ca4255d773ecd2",
+      "dimensions": {
+        "w": 1.4692821502685547,
+        "h": 3.5999999046325684,
+        "d": 2.464871406555176
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-140",
+      "dir": "abandoned-farm-object-140",
+      "sourceSha256": "f3f20e622630ce65f38ccbac097950587ae92f0c36b600009a799cc980d2dce5",
+      "canonicalSha256": "3d3c59eabcc5dd2fefe88b0fe6c5aa1d248c5f2eadea7b1e5ce1eca7a98ba4d0",
+      "dimensions": {
+        "w": 2.314009428024292,
+        "h": 1.9015960693359375,
+        "d": 0.3400002717971802
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-141",
+      "dir": "abandoned-farm-object-141",
+      "sourceSha256": "16c292b35305e182a4219ec44327a50c9073f03aac7a28c2356f7041c71af408",
+      "canonicalSha256": "55a1e47c80e381cba352733e687430b59ec07c09aefc2aea03c800313c4dd977",
+      "dimensions": {
+        "w": 0.05000000074505806,
+        "h": 2,
+        "d": 1.0025008916854858
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-142",
+      "dir": "abandoned-farm-object-142",
+      "sourceSha256": "cf91b70d9879414ec9da87489e2c0ea3cd1d08d112e492111bf12c33b8dd3d93",
+      "canonicalSha256": "0eb73f301a6dc564fec96f9a00e9d18d4ba2b01f91e6bdd0497616f5063224ff",
+      "dimensions": {
+        "w": 4.133333683013916,
+        "h": 6.90000057220459,
+        "d": 4.02000093460083
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-143",
+      "dir": "abandoned-farm-object-143",
+      "sourceSha256": "0e2bc4b692623b3d89366398abcc33ddd51d1b23e2dc1bf460aa890c85372332",
+      "canonicalSha256": "81290a5c6404051736aa91b079a888eeb81f619a5b237cf9dfaf82506d13adbb",
+      "dimensions": {
+        "w": 14,
+        "h": 0.2000008076429367,
+        "d": 6.199999809265137
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-144",
+      "dir": "abandoned-farm-object-144",
+      "sourceSha256": "2dde6ff21018696b39cfcadb0d0a31b01d6890413e7c63cc9be053bc6e5adb37",
+      "canonicalSha256": "8b3633006ed9ff121a03bf196c4bf2bd89f58012703714ddd71f3453072b3187",
+      "dimensions": {
+        "w": 14.072476387023926,
+        "h": 0.5648139119148254,
+        "d": 22.072221755981445
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-145",
+      "dir": "abandoned-farm-object-145",
+      "sourceSha256": "ca75b572780d57fe03a0a0af113abb4992f93663c98b7ab6ed71df755d54ba85",
+      "canonicalSha256": "5b4b865fb8809f6202c83cbc65b2b9a5ffabf33d26f0be940fac89c70d0f5453",
+      "dimensions": {
+        "w": 0.05000019073486328,
+        "h": 2,
+        "d": 1.0049991607666016
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-146",
+      "dir": "abandoned-farm-object-146",
+      "sourceSha256": "a28dc7aee7686c310c747360169901b6fad1227d4931047af99bc504a8778775",
+      "canonicalSha256": "56629ec9c63512fc4e01e963361fe53bbacbfd7c8b23d4e114f0025a9af48a0e",
+      "dimensions": {
+        "w": 2.3395118713378906,
+        "h": 3.5999999046325684,
+        "d": 1.6715461015701294
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-147",
+      "dir": "abandoned-farm-object-147",
+      "sourceSha256": "94c50a85f447ecb95b3dee94ea5bd8e819e71bb14c2745705c86be3f6b605be3",
+      "canonicalSha256": "503f0f52d6a1dd056c0068dd4c2349e98758c1ede568737b12ddeab3c3b05ec7",
+      "dimensions": {
+        "w": 1.0719999074935913,
+        "h": 1.340000033378601,
+        "d": 1.0500001907348633
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-148",
+      "dir": "abandoned-farm-object-148",
+      "sourceSha256": "8e8fda75a7fe753dad907d6c230bd1a55d156b85406ea4cae327a8c18afd53a7",
+      "canonicalSha256": "631cd30204cb7546820288381d73cc876da609ce3e5495ea613945ea5babd669",
+      "dimensions": {
+        "w": 1.0500001907348633,
+        "h": 1.340000033378601,
+        "d": 1.0719999074935913
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-149",
+      "dir": "abandoned-farm-object-149",
+      "sourceSha256": "ee94ef6b060607382751ec73682c8e203d158c828ee8699110faf7a25a930b79",
+      "canonicalSha256": "604558dcac2ca8033c42aa7d3efa0c34ae68767720e4de507785c38953d0575e",
+      "dimensions": {
+        "w": 2.000999927520752,
+        "h": 1.2400000095367432,
+        "d": 0.09800022095441818
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-150",
+      "dir": "abandoned-farm-object-150",
+      "sourceSha256": "ea34cbe65a960075f6673a798d1b31899d6b5a90819b0ececd0fb066371d9d2d",
+      "canonicalSha256": "3b27d5b485ced305d4b91196921d37df263de08a85e128d3c39b7b27cd39bae1",
+      "dimensions": {
+        "w": 2.000999927520752,
+        "h": 1.2400000095367432,
+        "d": 0.09800022095441818
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-151",
+      "dir": "abandoned-farm-object-151",
+      "sourceSha256": "decbdb80b77dc2abee1b384711ab577c4e5a3be7ba4dd42113715a03d37da953",
+      "canonicalSha256": "9168c4d892aa23a791284972022b771f9b329530d46d00ff9adb50dfbb039527",
+      "dimensions": {
+        "w": 2.000999927520752,
+        "h": 1.2400000095367432,
+        "d": 0.09800022095441818
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-152",
+      "dir": "abandoned-farm-object-152",
+      "sourceSha256": "19e139b18976722c299c7dce1b1d3291cfaf4e151e4ddfba48173f5b8e93e2b7",
+      "canonicalSha256": "02dafb74d7357760bd195fb45b864a3b9237ba6aed18ae3c39ed9da69d324efa",
+      "dimensions": {
+        "w": 2.000999927520752,
+        "h": 1.2400000095367432,
+        "d": 0.09800022095441818
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-153",
+      "dir": "abandoned-farm-object-153",
+      "sourceSha256": "3d90dd19f771796bf772fbd41c0287a62b7150df56f0e3477c4ca75ece0e2c34",
+      "canonicalSha256": "5861b9d74f216d27b96fd3b67853f1f0f5b95568d9a1a7fea0822c127aa8cdf8",
+      "dimensions": {
+        "w": 0.09800007194280624,
+        "h": 1.2400000095367432,
+        "d": 2.000999927520752
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-154",
+      "dir": "abandoned-farm-object-154",
+      "sourceSha256": "596f0047ad93923577a3123513348aa6d9d53bcd2e114a11f84c33cc95409eb8",
+      "canonicalSha256": "9e3f4b26e524398685a82a1588c9a8e0863e5cdab90d80b831f4a5cc2bf39e6e",
+      "dimensions": {
+        "w": 0.09800007194280624,
+        "h": 1.2400000095367432,
+        "d": 2.000999927520752
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-155",
+      "dir": "abandoned-farm-object-155",
+      "sourceSha256": "65e3665f8e95db0d40c821bb14456d161950b7de33212beb4ecaef149ccb336d",
+      "canonicalSha256": "e78e0309c5de3f88ffd91f7e489ad6e2e0b69948805b363feb5bac1660addc34",
+      "dimensions": {
+        "w": 0.09800007194280624,
+        "h": 1.2400000095367432,
+        "d": 2.000999927520752
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-156",
+      "dir": "abandoned-farm-object-156",
+      "sourceSha256": "ac511c4af34f902b9c19719607a7cfb158468a635727e440ec7cc11669291cc8",
+      "canonicalSha256": "ca9548efddc396f0c336969da713e8a4596c421c85a67e0b9548ae691a19f380",
+      "dimensions": {
+        "w": 0.09800007194280624,
+        "h": 1.2400000095367432,
+        "d": 2.000999927520752
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-157",
+      "dir": "abandoned-farm-object-157",
+      "sourceSha256": "8b0b6addbdd647fdd91bed6f66197c3c25c656bb3fd976ee79d51be0c9967699",
+      "canonicalSha256": "e773e064645ccb0f2d7e5f1b68806b77726e8c18117006615c9bfd03ce0b2ac0",
+      "dimensions": {
+        "w": 0.09800007194280624,
+        "h": 1.2400000095367432,
+        "d": 2.000999927520752
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-158",
+      "dir": "abandoned-farm-object-158",
+      "sourceSha256": "c4ac24dffa0cad08b0ce064a41ec33e2cf8493c5a1264c88e5f11c4956e1c337",
+      "canonicalSha256": "c492e9dc6dc3302c5fcdfd5e1daad7a1741f36b778e816619add0f6775889dca",
+      "dimensions": {
+        "w": 0.09800007194280624,
+        "h": 1.2400000095367432,
+        "d": 2.000999927520752
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-159",
+      "dir": "abandoned-farm-object-159",
+      "sourceSha256": "e12c86af7ecaf94cb0dc9ddcc5a2dfda290fcad1c00712823674c748e90f2f11",
+      "canonicalSha256": "d3fbace5f9f973774f321d57b2222e6c03115c59e6a38e50aab287a3068d549d",
+      "dimensions": {
+        "w": 2.000999927520752,
+        "h": 1.2400000095367432,
+        "d": 0.09800013899803162
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-160",
+      "dir": "abandoned-farm-object-160",
+      "sourceSha256": "c00e9f7486ea03930de9fc3017743ee87572b7baa629c9523b1a9824f684bd09",
+      "canonicalSha256": "400caad30eb9f0b6209953ac8bcda9d0b72263191f0bbe0fb9cfd847f1b4450e",
+      "dimensions": {
+        "w": 2.000999927520752,
+        "h": 1.2400000095367432,
+        "d": 0.09800013899803162
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-161",
+      "dir": "abandoned-farm-object-161",
+      "sourceSha256": "88e1f558ec6ce3cfe8516718982ee504e72ba8c4cfda6e231844a2f55787543a",
+      "canonicalSha256": "47db098834a8f9302140eb15040eecce312e4e5499645de75d62e61657103503",
+      "dimensions": {
+        "w": 2.000999927520752,
+        "h": 1.2400000095367432,
+        "d": 0.09800013899803162
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-162",
+      "dir": "abandoned-farm-object-162",
+      "sourceSha256": "80686f158f9a8a842f215319c109873283084c3d0a04ee2d5d7f3720bab7093c",
+      "canonicalSha256": "c4b40af9ff36e225a5eb0df541606978b4602833c00e4a18811ee4bf908afe78",
+      "dimensions": {
+        "w": 2.000999927520752,
+        "h": 1.2400000095367432,
+        "d": 0.09800013899803162
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-163",
+      "dir": "abandoned-farm-object-163",
+      "sourceSha256": "4bc3511e78efc09b60173fafd3cc422ac00aaa3827fcb8346b9ae3e73b94d8ca",
+      "canonicalSha256": "7679310fdbe5a0dacb1e2f38ffa37ab8d9622bb050ad16d57b7fdc6fa0d1b668",
+      "dimensions": {
+        "w": 2.000999927520752,
+        "h": 1.2400000095367432,
+        "d": 0.09800013899803162
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-164",
+      "dir": "abandoned-farm-object-164",
+      "sourceSha256": "e5176426346ea8a57fb0d9f29057bc72e091b8ff43bec07710ec7a41eb03de52",
+      "canonicalSha256": "13e5f1cb08e65a564702ea8fd056dcf655733b6810ba850aff7962308521fac8",
+      "dimensions": {
+        "w": 2.000999927520752,
+        "h": 1.2400000095367432,
+        "d": 0.09800013899803162
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-165",
+      "dir": "abandoned-farm-object-165",
+      "sourceSha256": "873a3a1fde3461702e2ca27c542fa241333aec5b91e9d946078785a3e08478a6",
+      "canonicalSha256": "a1718441d833f985acbdfa8500e681b2e6d2ee3e157cab46c6343e1190381b67",
+      "dimensions": {
+        "w": 3,
+        "h": 0.7000000476837158,
+        "d": 2.8013999462127686
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-166",
+      "dir": "abandoned-farm-object-166",
+      "sourceSha256": "515b3c12fa2549d6f979592b3ef5819b98df23d0006e606520f56ac161c4d9fd",
+      "canonicalSha256": "59e86eb6f19f79197f4718fd58c57bb6b22f91c6f77d2d8cf90245ed9f43c228",
+      "dimensions": {
+        "w": 3.2021594047546387,
+        "h": 7.142510414123535,
+        "d": 3.0010011196136475
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-167",
+      "dir": "abandoned-farm-object-167",
+      "sourceSha256": "6e82210cf20ba792e0eadbc3d73faa5e4f1aad902bbc8b28304f63b548b28e25",
+      "canonicalSha256": "5b2793d9c40224dedaaf0ac78ec57e430212e0f80a518618b8c3353b2beb8abf",
+      "dimensions": {
+        "w": 2.8013999462127686,
+        "h": 0.7000000476837158,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-168",
+      "dir": "abandoned-farm-object-168",
+      "sourceSha256": "bc9dff1b82de3805031dffba95f8f8707f887f7ee0e5a6b20b28360ae2397376",
+      "canonicalSha256": "516d92278c29a30408086be8f6968f10c99e5ec3a04772d2705bce42b43b3bd7",
+      "dimensions": {
+        "w": 3.001000165939331,
+        "h": 5.49333381652832,
+        "d": 3.2021594047546387
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-169",
+      "dir": "abandoned-farm-object-169",
+      "sourceSha256": "a6d0d19dc029edfc598824c5479c15f1e47c155a8ec686b57295f89b04fe06c8",
+      "canonicalSha256": "9bf3fff1f42b1a7ef4018d636d1980f8b822d54405ca42afd9a264c1dcd8a1c7",
+      "dimensions": {
+        "w": 2.7014000415802,
+        "h": 1.0188322067260742,
+        "d": 3.1640000343322754
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-170",
+      "dir": "abandoned-farm-object-170",
+      "sourceSha256": "ef3d3c0812f86a9292bb211f8119652923e27a5e09dc1797372c26346ee86482",
+      "canonicalSha256": "7aa58d46e50699540bab0167191ba0edf833cf94ed74cad6574a46c96a8ba5f2",
+      "dimensions": {
+        "w": 2.8013999462127686,
+        "h": 0.7000000476837158,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-171",
+      "dir": "abandoned-farm-object-171",
+      "sourceSha256": "59878ba71ab7bec446f5ebe31937a41321715131996476a3f965fb3779e11a1a",
+      "canonicalSha256": "4f66d4e97088fcb325311d2691137a32a0cc30bcc18ccd5c8c50a2dc05771ba6",
+      "dimensions": {
+        "w": 2.8013999462127686,
+        "h": 0.7000000476837158,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-172",
+      "dir": "abandoned-farm-object-172",
+      "sourceSha256": "b72ae36fb89fad75f6aa11a06ec5671b8f9c6ceba9efef443dc3f7f829c9835e",
+      "canonicalSha256": "3c7c82f707761dd65be3518b7418c22ad5f3188de49be2c0ea2e988e75890d51",
+      "dimensions": {
+        "w": 2.8013999462127686,
+        "h": 0.7000000476837158,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-173",
+      "dir": "abandoned-farm-object-173",
+      "sourceSha256": "6f4ca78a78d4e89c85f698cde4e7090342913ccd46df00b455ffbc5430831b3c",
+      "canonicalSha256": "bf478a3a01dacda914106804f369042425e7a2c47d35dcf3ac967aeec117cc3c",
+      "dimensions": {
+        "w": 3.00100040435791,
+        "h": 7.142509937286377,
+        "d": 5.800000190734863
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-174",
+      "dir": "abandoned-farm-object-174",
+      "sourceSha256": "59299659e13c35a89d336255e540a58f2fe9d36c66fcd6af6460f3fa69e7dcd4",
+      "canonicalSha256": "519fc8d753674df268d287c4bff346dc92213e5ff8bc04939e053dd83bb5df6d",
+      "dimensions": {
+        "w": 2.8013999462127686,
+        "h": 0.7000000476837158,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-175",
+      "dir": "abandoned-farm-object-175",
+      "sourceSha256": "436c7ce25d250b09f1f4d3bfd5281204a6883dd90291ee1028a535ff16636531",
+      "canonicalSha256": "2fdd61e3080639a50f75876e3097c07d37d21c22fa43c0353065ee1eccc01aff",
+      "dimensions": {
+        "w": 2.8013999462127686,
+        "h": 0.7000000476837158,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-176",
+      "dir": "abandoned-farm-object-176",
+      "sourceSha256": "bf2dde031a491e5feac5b9e25944238bfb17af4a58e5ff5bf192639a46603870",
+      "canonicalSha256": "75e807ae87e676583db4eaa27bfe49e64c3c538f39471ba9d3cec1219313f22a",
+      "dimensions": {
+        "w": 2.8013999462127686,
+        "h": 0.7000000476837158,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-177",
+      "dir": "abandoned-farm-object-177",
+      "sourceSha256": "fcc50a7a4666bf8173fd0811da945599f71695e64afb3168991d01df5667881a",
+      "canonicalSha256": "5760ab92401e9302a31d217ea59e1ea6f313f5950350ee4f974c2a12d0becef0",
+      "dimensions": {
+        "w": 2.8013999462127686,
+        "h": 0.7000000476837158,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-178",
+      "dir": "abandoned-farm-object-178",
+      "sourceSha256": "a6491104170e76724ccb19777a4b5f5b85382d7fbdf3dc3bf2fed1a27585da48",
+      "canonicalSha256": "c54414581a228f318a297fc5b599e6d43ece4f9a12c5369c42f3b67c66b95dbf",
+      "dimensions": {
+        "w": 3.000002384185791,
+        "h": 5.49333381652832,
+        "d": 3.2021617889404297
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-179",
+      "dir": "abandoned-farm-object-179",
+      "sourceSha256": "abfe927f140d63eb53c7249e7441c5bf70a8b7613a5fa3db0edccc7c14287f3e",
+      "canonicalSha256": "1b1e54217b90d055454972b2f4cd6ffc1fab9aeb3c264eb592ae1a494d85bbfa",
+      "dimensions": {
+        "w": 2.7014007568359375,
+        "h": 1.2827105522155762,
+        "d": 2.9639999866485596
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-180",
+      "dir": "abandoned-farm-object-180",
+      "sourceSha256": "7b71228940371d5fd2d90650b8eca8acdebc61517c560dde24bae37b0f0e609e",
+      "canonicalSha256": "5bceff8da601e80fdfd25a973624aa3ad2dcdcfab041ad18e926ec56794fb8a4",
+      "dimensions": {
+        "w": 0.059999980032444,
+        "h": 0.7000000476837158,
+        "d": 2.8013999462127686
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-181",
+      "dir": "abandoned-farm-object-181",
+      "sourceSha256": "763c1f1bc1855a745ec72c02a4b78e975246ffc46fca906aaf1ed8ff0bdf07be",
+      "canonicalSha256": "6d3663b4595e3959d69994e4d0ac7ebff842dc55eae471a2eb5d308e59114f26",
+      "dimensions": {
+        "w": 2.8013999462127686,
+        "h": 0.7000000476837158,
+        "d": 0.059999942779541016
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-182",
+      "dir": "abandoned-farm-object-182",
+      "sourceSha256": "63f4985a4d09dea05f20a060c3b8e95aeb71f1412107b7ce8b1905066ce02e0c",
+      "canonicalSha256": "b61d3c0c157ff94ed8ce48fc63e271f7731c49ece5f7fd4b3db5479bcf8c949c",
+      "dimensions": {
+        "w": 0.059999980032444,
+        "h": 0.7000000476837158,
+        "d": 2.8013999462127686
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-183",
+      "dir": "abandoned-farm-object-183",
+      "sourceSha256": "bd81c7bab33a007d25179cb7c9f83fedae2acb16f5dcf34eede0778a6fc76c60",
+      "canonicalSha256": "1871f31cdd125f0c76f6f8834131437de452c25ae5cf1070329f4ac5dec4e952",
+      "dimensions": {
+        "w": 0.059999980032444,
+        "h": 0.7000000476837158,
+        "d": 2.8013999462127686
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-184",
+      "dir": "abandoned-farm-object-184",
+      "sourceSha256": "e7a3802b05a02bb8de00efce4468205de50e400f31735da0ee45482f90aa0edd",
+      "canonicalSha256": "161521f03255915129992185a899a05f1a436b2a61adae546345ec4383152a38",
+      "dimensions": {
+        "w": 3.101080894470215,
+        "h": 5.49333381652832,
+        "d": 3.0010011196136475
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-185",
+      "dir": "abandoned-farm-object-185",
+      "sourceSha256": "ab389c9b96c42390290e4b55f7c7ed890f5803a10f71365744313afea38f1558",
+      "canonicalSha256": "bd7f14f622db23ba9d6091542915425717012f7a7b18121a7e2743e95ccf68e3",
+      "dimensions": {
+        "w": 3.00100040435791,
+        "h": 7.142509937286377,
+        "d": 5.800000190734863
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-186",
+      "dir": "abandoned-farm-object-186",
+      "sourceSha256": "64b0ddfd8e00284da421fb19ed3201e6f050f6e6ef504e558d0c9575590eda1b",
+      "canonicalSha256": "7afd4863e25267aea0a66aa2f20a7b4157174476ed5189f44c1f5e80a1b53ecc",
+      "dimensions": {
+        "w": 3.00100040435791,
+        "h": 7.142509937286377,
+        "d": 5.800000190734863
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-187",
+      "dir": "abandoned-farm-object-187",
+      "sourceSha256": "f14b77176b7f7c8bb4c2ea250b88dc345353d21aee2e166ce7f4af7acac63195",
+      "canonicalSha256": "b37b0daaf9bb5a341d59e3e9fd0a2d6cadde5f90fdb224942182ce58ab964db4",
+      "dimensions": {
+        "w": 3.001000165939331,
+        "h": 5.49333381652832,
+        "d": 3.2021594047546387
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-188",
+      "dir": "abandoned-farm-object-188",
+      "sourceSha256": "067e85b4a0cb46ca4134d3f666ffa838921844dee7e40a30aa350801ae516961",
+      "canonicalSha256": "5ec1c9caa9754872d7b4ae8b807761b173eebd4652880fc96b2c14a89f420ab8",
+      "dimensions": {
+        "w": 3.001000165939331,
+        "h": 5.49333381652832,
+        "d": 3.2021594047546387
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-189",
+      "dir": "abandoned-farm-object-189",
+      "sourceSha256": "36b3f90498dd299dbc970b82bc7b7baad795438ca273447e0262fc53134512fe",
+      "canonicalSha256": "f077c78285b848adf4ebb26644bcd9dbd747a55aed82a5a97760bc2c77784f2f",
+      "dimensions": {
+        "w": 3.001000165939331,
+        "h": 5.49333381652832,
+        "d": 3.2021594047546387
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-190",
+      "dir": "abandoned-farm-object-190",
+      "sourceSha256": "48dded52221f21bfeece2a6b4edacde327f2432bac1b4a169ef25c2072c2954d",
+      "canonicalSha256": "ae51af637ce9f102ebf5a0645a9209d86b1ef61e5368746af52920bdea3c886d",
+      "dimensions": {
+        "w": 3.001000165939331,
+        "h": 5.49333381652832,
+        "d": 3.2021594047546387
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-191",
+      "dir": "abandoned-farm-object-191",
+      "sourceSha256": "49cf9f5b419973387c02099fb9310147965dff5e0eb54a8421ccdc49797545d7",
+      "canonicalSha256": "460263198c354084279b0282e40989cd76ab90c711f9cae44deeae4558b8e251",
+      "dimensions": {
+        "w": 3.001000165939331,
+        "h": 5.49333381652832,
+        "d": 3.2021594047546387
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-192",
+      "dir": "abandoned-farm-object-192",
+      "sourceSha256": "4fb538c6c141cbe1966633f0efe2b821dfb1f4cf12e71515c84a38d2e01ebd50",
+      "canonicalSha256": "e30dce90ea3ae00d137c1e555cd9fb9ba734abbb5a44f257ac4ac846ce8c51ac",
+      "dimensions": {
+        "w": 3.2021594047546387,
+        "h": 5.49333381652832,
+        "d": 3.0010006427764893
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-193",
+      "dir": "abandoned-farm-object-193",
+      "sourceSha256": "612ea655b73d52a122da60ca36cd2437519a7058e5e8f8f968943a242417fbcc",
+      "canonicalSha256": "45a2f7bbb47937e9fa117865679ca7569c127a0284fbddd09e5f55ff4f474ee5",
+      "dimensions": {
+        "w": 3,
+        "h": 0.10000009089708328,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-194",
+      "dir": "abandoned-farm-object-194",
+      "sourceSha256": "25864f73d24e89bc21cbe9bf95f2a8b4c7b1b3f7de5702b5323caaa20564a3f7",
+      "canonicalSha256": "8abbe98809ea32d973d8ed8cf6cb756a18c1eda0c0b5961518c88da656ee1152",
+      "dimensions": {
+        "w": 3,
+        "h": 0.10000009089708328,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-195",
+      "dir": "abandoned-farm-object-195",
+      "sourceSha256": "d99d454c241e69b221ea4d5422175e67ebf3498f23c2e855414124e56b28de61",
+      "canonicalSha256": "4f969054c29ab7379f343c2ec0677255b9742229f799f27a41ffdf449fc03fef",
+      "dimensions": {
+        "w": 3,
+        "h": 0.10000009089708328,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-196",
+      "dir": "abandoned-farm-object-196",
+      "sourceSha256": "023faa5283d993eb6869761011514835dbf9fc9986165db911b571aefe12b2cf",
+      "canonicalSha256": "120f81dcbbf8cdcee8d698088cc888a988980e1a2eaec3c8a532139c9db8673b",
+      "dimensions": {
+        "w": 0.18300019204616547,
+        "h": 5.109285831451416,
+        "d": 3.2021594047546387
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-197",
+      "dir": "abandoned-farm-object-197",
+      "sourceSha256": "ffbd945c9cff6f25598dba93d1946ee6c09e3cc6987fb3958017980dba780d02",
+      "canonicalSha256": "261af5fbfe0921ad57ac5b63730a56c160ebe851a2f2c5a4db0aa95f1cadd65e",
+      "dimensions": {
+        "w": 0.18300019204616547,
+        "h": 5.109285831451416,
+        "d": 3.2021594047546387
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-198",
+      "dir": "abandoned-farm-object-198",
+      "sourceSha256": "f4cf0a0209d5f41cd67ff088d2dacd497fdc0d7502ab923a3353c1884d29e245",
+      "canonicalSha256": "a0e40b75b927592a2223738951b565d62c4d671aead3d2623bcdc57731b09415",
+      "dimensions": {
+        "w": 3,
+        "h": 0.10000009089708328,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-199",
+      "dir": "abandoned-farm-object-199",
+      "sourceSha256": "b445c188916a7c54afff8e131d5e1e8a998abf7997a0e09e91ebb7458e455275",
+      "canonicalSha256": "175b55f2ebd1ff943b633de0b6c7a2583be5f9dc4c2ff139a06180e423321f75",
+      "dimensions": {
+        "w": 3,
+        "h": 0.10000009089708328,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-200",
+      "dir": "abandoned-farm-object-200",
+      "sourceSha256": "93f431adc51a9d4a30d1347cb5cb067f8326f03610a4f2aa4396009eec860e60",
+      "canonicalSha256": "d2e0ae33729eb8017ba946bbadc75b57cfeaf417355c08a23740a9a7bb37d4ad",
+      "dimensions": {
+        "w": 3,
+        "h": 0.10000009089708328,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-201",
+      "dir": "abandoned-farm-object-201",
+      "sourceSha256": "102054273b13e1436f40cf6f753be7f9be3bca7ec7b600f921287cffcd76fc5e",
+      "canonicalSha256": "e26266a6843ad05cf69e06b4704feb702387c04cc64cb33f52e8b3171cbfe79d",
+      "dimensions": {
+        "w": 3,
+        "h": 0.10000009089708328,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-202",
+      "dir": "abandoned-farm-object-202",
+      "sourceSha256": "2b6af45e07272381253f2e601a151f051dc2fcc2e7f1171e14a0a6f3a38d6abd",
+      "canonicalSha256": "c22ab0ec47d15e290b3640301b44e4b1f3097ac8bdc3f9ab9e52bb4f380e5cdf",
+      "dimensions": {
+        "w": 3,
+        "h": 0.10000009089708328,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-203",
+      "dir": "abandoned-farm-object-203",
+      "sourceSha256": "3a62e8ea6b256c47c9a68fe563d6f09dcb951743b1b452aeb748252295adc62a",
+      "canonicalSha256": "b6893c69c3a3a941ea83a07ef74be09f27d7764a275dd9df7c112d0f8e0dbf59",
+      "dimensions": {
+        "w": 3,
+        "h": 0.10000009089708328,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-204",
+      "dir": "abandoned-farm-object-204",
+      "sourceSha256": "8a947a14c3c6c616b5f3eb8285f37da7212bbcce16d3696384fd7e2b0a9183e7",
+      "canonicalSha256": "5a8f54e8b6efc249d065ee3c5a30b906d62a4c19808540ffcfaf097e61aeb1d8",
+      "dimensions": {
+        "w": 3.001000165939331,
+        "h": 5.49333381652832,
+        "d": 3.2021594047546387
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-205",
+      "dir": "abandoned-farm-object-205",
+      "sourceSha256": "04d76c014343895b38a0e479a66e577271e65973ff9df3b9a9379a0483340ced",
+      "canonicalSha256": "52318a2293a7a02db1d7132c35b52f4210c70b197422b99c35ab5baa1d7668a1",
+      "dimensions": {
+        "w": 3.001000165939331,
+        "h": 5.49333381652832,
+        "d": 3.2021594047546387
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-206",
+      "dir": "abandoned-farm-object-206",
+      "sourceSha256": "6db4539003f4261e473105ed6df33bc87a0c24499928cb6dee3ba94b0de8fd94",
+      "canonicalSha256": "8007b6731aee5fc709f34e1fd06ce5aea9ffc336debbc0d8dbe9847524e88ee7",
+      "dimensions": {
+        "w": 2.8013999462127686,
+        "h": 0.7000000476837158,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-207",
+      "dir": "abandoned-farm-object-207",
+      "sourceSha256": "898bc2a653ed40442c0745340dac9244e2461dd430760fa0f08726f90b4b20cc",
+      "canonicalSha256": "dedb9f820ddbeb1e6c61bbea50dec7c879c3d2c6ad2959676d27bf1f481a305d",
+      "dimensions": {
+        "w": 2.8013999462127686,
+        "h": 0.7000000476837158,
+        "d": 3
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-208",
+      "dir": "abandoned-farm-object-208",
+      "sourceSha256": "87bf332adcdbdf3be6e3c6c143e2cd491bd075631d4a4f15b374b26c7b6e3af2",
+      "canonicalSha256": "90b8431c1a8d7515742d885caf5db0224feb4685ba7a9a1536025273b8727e1f",
+      "dimensions": {
+        "w": 4.525731086730957,
+        "h": 5.1112260818481445,
+        "d": 3.918891429901123
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-209",
+      "dir": "abandoned-farm-object-209",
+      "sourceSha256": "3245d2ca08d9d5b7de606f9cf70a0c4b9db6ccde1d46a9597701c26602183d47",
+      "canonicalSha256": "3480258da1841040c6012e5a84a4c5479eee64a480157b976271e20cf5a4bca6",
+      "dimensions": {
+        "w": 3.5013999938964844,
+        "h": 1.660000205039978,
+        "d": 4.164000034332275
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-210",
+      "dir": "abandoned-farm-object-210",
+      "sourceSha256": "8d6ffc50515529e7f3ec090c5e497b8a28d489f202876288339da47caa42a123",
+      "canonicalSha256": "68c6ec5611698583352502781e806ca21746be4cc7a684ce6299bc05ac2af9eb",
+      "dimensions": {
+        "w": 3,
+        "h": 1.100000023841858,
+        "d": 0.3300000727176666
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-211",
+      "dir": "abandoned-farm-object-211",
+      "sourceSha256": "da3d72d6443dbe99064b6d155be478af3eae5646b2da4455baa02fc28f112d2f",
+      "canonicalSha256": "b4fe40500c89275892df5685a5914edb0587bc6b9964b544be05406f273cab83",
+      "dimensions": {
+        "w": 3,
+        "h": 2.6399996280670166,
+        "d": 2.429995059967041
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-212",
+      "dir": "abandoned-farm-object-212",
+      "sourceSha256": "deb6a399312f751f73cb10c9e0aca230e5f22a67c4522e802626081aebffc567",
+      "canonicalSha256": "e7fd2a6c24e55789a342b6c693c296282b770df820b739114efb2a5ddc6afd76",
+      "dimensions": {
+        "w": 0.10000021755695343,
+        "h": 2.4000000953674316,
+        "d": 2.200000047683716
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-213",
+      "dir": "abandoned-farm-object-213",
+      "sourceSha256": "705ab9272dec857222ed687885284b8c7b08ec05d7b2bde34ecf53ce05280bbe",
+      "canonicalSha256": "d62bd1a8b1b53a4f4a03b1c1143b2599cb66938e0818ff8ee37cdbae64acbadb",
+      "dimensions": {
+        "w": 0.4224194288253784,
+        "h": 2.573601484298706,
+        "d": 2.520340919494629
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-214",
+      "dir": "abandoned-farm-object-214",
+      "sourceSha256": "71b7d294b035892e77df8e5a82333d79e831e056037c54ee6c764d8986997e91",
+      "canonicalSha256": "5fdc7ea074678b551dc80a8f2a6bb73f92dfee9c00e60d4899ea7a919f8a96bc",
+      "dimensions": {
+        "w": 0.10000021755695343,
+        "h": 2.4000000953674316,
+        "d": 2.200000047683716
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-215",
+      "dir": "abandoned-farm-object-215",
+      "sourceSha256": "8dee0e9d8c4ac6da9e8f6cccc094f85c6ae9ac15755adff6fe82a7156ce50851",
+      "canonicalSha256": "8abd724fce8db9fa81c006499e71038e6f454a74472df97230ff4c4096c75c29",
+      "dimensions": {
+        "w": 0.4224192798137665,
+        "h": 2.573601484298706,
+        "d": 2.520340919494629
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-216",
+      "dir": "abandoned-farm-object-216",
+      "sourceSha256": "3860c9fbdb03f61b47419b12bc0a288e58a5968f27d6685ed519b1c4f96ba627",
+      "canonicalSha256": "2c927a28accae3d64796a5274aa22e205d8f1cb17cc98c85762e004345dd4aae",
+      "dimensions": {
+        "w": 1.8031997680664062,
+        "h": 0.9805843830108643,
+        "d": 2.5089962482452393
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-217",
+      "dir": "abandoned-farm-object-217",
+      "sourceSha256": "57115ccc5a01dfd55c0d8326d9ba5153799c7df37c8861436f6228e10f365ec6",
+      "canonicalSha256": "2b271d465f942091cbc2eff4b95c7772429240a72a3e54271057afd0769525f8",
+      "dimensions": {
+        "w": 1.275214433670044,
+        "h": 0.9804306626319885,
+        "d": 1.3343425989151
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-218",
+      "dir": "abandoned-farm-object-218",
+      "sourceSha256": "a7fdf2e9affab7fcaa40561d9111423a7780afd8cac4c16902a233e6353237ff",
+      "canonicalSha256": "f8ce7d32632876ecc314429dd0a0244a853004c5cab59ec5dbe7386b10aa08fb",
+      "dimensions": {
+        "w": 1.2114787101745605,
+        "h": 1.2747976779937744,
+        "d": 1.2583853006362915
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-219",
+      "dir": "abandoned-farm-object-219",
+      "sourceSha256": "d12bc0b9e948cab7f9b1136716062c84c96cc7cbc0cae2200ba69139141f4892",
+      "canonicalSha256": "2841cabef3aa7e3806bb037cfedfd80d0622c714b010707ae5e94d7177375e89",
+      "dimensions": {
+        "w": 0.977948784828186,
+        "h": 1.7948793172836304,
+        "d": 0.9705905318260193
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-220",
+      "dir": "abandoned-farm-object-220",
+      "sourceSha256": "cb6564e3676bee7c7d1bb689e89eb0c74d5fe44226b14e06fd1d18b10f880561",
+      "canonicalSha256": "99f0f659a1c5a641a5617ab28c8293a811ea3c2c29fc6668b140e7647bbd266a",
+      "dimensions": {
+        "w": 0.38774487376213074,
+        "h": 0.29870322346687317,
+        "d": 0.5786418318748474
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-221",
+      "dir": "abandoned-farm-object-221",
+      "sourceSha256": "397ba23fee25cab158d44592b5868d806c07a9b5f67c7e00b0296d750aef821b",
+      "canonicalSha256": "ddf4086cd1dadf768dd6f667a34720d838745c4c1e93edcea8ab1e0c21477410",
+      "dimensions": {
+        "w": 0.12917016446590424,
+        "h": 0.13131138682365417,
+        "d": 0.12063586711883545
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-222",
+      "dir": "abandoned-farm-object-222",
+      "sourceSha256": "223602bc966cf48e48a2ec2d1b1791fe87fcf6ab78866c48cdc203b25346da7d",
+      "canonicalSha256": "31d7548e4bac1d55535c655c5233c8f1ded2dad05757d4ce771b045fae6d8ae5",
+      "dimensions": {
+        "w": 0.10565748810768127,
+        "h": 0.12903188169002533,
+        "d": 0.15001773834228516
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-223",
+      "dir": "abandoned-farm-object-223",
+      "sourceSha256": "fafc012898aae9ad0bf1a01f4f2512a9f02e7ff8e861aeb289046bff2c5230d7",
+      "canonicalSha256": "52e225ec00bd1be102625ad70a5235540a20c3c75b3f59121ac158466ab40d67",
+      "dimensions": {
+        "w": 0.2741910219192505,
+        "h": 0.10516460984945297,
+        "d": 0.2688380181789398
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-224",
+      "dir": "abandoned-farm-object-224",
+      "sourceSha256": "aa917368c4f1216cf6367654d330c9207bfc2bd234608666d867ada84e87084a",
+      "canonicalSha256": "26becdbb06bab1316005f8c2df34758ca1b3e5f4f6de81f5f06fb04eeedd9679",
+      "dimensions": {
+        "w": 0.6463184952735901,
+        "h": 0.16232028603553772,
+        "d": 0.3634542226791382
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-225",
+      "dir": "abandoned-farm-object-225",
+      "sourceSha256": "f65f43838db41b48e139a39f2bac4b4c9d5567c1a525dfad747d4835d1f8a30c",
+      "canonicalSha256": "9f5e824325cc485e518221a36b4411838d1ac0b17de4bd066f50cbfa52e14c07",
+      "dimensions": {
+        "w": 0.5248644351959229,
+        "h": 0.2330472469329834,
+        "d": 0.5978595614433289
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-226",
+      "dir": "abandoned-farm-object-226",
+      "sourceSha256": "ca6d486411b78c571063c92282f94745edbfad481a7284bd08feae366cb18700",
+      "canonicalSha256": "ab23e68c83d0376fd41b4198a8cfa6039b3c2ee2b049ecade313f50b36d31222",
+      "dimensions": {
+        "w": 0.3714824616909027,
+        "h": 0.2592194378376007,
+        "d": 0.36207112669944763
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-227",
+      "dir": "abandoned-farm-object-227",
+      "sourceSha256": "a43415821a974a8d170e43fc73cda50942b503d188aa3a75fce40b6cb9b8b5bb",
+      "canonicalSha256": "c44c921082b13b4fbf2fef40a4596180caa86c62db2610f7573938f4371d1dc5",
+      "dimensions": {
+        "w": 0.3565100133419037,
+        "h": 0.3616737723350525,
+        "d": 0.41137170791625977
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-228",
+      "dir": "abandoned-farm-object-228",
+      "sourceSha256": "eaacc207a3e4e8a071003b5d78b30724f46d1387ccbbf272535dd2aa5ca4cd85",
+      "canonicalSha256": "949b98f9fed305ca0fbfba2e89c0cf257a16de81d5b74876b1951d0c8946ac8f",
+      "dimensions": {
+        "w": 0.0974569320678711,
+        "h": 0.01861417666077614,
+        "d": 0.27330076694488525
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-229",
+      "dir": "abandoned-farm-object-229",
+      "sourceSha256": "b0141c1435198b63cf15776482874493c6a6287f321334ce2a70e8ebbf56d99b",
+      "canonicalSha256": "d0b6a59e410ca5d1a17dc41ceddc7adb97030b57bf70e9ca2823953493b1a14c",
+      "dimensions": {
+        "w": 0.2765790820121765,
+        "h": 0.026766888797283173,
+        "d": 0.04862230271100998
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-230",
+      "dir": "abandoned-farm-object-230",
+      "sourceSha256": "28124ce5ba76c860db426d599a61ddd4f34022e9036c6353a5ddd67316f52696",
+      "canonicalSha256": "f2e309c7cfa21e6b15a77b120ad1c8764bb00262550c94c634b9264f0d95aedc",
+      "dimensions": {
+        "w": 0.1412234753370285,
+        "h": 0.013101952150464058,
+        "d": 0.36171063780784607
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-231",
+      "dir": "abandoned-farm-object-231",
+      "sourceSha256": "50b82eca9814562da55a9f7a049475284ca17f779e5a69fafa9c6a7764a77efc",
+      "canonicalSha256": "7f04dbcaf21a93cb5d054941b4548af26fc50960f482dae0f6f3ffac6b5a2057",
+      "dimensions": {
+        "w": 0.13862018287181854,
+        "h": 0.12310194969177246,
+        "d": 0.14527542889118195
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-232",
+      "dir": "abandoned-farm-object-232",
+      "sourceSha256": "cf8506c5e9ec27c0ab34ec5940fdcd82aca0e1a0c216c5ec845b952cf02411fc",
+      "canonicalSha256": "1b7d65d6dcf594bf3a704508a6ab393978f493f21585ae49c4b02fc9945af3ff",
+      "dimensions": {
+        "w": 0.8958398699760437,
+        "h": 0.6185844540596008,
+        "d": 0.8361122012138367
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-233",
+      "dir": "abandoned-farm-object-233",
+      "sourceSha256": "537ed5fbffe66db1dca50f52e83bedde921d34916dd38ee0f1c3ac0b31339104",
+      "canonicalSha256": "cba775ae459327b224b3014281c27ce1de0300f217dc147f53aa672d2c3aeeb4",
+      "dimensions": {
+        "w": 0.15044231712818146,
+        "h": 0.1976575404405594,
+        "d": 0.1475052535533905
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-234",
+      "dir": "abandoned-farm-object-234",
+      "sourceSha256": "a4955cf6e741b8b5851a33ff93a1220fa61a5de76044a034038b0906407ba0cf",
+      "canonicalSha256": "b6b158620a36144ef855a243e6f766d7e6e454d9a50c81f463bb7f9152eead74",
+      "dimensions": {
+        "w": 1.0242387056350708,
+        "h": 1.0772653818130493,
+        "d": 1.0285381078720093
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-235",
+      "dir": "abandoned-farm-object-235",
+      "sourceSha256": "b687e2c1a77d75fe62e5ae383fbffc6ce985d4c46cf81af88795f381a123f5f1",
+      "canonicalSha256": "32ee9a6b06d463edcd97813f102a5284ea610fbb9dbb3ca26cf4795b44d118f0",
+      "dimensions": {
+        "w": 0.31993189454078674,
+        "h": 0.049701277166604996,
+        "d": 0.3052755892276764
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-236",
+      "dir": "abandoned-farm-object-236",
+      "sourceSha256": "3d8bd076cee5ce40dc338bcae5812f859ed83bf8ea648ee45beb18361dfa2fc8",
+      "canonicalSha256": "1b96200b7dd52ec3573dc0ddc0a4e07c44c112d85a5838ad446804f89972a05f",
+      "dimensions": {
+        "w": 0.13265696167945862,
+        "h": 0.12735231220722198,
+        "d": 0.15990565717220306
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-237",
+      "dir": "abandoned-farm-object-237",
+      "sourceSha256": "7d1cb6899c816739937220c685cec71c4a5fa9dcbd7bdb90d0e0a3ea82923b77",
+      "canonicalSha256": "a87b131e6ebad599a9b0f33af1f8742fbd038ea8010f20d1955be160a2a669ec",
+      "dimensions": {
+        "w": 0.1603640764951706,
+        "h": 0.12914271652698517,
+        "d": 0.13114067912101746
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-238",
+      "dir": "abandoned-farm-object-238",
+      "sourceSha256": "eaa5b10d24acfa2a969782c03889e367a0af0fb775bfbbef3f9682c1822598d4",
+      "canonicalSha256": "c099239f5ba8835888de253008afac6c1a17705d6f3b60568501ae24eb13e15b",
+      "dimensions": {
+        "w": 0.2705053985118866,
+        "h": 0.48886141180992126,
+        "d": 0.2513890862464905
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-239",
+      "dir": "abandoned-farm-object-239",
+      "sourceSha256": "fafa6a18326824961c5b3aad91b476d6972b7b58d72a14705954812dc6ed1b63",
+      "canonicalSha256": "583caffb398992f12e9bf4b10097f9b04bc36f0e844f191f5d5587a9abd0a555",
+      "dimensions": {
+        "w": 0.8958398699760437,
+        "h": 0.6185844540596008,
+        "d": 0.8361122012138367
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-240",
+      "dir": "abandoned-farm-object-240",
+      "sourceSha256": "e7b559b4db368f2aa0b915075adc3679d48400ac2e2b880352ea46801d83f901",
+      "canonicalSha256": "90b40d0a132c24adbbc005b7ef62f841687f1874e965889ee9f5661bc2622e3a",
+      "dimensions": {
+        "w": 0.27620524168014526,
+        "h": 0.018614070490002632,
+        "d": 0.07448522001504898
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-241",
+      "dir": "abandoned-farm-object-241",
+      "sourceSha256": "7f5abec6cad9b69b2dd91d782550e9feb6a5efb08a4cd337d4dcfb73251f2e72",
+      "canonicalSha256": "eab777e4502360f83fe31622bd268b3f6d29acad8828ac38d808af898645a7c6",
+      "dimensions": {
+        "w": 0.2580879032611847,
+        "h": 0.026766959577798843,
+        "d": 0.15349984169006348
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-242",
+      "dir": "abandoned-farm-object-242",
+      "sourceSha256": "5882b3bebe36cc7554c8862e7ef964d0131b918e0cd2574186836bc7b5b36ada",
+      "canonicalSha256": "a545b4b9a2be94de5016eba1226111bc5f629d408f74c15d456ebee33fdfba2a",
+      "dimensions": {
+        "w": 0.1412234753370285,
+        "h": 0.013101952150464058,
+        "d": 0.36171063780784607
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-243",
+      "dir": "abandoned-farm-object-243",
+      "sourceSha256": "cc1b41f10e0a6e1b0ddd3842c0e74a6c0b0c86d337243e5230323972b23bc9ec",
+      "canonicalSha256": "663241839f4b07a5362ac590913882197d249ff6cc7e0bb50d325e0f393eea53",
+      "dimensions": {
+        "w": 0.8250913619995117,
+        "h": 1.043975591659546,
+        "d": 0.8621095418930054
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-244",
+      "dir": "abandoned-farm-object-244",
+      "sourceSha256": "d50b3e5e901569e3e891d1c045a196965041ffa9e8d06f3e29b6f9809ebefc22",
+      "canonicalSha256": "44ee2ba6d1cf6aeeeb360b9cd68aa44b899221f71f6e621b66be6f6bc69ca795",
+      "dimensions": {
+        "w": 0.518467128276825,
+        "h": 1.0299485921859741,
+        "d": 0.5469521284103394
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-245",
+      "dir": "abandoned-farm-object-245",
+      "sourceSha256": "411a9e3f32c15b567c2a7028c20768999585f87e28668bd47e412a8eb44ad64b",
+      "canonicalSha256": "2927c487364787e5bbf4127ed27c8baaed7a03fdb3915d757fc8623cc57b5c4d",
+      "dimensions": {
+        "w": 1.4338936805725098,
+        "h": 1.0611342191696167,
+        "d": 1.355164885520935
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-246",
+      "dir": "abandoned-farm-object-246",
+      "sourceSha256": "5ce87f527aa203e9bc9010eccba948eba9063ae3b2eebee1cde8cfbc69cb9dd3",
+      "canonicalSha256": "7fa4d21283f247de254cb5f786afeed1fd47aefe797f4daea277d3d770f546b4",
+      "dimensions": {
+        "w": 0.07797037065029144,
+        "h": 0.1771107316017151,
+        "d": 0.09463224560022354
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-247",
+      "dir": "abandoned-farm-object-247",
+      "sourceSha256": "560e7a34e5974413c6c77b701e12c303d0d0c2285043f53e20d440ae0a088732",
+      "canonicalSha256": "daeb03e91e545ec0ef96909c963dd2e567781a1f5ebd7d7b440096c8964951eb",
+      "dimensions": {
+        "w": 0.11214485764503479,
+        "h": 0.03249190002679825,
+        "d": 0.07457571476697922
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-248",
+      "dir": "abandoned-farm-object-248",
+      "sourceSha256": "dcc96ef11582cb7e13069f457afb172ffee27e02faafc45fc9822489f0b15b9d",
+      "canonicalSha256": "5a9ecf95fea4e77f9413dd8d66176a490e682e84c2a411aa938a9a956460bc78",
+      "dimensions": {
+        "w": 0.22008606791496277,
+        "h": 0.04038918763399124,
+        "d": 0.0723363608121872
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-249",
+      "dir": "abandoned-farm-object-249",
+      "sourceSha256": "8874000ec8261cfe53d25b52077f813b9d1d36278f1fbdd609d89da05ad38e34",
+      "canonicalSha256": "de50db8d9fb5862b69046de14502351505fbc72c8a3668208ae70a8367c13eac",
+      "dimensions": {
+        "w": 0.29012131690979004,
+        "h": 0.3070437014102936,
+        "d": 0.27272069454193115
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-250",
+      "dir": "abandoned-farm-object-250",
+      "sourceSha256": "cdc5791a6db3ec8ea713ba311c984a88dece0a5b134cc71cdc77bdc5f0c4dd7c",
+      "canonicalSha256": "ce467905702db3b508e33ecb01e5f9b5b011d1a518e2ce012bf19d88d16f7041",
+      "dimensions": {
+        "w": 0.3143795132637024,
+        "h": 0.28201743960380554,
+        "d": 0.2460961937904358
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-251",
+      "dir": "abandoned-farm-object-251",
+      "sourceSha256": "681e162ad70311a576a10f8cf46c34bf6fc7a782cd3da646f7cb440a93939c9e",
+      "canonicalSha256": "52a8bb92683237dc40f57aba5ae287c131e004c0263152ddfd03b96d2a070e4c",
+      "dimensions": {
+        "w": 0.11193715780973434,
+        "h": 0.2767108082771301,
+        "d": 0.11193718761205673
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-252",
+      "dir": "abandoned-farm-object-252",
+      "sourceSha256": "0fb784289c43f48f4b467757bb420de95fdd67a5e42f2f30d6fdfedec33a916f",
+      "canonicalSha256": "9ed3cc9a80b4a2e09f2b11451d5ba42a0b668cd8ecc7df8a3c0f78ff52739635",
+      "dimensions": {
+        "w": 0.07292760908603668,
+        "h": 0.2577225863933563,
+        "d": 0.08322331309318542
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-253",
+      "dir": "abandoned-farm-object-253",
+      "sourceSha256": "ad85ce3850d32e82efd7e23d77a103f923cb053bb2994019aef920cf9f952bf5",
+      "canonicalSha256": "5a11a314a084c7d3fa6f6a11d18fd3b22a19862c1e0825cc194c7cbc3a7c627c",
+      "dimensions": {
+        "w": 0.08723330497741699,
+        "h": 0.25669288635253906,
+        "d": 0.06734342873096466
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-254",
+      "dir": "abandoned-farm-object-254",
+      "sourceSha256": "c145d35a3e2bbfb573c8d7791ad756dea30a07c852e477ca5c82fd6f4f7da874",
+      "canonicalSha256": "28addc9c6203b9ca6036e211e6cf1b982d090900dc0e2d0caea7d07d9f1be3aa",
+      "dimensions": {
+        "w": 0.07444245368242264,
+        "h": 0.2917516529560089,
+        "d": 0.07868374139070511
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-255",
+      "dir": "abandoned-farm-object-255",
+      "sourceSha256": "016d146f1a471fa7b0022be500aa7fd5f4aaef8c3bacb9bc005feb00cb946395",
+      "canonicalSha256": "f9c28d0ad206e109d44846c04c116ae645793a97998fbd03c40758c1b220c12b",
+      "dimensions": {
+        "w": 0.09517346322536469,
+        "h": 0.24571141600608826,
+        "d": 0.05084103345870972
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-256",
+      "dir": "abandoned-farm-object-256",
+      "sourceSha256": "693dc0db51d5154c5387d457ad6294b8ef1fb4e5f1cf41385218fa72bf91121d",
+      "canonicalSha256": "d5c04875b8c00c97947dd901e36b417f8e4cfb8ce37c17b8269686979bf12b93",
+      "dimensions": {
+        "w": 0.13107335567474365,
+        "h": 0.11747239530086517,
+        "d": 0.14447021484375
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-257",
+      "dir": "abandoned-farm-object-257",
+      "sourceSha256": "1a43406234835298fed762ffb47d514117ff6ed078aa026782ea30117c4b24d3",
+      "canonicalSha256": "ee33ce695141edc96e244270efba20b7447025eda844267831e5acf81f38ef6d",
+      "dimensions": {
+        "w": 0.7978896498680115,
+        "h": 0.21972501277923584,
+        "d": 0.7300140261650085
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-258",
+      "dir": "abandoned-farm-object-258",
+      "sourceSha256": "867aef17ec0fa6d4d04a087415614be035682e21d73662d529a8b428b094b563",
+      "canonicalSha256": "c4aefe3261620a56d376adc42a85a35e32799f8cf2dd75e6115acc8699d3f119",
+      "dimensions": {
+        "w": 0.46048101782798767,
+        "h": 1.3829565048217773,
+        "d": 0.4420122802257538
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-259",
+      "dir": "abandoned-farm-object-259",
+      "sourceSha256": "1483f95140d3a5d9d49297bf4231ef9d323b5ea5b5f09cc9977fbc798c000581",
+      "canonicalSha256": "e915f508598c1364331cfc10f5547b83a42096e25d77ed9fe5cc11fe6b7a1647",
+      "dimensions": {
+        "w": 0.7710114121437073,
+        "h": 1.0079247951507568,
+        "d": 0.7559589743614197
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-260",
+      "dir": "abandoned-farm-object-260",
+      "sourceSha256": "4ceb49bf10c77b216f89f4656cc7e3eafd43525645bdab7c1fa3871602c9e163",
+      "canonicalSha256": "d45dae27e939ce0779da20fbcf1338437804b776968d246496327b70985416e4",
+      "dimensions": {
+        "w": 0.6168091297149658,
+        "h": 0.5439556837081909,
+        "d": 0.6047672033309937
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-261",
+      "dir": "abandoned-farm-object-261",
+      "sourceSha256": "25171bb75ac77c206821b66e60bc13a9ab158bac8f6b81242902428e5245777a",
+      "canonicalSha256": "69b001828ed9041b1a33da9bb42638ef1507536a537b7c5e227809038e747ffd",
+      "dimensions": {
+        "w": 0.9009424448013306,
+        "h": 0.9374346733093262,
+        "d": 0.901504397392273
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-262",
+      "dir": "abandoned-farm-object-262",
+      "sourceSha256": "8073f59b62d214b018c38cb88967b8b18fdfe4fa23d2c8603ebfc93ddf767578",
+      "canonicalSha256": "47b04da2433e2ec4bbfc95dd449025e3f604d4f13d879e3e3aa63830f7723b95",
+      "dimensions": {
+        "w": 0.07292760908603668,
+        "h": 0.23959457874298096,
+        "d": 0.08322331309318542
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-263",
+      "dir": "abandoned-farm-object-263",
+      "sourceSha256": "28d17ebe765e86d9ec88cea1728b5c03c99b3882e9be1f4631fbe91511328e6c",
+      "canonicalSha256": "81dc9a9da8f64fd5f81130343b8fca121e8f0fb78e21d3b2805f7bb16f350dd9",
+      "dimensions": {
+        "w": 0.08723330497741699,
+        "h": 0.2351890504360199,
+        "d": 0.06734342873096466
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-264",
+      "dir": "abandoned-farm-object-264",
+      "sourceSha256": "40e532f763479050b6240d28b1be83f2edb0707c3a4dd6d3586ad7e3c6e47ecf",
+      "canonicalSha256": "172cf0ca32e9e3c87da0be23dc1f456f9e14c8fd51616f5ac8813ab790712370",
+      "dimensions": {
+        "w": 0.09167531877756119,
+        "h": 0.24153561890125275,
+        "d": 0.08033394813537598
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-265",
+      "dir": "abandoned-farm-object-265",
+      "sourceSha256": "82aec2300fcc66483a5eff14274872d8f2b4f787d116d61e67f0318caed2e002",
+      "canonicalSha256": "6b273c4037a56fef9fee430946abaaae41b0427c65883c8a70b9742277d59344",
+      "dimensions": {
+        "w": 0.17162509262561798,
+        "h": 0.2533985376358032,
+        "d": 0.11283664405345917
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-266",
+      "dir": "abandoned-farm-object-266",
+      "sourceSha256": "9e5eadd2c918b94a5e19bc5c6f0a910f2cba5d79f2d87067231eda699fa11aea",
+      "canonicalSha256": "f79d7c546cc6150812e0ae46f5db232eebcac83946eecdcdae5531ddcffb5299",
+      "dimensions": {
+        "w": 0.18363742530345917,
+        "h": 0.25339850783348083,
+        "d": 0.17996807396411896
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-267",
+      "dir": "abandoned-farm-object-267",
+      "sourceSha256": "e5d8a7d9c685ba2f3d950c77504400ce0a5f5debbd6bdcb82a2295c0ef640b80",
+      "canonicalSha256": "de17915f8696486e59edc6ec0aeec6a12bfefbb5f3ad7a80fd155556ead44e3e",
+      "dimensions": {
+        "w": 0.21753241121768951,
+        "h": 0.25339850783348083,
+        "d": 0.2284047156572342
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-268",
+      "dir": "abandoned-farm-object-268",
+      "sourceSha256": "36fd931401d3e1b4bbfa008e645d1be834658c12fae8a211913d4cbe41884b74",
+      "canonicalSha256": "2129ad8b484a0ac4fe71a899b9411aa199e15998f3913a1e1e6cace00a66ac74",
+      "dimensions": {
+        "w": 0.7978896498680115,
+        "h": 0.21972501277923584,
+        "d": 0.7300140261650085
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-269",
+      "dir": "abandoned-farm-object-269",
+      "sourceSha256": "0bcff41bf10c671654115a1bdd91f414e0bc04e1f345927ed438e15c0090ce78",
+      "canonicalSha256": "4e79c094176e7e98e90e9c302de7401a4822a1b22f64a489fa181fe80a9ba8af",
+      "dimensions": {
+        "w": 0.13107335567474365,
+        "h": 0.11747239530086517,
+        "d": 0.14447021484375
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-270",
+      "dir": "abandoned-farm-object-270",
+      "sourceSha256": "71fdd056b88fcbb97625b332c848079053b366b5eb0f5d536bcf513d32b072c3",
+      "canonicalSha256": "45b6b01e2bb649f2c51d874ab100e123f0556b28a7e86f5a5fd598fbf7cbc876",
+      "dimensions": {
+        "w": 0.7978896498680115,
+        "h": 0.21972501277923584,
+        "d": 0.7300140261650085
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-271",
+      "dir": "abandoned-farm-object-271",
+      "sourceSha256": "25f2a67ff032a44294ee346d50e8afe3a91131da118b1158114111263419be3b",
+      "canonicalSha256": "4674c834bfa5f661bb9ccc073df5aaa73b96fd137114a2cf61010ba3e53a4156",
+      "dimensions": {
+        "w": 1.8252780437469482,
+        "h": 0.41516008973121643,
+        "d": 1.9080268144607544
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-272",
+      "dir": "abandoned-farm-object-272",
+      "sourceSha256": "e2687d5c7a9b35fca53b7410c77a36f2a955f5aec4747ef6358642531ff2efbf",
+      "canonicalSha256": "059e44092b9df42b9b30623ee138b5f3cf34fe83275898e47a345dceea23cbd2",
+      "dimensions": {
+        "w": 0.879393458366394,
+        "h": 0.8541669845581055,
+        "d": 0.8864686489105225
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-273",
+      "dir": "abandoned-farm-object-273",
+      "sourceSha256": "f3ae72d20a0d9f22e5ebcc2621a06e211a0177feaf54ca56aa1225c8bec5f767",
+      "canonicalSha256": "f2eda18a5ffdc153ce1b42a511308531e4bd196fe2e40311ee8db92c5db77a19",
+      "dimensions": {
+        "w": 0.8307764530181885,
+        "h": 0.4351637661457062,
+        "d": 0.8324978351593018
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-274",
+      "dir": "abandoned-farm-object-274",
+      "sourceSha256": "8af80d4c039b0ddf708acac7a24cb76a0b73cab854ac5a0557c9be530d56b1a8",
+      "canonicalSha256": "973d9119856dcc33b8ae54bd2f8af0f91f7cb6165db95351d82293cebd8b60e2",
+      "dimensions": {
+        "w": 2.2218146324157715,
+        "h": 0.9305105209350586,
+        "d": 3.2800676822662354
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-275",
+      "dir": "abandoned-farm-object-275",
+      "sourceSha256": "18a987fbf10a871b425ff1a15fa145225e7f5796d7051a7909f0c9594f001c11",
+      "canonicalSha256": "7959b7816daa8d3674e91a8405f4f7da25beb2d971aef4be05c606ecfe683727",
+      "dimensions": {
+        "w": 1.6736822128295898,
+        "h": 0.9465084075927734,
+        "d": 1.80129075050354
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-276",
+      "dir": "abandoned-farm-object-276",
+      "sourceSha256": "b551ec404d357c7bb56f581783f06dfffb5c9dbaaaf9f7c1c5ef02f297137a1a",
+      "canonicalSha256": "3a27065bb53230a8730df2fc4569274421c27890bc2a7dab78fe7d50d9983c03",
+      "dimensions": {
+        "w": 0.49830806255340576,
+        "h": 0.7993971109390259,
+        "d": 0.5212718844413757
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-277",
+      "dir": "abandoned-farm-object-277",
+      "sourceSha256": "402fa075dfdd35080e44df5c544b3a1bbccc84cf23dbca38d37b51cc601d5f3d",
+      "canonicalSha256": "4647fd83a72c6958b1bda5b744c3ad627da7eeadaef09c772272498345ad520d",
+      "dimensions": {
+        "w": 0.7135677337646484,
+        "h": 1.6402467489242554,
+        "d": 0.6996370553970337
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-278",
+      "dir": "abandoned-farm-object-278",
+      "sourceSha256": "26e038f029da925b106e0252fba3fc59533e126da25185de1ca82af7c42ccb39",
+      "canonicalSha256": "39aef177e8e4fb5287f6acdffdcdbf5f5e6d65a9ea8ae09c63cb01b928b01135",
+      "dimensions": {
+        "w": 1.3529454469680786,
+        "h": 0.6987621784210205,
+        "d": 1.2538220882415771
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-279",
+      "dir": "abandoned-farm-object-279",
+      "sourceSha256": "ed651992709dd432013581662bcedd432638ccde8b5bbc91d005b757ce3aaf28",
+      "canonicalSha256": "dcb748ae5882f5c20993a44217b8afa57d61d0bf5d5f4f85caca5850e53430d2",
+      "dimensions": {
+        "w": 1.2068157196044922,
+        "h": 0.7008209228515625,
+        "d": 1.1475275754928589
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-280",
+      "dir": "abandoned-farm-object-280",
+      "sourceSha256": "142ed694c923d3d498ce03a182d2962d0d6a6aec7387280f95f458d66cea0bf7",
+      "canonicalSha256": "b3c6340b5f9b1654bb9c82f5c53c4c73fc426dbe8b42d87108667f8f3290ba10",
+      "dimensions": {
+        "w": 0.2999011278152466,
+        "h": 0.46038198471069336,
+        "d": 0.28796324133872986
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-281",
+      "dir": "abandoned-farm-object-281",
+      "sourceSha256": "3413817b1a68f6b9049247fc80355e2e52c12839f543b22100f1212ff0a015a6",
+      "canonicalSha256": "ebf5bdd451a2831d01e3ec6d8597c9141f527fd9e32dc173150b20cc37d830b7",
+      "dimensions": {
+        "w": 0.7953800559043884,
+        "h": 0.884036123752594,
+        "d": 0.9342570304870605
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-282",
+      "dir": "abandoned-farm-object-282",
+      "sourceSha256": "6a3dc5b79b8e37f852bf439f04940713f7083e9bb31fe3d21b10610ce1d1fb50",
+      "canonicalSha256": "fadc1dc131daeeb429b8585ed780a56417c3b2345b5dbedfc3b6ca5c429d2254",
+      "dimensions": {
+        "w": 0.8775383234024048,
+        "h": 0.8840360641479492,
+        "d": 1.0321701765060425
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-283",
+      "dir": "abandoned-farm-object-283",
+      "sourceSha256": "48847fba26cc5c996de1846d8dbb6e46060810ae117d0248e1b5d0a135189ef9",
+      "canonicalSha256": "8f0ca29140ca5072b6931b7916d9231e3a4ce45f665985292d09897a37dfaee6",
+      "dimensions": {
+        "w": 1.7514796257019043,
+        "h": 0.9210388660430908,
+        "d": 1.4890258312225342
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-284",
+      "dir": "abandoned-farm-object-284",
+      "sourceSha256": "4580f36b1af0ef9b97e4ae03eb576667fc500ed63a6096c422db41f6107c6455",
+      "canonicalSha256": "2ce5eb3d4f695c80cff4b897ece395047b01d7f8cabe44323891ab59fff6926c",
+      "dimensions": {
+        "w": 1.1088004112243652,
+        "h": 0.0827130600810051,
+        "d": 0.9871863126754761
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-285",
+      "dir": "abandoned-farm-object-285",
+      "sourceSha256": "fc4543e377361fc0ed3f6e4ce421536c4c43f50b3250241112ce63a7a43d6484",
+      "canonicalSha256": "92da2fa342dbf2701aebf3bb37473a135cae463b73c555195bea84fdb990bc3a",
+      "dimensions": {
+        "w": 0.2999011278152466,
+        "h": 0.46038198471069336,
+        "d": 0.28796324133872986
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-286",
+      "dir": "abandoned-farm-object-286",
+      "sourceSha256": "130187102ea844e7886ab9f6d0dc25637858df982eae9a322a15a967e6ff1ba1",
+      "canonicalSha256": "382c3b26c3fb17661b5ae65ee8a6fbfa287e587c98539c9f67727c2f8de32b52",
+      "dimensions": {
+        "w": 0.2879633605480194,
+        "h": 0.46038198471069336,
+        "d": 0.2999010980129242
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-287",
+      "dir": "abandoned-farm-object-287",
+      "sourceSha256": "4f34190805f20e110d1a8d8fd00f6b8a8d7e49fd00f8dfe76c2bea74a556fac1",
+      "canonicalSha256": "b0516618aaea64354a9e7f722e9322e7caa95b1ddc80d96b38f2da5a85619aa3",
+      "dimensions": {
+        "w": 1.1088004112243652,
+        "h": 0.0827130600810051,
+        "d": 0.9871863126754761
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-288",
+      "dir": "abandoned-farm-object-288",
+      "sourceSha256": "639a42cdc6fe71af2402fd0f02702ccc4a2e71dc26003dc188e7854f4ad3997b",
+      "canonicalSha256": "49cf88479ed010af2815d526819b1f401a4e6df72ae2969996e9bf5c4ae100c9",
+      "dimensions": {
+        "w": 1.1088004112243652,
+        "h": 0.0827130600810051,
+        "d": 0.9871863126754761
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-289",
+      "dir": "abandoned-farm-object-289",
+      "sourceSha256": "2bd7e7c1683cba6c3e2e7608427a4b9937797aef226e75ee61f611143d65729c",
+      "canonicalSha256": "d8414bc12387ac43ff6964890ff00cebd7e6b75868e2027f67ef0ec60b71d297",
+      "dimensions": {
+        "w": 1.1088004112243652,
+        "h": 0.0827130600810051,
+        "d": 0.9871863126754761
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-290",
+      "dir": "abandoned-farm-object-290",
+      "sourceSha256": "069fef9c77f2658e03aba8fd6710aebc646a343716f9af26f884c90dd6739ca8",
+      "canonicalSha256": "60731c04521ebe4d90485427bcc960494efb5a77dffd9073f53a627cb427abf0",
+      "dimensions": {
+        "w": 0.8496683835983276,
+        "h": 0.9659982323646545,
+        "d": 0.8431865572929382
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-291",
+      "dir": "abandoned-farm-object-291",
+      "sourceSha256": "071ea44d0414ee67c4c407498c2643ebf046e4f7153b20583f4324da03d54cc7",
+      "canonicalSha256": "9bc13f4a5d4a09d6b369322d6a92fdb1edfb185e2f5f9e1fbe57ee9244d6adc2",
+      "dimensions": {
+        "w": 0.6955065727233887,
+        "h": 1.5070890188217163,
+        "d": 0.6857927441596985
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-292",
+      "dir": "abandoned-farm-object-292",
+      "sourceSha256": "b7e27a0633e5500e2076b65d4bb56ebef4cae796ffb4c072f8aa21eb52c4c8fc",
+      "canonicalSha256": "e737ec00af9d2c9de114b6ecdb53d6f9f1694e07f9739bf1382a574a692c3fe4",
+      "dimensions": {
+        "w": 0.6960075497627258,
+        "h": 0.965998113155365,
+        "d": 0.6906978487968445
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-293",
+      "dir": "abandoned-farm-object-293",
+      "sourceSha256": "a5d51175f9ab9879b710c26bc32b65b8834da2000ef4512585ed228767a773e7",
+      "canonicalSha256": "e4621d0992159d352d9df45cdea05b6d91d4649805e08c81c1a1517e0d3040f8",
+      "dimensions": {
+        "w": 0.6961557269096375,
+        "h": 1.5070888996124268,
+        "d": 0.6825648546218872
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-294",
+      "dir": "abandoned-farm-object-294",
+      "sourceSha256": "df29425ef3819eb2eafd58b8027834911f8124266019cb82fe96581f59893322",
+      "canonicalSha256": "466ed8649fee818e3d3a8888df136c62aaf076c1177259c692430b803de92150",
+      "dimensions": {
+        "w": 12.11789608001709,
+        "h": 2.600001096725464,
+        "d": 13.017671585083008
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-295",
+      "dir": "abandoned-farm-object-295",
+      "sourceSha256": "1d0e71dd14ba11862f949eb2eb0901ca0c2ccfe1696132e1b60c049781fc33b4",
+      "canonicalSha256": "0405e42eb2c3ca264fb2e29474b0f6ce59a7a6e1d3b74a11c672aa9da11ac71e",
+      "dimensions": {
+        "w": 0.9742708802223206,
+        "h": 2.0506951808929443,
+        "d": 0.8628466725349426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-296",
+      "dir": "abandoned-farm-object-296",
+      "sourceSha256": "8d54f26a02621155fac0f49a783cb1f633b9468672f75b41bedcd627fc295442",
+      "canonicalSha256": "d0a92d2a22f7c50adb2e3b3066bc38ff6fed93f37d0995e8147c46f83fe3eda1",
+      "dimensions": {
+        "w": 0.6558493971824646,
+        "h": 1.9943839311599731,
+        "d": 0.7762079238891602
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-297",
+      "dir": "abandoned-farm-object-297",
+      "sourceSha256": "27d3825e7ddd43f65be0cd3bc0614ff1a71432b3d8b63b2692c90d2edcfae759",
+      "canonicalSha256": "7a0c6cdca723ae24c51c9b28e0430bcbad3f42bb7afb187e0817f4c774119dca",
+      "dimensions": {
+        "w": 0.6558493971824646,
+        "h": 1.9943839311599731,
+        "d": 0.7762079238891602
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-298",
+      "dir": "abandoned-farm-object-298",
+      "sourceSha256": "8af50e078f498b8cd9ae1c2b92f7882a4ad747f6b7c904107510b810b7a2d470",
+      "canonicalSha256": "4cac23b6b8017943e9c636a7631eb9b1bc31d406e5832a6b59ecb35e357d4146",
+      "dimensions": {
+        "w": 2.550806760787964,
+        "h": 1.227600336074829,
+        "d": 2.985903263092041
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-299",
+      "dir": "abandoned-farm-object-299",
+      "sourceSha256": "8766f0adc203b94be2bde18af58e92f479e43dea89a544bf82cfdcf254fec5e2",
+      "canonicalSha256": "cabc8e54b55c312dbe2eb228fa5cb80ab52b022372e7433712acae2b32a1b51e",
+      "dimensions": {
+        "w": 12.138642311096191,
+        "h": 0.20000125467777252,
+        "d": 13.037184715270996
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-300",
+      "dir": "abandoned-farm-object-300",
+      "sourceSha256": "3bd303d39631a14fb80f5586999d74a7fb9d40863ab3b5c279f7ad47ba39fb1d",
+      "canonicalSha256": "f8cf25c4a3f12dc529fe9768c7631a880f49e93843b35ff0de332b74e057ea15",
+      "dimensions": {
+        "w": 2.4401872158050537,
+        "h": 2.4680001735687256,
+        "d": 2.7330446243286133
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-301",
+      "dir": "abandoned-farm-object-301",
+      "sourceSha256": "b472300acd91f576d1d5eb4142db3d0506bfad1f4fcf4816744dea451b55538b",
+      "canonicalSha256": "0069f8c806cb173d87e9ebe8fbeb6cf6f8991ad5b22f39fceefec0c846c92eb9",
+      "dimensions": {
+        "w": 0.9742708802223206,
+        "h": 2.0506951808929443,
+        "d": 0.8628466725349426
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-302",
+      "dir": "abandoned-farm-object-302",
+      "sourceSha256": "503040d080b82bf9d8cec4c90618698278904b6cd40756343f21aab4339fd7dd",
+      "canonicalSha256": "89d1fc5c1d03ccbc888453f717fef7cf2b3fe14692cc99db7ba5680825442656",
+      "dimensions": {
+        "w": 2.6204094886779785,
+        "h": 1.289340853691101,
+        "d": 2.5015406608581543
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-303",
+      "dir": "abandoned-farm-object-303",
+      "sourceSha256": "0ee98d0c3c28ecc7ee1ef4e3ce344c6ac211de1a882ae3552ff82a0619b8c9a0",
+      "canonicalSha256": "7fdceb125bdd5b6a8c36ed621638ab92d32107221bf6972d1535346412301c04",
+      "dimensions": {
+        "w": 15.231819152832031,
+        "h": 0.20000147819519043,
+        "d": 14.786855697631836
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-304",
+      "dir": "abandoned-farm-object-304",
+      "sourceSha256": "074ba81d96b37880e44b166eaccacd8fd4a19ecf775ba014d067c761197eee15",
+      "canonicalSha256": "bebde03aa5d065bd684a3d37fa3254b9a8182c6084e4167ce5219e713ce63d56",
+      "dimensions": {
+        "w": 2.4913604259490967,
+        "h": 1.0100003480911255,
+        "d": 2.8340253829956055
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-305",
+      "dir": "abandoned-farm-object-305",
+      "sourceSha256": "fd8094aa35c1e320c301d5e67fc3003a87460c79a9d6d051a0d5f70b78c88112",
+      "canonicalSha256": "8c1f851611af2ef6b40795b3e8f246837e8d8907d8d56d114a73cc33a0fd3c3b",
+      "dimensions": {
+        "w": 1.6984182596206665,
+        "h": 0.07000038027763367,
+        "d": 1.4432767629623413
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-306",
+      "dir": "abandoned-farm-object-306",
+      "sourceSha256": "37a1f2d4ceedf074e3b542f8d86fe12b30387ca89ff9c35eb629f7f295d1b28f",
+      "canonicalSha256": "51c9f15d3963f8e912862a55bfaaadb5df475aa042c217113e3ecf1a3b55559a",
+      "dimensions": {
+        "w": 1.505448341369629,
+        "h": 0.9599997997283936,
+        "d": 1.7655199766159058
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-307",
+      "dir": "abandoned-farm-object-307",
+      "sourceSha256": "4b37df646faa38ea38de25babaebcd96e1d25e973ded5e07b090554cf972e246",
+      "canonicalSha256": "dceb4e90e93750917e2f1fd7489b91e2e441e6b99f3c0f3c24ee7f0cf585514b",
+      "dimensions": {
+        "w": 1.505448818206787,
+        "h": 0.9599997997283936,
+        "d": 1.7655199766159058
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-308",
+      "dir": "abandoned-farm-object-308",
+      "sourceSha256": "4253f84c4136f4a620ed31eae3abaf8de295c0fa8ab66d2e826c9d41c9af0565",
+      "canonicalSha256": "d05bbcc77adf99bc782f16e1c47fcfb35b2f426df178fa96923692c9125fa297",
+      "dimensions": {
+        "w": 2.212515354156494,
+        "h": 0.9599997997283936,
+        "d": 2.608168601989746
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-309",
+      "dir": "abandoned-farm-object-309",
+      "sourceSha256": "0f3c78683f5940761315313e8137df6f2881edc7cb0ce3d1c76945a90d9ed1b6",
+      "canonicalSha256": "4ff4043a9c2562775ebe0d535447c9461a69daa6fa35389413a37c6a2312a5f4",
+      "dimensions": {
+        "w": 1.7655200958251953,
+        "h": 0.9599997997283936,
+        "d": 1.505448341369629
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-310",
+      "dir": "abandoned-farm-object-310",
+      "sourceSha256": "39231d059839fa46c05333fb5936d3fb2e538f0261fdbcfd6aca2e09e0f8f116",
+      "canonicalSha256": "68c423d5cbc391746a900281947f5bc9b085dc2af43ddfe769dee2cd85756a4c",
+      "dimensions": {
+        "w": 1.7655200958251953,
+        "h": 0.9599997997283936,
+        "d": 1.505448341369629
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-311",
+      "dir": "abandoned-farm-object-311",
+      "sourceSha256": "8ca4cfd8e8bd83e7e027057d5ae79e695391adc0d1cd1b9c75748ea47c0260d1",
+      "canonicalSha256": "4c29ba7b1538d259451a4a73779435c9fe1915d7feda3d899775dcbc8cf45c94",
+      "dimensions": {
+        "w": 2.3783557415008545,
+        "h": 0.9599997997283936,
+        "d": 2.0196785926818848
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-312",
+      "dir": "abandoned-farm-object-312",
+      "sourceSha256": "93adab9dd4afdb6f3d536ab1eb4d6e55f4dd43fad65225fc689d945876eae551",
+      "canonicalSha256": "dca20985eae93a368d3e74ab3b802c8d8c22190b537f0c65ca65936dda11ae49",
+      "dimensions": {
+        "w": 1.1519149541854858,
+        "h": 0.9599997997283936,
+        "d": 1.34419584274292
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-313",
+      "dir": "abandoned-farm-object-313",
+      "sourceSha256": "40ccedeeecdda50634ebb5efacd0b081474cea5b33a78646aea82447f72c431a",
+      "canonicalSha256": "6e8270e355950b9da36534c5e15b0ec43d6f785e390b39050f2ddddcae3969ea",
+      "dimensions": {
+        "w": 0.7440434694290161,
+        "h": 1.2400001287460327,
+        "d": 0.811166524887085
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-314",
+      "dir": "abandoned-farm-object-314",
+      "sourceSha256": "3c1b0d6a81bba9753c45264f5f23ac4a1c79dfb06982d87d41cd8d247b971971",
+      "canonicalSha256": "c65eebde7d15efff9e57ca9ae6098077dd477f4844a0083b7c5f0a6d07952bb6",
+      "dimensions": {
+        "w": 0.7554544806480408,
+        "h": 1.2400001287460327,
+        "d": 0.8056718707084656
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-315",
+      "dir": "abandoned-farm-object-315",
+      "sourceSha256": "7fb75746736ea5a7c129e24fb49bc7c0d10dacca39340cdc99df4e765ddd15e1",
+      "canonicalSha256": "c6d84403d4e32d77abc13fb4f264668990c5e7e6e506cb01ec2d1abe9edd5c67",
+      "dimensions": {
+        "w": 0.7440434694290161,
+        "h": 1.2400001287460327,
+        "d": 0.811166524887085
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-316",
+      "dir": "abandoned-farm-object-316",
+      "sourceSha256": "2fec5d2838f6f4595b585231f42e32f0e7879ab33e7e81c85a9749b22d5f0436",
+      "canonicalSha256": "1a92900abc88cb5f631c3a4ac73d3ffff03d5c08489f26f7f90259bc74422245",
+      "dimensions": {
+        "w": 0.7554544806480408,
+        "h": 1.2400001287460327,
+        "d": 0.8056718707084656
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-317",
+      "dir": "abandoned-farm-object-317",
+      "sourceSha256": "3a05a9897533eab4d431f75474ff9b983dc505088ecac84341cd0f3da2b4f180",
+      "canonicalSha256": "ce968ec0f49c692816d3473cd665ea630f957367abcca35397b3e63428ece5f1",
+      "dimensions": {
+        "w": 0.7440434694290161,
+        "h": 1.2400001287460327,
+        "d": 0.811166524887085
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-318",
+      "dir": "abandoned-farm-object-318",
+      "sourceSha256": "8af4e023460e75d461f40d2fea7db54ff4889161e9d92c3ff8a21055f2cf3447",
+      "canonicalSha256": "c3935a01d31c13b8b430d5ef6ecb9d304e5864c2981d692c5eb5b76716f2f4cd",
+      "dimensions": {
+        "w": 0.7554544806480408,
+        "h": 1.2400001287460327,
+        "d": 0.8056718707084656
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-319",
+      "dir": "abandoned-farm-object-319",
+      "sourceSha256": "6729b95f5c25163754e87492ea2049a9fd491b45f5489c7bd2f60f258a8267fa",
+      "canonicalSha256": "37567f4bc3475fe8d58ac927682e9f71a30dbfabf87f031e98f2bda5da6cf952",
+      "dimensions": {
+        "w": 15.054943084716797,
+        "h": 0.6575015187263489,
+        "d": 14.607514381408691
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-320",
+      "dir": "abandoned-farm-object-320",
+      "sourceSha256": "583311ac03481877220546f81e92a828be4ebde66ca05e5b037a7330c7659207",
+      "canonicalSha256": "4e9a1c92ac2f14296f82d0e97da9fc5f9431c4e2023e01d4cb2f2457fb2d3b04",
+      "dimensions": {
+        "w": 0.35404613614082336,
+        "h": 0.35280004143714905,
+        "d": 0.303934782743454
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-321",
+      "dir": "abandoned-farm-object-321",
+      "sourceSha256": "775a9e92606611b4b4c2e3976490ee09a7736eb4882aabe418c30268199c67f7",
+      "canonicalSha256": "afca712623dbe265c5f147e1c85f312d06e682cf9c13968992406aff973f58d9",
+      "dimensions": {
+        "w": 0.07207996398210526,
+        "h": 0.02856002002954483,
+        "d": 0.07491286098957062
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-322",
+      "dir": "abandoned-farm-object-322",
+      "sourceSha256": "f01e85f93831263fb26bf026ff09e4336727ff2771e09065c7a775f5a7a175aa",
+      "canonicalSha256": "b9efe794309d17a5b83b847d940af3703f76994dfc1d8b1d14ad7be05013fc7e",
+      "dimensions": {
+        "w": 0.44650620222091675,
+        "h": 0.4704000651836395,
+        "d": 0.48129427433013916
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-323",
+      "dir": "abandoned-farm-object-323",
+      "sourceSha256": "f737b0de849a54e2940c61693628144b04cc194a08cadc30e1533c57327dab73",
+      "canonicalSha256": "6b63620f9e8a237519f3f9108f2354e2a1b81f19e753daccb5dc2043a4259ec3",
+      "dimensions": {
+        "w": 0.5356768369674683,
+        "h": 0.11760001629590988,
+        "d": 0.4665907323360443
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-324",
+      "dir": "abandoned-farm-object-324",
+      "sourceSha256": "5699c41258467ca1b568784854582c1058402f8c7c412fd3081c90ce042e920d",
+      "canonicalSha256": "1a1d0eb84eb2199b518fb7e889f623283632772260cd8b44212a5d9a3cdfe6cb",
+      "dimensions": {
+        "w": 0.5820909142494202,
+        "h": 0.016799991950392723,
+        "d": 0.5303229689598083
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-325",
+      "dir": "abandoned-farm-object-325",
+      "sourceSha256": "3eaeee5da3feffe0d9ffaf917c15f104580d35efaca47b880bb7beedbf57bb0d",
+      "canonicalSha256": "95b49e1662adaa6cb7b69495c844e7f1df83d3ae5c9a376ae471c09c12980996",
+      "dimensions": {
+        "w": 165.32479858398438,
+        "h": 45.12342071533203,
+        "d": 181.27523803710938
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-326",
+      "dir": "abandoned-farm-object-326",
+      "sourceSha256": "31c89f2addb61c77a55e3aec1eed6f398c0d81ce50863c3416c36108c91b4e25",
+      "canonicalSha256": "c8468a0af3893237d775f1f8015f4be15ccc3e4cbda27ffb9d427c27b2495204",
+      "dimensions": {
+        "w": 151.359619140625,
+        "h": 18.798336029052734,
+        "d": 171.18504333496094
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-327",
+      "dir": "abandoned-farm-object-327",
+      "sourceSha256": "3a9ac20d54d54ce390425ecd1f2b2697144080045036a23bd75941b45cc9bced",
+      "canonicalSha256": "05585d267eccdc9e02256552bcadb2d63ec6341e0612800ab639e7575cdb6cb8",
+      "dimensions": {
+        "w": 184.32408142089844,
+        "h": 38.70003128051758,
+        "d": 207.4788055419922
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-328",
+      "dir": "abandoned-farm-object-328",
+      "sourceSha256": "7d8ff8a15b3654cf6e5bf43ec34c937cae46d9f65685613500443f2d32a231c2",
+      "canonicalSha256": "29223fd0f41f356cdf32b2099b9c4afa1932db1ba0024795f004d1794b7cac05",
+      "dimensions": {
+        "w": 3.6219120025634766,
+        "h": 4.199999809265137,
+        "d": 3.4000003337860107
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-329",
+      "dir": "abandoned-farm-object-329",
+      "sourceSha256": "ca79251c8e451bb944a133fc3b8b715d6b083f153841a917d6422fd2bdc4c5dd",
+      "canonicalSha256": "de4d45a0e30d12d4483dc38e0e4ba0e861ab00c22ee54f9f812e5184f9c88574",
+      "dimensions": {
+        "w": 11.951047897338867,
+        "h": 18.929962158203125,
+        "d": 13.821805953979492
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-330",
+      "dir": "abandoned-farm-object-330",
+      "sourceSha256": "5ef1b9360cffbf1c5f7387caeb0b4e436b45b10c88c15a36203bfb86685d22fb",
+      "canonicalSha256": "f256d92a2403945087ff1cfcce099d44f74427a4eec8e00b7117143ec1ca2d70",
+      "dimensions": {
+        "w": 10.049612045288086,
+        "h": 18.00311279296875,
+        "d": 10.049612045288086
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-331",
+      "dir": "abandoned-farm-object-331",
+      "sourceSha256": "a82f974b0e2d876e5f4f9d5f0d0922775e6efc4ff525533d9f43b301eca5ebd5",
+      "canonicalSha256": "092db9c8169812a78c1635216aa2651169bd24f04efe13131ca356976c78ce1a",
+      "dimensions": {
+        "w": 11.920272827148438,
+        "h": 30.383991241455078,
+        "d": 11.920273780822754
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-332",
+      "dir": "abandoned-farm-object-332",
+      "sourceSha256": "536862b87da2b046b63d8ccdc73d4512cb41abe2a62e9f50cd2a3bb8b11ffe25",
+      "canonicalSha256": "f55b50c45fcaa577077b635a5eb2cf3699c69f36dabdd5ceccd412c09e612eea",
+      "dimensions": {
+        "w": 8.627689361572266,
+        "h": 3.416370153427124,
+        "d": 4.03329610824585
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-333",
+      "dir": "abandoned-farm-object-333",
+      "sourceSha256": "ed564200bea023574858285002ee0758356679368efd4f98bb4f52da5cd6fe0e",
+      "canonicalSha256": "49b9b2b7ea8c3b8aadc231ef3b2bbabf2d7a3f7ccd70de30a2b48265b394c082",
+      "dimensions": {
+        "w": 12.895367622375488,
+        "h": 18.040000915527344,
+        "d": 12.895366668701172
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-334",
+      "dir": "abandoned-farm-object-334",
+      "sourceSha256": "ae5d7c49a8bb42a359bc0afc5b7a8991d54526aa85d3db10145ee5a78982cc49",
+      "canonicalSha256": "c59b2ae83a0d405f63143d90375d78cec3b227fe121fa4dfcb5a24af8506b242",
+      "dimensions": {
+        "w": 4.709112167358398,
+        "h": 1.7460644245147705,
+        "d": 3.601271867752075
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-335",
+      "dir": "abandoned-farm-object-335",
+      "sourceSha256": "86d65581883a6a8cdda2473ce35ff4895ba676bfc2a3bc70fd1e7e7b6558314a",
+      "canonicalSha256": "44c27a86a9f3459ca9c17d70aab067e643cb64dcc6fb031761a1d7f235253e5d",
+      "dimensions": {
+        "w": 17.6617488861084,
+        "h": 5.289822578430176,
+        "d": 9.789090156555176
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-336",
+      "dir": "abandoned-farm-object-336",
+      "sourceSha256": "30d001d5837bc48d99fafda1b3377a950d006fe2101053c033c878a1a2c29fe2",
+      "canonicalSha256": "2646e66ce6511b026ff310a6d14931a22506e54a33dbad657c65a73e5a5a021b",
+      "dimensions": {
+        "w": 4.063980579376221,
+        "h": 1.6578088998794556,
+        "d": 1.727486491203308
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-337",
+      "dir": "abandoned-farm-object-337",
+      "sourceSha256": "74d76dc0c2ec6a20c054e946612edf2f86df86bd94c954605430e81ebfbfd5d5",
+      "canonicalSha256": "c3589f282756530204221d9de14b72fb311a0a2a54b1b03e88bb14eb2c033f70",
+      "dimensions": {
+        "w": 1.9791237115859985,
+        "h": 2.1795103549957275,
+        "d": 1.3302215337753296
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-338",
+      "dir": "abandoned-farm-object-338",
+      "sourceSha256": "8cc3bedbb56054a651a4f6ccba9e461243118baea47bada8a470418d259ad979",
+      "canonicalSha256": "694ff90733a87c0add65ae3e4e67a45b1b7e2b9bf1f8279fc366753a9667bcb0",
+      "dimensions": {
+        "w": 1.6717737913131714,
+        "h": 2.7791476249694824,
+        "d": 2.935431480407715
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-339",
+      "dir": "abandoned-farm-object-339",
+      "sourceSha256": "e2cf6fefaa9a54a370d190e4af728de1e5396bbe4751e2acc9e1119c6cfefc70",
+      "canonicalSha256": "29fc0e1df6f881cdae599fa086302fcb6c4df8a70c7317adb4baef2799122ac3",
+      "dimensions": {
+        "w": 0.23233485221862793,
+        "h": 0.6201596856117249,
+        "d": 0.23233485221862793
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-340",
+      "dir": "abandoned-farm-object-340",
+      "sourceSha256": "154f52b02e1204cdcac3b5e0ca5f68d3ff792ce4d0fe92d042ed1ee9a4e877b6",
+      "canonicalSha256": "df2bfdf34b360bfc5d02b6302f500847c80b19646b84d3828d6e61f61f7f26db",
+      "dimensions": {
+        "w": 0.30473873019218445,
+        "h": 0.010914781130850315,
+        "d": 0.3013313114643097
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-341",
+      "dir": "abandoned-farm-object-341",
+      "sourceSha256": "0f35a23635bc7818967358baba7dc875e8d42fa9e54279c3d1e5dc88c33e4a33",
+      "canonicalSha256": "56ed3618949e03cf1d6793f49f5263830667674645823281c58667ccf7a0a828",
+      "dimensions": {
+        "w": 0.6968218684196472,
+        "h": 0.024957962334156036,
+        "d": 0.6890304088592529
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-342",
+      "dir": "abandoned-farm-object-342",
+      "sourceSha256": "91f863ce58de7e2352c2950004a3274c2b0d01077c441d5426ed49b2785319b3",
+      "canonicalSha256": "eace8f1fad69b1d42e7aefbb526b53611df1af87d8761e35c8b5cfe9360ff94d",
+      "dimensions": {
+        "w": 0.21741566061973572,
+        "h": 0.14687205851078033,
+        "d": 0.13947224617004395
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-343",
+      "dir": "abandoned-farm-object-343",
+      "sourceSha256": "b4c9cf00bc3ed7d7f69956e75f956a5a985c55fbe3f572004d808c67cccaf1ba",
+      "canonicalSha256": "90776a4df71325f887bfd93f2d158fd71e0e4352df555950f05b2aa3ad39590e",
+      "dimensions": {
+        "w": 0.11382675915956497,
+        "h": 0.3697070777416229,
+        "d": 0.11382679641246796
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-344",
+      "dir": "abandoned-farm-object-344",
+      "sourceSha256": "41d3e7a1217ecf483a09ab92e3416302093cdf8e1932a0cc7b12acd2f6bc8365",
+      "canonicalSha256": "7a553bee2abcf78ff3b40cae8030db1565a36f86166192b35ded5706780ef7dc",
+      "dimensions": {
+        "w": 0.05926813557744026,
+        "h": 0.31337594985961914,
+        "d": 0.059268202632665634
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-345",
+      "dir": "abandoned-farm-object-345",
+      "sourceSha256": "4ba4e98a03d711c43fa3891b60e5dd8b5dfa96b56126f8771a4eeadc2c092a28",
+      "canonicalSha256": "b15b8822439f249bcf26e99d57ca8d6fa309f40553fa89a8b42d24a12194479c",
+      "dimensions": {
+        "w": 0.08179117739200592,
+        "h": 0.19381846487522125,
+        "d": 0.1290416121482849
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-346",
+      "dir": "abandoned-farm-object-346",
+      "sourceSha256": "d2424f8ce8d450d259e48db9561533d7fb9e0c81b90936139ecdede44f9664b1",
+      "canonicalSha256": "81c042480b46566254669bb92db5594473f861f4fdf14b57fdfb115e5b123b4c",
+      "dimensions": {
+        "w": 0.118124820291996,
+        "h": 0.02995077148079872,
+        "d": 0.61612468957901
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-347",
+      "dir": "abandoned-farm-object-347",
+      "sourceSha256": "4e2c6eac6e15765cb0a9a4b95f4bc7bda2773967ca68964a97fc92afe12e0bb9",
+      "canonicalSha256": "d3f03c9c21ff0f4d0ff25a76339ff0750d98868f97ac06bb3a4a83a853a5320f",
+      "dimensions": {
+        "w": 0.1692909151315689,
+        "h": 0.18007118999958038,
+        "d": 0.49554726481437683
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-348",
+      "dir": "abandoned-farm-object-348",
+      "sourceSha256": "1d64e65f583799e298355bdd3f687710967ce55cf9578c766da9e17298168a03",
+      "canonicalSha256": "1e7b3443a759cc4174166d7ac14189849427714c97098fbf2eb67b9cec5697d6",
+      "dimensions": {
+        "w": 2.8913655281066895,
+        "h": 4.204448699951172,
+        "d": 12.318269729614258
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-349",
+      "dir": "abandoned-farm-object-349",
+      "sourceSha256": "4a9ff0b356cec6751e2a3ab09db2f6af6f231f82f6f6a4ce9cb237c0e4b028ea",
+      "canonicalSha256": "6bca021b25f975b239a014fc5ad34c47d77c0b80ff4f19a8740f0d1a668392b6",
+      "dimensions": {
+        "w": 4.307796955108643,
+        "h": 3.778367757797241,
+        "d": 4.494372367858887
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-350",
+      "dir": "abandoned-farm-object-350",
+      "sourceSha256": "7f0223658cbf2887877ae3bba3a0c8162850a815ac190ed46e913a22866c8c13",
+      "canonicalSha256": "111e32c7008e54a9b5590348a5e627fb505b491b880393952f280c190fd7f521",
+      "dimensions": {
+        "w": 6.724972248077393,
+        "h": 1.5555369853973389,
+        "d": 6.724972248077393
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-351",
+      "dir": "abandoned-farm-object-351",
+      "sourceSha256": "8404a463c48904e0928a4932c857d1cba416d6879379d4d4e5bd2faee1ed85f2",
+      "canonicalSha256": "8944c55ed8646e721f89389fd6e8339866b1d65ebbf87101641a544770ac4e69",
+      "dimensions": {
+        "w": 10.115177154541016,
+        "h": 1.8990702629089355,
+        "d": 10.115203857421875
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-352",
+      "dir": "abandoned-farm-object-352",
+      "sourceSha256": "beafb7653382c5fb43490aa1f0f9d84371986e0cb1890b0c09d9773bbed39637",
+      "canonicalSha256": "d8d482f472f723133511f0eb0e4aeb094f88462c69278746028d5c6e4dfd04b0",
+      "dimensions": {
+        "w": 13.149730682373047,
+        "h": 1.6675899028778076,
+        "d": 13.182028770446777
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-353",
+      "dir": "abandoned-farm-object-353",
+      "sourceSha256": "565a1642ba3bf5cfdd1f89b6f69d4be69c4eb6bea2c66f9216c6b501401eac1e",
+      "canonicalSha256": "b62a700951a7d5c990c3b28a17315f679ed7833ef461fbd3ea96c9da238d50b0",
+      "dimensions": {
+        "w": 3.2979624271392822,
+        "h": 0.8346714973449707,
+        "d": 3.0296902656555176
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-354",
+      "dir": "abandoned-farm-object-354",
+      "sourceSha256": "e2cfee9e1ddfef3f46d6f4788a4d6d3847a1732c9b7735371b570921b9fa4ad1",
+      "canonicalSha256": "4934e77972f53779691976f693e455e29782574e586b83595e11faa85e3817e4",
+      "dimensions": {
+        "w": 4.075014114379883,
+        "h": 0.8444704413414001,
+        "d": 5.7875142097473145
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-355",
+      "dir": "abandoned-farm-object-355",
+      "sourceSha256": "3a2e7eae653149705a1f1e01fe0cc42e9dd58dd69fbfa45174c37ee681ea20bb",
+      "canonicalSha256": "f0109d7cd2b24352da1b034bcebb3b59ca41e4e09abb5b1c208b7c488ecc80b0",
+      "dimensions": {
+        "w": 0.6000001430511475,
+        "h": 1.260338306427002,
+        "d": 0.6159999966621399
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-356",
+      "dir": "abandoned-farm-object-356",
+      "sourceSha256": "7951f7572bd270fe81654a49978e0082bf7181c12705a12190de3c4c1fbf30d7",
+      "canonicalSha256": "1c31bc2d24fea52174c08d7163f8ced598d3ffd514d9e0ed5ff033113b6fbafb",
+      "dimensions": {
+        "w": 0.7100409865379333,
+        "h": 1.2603384256362915,
+        "d": 0.7134115695953369
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-357",
+      "dir": "abandoned-farm-object-357",
+      "sourceSha256": "3add2cb2b7274b830faf76c9a46fa0e0ff86fbe01f69fff8cfb2c79672c59c44",
+      "canonicalSha256": "63ade92b3024dc69ff2a597e72e390526f5c7a7117c2c414f8a735fb3b5f8a58",
+      "dimensions": {
+        "w": 0.6000001430511475,
+        "h": 1.260338306427002,
+        "d": 0.6159999966621399
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-358",
+      "dir": "abandoned-farm-object-358",
+      "sourceSha256": "fb39d9da695c184f72554bebc7887be165a17c9a2c4d06b339533b54a4353c11",
+      "canonicalSha256": "f73018116fd4ae2332310f8f49460f08d46808ab8de6db02a98e1dc717d0a177",
+      "dimensions": {
+        "w": 0.6951054930686951,
+        "h": 1.260338306427002,
+        "d": 0.685096263885498
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-359",
+      "dir": "abandoned-farm-object-359",
+      "sourceSha256": "fe985549f91148cca00633c7cd4dc9d54677074442c3a26f53a000bb83e0ac94",
+      "canonicalSha256": "5478f4a3f1c02eaef162fad5cdcb3438ac1279ac8b68555be19e9cc8ce1fdf0e",
+      "dimensions": {
+        "w": 0.6476484537124634,
+        "h": 1.260338306427002,
+        "d": 0.6262742877006531
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-360",
+      "dir": "abandoned-farm-object-360",
+      "sourceSha256": "6edb7a051fb404d8aba68fe281f8c73877dc9f3d94feee8fa25408b829f228ab",
+      "canonicalSha256": "781076a014cd87ede6bd4a1c5dc76ff75d4806da61e2f3cf2936d3d142404057",
+      "dimensions": {
+        "w": 0.7824172973632812,
+        "h": 1.3175712823867798,
+        "d": 0.7841566801071167
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-361",
+      "dir": "abandoned-farm-object-361",
+      "sourceSha256": "3c79cf5e087747c4242628b1f7684a5abef5987fc73be8d493475f899d081d38",
+      "canonicalSha256": "a5b099c13780b7cfe63b97ff63465c606cdc264485aaf65d41ff1ae51c1e96e6",
+      "dimensions": {
+        "w": 1.0516364574432373,
+        "h": 1.0755274295806885,
+        "d": 1.15962553024292
+      },
+      "warnings": []
+    },
+    {
+      "key": "object-362",
+      "dir": "abandoned-farm-object-362",
+      "sourceSha256": "a19fd65439bfabf26858be41899898769d07f173d634820a3cf1c5e472f578c6",
+      "canonicalSha256": "a10ff72ee4e9a426b13b4c68b2b063c1ae56df4c9be10f4c465190754d13b0c6",
+      "dimensions": {
+        "w": 1.2827000617980957,
+        "h": 0.6771141886711121,
+        "d": 1.1826099157333374
+      },
+      "warnings": []
+    }
+  ],
+  "issues": [],
+  "converter": "threejs-interchange",
+  "converterVersion": "0.1.0",
+  "createdAt": "2026-11-02T10:50:06.926Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-331",
+  "name": "radio_tower.003",
+  "dimensions": {
+    "w": 11.920272827148438,
+    "h": 30.383991241455078,
+    "d": 11.920273780822754
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

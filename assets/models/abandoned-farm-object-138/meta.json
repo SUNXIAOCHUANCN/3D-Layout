@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-138",
+  "name": "Plane.004",
+  "dimensions": {
+    "w": 8,
+    "h": 0.20000338554382324,
+    "d": 22
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

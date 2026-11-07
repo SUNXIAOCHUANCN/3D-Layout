@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-262",
+  "name": "Softener.001",
+  "dimensions": {
+    "w": 0.07292760908603668,
+    "h": 0.23959457874298096,
+    "d": 0.08322331309318542
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

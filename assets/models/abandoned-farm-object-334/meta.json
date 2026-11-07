@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-334",
+  "name": "Auto.012",
+  "dimensions": {
+    "w": 4.709112167358398,
+    "h": 1.7460644245147705,
+    "d": 3.601271867752075
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

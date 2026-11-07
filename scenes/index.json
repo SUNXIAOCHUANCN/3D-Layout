@@ -1,5 +1,9 @@
 [
   {
+    "id": "abandoned-farm",
+    "name": "abandoned-farm"
+  },
+  {
     "id": "alpinewoodlanddemo",
     "name": "AlpineWoodlandDemo"
   },
@@ -10,6 +14,10 @@
   {
     "id": "desert",
     "name": "Desert"
+  },
+  {
+    "id": "flying-world",
+    "name": "flying-world"
   },
   {
     "id": "forest",
@@ -30,6 +38,18 @@
   {
     "id": "scene-04",
     "name": "test2"
+  },
+  {
+    "id": "scene-05",
+    "name": "幻想世界"
+  },
+  {
+    "id": "scene-06",
+    "name": "Tropical Islands"
+  },
+  {
+    "id": "scene-07",
+    "name": "FantasyLand2"
   },
   {
     "id": "scene-models",

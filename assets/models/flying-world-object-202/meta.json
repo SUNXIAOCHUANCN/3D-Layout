@@ -1,0 +1,18 @@
+{
+  "id": "flying-world-object-202",
+  "name": "spatial-group-202",
+  "dimensions": {
+    "w": 95.95504760742188,
+    "h": 478.7271423339844,
+    "d": 1603.897705078125
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

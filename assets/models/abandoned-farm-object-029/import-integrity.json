@@ -1,0 +1,54 @@
+{
+  "format": "3d-layout-import-integrity",
+  "schemaVersion": 1,
+  "converter": "threejs-interchange",
+  "converterVersion": "0.1.0",
+  "normalizationVersion": "layout-static-v1",
+  "source": {
+    "file": "models/object-029.glb",
+    "sha256": "9baaaa7be109bb07d7cf50fb8937fba39eeb28485538fe9d8b47e2cca86fd0c4",
+    "bytes": 35312,
+    "coordinates": {
+      "metersPerUnit": 1,
+      "up": "+Y",
+      "handedness": "right"
+    }
+  },
+  "canonical": {
+    "file": "model.glb",
+    "sha256": "b9d5c08c75d68e47745174eda01aa34bfbfe9330c0116fe8839a15197bb78787",
+    "bytes": 21040
+  },
+  "definitionHash": "7022b6d700bd4828c6025de58aa1fbc97d824d3514d1cb6a7e7a7bab9adec6f4",
+  "localBounds": {
+    "min": [
+      -0.10000015795230865,
+      0,
+      -1.5
+    ],
+    "max": [
+      0.10000015795230865,
+      4.300000190734863,
+      1.5
+    ]
+  },
+  "sourceToCanonical": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "createdAt": "2026-11-02T10:49:57.698Z"
+}

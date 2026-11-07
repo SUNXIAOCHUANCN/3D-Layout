@@ -1,0 +1,18 @@
+{
+  "id": "flying-world-object-311",
+  "name": "spatial-group-311",
+  "dimensions": {
+    "w": 82.21971893310547,
+    "h": 1720.682861328125,
+    "d": 4272.5400390625
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

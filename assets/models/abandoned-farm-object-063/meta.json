@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-063",
+  "name": "Soda_02.002",
+  "dimensions": {
+    "w": 0.19340862333774567,
+    "h": 0.6197001934051514,
+    "d": 0.19340862333774567
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-347",
+  "name": "bread_02.001",
+  "dimensions": {
+    "w": 0.1692909151315689,
+    "h": 0.18007118999958038,
+    "d": 0.49554726481437683
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

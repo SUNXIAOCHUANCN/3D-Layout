@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-097",
+  "name": "Knife_05.002",
+  "dimensions": {
+    "w": 0.5355877876281738,
+    "h": 0.029950767755508423,
+    "d": 0.4212837219238281
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

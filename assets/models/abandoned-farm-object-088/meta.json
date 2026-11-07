@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-088",
+  "name": "Pineapple.002",
+  "dimensions": {
+    "w": 0.32436004281044006,
+    "h": 0.5632544755935669,
+    "d": 0.31734639406204224
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

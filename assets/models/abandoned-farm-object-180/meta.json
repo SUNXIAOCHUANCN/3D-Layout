@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-180",
+  "name": "brid_rln.026",
+  "dimensions": {
+    "w": 0.059999980032444,
+    "h": 0.7000000476837158,
+    "d": 2.8013999462127686
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

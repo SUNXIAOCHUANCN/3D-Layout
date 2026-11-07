@@ -1,0 +1,1 @@
+Procedurally generated demonstration textures for terrain custom-material verification. Created for this project; no external image sources. Normal map uses OpenGL +Y. Grayscale maps use the red channel.

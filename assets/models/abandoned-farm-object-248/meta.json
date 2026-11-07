@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-248",
+  "name": "toothpaste_03.001",
+  "dimensions": {
+    "w": 0.22008606791496277,
+    "h": 0.04038918763399124,
+    "d": 0.0723363608121872
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

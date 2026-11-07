@@ -1,0 +1,7991 @@
+{
+  "meta": {
+    "id": "abandoned-farm",
+    "name": "abandoned-farm",
+    "version": 1,
+    "unit": "m",
+    "up": "+Y"
+  },
+  "environment": {},
+  "assets": [
+    {
+      "id": "object-001",
+      "ref": "models/abandoned-farm-object-001",
+      "transform": {
+        "position": [
+          -35.15229432689484,
+          -7.33259824345562,
+          1.5074222953880145
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.009"
+    },
+    {
+      "id": "object-002",
+      "ref": "models/abandoned-farm-object-002",
+      "transform": {
+        "position": [
+          -27.749273991228463,
+          -10.669422704875032,
+          -63.42854096638582
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.010"
+    },
+    {
+      "id": "object-003",
+      "ref": "models/abandoned-farm-object-003",
+      "transform": {
+        "position": [
+          4.999999888241291,
+          -0.5000153417942682,
+          8.146034247147327e-8
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "rios"
+    },
+    {
+      "id": "object-004",
+      "ref": "models/abandoned-farm-object-004",
+      "transform": {
+        "position": [
+          0.14258193651031092,
+          -11.970949826773914,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.011"
+    },
+    {
+      "id": "object-005",
+      "ref": "models/abandoned-farm-object-005",
+      "transform": {
+        "position": [
+          59.50847111250894,
+          -8.747478921545337,
+          31.930860567043723
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.076"
+    },
+    {
+      "id": "object-006",
+      "ref": "models/abandoned-farm-object-006",
+      "transform": {
+        "position": [
+          3.399999952416483,
+          1.053002114315993e-8,
+          -1.0999994985759587
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.130"
+    },
+    {
+      "id": "object-007",
+      "ref": "models/abandoned-farm-object-007",
+      "transform": {
+        "position": [
+          2.913667229510766,
+          -5.2054857993533155e-8,
+          -4.999999858438976
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.131"
+    },
+    {
+      "id": "object-008",
+      "ref": "models/abandoned-farm-object-008",
+      "transform": {
+        "position": [
+          3.8490000468353958,
+          -1.3909016649346293e-9,
+          -13.096999924697023
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.132"
+    },
+    {
+      "id": "object-009",
+      "ref": "models/abandoned-farm-object-009",
+      "transform": {
+        "position": [
+          3.399999952416483,
+          1.053002158724913e-8,
+          -3.099999453872475
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.133"
+    },
+    {
+      "id": "object-010",
+      "ref": "models/abandoned-farm-object-010",
+      "transform": {
+        "position": [
+          3.399999952416483,
+          1.0530023363605929e-8,
+          -11.09999927505854
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.134"
+    },
+    {
+      "id": "object-011",
+      "ref": "models/abandoned-farm-object-011",
+      "transform": {
+        "position": [
+          3.399999952416483,
+          1.0530022475427529e-8,
+          -7.099999364465509
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.136"
+    },
+    {
+      "id": "object-012",
+      "ref": "models/abandoned-farm-object-012",
+      "transform": {
+        "position": [
+          3.399999952416483,
+          1.0530022919516863e-8,
+          -9.099999930113572
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.140"
+    },
+    {
+      "id": "object-013",
+      "ref": "models/abandoned-farm-object-013",
+      "transform": {
+        "position": [
+          5.700000361353223,
+          -1.3909076675893747e-9,
+          -13.099999813090628
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.143"
+    },
+    {
+      "id": "object-014",
+      "ref": "models/abandoned-farm-object-014",
+      "transform": {
+        "position": [
+          3.4000003460065535,
+          6.059673806410523e-9,
+          -18.099999595433523
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.145"
+    },
+    {
+      "id": "object-015",
+      "ref": "models/abandoned-farm-object-015",
+      "transform": {
+        "position": [
+          3.4000006867291335,
+          4.090000044877142,
+          -21.049999547377283
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.146"
+    },
+    {
+      "id": "object-016",
+      "ref": "models/abandoned-farm-object-016",
+      "transform": {
+        "position": [
+          5.199999895691871,
+          4.090000044877142,
+          -18.100000278885737
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.147"
+    },
+    {
+      "id": "object-017",
+      "ref": "models/abandoned-farm-object-017",
+      "transform": {
+        "position": [
+          5.149999825283887,
+          6.0596805936426075e-9,
+          -10.100001068051219
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.148"
+    },
+    {
+      "id": "object-018",
+      "ref": "models/abandoned-farm-object-018",
+      "transform": {
+        "position": [
+          3.399999952416483,
+          1.0530024695873529e-8,
+          -17.099999140948093
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.141"
+    },
+    {
+      "id": "object-019",
+      "ref": "models/abandoned-farm-object-019",
+      "transform": {
+        "position": [
+          3.399999952416483,
+          1.0530025139962729e-8,
+          -19.09999909624461
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.149"
+    },
+    {
+      "id": "object-020",
+      "ref": "models/abandoned-farm-object-020",
+      "transform": {
+        "position": [
+          3.399999952416483,
+          1.0530025584051929e-8,
+          -21.099999051541126
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.150"
+    },
+    {
+      "id": "object-021",
+      "ref": "models/abandoned-farm-object-021",
+      "transform": {
+        "position": [
+          3.399999938112553,
+          -5.3544970480480906e-8,
+          -15.200000851154304
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.151"
+    },
+    {
+      "id": "object-022",
+      "ref": "models/abandoned-farm-object-022",
+      "transform": {
+        "position": [
+          3.411301084444248,
+          0.18037568762059447,
+          -15.197892625975024
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.152"
+    },
+    {
+      "id": "object-023",
+      "ref": "models/abandoned-farm-object-023",
+      "transform": {
+        "position": [
+          3.4000003460065535,
+          6.059672918232123e-9,
+          -14.09999968484049
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.129"
+    },
+    {
+      "id": "object-024",
+      "ref": "models/abandoned-farm-object-024",
+      "transform": {
+        "position": [
+          3.4000003460065535,
+          6.059671141875459e-9,
+          -6.100000474005974
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.135"
+    },
+    {
+      "id": "object-025",
+      "ref": "models/abandoned-farm-object-025",
+      "transform": {
+        "position": [
+          3.4000003460065535,
+          6.059670253696991e-9,
+          -2.100000258237167
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.144"
+    },
+    {
+      "id": "object-026",
+      "ref": "models/abandoned-farm-object-026",
+      "transform": {
+        "position": [
+          -5.049999576784597,
+          1.4801954912495119e-8,
+          -6.8999999940094865
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.153"
+    },
+    {
+      "id": "object-027",
+      "ref": "models/abandoned-farm-object-027",
+      "transform": {
+        "position": [
+          -3.2999997565687895,
+          1.7980603749587382e-8,
+          -10.899999756366022
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.154"
+    },
+    {
+      "id": "object-028",
+      "ref": "models/abandoned-farm-object-028",
+      "transform": {
+        "position": [
+          -3.299999897826847,
+          1.0530023541241609e-8,
+          -11.899999257177146
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.155"
+    },
+    {
+      "id": "object-029",
+      "ref": "models/abandoned-farm-object-029",
+      "transform": {
+        "position": [
+          -3.2999997565687895,
+          1.798060463776578e-8,
+          -14.399999678134925
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.156"
+    },
+    {
+      "id": "object-030",
+      "ref": "models/abandoned-farm-object-030",
+      "transform": {
+        "position": [
+          -5.149999920651316,
+          4.090000044877141,
+          -15.80000155099784
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.157"
+    },
+    {
+      "id": "object-031",
+      "ref": "models/abandoned-farm-object-031",
+      "transform": {
+        "position": [
+          -3.299999897826847,
+          1.0530023985330809e-8,
+          -13.899999212473663
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.158"
+    },
+    {
+      "id": "object-032",
+      "ref": "models/abandoned-farm-object-032",
+      "transform": {
+        "position": [
+          -3.749000183625966,
+          1.0530026057796146e-8,
+          -15.449999429435575
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.159"
+    },
+    {
+      "id": "object-033",
+      "ref": "models/abandoned-farm-object-033",
+      "transform": {
+        "position": [
+          -5.5999994695186,
+          -1.3909070458644948e-9,
+          -15.899999750505751
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.160"
+    },
+    {
+      "id": "object-034",
+      "ref": "models/abandoned-farm-object-034",
+      "transform": {
+        "position": [
+          -3.299999897826847,
+          1.0530023097152543e-8,
+          -9.899999912232179
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.161"
+    },
+    {
+      "id": "object-035",
+      "ref": "models/abandoned-farm-object-035",
+      "transform": {
+        "position": [
+          -3.299999897826847,
+          1.0530022208974143e-8,
+          -5.900000001639147
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.162"
+    },
+    {
+      "id": "object-036",
+      "ref": "models/abandoned-farm-object-036",
+      "transform": {
+        "position": [
+          -3.299999897826847,
+          1.0530021764884943e-8,
+          -3.9000000463426305
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.164"
+    },
+    {
+      "id": "object-037",
+      "ref": "models/abandoned-farm-object-037",
+      "transform": {
+        "position": [
+          -3.749000255749768,
+          1.0530019692419606e-8,
+          -2.3500007830549716
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.163"
+    },
+    {
+      "id": "object-038",
+      "ref": "models/abandoned-farm-object-038",
+      "transform": {
+        "position": [
+          -5.599999469518629,
+          -1.3909101544887588e-9,
+          -1.9000006737816855
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.165"
+    },
+    {
+      "id": "object-039",
+      "ref": "models/abandoned-farm-object-039",
+      "transform": {
+        "position": [
+          -3.2999997293449166,
+          -4.013392432278273e-8,
+          -8.000001071691491
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.166"
+    },
+    {
+      "id": "object-040",
+      "ref": "models/abandoned-farm-object-040",
+      "transform": {
+        "position": [
+          -3.299999507413861,
+          1.7980601973230787e-8,
+          -3.400000839531408
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.168"
+    },
+    {
+      "id": "object-041",
+      "ref": "models/abandoned-farm-object-041",
+      "transform": {
+        "position": [
+          -5.149999920651316,
+          4.090000044877137,
+          -2.000000333573004
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.169"
+    },
+    {
+      "id": "object-042",
+      "ref": "models/abandoned-farm-object-042",
+      "transform": {
+        "position": [
+          -3.399999752342705,
+          4.499999898026252,
+          -5.900000584374718
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.170"
+    },
+    {
+      "id": "object-043",
+      "ref": "models/abandoned-farm-object-043",
+      "transform": {
+        "position": [
+          -5.700000018030401,
+          4.499999898026252,
+          -5.900000584374718
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.172"
+    },
+    {
+      "id": "object-044",
+      "ref": "models/abandoned-farm-object-044",
+      "transform": {
+        "position": [
+          3.399999752342705,
+          4.499999898026252,
+          -5.900000584374718
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.173"
+    },
+    {
+      "id": "object-045",
+      "ref": "models/abandoned-farm-object-045",
+      "transform": {
+        "position": [
+          5.65000000722706,
+          4.499999898026252,
+          -5.900000584374718
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.175"
+    },
+    {
+      "id": "object-046",
+      "ref": "models/abandoned-farm-object-046",
+      "transform": {
+        "position": [
+          -1.2004000443130716,
+          4.499999898026252,
+          -5.900000584374718
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.171"
+    },
+    {
+      "id": "object-047",
+      "ref": "models/abandoned-farm-object-047",
+      "transform": {
+        "position": [
+          -6.3999998569488525,
+          0.0799998457819209,
+          -20.899999607110455
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.176"
+    },
+    {
+      "id": "object-048",
+      "ref": "models/abandoned-farm-object-048",
+      "transform": {
+        "position": [
+          -3.9999998986774634,
+          2.800000013311046,
+          -20.899999516844964
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.178"
+    },
+    {
+      "id": "object-049",
+      "ref": "models/abandoned-farm-object-049",
+      "transform": {
+        "position": [
+          -5.87100947528156,
+          0.04662663725717178,
+          -18.400000822749902
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.179"
+    },
+    {
+      "id": "object-050",
+      "ref": "models/abandoned-farm-object-050",
+      "transform": {
+        "position": [
+          -5.528989829605982,
+          0.9863191707272834,
+          -18.400000822749902
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.182"
+    },
+    {
+      "id": "object-051",
+      "ref": "models/abandoned-farm-object-051",
+      "transform": {
+        "position": [
+          -5.186969573578856,
+          1.926011685123909,
+          -18.400000822749902
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.183"
+    },
+    {
+      "id": "object-052",
+      "ref": "models/abandoned-farm-object-052",
+      "transform": {
+        "position": [
+          0.9579801726792712,
+          -0.053373367514572875,
+          -7.044950691440537
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.174"
+    },
+    {
+      "id": "object-053",
+      "ref": "models/abandoned-farm-object-053",
+      "transform": {
+        "position": [
+          -4.899999817856624,
+          2.8799999461570067,
+          -20.947999544336383
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.180"
+    },
+    {
+      "id": "object-054",
+      "ref": "models/abandoned-farm-object-054",
+      "transform": {
+        "position": [
+          1.5579801592682259,
+          -0.043178794414260716,
+          -21.45638915779544
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.191"
+    },
+    {
+      "id": "object-055",
+      "ref": "models/abandoned-farm-object-055",
+      "transform": {
+        "position": [
+          9.199999794363976,
+          -5.2054858618033606e-8,
+          -0.0020947238937464308
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.087"
+    },
+    {
+      "id": "object-056",
+      "ref": "models/abandoned-farm-object-056",
+      "transform": {
+        "position": [
+          -3.9602230557749465,
+          0.019850059197582093,
+          -18.571167917569014
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Table_15.002"
+    },
+    {
+      "id": "object-057",
+      "ref": "models/abandoned-farm-object-057",
+      "transform": {
+        "position": [
+          -6.396594095306227,
+          0.8219110985851438,
+          -20.731771997546275
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Magazines.002"
+    },
+    {
+      "id": "object-058",
+      "ref": "models/abandoned-farm-object-058",
+      "transform": {
+        "position": [
+          -3.7134371036327978,
+          2.86828336787249,
+          -18.60319659322164
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Magazine.002"
+    },
+    {
+      "id": "object-059",
+      "ref": "models/abandoned-farm-object-059",
+      "transform": {
+        "position": [
+          -3.646346041418326,
+          2.8859768548394205,
+          -19.367746136223595
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Magazine_01.002"
+    },
+    {
+      "id": "object-060",
+      "ref": "models/abandoned-farm-object-060",
+      "transform": {
+        "position": [
+          -4.471810209948708,
+          2.86828334259408,
+          -18.93841875308211
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Magazine.003"
+    },
+    {
+      "id": "object-061",
+      "ref": "models/abandoned-farm-object-061",
+      "transform": {
+        "position": [
+          -5.319654803572489,
+          0.018679873144769377,
+          -21.566442769342395
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.189"
+    },
+    {
+      "id": "object-062",
+      "ref": "models/abandoned-farm-object-062",
+      "transform": {
+        "position": [
+          -4.314955997589605,
+          0.8360204626492076,
+          -18.744285521472683
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_07.002"
+    },
+    {
+      "id": "object-063",
+      "ref": "models/abandoned-farm-object-063",
+      "transform": {
+        "position": [
+          -4.117683012989062,
+          0.8355272667229717,
+          -18.44621295994088
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_02.002"
+    },
+    {
+      "id": "object-064",
+      "ref": "models/abandoned-farm-object-064",
+      "transform": {
+        "position": [
+          -3.5351968292407157,
+          0.8567950850754584,
+          -18.568651532708056
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.190"
+    },
+    {
+      "id": "object-065",
+      "ref": "models/abandoned-farm-object-065",
+      "transform": {
+        "position": [
+          -3.384088080468347,
+          2.864801150442888,
+          -20.059118197348436
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Radio_01.002"
+    },
+    {
+      "id": "object-066",
+      "ref": "models/abandoned-farm-object-066",
+      "transform": {
+        "position": [
+          -3.9102740237689604,
+          0.010328233464599657,
+          -19.51475841464123
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.038"
+    },
+    {
+      "id": "object-067",
+      "ref": "models/abandoned-farm-object-067",
+      "transform": {
+        "position": [
+          -5.346315678220293,
+          0.06142026728929341,
+          -19.8341395206822
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Toilet_paper_01.001"
+    },
+    {
+      "id": "object-068",
+      "ref": "models/abandoned-farm-object-068",
+      "transform": {
+        "position": [
+          -4.2634743160722905,
+          2.8570531526389233,
+          -19.52018144845556
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Pizza_02.002"
+    },
+    {
+      "id": "object-069",
+      "ref": "models/abandoned-farm-object-069",
+      "transform": {
+        "position": [
+          0.11084623061362986,
+          -0.03869230823457759,
+          -19.97174349681134
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Table_13.002"
+    },
+    {
+      "id": "object-070",
+      "ref": "models/abandoned-farm-object-070",
+      "transform": {
+        "position": [
+          -6.560640086320294,
+          -0.03844254135453498,
+          -18.66291261581271
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Watermelon.002"
+    },
+    {
+      "id": "object-071",
+      "ref": "models/abandoned-farm-object-071",
+      "transform": {
+        "position": [
+          -1.2511091334124842,
+          0.0005861885313247495,
+          -21.38226514706912
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "C.001"
+    },
+    {
+      "id": "object-072",
+      "ref": "models/abandoned-farm-object-072",
+      "transform": {
+        "position": [
+          2.4572393249592324,
+          -0.03968970619213652,
+          -21.323649425723033
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "C.002"
+    },
+    {
+      "id": "object-073",
+      "ref": "models/abandoned-farm-object-073",
+      "transform": {
+        "position": [
+          2.4572393249592324,
+          1.2389908714729665,
+          -21.323649425723033
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "C.003"
+    },
+    {
+      "id": "object-074",
+      "ref": "models/abandoned-farm-object-074",
+      "transform": {
+        "position": [
+          -2.845425046263074,
+          7.102992273275016,
+          -21.045736834278614
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "C.004"
+    },
+    {
+      "id": "object-075",
+      "ref": "models/abandoned-farm-object-075",
+      "transform": {
+        "position": [
+          -2.5190040025337623,
+          8.397884569034758,
+          -21.04573683427861
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "C.005"
+    },
+    {
+      "id": "object-076",
+      "ref": "models/abandoned-farm-object-076",
+      "transform": {
+        "position": [
+          -2.2000247347588697,
+          7.079924756509826,
+          -18.839339365588074
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Table_13.003"
+    },
+    {
+      "id": "object-077",
+      "ref": "models/abandoned-farm-object-077",
+      "transform": {
+        "position": [
+          -2.6379644185759616,
+          7.017523068798949,
+          -16.051772102152427
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "C.006"
+    },
+    {
+      "id": "object-078",
+      "ref": "models/abandoned-farm-object-078",
+      "transform": {
+        "position": [
+          -1.7872167569275916,
+          6.997581488112809,
+          -14.276280198478387
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "C.007"
+    },
+    {
+      "id": "object-079",
+      "ref": "models/abandoned-farm-object-079",
+      "transform": {
+        "position": [
+          2.797627806120488,
+          7.10299226883999,
+          -9.647324613467047
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "C.008"
+    },
+    {
+      "id": "object-080",
+      "ref": "models/abandoned-farm-object-080",
+      "transform": {
+        "position": [
+          2.8248696268006483,
+          7.10299220373456,
+          -8.042410708909982
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "C.009"
+    },
+    {
+      "id": "object-081",
+      "ref": "models/abandoned-farm-object-081",
+      "transform": {
+        "position": [
+          2.202476757411432,
+          7.04209306575105,
+          -3.013254937531313
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "C.010"
+    },
+    {
+      "id": "object-082",
+      "ref": "models/abandoned-farm-object-082",
+      "transform": {
+        "position": [
+          -1.2748708187186186,
+          7.096878482903735,
+          -18.7154059595908
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.192"
+    },
+    {
+      "id": "object-083",
+      "ref": "models/abandoned-farm-object-083",
+      "transform": {
+        "position": [
+          -1.7056051599724085,
+          7.0968785053224455,
+          -3.0228285793242287
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.193"
+    },
+    {
+      "id": "object-084",
+      "ref": "models/abandoned-farm-object-084",
+      "transform": {
+        "position": [
+          -2.8109119010730446,
+          7.096878471368434,
+          -2.94446185061472
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.194"
+    },
+    {
+      "id": "object-085",
+      "ref": "models/abandoned-farm-object-085",
+      "transform": {
+        "position": [
+          -0.6111987549543656,
+          7.077342787817279,
+          -6.545696264825095
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "C.011"
+    },
+    {
+      "id": "object-086",
+      "ref": "models/abandoned-farm-object-086",
+      "transform": {
+        "position": [
+          -1.0056520618725102,
+          7.077342438202815,
+          -9.374621372492127
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "C.012"
+    },
+    {
+      "id": "object-087",
+      "ref": "models/abandoned-farm-object-087",
+      "transform": {
+        "position": [
+          -2.368621959130853,
+          7.895968338948553,
+          -19.393063335612844
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.195"
+    },
+    {
+      "id": "object-088",
+      "ref": "models/abandoned-farm-object-088",
+      "transform": {
+        "position": [
+          2.4078501070771328,
+          7.8965778267949895,
+          -12.5987790383287
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Pineapple.002"
+    },
+    {
+      "id": "object-089",
+      "ref": "models/abandoned-farm-object-089",
+      "transform": {
+        "position": [
+          2.050337699398707,
+          7.859444951041589,
+          -15.520149288826882
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Watermelon.003"
+    },
+    {
+      "id": "object-090",
+      "ref": "models/abandoned-farm-object-090",
+      "transform": {
+        "position": [
+          1.984789475897776,
+          7.906841790874504,
+          -16.04665275995751
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Watermelon_01.002"
+    },
+    {
+      "id": "object-091",
+      "ref": "models/abandoned-farm-object-091",
+      "transform": {
+        "position": [
+          2.763015351824118,
+          7.846278588181316,
+          -15.084894772267054
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Pineapple_01.002"
+    },
+    {
+      "id": "object-092",
+      "ref": "models/abandoned-farm-object-092",
+      "transform": {
+        "position": [
+          -0.8503279612140104,
+          7.086439761673519,
+          -21.047873034897307
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cantaloupe.002"
+    },
+    {
+      "id": "object-093",
+      "ref": "models/abandoned-farm-object-093",
+      "transform": {
+        "position": [
+          -2.3674223514116246,
+          8.739043146808726,
+          -16.248448942823675
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Banana.002"
+    },
+    {
+      "id": "object-094",
+      "ref": "models/abandoned-farm-object-094",
+      "transform": {
+        "position": [
+          -2.0538332870458698,
+          7.898727583014402,
+          -17.94205772506964
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_13.002"
+    },
+    {
+      "id": "object-095",
+      "ref": "models/abandoned-farm-object-095",
+      "transform": {
+        "position": [
+          2.491037960391993,
+          7.891728312754344,
+          -14.614905730959011
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_07.003"
+    },
+    {
+      "id": "object-096",
+      "ref": "models/abandoned-farm-object-096",
+      "transform": {
+        "position": [
+          2.655330446767847,
+          7.13469882859274,
+          -17.65626204050728
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_02.003"
+    },
+    {
+      "id": "object-097",
+      "ref": "models/abandoned-farm-object-097",
+      "transform": {
+        "position": [
+          2.342146885854286,
+          7.8943921106369634,
+          -14.89796788931032
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Knife_05.002"
+    },
+    {
+      "id": "object-098",
+      "ref": "models/abandoned-farm-object-098",
+      "transform": {
+        "position": [
+          -2.6516884783277987,
+          7.89190452922664,
+          -4.722502952575499
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Dish.002"
+    },
+    {
+      "id": "object-099",
+      "ref": "models/abandoned-farm-object-099",
+      "transform": {
+        "position": [
+          0.2849430974213085,
+          7.141730706726802,
+          -14.287128586907782
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Magazines.003"
+    },
+    {
+      "id": "object-100",
+      "ref": "models/abandoned-farm-object-100",
+      "transform": {
+        "position": [
+          2.365968225468727,
+          7.079924469619086,
+          -12.581404099113684
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Table_13.004"
+    },
+    {
+      "id": "object-101",
+      "ref": "models/abandoned-farm-object-101",
+      "transform": {
+        "position": [
+          2.3849848615067257,
+          7.079924900432397,
+          -15.28911669521391
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Table_13.005"
+    },
+    {
+      "id": "object-102",
+      "ref": "models/abandoned-farm-object-102",
+      "transform": {
+        "position": [
+          2.481000103645197,
+          7.9068417911277304,
+          -16.141971156376627
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Watermelon_01.003"
+    },
+    {
+      "id": "object-103",
+      "ref": "models/abandoned-farm-object-103",
+      "transform": {
+        "position": [
+          2.672434257961163,
+          7.874686653200915,
+          -15.67605672233085
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Watermelon.004"
+    },
+    {
+      "id": "object-104",
+      "ref": "models/abandoned-farm-object-104",
+      "transform": {
+        "position": [
+          3.056652223636725,
+          7.8975491953874934,
+          -13.198271030050115
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Watermelon.005"
+    },
+    {
+      "id": "object-105",
+      "ref": "models/abandoned-farm-object-105",
+      "transform": {
+        "position": [
+          -0.07004058204500563,
+          7.141730707939655,
+          -17.38640952349283
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Magazines.004"
+    },
+    {
+      "id": "object-106",
+      "ref": "models/abandoned-farm-object-106",
+      "transform": {
+        "position": [
+          2.2783130899448736,
+          7.141730728639003,
+          -16.881239857049877
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Magazines.005"
+    },
+    {
+      "id": "object-107",
+      "ref": "models/abandoned-farm-object-107",
+      "transform": {
+        "position": [
+          -0.9357093507716961,
+          7.124945538748922,
+          -16.008418820088778
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Magazine.005"
+    },
+    {
+      "id": "object-108",
+      "ref": "models/abandoned-farm-object-108",
+      "transform": {
+        "position": [
+          0.7756084158665517,
+          7.124945519122943,
+          -16.291910026198135
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Magazine_01.004"
+    },
+    {
+      "id": "object-109",
+      "ref": "models/abandoned-farm-object-109",
+      "transform": {
+        "position": [
+          1.3934360837652835,
+          7.124945513967634,
+          -14.306740411978
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Magazine_01.005"
+    },
+    {
+      "id": "object-110",
+      "ref": "models/abandoned-farm-object-110",
+      "transform": {
+        "position": [
+          0.9443047121695116,
+          7.1417307065606135,
+          -12.22894015634938
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Magazines.006"
+    },
+    {
+      "id": "object-111",
+      "ref": "models/abandoned-farm-object-111",
+      "transform": {
+        "position": [
+          0.2700593414445201,
+          7.124945562911504,
+          -10.761307144228098
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Magazine_01.006"
+    },
+    {
+      "id": "object-112",
+      "ref": "models/abandoned-farm-object-112",
+      "transform": {
+        "position": [
+          0.7035311013228839,
+          7.124945559219748,
+          -9.340825611124115
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Magazine_01.007"
+    },
+    {
+      "id": "object-113",
+      "ref": "models/abandoned-farm-object-113",
+      "transform": {
+        "position": [
+          2.6969118266399628,
+          7.891728312754344,
+          -14.672550993342414
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_07.004"
+    },
+    {
+      "id": "object-114",
+      "ref": "models/abandoned-farm-object-114",
+      "transform": {
+        "position": [
+          2.768395894866388,
+          7.891728312754344,
+          -14.466676974506557
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_07.005"
+    },
+    {
+      "id": "object-115",
+      "ref": "models/abandoned-farm-object-115",
+      "transform": {
+        "position": [
+          2.57110006187395,
+          7.891728312754344,
+          -14.406630589129948
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_07.006"
+    },
+    {
+      "id": "object-116",
+      "ref": "models/abandoned-farm-object-116",
+      "transform": {
+        "position": [
+          1.700788376330024,
+          7.891728315902063,
+          -12.090480733514227
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_07.007"
+    },
+    {
+      "id": "object-117",
+      "ref": "models/abandoned-farm-object-117",
+      "transform": {
+        "position": [
+          1.8819306452303974,
+          7.8917283159020615,
+          -11.97692726925547
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_07.008"
+    },
+    {
+      "id": "object-118",
+      "ref": "models/abandoned-farm-object-118",
+      "transform": {
+        "position": [
+          1.7776859576190416,
+          7.8917283159020615,
+          -11.785544216892589
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_07.009"
+    },
+    {
+      "id": "object-119",
+      "ref": "models/abandoned-farm-object-119",
+      "transform": {
+        "position": [
+          1.6005373714907305,
+          7.8917283159020615,
+          -11.891136255548048
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_07.010"
+    },
+    {
+      "id": "object-120",
+      "ref": "models/abandoned-farm-object-120",
+      "transform": {
+        "position": [
+          2.1311039184695346,
+          7.8917283159020615,
+          -11.947042016017207
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_07.011"
+    },
+    {
+      "id": "object-121",
+      "ref": "models/abandoned-farm-object-121",
+      "transform": {
+        "position": [
+          2.3122463399577953,
+          7.8917283159020615,
+          -11.833489772461547
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_07.012"
+    },
+    {
+      "id": "object-122",
+      "ref": "models/abandoned-farm-object-122",
+      "transform": {
+        "position": [
+          2.208001499758552,
+          7.8917283159020615,
+          -11.64210549939557
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_07.013"
+    },
+    {
+      "id": "object-123",
+      "ref": "models/abandoned-farm-object-123",
+      "transform": {
+        "position": [
+          2.030852913630241,
+          7.8917283159020615,
+          -11.747697538051028
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_07.014"
+    },
+    {
+      "id": "object-124",
+      "ref": "models/abandoned-farm-object-124",
+      "transform": {
+        "position": [
+          -2.0538332870458698,
+          7.898727583014402,
+          -18.493800876799718
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_13.003"
+    },
+    {
+      "id": "object-125",
+      "ref": "models/abandoned-farm-object-125",
+      "transform": {
+        "position": [
+          -2.451395943944436,
+          8.760388361175373,
+          -15.92891761593458
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Banana.003"
+    },
+    {
+      "id": "object-126",
+      "ref": "models/abandoned-farm-object-126",
+      "transform": {
+        "position": [
+          -2.8962082443618735,
+          8.730742365744263,
+          -16.576523946032864
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Banana.004"
+    },
+    {
+      "id": "object-127",
+      "ref": "models/abandoned-farm-object-127",
+      "transform": {
+        "position": [
+          -1.4404755768073627,
+          7.086439761673519,
+          -20.71591259309845
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cantaloupe.003"
+    },
+    {
+      "id": "object-128",
+      "ref": "models/abandoned-farm-object-128",
+      "transform": {
+        "position": [
+          -1.3790018843337506,
+          7.086439761673519,
+          -21.588839819680757
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cantaloupe.004"
+    },
+    {
+      "id": "object-129",
+      "ref": "models/abandoned-farm-object-129",
+      "transform": {
+        "position": [
+          -1.9918392009863999,
+          7.079924855248593,
+          -4.325342624063835
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Table_13.006"
+    },
+    {
+      "id": "object-130",
+      "ref": "models/abandoned-farm-object-130",
+      "transform": {
+        "position": [
+          -1.8121169638905599,
+          7.89190452922664,
+          -4.324062409723527
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Dish.003"
+    },
+    {
+      "id": "object-131",
+      "ref": "models/abandoned-farm-object-131",
+      "transform": {
+        "position": [
+          -2.786012510615147,
+          7.905982301222656,
+          -4.239116718869537
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Dish.004"
+    },
+    {
+      "id": "object-132",
+      "ref": "models/abandoned-farm-object-132",
+      "transform": {
+        "position": [
+          -1.9908471231150418,
+          7.905982301222656,
+          -4.720102120716332
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Dish.005"
+    },
+    {
+      "id": "object-133",
+      "ref": "models/abandoned-farm-object-133",
+      "transform": {
+        "position": [
+          0.8659937665016848,
+          -2.584958947254297e-7,
+          10.812082812354527
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "cosechas"
+    },
+    {
+      "id": "object-134",
+      "ref": "models/abandoned-farm-object-134",
+      "transform": {
+        "position": [
+          0,
+          -0.000003600546991323097,
+          -11.000000553832912
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane"
+    },
+    {
+      "id": "object-135",
+      "ref": "models/abandoned-farm-object-135",
+      "transform": {
+        "position": [
+          0,
+          4.549996358150656,
+          -11.000001676888838
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.001"
+    },
+    {
+      "id": "object-136",
+      "ref": "models/abandoned-farm-object-136",
+      "transform": {
+        "position": [
+          0,
+          -3.665715102276792e-8,
+          -3.5027946791721387e-7
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.002"
+    },
+    {
+      "id": "object-137",
+      "ref": "models/abandoned-farm-object-137",
+      "transform": {
+        "position": [
+          0,
+          -0.0000036282435185927566,
+          -11.000000424289075
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.003"
+    },
+    {
+      "id": "object-138",
+      "ref": "models/abandoned-farm-object-138",
+      "transform": {
+        "position": [
+          0,
+          6.899996356885459,
+          -11.000000894575422
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.004"
+    },
+    {
+      "id": "object-139",
+      "ref": "models/abandoned-farm-object-139",
+      "transform": {
+        "position": [
+          2.065359136917961,
+          0.09999987975366201,
+          1.232435714195085
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.005"
+    },
+    {
+      "id": "object-140",
+      "ref": "models/abandoned-farm-object-140",
+      "transform": {
+        "position": [
+          0,
+          8.827571643888248,
+          -0.0000015930986302647998
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.007"
+    },
+    {
+      "id": "object-141",
+      "ref": "models/abandoned-farm-object-141",
+      "transform": {
+        "position": [
+          -2.9999999329447746,
+          4.6623820298020695e-15,
+          -20.49625187917119
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.033"
+    },
+    {
+      "id": "object-142",
+      "ref": "models/abandoned-farm-object-142",
+      "transform": {
+        "position": [
+          -4.933333048224453,
+          -0.00000357981553672588,
+          -19.962751735770965
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.034"
+    },
+    {
+      "id": "object-143",
+      "ref": "models/abandoned-farm-object-143",
+      "transform": {
+        "position": [
+          0,
+          4.299998979609981,
+          -3.1000005684851697
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.035"
+    },
+    {
+      "id": "object-144",
+      "ref": "models/abandoned-farm-object-144",
+      "transform": {
+        "position": [
+          0.0003652572550194577,
+          0.0065574797213515425,
+          -10.998053073152663
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.036"
+    },
+    {
+      "id": "object-145",
+      "ref": "models/abandoned-farm-object-145",
+      "transform": {
+        "position": [
+          6.9999998435378075,
+          -0.0000034213341860927432,
+          -20.497499961461592
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.039"
+    },
+    {
+      "id": "object-146",
+      "ref": "models/abandoned-farm-object-146",
+      "transform": {
+        "position": [
+          -1.6302442975395173,
+          0.09999992679154975,
+          0.8102408665843295
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.008"
+    },
+    {
+      "id": "object-147",
+      "ref": "models/abandoned-farm-object-147",
+      "transform": {
+        "position": [
+          19.53599953943491,
+          -7.98311138221168e-9,
+          -14.523999775062965
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.003"
+    },
+    {
+      "id": "object-148",
+      "ref": "models/abandoned-farm-object-148",
+      "transform": {
+        "position": [
+          19.523999663379755,
+          -7.983114519701872e-9,
+          -1.4639999941606847
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.004"
+    },
+    {
+      "id": "object-149",
+      "ref": "models/abandoned-farm-object-149",
+      "transform": {
+        "position": [
+          18.100499618787318,
+          -7.983114490836079e-9,
+          -1.000000078659078
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.005"
+    },
+    {
+      "id": "object-150",
+      "ref": "models/abandoned-farm-object-150",
+      "transform": {
+        "position": [
+          16.1004996634908,
+          -7.983114490836079e-9,
+          -1.000000078659078
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.006"
+    },
+    {
+      "id": "object-151",
+      "ref": "models/abandoned-farm-object-151",
+      "transform": {
+        "position": [
+          14.100499708194285,
+          -7.983114490836079e-9,
+          -1.000000078659078
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.007"
+    },
+    {
+      "id": "object-152",
+      "ref": "models/abandoned-farm-object-152",
+      "transform": {
+        "position": [
+          12.100499752897768,
+          -7.983114490836079e-9,
+          -1.000000078659078
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.008"
+    },
+    {
+      "id": "object-153",
+      "ref": "models/abandoned-farm-object-153",
+      "transform": {
+        "position": [
+          19.99999957962911,
+          -2.1418578351329956e-9,
+          -2.999499909590931
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.010"
+    },
+    {
+      "id": "object-154",
+      "ref": "models/abandoned-farm-object-154",
+      "transform": {
+        "position": [
+          19.99999957962911,
+          -2.1418573910437957e-9,
+          -4.999499864887447
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.011"
+    },
+    {
+      "id": "object-155",
+      "ref": "models/abandoned-farm-object-155",
+      "transform": {
+        "position": [
+          19.99999957962911,
+          -2.1418569469545958e-9,
+          -6.9994998201839635
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.012"
+    },
+    {
+      "id": "object-156",
+      "ref": "models/abandoned-farm-object-156",
+      "transform": {
+        "position": [
+          19.99999957962911,
+          -2.141856502865396e-9,
+          -8.99949977548048
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.013"
+    },
+    {
+      "id": "object-157",
+      "ref": "models/abandoned-farm-object-157",
+      "transform": {
+        "position": [
+          19.99999957962911,
+          -2.141856058776196e-9,
+          -10.999499730776996
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.014"
+    },
+    {
+      "id": "object-158",
+      "ref": "models/abandoned-farm-object-158",
+      "transform": {
+        "position": [
+          19.99999957962911,
+          -2.141855614686996e-9,
+          -12.999499686073513
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.015"
+    },
+    {
+      "id": "object-159",
+      "ref": "models/abandoned-farm-object-159",
+      "transform": {
+        "position": [
+          17.999499574314818,
+          -3.6993944203521534e-9,
+          -14.999999705055593
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.016"
+    },
+    {
+      "id": "object-160",
+      "ref": "models/abandoned-farm-object-160",
+      "transform": {
+        "position": [
+          15.999499619018303,
+          -3.6993944203521534e-9,
+          -14.999999705055593
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.017"
+    },
+    {
+      "id": "object-161",
+      "ref": "models/abandoned-farm-object-161",
+      "transform": {
+        "position": [
+          13.999499663721787,
+          -3.6993944203521534e-9,
+          -14.999999705055593
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.018"
+    },
+    {
+      "id": "object-162",
+      "ref": "models/abandoned-farm-object-162",
+      "transform": {
+        "position": [
+          11.99949970842527,
+          -3.6993944203521534e-9,
+          -14.999999705055593
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.019"
+    },
+    {
+      "id": "object-163",
+      "ref": "models/abandoned-farm-object-163",
+      "transform": {
+        "position": [
+          9.999499753128754,
+          -3.6993944203521534e-9,
+          -14.999999705055593
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.020"
+    },
+    {
+      "id": "object-164",
+      "ref": "models/abandoned-farm-object-164",
+      "transform": {
+        "position": [
+          7.999499797832238,
+          -3.6993944203521534e-9,
+          -14.999999705055593
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "vall.021"
+    },
+    {
+      "id": "object-165",
+      "ref": "models/abandoned-farm-object-165",
+      "transform": {
+        "position": [
+          3.999999910593033,
+          1.5999998639821786,
+          -33.499499370557
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.012"
+    },
+    {
+      "id": "object-166",
+      "ref": "models/abandoned-farm-object-166",
+      "transform": {
+        "position": [
+          3.999999910593033,
+          -2.53000039763939,
+          -36.499499205277786
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.007"
+    },
+    {
+      "id": "object-167",
+      "ref": "models/abandoned-farm-object-167",
+      "transform": {
+        "position": [
+          1.0004999191046497,
+          1.5999998675584521,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.014"
+    },
+    {
+      "id": "object-168",
+      "ref": "models/abandoned-farm-object-168",
+      "transform": {
+        "position": [
+          -1.999499934422872,
+          -2.530000371413398,
+          -36.49999918413957
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.009"
+    },
+    {
+      "id": "object-169",
+      "ref": "models/abandoned-farm-object-169",
+      "transform": {
+        "position": [
+          -1.9494999855522237,
+          1.2799997667367153,
+          -36.49999920722165
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.015"
+    },
+    {
+      "id": "object-170",
+      "ref": "models/abandoned-farm-object-170",
+      "transform": {
+        "position": [
+          -4.9994999467848995,
+          1.5999998675584521,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.016"
+    },
+    {
+      "id": "object-171",
+      "ref": "models/abandoned-farm-object-171",
+      "transform": {
+        "position": [
+          -7.999499879729674,
+          1.5999998675584521,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.017"
+    },
+    {
+      "id": "object-172",
+      "ref": "models/abandoned-farm-object-172",
+      "transform": {
+        "position": [
+          -10.999499812674449,
+          1.5999998675584521,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.018"
+    },
+    {
+      "id": "object-173",
+      "ref": "models/abandoned-farm-object-173",
+      "transform": {
+        "position": [
+          -13.999499767338271,
+          -2.530000218825511,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.013"
+    },
+    {
+      "id": "object-174",
+      "ref": "models/abandoned-farm-object-174",
+      "transform": {
+        "position": [
+          -13.999499745619223,
+          1.5999998675584521,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.019"
+    },
+    {
+      "id": "object-175",
+      "ref": "models/abandoned-farm-object-175",
+      "transform": {
+        "position": [
+          -19.999499611508774,
+          1.5999998675584521,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.021"
+    },
+    {
+      "id": "object-176",
+      "ref": "models/abandoned-farm-object-176",
+      "transform": {
+        "position": [
+          -22.99949954445355,
+          1.5999998675584521,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.022"
+    },
+    {
+      "id": "object-177",
+      "ref": "models/abandoned-farm-object-177",
+      "transform": {
+        "position": [
+          -25.999499477398324,
+          1.5999998675584521,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.023"
+    },
+    {
+      "id": "object-178",
+      "ref": "models/abandoned-farm-object-178",
+      "transform": {
+        "position": [
+          -16.999999629155994,
+          -2.530000369951069,
+          -36.49999918464037
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.014"
+    },
+    {
+      "id": "object-179",
+      "ref": "models/abandoned-farm-object-179",
+      "transform": {
+        "position": [
+          -16.949499678775602,
+          0.8148379171447219,
+          -36.49999874430169
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.020"
+    },
+    {
+      "id": "object-180",
+      "ref": "models/abandoned-farm-object-180",
+      "transform": {
+        "position": [
+          -27.529999356046662,
+          1.599999863982178,
+          -30.49950039558593
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.026"
+    },
+    {
+      "id": "object-181",
+      "ref": "models/abandoned-farm-object-181",
+      "transform": {
+        "position": [
+          4.000499916305167,
+          1.5999998675584526,
+          -37.969999179914595
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.013"
+    },
+    {
+      "id": "object-182",
+      "ref": "models/abandoned-farm-object-182",
+      "transform": {
+        "position": [
+          -27.529999356046662,
+          1.59999986398218,
+          -39.49950019442026
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.024"
+    },
+    {
+      "id": "object-183",
+      "ref": "models/abandoned-farm-object-183",
+      "transform": {
+        "position": [
+          -27.529999356046662,
+          1.5999998639821786,
+          -33.49950032853071
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.025"
+    },
+    {
+      "id": "object-184",
+      "ref": "models/abandoned-farm-object-184",
+      "transform": {
+        "position": [
+          -28.9494595017405,
+          -2.5300004191686463,
+          -30.50049934244393
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.022"
+    },
+    {
+      "id": "object-185",
+      "ref": "models/abandoned-farm-object-185",
+      "transform": {
+        "position": [
+          -10.999499834393497,
+          -2.530000218825511,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.011"
+    },
+    {
+      "id": "object-186",
+      "ref": "models/abandoned-farm-object-186",
+      "transform": {
+        "position": [
+          -7.999499901448723,
+          -2.530000218825511,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.012"
+    },
+    {
+      "id": "object-187",
+      "ref": "models/abandoned-farm-object-187",
+      "transform": {
+        "position": [
+          -4.999499867367646,
+          -2.530000371413398,
+          -36.49999918413957
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.010"
+    },
+    {
+      "id": "object-188",
+      "ref": "models/abandoned-farm-object-188",
+      "transform": {
+        "position": [
+          -19.99949953209152,
+          -2.530000371413398,
+          -36.49999918413957
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.015"
+    },
+    {
+      "id": "object-189",
+      "ref": "models/abandoned-farm-object-189",
+      "transform": {
+        "position": [
+          -22.999499465036294,
+          -2.530000371413398,
+          -36.49999918413957
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.016"
+    },
+    {
+      "id": "object-190",
+      "ref": "models/abandoned-farm-object-190",
+      "transform": {
+        "position": [
+          -25.99949939798107,
+          -2.530000371413398,
+          -36.49999918413957
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.017"
+    },
+    {
+      "id": "object-191",
+      "ref": "models/abandoned-farm-object-191",
+      "transform": {
+        "position": [
+          1.0004999985219025,
+          -2.530000371413398,
+          -36.49999918413957
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.008"
+    },
+    {
+      "id": "object-192",
+      "ref": "models/abandoned-farm-object-192",
+      "transform": {
+        "position": [
+          3.999999910593033,
+          -2.530000550227278,
+          -33.49949907838591
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.006"
+    },
+    {
+      "id": "object-193",
+      "ref": "models/abandoned-farm-object-193",
+      "transform": {
+        "position": [
+          -28.999999353985054,
+          1.4999997483174243,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.018"
+    },
+    {
+      "id": "object-194",
+      "ref": "models/abandoned-farm-object-194",
+      "transform": {
+        "position": [
+          -28.999999353985054,
+          1.499999748317425,
+          -39.4999991171062
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.019"
+    },
+    {
+      "id": "object-195",
+      "ref": "models/abandoned-farm-object-195",
+      "transform": {
+        "position": [
+          -28.999999353985054,
+          1.4999997483174237,
+          -33.49999925121665
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.020"
+    },
+    {
+      "id": "object-196",
+      "ref": "models/abandoned-farm-object-196",
+      "transform": {
+        "position": [
+          -27.590499314623013,
+          -2.5300002482347006,
+          -33.49999918560586
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.021"
+    },
+    {
+      "id": "object-197",
+      "ref": "models/abandoned-farm-object-197",
+      "transform": {
+        "position": [
+          -27.590499314623013,
+          -2.530000248234699,
+          -39.49999905149541
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.023"
+    },
+    {
+      "id": "object-198",
+      "ref": "models/abandoned-farm-object-198",
+      "transform": {
+        "position": [
+          -31.999999286929828,
+          1.4999997483174243,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.024"
+    },
+    {
+      "id": "object-199",
+      "ref": "models/abandoned-farm-object-199",
+      "transform": {
+        "position": [
+          -31.999999286929828,
+          1.499999748317425,
+          -39.4999991171062
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.025"
+    },
+    {
+      "id": "object-200",
+      "ref": "models/abandoned-farm-object-200",
+      "transform": {
+        "position": [
+          -31.999999286929828,
+          1.4999997483174237,
+          -33.49999925121665
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.026"
+    },
+    {
+      "id": "object-201",
+      "ref": "models/abandoned-farm-object-201",
+      "transform": {
+        "position": [
+          -34.99999921987461,
+          1.4999997483174243,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.027"
+    },
+    {
+      "id": "object-202",
+      "ref": "models/abandoned-farm-object-202",
+      "transform": {
+        "position": [
+          -34.99999921987461,
+          1.499999748317425,
+          -39.4999991171062
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.028"
+    },
+    {
+      "id": "object-203",
+      "ref": "models/abandoned-farm-object-203",
+      "transform": {
+        "position": [
+          -34.99999921987461,
+          1.4999997483174237,
+          -33.49999925121665
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.029"
+    },
+    {
+      "id": "object-204",
+      "ref": "models/abandoned-farm-object-204",
+      "transform": {
+        "position": [
+          7.000499864411452,
+          -2.530000371413398,
+          -36.49999918413957
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.030"
+    },
+    {
+      "id": "object-205",
+      "ref": "models/abandoned-farm-object-205",
+      "transform": {
+        "position": [
+          10.000499797356227,
+          -2.530000371413398,
+          -36.49999918413957
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.031"
+    },
+    {
+      "id": "object-206",
+      "ref": "models/abandoned-farm-object-206",
+      "transform": {
+        "position": [
+          7.000499784994199,
+          1.5999998675584521,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.027"
+    },
+    {
+      "id": "object-207",
+      "ref": "models/abandoned-farm-object-207",
+      "transform": {
+        "position": [
+          10.000499717938974,
+          1.5999998675584521,
+          -36.499999184161425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.028"
+    },
+    {
+      "id": "object-208",
+      "ref": "models/abandoned-farm-object-208",
+      "transform": {
+        "position": [
+          13.760686373412614,
+          -2.5319401449936985,
+          -36.64567227371826
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid.032"
+    },
+    {
+      "id": "object-209",
+      "ref": "models/abandoned-farm-object-209",
+      "transform": {
+        "position": [
+          13.349499702529371,
+          0.5799997593347547,
+          -36.49999927596408
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "brid_rln.029"
+    },
+    {
+      "id": "object-210",
+      "ref": "models/abandoned-farm-object-210",
+      "transform": {
+        "position": [
+          3.999999910593033,
+          1.1999998666840082,
+          -31.864999479769647
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "esc_r.003"
+    },
+    {
+      "id": "object-211",
+      "ref": "models/abandoned-farm-object-211",
+      "transform": {
+        "position": [
+          3.999999910593033,
+          -0.3999999986090977,
+          -30.514999396696446
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "esc_r.010"
+    },
+    {
+      "id": "object-212",
+      "ref": "models/abandoned-farm-object-212",
+      "transform": {
+        "position": [
+          -30.3999998308252,
+          1.5999998094637466,
+          -37.59999842064629
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube"
+    },
+    {
+      "id": "object-213",
+      "ref": "models/abandoned-farm-object-213",
+      "transform": {
+        "position": [
+          -30.31229407860875,
+          1.590980711985968,
+          -39.949298194826625
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.002"
+    },
+    {
+      "id": "object-214",
+      "ref": "models/abandoned-farm-object-214",
+      "transform": {
+        "position": [
+          -30.399998915096234,
+          1.5999998094637815,
+          -35.39999994767656
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.001"
+    },
+    {
+      "id": "object-215",
+      "ref": "models/abandoned-farm-object-215",
+      "transform": {
+        "position": [
+          -30.312293920600673,
+          1.5909806865419358,
+          -33.25069528621349
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.003"
+    },
+    {
+      "id": "object-216",
+      "ref": "models/abandoned-farm-object-216",
+      "transform": {
+        "position": [
+          78.32194514035203,
+          12.902830244889634,
+          33.70541113526448
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.048"
+    },
+    {
+      "id": "object-217",
+      "ref": "models/abandoned-farm-object-217",
+      "transform": {
+        "position": [
+          76.73631212984296,
+          12.902983982763105,
+          35.98657829219533
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.053"
+    },
+    {
+      "id": "object-218",
+      "ref": "models/abandoned-farm-object-218",
+      "transform": {
+        "position": [
+          77.45408814067831,
+          12.902983982763107,
+          35.13651962966162
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.056"
+    },
+    {
+      "id": "object-219",
+      "ref": "models/abandoned-farm-object-219",
+      "transform": {
+        "position": [
+          75.62239653202457,
+          12.935786984709209,
+          37.27876208431167
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.059"
+    },
+    {
+      "id": "object-220",
+      "ref": "models/abandoned-farm-object-220",
+      "transform": {
+        "position": [
+          78.68255587698332,
+          13.882697344507676,
+          33.670554169204394
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Microondas.002"
+    },
+    {
+      "id": "object-221",
+      "ref": "models/abandoned-farm-object-221",
+      "transform": {
+        "position": [
+          75.1962399999667,
+          13.69852499251741,
+          34.83621089472324
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cylinder.001"
+    },
+    {
+      "id": "object-222",
+      "ref": "models/abandoned-farm-object-222",
+      "transform": {
+        "position": [
+          75.57525221520481,
+          13.700125019475411,
+          33.60366844119508
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cylinder.002"
+    },
+    {
+      "id": "object-223",
+      "ref": "models/abandoned-farm-object-223",
+      "transform": {
+        "position": [
+          74.69334671199626,
+          13.702200344398463,
+          34.600916447353825
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cylinder.003"
+    },
+    {
+      "id": "object-224",
+      "ref": "models/abandoned-farm-object-224",
+      "transform": {
+        "position": [
+          76.01097045659196,
+          13.867755729351341,
+          36.480338379811656
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Sarten.001"
+    },
+    {
+      "id": "object-225",
+      "ref": "models/abandoned-farm-object-225",
+      "transform": {
+        "position": [
+          76.72286948767186,
+          13.820856575174071,
+          35.98659492455282
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Olla.001"
+    },
+    {
+      "id": "object-226",
+      "ref": "models/abandoned-farm-object-226",
+      "transform": {
+        "position": [
+          75.49774244697346,
+          13.700856802210739,
+          33.92712656124327
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Olla.002"
+    },
+    {
+      "id": "object-227",
+      "ref": "models/abandoned-farm-object-227",
+      "transform": {
+        "position": [
+          76.74489996278433,
+          13.92735761619253,
+          35.974806986805426
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cylinder.004"
+    },
+    {
+      "id": "object-228",
+      "ref": "models/abandoned-farm-object-228",
+      "transform": {
+        "position": [
+          75.10498141084747,
+          13.70086188219109,
+          34.15019211706013
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.062"
+    },
+    {
+      "id": "object-229",
+      "ref": "models/abandoned-farm-object-229",
+      "transform": {
+        "position": [
+          74.95578421484026,
+          13.69811224982949,
+          34.6301134555355
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.063"
+    },
+    {
+      "id": "object-230",
+      "ref": "models/abandoned-farm-object-230",
+      "transform": {
+        "position": [
+          75.78358952014234,
+          13.70491111649011,
+          33.87848684553547
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.064"
+    },
+    {
+      "id": "object-231",
+      "ref": "models/abandoned-farm-object-231",
+      "transform": {
+        "position": [
+          78.32564275009511,
+          13.886327869483626,
+          34.30154166835253
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cylinder.006"
+    },
+    {
+      "id": "object-232",
+      "ref": "models/abandoned-farm-object-232",
+      "transform": {
+        "position": [
+          78.82142462360795,
+          14.72195382950923,
+          33.45795903126249
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.065"
+    },
+    {
+      "id": "object-233",
+      "ref": "models/abandoned-farm-object-233",
+      "transform": {
+        "position": [
+          78.07665928134674,
+          13.881012608212838,
+          34.60956331914311
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Botella.003"
+    },
+    {
+      "id": "object-234",
+      "ref": "models/abandoned-farm-object-234",
+      "transform": {
+        "position": [
+          76.09265059908347,
+          12.93807155312281,
+          36.71872042569119
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.069"
+    },
+    {
+      "id": "object-235",
+      "ref": "models/abandoned-farm-object-235",
+      "transform": {
+        "position": [
+          76.98558551288795,
+          13.881623243614866,
+          35.63982187313232
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cylinder.013"
+    },
+    {
+      "id": "object-236",
+      "ref": "models/abandoned-farm-object-236",
+      "transform": {
+        "position": [
+          76.09445605924628,
+          13.699804211806143,
+          33.851265686677074
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cylinder.014"
+    },
+    {
+      "id": "object-237",
+      "ref": "models/abandoned-farm-object-237",
+      "transform": {
+        "position": [
+          78.28416618139511,
+          13.891014017960382,
+          34.011413775092905
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cylinder.016"
+    },
+    {
+      "id": "object-238",
+      "ref": "models/abandoned-farm-object-238",
+      "transform": {
+        "position": [
+          78.19926338488061,
+          13.884700247196308,
+          33.02990589024442
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Licuadora.001"
+    },
+    {
+      "id": "object-239",
+      "ref": "models/abandoned-farm-object-239",
+      "transform": {
+        "position": [
+          78.16262581020825,
+          14.72195382950923,
+          32.90515875064979
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.070"
+    },
+    {
+      "id": "object-240",
+      "ref": "models/abandoned-farm-object-240",
+      "transform": {
+        "position": [
+          74.92986249096126,
+          13.70086210635462,
+          34.359559801154504
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.073"
+    },
+    {
+      "id": "object-241",
+      "ref": "models/abandoned-farm-object-241",
+      "transform": {
+        "position": [
+          74.98807527655269,
+          13.698112093529074,
+          34.737214658177024
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.074"
+    },
+    {
+      "id": "object-242",
+      "ref": "models/abandoned-farm-object-242",
+      "transform": {
+        "position": [
+          78.18290098995105,
+          13.884911112466796,
+          34.2861113481431
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.075"
+    },
+    {
+      "id": "object-243",
+      "ref": "models/abandoned-farm-object-243",
+      "transform": {
+        "position": [
+          79.01311719919994,
+          12.894398274351675,
+          31.560815295731032
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Toilet_01.001"
+    },
+    {
+      "id": "object-244",
+      "ref": "models/abandoned-farm-object-244",
+      "transform": {
+        "position": [
+          80.0035860402009,
+          13.918355504496681,
+          32.14176899743419
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Watering_can_01.001"
+    },
+    {
+      "id": "object-245",
+      "ref": "models/abandoned-farm-object-245",
+      "transform": {
+        "position": [
+          78.28324751129361,
+          12.904285453737415,
+          30.859081731552877
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Washbasin_07.001"
+    },
+    {
+      "id": "object-246",
+      "ref": "models/abandoned-farm-object-246",
+      "transform": {
+        "position": [
+          78.49496403491676,
+          13.683304941555072,
+          30.845062739255198
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Hand_soap_03.001"
+    },
+    {
+      "id": "object-247",
+      "ref": "models/abandoned-farm-object-247",
+      "transform": {
+        "position": [
+          78.03965645880271,
+          13.681009602697753,
+          30.355045708230595
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soap_02.001"
+    },
+    {
+      "id": "object-248",
+      "ref": "models/abandoned-farm-object-248",
+      "transform": {
+        "position": [
+          78.58020799430281,
+          13.683193203077797,
+          31.231223514770114
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "toothpaste_03.001"
+    },
+    {
+      "id": "object-249",
+      "ref": "models/abandoned-farm-object-249",
+      "transform": {
+        "position": [
+          79.03265937228129,
+          14.756179963702818,
+          31.188065703434916
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Paper_rolls.001"
+    },
+    {
+      "id": "object-250",
+      "ref": "models/abandoned-farm-object-250",
+      "transform": {
+        "position": [
+          78.69417304809718,
+          14.756179671276382,
+          30.94700857887167
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Paper_rolls_02.001"
+    },
+    {
+      "id": "object-251",
+      "ref": "models/abandoned-farm-object-251",
+      "transform": {
+        "position": [
+          79.53226873067356,
+          14.25252126165569,
+          31.60101736534535
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Shampoo.001"
+    },
+    {
+      "id": "object-252",
+      "ref": "models/abandoned-farm-object-252",
+      "transform": {
+        "position": [
+          79.72285954074408,
+          14.255373387289664,
+          31.747257593507452
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Shampoo_01.001"
+    },
+    {
+      "id": "object-253",
+      "ref": "models/abandoned-farm-object-253",
+      "transform": {
+        "position": [
+          79.68866521354158,
+          14.255373385596744,
+          31.834689220120772
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Shampoo_02.001"
+    },
+    {
+      "id": "object-254",
+      "ref": "models/abandoned-farm-object-254",
+      "transform": {
+        "position": [
+          79.66000797605975,
+          14.255259074370173,
+          31.628585722700148
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Shampoo_03.001"
+    },
+    {
+      "id": "object-255",
+      "ref": "models/abandoned-farm-object-255",
+      "transform": {
+        "position": [
+          79.56723257246364,
+          14.256196784399004,
+          31.742598076193758
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Shampoo_04.001"
+    },
+    {
+      "id": "object-256",
+      "ref": "models/abandoned-farm-object-256",
+      "transform": {
+        "position": [
+          78.20984946259223,
+          13.562555886800649,
+          32.49927191515368
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Carrier_02.002"
+    },
+    {
+      "id": "object-257",
+      "ref": "models/abandoned-farm-object-257",
+      "transform": {
+        "position": [
+          78.8846954795847,
+          14.539217080273191,
+          31.061735126403303
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Shelf_01.003"
+    },
+    {
+      "id": "object-258",
+      "ref": "models/abandoned-farm-object-258",
+      "transform": {
+        "position": [
+          76.27135667927739,
+          12.885966453463903,
+          31.439822644207716
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Broom_01.001"
+    },
+    {
+      "id": "object-259",
+      "ref": "models/abandoned-farm-object-259",
+      "transform": {
+        "position": [
+          78.60949104641085,
+          12.879039914323506,
+          27.047913120919695
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Basket.001"
+    },
+    {
+      "id": "object-260",
+      "ref": "models/abandoned-farm-object-260",
+      "transform": {
+        "position": [
+          76.77909030197638,
+          12.906545564729143,
+          30.943707781739178
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Basket_01.001"
+    },
+    {
+      "id": "object-261",
+      "ref": "models/abandoned-farm-object-261",
+      "transform": {
+        "position": [
+          77.48270814492584,
+          12.884766458955111,
+          30.15646395271161
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Washing_machine.001"
+    },
+    {
+      "id": "object-262",
+      "ref": "models/abandoned-farm-object-262",
+      "transform": {
+        "position": [
+          79.46192692938888,
+          14.255373387289664,
+          31.48099295102143
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Softener.001"
+    },
+    {
+      "id": "object-263",
+      "ref": "models/abandoned-farm-object-263",
+      "transform": {
+        "position": [
+          79.37014471182067,
+          14.257199347324558,
+          31.590370381869278
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Softener_01.001"
+    },
+    {
+      "id": "object-264",
+      "ref": "models/abandoned-farm-object-264",
+      "transform": {
+        "position": [
+          79.36626776072892,
+          14.255373385544631,
+          31.40186452777087
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Softener_02.001"
+    },
+    {
+      "id": "object-265",
+      "ref": "models/abandoned-farm-object-265",
+      "transform": {
+        "position": [
+          79.28105433627533,
+          14.257831334899878,
+          31.487538359630317
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soap_powder.001"
+    },
+    {
+      "id": "object-266",
+      "ref": "models/abandoned-farm-object-266",
+      "transform": {
+        "position": [
+          78.77232755163777,
+          14.257831350512882,
+          30.922494603412225
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soap_powder_01.001"
+    },
+    {
+      "id": "object-267",
+      "ref": "models/abandoned-farm-object-267",
+      "transform": {
+        "position": [
+          78.9903447102622,
+          14.257831347150624,
+          31.10663684660407
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soap_powder_02.001"
+    },
+    {
+      "id": "object-268",
+      "ref": "models/abandoned-farm-object-268",
+      "transform": {
+        "position": [
+          78.8846954795847,
+          14.039217091449062,
+          31.061735126403303
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Shelf_01.004"
+    },
+    {
+      "id": "object-269",
+      "ref": "models/abandoned-farm-object-269",
+      "transform": {
+        "position": [
+          77.90343345381616,
+          13.562555886800649,
+          32.24215278027574
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Carrier_02.003"
+    },
+    {
+      "id": "object-270",
+      "ref": "models/abandoned-farm-object-270",
+      "transform": {
+        "position": [
+          79.51284487960697,
+          14.039217091449062,
+          31.58882251696573
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Shelf_01.005"
+    },
+    {
+      "id": "object-271",
+      "ref": "models/abandoned-farm-object-271",
+      "transform": {
+        "position": [
+          79.48957829777304,
+          12.899999683485525,
+          32.534357170243055
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "shower_bas.001"
+    },
+    {
+      "id": "object-272",
+      "ref": "models/abandoned-farm-object-272",
+      "transform": {
+        "position": [
+          73.42657693416265,
+          12.902602916912821,
+          39.180577809430986
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Armchair_07.001"
+    },
+    {
+      "id": "object-273",
+      "ref": "models/abandoned-farm-object-273",
+      "transform": {
+        "position": [
+          73.148314636101,
+          12.917209943007132,
+          35.77056352924999
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Armchair_19.001"
+    },
+    {
+      "id": "object-274",
+      "ref": "models/abandoned-farm-object-274",
+      "transform": {
+        "position": [
+          71.97741782347524,
+          12.903838307226575,
+          35.865593305932876
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Armchair_17.001"
+    },
+    {
+      "id": "object-275",
+      "ref": "models/abandoned-farm-object-275",
+      "transform": {
+        "position": [
+          74.81052857822512,
+          12.887831569292006,
+          38.21739205288125
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Armchair.001"
+    },
+    {
+      "id": "object-276",
+      "ref": "models/abandoned-farm-object-276",
+      "transform": {
+        "position": [
+          79.09803637693872,
+          12.897165459347685,
+          28.174013874750386
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cylinder.017"
+    },
+    {
+      "id": "object-277",
+      "ref": "models/abandoned-farm-object-277",
+      "transform": {
+        "position": [
+          77.9497379372481,
+          12.90146855159798,
+          27.76243524718295
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Lamps_01.001"
+    },
+    {
+      "id": "object-278",
+      "ref": "models/abandoned-farm-object-278",
+      "transform": {
+        "position": [
+          78.20281794743389,
+          12.903969778623246,
+          29.86114824241728
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cajonera.001"
+    },
+    {
+      "id": "object-279",
+      "ref": "models/abandoned-farm-object-279",
+      "transform": {
+        "position": [
+          79.5456769676297,
+          12.893740519750054,
+          27.659850971532908
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Table_36.001"
+    },
+    {
+      "id": "object-280",
+      "ref": "models/abandoned-farm-object-280",
+      "transform": {
+        "position": [
+          74.07291753538877,
+          14.547010174572229,
+          31.518342899962896
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Lamps_04.003"
+    },
+    {
+      "id": "object-281",
+      "ref": "models/abandoned-farm-object-281",
+      "transform": {
+        "position": [
+          72.22682922485842,
+          13.971503350769195,
+          34.06690139562868
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Paintings_02.001"
+    },
+    {
+      "id": "object-282",
+      "ref": "models/abandoned-farm-object-282",
+      "transform": {
+        "position": [
+          75.15275263999678,
+          14.117219911477617,
+          38.47716554179715
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Paintings_03.001"
+    },
+    {
+      "id": "object-283",
+      "ref": "models/abandoned-farm-object-283",
+      "transform": {
+        "position": [
+          78.8133871926151,
+          14.159719500322547,
+          30.676763858243113
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Paintings.001"
+    },
+    {
+      "id": "object-284",
+      "ref": "models/abandoned-farm-object-284",
+      "transform": {
+        "position": [
+          79.53123365968051,
+          15.417785412784715,
+          29.038551610267227
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Lamps_06.004"
+    },
+    {
+      "id": "object-285",
+      "ref": "models/abandoned-farm-object-285",
+      "transform": {
+        "position": [
+          72.5302222573707,
+          14.547010174572229,
+          33.35685604246267
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Lamps_04.004"
+    },
+    {
+      "id": "object-286",
+      "ref": "models/abandoned-farm-object-286",
+      "transform": {
+        "position": [
+          72.1838644135646,
+          14.547010160866282,
+          37.58516342032115
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Lamps_04.005"
+    },
+    {
+      "id": "object-287",
+      "ref": "models/abandoned-farm-object-287",
+      "transform": {
+        "position": [
+          78.11444658197317,
+          15.417785412784715,
+          31.504869914515716
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Lamps_06.005"
+    },
+    {
+      "id": "object-288",
+      "ref": "models/abandoned-farm-object-288",
+      "transform": {
+        "position": [
+          76.34194662159163,
+          15.417785412784715,
+          33.15053394023226
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Lamps_06.006"
+    },
+    {
+      "id": "object-289",
+      "ref": "models/abandoned-farm-object-289",
+      "transform": {
+        "position": [
+          73.51368496605821,
+          15.417785412784713,
+          36.52113200942477
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Lamps_06.007"
+    },
+    {
+      "id": "object-290",
+      "ref": "models/abandoned-farm-object-290",
+      "transform": {
+        "position": [
+          73.66134327376551,
+          12.888669625077833,
+          29.660879595684527
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plants_02.002"
+    },
+    {
+      "id": "object-291",
+      "ref": "models/abandoned-farm-object-291",
+      "transform": {
+        "position": [
+          74.60953529744948,
+          12.91079547949409,
+          31.748812067621337
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plants_01.002"
+    },
+    {
+      "id": "object-292",
+      "ref": "models/abandoned-farm-object-292",
+      "transform": {
+        "position": [
+          68.47303212877512,
+          12.888669673933972,
+          35.86578917288903
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plants_02.003"
+    },
+    {
+      "id": "object-293",
+      "ref": "models/abandoned-farm-object-293",
+      "transform": {
+        "position": [
+          73.33858968805097,
+          12.910795525048922,
+          39.9505433823749
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plants_01.003"
+    },
+    {
+      "id": "object-294",
+      "ref": "models/abandoned-farm-object-294",
+      "transform": {
+        "position": [
+          76.55189536615822,
+          12.899999386984831,
+          32.869453838607086
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.013"
+    },
+    {
+      "id": "object-295",
+      "ref": "models/abandoned-farm-object-295",
+      "transform": {
+        "position": [
+          77.2787824547154,
+          12.899304157077273,
+          31.847614037372978
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.023"
+    },
+    {
+      "id": "object-296",
+      "ref": "models/abandoned-farm-object-296",
+      "transform": {
+        "position": [
+          73.12269807933899,
+          12.901846989170533,
+          32.9268876381512
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.025"
+    },
+    {
+      "id": "object-297",
+      "ref": "models/abandoned-farm-object-297",
+      "transform": {
+        "position": [
+          73.74824005754454,
+          12.901846989170533,
+          32.1502836516034
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.027"
+    },
+    {
+      "id": "object-298",
+      "ref": "models/abandoned-farm-object-298",
+      "transform": {
+        "position": [
+          77.22589614168541,
+          13.736199550558789,
+          36.11108995599797
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "contWindow.002"
+    },
+    {
+      "id": "object-299",
+      "ref": "models/abandoned-farm-object-299",
+      "transform": {
+        "position": [
+          76.54929778137785,
+          15.499999209144656,
+          32.88032820734615
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.029"
+    },
+    {
+      "id": "object-300",
+      "ref": "models/abandoned-farm-object-300",
+      "transform": {
+        "position": [
+          81.22523520938671,
+          12.899999553462166,
+          30.7272367730155
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.036"
+    },
+    {
+      "id": "object-301",
+      "ref": "models/abandoned-farm-object-301",
+      "transform": {
+        "position": [
+          72.91750325532259,
+          12.899304157077271,
+          37.97862220111551
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.030"
+    },
+    {
+      "id": "object-302",
+      "ref": "models/abandoned-farm-object-302",
+      "transform": {
+        "position": [
+          80.61992588530657,
+          12.899999672647574,
+          29.95823929635969
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "bed.006"
+    },
+    {
+      "id": "object-303",
+      "ref": "models/abandoned-farm-object-303",
+      "transform": {
+        "position": [
+          75.39929877352567,
+          12.699998925047549,
+          33.400135537553524
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.037"
+    },
+    {
+      "id": "object-304",
+      "ref": "models/abandoned-farm-object-304",
+      "transform": {
+        "position": [
+          75.41997739210554,
+          12.899999496678669,
+          34.210647886821036
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "table_trpark.001"
+    },
+    {
+      "id": "object-305",
+      "ref": "models/abandoned-farm-object-305",
+      "transform": {
+        "position": [
+          74.4688522911514,
+          13.659998563146168,
+          29.62687227803145
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.039"
+    },
+    {
+      "id": "object-306",
+      "ref": "models/abandoned-farm-object-306",
+      "transform": {
+        "position": [
+          72.92326855307263,
+          12.89999858867772,
+          29.792926269298736
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.040"
+    },
+    {
+      "id": "object-307",
+      "ref": "models/abandoned-farm-object-307",
+      "transform": {
+        "position": [
+          70.63925738961134,
+          12.899998584669232,
+          32.521884274825894
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.041"
+    },
+    {
+      "id": "object-308",
+      "ref": "models/abandoned-farm-object-308",
+      "transform": {
+        "position": [
+          68.93588037219871,
+          12.899998584669232,
+          34.551900002251784
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.042"
+    },
+    {
+      "id": "object-309",
+      "ref": "models/abandoned-farm-object-309",
+      "transform": {
+        "position": [
+          68.6437829626243,
+          12.89999858170139,
+          36.49784690260169
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.043"
+    },
+    {
+      "id": "object-310",
+      "ref": "models/abandoned-farm-object-310",
+      "transform": {
+        "position": [
+          70.32907589370507,
+          12.899998581701388,
+          37.911980171774594
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.044"
+    },
+    {
+      "id": "object-311",
+      "ref": "models/abandoned-farm-object-311",
+      "transform": {
+        "position": [
+          72.29015189728281,
+          12.899998581701388,
+          39.55751321609054
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.045"
+    },
+    {
+      "id": "object-312",
+      "ref": "models/abandoned-farm-object-312",
+      "transform": {
+        "position": [
+          73.94441687314011,
+          12.899998588677716,
+          39.96385424423198
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.046"
+    },
+    {
+      "id": "object-313",
+      "ref": "models/abandoned-farm-object-313",
+      "transform": {
+        "position": [
+          71.370946219475,
+          12.499999708610432,
+          31.338012727661237
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "esc_r.012"
+    },
+    {
+      "id": "object-314",
+      "ref": "models/abandoned-farm-object-314",
+      "transform": {
+        "position": [
+          71.89088189258649,
+          12.499999653036916,
+          30.722429773251072
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "esc_r.013"
+    },
+    {
+      "id": "object-315",
+      "ref": "models/abandoned-farm-object-315",
+      "transform": {
+        "position": [
+          71.14112688867436,
+          12.29999971308078,
+          31.145175817908978
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "esc_r.014"
+    },
+    {
+      "id": "object-316",
+      "ref": "models/abandoned-farm-object-316",
+      "transform": {
+        "position": [
+          71.66106256178585,
+          12.299999657507264,
+          30.529592863498813
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "esc_r.015"
+    },
+    {
+      "id": "object-317",
+      "ref": "models/abandoned-farm-object-317",
+      "transform": {
+        "position": [
+          70.91131244068612,
+          12.099999717551128,
+          30.95233890815672
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "esc_r.016"
+    },
+    {
+      "id": "object-318",
+      "ref": "models/abandoned-farm-object-318",
+      "transform": {
+        "position": [
+          71.43124811379761,
+          12.099999661977613,
+          30.336755953746554
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "esc_r.017"
+    },
+    {
+      "id": "object-319",
+      "ref": "models/abandoned-farm-object-319",
+      "transform": {
+        "position": [
+          75.35060108652749,
+          12.099997850764483,
+          33.411496459663425
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.047"
+    },
+    {
+      "id": "object-320",
+      "ref": "models/abandoned-farm-object-320",
+      "transform": {
+        "position": [
+          79.7086056369415,
+          13.597399417006423,
+          27.635407855539555
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "monitor.002"
+    },
+    {
+      "id": "object-321",
+      "ref": "models/abandoned-farm-object-321",
+      "transform": {
+        "position": [
+          79.90016628058427,
+          13.596967003846455,
+          28.00842311084819
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "mouse.002"
+    },
+    {
+      "id": "object-322",
+      "ref": "models/abandoned-farm-object-322",
+      "transform": {
+        "position": [
+          79.28501676183748,
+          13.597199486913171,
+          27.418357701740653
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "case pc.002"
+    },
+    {
+      "id": "object-323",
+      "ref": "models/abandoned-farm-object-323",
+      "transform": {
+        "position": [
+          79.76745948507832,
+          13.597598946840654,
+          27.565270434743162
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "parlant.002"
+    },
+    {
+      "id": "object-324",
+      "ref": "models/abandoned-farm-object-324",
+      "transform": {
+        "position": [
+          79.58981850433827,
+          13.596799914386358,
+          27.776972881399544
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "keyboard.002"
+    },
+    {
+      "id": "object-325",
+      "ref": "models/abandoned-farm-object-325",
+      "transform": {
+        "position": [
+          25.68743254395215,
+          -0.7636184550714284,
+          -0.6341814936139798
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Tree"
+    },
+    {
+      "id": "object-326",
+      "ref": "models/abandoned-farm-object-326",
+      "transform": {
+        "position": [
+          24.64575235592381,
+          -0.5013020210962585,
+          -1.4410287966474442
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "cespe1"
+    },
+    {
+      "id": "object-327",
+      "ref": "models/abandoned-farm-object-327",
+      "transform": {
+        "position": [
+          24.77587453776877,
+          -11.00001687140554,
+          -1.3256809468884825
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "globaltrees"
+    },
+    {
+      "id": "object-328",
+      "ref": "models/abandoned-farm-object-328",
+      "transform": {
+        "position": [
+          9.041206461590262,
+          -0.6000000773092373,
+          -17.52946983812913
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "letrina.006"
+    },
+    {
+      "id": "object-329",
+      "ref": "models/abandoned-farm-object-329",
+      "transform": {
+        "position": [
+          -6.999998018705966,
+          -0.6299627058970021,
+          -68.99999008521365
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "watertower.001"
+    },
+    {
+      "id": "object-330",
+      "ref": "models/abandoned-farm-object-330",
+      "transform": {
+        "position": [
+          30.999999307192176,
+          -0.003111651083436089,
+          -2.999999933040946
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "molino.001"
+    },
+    {
+      "id": "object-331",
+      "ref": "models/abandoned-farm-object-331",
+      "transform": {
+        "position": [
+          63.999998569488525,
+          -2.0661693807843109e-7,
+          -74.99999832361937
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "radio_tower.003"
+    },
+    {
+      "id": "object-332",
+      "ref": "models/abandoned-farm-object-332",
+      "transform": {
+        "position": [
+          -9.374097013528516,
+          0.0015979741039537573,
+          82.05641698924595
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Combi.001"
+    },
+    {
+      "id": "object-333",
+      "ref": "models/abandoned-farm-object-333",
+      "transform": {
+        "position": [
+          27.605888480087323,
+          5.4799947598693635,
+          0.39410903127606733
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.128"
+    },
+    {
+      "id": "object-334",
+      "ref": "models/abandoned-farm-object-334",
+      "transform": {
+        "position": [
+          66.87987289117365,
+          12.536048577340578,
+          44.03298048970308
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Auto.012"
+    },
+    {
+      "id": "object-335",
+      "ref": "models/abandoned-farm-object-335",
+      "transform": {
+        "position": [
+          47.16274851507361,
+          -0.11901654439877252,
+          -63.957523209448254
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "B.007"
+    },
+    {
+      "id": "object-336",
+      "ref": "models/abandoned-farm-object-336",
+      "transform": {
+        "position": [
+          4.919835841590791,
+          0.03207378969001651,
+          -23.07341010600413
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "B.008"
+    },
+    {
+      "id": "object-337",
+      "ref": "models/abandoned-farm-object-337",
+      "transform": {
+        "position": [
+          4.77635029607228,
+          0.005436022863266832,
+          0.7435977769583959
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "C.029"
+    },
+    {
+      "id": "object-338",
+      "ref": "models/abandoned-farm-object-338",
+      "transform": {
+        "position": [
+          -8.095603235403088,
+          0.0014560053881438328,
+          -2.641961861510543
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cube.181"
+    },
+    {
+      "id": "object-339",
+      "ref": "models/abandoned-farm-object-339",
+      "transform": {
+        "position": [
+          75.12696117205763,
+          13.69449063422436,
+          35.00065590418737
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Soda_07.001"
+    },
+    {
+      "id": "object-340",
+      "ref": "models/abandoned-farm-object-340",
+      "transform": {
+        "position": [
+          74.89797195952622,
+          13.697061834312857,
+          34.13472336416316
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cylinder.085"
+    },
+    {
+      "id": "object-341",
+      "ref": "models/abandoned-farm-object-341",
+      "transform": {
+        "position": [
+          75.52938796208514,
+          13.701389120503174,
+          34.46067306994881
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Pizza_02.001"
+    },
+    {
+      "id": "object-342",
+      "ref": "models/abandoned-farm-object-342",
+      "transform": {
+        "position": [
+          -0.043775140260715606,
+          0.7853923182604545,
+          -20.241784313579245
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Toilet_paper_01.002"
+    },
+    {
+      "id": "object-343",
+      "ref": "models/abandoned-farm-object-343",
+      "transform": {
+        "position": [
+          0.1237742873182679,
+          0.7879323919188622,
+          -19.959556440760075
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cooking_oil.001"
+    },
+    {
+      "id": "object-344",
+      "ref": "models/abandoned-farm-object-344",
+      "transform": {
+        "position": [
+          0.3984782702070859,
+          0.7920795444519331,
+          -19.959556464759302
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Cooking_oil_02.001"
+    },
+    {
+      "id": "object-345",
+      "ref": "models/abandoned-farm-object-345",
+      "transform": {
+        "position": [
+          0.24869787315938258,
+          0.7784339665321658,
+          -20.27352127704142
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Sauce_01.001"
+    },
+    {
+      "id": "object-346",
+      "ref": "models/abandoned-farm-object-346",
+      "transform": {
+        "position": [
+          -9.359513349022414,
+          0.7808509225011486,
+          -6.695321064358987
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Knife_05.001"
+    },
+    {
+      "id": "object-347",
+      "ref": "models/abandoned-farm-object-347",
+      "transform": {
+        "position": [
+          0.3531825558874928,
+          0.7713779150585542,
+          -20.554715391138323
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "bread_02.001"
+    },
+    {
+      "id": "object-348",
+      "ref": "models/abandoned-farm-object-348",
+      "transform": {
+        "position": [
+          -8.504710781557751,
+          -0.07375187690957818,
+          -8.37191790702866
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "C.013"
+    },
+    {
+      "id": "object-349",
+      "ref": "models/abandoned-farm-object-349",
+      "transform": {
+        "position": [
+          20.80684338811902,
+          0.0019998937647209836,
+          4.071901978115379
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Tracktorxd"
+    },
+    {
+      "id": "object-350",
+      "ref": "models/abandoned-farm-object-350",
+      "transform": {
+        "position": [
+          14.999999680794168,
+          -0.20000067393637266,
+          4.999999906190787
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "heno1"
+    },
+    {
+      "id": "object-351",
+      "ref": "models/abandoned-farm-object-351",
+      "transform": {
+        "position": [
+          39.99999910593033,
+          -0.12503628443189255,
+          2.9982947814991014
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "heno2"
+    },
+    {
+      "id": "object-352",
+      "ref": "models/abandoned-farm-object-352",
+      "transform": {
+        "position": [
+          16.999999381601818,
+          -0.45558480193811685,
+          21.014426305646477
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "heno2.001"
+    },
+    {
+      "id": "object-353",
+      "ref": "models/abandoned-farm-object-353",
+      "transform": {
+        "position": [
+          16.875219409525513,
+          -0.17107866825572438,
+          -13.08163465760525
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.032"
+    },
+    {
+      "id": "object-354",
+      "ref": "models/abandoned-farm-object-354",
+      "transform": {
+        "position": [
+          26.48776895442591,
+          -0.12664103058803824,
+          -10.326413185267318
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.037"
+    },
+    {
+      "id": "object-355",
+      "ref": "models/abandoned-farm-object-355",
+      "transform": {
+        "position": [
+          7.499999783183741,
+          -4.887620308628937e-8,
+          -7.499999832361942
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.040"
+    },
+    {
+      "id": "object-356",
+      "ref": "models/abandoned-farm-object-356",
+      "transform": {
+        "position": [
+          7.4999985393425295,
+          -7.47523863813964e-8,
+          -8.499999891617538
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.041"
+    },
+    {
+      "id": "object-357",
+      "ref": "models/abandoned-farm-object-357",
+      "transform": {
+        "position": [
+          7.5000010038868385,
+          -4.8876202708813554e-8,
+          -9.199999794363983
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.042"
+    },
+    {
+      "id": "object-358",
+      "ref": "models/abandoned-farm-object-358",
+      "transform": {
+        "position": [
+          7.499999849348965,
+          -2.2649369829821325e-8,
+          -9.899999197788603
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.043"
+    },
+    {
+      "id": "object-359",
+      "ref": "models/abandoned-farm-object-359",
+      "transform": {
+        "position": [
+          0.7615413555506858,
+          0.06500229809388927,
+          -18.61026689927829
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.044"
+    },
+    {
+      "id": "object-360",
+      "ref": "models/abandoned-farm-object-360",
+      "transform": {
+        "position": [
+          -0.2462540742411134,
+          0.06363791162707322,
+          -18.50122280093133
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.045"
+    },
+    {
+      "id": "object-361",
+      "ref": "models/abandoned-farm-object-361",
+      "transform": {
+        "position": [
+          1.4460547522217067,
+          0.0005085788950010273,
+          -19.395679597885525
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.046"
+    },
+    {
+      "id": "object-362",
+      "ref": "models/abandoned-farm-object-362",
+      "transform": {
+        "position": [
+          2.048525057481791,
+          0.022671335228968303,
+          -19.85286953929849
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "name": "Plane.047"
+    }
+  ],
+  "cameras": [
+    {
+      "id": "main-camera",
+      "position": [
+        222.34187964330872,
+        163.7599732731895,
+        209.48224433386287
+      ],
+      "target": [
+        11.533954362557353,
+        16.194425576663548,
+        -1.3256809468884825
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-324",
+  "name": "keyboard.002",
+  "dimensions": {
+    "w": 0.5820909142494202,
+    "h": 0.016799991950392723,
+    "d": 0.5303229689598083
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

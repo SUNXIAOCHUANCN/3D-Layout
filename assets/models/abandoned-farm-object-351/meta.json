@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-351",
+  "name": "heno2",
+  "dimensions": {
+    "w": 10.115177154541016,
+    "h": 1.8990702629089355,
+    "d": 10.115203857421875
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

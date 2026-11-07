@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-245",
+  "name": "Washbasin_07.001",
+  "dimensions": {
+    "w": 1.4338936805725098,
+    "h": 1.0611342191696167,
+    "d": 1.355164885520935
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

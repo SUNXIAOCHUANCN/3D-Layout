@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-290",
+  "name": "Plants_02.002",
+  "dimensions": {
+    "w": 0.8496683835983276,
+    "h": 0.9659982323646545,
+    "d": 0.8431865572929382
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

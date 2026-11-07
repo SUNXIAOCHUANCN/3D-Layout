@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-318",
+  "name": "esc_r.017",
+  "dimensions": {
+    "w": 0.7554544806480408,
+    "h": 1.2400001287460327,
+    "d": 0.8056718707084656
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

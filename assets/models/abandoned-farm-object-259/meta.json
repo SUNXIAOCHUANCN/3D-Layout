@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-259",
+  "name": "Basket.001",
+  "dimensions": {
+    "w": 0.7710114121437073,
+    "h": 1.0079247951507568,
+    "d": 0.7559589743614197
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

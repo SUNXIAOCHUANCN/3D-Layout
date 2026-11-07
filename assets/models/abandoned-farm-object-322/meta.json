@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-322",
+  "name": "case pc.002",
+  "dimensions": {
+    "w": 0.44650620222091675,
+    "h": 0.4704000651836395,
+    "d": 0.48129427433013916
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

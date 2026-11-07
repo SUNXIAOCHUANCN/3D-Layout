@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-329",
+  "name": "watertower.001",
+  "dimensions": {
+    "w": 11.951047897338867,
+    "h": 18.929962158203125,
+    "d": 13.821805953979492
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

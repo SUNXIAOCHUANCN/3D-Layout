@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-300",
+  "name": "Cube.036",
+  "dimensions": {
+    "w": 2.4401872158050537,
+    "h": 2.4680001735687256,
+    "d": 2.7330446243286133
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

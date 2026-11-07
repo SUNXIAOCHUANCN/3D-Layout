@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-349",
+  "name": "Tracktorxd",
+  "dimensions": {
+    "w": 4.307796955108643,
+    "h": 3.778367757797241,
+    "d": 4.494372367858887
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

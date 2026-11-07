@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-278",
+  "name": "Cajonera.001",
+  "dimensions": {
+    "w": 1.3529454469680786,
+    "h": 0.6987621784210205,
+    "d": 1.2538220882415771
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

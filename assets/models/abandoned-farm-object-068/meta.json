@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-068",
+  "name": "Pizza_02.002",
+  "dimensions": {
+    "w": 0.6676468253135681,
+    "h": 0.024957897141575813,
+    "d": 0.7020055055618286
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

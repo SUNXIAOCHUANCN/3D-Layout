@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-258",
+  "name": "Broom_01.001",
+  "dimensions": {
+    "w": 0.46048101782798767,
+    "h": 1.3829565048217773,
+    "d": 0.4420122802257538
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

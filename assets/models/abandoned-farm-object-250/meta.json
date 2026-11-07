@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-250",
+  "name": "Paper_rolls_02.001",
+  "dimensions": {
+    "w": 0.3143795132637024,
+    "h": 0.28201743960380554,
+    "d": 0.2460961937904358
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-003",
+  "name": "rios",
+  "dimensions": {
+    "w": 197.74002075195312,
+    "h": 0.000030586732464144006,
+    "d": 187.74002075195312
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

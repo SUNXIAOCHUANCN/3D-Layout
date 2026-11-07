@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-112",
+  "name": "Magazine_01.007",
+  "dimensions": {
+    "w": 0.5309785008430481,
+    "h": 0.011162029579281807,
+    "d": 0.6163907051086426
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

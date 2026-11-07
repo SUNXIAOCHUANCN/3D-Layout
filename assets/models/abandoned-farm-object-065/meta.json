@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-065",
+  "name": "Radio_01.002",
+  "dimensions": {
+    "w": 0.3276227116584778,
+    "h": 0.6517133712768555,
+    "d": 0.6044606566429138
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

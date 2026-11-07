@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-236",
+  "name": "Cylinder.014",
+  "dimensions": {
+    "w": 0.13265696167945862,
+    "h": 0.12735231220722198,
+    "d": 0.15990565717220306
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

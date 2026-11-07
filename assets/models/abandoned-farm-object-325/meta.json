@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-325",
+  "name": "Tree",
+  "dimensions": {
+    "w": 165.32479858398438,
+    "h": 45.12342071533203,
+    "d": 181.27523803710938
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

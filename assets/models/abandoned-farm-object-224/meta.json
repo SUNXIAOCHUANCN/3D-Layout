@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-224",
+  "name": "Sarten.001",
+  "dimensions": {
+    "w": 0.6463184952735901,
+    "h": 0.16232028603553772,
+    "d": 0.3634542226791382
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}

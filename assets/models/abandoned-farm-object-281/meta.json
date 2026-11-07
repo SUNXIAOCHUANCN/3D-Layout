@@ -1,0 +1,18 @@
+{
+  "id": "abandoned-farm-object-281",
+  "name": "Paintings_02.001",
+  "dimensions": {
+    "w": 0.7953800559043884,
+    "h": 0.884036123752594,
+    "d": 0.9342570304870605
+  },
+  "source": {
+    "type": "glb",
+    "file": "model.glb"
+  },
+  "normalized": {
+    "unitScale": 1,
+    "origin": "base-center",
+    "up": "+Y"
+  }
+}
