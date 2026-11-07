@@ -86,7 +86,7 @@ export async function requestLlm(
     const detail = redactLlmError(await res.text(), settings.apiKey).slice(0, 600)
     const hint = res.status === 401 || res.status === 403 ? '请检查密钥、模型权限或服务商使用限制'
       : res.status === 404 ? '请检查接口地址和模型名称'
-      : res.status === 429 ? '额度或请求频率受限，请查看服务商详情' : '模型请求失败'
+      : res.status === 429 ? '额度、频率或上游容量受限（上下文过大同样会触发），请稍后重试或减小上下文' : '模型请求失败'
     throw Object.assign(new Error(`HTTP ${res.status}：${hint}；${detail}`), {
       code: 'MODEL_SERVICE_ERROR', providerCode: `http_${res.status}`,
     })

@@ -152,6 +152,12 @@ function sceneGetState(args: Record<string, unknown>): unknown {
   const search = useAgentCapabilities.getState().modelSearch
   const includeManifest = args.includeManifest === undefined ? !search : args.includeManifest === true
   const refs = new Set(doc.assets.map(a => a.ref))
+  const offset = args.offset === undefined ? 0 : reqInt(args, 'offset')
+  const limit = args.limit === undefined ? 40 : reqInt(args, 'limit')
+  if (offset < 0 || limit < 1 || limit > 100) throw new Error('offset 须非负，limit 须为 1–100')
+  const catalog = Object.entries(s.manifest?.models ?? {})
+  // 只给当前场景引用到的模型：模型库 1100+ 条，全量随快照返回会占掉 30 万字符（曾导致上游拒绝 prefill）。
+  const used = catalog.filter(([ref]) => refs.has(ref)).slice(0, 80)
 
   return {
     sceneId: s.sceneId,
@@ -160,17 +166,16 @@ function sceneGetState(args: Record<string, unknown>): unknown {
     selectedAssetId: s.selectedAssetId,
     /** 约定：米；+Y 向上；欧拉角角度制；原点在底面中心 */
     conventions: { unit: 'm', up: '+Y', rotation: 'deg XYZ', origin: 'bottom-center' },
-    assets: doc.assets.map(describeAsset),
-    ...(search ? { modelLibrary: { total: Object.keys(s.manifest?.models ?? {}).length, searchTool: 'model.search' } } : {}),
+    assets: doc.assets.slice(offset, offset + limit).map(describeAsset),
+    pagination: { offset, limit, total: doc.assets.length, nextOffset: offset + limit < doc.assets.length ? offset + limit : null },
+    assetCount: doc.assets.length,
+    catalogCount: catalog.length,
+    ...(search ? { modelLibrary: { total: catalog.length, searchTool: 'model.search' } } : {}),
     manifest:
       includeManifest && s.manifest
-        ? Object.fromEntries(
-            Object.entries(s.manifest.models).filter(([ref]) => !search || refs.has(ref)).map(([ref, m]) => [
-              ref,
-              describeModel(ref, m),
-            ]),
-          )
+        ? Object.fromEntries(used.map(([ref, m]) => [ref, describeModel(ref, m)]))
         : null,
+    manifestNote: 'manifest 只包含当前场景已引用的模型；新增模型请用 model.search（或 catalog.search）检索，不要依赖全库目录。',
   }
 }
 
@@ -384,15 +389,18 @@ export const AGENT_TOOLS: readonly AgentToolDef[] = [
   {
     name: 'scene.get_state',
     access: 'read',
-    summary: '读场景状态（资产/变换/AABB/模型目录）',
+    summary: '读场景状态（资产分页/变换/AABB/模型目录）',
     description:
-      '读取当前场景的中立快照：资产清单（id、ref、transform、世界包围盒）、环境、选中项，' +
-      '默认附带模型库目录；启用可选检索时默认不附带全库，可用 model.search 获取候选。来源是内存中的 SceneDocument（含未保存编辑）。',
-    argsDoc: '{ includeManifest?: boolean }',
+      '读取当前场景的中立快照：资产清单（id、ref、transform、世界包围盒）、环境、选中项，资产分页返回。' +
+      'manifest 只含当前场景已引用的模型；需要新增模型时用 model.search 检索，不要依赖全库目录。' +
+      '来源是内存中的 SceneDocument（含未保存编辑）。',
+    argsDoc: '{ includeManifest?: boolean, offset?: number, limit?: number }',
     schema: {
       type: 'object',
       properties: {
-        includeManifest: { type: 'boolean', description: '是否附带模型目录，原版模式默认 true；可选检索模式默认 false' },
+        includeManifest: { type: 'boolean', description: '是否附带当前场景引用模型的介绍，默认 true' },
+        offset: { type: 'integer', minimum: 0, description: '资产分页起点，默认 0' },
+        limit: { type: 'integer', minimum: 1, maximum: 100, description: '每页资产数，默认 40' },
       },
       additionalProperties: false,
     },
