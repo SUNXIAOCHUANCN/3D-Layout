@@ -174,6 +174,13 @@ export function AgentPanel() {
               <div className="agent-task-meta">当前提案已保留，不会自动重试。可切换上方模型档案后继续。</div>
               <button className="agent-mini-btn" onClick={() => agentSession.retry()}>重试本轮</button>
               <button className="agent-mini-btn" onClick={() => setSettingsOpen(true)}>更换模型设置</button>
+              <button
+                className="agent-mini-btn"
+                onClick={() => agentSession.cancelTask()}
+                title="结束本次任务并丢弃未提交草稿（场景保留）；之后请先「清除」再重新发指令，避免继承旧上下文"
+              >
+                停止任务
+              </button>
             </div>
           )}
           {awaitingVerdict && (
@@ -304,10 +311,11 @@ export function AgentPanel() {
             className="agent-mini-btn"
             disabled={llmBusy}
             onClick={() => agentSession.clearChat()}
-            title="清空对话"
-            aria-label="清空对话"
+            title={llmBusy ? '请先停止当前任务，再清除对话' : '清除当前场景的对话，场景修改保持不变'}
+            aria-label="清除对话"
           >
             <ClearIcon />
+            <span style={{ marginLeft: 4 }}>清除</span>
           </button>
         </div>
       )}

@@ -83,6 +83,12 @@ class AgentSession {
     if (this.transport instanceof LlmChatTransport || this.transport instanceof ServerAgentTransport) this.transport.abortChat()
   }
 
+  /** 结束当前任务（执行中或失败暂停均可）：保留场景，丢弃未提交草稿，之后可清除对话或重发指令 */
+  cancelTask(): void {
+    if (this.transport instanceof ServerAgentTransport) { this.transport.abortChat(); return }
+    this.abortChat()
+  }
+
   /** 清空对话历史 */
   clearChat(): void {
     if (this.transport instanceof LlmChatTransport || this.transport instanceof ServerAgentTransport) this.transport.resetConversation()
