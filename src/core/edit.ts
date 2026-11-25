@@ -1,8 +1,10 @@
 import { bus } from './events'
 import { useSceneStore } from './store'
-import type { SceneAsset, Transform } from './types'
+import type { SceneAsset, SceneLight, Transform } from './types'
 import { queueWorkspace } from './persistence'
 import type { Workspace } from './workspaceTypes'
+import { assetHierarchy, followTransform, validHierarchy } from './assetHierarchy'
+import { dataEqual } from './dataEqual'
 
 /**
  * edit —— 引擎中唯一的场景变更入口（架构定案：编辑接口 + 历史记录 + 撤销回滚一体化）。
@@ -17,19 +19,25 @@ import type { Workspace } from './workspaceTypes'
 
 export type EditSource = 'human' | 'agent'
 
-export type EditCommand = 'set_transform' | 'add_asset' | 'remove_asset' | 'update_asset'
+type AssetEditCommand = 'set_transform' | 'add_asset' | 'remove_asset' | 'update_asset'
+type LightEditCommand = 'add_light' | 'remove_light' | 'update_light'
+export type EditCommand = AssetEditCommand | LightEditCommand
 
-/** 期刊条目：before/after 携带完整的资产对象，撤销/重做就是写回对应侧 */
-export interface HistoryEntry {
-  cmd: EditCommand
-  assetId: string
-  before: SceneAsset | null // add 时为 null
-  after: SceneAsset | null // remove 时为 null
+interface HistoryMetadata {
   source: EditSource
   txId: number
   label: string
   time: number
 }
+
+/** 撤销/重做写回对象的完整前态或后态。 */
+export type HistoryEntry = HistoryMetadata & (
+  | { cmd: AssetEditCommand; assetId: string; before: SceneAsset | null; after: SceneAsset | null }
+  | { cmd: LightEditCommand; lightId: string; before: SceneLight | null; after: SceneLight | null }
+)
+
+type LightPatch = Partial<Pick<SceneLight, 'name' | 'position' | 'color' | 'intensity' | 'distance' | 'enabled'>> &
+  { rotation?: Transform['rotation']; angle?: number }
 
 interface Unit {
   txId: number
@@ -51,6 +59,9 @@ export interface EditMeta {
   /** 拖拽等连续修改传入事务句柄，合并为一条历史 */
   tx?: TxHandle
 }
+
+export type AssetPatch = Partial<Pick<SceneAsset, 'name' | 'parentId' | 'visible' | 'locked' | 'ref' | 'shape' | 'materialOverride' | 'terrain'>>
+export interface AssetChange { id: string; after: SceneAsset | null }
 
 /** 历史面板的步骤视图 */
 export interface HistoryUnitView {
@@ -79,20 +90,41 @@ function toUnitView(u: Unit): HistoryUnitView {
 
 /** 应用某条目的某一侧（undo=before / redo=after）。直接改文档，不记历史。 */
 function applySide(entry: HistoryEntry, side: 'before' | 'after'): void {
-  const target = side === 'before' ? entry.before : entry.after
   const s = useSceneStore.getState()
   const doc = s.document
   if (!doc) return
-  let assets: SceneAsset[]
-  if (target === null) {
-    assets = doc.assets.filter(a => a.id !== entry.assetId)
-  } else {
-    const exists = doc.assets.some(a => a.id === entry.assetId)
-    assets = exists
-      ? doc.assets.map(a => (a.id === entry.assetId ? target : a))
-      : [...doc.assets, target]
+  if ('lightId' in entry) {
+    useSceneStore.setState({ document: { ...doc, lights: replaceObject(doc.lights ?? [], entry.lightId, entry[side]) } })
+    if (entry[side] === null && s.selectedLightId === entry.lightId) s.select(null)
+    return
   }
-  useSceneStore.setState({ document: { ...doc, assets } })
+  useSceneStore.setState({ document: { ...doc, assets: replaceObject(doc.assets, entry.assetId, entry[side]) } })
+}
+
+function replaceObject<T extends { id: string }>(objects: T[], id: string, target: T | null): T[] {
+  if (target === null) return objects.filter(object => object.id !== id)
+  return objects.some(object => object.id === id)
+    ? objects.map(object => object.id === id ? target : object)
+    : [...objects, target]
+}
+
+function canWrite(meta?: EditMeta): boolean {
+  return !useSceneStore.getState().loading && openTx?.handle === meta?.tx
+}
+
+function validLight(light: SceneLight): boolean {
+  const vector = (value: number[]) => value.length === 3 && value.every(Number.isFinite)
+  return light.id.length > 0 && vector(light.position) && /^#[0-9a-f]{6}$/i.test(light.color)
+    && Number.isFinite(light.intensity) && light.intensity >= 0
+    && Number.isFinite(light.distance) && light.distance >= 0
+    && (light.type === 'point' || (light.type === 'spot' && vector(light.rotation)
+      && Number.isFinite(light.angle) && light.angle > 0 && light.angle <= 90))
+}
+
+function recordLight(cmd: LightEditCommand, light: SceneLight, before: SceneLight | null, after: SceneLight | null, label: string, meta?: EditMeta): boolean {
+  const source = meta?.source ?? 'human'
+  record({ cmd, lightId: light.id, before, after, source, txId: meta?.tx?.id ?? ++txCounter, label, time: Date.now() })
+  return true
 }
 
 function record(entry: HistoryEntry): void {
@@ -103,8 +135,13 @@ function record(entry: HistoryEntry): void {
     journal.push({ txId: entry.txId, label: entry.label, source: entry.source, entries: [entry] })
   }
   applySide(entry, 'after')
-  bus.emit('history:changed', {})
-  if (!openTx) persist(entry.label)
+  if (!openTx) bus.emit('edit:applied', {
+    direction: 'commit', txId: entry.txId, label: entry.label, source: entry.source, entries: [entry],
+  })
+  if (!openTx) {
+    bus.emit('history:changed', {})
+    persist(entry.label)
+  }
 }
 
 function persist(label: string): void {
@@ -126,17 +163,71 @@ export function exportWorkspace(): Workspace | null {
 }
 
 export const edit = {
-  updateAsset(assetId: string, patch: Partial<Pick<SceneAsset, 'materialOverride' | 'terrain'>>, meta?: EditMeta): boolean {
-    const cur = useSceneStore.getState().document?.assets.find(a => a.id === assetId)
+  /** Apply a complete, prevalidated scene change as one history step. */
+  applyAssets(changes: readonly AssetChange[], label: string, meta?: EditMeta): boolean {
+    if (!canWrite(meta)) return false
+    const doc = useSceneStore.getState().document
+    if (!doc) return false
+    const assets = new Map(doc.assets.map(asset => [asset.id, asset]))
+    const lightIds = new Set(doc.lights?.map(light => light.id))
+    const seen = new Set<string>()
+    const txId = meta?.tx?.id ?? txCounter + 1
+    const source = meta?.source ?? 'human'
+    const time = Date.now()
+    const entries: HistoryEntry[] = []
+    for (const { id, after } of changes) {
+      if (!id || seen.has(id) || lightIds.has(id) || (after && (after.id !== id ||
+        ![...after.transform.position, ...after.transform.rotation, ...(after.transform.scale ?? [])].every(Number.isFinite) ||
+        after.transform.scale?.some(n => Math.abs(n) < 1e-9)))) return false
+      seen.add(id)
+      const before = assets.get(id) ?? null
+      if (dataEqual(before, after)) continue
+      if (after) assets.set(id, after)
+      else assets.delete(id)
+      let cmd: AssetEditCommand = before === null ? 'add_asset' : after === null ? 'remove_asset' : 'update_asset'
+      if (before && after && before.transform !== after.transform) {
+        const compare = { ...after, transform: before.transform }
+        if (dataEqual(compare, before)) cmd = 'set_transform'
+      }
+      entries.push({ cmd, assetId: id, before, after, source, txId, label, time })
+    }
+    const next = [...assets.values()]
+    if (!entries.length || !validHierarchy(next)) return false
+    redoStack = []
+    if (openTx) {
+      for (const entry of entries) openTx.unit.entries.push(entry)
+    } else {
+      txCounter = txId
+      journal.push({ entries, txId, label, source })
+    }
+    useSceneStore.setState({ document: { ...doc, assets: next } })
+    if (!openTx) bus.emit('edit:applied', { direction: 'commit', txId, source, label, entries })
+    if (!openTx) {
+      bus.emit('history:changed', {})
+      persist(label)
+    }
+    return true
+  },
+
+  updateAsset(assetId: string, patch: AssetPatch, meta?: EditMeta): boolean {
+    if (!canWrite(meta)) return false
+    const assets = useSceneStore.getState().document?.assets
+    const cur = assets?.find(a => a.id === assetId)
     if (!cur) return false
+    if (assets && (cur.parentId || cur.locked) && assetHierarchy(assets).locked(cur) && Object.keys(patch).some(key => key !== 'locked')) return false
+    if (patch.parentId !== undefined || cur.parentId && 'parentId' in patch) {
+      return edit.applyAssets([{ id: assetId, after: { ...cur, ...patch } }], `修改 ${cur.name ?? assetId}`, meta)
+    }
     record({ cmd: 'update_asset', assetId, before: cur, after: { ...cur, ...patch }, source: meta?.source ?? 'human', txId: meta?.tx?.id ?? ++txCounter, label: `修改 ${cur.name ?? assetId}`, time: Date.now() })
     return true
   },
   setTransform(assetId: string, transform: Transform, meta?: EditMeta): boolean {
-    if (useSceneStore.getState().loading) return false
+    if (!canWrite(meta)) return false
     const doc = useSceneStore.getState().document
     const cur = doc?.assets.find(a => a.id === assetId)
     if (!cur) return false
+    if (doc && (cur.locked || cur.parentId) && assetHierarchy(doc.assets).locked(cur)) return false
+    if (cur.group && doc) return edit.transformAssets([{ id: assetId, transform }], `变换 ${cur.name ?? assetId}`, meta)
     record({
       cmd: 'set_transform',
       assetId,
@@ -150,10 +241,30 @@ export const edit = {
     return true
   },
 
-  addAsset(asset: SceneAsset, meta?: EditMeta): boolean {
-    if (useSceneStore.getState().loading) return false
+  transformAssets(updates: readonly { id: string; transform: Transform }[], label: string, meta?: EditMeta): boolean {
     const doc = useSceneStore.getState().document
-    if (!doc || doc.assets.some(a => a.id === asset.id)) return false
+    if (!doc || !canWrite(meta)) return false
+    const tree = assetHierarchy(doc.assets)
+    const direct = new Set(updates.map(item => item.id))
+    const changes: AssetChange[] = []
+    for (const { id, transform } of updates) {
+      const asset = tree.byId.get(id)
+      if (!asset || tree.locked(asset) || tree.ancestors(asset).some(parent => direct.has(parent.id))) return false
+      const descendants = tree.descendants(id)
+      if (descendants.some(tree.locked)) return false
+      changes.push({ id, after: { ...asset, transform } })
+      for (const child of descendants) {
+        changes.push({ id: child.id, after: { ...child, transform: followTransform(child.transform, asset.transform, transform) } })
+      }
+    }
+    return edit.applyAssets(changes, label, meta)
+  },
+
+  addAsset(asset: SceneAsset, meta?: EditMeta): boolean {
+    if (!canWrite(meta)) return false
+    const doc = useSceneStore.getState().document
+    if (!doc || doc.assets.some(a => a.id === asset.id) || doc.lights?.some(l => l.id === asset.id)) return false
+    if (asset.parentId && !doc.assets.some(item => item.group && item.id === asset.parentId)) return false
     record({
       cmd: 'add_asset',
       assetId: asset.id,
@@ -168,10 +279,18 @@ export const edit = {
   },
 
   removeAsset(assetId: string, meta?: EditMeta): boolean {
-    if (useSceneStore.getState().loading) return false
+    if (!canWrite(meta)) return false
     const doc = useSceneStore.getState().document
     const cur = doc?.assets.find(a => a.id === assetId)
     if (!cur) return false
+    if (doc && (cur.locked || cur.parentId) && assetHierarchy(doc.assets).locked(cur)) return false
+    if (cur.group && doc) {
+      const changes: AssetChange[] = doc.assets.filter(asset => asset.parentId === assetId)
+        .map(child => ({ id: child.id, after: { ...child, parentId: cur.parentId } }))
+      if (!edit.applyAssets([...changes, { id: assetId, after: null }], `删除 ${cur.name ?? assetId}`, meta)) return false
+      if (useSceneStore.getState().selectedAssetId === assetId) useSceneStore.getState().select(null)
+      return true
+    }
     record({
       cmd: 'remove_asset',
       assetId,
@@ -188,6 +307,32 @@ export const edit = {
     return true
   },
 
+  addLight(light: SceneLight, meta?: EditMeta): boolean {
+    if (!canWrite(meta) || !validLight(light)) return false
+    const doc = useSceneStore.getState().document
+    if (!doc || doc.lights?.some(l => l.id === light.id) || doc.assets.some(a => a.id === light.id)) return false
+    return recordLight('add_light', light, null, light, `添加 ${light.name ?? light.id}`, meta)
+  },
+
+  updateLight(lightId: string, patch: LightPatch, meta?: EditMeta): boolean {
+    if (!canWrite(meta)) return false
+    const current = useSceneStore.getState().document?.lights?.find(light => light.id === lightId)
+    if (!current) return false
+    const { angle, rotation, ...properties } = patch
+    const next: SceneLight = current.type === 'spot'
+      ? { ...current, ...properties, angle: angle ?? current.angle, rotation: rotation ?? current.rotation }
+      : { ...current, ...properties }
+    if (!validLight(next) || dataEqual(current, next)) return false
+    return recordLight('update_light', current, current, next, `修改 ${current.name ?? lightId}`, meta)
+  },
+
+  removeLight(lightId: string, meta?: EditMeta): boolean {
+    if (!canWrite(meta)) return false
+    const light = useSceneStore.getState().document?.lights?.find(light => light.id === lightId)
+    if (!light) return false
+    return recordLight('remove_light', light, light, null, `删除 ${light.name ?? lightId}`, meta)
+  },
+
   /** 开启事务：事务内的所有修改合并为一条可撤销记录 */
   begin(label: string, source: EditSource = 'human'): TxHandle {
     if (useSceneStore.getState().loading) throw new Error('正在切换场景')
@@ -201,14 +346,26 @@ export const edit = {
         if (openTx?.handle.id !== id) return
         const compact = new Map<string, HistoryEntry>()
         for (const entry of unit.entries) {
-          const first = compact.get(entry.assetId)
-          compact.set(entry.assetId, first ? { ...entry, before: first.before } : entry)
+          if ('lightId' in entry) {
+            const key = `light:${entry.lightId}`
+            const first = compact.get(key)
+            compact.set(key, first && 'lightId' in first ? { ...entry, before: first.before } : entry)
+          } else {
+            const key = `asset:${entry.assetId}`
+            const first = compact.get(key)
+            compact.set(key, first && 'assetId' in first ? { ...entry, before: first.before } : entry)
+          }
         }
-        unit.entries = [...compact.values()].filter(e => JSON.stringify(e.before) !== JSON.stringify(e.after))
-        for (const entry of unit.entries) entry.cmd = entry.before === null ? 'add_asset' : entry.after === null ? 'remove_asset' : 'set_transform'
+        unit.entries = [...compact.values()].filter(e => !dataEqual(e.before, e.after))
+        for (const entry of unit.entries) {
+          if ('lightId' in entry) entry.cmd = entry.before === null ? 'add_light' : entry.after === null ? 'remove_light' : 'update_light'
+          else entry.cmd = entry.before === null ? 'add_asset' : entry.after === null ? 'remove_asset'
+            : entry.cmd === 'update_asset' ? 'update_asset' : 'set_transform'
+        }
         if (unit.entries.length > 0) journal.push(unit)
         else redoStack = previousRedo
         openTx = null
+        if (unit.entries.length) bus.emit('edit:applied', { ...unit, direction: 'commit' })
         bus.emit('history:changed', {})
         if (unit.entries.length) persist(label)
       },
@@ -228,6 +385,10 @@ export const edit = {
     return journal.length > 0
   },
 
+  get canBegin(): boolean {
+    return !openTx && !useSceneStore.getState().loading
+  },
+
   get canRedo(): boolean {
     return redoStack.length > 0
   },
@@ -238,6 +399,7 @@ export const edit = {
     if (!unit) return false
     for (const e of [...unit.entries].reverse()) applySide(e, 'before')
     redoStack.push(unit)
+    bus.emit('edit:applied', { ...unit, direction: 'undo' })
     bus.emit('history:changed', {})
     persist(`撤销 ${unit.label}`)
     return true
@@ -249,6 +411,7 @@ export const edit = {
     if (!unit) return false
     for (const e of unit.entries) applySide(e, 'after')
     journal.push(unit)
+    bus.emit('edit:applied', { ...unit, direction: 'redo' })
     bus.emit('history:changed', {})
     persist(`重做 ${unit.label}`)
     return true

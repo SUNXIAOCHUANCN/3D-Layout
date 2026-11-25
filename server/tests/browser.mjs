@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, rmSync } from 'node:fs'
+import { copyFileSync, mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -22,8 +22,8 @@ const { createServer } = await import('../../src/node_modules/vite/dist/node/ind
 const vite = await createServer({ root: source, configFile: resolve(source, 'vite.config.ts'), server: { host: '127.0.0.1', port: 0, open: false } })
 let browser, ws
 const sleep = ms => new Promise(r => setTimeout(r, ms))
-async function until(fn) {
-  const deadline = Date.now() + 20000
+async function until(fn, timeout = 20000) {
+  const deadline = Date.now() + timeout
   while (Date.now() < deadline) { const result = await fn(); if (result) return result; await sleep(50) }
   throw new Error('浏览器等待超时')
 }
@@ -62,6 +62,498 @@ async function initialize() {
 }
 async function reload() { await send('Page.reload', { ignoreCache: true }); await sleep(200); await initialize() }
 const position = () => evaluate('store.getState().document.assets[0].transform.position[0]')
+
+async function testSceneLights(baseUrl) {
+  mkdirSync(join(root, 'assets'))
+  writeFileSync(join(root, 'assets/model-catalog.json'), JSON.stringify({ models: {
+    'models/chair': { id: 'chair', name: '椅子', dimensions: { w: 1, d: 1, h: 1 }, source: { type: 'primitive', shape: 'box' } },
+  } }))
+  mkdirSync(join(root, 'scenes/lighting-room'))
+  const sceneFile = join(root, 'scenes/lighting-room/scene.json')
+  writeFileSync(sceneFile, JSON.stringify({
+    meta: { id: 'lighting-room', name: '灯光测试', version: 1, unit: 'm', up: '+Y' },
+    assets: [original], environment: {}, cameras: [],
+  }))
+  await send('Page.navigate', { url: baseUrl + '/?scene=lighting-room&editor=1' })
+  await until(async () => {
+    const status = await evaluate(`({
+      error: document.querySelector('.crash-report, .topbar .error')?.textContent,
+      ready: Boolean(window.__engine?.findAssetObject('chair') && document.querySelector('.editor-panel')),
+    })`).catch(() => null)
+    if (status?.error) throw new Error(status.error)
+    return status?.ready
+  }, 45000).catch(async error => {
+    const state = await evaluate(`({
+      url: location.href,
+      title: document.title,
+      canvas: document.querySelector('canvas')?.outerHTML,
+      viewport: document.querySelector('.viewport')?.getBoundingClientRect().toJSON(),
+      overlay: document.querySelector('.viewport')?.textContent,
+    })`)
+    throw new Error(`${error.message} ${JSON.stringify(state)}`)
+  })
+  const click = label => evaluate(`[...document.querySelectorAll('.editor-panel button')].find(button => button.textContent.trim() === ${JSON.stringify(label)}).click()`)
+  const inputNumber = async (selector, value) => {
+    await evaluate(`(() => {
+      const field = document.querySelector(${JSON.stringify(selector)});
+      field.focus();
+      field.select();
+    })()`)
+    await send('Input.insertText', { text: String(value) })
+    await evaluate('document.activeElement.blur()')
+  }
+  const workspace = () => evaluate("fetch('/api/workspaces/lighting-room').then(response => response.json()).then(result => result.workspace)")
+  const saved = () => until(() => evaluate("document.querySelector('.topbar [role=status]')?.textContent.trim() === '已保存'"))
+
+  assert.equal((await workspace()).document.lights, undefined)
+  await click('新建点光源')
+  await until(() => evaluate("Boolean(document.querySelector('.light-list [aria-pressed=true]'))"))
+  const pointId = await evaluate("document.querySelector('.light-list [aria-pressed=true]').title")
+  await until(() => evaluate(`__engine.findLightObject('${pointId}')?.children.some(child => child.isPointLight)`))
+  await inputNumber('[aria-label="位置(m)"] input', -2)
+  await until(() => evaluate(`__engine.findLightObject('${pointId}').position.x === -2`))
+  const originalLighting = await evaluate('__engine.captureScreenshot()')
+  await inputNumber('.light-field input[type=number][step="1"]', 90)
+  await until(() => evaluate(`__engine.findLightObject('${pointId}').children.find(child => child.isPointLight).intensity === 90`))
+  assert.notEqual(await evaluate('__engine.captureScreenshot()'), originalLighting)
+  await click('新建聚光灯')
+  await until(() => evaluate("Boolean(document.querySelector('[aria-label=\"旋转(°)\"]'))"))
+  const spotId = await evaluate("document.querySelector('.light-list [aria-pressed=true]').title")
+  await until(() => evaluate(`__engine.focusLight('${spotId}')`))
+  // Clear selection, then click the marker at the center of the focused viewport.
+  await evaluate("(async()=> (await import('/core/store.ts')).useSceneStore.getState().select(null))()")
+  const markerPosition = await evaluate(`(() => {
+    const object = __engine.findLightObject('${spotId}');
+    const marker = object.children.find(child => child.userData.editorHelper).children[0];
+    const { camera, raycaster } = marker.__r3f.root.getState();
+    const rect = document.querySelector('canvas').getBoundingClientRect();
+    const projected = marker.getWorldPosition(marker.position.clone()).project(camera);
+    return {
+      x: rect.x + (projected.x + 1) * rect.width / 2,
+      y: rect.y + (1 - projected.y) * rect.height / 2,
+      raycastLayer: raycaster.layers.test(marker.layers),
+      cameraLayer: camera.layers.test(marker.layers),
+    };
+  })()`)
+  assert.equal(markerPosition.raycastLayer, true)
+  assert.equal(markerPosition.cameraLayer, true)
+  const { x, y } = markerPosition
+  const center = { x, y }
+  await send('Input.dispatchMouseEvent', { type: 'mouseMoved', ...center })
+  await send('Input.dispatchMouseEvent', { type: 'mousePressed', button: 'left', clickCount: 1, ...center })
+  await send('Input.dispatchMouseEvent', { type: 'mouseReleased', button: 'left', clickCount: 1, ...center })
+  await until(() => evaluate(`document.querySelector('.light-list [aria-pressed=true]')?.title === '${spotId}'`))
+  await until(() => evaluate(`(() => {
+    const object = __engine.findLightObject('${spotId}');
+    return object.parent.children.some(child => child.object === object && child.mode === 'translate');
+  })()`))
+  await evaluate(`(() => {
+    const object = __engine.findLightObject('${spotId}');
+    const controls = object.parent.children.find(child => child.object === object && child.mode === 'translate');
+    controls.dispatchEvent({type:'mouseDown'});
+    object.position.x = 1;
+    controls.dispatchEvent({type:'objectChange'});
+    object.position.x = 2;
+    controls.dispatchEvent({type:'objectChange'});
+    controls.dispatchEvent({type:'mouseUp'});
+  })()`)
+  await inputNumber('[aria-label="旋转(°)"] input', 0)
+  await inputNumber('.light-field input[step="1"][max="90"]', 40)
+  await until(() => evaluate(`__engine.findLightObject('${spotId}').rotation.x === 0`))
+  assert.deepEqual(await evaluate(`(() => {
+    const light = __engine.findLightObject('${spotId}').children.find(child => child.isSpotLight);
+    return [light.getWorldPosition(light.position.clone()).toArray(), light.target.getWorldPosition(light.position.clone()).toArray()];
+  })()`), [[2, 3, 0], [2, 3, -1]])
+  assert.equal(await evaluate("__edit.setTransform('chair',{position:[3,0,0],rotation:[0,0,0]})"), true)
+  await click('复制')
+  await until(() => evaluate("document.querySelectorAll('.light-list button').length === 3"))
+  await click('删除')
+  await saved()
+  const committed = await workspace()
+  assert.equal(committed.document.lights.length, 2)
+  assert.deepEqual(committed.document.lights[0].position, [-2, 3, 0])
+  assert.equal(committed.document.lights[0].intensity, 90)
+  assert.deepEqual(committed.document.lights[1].position, [2, 3, 0])
+  assert.equal(committed.document.lights[1].angle, 40)
+  assert.equal(committed.journal.find(unit => unit.label === `拖拽 ${spotId}`).entries.length, 1)
+  assert.deepEqual(JSON.parse(readFileSync(sceneFile, 'utf8')).lights, committed.document.lights)
+
+  await send('Page.reload', { ignoreCache: true })
+  await until(() => evaluate(`Boolean(window.__engine?.findLightObject('${spotId}'))`).catch(() => false))
+  await evaluate("for (let i = 0; i < 4; i++) __edit.undo()")
+  await saved()
+  const undone = await workspace()
+  assert.equal(undone.document.assets[0].transform.position[0], 0)
+  assert.equal(undone.document.lights[1].angle, 30)
+  assert.equal(undone.redoStack.length, 4)
+  await evaluate("while (__edit.canRedo) { if (!__edit.redo()) break }")
+  await saved()
+  assert.deepEqual((await workspace()).document, committed.document)
+  console.log('PASS: light creation, viewport selection, transform, properties, copy, deletion, persistence and mixed undo/redo')
+}
+
+async function testManualBuild(baseUrl) {
+  mkdirSync(join(root, 'assets'), { recursive: true })
+  const model = (id, name, w, h, d) => ({ id, name, dimensions: { w, h, d }, source: { type: 'primitive', shape: 'box' } })
+  const models = {
+    'models/tent': model('tent', '帐篷', 2, 1.8, 2),
+    'models/tree': model('tree', '树', 3.6, 5, 1.2),
+    'models/chair': model('chair', '椅子', 0.7, 0.9, 0.7),
+    'models/campfire': model('campfire', '篝火', 1, 0.5, 1),
+  }
+  if (process.argv.includes('--build-real-assets')) {
+    const layout = resolve(source, '..')
+    const catalog = JSON.parse(readFileSync(join(layout, 'assets/model-catalog.json'), 'utf8')).models
+    for (const [ref, assetRef] of Object.entries({
+      'models/tent': 'models/tent1', 'models/tree': 'models/demo-forest-pine-tree',
+      'models/chair': 'models/wooden-chair', 'models/campfire': 'models/campfire',
+    })) {
+      const asset = catalog[assetRef]
+      for (const url of [asset.source.url, asset.thumbnail].filter(Boolean)) {
+        const destination = join(root, url)
+        mkdirSync(resolve(destination, '..'), { recursive: true })
+        copyFileSync(join(layout, url), destination)
+      }
+      models[ref] = { ...asset, name: models[ref].name }
+    }
+  }
+  writeFileSync(join(root, 'assets/model-catalog.json'), JSON.stringify({ models }))
+  await send('Page.navigate', { url: baseUrl + '/?scene=garden&build=1' })
+  const click = (label, selector = 'button') => evaluate(`[...document.querySelectorAll(${JSON.stringify(selector)})]
+    .find(button => button.textContent.trim() === ${JSON.stringify(label)}).click()`)
+  const state = async () => evaluate("import('/core/store.ts').then(m => m.useSceneStore.getState().document)")
+  await until(() => evaluate("Boolean(__engine.readViewport() && document.querySelector('.manual-build-panel'))").catch(() => false), 45000)
+  await evaluate("document.querySelector('.topbar button[title=新建空场景]').click()")
+  await send('Input.insertText', { text: '录制营地验收' })
+  await until(() => evaluate("Boolean(document.querySelector('.modal input'))"))
+  await click('创建', '.modal button')
+  const sceneId = await until(async () => {
+    const current = await state()
+    return current?.meta?.name === '录制营地验收' && await evaluate("Boolean(__engine.readViewport())") && current.meta.id
+  })
+  const visibilitySwitch = 'document.querySelector(\'.build-recordings input[role="switch"]\')'
+  assert.equal(await evaluate(visibilitySwitch + '.checked'), false)
+  await evaluate(visibilitySwitch + '.click()')
+  await click('开始录制')
+  await click('创建地形')
+  await click('确认创建')
+  assert.equal((await state()).assets[0].terrain.surface.layers[0].presetId, 'grass')
+
+  const placeButton = name => evaluate(`[...document.querySelectorAll('.build-model')].find(card => card.querySelector('strong').textContent === ${JSON.stringify(name)}).querySelector('button').click()`)
+  const groundPoint = position => evaluate(`(async () => {
+    const three = await import('/node_modules/.vite/deps/three.js')
+    const pose = __engine.readViewport()
+    const q = new three.Quaternion().fromArray(pose.quaternion).invert()
+    const ndc = new three.Vector3(...${JSON.stringify(position)}).sub(new three.Vector3(...pose.position))
+      .applyQuaternion(q).applyMatrix4(new three.Matrix4().fromArray(pose.projectionMatrix))
+    const rect = document.querySelector('.viewport canvas').getBoundingClientRect()
+    return { x: rect.left + (1 + ndc.x) * rect.width / 2, y: rect.top + (1 - ndc.y) * rect.height / 2 }
+  })()`)
+  const clickViewport = async position => {
+    const point = await groundPoint(position)
+    await send('Input.dispatchMouseEvent', { type: 'mouseMoved', ...point })
+    await send('Input.dispatchMouseEvent', { type: 'mousePressed', button: 'left', clickCount: 1, ...point })
+    await send('Input.dispatchMouseEvent', { type: 'mouseReleased', button: 'left', clickCount: 1, ...point })
+  }
+  const pressKey = async key => {
+    const code = key === 'Escape' ? key : 'Key' + key.toUpperCase()
+    const windowsVirtualKeyCode = key === 'Escape' ? 27 : key.toUpperCase().charCodeAt(0)
+    await send('Input.dispatchKeyEvent', { type: 'keyDown', key, code, windowsVirtualKeyCode })
+    await send('Input.dispatchKeyEvent', { type: 'keyUp', key, code, windowsVirtualKeyCode })
+  }
+  await placeButton('帐篷')
+  await clickViewport([-1, 0, -1.5])
+  const tent = (await state()).assets.find(asset => asset.ref === 'models/tent')
+  assert.deepEqual(tent?.transform.position, [-1, -(models['models/tent'].bounds?.min[1] ?? 0) || 0, -1.5])
+  await placeButton('篝火')
+  await pressKey('Escape')
+  await clickViewport([2.5, 0, -2])
+  assert.equal((await state()).assets.some(asset => asset.ref === 'models/campfire'), false)
+  await placeButton('篝火')
+  await clickViewport([2.5, 0, -2])
+  await evaluate("document.querySelector('.build-checkbox input').click()")
+  await placeButton('椅子')
+  const beforeTurn = (await state()).assets.length
+  const pivot = await groundPoint([2.5, 0, -1])
+  const turnEnd = { x: pivot.x + 50, y: pivot.y }
+  const cameraBeforeTurn = await evaluate('JSON.stringify(__engine.readViewport())')
+  await send('Input.dispatchMouseEvent', { type: 'mouseMoved', ...pivot })
+  await send('Input.dispatchMouseEvent', { type: 'mousePressed', button: 'right', buttons: 2, clickCount: 1, ...pivot })
+  await send('Input.dispatchMouseEvent', { type: 'mouseMoved', button: 'right', buttons: 2, ...turnEnd })
+  await send('Input.dispatchMouseEvent', { type: 'mouseReleased', button: 'right', buttons: 0, clickCount: 1, ...turnEnd })
+  await until(() => evaluate("document.querySelector('.build-placement strong')?.textContent.endsWith('30°')"))
+  assert.equal(await evaluate('JSON.stringify(__engine.readViewport())'), cameraBeforeTurn)
+  assert.equal((await state()).assets.length, beforeTurn)
+  await send('Input.dispatchMouseEvent', { type: 'mousePressed', button: 'left', clickCount: 1, ...turnEnd })
+  await send('Input.dispatchMouseEvent', { type: 'mouseReleased', button: 'left', clickCount: 1, ...turnEnd })
+  const firstChair = (await state()).assets.find(asset => asset.ref === 'models/chair')
+  assert.deepEqual(firstChair?.transform.position, [2.5, 0, -1])
+  await clickViewport([3.5, 0, -1])
+  assert.equal((await state()).assets.filter(asset => asset.ref === 'models/chair').length, 2)
+  await pressKey('e')
+  await until(() => evaluate("document.querySelector('.build-transform-toolbar button[aria-keyshortcuts=E]')?.getAttribute('aria-pressed') === 'true' && !document.querySelector('.build-placement')"))
+  await evaluate("document.querySelector('.build-transform-toolbar button[aria-keyshortcuts=R]').click()")
+  await until(() => evaluate(`(() => {
+    const active = (Array.from(document.querySelectorAll('.build-objects button[aria-pressed=true]')).find(button => button.title.startsWith('asset-')))?.title
+    const target = active && __engine.findAssetObject(active);
+    return Boolean(target && target.parent.children.some(child => child.object === target && child.mode === 'scale'));
+  })()`))
+  await click('↩ 撤销')
+  assert.equal((await state()).assets.filter(asset => asset.ref === 'models/chair').length, 1)
+  assert.equal((await state()).assets.find(asset => asset.ref === 'models/chair').transform.rotation[1], 30)
+  await evaluate("document.querySelector('.build-checkbox input').click()")
+  await placeButton('树')
+  await clickViewport([1, 0, 1.5])
+  const tree = (await state()).assets.find(asset => asset.ref === 'models/tree')
+  assert.ok(tree)
+  await evaluate(`document.querySelector('.build-objects button[title="${tree.id}"]').click()`)
+  await click('删除', '.manual-build-panel button')
+  assert.equal((await state()).assets.some(asset => asset.id === tree.id), false)
+  await click('新建点光源')
+  await click('检查器')
+  await evaluate(`(() => {
+    const field = document.querySelector('.build-side-content input[type=color]')
+    Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(field, '#ffaa55')
+    field.dispatchEvent(new Event('input', { bubbles: true }))
+    field.dispatchEvent(new Event('change', { bubbles: true }))
+  })()`)
+  assert.equal((await state()).lights[0].color, '#ffaa55')
+  assert.equal(await evaluate(`__engine.focusAsset('${tent.id}')`), true)
+  await until(async () => {
+    const endpoint = `${baseUrl}/api/recordings/${sceneId}`
+    const [active] = await (await fetch(endpoint)).json()
+    if (!active) return false
+    const capture = await (await fetch(`${endpoint}/${active.sessionId}`)).json()
+    return capture.samples.some(sample => sample.reason === 'camera')
+  })
+  const chair = (await state()).assets.find(asset => asset.ref === 'models/chair')
+  await evaluate(`__edit.setTransform('${chair.id}', {position: [500, 0, 500], rotation: [0, 15, 0]})`)
+  await click('↩ 撤销')
+  await click('保存场景')
+  await until(() => evaluate("document.querySelector('.manual-build-panel > .save-status')?.textContent === '场景已保存'"))
+  await click('录制会话')
+  await evaluate("document.querySelector('[aria-label=录制]').click()")
+
+  const session = await until(async () => {
+    const list = await (await fetch(`${baseUrl}/api/recordings/${sceneId}`)).json()
+    const newest = list[0]
+    if (newest?.analysisStatus === 'failed') throw new Error(await evaluate("document.querySelector('.build-recordings .error')?.textContent"))
+    return newest?.analysisStatus === 'ready' && newest
+  }, 60000)
+  assert.equal(session.captureStatus, 'saved')
+  const recordingPath = `${baseUrl}/api/recordings/${sceneId}/${session.sessionId}`
+  const recording = await (await fetch(recordingPath)).json()
+  assert.equal(recording.initial.document.assets.length, 0)
+  assert.ok(recording.edits.some(event => event.action === 'undo'))
+  assert.ok(recording.samples.some(sample => sample.reason === 'camera'))
+  assert.ok(recording.visibility.some(row => row.objectId === chair.id && row.status === 'out_of_view' && row.visibilityRatio === null))
+  const deletion = recording.edits.find(event => event.action === 'remove_asset' && event.changes[0].objectId === tree.id)
+  const before = recording.samples.find(sample => sample.seq === deletion.seq - 1)
+  const after = recording.samples.find(sample => sample.seq === deletion.seq + 1)
+  assert.deepEqual(before.position, after.position)
+  assert.equal(after.sceneRevision, before.sceneRevision + 1)
+  const tentVisibility = sample => recording.visibility.find(row => row.objectId === tent.id && row.sampleId === sample.sampleId)
+  const occluded = tentVisibility(before)
+  const exposed = tentVisibility(after)
+  assert.ok(exposed.visibilityRatio > occluded.visibilityRatio, JSON.stringify({ occluded, exposed }))
+  assert.ok(exposed.screenOccupancy > occluded.screenOccupancy)
+  assert.ok(recording.visibility.some(row => row.status === 'not_applicable'))
+  for (const file of ['session.json', 'initial-scene.json', 'edit-events.jsonl', 'viewport-samples.jsonl', 'object-visibility.jsonl']) {
+    assert.ok(existsSync(join(root, '.data', 'recordings', sceneId, session.sessionId, file)))
+  }
+  await until(() => evaluate("Boolean([...document.querySelectorAll('.build-session button')].find(button => button.textContent === '回放'))"))
+  await send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: join(root, 'exports') })
+  await click('导出 ZIP')
+  const exported = join(root, 'exports', `${sceneId}-${session.sessionId}.zip`)
+  await until(() => existsSync(exported))
+  const { unzipSync, strFromU8 } = await import('../../src/node_modules/three/examples/jsm/libs/fflate.module.js')
+  const archive = unzipSync(readFileSync(exported))
+  assert.equal(JSON.parse(strFromU8(archive['session.json'])).sessionId, session.sessionId)
+  assert.equal(strFromU8(archive['object-visibility.jsonl']).trim().split('\n').length, recording.visibility.length)
+  await click('回放')
+  await until(() => evaluate("Boolean(document.querySelector('.build-replay canvas'))"))
+  await evaluate("[...document.querySelectorAll('.build-event-list button')].find(button => button.textContent.includes('删除 树')).click()")
+  await until(() => evaluate("document.querySelectorAll('.build-replay canvas').length === 2 && document.querySelector('.build-visibility').textContent.includes('→')"))
+  await click('关闭', '.build-replay button')
+  await click('开始录制')
+  await evaluate(visibilitySwitch + '.click()')
+  await evaluate("document.querySelector('.topbar select').focus()")
+  await evaluate(`(() => {
+    const select = document.querySelector('.topbar select')
+    select.value = 'garden'
+    select.dispatchEvent(new Event('change', { bubbles: true }))
+  })()`)
+  await until(async () => (await state())?.meta.id === 'garden')
+  const deferred = await until(async () => {
+    const list = await (await fetch(`${baseUrl}/api/recordings/${sceneId}`)).json()
+    return list.length === 2 && list.every(item => item.captureStatus === 'saved') && list.find(item => item.sessionId !== session.sessionId)
+  })
+  assert.equal(deferred.analysisStatus, 'pending')
+  const deferredPath = `${baseUrl}/api/recordings/${sceneId}/${deferred.sessionId}`
+  const raw = await (await fetch(deferredPath)).json()
+  assert.ok(raw.samples.some(sample => sample.reason === 'end'))
+  assert.deepEqual(raw.visibility, [])
+  assert.equal(existsSync(join(root, '.data', 'recordings', sceneId, deferred.sessionId, 'object-visibility.jsonl')), false)
+  assert.deepEqual(await (await fetch(recordingPath)).json(), recording)
+  await send('Page.navigate', { url: baseUrl + '/?scene=' + sceneId + '&build=1' })
+  await until(async () => (await state().catch(() => null))?.meta.id === sceneId)
+  const reopened = await state()
+  assert.deepEqual(reopened.assets.map(asset => asset.ref).sort(), ['models/campfire', 'models/chair', 'models/procedural-terrain', 'models/tent'])
+  assert.equal(reopened.lights[0].color, '#ffaa55')
+  await click('录制会话')
+  await until(() => evaluate("[...document.querySelectorAll('.build-session button')].some(button => button.textContent === '计算可见性')"))
+  await click('计算可见性')
+  await until(async () => {
+    const data = await (await fetch(deferredPath)).json()
+    return data.session.analysisStatus === 'ready' && data.visibility.length > 0
+  }, 45000)
+  console.log('PASS: manual construction, undo, scene persistence, recording lifecycle, synchronized playback and occlusion')
+  if (!process.argv.includes('--full-build')) return
+
+  const choose = (selector, value) => evaluate(`(() => {
+    const input = document.querySelector(${JSON.stringify(selector)})
+    input.value = ${JSON.stringify(value)}
+    input.dispatchEvent(new Event('change', { bubbles: true }))
+  })()`)
+  const treeObject = (id, additive = false) => evaluate(`document.querySelector('.build-objects button[title="${id}"]')
+    .dispatchEvent(new MouseEvent('click', { bubbles: true, shiftKey: ${additive} }))`)
+  const cardButton = (name, label) => evaluate(`[...document.querySelectorAll('.build-model')]
+    .find(card => card.querySelector('strong').textContent === ${JSON.stringify(name)})
+    .querySelectorAll('button').values().find(button => button.textContent === ${JSON.stringify(label)}).click()`)
+  await until(() => evaluate("Boolean(__engine.readViewport() && document.querySelector('.manual-build-panel'))"))
+  await evaluate(visibilitySwitch + '.click()')
+  await click('开始录制')
+  await click('创建基础形体')
+  await click('添加形体')
+  const box = (await state()).assets.find(asset => asset.shape?.kind === 'box')
+  assert.ok(box)
+  await cardButton('篝火', '替换所选灰盒')
+  assert.equal((await state()).assets.find(asset => asset.id === box.id).ref, 'models/campfire')
+  await click('↩ 撤销')
+  assert.equal((await state()).assets.find(asset => asset.id === box.id).shape.kind, 'box')
+  await treeObject(box.id)
+  await treeObject(chair.id, true)
+  await click('分组所选')
+  const group = (await state()).assets.find(asset => asset.group)
+  assert.ok(group)
+  assert.equal((await state()).assets.find(asset => asset.id === box.id).parentId, group.id)
+  assert.deepEqual((await state()).assets.find(asset => asset.id === box.id).transform, box.transform)
+  const groupX = group.transform.position[0]
+  assert.equal(await evaluate(`__edit.setTransform('${group.id}', {position:[${groupX + 1.5},0,${group.transform.position[2]}], rotation:[0,0,0]})`), true)
+  assert.ok(Math.abs((await state()).assets.find(asset => asset.id === box.id).transform.position[0] - 1.5) < 1e-7)
+  await click('↩ 撤销')
+  assert.ok(Math.abs((await state()).assets.find(asset => asset.id === box.id).transform.position[0]) < 1e-7)
+  await click('↪ 重做')
+  await evaluate("document.querySelector('.build-objects [aria-label=\"临时隐藏：对象组\"]').click()")
+  await until(() => evaluate(`__engine.findAssetObject('${box.id}')?.visible === false`))
+  assert.notEqual((await state()).assets.find(asset => asset.id === box.id).visible, false)
+  await evaluate("document.querySelector('.build-objects [aria-label=\"临时隐藏：对象组\"]').click()")
+
+  await click('批量布局')
+  await choose('.build-layout-tools select:not([aria-label])', 'array')
+  const beforeArray = (await state()).assets.length
+  await click('预览布局')
+  assert.equal((await state()).assets.length, beforeArray)
+  await click('应用布局')
+  assert.equal((await state()).assets.length, beforeArray + 9)
+  await click('↩ 撤销')
+  await click('素材组合')
+  await evaluate("document.querySelector('[aria-label=素材组合名称]').focus()")
+  await send('Input.insertText', { text: '休息区' })
+  await click('保存所选为组合')
+  await until(() => evaluate("Boolean(document.querySelector('.build-combinations button[type=submit]')?.disabled && document.querySelector('.build-combinations strong')?.textContent === '休息区')"))
+  await click('放置组合')
+  await clickViewport([-5, 0, 0])
+  assert.equal((await state()).assets.filter(asset => asset.group).length, 2)
+
+  const ground = (await state()).assets.find(asset => asset.terrain)
+  await treeObject(ground.id)
+  await click('检查器')
+  await choose('select[aria-label=搭建视角]', 'top')
+  await until(() => evaluate("__engine.readViewport()?.projection === 'orthographic'"))
+  const brushNumber = label => `[...document.querySelectorAll('.build-brush label')]
+    .find(label => label.textContent.trim() === ${JSON.stringify(label)}).querySelector('input')`
+  const typeBrushNumber = async (label, value) => {
+    await evaluate(`(() => {
+      const field = ${brushNumber(label)}
+      field.focus()
+      field.select()
+    })()`)
+    for (const text of value) await send('Input.insertText', { text })
+    assert.equal(await evaluate(`${brushNumber(label)}.value`), value)
+  }
+  await click('地形笔刷')
+  await typeBrushNumber('幅度 (m)', '1.25')
+  await clickViewport([-4, 0, -3])
+  await until(async () => (await state()).assets.find(asset => asset.id === ground.id).terrain.heights.some(value => value > 1))
+  await click('材质笔刷')
+  await click('添加图层', '.manual-build-panel button')
+  assert.equal((await state()).assets.find(asset => asset.id === ground.id).terrain.surface.layers.length, 2)
+  await clickViewport([-4, 0, -3])
+  await until(async () => (await state()).assets.find(asset => asset.id === ground.id).terrain.surface.weightMap.data.some((value, i) => i % 4 === 1 && value > 0))
+  await click('植被笔刷')
+  await click('选择散布模型')
+  await cardButton('树', '用于散布')
+  assert.equal(await evaluate("document.querySelector('select[aria-label=笔刷类型]')?.value"), 'scatter')
+  await typeBrushNumber('密度 (个/m²)', '0.05')
+  await send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13 })
+  await send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13 })
+  const density = () => evaluate("import('/modules/manual-build/terrainBrush.tsx').then(m => m.useBrush.getState().density)")
+  assert.equal(await density(), 0.05)
+  await typeBrushNumber('密度 (个/m²)', '11')
+  await evaluate('document.activeElement.blur()')
+  assert.equal(await density(), 0.05)
+  assert.equal(await evaluate(`${brushNumber('密度 (个/m²)')}.value`), '0.05')
+  await typeBrushNumber('密度 (个/m²)', '0.5')
+  await clickViewport([4, 0, 3])
+  await until(async () => (await state()).assets.some(asset => asset.scatterTerrainId === ground.id))
+  await choose('select[aria-label=笔刷类型]', 'erase')
+  await clickViewport([4, 0, 3])
+  await until(async () => !(await state()).assets.some(asset => asset.scatterTerrainId === ground.id))
+  await click('结束笔刷')
+  await choose('select[aria-label=搭建视角]', 'perspective')
+  await until(() => evaluate("__engine.readViewport()?.projection === 'perspective'"))
+
+  await click('导入 GLB')
+  const { root: domRoot } = await send('DOM.getDocument')
+  const { nodeId } = await send('DOM.querySelector', { nodeId: domRoot.nodeId, selector: '.build-import input[type=file]' })
+  const modelPath = resolve(source, '../assets/models/demo-forest-pine-tree/model/AF-1792510894520861100.glb')
+  await send('DOM.setFileInputFiles', { nodeId, files: [modelPath] })
+  await evaluate("document.querySelector('.build-import input[min=\"0.00001\"]').focus(); document.activeElement.select()")
+  await send('Input.insertText', { text: '0.01' })
+  await click('校验并预览')
+  await until(() => evaluate("Boolean(document.querySelector('.build-import-preview canvas') && !document.querySelector('.build-import-preview button')?.disabled)"))
+  await click('确认入库')
+  const imported = await until(async () => {
+    const list = await (await fetch(baseUrl + '/api/build-models')).json()
+    return Object.entries(list)[0]
+  })
+  assert.equal((await fetch(baseUrl + imported[1].source.url)).status, 200)
+  await choose('select[aria-label=素材类别]', '手工导入')
+  await cardButton(imported[1].name, '放置')
+  await clickViewport([4, 0, -3])
+  await until(async () => (await state()).assets.some(asset => asset.ref === imported[0]))
+  await click('保存场景')
+  await evaluate("document.querySelector('[aria-label=录制]').click()")
+  const fullSession = await until(async () => {
+    const [newest] = await (await fetch(`${baseUrl}/api/recordings/${sceneId}`)).json()
+    if (newest?.analysisStatus === 'failed') throw new Error(await evaluate("document.querySelector('.build-recordings .error')?.textContent"))
+    return newest?.sessionId !== session.sessionId && newest?.analysisStatus === 'ready' && newest
+  }, 120000)
+  const full = await (await fetch(`${baseUrl}/api/recordings/${sceneId}/${fullSession.sessionId}`)).json()
+  assert.ok(full.edits.some(event => event.changes.some(change => change.terrainDelta?.heights?.changes.length)))
+  assert.ok(full.edits.some(event => event.changes.some(change => change.terrainDelta?.weights?.changes.length)))
+  assert.ok(full.edits.some(event => event.changes.some(change => change.objectType === 'group' && change.worldPositionBefore?.[0] !== change.worldPositionAfter?.[0]) &&
+    event.changes.some(change => change.objectId === box.id && change.worldPositionBefore?.[0] !== change.worldPositionAfter?.[0])))
+  assert.ok(full.samples.some(sample => sample.projection === 'orthographic'))
+  await send('Page.navigate', { url: baseUrl + '/?scene=' + sceneId + '&build=1' })
+  await until(async () => (await state().catch(() => null))?.meta.id === sceneId)
+  assert.equal((await state()).assets.find(asset => asset.id === box.id).parentId, group.id)
+  assert.ok((await state()).assets.some(asset => asset.ref === imported[0]))
+  assert.ok((await state()).assets.find(asset => asset.id === ground.id).terrain.heights.some(value => value > 0.1))
+  console.log('PASS: full build hierarchy, grouped transforms, array preview, combinations, terrain brushes, GLB import and recording')
+}
+
 let modelRequests = 0
 let stallNextFinal = false
 let rejectNextFinal = false
@@ -94,20 +586,70 @@ try {
   await new Promise(resolve => mockModel.listen(0, '127.0.0.1', resolve))
   await vite.listen()
   const url = `http://127.0.0.1:${vite.httpServer.address().port}/tests/workspace.html`
-  browser = spawn(edge, ['--headless=new', '--disable-gpu', '--no-first-run', '--no-default-browser-check', '--remote-debugging-port=0', `--user-data-dir=${profile}`, 'about:blank'], { windowsHide: true, stdio: 'ignore' })
+  const testLights = process.argv.includes('--lights-only')
+  const testBuild = process.argv.includes('--build-only')
+  const graphics = testLights || testBuild ? ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--window-size=1440,900'] : ['--disable-gpu']
+  browser = spawn(edge, ['--headless=new', ...graphics, '--disable-extensions', '--no-first-run', '--no-default-browser-check', '--remote-debugging-port=0', `--user-data-dir=${profile}`, 'about:blank'], { windowsHide: true, stdio: 'ignore' })
   const portFile = join(profile, 'DevToolsActivePort')
   await until(() => existsSync(portFile))
   const port = readFileSync(portFile, 'utf8').split('\n')[0]
   const targets = await (await fetch(`http://127.0.0.1:${port}/json/list`)).json()
-  ws = new WebSocket(targets.find(t => t.type === 'page').webSocketDebuggerUrl)
+  ws = new WebSocket(targets.find(t => t.type === 'page' && t.url === 'about:blank').webSocketDebuggerUrl)
   await new Promise((resolve,reject) => { ws.addEventListener('open',resolve,{once:true});ws.addEventListener('error',reject,{once:true}) })
   ws.addEventListener('message', event => {
-    const message = JSON.parse(event.data);const call = calls.get(message.id)
+    const message = JSON.parse(event.data)
+    if ((testLights || testBuild) && message.method === 'Runtime.exceptionThrown') {
+      const details = message.params.exceptionDetails
+      console.error(details.exception?.description ?? details.text)
+    }
+    if ((testLights || testBuild) && message.method === 'Runtime.consoleAPICalled' && message.params.type === 'error') {
+      console.error(message.params.args.map(arg => arg.value ?? arg.description).join(' '))
+    }
+    const call = calls.get(message.id)
     if (!call) return
     calls.delete(message.id);clearTimeout(call.timer)
     message.error ? call.reject(new Error(message.error.message)) : call.resolve(message.result)
   })
-  await send('Page.enable');await send('Page.navigate', { url });await initialize()
+  await send('Page.enable')
+  if (testLights || testBuild) {
+    await send('Runtime.enable')
+    await send('Page.bringToFront')
+    if (testLights) await testSceneLights(new URL(url).origin)
+    if (testBuild) await testManualBuild(new URL(url).origin)
+  } else {
+  await send('Page.navigate', { url })
+  await until(() => evaluate('document.readyState === "complete"').catch(() => false))
+  // Simulate a pre-upgrade installation with a durable, not-yet-sent v1 job.
+  await evaluate(`(async()=>{
+    sessionStorage.setItem('layout-client-id','migration-client');
+    await new Promise((resolve,reject)=>{
+      const request=indexedDB.open('3d-layout-workspaces',1);
+      request.onupgradeneeded=()=>request.result.createObjectStore('pending',{keyPath:'requestId'});
+      request.onerror=()=>reject(request.error);
+      request.onsuccess=()=>{
+        const database=request.result,tx=database.transaction('pending','readwrite');
+        const document={meta:{id:'room',name:'房间',version:1,unit:'m',up:'+Y'},assets:[${JSON.stringify(original)}],environment:{},cameras:[]};
+        const job={requestId:'legacy-v1',clientId:'migration-client',sceneId:'room',baseRevision:0,workspace:{document,journal:[],redoStack:[],txCounter:0},label:'legacy save'};
+        tx.objectStore('pending').put(job);
+        tx.objectStore('pending').put({...job,requestId:'other-tab',clientId:'another-client'});
+        tx.oncomplete=()=>{database.close();resolve()};tx.onerror=()=>reject(tx.error);
+      };
+    });
+  })()`)
+  await initialize()
+  await evaluate('persistence.flushWorkspace()')
+  const migratedQueue = await evaluate(`new Promise((resolve,reject)=>{
+    const request=indexedDB.open('3d-layout-workspaces');
+    request.onerror=()=>reject(request.error);
+    request.onsuccess=()=>{
+      const database=request.result,tx=database.transaction('pending');
+      const result=tx.objectStore('pending').getAllKeys();
+      tx.oncomplete=()=>{const state={version:database.version,keys:result.result};database.close();resolve(state)};
+    };
+  })`)
+  assert.equal(migratedQueue.version,2)
+  assert.deepEqual(migratedQueue.keys,['other-tab'])
+  console.log('PASS: v1 pending queue upgrades without loss and isolates other clients')
   if (!process.argv.includes('--lease-only')) {
   await evaluate(`(async()=>{
     const reactModule=await import('/node_modules/.vite/deps/react.js');
@@ -515,6 +1057,7 @@ try {
   assert.equal(await evaluate(`fetch('/api/tasks?sceneId=room&channel=agent').then(r=>r.json()).then(t=>t.calls.filter(c=>c.result).length)`),1)
   await evaluate('slowTransport.stop()')
   console.log('PASS: tool lasting beyond 8 seconds renews independently; rejected ACK retries the receipt once without rerunning the tool')
+  }
 } finally {
   if (browser && browser.exitCode === null) {
     const exited = new Promise(resolve => browser.once('exit', resolve))

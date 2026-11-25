@@ -1,5 +1,5 @@
 import { validateSurface } from '../modules/terrain/surface'
-import type { ModelManifest, SceneDocument, SceneIndexEntry, ViewBinding } from './types'
+import type { ModelManifest, ModelMeta, SceneDocument, SceneIndexEntry, ViewBinding } from './types'
 
 const fetchJson = async <T>(url: string): Promise<T> => {
   const res = await fetch(url)
@@ -7,7 +7,13 @@ const fetchJson = async <T>(url: string): Promise<T> => {
   return res.json() as Promise<T>
 }
 
-export const loadManifest = () => fetchJson<ModelManifest>('/assets/model-catalog.json')
+export async function loadManifest(): Promise<ModelManifest> {
+  const [manifest, imported] = await Promise.all([
+    fetchJson<ModelManifest>('/assets/model-catalog.json'),
+    fetchJson<Record<string, ModelMeta>>('/api/build-models').catch(() => ({})),
+  ])
+  return { ...manifest, models: { ...manifest.models, ...imported } }
+}
 
 /**
  * 场景列表优先问工作区后端（可发现新导入的场景目录）；

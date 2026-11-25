@@ -9,6 +9,14 @@ import { AgentPanel as NewAgentPanel, AgentPickHighlight as NewAgentPickHighligh
 import { CoAgentBridge, CoAgentPanel, deriveHostLocks, useCoAgentModule } from './modules/coagent'
 import { PartitionAgentPanel, usePartitionAgentModule, usePartitionAgentStore } from './modules/partition-agent'
 import { EditorGizmo, EditorPanel, useEditorModule } from './modules/editor'
+import {
+  BuildInspector, ManualBuildGizmo, ManualBuildPanel, ModelLibrary, PlacementLayer, RecordingAnalysis,
+  ViewportRecorder, stopRecording, useManualBuildModule, usePlacement,
+} from './modules/manual-build'
+import { BuildOrthoView, BoxSelectLayer, LayoutPreview } from './modules/manual-build/ViewportTools'
+import { TerrainBrushLayer } from './modules/manual-build/terrainBrush'
+import { useBuildTools } from './modules/manual-build/buildTools'
+import { TransformToolbar } from './modules/manual-build/TransformToolbar'
 import { HistorySidebar } from './modules/history/HistorySidebar'
 import { InterchangePanel } from './modules/interchange/InterchangePanel'
 import { LoadingOverlay } from './ui/LoadingOverlay'
@@ -17,6 +25,7 @@ import { TopBar } from './ui/TopBar'
 
 // 侧边栏宽度（可拖拽调整，localStorage 记忆）
 const SIZE_KEY = 'ui-sidebar-size-v1'
+const BUILD_TABS = [['library', '素材库'], ['inspector', '检查器'], ['history', '历史']] as const
 const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v))
 
 function loadSizes(): { left: number; right: number } {
@@ -36,12 +45,20 @@ function loadSizes(): { left: number; right: number } {
 
 export default function App() {
   const boot = useSceneStore(s => s.boot)
-  const sceneDoc = useSceneStore(s => s.document)
+  const hasScene = useSceneStore(s => s.document !== null)
   const sceneError = useSceneStore(s => s.sceneError)
   const view = useSceneStore(s => s.view)
   const [scenes, setScenes] = useState<SceneIndexEntry[]>([])
   // 编辑器模块开关：URL ?editor=0/1 > 场景 view.json 的 editor.enabled > 默认开
   const urlEditor = new URLSearchParams(location.search).get('editor')
+  const [buildOn, setBuildOn] = useState(() => new URLSearchParams(location.search).get('build') === '1')
+  const [buildTab, setBuildTab] = useState<(typeof BUILD_TABS)[number][0]>('library')
+  const placing = usePlacement(state => state.ref !== null)
+  const buildInteraction = useBuildTools(state => state.interaction)
+  const buildView = useBuildTools(state => state.viewDirection)
+  useEffect(() => {
+    if (!buildOn) useBuildTools.setState({ interaction: 'select', viewDirection: 'perspective', preview: null })
+  }, [buildOn])
   const [editorOn, setEditorOn] = useState(urlEditor !== '0')
   // Agent 模块开关：默认开；传输层由 ?agent= 决定（缺省=浏览器直连 LLM）
   const [agentOn, setAgentOn] = useState(true)
@@ -62,7 +79,7 @@ export default function App() {
   const hostBusyRef = useRef(() => useAgentStore.getState().phase !== 'idle' || useNewAgentStore.getState().phase !== 'idle' || usePartitionAgentStore.getState().busy)
   const coagent = useCoAgentModule(coagentOn, { isHostBusy: hostBusyRef.current })
   // 写者互斥的唯一判断来源（SPEC §1.4 清单，单测 + T13 实跑覆盖）
-  const locks = deriveHostLocks({ editorEnabled: editorOn, agentBusy: agentPhase !== 'idle' || newAgentPhase !== 'idle' || partitionAgentBusy, coagentPhase: coagent.phase })
+  const locks = deriveHostLocks({ editorEnabled: editorOn || buildOn, agentBusy: agentPhase !== 'idle' || newAgentPhase !== 'idle' || partitionAgentBusy, coagentPhase: coagent.phase })
   const manualEditing = locks.manualEditing
 
   useEffect(() => {
@@ -132,7 +149,8 @@ export default function App() {
     document.body.style.userSelect = 'none'
   }
 
-  useEditorModule(manualEditing, editorOn || agentOn || newAgentOn || partitionAgentOn)
+  useEditorModule(manualEditing && !buildOn, !buildOn && (editorOn || agentOn || newAgentOn || partitionAgentOn))
+  useManualBuildModule(manualEditing && buildOn, buildOn)
   useAgentModule(agentOn && locks.agentModuleEnabled)
   useNewAgentModule(newAgentOn && locks.agentModuleEnabled)
   usePartitionAgentModule(partitionAgentOn && locks.agentModuleEnabled)
@@ -153,9 +171,31 @@ export default function App() {
               id: 'manual-editor',
               name: '人工编辑',
               description: '变换 · 属性 · 保存',
-              enabled: manualEditing,
-              onToggle: () => setEditorOn(v => !v),
+              enabled: manualEditing && !buildOn,
+              onToggle: () => {
+                if (buildOn) {
+                  stopRecording()
+                  setBuildOn(false)
+                  setEditorOn(true)
+                } else setEditorOn(v => !v)
+              },
               panel: <EditorPanel />,
+            },
+            {
+              id: 'manual-build',
+              name: '人工搭建',
+              description: '地形 · 素材放置 · 录制',
+              enabled: manualEditing && buildOn,
+              onToggle: () => {
+                if (buildOn) stopRecording()
+                else {
+                  setEditorOn(false)
+                  setBuildTab('library')
+                  setRightCollapsed(false)
+                }
+                setBuildOn(!buildOn)
+              },
+              panel: <ManualBuildPanel openLibrary={() => { setBuildTab('library'); setRightCollapsed(false) }} />,
             },
             {
               id: 'llm-agent',
@@ -201,9 +241,19 @@ export default function App() {
         />
         {!leftCollapsed && <div className="vresize" onMouseDown={startResize('left')} title="拖拽调整宽度" />}
         <div className="viewport">
-          {sceneDoc ? (
-            <SceneCanvas>
-              {manualEditing && <EditorGizmo />}
+          {hasScene ? (
+            <SceneCanvas showLightHelpers={editorOn || buildOn} honorEditorHidden={buildOn}
+              fixedView={buildOn && buildView !== 'perspective'} disableOrbitRotate={buildOn && placing}>
+              {manualEditing && !buildOn && <EditorGizmo />}
+              {manualEditing && buildOn && <>
+                {!placing && buildInteraction === 'select' && <ManualBuildGizmo />}
+                <PlacementLayer />
+                <LayoutPreview />
+                <BoxSelectLayer />
+                <TerrainBrushLayer />
+              </>}
+              {buildOn && <BuildOrthoView />}
+              {buildOn && <ViewportRecorder />}
               {agentOn && <AgentPickHighlight />}
               {newAgentOn && <NewAgentPickHighlight />}
               {/* W04：CoAgent 渲染端口（独立相机 + 离屏捕获），关插件即卸载并释放离屏资源 */}
@@ -212,11 +262,26 @@ export default function App() {
           ) : (
             <div className="empty-state">{sceneError ?? '正在加载场景…'}</div>
           )}
+          {hasScene && manualEditing && buildOn && <TransformToolbar />}
           <LoadingOverlay />
         </div>
         {!rightCollapsed && <div className="vresize" onMouseDown={startResize('right')} title="拖拽调整宽度" />}
-        <HistorySidebar style={rightStyle} collapsed={rightCollapsed} onToggle={() => setRightCollapsed(v => !v)} locked={locks.historyLocked} />
+        <HistorySidebar
+          style={rightStyle}
+          collapsed={rightCollapsed}
+          onToggle={() => setRightCollapsed(v => !v)}
+          locked={locks.historyLocked || (buildOn && !manualEditing)}
+          tabs={buildOn && <nav className="build-tabs" aria-label="搭建工作区">
+            {BUILD_TABS.map(([id, label]) => <button className="btn" key={id} aria-pressed={buildTab === id} onClick={() => setBuildTab(id)}>{label}</button>)}
+          </nav>}
+          content={buildOn && buildTab !== 'history'
+            ? buildTab === 'library' && manualEditing ? <ModelLibrary revealTools={() => setLeftCollapsed(false)} />
+              : buildTab === 'inspector' && manualEditing ? <div className="build-side-content"><BuildInspector /></div>
+                : <div className="inspector-empty">编辑已暂停</div>
+            : undefined}
+        />
       </div>
+      <RecordingAnalysis />
     </div>
   )
 }

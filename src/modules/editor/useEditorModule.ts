@@ -16,6 +16,9 @@ export function useEditorModule(enabled: boolean, selectionEnabled = enabled): v
     const offClicked = bus.on('asset:clicked', ({ assetId }) => {
       useSceneStore.getState().select(assetId)
     })
+    const offLightClicked = bus.on('light:clicked', ({ lightId }) => {
+      useSceneStore.getState().selectLight(lightId)
+    })
     const offEmpty = bus.on('viewport:empty-click', () => {
       useSceneStore.getState().select(null)
     })
@@ -27,6 +30,7 @@ export function useEditorModule(enabled: boolean, selectionEnabled = enabled): v
     })
     return () => {
       offClicked()
+      offLightClicked()
       offEmpty()
       offHistory()
     }

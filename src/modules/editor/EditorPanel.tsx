@@ -1,12 +1,11 @@
 import { useEffect, useReducer, useState } from 'react'
 import { edit } from '../../core/edit'
-import { engine } from '../../core/engine'
 import { bus } from '../../core/events'
 import { saveScene } from '../../core/io'
 import { useSceneStore } from '../../core/store'
 import { InspectorPanel } from './InspectorPanel'
-import { duplicateSelected } from './ops'
-import { SNAP, useEditorStore, type GizmoMode } from './editorStore'
+import { addLight, duplicateSelected, focusSelected, LIGHT_NAMES, removeSelected } from './ops'
+import { SNAP, supportsGizmoMode, useEditorStore, type GizmoMode } from './editorStore'
 
 const MODES: Array<{ key: GizmoMode; label: string; hint: string }> = [
   { key: 'translate', label: '移动', hint: 'W' },
@@ -20,13 +19,19 @@ const MODES: Array<{ key: GizmoMode; label: string; hint: string }> = [
  * 变换工具 + 操作按钮 + 数值面板。撤销/重做直接驱动引擎的 edit 历史栈。
  */
 export function EditorPanel() {
-  const mode = useEditorStore(s => s.mode)
+  const requestedMode = useEditorStore(s => s.mode)
   const setMode = useEditorStore(s => s.setMode)
   const space = useEditorStore(s => s.space)
   const toggleSpace = useEditorStore(s => s.toggleSpace)
   const snap = useEditorStore(s => s.snap)
   const toggleSnap = useEditorStore(s => s.toggleSnap)
   const selectedId = useSceneStore(s => s.selectedAssetId)
+  const selectedLightId = useSceneStore(s => s.selectedLightId)
+  const lights = useSceneStore(s => s.document?.lights)
+  const selectLight = useSceneStore(s => s.selectLight)
+  const selectedLight = lights?.find(light => light.id === selectedLightId)
+  const mode = supportsGizmoMode(requestedMode, selectedLight?.type) ? requestedMode : 'translate'
+  const hasSelection = Boolean(selectedId || selectedLight)
   const sceneId = useSceneStore(s => s.sceneId)
   const hasDoc = useSceneStore(s => s.document !== null)
 
@@ -58,6 +63,7 @@ export function EditorPanel() {
             key={m.key}
             className={mode === m.key ? 'active' : ''}
             onClick={() => setMode(m.key)}
+            disabled={!supportsGizmoMode(m.key, selectedLight?.type)}
             title={`快捷键 ${m.hint}`}
           >
             {m.label} <span className="hint">{m.hint}</span>
@@ -86,18 +92,18 @@ export function EditorPanel() {
           ↪ 重做
         </button>
         <button
-          disabled={!selectedId}
-          onClick={() => selectedId && engine.focusAsset(selectedId)}
+          disabled={!hasSelection}
+          onClick={focusSelected}
           title="快捷键 F"
         >
           聚焦
         </button>
-        <button disabled={!selectedId} onClick={() => duplicateSelected()} title="Ctrl+D">
+        <button disabled={!hasSelection} onClick={() => duplicateSelected()} title="Ctrl+D">
           复制
         </button>
         <button
-          disabled={!selectedId}
-          onClick={() => selectedId && edit.removeAsset(selectedId, { source: 'human' })}
+          disabled={!hasSelection}
+          onClick={removeSelected}
           title="Delete"
         >
           删除
@@ -107,6 +113,28 @@ export function EditorPanel() {
         </button>
       </div>
       {saveStatus && <div className="save-status">{saveStatus}</div>}
+
+      <div className="panel-label">灯光</div>
+      <div className="btn-grid g2">
+        <button disabled={!hasDoc} onClick={() => addLight('point')}>新建点光源</button>
+        <button disabled={!hasDoc} onClick={() => addLight('spot')}>新建聚光灯</button>
+      </div>
+      {Boolean(lights?.length) && (
+        <div className="btn-grid light-list">
+          {lights?.map(light => (
+            <button
+              key={light.id}
+              className={selectedLightId === light.id ? 'active' : ''}
+              aria-pressed={selectedLightId === light.id}
+              onClick={() => selectLight(light.id)}
+              title={light.id}
+            >
+              <span>{light.name ?? LIGHT_NAMES[light.type]}</span>
+              {light.enabled === false && <span className="hint">已关闭</span>}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="panel-divider" />
       <InspectorPanel />

@@ -54,6 +54,7 @@ export function CameraRig(props: { cameras: SceneCamera[]; view: ViewBinding; sc
   const controls = useThree(s => s.controls) as unknown as ControlsLike | null
 
   useEffect(() => {
+    if (!(camera as PerspectiveCamera).isPerspectiveCamera) return
     const base = resolveBase(cameras, view)
     if (!base && !view.camera) return
     const pos = view.camera?.position ?? base?.position ?? FALLBACK_POSITION
@@ -68,12 +69,12 @@ export function CameraRig(props: { cameras: SceneCamera[]; view: ViewBinding; sc
 
   // OrbitControls（makeDefault）可能晚于首个 effect 就绪，单独响应
   useEffect(() => {
-    if (!controls) return
+    if (!controls || !(camera as PerspectiveCamera).isPerspectiveCamera) return
     const base = resolveBase(cameras, view)
     const tgt = view.camera?.target ?? base?.target ?? [0, 0, 0]
     controls.target.set(tgt[0], tgt[1], tgt[2])
     controls.update()
-  }, [sceneKey, controls, cameras, view])
+  }, [sceneKey, controls, cameras, view, camera])
 
   // 裁剪面：far 盖住"初始相机位 → 包围球最远点"，near 随 far 按比例抬高保证深度精度。
   // 按初始相机位而非实时位置计算，编辑过程中资产微动不会让 far 来回抖动。

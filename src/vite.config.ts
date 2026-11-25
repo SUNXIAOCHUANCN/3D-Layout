@@ -6,7 +6,6 @@ import { createReadStream, existsSync, mkdirSync, readdirSync, readFileSync, ren
 import { dirname, extname, resolve, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { IncomingMessage, ServerResponse } from 'node:http'
-import type { SceneDocument } from './core/types'
 import { handleLlmAgentLog } from './modules/llm-agent/logServer'
 import { handleLlmAgentPython } from './modules/llm-agent/pythonServer'
 import { partitionAgentPlugin } from './modules/partition-agent/server'
@@ -71,29 +70,8 @@ function handleSaveScene(req: IncomingMessage, res: ServerResponse): boolean {
   return true
 }
 
-/**
- * 场景新建 / 删除接口（dev/preview 专用；生产静态托管无此接口）：
- * - POST   /api/scene        body {name}      → 建 scenes/<id>/scene.json + 登记索引
- * - DELETE /api/scene/<id>                    → 删整个场景目录 + 从索引摘除
- *
- * 与 handleSaveScene 同款安全约束：id 白名单、resolve 后 startsWith 双保险。
- * 索引 scenes/index.json 由本接口增量维护（gen-manifest.mjs 仍可随时全量重建）。
- */
+// 场景创建由共享宿主 API 处理。此处保留旧的场景删除入口。
 const SCENE_ID_RE = /^[a-z0-9][a-z0-9-]{0,63}$/
-
-/** 空场景文档：结构对齐 scene-01，assets 为空（类型来自 core/types.ts，tsc 校验形状） */
-function emptySceneDocument(id: string, name: string): SceneDocument {
-  return {
-    meta: { id, name, version: 1, unit: 'm', up: '+Y' },
-    environment: {
-      background: '#1c2128',
-      sunIntensity: 1.6,
-      ground: { size: [16, 16], receiveShadow: true },
-    },
-    assets: [],
-    cameras: [{ id: 'main', position: [5.5, 4.2, 6.8], target: [0, 0.8, 0], fov: 50 }],
-  }
-}
 
 /** 读场景索引（不存在时按空列表处理） */
 function readSceneIndex(scenesDir: string): Array<{ id: string; name: string }> {
@@ -117,56 +95,9 @@ function writeSceneIndex(scenesDir: string, entries: Array<{ id: string; name: s
   writeFileSync(resolve(scenesDir, 'index.json'), JSON.stringify(sorted, null, 2) + '\n')
 }
 
-/** 挑一个未被占用的 scene-NN 编号 */
-function nextSceneId(scenesDir: string): string {
-  const used = new Set(readdirSync(scenesDir, { withFileTypes: true }).filter(d => d.isDirectory()).map(d => d.name))
-  for (let n = 1; n < 10000; n++) {
-    const id = `scene-${String(n).padStart(2, '0')}`
-    if (!used.has(id)) return id
-  }
-  throw new Error('场景编号已耗尽')
-}
-
 function handleSceneAdmin(req: IncomingMessage, res: ServerResponse): boolean {
   const url = decodeURIComponent((req.url ?? '').split('?')[0])
   const scenesDir = resolve(layoutRoot, 'scenes')
-
-  // 新建空场景
-  if (url === '/api/scene' && req.method === 'POST') {
-    const chunks: Buffer[] = []
-    req.on('data', (c: Buffer) => chunks.push(c))
-    req.on('end', () => {
-      try {
-        const body = JSON.parse(Buffer.concat(chunks).toString('utf8') || '{}') as { name?: unknown }
-        const name = typeof body.name === 'string' ? body.name.trim() : ''
-        if (!name) throw new Error('场景名称不能为空')
-        if (name.length > 80) throw new Error('场景名称过长（上限 80 字符）')
-
-        const id = nextSceneId(scenesDir)
-        const sceneDir = resolve(scenesDir, id)
-        if (!sceneDir.startsWith(scenesDir + sep)) throw new Error('非法路径')
-        if (existsSync(sceneDir)) throw new Error(`场景 ${id} 已存在`)
-
-        mkdirSync(sceneDir, { recursive: true })
-        writeFileSync(resolve(sceneDir, 'scene.json'), JSON.stringify(emptySceneDocument(id, name), null, 2) + '\n')
-        // 渲染绑定（相机/网格）与 scene-01 同款
-        mkdirSync(resolve(sceneDir, 'threejs'), { recursive: true })
-        writeFileSync(resolve(sceneDir, 'threejs', 'view.json'), JSON.stringify({ cameraId: 'main', grid: { enabled: true } }, null, 2) + '\n')
-
-        const entries = readSceneIndex(scenesDir).filter(e => e.id !== id)
-        entries.push({ id, name })
-        writeSceneIndex(scenesDir, entries)
-
-        res.setHeader('Content-Type', 'application/json; charset=utf-8')
-        res.end(JSON.stringify({ ok: true, id, name }))
-      } catch (e) {
-        res.statusCode = 400
-        res.setHeader('Content-Type', 'application/json; charset=utf-8')
-        res.end(JSON.stringify({ ok: false, error: e instanceof Error ? e.message : String(e) }))
-      }
-    })
-    return true
-  }
 
   // 删除场景
   const match = url.match(/^\/api\/scene\/([a-zA-Z0-9_-]+)$/)
@@ -390,7 +321,7 @@ function serveDataDirs(): Plugin {
     middlewares.use((req, res, next) => {
       if (handleLlmRelay(req, res)) return
       if (handlePartitionWrite(req, res)) return
-      // 场景新建/删除（POST /api/scene 与 DELETE /api/scene/<id>）先于保存接口判定
+      // 场景删除先于旧版保存接口判定
       if (handleSceneAdmin(req, res)) return
       if (handleSaveScene(req, res)) return
       if (handleLogs(req, res)) return
@@ -407,7 +338,7 @@ function serveDataDirs(): Plugin {
       install(server.middlewares)
       // These Node modules are held by the middleware, outside React's hot updates.
       const runtimeFiles = new Set([
-        '../server/http.mjs', '../server/tasks.mjs', '../server/workspaces.mjs',
+        '../server/http.mjs', '../server/tasks.mjs', '../server/workspaces.mjs', '../server/recordings.mjs', '../server/build-library.mjs',
         './modules/llm-agent/llmClient.ts',
       ].map(path => fileURLToPath(new URL(path, import.meta.url))))
       server.watcher.add([...runtimeFiles])

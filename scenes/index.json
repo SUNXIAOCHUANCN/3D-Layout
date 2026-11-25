@@ -52,6 +52,22 @@
     "name": "FantasyLand2"
   },
   {
+    "id": "scene-08",
+    "name": "MyBuild1"
+  },
+  {
+    "id": "scene-09",
+    "name": "Mybuild2"
+  },
+  {
+    "id": "scene-10",
+    "name": "MyBuild3"
+  },
+  {
+    "id": "scene-11",
+    "name": "MyBuild4"
+  },
+  {
     "id": "scene-models",
     "name": "模型库预览"
   },

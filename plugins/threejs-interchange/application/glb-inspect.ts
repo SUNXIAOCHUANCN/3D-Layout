@@ -77,7 +77,8 @@ interface GltfJson {
     scale?: number[]
   }>
   meshes?: Array<{ primitives?: Array<{ attributes?: Record<string, number> }>; weights?: number[] }>
-  accessors?: Array<{ componentType?: number; count?: number; min?: number[]; max?: number[]; type?: string }>
+  accessors?: Array<{ componentType?: number; count?: number; min?: number[]; max?: number[]; type?: string; byteOffset?: number; bufferView?: number; sparse?: unknown }>
+  bufferViews?: Array<{ buffer?: number; byteOffset?: number; byteLength?: number; byteStride?: number }>
   buffers?: Array<{ uri?: string; byteLength?: number }>
   images?: Array<{ uri?: string; bufferView?: number; mimeType?: string }>
   skins?: unknown[]
@@ -128,7 +129,9 @@ function composeTrs(t: number[] | undefined, r: number[] | undefined, s: number[
     m.set(rot)
   }
   if (s && s.length === 3) {
-    for (let i = 0; i < 3; i++) m[i * 4 + i] *= s[i]
+    for (let column = 0; column < 3; column++) {
+      for (let row = 0; row < 3; row++) m[column * 4 + row] *= s[column]
+    }
   }
   if (t && t.length === 3) {
     m[12] = t[0]; m[13] = t[1]; m[14] = t[2]
@@ -316,4 +319,61 @@ export function inspectGlb(bytes: Uint8Array, coords: CoordsSimple): GlbInspecti
     externalRefs,
     stats: { meshes, primitives, vertices, images: json.images?.length ?? 0, skins, animations, morphTargets },
   }
+}
+
+/** Scan embedded float POSITION data when computing an import's measured bounds.
+ * The validator's declared bounds remain a fallback for other accessor layouts. */
+export function measuredStaticBounds(bytes: Uint8Array, inspection: GlbInspection, yaw: number): Bounds | null {
+  const { gltf } = inspection
+  const data = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength)
+  let bin = 0, binLength = 0
+  for (let offset = 12; offset + 8 <= bytes.byteLength;) {
+    const length = data.getUint32(offset, true)
+    if (data.getUint32(offset + 4, true) === CHUNK_BIN) { bin = offset + 8; binLength = length; break }
+    offset += 8 + length
+  }
+  const angle = yaw * Math.PI / 180, cos = Math.cos(angle), sin = Math.sin(angle)
+  const min: Vec3 = [Infinity, Infinity, Infinity], max: Vec3 = [-Infinity, -Infinity, -Infinity]
+  const visited = new Set<number>()
+  const include = (matrix: Mat4, x: number, y: number, z: number) => {
+    const point = transformPoint(matrix, [x, y, z])
+    const rotated = [cos * point[0] + sin * point[2], point[1], -sin * point[0] + cos * point[2]]
+    for (let i = 0; i < 3; i++) {
+      min[i] = Math.min(min[i], rotated[i])
+      max[i] = Math.max(max[i], rotated[i])
+    }
+  }
+  function walk(index: number, parent: Mat4) {
+    if (visited.has(index)) return
+    visited.add(index)
+    const node = gltf.nodes?.[index]
+    if (!node) return
+    const world = mat4Mul(parent, nodeLocalMatrix(node))
+    for (const primitive of gltf.meshes?.[node.mesh ?? -1]?.primitives ?? []) {
+      const accessor = gltf.accessors?.[primitive.attributes?.POSITION ?? -1]
+      if (!accessor) continue
+      const view = gltf.bufferViews?.[accessor.bufferView ?? -1]
+      if (bin && view?.buffer === 0 && !gltf.buffers?.[0]?.uri && accessor.componentType === 5126 && accessor.type === 'VEC3' && !accessor.sparse) {
+        const start = (view.byteOffset ?? 0) + (accessor.byteOffset ?? 0)
+        const step = view.byteStride ?? 12
+        const count = accessor.count ?? 0
+        const end = start + (count - 1) * step + 12
+        if (!Number.isInteger(count) || count <= 0 || !Number.isInteger(start) || start < 0 || step < 12
+          || end > Math.min(binLength, (view.byteOffset ?? 0) + (view.byteLength ?? 0))) {
+          throw new InterchangeError('INVALID_DECLARATION', 'GLB POSITION 数据范围无效')
+        }
+        for (let i = 0; i < count; i++) {
+          const address = bin + start + i * step
+          include(world, data.getFloat32(address, true), data.getFloat32(address + 4, true), data.getFloat32(address + 8, true))
+        }
+      } else if (accessor.min && accessor.max) {
+        for (const x of [accessor.min[0], accessor.max[0]]) for (const y of [accessor.min[1], accessor.max[1]]) {
+          for (const z of [accessor.min[2], accessor.max[2]]) include(world, x, y, z)
+        }
+      }
+    }
+    for (const child of node.children ?? []) walk(child, world)
+  }
+  for (const index of gltf.scenes?.[gltf.scene ?? 0]?.nodes ?? gltf.scenes?.[0]?.nodes ?? []) walk(index, mat4Identity())
+  return min[0] === Infinity ? null : { min, max }
 }

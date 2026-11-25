@@ -4,7 +4,17 @@
  * 渲染层只上报事实（如 asset:clicked），"谁订阅、订阅后做什么"由各模块决定。
  */
 
+import type { EditSource, HistoryEntry } from './edit'
+
 interface EventMap {
+  'scene:will-change': Record<string, never>
+  'edit:applied': {
+    direction: 'commit' | 'undo' | 'redo'
+    txId: number
+    label: string
+    source: EditSource
+    entries: readonly HistoryEntry[]
+  }
   'scene:changed': { sceneId: string | null }
   /** 场景索引变化（新建/删除场景）：顶栏下拉据此重新拉取 scenes/index.json */
   'scene:index-changed': Record<string, never>
@@ -12,7 +22,8 @@ interface EventMap {
   'asset:loaded': { assetId: string; ref: string }
   'command:dispatched': { type: string }
   'history:changed': Record<string, never>
-  'asset:clicked': { assetId: string }
+  'asset:clicked': { assetId: string; additive?: boolean }
+  'light:clicked': { lightId: string }
   'viewport:empty-click': Record<string, never>
   'transform:drag-start': { assetId: string }
   'transform:drag-end': { assetId: string }

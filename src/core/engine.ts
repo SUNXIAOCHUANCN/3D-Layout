@@ -53,7 +53,19 @@ export interface PickHit {
   distance: number
 }
 
+export interface ViewportPose {
+  width: number
+  height: number
+  projection: 'perspective' | 'orthographic'
+  position: [number, number, number]
+  quaternion: [number, number, number, number]
+  projectionMatrix: number[]
+  near: number
+  far: number
+}
+
 export interface EngineApi {
+  readViewport(): ViewportPose | null
   /** 屏幕坐标拾取：返回资产 id 或 null */
   pick(clientX: number, clientY: number): string | null
   /**
@@ -68,6 +80,8 @@ export interface EngineApi {
   pickFromCamera(spec: CaptureCamera, width: number, height: number, u: number, v: number): PickHit | null
   /** 找到某资产的 three 对象（gizmo attach、聚焦等渲染侧操作用） */
   findAssetObject(assetId: string): Object3D | null
+  findLightObject(lightId: string): Object3D | null
+  focusLight(lightId: string): boolean
   /** 把相机对准某资产（保持当前朝向，调整距离），F 聚焦 / Agent 定位用 */
   focusAsset(assetId: string): boolean
   /** Focus a review range, including a removed asset's former location. */
@@ -106,6 +120,23 @@ function isEditorHelper(obj: Object3D | null): boolean {
 }
 
 export const engine: EngineApi = {
+  readViewport() {
+    if (!bridge) return null
+    const { camera, gl } = bridge
+    const lens = camera as PerspectiveCamera | OrthographicCamera
+    const { width, height } = gl.domElement
+    if (!width || !height) return null
+    camera.updateWorldMatrix(true, false)
+    return {
+      width, height,
+      projection: (lens as OrthographicCamera).isOrthographicCamera ? 'orthographic' : 'perspective',
+      position: camera.getWorldPosition(new Vector3()).toArray(),
+      quaternion: camera.getWorldQuaternion(camera.quaternion.clone()).toArray(),
+      projectionMatrix: camera.projectionMatrix.toArray(),
+      near: lens.near,
+      far: lens.far,
+    }
+  },
   captureFromCamera(spec, width, height, options) {
     if (!bridge) throw new Error('engine 尚未就绪（场景未渲染）')
     const { gl, scene } = bridge
@@ -242,6 +273,19 @@ export const engine: EngineApi = {
       if (!found && o.userData?.assetId === assetId) found = o
     })
     return found
+  },
+
+  findLightObject(lightId) {
+    let found: Object3D | null = null
+    bridge?.scene.traverse(object => {
+      if (!found && object.userData.lightId === lightId) found = object
+    })
+    return found
+  },
+
+  focusLight(lightId) {
+    const object = engine.findLightObject(lightId)
+    return object ? engine.focusBounds(new Box3().setFromPoints([object.getWorldPosition(new Vector3())])) : false
   },
 
   focusAsset(assetId) {

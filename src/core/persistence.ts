@@ -18,9 +18,19 @@ interface Pending {
 let database: Promise<IDBDatabase> | undefined
 function db(): Promise<IDBDatabase> {
   return database ??= new Promise((resolve, reject) => {
-    const request = indexedDB.open('3d-layout-workspaces', 1)
-    request.onupgradeneeded = () => request.result.createObjectStore('pending', { keyPath: 'requestId' })
-    request.onsuccess = () => resolve(request.result)
+    const request = indexedDB.open('3d-layout-workspaces', 2)
+    request.onupgradeneeded = () => {
+      const database = request.result
+      const store = database.objectStoreNames.contains('pending')
+        ? request.transaction!.objectStore('pending')
+        : database.createObjectStore('pending', { keyPath: 'requestId' })
+      store.createIndex('client-scene', ['clientId', 'sceneId'])
+    }
+    request.onblocked = () => status('error', '本地保存队列升级受阻，请关闭其他旧版本页面后刷新')
+    request.onsuccess = () => {
+      request.result.onversionchange = () => request.result.close()
+      resolve(request.result)
+    }
     request.onerror = () => reject(request.error)
   })
 }
@@ -44,13 +54,18 @@ function clientId(): string {
 let activeScene = ''
 let revision = 0
 const staged: Pending[] = []
+// Keep durable jobs in memory; reading full workspaces out of IndexedDB on every
+// send repeatedly clones all history on the UI thread.
+const ready: Pending[] = []
 let localWrites: Promise<void> = Promise.resolve()
 let sending: Promise<void> | null = null
 
 function persistStaged(): Promise<void> {
   localWrites = localWrites.catch(() => {}).then(async () => {
     while (staged.length) {
-      await pending('readwrite', store => store.put(staged[0]))
+      const item = staged[0]
+      await pending('readwrite', store => store.put(item))
+      ready.push(item)
       staged.shift()
     }
   })
@@ -58,8 +73,8 @@ function persistStaged(): Promise<void> {
 }
 
 async function jobs(scene = activeScene): Promise<Pending[]> {
-  const all = await pending<Pending[]>('readonly', store => store.getAll())
-  return all.filter(item => item.clientId === clientId() && item.sceneId === scene).sort((a, b) => a.baseRevision - b.baseRevision)
+  const all = await pending<Pending[]>('readonly', store => store.index('client-scene').getAll([clientId(), scene]))
+  return all.sort((a, b) => a.baseRevision - b.baseRevision)
 }
 
 export async function openWorkspace(id: string): Promise<Workspace> {
@@ -77,6 +92,7 @@ export async function openWorkspace(id: string): Promise<Workspace> {
   const remote: WorkspaceResponse = await response.json()
   const queued = await jobs(id)
   activeScene = id
+  ready.splice(0, ready.length, ...queued)
   revision = queued.length ? queued[queued.length - 1].baseRevision + 1 : remote.revision
   status(queued.length ? 'saving' : 'saved', remote.projectionError ?? '')
   // A retry uses the same requestId, including when the previous response was lost.
@@ -94,7 +110,9 @@ export function queueWorkspace(workspace: Workspace, label: string): void {
   if (!activeScene) return
   const item: Pending = {
     requestId: crypto.randomUUID(), clientId: clientId(), sceneId: activeScene,
-    baseRevision: revision++, workspace: structuredClone(workspace), label,
+    // Scene objects and committed units are immutable. Only the stack arrays
+    // mutate (push/pop), so snapshot those now; IndexedDB makes the durable copy.
+    baseRevision: revision++, workspace: { ...workspace, journal: [...workspace.journal], redoStack: [...workspace.redoStack] }, label,
   }
   status('saving')
   staged.push(item)
@@ -107,11 +125,11 @@ export async function flushWorkspace(expectedScene?: string): Promise<void> {
   if (expectedScene && activeScene !== expectedScene) throw new Error('场景尚未连接持久化后端')
   if (!activeScene) return
   await persistStaged()
-  if (sending) { await sending; if (staged.length || (await jobs()).length) return flushWorkspace(); return }
+  if (sending) { await sending; if (staged.length || ready.length) return flushWorkspace(); return }
   sending = (async () => {
     for (;;) {
       await persistStaged()
-      const [item] = await jobs()
+      const item = ready[0]
       if (!item) { status('saved', usePersistence.getState().message); return }
       let response: Response
       try {
@@ -127,6 +145,7 @@ export async function flushWorkspace(expectedScene?: string): Promise<void> {
       }
       const result: { projectionError: string | null } = await response.json()
       await pending('readwrite', store => store.delete(item.requestId))
+      ready.shift()
       status('saving', result.projectionError ?? '')
     }
   })()
@@ -138,6 +157,7 @@ export async function discardPending(): Promise<void> {
   if (sending) await sending.catch(() => {})
   staged.length = 0
   for (const item of await jobs()) await pending('readwrite', store => store.delete(item.requestId))
+  ready.length = 0
 }
 
 if (typeof window !== 'undefined') {

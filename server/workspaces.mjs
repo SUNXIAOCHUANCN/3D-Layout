@@ -15,6 +15,34 @@ function asset(value) {
   check(value && typeof value.id === 'string' && value.id.length > 0 && typeof value.ref === 'string', '非法资产')
   const t = value.transform
   check(t && vector(t.position) && vector(t.rotation) && (t.scale === undefined || vector(t.scale) && t.scale.every(n => n !== 0)), '非法资产变换')
+  check(value.parentId === undefined || (typeof value.parentId === 'string' && value.parentId.length > 0), '非法资产父级')
+  check(value.group === undefined || typeof value.group === 'boolean', '非法对象组')
+  check(value.locked === undefined || typeof value.locked === 'boolean', '非法对象锁定状态')
+  check(value.shape === undefined || (!value.group && !value.terrain && ['box', 'plane', 'cylinder'].includes(value.shape?.kind)
+    && vector(value.shape.size) && value.shape.size.every(n => n > 0)), '非法基础形体')
+}
+
+function hierarchy(assets) {
+  const nodes = new Map(assets.map(asset => [asset.id, asset]))
+  for (const node of assets) {
+    const visited = new Set([node.id])
+    let parentId = node.parentId
+    while (parentId) {
+      const parent = nodes.get(parentId)
+      check(parent?.group && !visited.has(parentId), '场景对象父级无效或成环')
+      visited.add(parentId)
+      parentId = parent.parentId
+    }
+  }
+}
+
+function light(value) {
+  check(value && typeof value.id === 'string' && value.id.length > 0, '非法灯光 ID')
+  check(value.name === undefined || typeof value.name === 'string', '非法灯光名称')
+  check(vector(value.position) && typeof value.color === 'string' && /^#[0-9a-f]{6}$/i.test(value.color), '非法灯光位置或颜色')
+  check(Number.isFinite(value.intensity) && value.intensity >= 0 && Number.isFinite(value.distance) && value.distance >= 0, '非法灯光强度或距离')
+  check(value.enabled === undefined || typeof value.enabled === 'boolean', '非法灯光开关')
+  check(value.type === 'point' || (value.type === 'spot' && vector(value.rotation) && Number.isFinite(value.angle) && value.angle > 0 && value.angle <= 90), '非法灯光类型、旋转或锥角')
 }
 
 /** Validate the document and both history stacks before they share a commit. */
@@ -26,7 +54,12 @@ export function validateWorkspace(state, id) {
   for (const camera of d.cameras) check(camera && typeof camera.id === 'string' && vector(camera.position) && (camera.target === undefined || vector(camera.target)), '非法相机')
   check(d.assets.length <= 20000, '场景资产过多')
   d.assets.forEach(asset)
-  check(new Set(d.assets.map(a => a.id)).size === d.assets.length, '资产 ID 重复')
+  hierarchy(d.assets)
+  check(d.lights === undefined || Array.isArray(d.lights), '非法灯光列表')
+  const lights = d.lights ?? []
+  lights.forEach(light)
+  const objectIds = [...d.assets, ...lights].map(object => object.id)
+  check(new Set(objectIds).size === objectIds.length, '场景对象 ID 重复')
   check(Array.isArray(state.journal) && Array.isArray(state.redoStack), '缺少历史状态')
   check(Number.isSafeInteger(state.txCounter) && state.txCounter >= 0, '非法事务计数')
   const ids = new Set()
@@ -40,18 +73,34 @@ export function validateWorkspace(state, id) {
     check(operations <= 100000, '历史操作过多，请导出归档后新建场景')
     for (const e of unit.entries) {
       check(e && typeof e === 'object', '非法历史操作')
-      check(['set_transform', 'add_asset', 'remove_asset'].includes(e.cmd) && e.txId === unit.txId && Number.isFinite(e.time), '非法历史操作')
+      const editsLight = ['add_light', 'remove_light', 'update_light'].includes(e.cmd)
+      check((editsLight || ['set_transform', 'add_asset', 'remove_asset', 'update_asset'].includes(e.cmd)) && e.txId === unit.txId && Number.isFinite(e.time), '非法历史操作')
       check(['human', 'agent'].includes(e.source) && typeof e.label === 'string', '非法操作来源')
-      check(e.cmd === 'add_asset' ? e.before === null && e.after !== null : e.cmd === 'remove_asset' ? e.before !== null && e.after === null : e.before !== null && e.after !== null, '历史操作前后状态不匹配')
-      for (const side of [e.before, e.after]) if (side !== null) { asset(side); check(side.id === e.assetId, '历史资产 ID 不匹配') }
+      const adds = e.cmd === 'add_asset' || e.cmd === 'add_light'
+      const removes = e.cmd === 'remove_asset' || e.cmd === 'remove_light'
+      check((e.before === null) === adds && (e.after === null) === removes, '历史操作前后状态不匹配')
+      check(editsLight ? !Object.hasOwn(e, 'assetId') : !Object.hasOwn(e, 'lightId'), '历史对象类型不匹配')
+      for (const side of [e.before, e.after]) if (side !== null) {
+        if (editsLight) light(side)
+        else asset(side)
+        check(side.id === (editsLight ? e.lightId : e.assetId), '历史对象 ID 不匹配')
+      }
     }
   }
   const verify = (units, from, to) => {
     const assets = new Map(d.assets.map(a => [a.id, a]))
+    const sceneLights = new Map(lights.map(l => [l.id, l]))
     for (const unit of units) for (const e of from === 'after' ? [...unit.entries].reverse() : unit.entries) {
-      check(isDeepStrictEqual(assets.get(e.assetId) ?? null, e[from]), '场景与历史不一致')
-      if (e[to] === null) assets.delete(e.assetId)
-      else assets.set(e.assetId, e[to])
+      const editsLight = Object.hasOwn(e, 'lightId')
+      const objects = editsLight ? sceneLights : assets
+      const otherObjects = editsLight ? assets : sceneLights
+      const id = editsLight ? e.lightId : e.assetId
+      check(isDeepStrictEqual(objects.get(id) ?? null, e[from]), '场景与历史不一致')
+      if (e[to] === null) objects.delete(id)
+      else {
+        check(!otherObjects.has(id), '历史场景对象 ID 重复')
+        objects.set(id, e[to])
+      }
     }
   }
   verify([...state.journal].reverse(), 'after', 'before')
@@ -126,6 +175,7 @@ export class WorkspaceRepository {
         const refs = new Set(input.workspace.document.assets.map(a => a.ref))
         if (input.workspace.document.environment.hdri) refs.add(input.workspace.document.environment.hdri)
         for (const u of [...input.workspace.journal, ...input.workspace.redoStack]) for (const e of u.entries) {
+          if (Object.hasOwn(e, 'lightId')) continue
           if (e.before) refs.add(e.before.ref)
           if (e.after) refs.add(e.after.ref)
         }

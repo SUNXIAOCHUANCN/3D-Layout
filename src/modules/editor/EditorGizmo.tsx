@@ -1,11 +1,12 @@
 import { TransformControls } from '@react-three/drei'
-import { useMemo, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import type { Object3D } from 'three'
 import { edit, type TxHandle } from '../../core/edit'
 import { engine } from '../../core/engine'
 import { bus } from '../../core/events'
 import { useSceneStore } from '../../core/store'
-import { SNAP, effectiveSnap, useEditorStore } from './editorStore'
+import type { Transform } from '../../core/types'
+import { SNAP, effectiveSnap, supportsGizmoMode, useEditorStore } from './editorStore'
 
 const degToRad = (d: number) => (d * Math.PI) / 180
 const radToDeg = (r: number) => (r * 180) / Math.PI
@@ -26,21 +27,29 @@ const tagGizmoHelper = (c: unknown) => {
  * 拖拽实时写回 SceneDocument（数据驱动渲染），整个拖拽是一个事务（一条可撤销记录）。
  */
 export function EditorGizmo() {
-  const selectedId = useSceneStore(s => s.selectedAssetId)
+  const selectedId = useSceneStore(s => s.selectedLightId ?? s.selectedAssetId)
+  const light = useSceneStore(s => s.document?.lights?.find(light => light.id === s.selectedLightId))
   const assets = useSceneStore(s => s.document?.assets)
-  const mode = useEditorStore(s => s.mode)
+  const requestedMode = useEditorStore(s => s.mode)
+  const mode = supportsGizmoMode(requestedMode, light?.type) ? requestedMode : 'translate'
   const space = useEditorStore(s => s.space)
   const snap = useEditorStore(s => s.snap)
   const ctrlHeld = useEditorStore(s => s.ctrlHeld)
   const tx = useRef<TxHandle | null>(null)
+  const [obj, setObject] = useState<Object3D | null>(null)
+  const isLight = Boolean(light)
 
-  const obj = useMemo(
-    () => (selectedId ? engine.findAssetObject(selectedId) : undefined),
-    // assets 变化（增删/撤销）会重建对象，需要重新查找
-    [selectedId, assets],
-  )
+  useLayoutEffect(() => {
+    // 新建或复制后，等同一帧的场景对象挂载，再查找变换轴的目标。
+    setObject(selectedId ? (isLight ? engine.findLightObject(selectedId) : engine.findAssetObject(selectedId)) : null)
+  }, [selectedId, isLight, assets])
 
-  if (!obj || !selectedId) return null
+  useLayoutEffect(() => () => {
+    tx.current?.rollback()
+    tx.current = null
+  }, [selectedId, mode])
+
+  if (!obj || !selectedId || obj.name !== selectedId) return null
 
   const snapOn = effectiveSnap({ snap, ctrlHeld })
   const snapProps = {
@@ -51,28 +60,22 @@ export function EditorGizmo() {
 
   const handlers = {
     onMouseDown: () => {
+      if (tx.current || !edit.canBegin) return
       tx.current = edit.begin(`拖拽 ${selectedId}`, 'human')
-      bus.emit('transform:drag-start', { assetId: selectedId })
+      if (!light) bus.emit('transform:drag-start', { assetId: selectedId })
     },
     onMouseUp: () => {
       tx.current?.commit()
       tx.current = null
-      bus.emit('transform:drag-end', { assetId: selectedId })
+      if (!light) bus.emit('transform:drag-end', { assetId: selectedId })
     },
     onObjectChange: () => {
-      edit.setTransform(
-        selectedId,
-        {
-          position: [obj!.position.x, obj!.position.y, obj!.position.z],
-          rotation: [
-            radToDeg(obj!.rotation.x),
-            radToDeg(obj!.rotation.y),
-            radToDeg(obj!.rotation.z),
-          ],
-          scale: [obj!.scale.x, obj!.scale.y, obj!.scale.z],
-        },
-        { source: 'human', tx: tx.current ?? undefined },
-      )
+      if (!tx.current) return
+      const position: Transform['position'] = [obj.position.x, obj.position.y, obj.position.z]
+      const rotation: Transform['rotation'] = [radToDeg(obj.rotation.x), radToDeg(obj.rotation.y), radToDeg(obj.rotation.z)]
+      const meta = { tx: tx.current }
+      if (light) edit.updateLight(selectedId, { position, rotation }, meta)
+      else edit.setTransform(selectedId, { position, rotation, scale: [obj.scale.x, obj.scale.y, obj.scale.z] }, meta)
     },
   }
 
@@ -81,7 +84,7 @@ export function EditorGizmo() {
     return (
       <>
         <TransformControls ref={tagGizmoHelper} object={obj} mode="translate" size={1} space={space} {...snapProps} {...handlers} />
-        <TransformControls ref={tagGizmoHelper} object={obj} mode="rotate" size={0.55} space={space} {...snapProps} {...handlers} />
+        {light?.type !== 'point' && <TransformControls ref={tagGizmoHelper} object={obj} mode="rotate" size={0.55} space={space} {...snapProps} {...handlers} />}
       </>
     )
   }

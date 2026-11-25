@@ -1,6 +1,6 @@
 import { TerrainModel } from '../modules/terrain/TerrainModel'
 import { useGLTF } from '@react-three/drei'
-import { useEffect, useMemo } from 'react'
+import { memo, useEffect, useMemo } from 'react'
 import { BackSide, Mesh, MeshBasicMaterial, MeshStandardMaterial, Vector3 } from 'three'
 import type { Object3D, SkinnedMesh } from 'three'
 import { bus } from '../core/events'
@@ -91,8 +91,8 @@ export function makeOutline(src: Object3D): Object3D {
 }
 
 /** 占位几何：按 meta 的 native 尺寸建模，原点归一化到底面中心 */
-function PrimitiveModel(props: { meta: ModelMeta; tint?: string; outline?: boolean; materialOverride?: SceneAsset['materialOverride'] }) {
-  const { meta, tint, outline, materialOverride } = props
+function PrimitiveModel(props: { meta: ModelMeta; tint?: string; outline?: boolean; ghost?: boolean; materialOverride?: SceneAsset['materialOverride'] }) {
+  const { meta, tint, outline, ghost, materialOverride } = props
   const { w, d, h } = meta.dimensions
   const color = tint ?? meta.color ?? '#7ea6e0'
   const shape = meta.source.type === 'primitive' ? meta.source.shape : 'box'
@@ -105,13 +105,13 @@ function PrimitiveModel(props: { meta: ModelMeta; tint?: string; outline?: boole
       }
     : {
         scale: 1,
-        material: <meshStandardMaterial color={materialOverride?.color ?? color} roughness={materialOverride?.roughness ?? 0.65} metalness={materialOverride?.metalness ?? 0.05} />,
+        material: <meshStandardMaterial color={materialOverride?.color ?? color} roughness={materialOverride?.roughness ?? 0.65} metalness={materialOverride?.metalness ?? 0.05} transparent={ghost} opacity={ghost ? 0.45 : 1} depthWrite={!ghost} />,
         userData: undefined,
       }
 
   if (shape === 'cylinder') {
     return (
-      <mesh castShadow={!outline} receiveShadow={!outline} position={[0, h / 2, 0]} scale={common.scale} userData={common.userData}>
+      <mesh castShadow={!outline && !ghost} receiveShadow={!outline} position={[0, h / 2, 0]} scale={common.scale} userData={common.userData}>
         <cylinderGeometry args={[w / 2, w / 2, h, 32]} />
         {common.material}
       </mesh>
@@ -119,14 +119,14 @@ function PrimitiveModel(props: { meta: ModelMeta; tint?: string; outline?: boole
   }
   if (shape === 'sphere') {
     return (
-      <mesh castShadow={!outline} receiveShadow={!outline} position={[0, w / 2, 0]} scale={common.scale} userData={common.userData}>
+      <mesh castShadow={!outline && !ghost} receiveShadow={!outline} position={[0, w / 2, 0]} scale={common.scale} userData={common.userData}>
         <sphereGeometry args={[w / 2, 32, 16]} />
         {common.material}
       </mesh>
     )
   }
   return (
-    <mesh castShadow={!outline} receiveShadow={!outline} position={[0, h / 2, 0]} scale={common.scale} userData={common.userData}>
+    <mesh castShadow={!outline && !ghost} receiveShadow={!outline} position={[0, h / 2, 0]} scale={common.scale} userData={common.userData}>
       <boxGeometry args={[w, h, d]} />
       {common.material}
     </mesh>
@@ -140,33 +140,58 @@ function GlbModel(props: {
   assetId: string
   refId: string
   selected: boolean
+  ghost?: boolean
+  interactive: boolean
   materialOverride?: SceneAsset['materialOverride']
 }) {
-  const { url, draco, assetId, refId, selected, materialOverride } = props
+  const { url, draco, assetId, refId, selected, materialOverride, ghost, interactive } = props
   const { scene } = useGLTF(url, draco ? '/assets/decoders/' : false)
   const cloned = useMemo(() => {
     normalizeGltf(scene)
     const copy = scene.clone(true)
+    if (ghost) {
+      const materials = new Map<Mesh['material'], Mesh['material']>()
+      const transparent = (source: Mesh['material']) => {
+        if (Array.isArray(source)) return source.map(material => {
+          const clone = material.clone()
+          clone.transparent = true
+          clone.opacity *= 0.45
+          clone.depthWrite = false
+          return clone
+        })
+        const clone = source.clone()
+        clone.transparent = true
+        clone.opacity *= 0.45
+        clone.depthWrite = false
+        return clone
+      }
+      copy.traverse(object => {
+        const mesh = object as Mesh
+        if (!mesh.isMesh) return
+        if (!materials.has(mesh.material)) materials.set(mesh.material, transparent(mesh.material))
+        mesh.material = materials.get(mesh.material)!
+      })
+    }
     if (materialOverride) {
       const material = new MeshStandardMaterial(materialOverride)
       copy.traverse(o => { if ((o as Mesh).isMesh) (o as Mesh).material = material })
     }
     return copy
-  }, [scene, materialOverride])
+  }, [scene, materialOverride, ghost])
   useEffect(() => () => {
-    if (!materialOverride) return
-    const materials = new Set<MeshStandardMaterial>()
-    cloned.traverse(o => { const m = o as Mesh; if (m.isMesh && m.material instanceof MeshStandardMaterial) materials.add(m.material) })
+    if (!materialOverride && !ghost) return
+    const materials = new Set<import('three').Material>()
+    cloned.traverse(o => { const m = o as Mesh; if (m.isMesh) for (const material of [m.material].flat()) materials.add(material) })
     materials.forEach(m => m.dispose())
-  }, [cloned, materialOverride])
+  }, [cloned, materialOverride, ghost])
   const outline = useMemo(() => (selected ? makeOutline(cloned) : null), [cloned, selected])
 
   useEffect(() => {
     cloned.traverse(obj => {
-      if ((obj as Mesh).isMesh) obj.castShadow = true
+      if ((obj as Mesh).isMesh) obj.castShadow = !ghost
     })
-    bus.emit('asset:loaded', { assetId, ref: refId })
-  }, [cloned, assetId, refId])
+    if (interactive) bus.emit('asset:loaded', { assetId, ref: refId })
+  }, [cloned, assetId, refId, ghost, interactive])
 
   return (
     <>
@@ -183,10 +208,11 @@ function GlbModel(props: {
  * 没有任何模块订阅时，点击不产生任何效果（纯渲染器模式）。
  * 除本文件与 ViewRig 外，任何代码不得直接操作 three 对象。
  */
-export function AssetInstance(props: { asset: SceneAsset }) {
-  const { asset } = props
-  const meta = useSceneStore(s => s.manifest?.models[asset.ref])
-  const selected = useSceneStore(s => s.selectedAssetId === asset.id)
+export const AssetInstance = memo(function AssetInstance(props: { asset: SceneAsset; interactive?: boolean; ghost?: boolean; model?: ModelMeta; visible?: boolean }) {
+  const { asset, interactive = true, ghost = false, model } = props
+  const catalogMeta = useSceneStore(s => s.manifest?.models[asset.ref])
+  const meta = model ?? catalogMeta
+  const selected = useSceneStore(s => interactive && s.selectedAssetIds.includes(asset.id))
 
   const { position, rotation, scale } = asset.transform
   const scl: [number, number, number] = scale ?? [1, 1, 1]
@@ -195,37 +221,41 @@ export function AssetInstance(props: { asset: SceneAsset }) {
   return (
     <group
       name={asset.id}
-      userData={{ assetId: asset.id }}
+      userData={ghost ? { editorHelper: true } : { assetId: asset.id }}
       position={position}
       rotation={asRad(rotation)}
       scale={scl}
-      visible={asset.visible !== false}
+      visible={props.visible ?? asset.visible !== false}
     >
       {/* R3F 事件沿对象树上冒：内部任意 mesh 的点击都会上报该资产 */}
       <group
-        onClick={e => {
+        onClick={interactive ? e => {
           if (e.button !== 0) return
           e.stopPropagation()
-          bus.emit('asset:clicked', { assetId: asset.id })
-        }}
-        onPointerOver={() => (document.body.style.cursor = 'pointer')}
-        onPointerOut={() => (document.body.style.cursor = 'auto')}
+          bus.emit('asset:clicked', { assetId: asset.id, additive: e.nativeEvent.shiftKey || e.nativeEvent.ctrlKey || e.nativeEvent.metaKey })
+        } : undefined}
+        onPointerOver={interactive ? () => (document.body.style.cursor = 'pointer') : undefined}
+        onPointerOut={interactive ? () => (document.body.style.cursor = 'auto') : undefined}
       >
-        {asset.terrain ? <TerrainModel terrain={asset.terrain} material={asset.materialOverride} /> : meta ? (
+        {asset.group ? null : asset.shape ? <BuildShape asset={asset} ghost={ghost} selected={selected} /> : asset.terrain ? <TerrainModel terrain={asset.terrain} material={asset.materialOverride} /> : meta ? (
           glbSource ? (
-            <group scale={glbSource.unitScale ?? 1}>
+            <group position={glbSource.offset} rotation-y={degToRad(glbSource.rotationY ?? 0)}>
+              <group scale={glbSource.unitScale ?? 1}>
               <GlbModel
                 url={glbSource.url ?? `/assets/${asset.ref}/${glbSource.file}`}
                 draco={glbSource.draco === true}
                 assetId={asset.id}
                 refId={asset.ref}
                 selected={selected}
+                ghost={ghost}
+                interactive={interactive}
                 materialOverride={asset.materialOverride}
               />
+              </group>
             </group>
           ) : (
             <>
-              <PrimitiveModel meta={meta} tint={asset.tint} materialOverride={asset.materialOverride} />
+              <PrimitiveModel meta={meta} tint={asset.tint} ghost={ghost} materialOverride={asset.materialOverride} />
               {selected && <PrimitiveModel meta={meta} outline />}
             </>
           )
@@ -239,4 +269,22 @@ export function AssetInstance(props: { asset: SceneAsset }) {
       </group>
     </group>
   )
+})
+
+function BuildShape({ asset, ghost, selected }: { asset: SceneAsset; ghost: boolean; selected: boolean }) {
+  const { kind, size: [width, height, depth] } = asset.shape!
+  const geometry = kind === 'plane' ? <planeGeometry args={[width, depth]} />
+    : kind === 'cylinder' ? <cylinderGeometry args={[0.5, 0.5, height, 32]} />
+      : <boxGeometry args={[width, height, depth]} />
+  return <mesh
+    castShadow={!ghost} receiveShadow
+    position-y={kind === 'plane' ? 0 : height / 2}
+    rotation-x={kind === 'plane' ? -Math.PI / 2 : 0}
+    scale={kind === 'cylinder' ? [width, 1, depth] : 1}
+  >
+    {geometry}
+    <meshStandardMaterial color={asset.materialOverride?.color ?? (selected ? '#b9a386' : '#92887b')}
+      roughness={asset.materialOverride?.roughness ?? 0.8} metalness={asset.materialOverride?.metalness ?? 0}
+      transparent={ghost} opacity={ghost ? 0.45 : 1} depthWrite={!ghost} side={kind === 'plane' ? 2 : 0} />
+  </mesh>
 }

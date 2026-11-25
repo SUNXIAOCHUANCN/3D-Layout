@@ -29,7 +29,7 @@ export async function saveScene(): Promise<{ mode: 'server' | 'download'; versio
 export async function createScene(name: string): Promise<{ id: string }> {
   const res = await fetch('/api/scene', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'X-Layout-Client': '1' },
     body: JSON.stringify({ name }),
   })
   if (!res.ok) {

@@ -6,6 +6,7 @@ import { bus } from '../core/events'
 import { useSceneStore } from '../core/store'
 import { CameraRig } from './CameraRig'
 import { EngineBridgeReg } from './EngineBridgeReg'
+import { LIGHT_HELPER_LAYER } from './LightInstance'
 import { SceneContent } from './SceneContent'
 import { ViewRig } from './ViewRig'
 
@@ -17,11 +18,12 @@ const NO_CAMERA_ACTION = -1 as unknown as MOUSE
  * children 是模块装配点①（Canvas 内，如编辑器的 gizmo 层）；
  * 点击空白只上报 viewport:empty-click，由模块决定是否取消选中。
  */
-export function SceneCanvas(props: { children?: ReactNode }) {
+export function SceneCanvas(props: { children?: ReactNode; showLightHelpers?: boolean; honorEditorHidden?: boolean; fixedView?: boolean; disableOrbitRotate?: boolean }) {
   const sceneId = useSceneStore(s => s.sceneId)
-  const document = useSceneStore(s => s.document)
+  const cameras = useSceneStore(s => s.document?.cameras)
+  const environment = useSceneStore(s => s.document?.environment)
   const view = useSceneStore(s => s.view)
-  if (!document) return null
+  if (!cameras || !environment) return null
 
   return (
     <Canvas
@@ -29,18 +31,23 @@ export function SceneCanvas(props: { children?: ReactNode }) {
       shadows
       dpr={[1, 2]}
       camera={{ fov: 50, position: [8, 6, 10], near: 0.1, far: 300 }}
+      onCreated={({ camera, raycaster }) => {
+        camera.layers.enable(LIGHT_HELPER_LAYER)
+        raycaster.layers.enable(LIGHT_HELPER_LAYER)
+      }}
       onPointerMissed={e => {
         if (e.button === 0) bus.emit('viewport:empty-click', {})
       }}
     >
       <EngineBridgeReg />
-      <CameraRig cameras={document.cameras} view={view} sceneKey={sceneId ?? ''} assets={document.assets} />
+      <SceneCameraRig />
       <Suspense fallback={null}>
-        <SceneContent />
-        <ViewRig env={document.environment} view={view} />
+        <SceneContent showLightHelpers={props.showLightHelpers} honorEditorHidden={props.honorEditorHidden} />
+        <ViewRig env={environment} view={view} />
       </Suspense>
       <OrbitControls
         makeDefault
+        enableRotate={!props.fixedView && !props.disableOrbitRotate}
         enableDamping
         dampingFactor={0.08}
         maxPolarAngle={Math.PI / 2 - 0.02}
@@ -56,4 +63,12 @@ export function SceneCanvas(props: { children?: ReactNode }) {
       {props.children}
     </Canvas>
   )
+}
+
+/** Asset movement updates clipping without rebuilding the whole Canvas tree. */
+function SceneCameraRig() {
+  const document = useSceneStore(s => s.document)
+  const sceneId = useSceneStore(s => s.sceneId)
+  const view = useSceneStore(s => s.view)
+  return document && <CameraRig cameras={document.cameras} view={view} sceneKey={sceneId ?? ''} assets={document.assets} />
 }

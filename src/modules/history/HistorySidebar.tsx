@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef, useState } from 'react'
-import type { CSSProperties } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { edit, type HistoryUnitView } from '../../core/edit'
 import { bus } from '../../core/events'
 
@@ -24,6 +24,8 @@ export function HistorySidebar(props: {
   style?: CSSProperties
   /** CoAgent 运行中锁定 undo/redo（W03 互斥入口：防止中途撤销搅事务） */
   locked?: boolean
+  tabs?: ReactNode
+  content?: ReactNode
 }) {
   const [, bump] = useReducer((x: number) => x + 1, 0)
   useEffect(() => bus.on('history:changed', bump), [])
@@ -38,12 +40,12 @@ export function HistorySidebar(props: {
   useEffect(() => {
     const el = listRef.current
     if (el) el.scrollTop = el.scrollHeight
-  }, [total])
+  }, [total, props.content == null])
 
   if (props.collapsed) {
     return (
       <button className="rail rail-right" onClick={props.onToggle} title="展开历史记录">
-        « 历史
+        {props.tabs ? '« 工作区' : '« 历史'}
       </button>
     )
   }
@@ -73,14 +75,15 @@ export function HistorySidebar(props: {
   return (
     <aside className="sidebar sidebar-right" style={props.style}>
       <div className="sheet-head">
-        <span className="sheet-title">历史记录</span>
-        <span className="sheet-meta">LOG / {String(total).padStart(2, '0')}</span>
+        <span className="sheet-title">{props.tabs ? '工作区' : '历史记录'}</span>
+        {!props.tabs && <span className="sheet-meta">LOG / {String(total).padStart(2, '0')}</span>}
         <span className="spacer" />
-        <button className="icon-btn" onClick={props.onToggle} title="收起历史记录" aria-label="收起历史记录">
+        <button className="icon-btn" onClick={props.onToggle} title="收起右侧栏" aria-label={props.tabs ? '收起右侧栏' : '收起历史记录'}>
           »
         </button>
       </div>
-      <div className="history-list" ref={listRef}>
+      {props.tabs}
+      {props.content ?? <div className="history-list" ref={listRef}>
         {total === 0 && <div className="inspector-empty history-empty">暂无编辑记录</div>}
         {done.map((u, i) => (
           <button
@@ -113,7 +116,7 @@ export function HistorySidebar(props: {
             </span>
           </button>
         ))}
-      </div>
+      </div>}
 
       {pending && (
         <div className="modal-mask" onClick={() => setPending(null)}>

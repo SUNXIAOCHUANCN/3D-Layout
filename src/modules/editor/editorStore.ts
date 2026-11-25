@@ -1,7 +1,12 @@
 import { create } from 'zustand'
+import type { SceneLight } from '../../core/types'
 
 /** gizmo 四模式：移动/旋转/缩放/复合（移动+旋转同显，类似 Blender） */
 export type GizmoMode = 'translate' | 'rotate' | 'scale' | 'unified'
+
+export function supportsGizmoMode(mode: GizmoMode, type?: SceneLight['type']): boolean {
+  return !type || (mode !== 'scale' && (type !== 'point' || mode !== 'rotate'))
+}
 
 /** 吸附步长：移动 0.5m、旋转 15°、缩放 0.1；按住 Ctrl 临时反转开关状态 */
 export const SNAP = { translate: 0.5, rotateDeg: 15, scale: 0.1 }

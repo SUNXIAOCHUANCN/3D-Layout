@@ -15,8 +15,11 @@ type Dialog = { kind: 'create' } | { kind: 'delete' } | null
 export function TopBar(props: { scenes: SceneIndexEntry[]; locked?: boolean }) {
   const { scenes, locked } = props
   const sceneId = useSceneStore(s => s.sceneId)
-  const sceneDoc = useSceneStore(s => s.document)
+  const sceneName = useSceneStore(s => s.document?.meta.name)
+  const count = useSceneStore(s => s.document?.assets.length)
   const selected = useSceneStore(s => s.selectedAssetId)
+  const selectedLightId = useSceneStore(s => s.document?.lights?.find(light => light.id === s.selectedLightId)?.id)
+  const selectedLightName = useSceneStore(s => s.document?.lights?.find(light => light.id === s.selectedLightId)?.name)
   const sceneError = useSceneStore(s => s.sceneError)
   const loading = useSceneStore(s => s.loading)
   const { status, message } = usePersistence()
@@ -97,7 +100,7 @@ export function TopBar(props: { scenes: SceneIndexEntry[]; locked?: boolean }) {
     }
   }
 
-  const assetCount = sceneDoc ? String(sceneDoc.assets.length).padStart(2, '0') : null
+  const assetCount = count === undefined ? null : String(count).padStart(2, '0')
 
   return (
     <header className="topbar">
@@ -136,10 +139,10 @@ export function TopBar(props: { scenes: SceneIndexEntry[]; locked?: boolean }) {
           <i>资产</i>
         </span>
       )}
-      {selected && (
-        <span className="chip" title={`已选中：${selected}`}>
+      {(selectedLightId || selected) && (
+        <span className="chip" title={`已选中：${selectedLightId ?? selected}`}>
           <span className="pip" />
-          {selected}
+          {selectedLightName ?? selectedLightId ?? selected}
         </span>
       )}
       {sceneError && <span className="error">{sceneError}</span>}
@@ -210,7 +213,7 @@ export function TopBar(props: { scenes: SceneIndexEntry[]; locked?: boolean }) {
             ) : (
               <>
                 <div className="modal-text">
-                  将删除场景「{sceneDoc?.meta.name ?? sceneId}」（{sceneId}）及其全部文件。
+                  将删除场景「{sceneName ?? sceneId}」（{sceneId}）及其全部文件。
                   未保存的编辑会一并丢失，且不可恢复。
                 </div>
                 <div className="modal-actions">

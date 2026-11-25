@@ -52,6 +52,13 @@ export interface SceneAsset {
   /** 显示名（可中文） */
   name?: string
   transform: Transform
+  /** Layering uses world transforms, including for objects with a parent. */
+  parentId?: string
+  group?: boolean
+  locked?: boolean
+  shape?: { kind: 'box' | 'plane' | 'cylinder'; size: Vec3 }
+  /** Identifies objects created by a scatter brush. */
+  scatterTerrainId?: string
   /** 覆盖占位模型的显示颜色（对 glb 无效），也供 Agent 高亮使用 */
   tint?: string
   /** 默认 true */
@@ -108,10 +115,35 @@ export interface SceneCamera {
   fov?: number
 }
 
+interface LightProperties {
+  id: string
+  name?: string
+  position: Vec3
+  /** RGB hex color (#rrggbb). */
+  color: string
+  /** Luminous intensity in candela. */
+  intensity: number
+  /** Cutoff distance in metres. Zero means no cutoff. */
+  distance: number
+  enabled?: boolean
+}
+
+export type SceneLight = LightProperties & (
+  | { type: 'point' }
+  | {
+      type: 'spot'
+      /** XYZ Euler angles in degrees. A zero rotation aims along -Z. */
+      rotation: Vec3
+      /** Half cone angle in degrees. */
+      angle: number
+    }
+)
+
 export interface SceneDocument {
   meta: SceneMeta
   environment: SceneEnvironment
   assets: SceneAsset[]
+  lights?: SceneLight[]
   cameras: SceneCamera[]
 }
 
@@ -137,7 +169,7 @@ export interface ViewBinding {
 
 export type ModelSource =
   | { type: 'primitive'; shape: 'box' | 'cylinder' | 'sphere' }
-  | { type: 'glb'; file: string; url?: string; unitScale?: number; draco?: boolean }
+  | { type: 'glb'; file: string; url?: string; unitScale?: number; draco?: boolean; offset?: Vec3; rotationY?: number }
 
 /**
  * 每个模型一个 meta.json。

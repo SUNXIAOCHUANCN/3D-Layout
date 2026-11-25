@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
 import { edit } from '../../core/edit'
-import { engine } from '../../core/engine'
 import { useSceneStore } from '../../core/store'
-import { duplicateSelected } from './ops'
+import { duplicateSelected, focusSelected, removeSelected } from './ops'
 import { useEditorStore } from './editorStore'
 
 /**
@@ -23,7 +22,7 @@ export function useEditorShortcuts(enabled: boolean): void {
 
       const es = useEditorStore.getState()
       const ss = useSceneStore.getState()
-      const sel = ss.selectedAssetId
+      const sel = ss.selectedLightId ?? ss.selectedAssetId
       const mod = e.ctrlKey || e.metaKey
 
       switch (e.code) {
@@ -43,11 +42,11 @@ export function useEditorShortcuts(enabled: boolean): void {
           if (!mod) es.toggleSpace()
           break
         case 'KeyF':
-          if (sel && !mod) engine.focusAsset(sel)
+          if (sel && !mod) focusSelected()
           break
         case 'Delete':
         case 'Backspace':
-          if (sel) edit.removeAsset(sel, { source: 'human' })
+          if (sel) removeSelected()
           break
         case 'KeyD':
           if (mod && sel) {

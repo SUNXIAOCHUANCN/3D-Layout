@@ -1,3 +1,5 @@
+import { sculptTerrain } from '../terrain/sculpt'
+import type { Point } from '../terrain/surface'
 import { Matrix4, Euler, Quaternion, Vector3, Raycaster } from 'three'
 import { GENERATION_TOOLS } from './generationTools'
 import { edit } from '../../core/edit'
@@ -230,49 +232,20 @@ export const SCENE_TOOLS: AgentToolDef[] = [
     )
     const coordinates = points.map(point => {
       if (!Array.isArray(point) || point.length !== 2) throw new Error('需要局部坐标 [x,z]')
-      return point.map(n => finite(n))
+      return point.map(n => finite(n)) as Point
     })
-    const distanceToBrush = (x: number, z: number) => {
-      const [cx, cz] = coordinates[0]
-      let distance = Math.hypot(x - cx, z - cz)
-      for (let i = 1; i < coordinates.length; i++) {
-        const [ax, az] = coordinates[i - 1]
-        const [bx, bz] = coordinates[i]
-        const dx = bx - ax, dz = bz - az
-        const lengthSquared = dx * dx + dz * dz
-        const fraction = lengthSquared ? Math.max(0, Math.min(1, ((x - ax) * dx + (z - az) * dz) / lengthSquared)) : 0
-        distance = Math.min(distance, Math.hypot(x - ax - fraction * dx, z - az - fraction * dz))
-      }
-      return distance
-    }
     const radius = finite(args.radius, 0.001)
     const mode = args.mode
     if (mode !== 'raise' && mode !== 'flatten' && mode !== 'smooth') throw new Error('未知雕刻操作')
     let value = mode === 'smooth' ? finite(args.value, 0, 1) : finite(args.value, -10000, 10000)
     if (world && mode !== 'smooth') value = mode === 'raise' ? value / sy : (value - asset.transform.position[1]) / sy
     const plateau = finite(args.plateau ?? 0, 0, 1)
-    let changed = 0
-    const heights = t.heights.map((height, i) => {
-      const x = i % t.samplesX
-      const z = Math.floor(i / t.samplesX)
-      const point = new Vector3((x / (t.samplesX - 1) - 0.5) * t.width, 0, (z / (t.samplesZ - 1) - 0.5) * t.depth)
-      if (world) point.applyMatrix4(matrix)
-      const distance = distanceToBrush(point.x, point.z)
-      if (distance >= radius) return height
-      const f = distance <= radius * plateau ? 1 : 1 - (distance / radius - plateau) / (1 - plateau)
-      const weight = f * f * (3 - 2 * f)
-      let target = mode === 'raise' ? height + value : value
-      if (mode === 'smooth') {
-        const neighbors = [height]
-        if (x > 0) neighbors.push(t.heights[i - 1])
-        if (x + 1 < t.samplesX) neighbors.push(t.heights[i + 1])
-        if (z > 0) neighbors.push(t.heights[i - t.samplesX])
-        if (z + 1 < t.samplesZ) neighbors.push(t.heights[i + t.samplesX])
-        target = height + value * (neighbors.reduce((sum, n) => sum + n, 0) / neighbors.length - height)
-      }
-      const next = finite(height + (target - height) * weight, -10000, 10000)
-      if (next !== height) changed++
-      return next
+    const { heights, changed } = sculptTerrain(t, {
+      points: coordinates, radius, mode, value, plateau,
+      project: world ? (x, z) => {
+        const point = new Vector3(x, 0, z).applyMatrix4(matrix)
+        return [point.x, point.z]
+      } : undefined,
     })
     if (changed) applied(edit.updateAsset(asset.id, { terrain: { ...t, heights } }, meta))
     return { assetId: asset.id, changedSamples: changed, effective: changed > 0,

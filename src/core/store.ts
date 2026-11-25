@@ -21,12 +21,25 @@ interface SceneState {
   manifest: ModelManifest | null
   sceneError: string | null
   selectedAssetId: string | null
+  selectedAssetIds: string[]
+  selectedLightId: string | null
+  editorHiddenIds: string[]
   loading: boolean
 
   /** 启动：拉 manifest 并加载首个场景 */
   boot: (sceneId: string) => Promise<void>
   loadScene: (sceneId: string) => Promise<void>
   select: (assetId: string | null) => void
+  selectMany: (ids: readonly string[]) => void
+  selectLight: (lightId: string) => void
+  toggleEditorHidden: (id: string) => void
+}
+
+function readHidden(sceneId: string): string[] {
+  try {
+    const saved = JSON.parse(localStorage.getItem(`layout-hidden:${sceneId}`) ?? '[]')
+    return Array.isArray(saved) ? saved.filter(id => typeof id === 'string') : []
+  } catch { return [] }
 }
 
 export const useSceneStore = create<SceneState>((set, get) => ({
@@ -36,6 +49,9 @@ export const useSceneStore = create<SceneState>((set, get) => ({
   manifest: null,
   sceneError: null,
   selectedAssetId: null,
+  selectedAssetIds: [],
+  selectedLightId: null,
+  editorHiddenIds: [],
   loading: false,
 
   boot: async sceneId => {
@@ -52,6 +68,7 @@ export const useSceneStore = create<SceneState>((set, get) => ({
 
   loadScene: async sceneId => {
     if (get().loading) return
+    bus.emit('scene:will-change', {})
     set({ sceneError: null, loading: true })
     try {
       await flushWorkspace()
@@ -59,7 +76,7 @@ export const useSceneStore = create<SceneState>((set, get) => ({
         openWorkspace(sceneId),
         loadViewBinding(sceneId),
       ])
-      set({ sceneId, document: workspace.document, view, selectedAssetId: null })
+      set({ sceneId, document: workspace.document, view, selectedAssetId: null, selectedAssetIds: [], selectedLightId: null, editorHiddenIds: readHidden(sceneId) })
       bus.emit('scene:changed', { sceneId })
       restoreHistory(workspace)
       if (typeof window !== 'undefined') {
@@ -75,8 +92,31 @@ export const useSceneStore = create<SceneState>((set, get) => ({
   },
 
   select: assetId => {
-    if (get().selectedAssetId === assetId) return
-    set({ selectedAssetId: assetId })
+    get().selectMany(assetId ? [assetId] : [])
+  },
+
+  selectMany: ids => {
+    const state = get()
+    const selectedAssetIds = [...new Set(ids)]
+    if (!state.selectedLightId && state.selectedAssetIds.length === ids.length
+      && state.selectedAssetIds.every((id, index) => id === ids[index])) return
+    const assetId = selectedAssetIds.at(-1) ?? null
+    set({ selectedAssetId: assetId, selectedAssetIds, selectedLightId: null })
     bus.emit('asset:selected', { assetId })
+  },
+
+  selectLight: lightId => {
+    const { document, selectedAssetId } = get()
+    if (!document?.lights?.some(light => light.id === lightId)) return
+    set({ selectedAssetId: null, selectedAssetIds: [], selectedLightId: lightId })
+    if (selectedAssetId) bus.emit('asset:selected', { assetId: null })
+  },
+
+  toggleEditorHidden: id => {
+    const { sceneId, editorHiddenIds } = get()
+    if (!sceneId) return
+    const next = editorHiddenIds.includes(id) ? editorHiddenIds.filter(item => item !== id) : [...editorHiddenIds, id]
+    set({ editorHiddenIds: next })
+    try { localStorage.setItem(`layout-hidden:${sceneId}`, JSON.stringify(next)) } catch { /* still applies to this editor view */ }
   },
 }))

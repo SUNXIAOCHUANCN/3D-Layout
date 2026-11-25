@@ -9,6 +9,7 @@ import { execFileSync, spawn } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { WorkspaceRepository } from '../workspaces.mjs'
 import { createWorkspaceApi } from '../http.mjs'
+import { createRecordings } from '../recordings.mjs'
 
 const repositories = new Map()
 function repository(root) {
@@ -188,6 +189,83 @@ test('独立服务提供构建页面、场景 API 与数据文件', async t => {
     assert.equal((await (await fetch(url + '/api/health')).json()).schemaVersion, 1)
     assert.deepEqual(await (await fetch(url + '/api/scenes')).json(), [{ id: 'room', name: '房间' }])
     assert.equal((await fetch(url + '/scenes/room/scene.json')).status, 200)
+    const created = await (await fetch(url + '/api/scene', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Layout-Client': '1' },
+      body: JSON.stringify({ name: '空场景' }),
+    })).json()
+    assert.equal(created.name, '空场景')
+    const { workspace } = await (await fetch(url + '/api/workspaces/' + created.id)).json()
+    assert.deepEqual(workspace.document.assets, [])
     assert.equal((await fetch(url + '/.data/layout.sqlite')).status, 404)
   } finally { if (child.exitCode === null) child.kill();await exited }
+})
+
+test('录制批次可重试，宿主重启后保留已落盘的中断会话', t => {
+  const root = fixture(t)
+  const id = '11111111-2222-3333-4444-555555555555'
+  let recordings = createRecordings(root)
+  const initial = { document: repository(root).get('room').workspace.document, view: {} }
+  const startedAt = new Date().toISOString()
+  recordings.write('room', id, 'start', { initial, session: { sceneId: 'room', sessionId: id, schemaVersion: 1, startedAt } })
+  const first = { edits: [{ seq: 2, tMs: 10 }], samples: [{ seq: 1, tMs: 0 }, { seq: 3, tMs: 10 }] }
+  recordings.write('room', id, 'batch', first)
+  recordings.write('room', id, 'batch', first)
+  assert.deepEqual(recordings.get('room', id).samples, first.samples)
+  recordings = createRecordings(root)
+  const interrupted = recordings.get('room', id)
+  assert.equal(interrupted.session.captureStatus, 'interrupted')
+  assert.equal(interrupted.session.durationMs, 10)
+  assert.deepEqual(interrupted.edits, first.edits)
+  assert.deepEqual(interrupted.initial, initial)
+  const finish = { edits: first.edits, samples: [...first.samples, { seq: 4, tMs: 20 }], durationMs: 20, endedAt: startedAt }
+  recordings.write('room', id, 'finish', finish)
+  recordings.write('room', id, 'finish', finish)
+  const completed = recordings.get('room', id)
+  assert.equal(completed.session.captureStatus, 'saved')
+  assert.deepEqual(completed.edits, first.edits)
+  assert.deepEqual(completed.samples, finish.samples)
+})
+
+test('第三空间分批提交超过 32 MiB 的结果，重试保持行顺序且不重复', async t => {
+  const root = fixture(t)
+  const api = createWorkspaceApi(root)
+  repositories.get(root).push(api.repository)
+  const server = createServer((req, res) => api.handler(req, res, () => res.writeHead(404).end()))
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve))
+  t.after(async () => {
+    await new Promise(resolve => server.close(resolve))
+    api.close()
+  })
+  const id = '11111111-2222-3333-4444-555555555555'
+  const capture = createRecordings(root)
+  const initial = { document: api.repository.get('room').workspace.document, view: {} }
+  const startedAt = new Date().toISOString()
+  capture.write('room', id, 'start', { initial, session: { sceneId: 'room', sessionId: id, schemaVersion: 1, startedAt } })
+  capture.write('room', id, 'finish', { edits: [], samples: [], durationMs: 10, endedAt: startedAt })
+  const url = `http://127.0.0.1:${server.address().port}/api/recordings/room/${id}`
+  const post = data => fetch(url + '/visibility', {
+    method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Layout-Client': '1' }, body: JSON.stringify(data),
+  })
+  const uploadId = 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee'
+  const rejected = await post({ status: 'ready', visibility: ['x'.repeat(32 * 1024 * 1024)] })
+  assert.equal(rejected.status, 413)
+  assert.match((await rejected.json()).error, /32 MiB/)
+  const objectId = '树'.repeat(250)
+  const output = []
+  let offset = 0
+  for (let i = 0; i < 70; i++) {
+    const lines = (JSON.stringify({ sampleId: `sample-${i}`, objectId }) + '\n').repeat(650)
+    const payload = { uploadId, offset, status: 'chunk', lines }
+    assert.equal((await post(payload)).status, 200)
+    if (i === 0) assert.equal((await post(payload)).status, 200)
+    offset += Buffer.byteLength(lines)
+    output.push(lines)
+  }
+  assert.ok(offset > 32 * 1024 * 1024)
+  assert.equal(capture.list('room')[0].analysisStatus, 'pending')
+  assert.equal((await post({ uploadId, offset: offset + 1, status: 'ready' })).status, 409)
+  assert.equal((await post({ uploadId, offset, status: 'ready' })).status, 200)
+  assert.equal((await post({ uploadId, offset, status: 'ready' })).status, 200)
+  assert.equal(capture.list('room')[0].analysisStatus, 'ready')
+  assert.ok(readFileSync(join(root, '.data', 'recordings', 'room', id, 'object-visibility.jsonl')).equals(Buffer.from(output.join(''))))
 })
